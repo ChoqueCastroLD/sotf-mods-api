@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { entryDecision, LEGACY_EXACT, legacyRule, trailingSlashTarget } from './redirects.ts';
+import { entryDecision, LEGACY_EXACT, legacyRule, REMOVED_FEATURES, removedFeatureTarget, trailingSlashTarget } from './redirects.ts';
 
 const url = (path: string) => new URL(path, 'https://sotf-mods.com');
 
@@ -48,7 +48,7 @@ describe('entryDecision (server entry, before routing)', () => {
     expect(entryDecision(url('/ES/mods?page=2')).redirect).toEqual({ status: 301, location: '/es/mods?page=2' });
     expect(entryDecision(url('/pt-BR/mods')).redirect?.location).toBe('/pt/mods');
     expect(entryDecision(url('/es-ES')).redirect?.location).toBe('/es');
-    expect(entryDecision(url('/zh_CN/best/mods')).redirect?.location).toBe('/zh/best/mods');
+    expect(entryDecision(url('/zh_CN/mods')).redirect?.location).toBe('/zh/mods');
     expect(entryDecision(url('/EN/mods')).redirect?.location).toBe('/mods');
     expect(entryDecision(url('/en-US')).redirect?.location).toBe('/');
   });
@@ -137,6 +137,54 @@ describe('legacy redirect table (PLAN §4.6)', () => {
     expect(legacyRule('/@%E0%A4%A', '', 'en')).toEqual({ kind: 'pass' });
     expect(legacyRule('/@a%2Fb', '', 'en')).toEqual({ kind: 'pass' });
     expect(legacyRule('/@', '', 'en')).toEqual({ kind: 'pass' });
+  });
+
+  describe('removed features (CLASSIC.md)', () => {
+    const removed: Array<[string, string]> = [
+      ['/kits', '/mods'],
+      ['/kits/imaxel/starter', '/mods'],
+      ['/k', '/mods'],
+      ['/k/abc123', '/mods'],
+      ['/patch-radar', '/mods'],
+      ['/patch-radar/1.0.4', '/mods'],
+      ['/best/mods', '/mods'],
+      ['/compare', '/mods'],
+      ['/creators', '/mods'],
+      ['/news', '/'],
+      ['/news/feed.xml', '/'],
+      ['/news/some-post', '/'],
+      ['/achievements', '/'],
+      ['/badges', '/'],
+      ['/brand', '/'],
+    ];
+
+    it.each(removed)('%s → 301 %s', (from, to) => {
+      expect(legacyRule(from, '', 'en')).toEqual({ kind: 'redirect', status: 301, location: to });
+    });
+
+    it('covers every removed feature segment', () => {
+      const tested = new Set(removed.map(([from]) => from.split('/')[1]));
+      for (const segment of Object.keys(REMOVED_FEATURES)) expect(tested.has(segment)).toBe(true);
+    });
+
+    it('keeps the locale prefix of the request and drops the query', () => {
+      expect(legacyRule('/kits', '?sort=popular', 'es')).toMatchObject({ location: '/es/mods' });
+      expect(legacyRule('/news/post', '', 'de')).toMatchObject({ location: '/de' });
+      expect(legacyRule('/creators', '?page=2', 'ja')).toMatchObject({ location: '/ja/mods' });
+      expect(entryDecision(url('/es/kits')).path).toBe('/kits');
+    });
+
+    it('keeps the README badges for mods and the static brand files', () => {
+      expect(removedFeatureTarget('/badges/mods/imaxel/axel/downloads.svg')).toBeNull();
+      expect(removedFeatureTarget('/brand/logo-horizontal-night.png')).toBeNull();
+      expect(removedFeatureTarget('/kitsune')).toBeNull();
+      expect(removedFeatureTarget('/mods/imaxel/axel/versions/compare')).toBeNull();
+      expect(removedFeatureTarget('/mods')).toBeNull();
+    });
+
+    it('uses 308 when the method is not GET/HEAD', () => {
+      expect(legacyRule('/news', '', 'en', 'POST')).toMatchObject({ status: 308 });
+    });
   });
 
   it('passes through everything else (mods, profiles, the 404 page, logout itself)', () => {

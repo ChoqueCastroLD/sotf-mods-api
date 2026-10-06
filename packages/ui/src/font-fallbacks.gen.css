@@ -7,11 +7,3 @@
   descent-override: 28.9913%;
   line-gap-override: 0%;
 }
-@font-face {
-  font-family: "Big Shoulders Fallback";
-  src: local("Arial Narrow"), local("ArialNarrow"), local("Liberation Sans Narrow");
-  size-adjust: 77.2443%;
-  ascent-override: 127.5822%;
-  descent-override: 27.769%;
-  line-gap-override: 0%;
-}

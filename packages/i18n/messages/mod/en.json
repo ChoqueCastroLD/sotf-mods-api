@@ -243,5 +243,12 @@
   "mod_graph_required_by": "Required by",
   "mod_compat_report_cta": "Report whether it works",
   "mod_action_more": "More actions",
-  "mod_action_report_mod": "Report this mod"
+  "mod_action_report_mod": "Report this mod",
+  "mod_tab_description": "Description",
+  "mod_action_install_manager": "Install with RedManager",
+  "mod_versions_section_title": "Versions and changelog",
+  "mod_details_title": "Details",
+  "mod_detail_game": "Game version",
+  "mod_detail_loader": "RedLoader",
+  "mod_fact_multiplayer": "Multiplayer"
 }

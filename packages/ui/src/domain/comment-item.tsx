@@ -82,14 +82,14 @@ export function CommentItem({ comment, actions, reactions, children, permalink, 
             ) : (
               <span className="font-semibold text-fg-muted">{name}</span>
             )}
-            {!deleted && comment.badges.includes('verified') ? <TrustedMark size={14} /> : null}
+            {!deleted && comment.badges.includes('verified') ? <TrustedMark /> : null}
             {!deleted && comment.badges.includes('author') ? (
-              <Badge variant="signal" size="sm">
+              <Badge variant="neutral" size="sm">
                 {t('ui_domain_comment_badge_author')}
               </Badge>
             ) : null}
             {!deleted && comment.badges.includes('ranger') ? (
-              <Badge variant="blueprint" size="sm">
+              <Badge variant="neutral" size="sm">
                 {t('ui_domain_comment_badge_ranger')}
               </Badge>
             ) : null}

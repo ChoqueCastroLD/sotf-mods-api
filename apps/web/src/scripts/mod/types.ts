@@ -36,25 +36,10 @@ export interface ModPageMessages {
   downloadDone: string;
   downloadDoneHint: string;
   downloadAllProgress: string;
-  whatsNewTitle: string;
-  whatsNewBadge: string;
-  whatsNewUpToDate: string;
-  compatPrompt: string;
-  compatPromptAction: string;
   galleryCounter: string;
   videoTitle: string;
   close: string;
   shareTitle: string;
-  kitAddTitle: string;
-  kitAddNew: string;
-  kitAddButton: string;
-  kitAddInKit: string;
-  kitAddTo: string;
-  kitAddAlready: string;
-  kitAddDone: string;
-  kitAddFailed: string;
-  kitLimit: string;
-  kitUndoFailed: string;
 }
 
 export interface ModPageData {
@@ -63,7 +48,7 @@ export interface ModPageData {
   /** Localised absolute canonical URL (share links, QR code). */
   url: string;
   shortDescription: string;
-  /** Latest version string (the «Did it work?» prompt). */
+  /** Latest version string. */
   latestVersion: string | null;
   /** `/login?next=…` of the current page. */
   loginHref: string;

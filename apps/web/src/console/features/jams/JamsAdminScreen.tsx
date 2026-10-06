@@ -17,7 +17,7 @@ import { ArtState } from '../../components/ArtState.tsx';
 import { notify } from '../../lib/notify.ts';
 import { formatInstant, reportFailure, slugify, TableScroller, tdClasses, thClasses } from '../admin/shared.tsx';
 import { adminJamsQuery, jamKeys, jamsAdminApi } from './api.ts';
-import { JamArtThumb, StagePips } from './JamArtThumb.tsx';
+import { StagePips } from './JamArtThumb.tsx';
 import { jamPhaseLabel, jamPhaseVariant } from './phase.ts';
 
 export function JamsAdminScreen() {
@@ -29,8 +29,7 @@ export function JamsAdminScreen() {
     <div className="grid gap-6">
       <header className="flex flex-wrap items-end justify-between gap-4">
         <div className="grid gap-1">
-          <p className="readout text-signal">{m.jams_admin_readout()}</p>
-          <h1 className="font-display-caps text-display-xs text-fg">{m.jams_admin_title()}</h1>
+          <h1 className="text-2xl font-bold text-fg">{m.jams_admin_title()}</h1>
           <p className="max-w-prose text-sm text-fg-muted">{m.jams_admin_description()}</p>
         </div>
         <Button icon={<Icon icon={Plus} size={18} />} onClick={() => setCreating(true)}>
@@ -74,7 +73,6 @@ export function JamsAdminScreen() {
                 <tr key={jam.id} className="border-t border-border">
                   <th scope="row" className={`${tdClasses} min-w-64 text-start font-normal`}>
                     <span className="flex items-center gap-3">
-                      <JamArtThumb jam={jam} className="hidden h-12 w-28 sm:block" />
                       <span className="grid min-w-0 gap-0.5">
                         <a
                           href={`/ranger/jams/${jam.id}`}

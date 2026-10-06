@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Jams_Vote_Blocked_ActivityInputs */
 
 const en_jams_vote_blocked_activity = /** @type {(inputs: Jams_Vote_Blocked_ActivityInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Take part in the community a little more to unlock voting.`)
+	return /** @type {LocalizedString} */ (`Your account does not have enough activity to vote yet.`)
 };
 
 const es_jams_vote_blocked_activity = /** @type {(inputs: Jams_Vote_Blocked_ActivityInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Participa un poco más en la comunidad para desbloquear la votación.`)
+	return /** @type {LocalizedString} */ (`Tu cuenta aún no tiene suficiente actividad para votar.`)
 };
 
 const de_jams_vote_blocked_activity = /** @type {(inputs: Jams_Vote_Blocked_ActivityInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Beteilige dich etwas mehr an der Community, um die Abstimmung freizuschalten.`)
+	return /** @type {LocalizedString} */ (`Dein Konto hat noch nicht genug Aktivität, um abzustimmen.`)
 };
 
 const fr_jams_vote_blocked_activity = /** @type {(inputs: Jams_Vote_Blocked_ActivityInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Participez un peu plus à la communauté pour débloquer le vote.`)
+	return /** @type {LocalizedString} */ (`Votre compte n’a pas encore assez d’activité pour voter.`)
 };
 
 const it_jams_vote_blocked_activity = /** @type {(inputs: Jams_Vote_Blocked_ActivityInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Partecipa un po' di più alla community per sbloccare la votazione.`)
+	return /** @type {LocalizedString} */ (`Il tuo account non ha ancora abbastanza attività per votare.`)
 };
 
 const nl_jams_vote_blocked_activity = /** @type {(inputs: Jams_Vote_Blocked_ActivityInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Doe wat meer mee in de community om het stemmen te ontgrendelen.`)
+	return /** @type {LocalizedString} */ (`Je account heeft nog niet genoeg activiteit om te stemmen.`)
 };
 
 const pl_jams_vote_blocked_activity = /** @type {(inputs: Jams_Vote_Blocked_ActivityInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bądź nieco aktywniejszy w społeczności, aby odblokować głosowanie.`)
+	return /** @type {LocalizedString} */ (`Twoje konto nie ma jeszcze wystarczającej aktywności, aby głosować.`)
 };
 
 const pt_jams_vote_blocked_activity = /** @type {(inputs: Jams_Vote_Blocked_ActivityInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Participe um pouco mais da comunidade para liberar a votação.`)
+	return /** @type {LocalizedString} */ (`Sua conta ainda não tem atividade suficiente para votar.`)
 };
 
 const ru_jams_vote_blocked_activity = /** @type {(inputs: Jams_Vote_Blocked_ActivityInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Немного поучаствуйте в жизни сообщества, чтобы открыть голосование.`)
+	return /** @type {LocalizedString} */ (`На вашем аккаунте пока недостаточно активности, чтобы голосовать.`)
 };
 
 const sv_jams_vote_blocked_activity = /** @type {(inputs: Jams_Vote_Blocked_ActivityInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Delta lite mer i communityn för att låsa upp röstning.`)
+	return /** @type {LocalizedString} */ (`Ditt konto har ännu inte tillräcklig aktivitet för att rösta.`)
 };
 
 const tr_jams_vote_blocked_activity = /** @type {(inputs: Jams_Vote_Blocked_ActivityInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Oylamanın kilidini açmak için toplulukta biraz daha aktif olun.`)
+	return /** @type {LocalizedString} */ (`Hesabının oy vermek için henüz yeterli etkinliği yok.`)
 };
 
 const zh_jams_vote_blocked_activity = /** @type {(inputs: Jams_Vote_Blocked_ActivityInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`再多参与一些社区活动即可解锁投票。`)
+	return /** @type {LocalizedString} */ (`你的账号活动还不够，暂时不能投票。`)
 };
 
 const ja_jams_vote_blocked_activity = /** @type {(inputs: Jams_Vote_Blocked_ActivityInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`コミュニティでもう少し活動すると投票できるようになります。`)
+	return /** @type {LocalizedString} */ (`アカウントの活動がまだ少ないため、投票できません。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Take part in the community a little more to unlock voting." |
+* | "Your account does not have enough activity to vote yet." |
 *
 * @param {Jams_Vote_Blocked_ActivityInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

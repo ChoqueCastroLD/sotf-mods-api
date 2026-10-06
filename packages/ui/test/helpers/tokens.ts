@@ -2,12 +2,7 @@ import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 export const TOKENS_PATH = fileURLToPath(new URL('../../src/tokens.css', import.meta.url).href);
-export const RESEARCH_PATH = fileURLToPath(
-  new URL('../../../../docs/plan/research/03-brand-design.md', import.meta.url).href,
-);
-
 export const tokensCss = readFileSync(TOKENS_PATH, 'utf8');
-export const research = readFileSync(RESEARCH_PATH, 'utf8');
 
 export interface ThemedColor {
   day: string;
@@ -26,11 +21,4 @@ export function colorTokens(css: string = tokensCss): Map<string, ThemedColor> {
       tokens.set(name, { day: value.toUpperCase(), night: value.toUpperCase() });
   }
   return tokens;
-}
-
-/** The fenced ```css block of research/03 §4.4. */
-export function researchTokenBlock(): string {
-  const section = research.slice(research.indexOf('### 4.4 Tokens'));
-  const start = section.indexOf('```css\n') + '```css\n'.length;
-  return section.slice(start, section.indexOf('```', start));
 }

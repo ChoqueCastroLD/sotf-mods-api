@@ -1,13 +1,11 @@
 ---
 /**
  * Tab bar of the profile (T0-15): real links (`?tab=`), so every tab is crawlable, works without
- * JavaScript and keeps its own URL (research/03 §5.4). The active tab has `aria-current="page"`;
- * the bar scrolls horizontally on narrow screens.
+ * JavaScript and keeps its own URL. The active tab has `aria-current="page"`.
  */
 import { formatCompactNumber } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import { cn } from '@sotf/ui/cn';
-import { tabClasses, tabListClasses } from '@sotf/ui/tabs';
 import { href } from '../../lib/i18n.ts';
 import { type ProfileTab, tabPath, type UserPublicDTO } from './data.ts';
 
@@ -16,11 +14,9 @@ interface Props {
   tabs: readonly ProfileTab[];
   active: ProfileTab;
   defaultTab: ProfileTab;
-  /** Earned badges (distinct keys), when known. */
-  badgeCount: number | null;
 }
 
-const { user, tabs, active, defaultTab, badgeCount } = Astro.props;
+const { user, tabs, active, defaultTab } = Astro.props;
 const locale = Astro.locals.locale;
 
 function label(tab: ProfileTab): string {
@@ -29,86 +25,40 @@ function label(tab: ProfileTab): string {
       return m.profile_tab_mods();
     case 'builds':
       return m.profile_tab_builds();
-    case 'kits':
-      return m.profile_tab_kits();
-    case 'badges':
-      return m.profile_tab_badges();
-    case 'activity':
-      return m.profile_tab_activity();
     case 'reviews':
       return m.profile_tab_reviews();
   }
 }
 
-function count(tab: ProfileTab): number | null {
+function count(tab: ProfileTab): number {
   switch (tab) {
     case 'mods':
       return user.stats.modsCount;
     case 'builds':
       return user.stats.buildsCount;
-    case 'badges':
-      return badgeCount;
     case 'reviews':
       return user.stats.reviewsCount;
-    default:
-      return null;
   }
 }
 ---
 
-<div class="sticky top-[calc(4rem+1px)] z-(--z-raised) -mx-4 min-w-0 bg-bg/92 px-4 py-2 backdrop-blur-md md:mx-0 md:bg-bg md:p-0 md:backdrop-blur-none">
-  <nav
-    aria-label={m.profile_tabs_label()}
-    data-profile-tabs
-    class={cn(
-      tabListClasses,
-      'gap-1 rounded-xl border border-border bg-surface p-1 md:gap-0 md:rounded-none md:border-0 md:border-b md:bg-transparent md:p-0',
-    )}
-  >
-    {
-      tabs.map((tab) => {
-        const n = count(tab);
-        return (
-          <a
-            href={href(tabPath(user, tab, { isDefault: tab === defaultTab }), locale)}
-            aria-current={tab === active ? 'page' : undefined}
-            data-tab={tab}
-            data-loc-pip
-            class={cn(
-              tabClasses,
-              'profile-tab loc-host loc-frame [--loc-pip-y:-4px]',
-              'max-md:h-10 max-md:flex-1 max-md:justify-center max-md:rounded-lg max-md:px-3.5 max-md:aria-[current=page]:bg-raised max-md:aria-[current=page]:shadow-sm max-md:aria-[current=page]:ring-1 max-md:aria-[current=page]:ring-border-strong',
-            )}
-          >
-            {label(tab)}
-            {n !== null && (
-              <span class="rounded-full bg-fg/8 px-1.5 font-mono text-2xs tabular-nums text-fg-muted" aria-hidden="true">
-                {formatCompactNumber(locale, n)}
-              </span>
-            )}
-            {n !== null && <span class="sr-only">({formatCompactNumber(locale, n)})</span>}
-          </a>
-        );
-      })
-    }
-  </nav>
-</div>
-
-<style>
-  /* Phones: a segmented control (raised active segment) instead of the crosshair brackets. */
-  @media (max-width: 47.99rem) {
-    .profile-tab::before,
-    .profile-tab::after {
-      display: none;
-    }
+<nav aria-label={m.profile_tabs_label()} class="flex gap-6 overflow-x-auto border-b border-border">
+  {
+    tabs.map((tab) => (
+      <a
+        href={href(tabPath(user, tab, { isDefault: tab === defaultTab }), locale)}
+        aria-current={tab === active ? 'page' : undefined}
+        data-tab={tab}
+        class={cn(
+          '-mb-px inline-flex min-h-11 items-center gap-1.5 border-b-2 px-0.5 text-sm font-semibold whitespace-nowrap',
+          tab === active
+            ? 'border-primary text-fg'
+            : 'border-transparent text-fg-muted hover:border-border-strong hover:text-fg',
+        )}
+      >
+        {label(tab)}
+        <span class="text-xs font-normal tabular-nums text-fg-subtle">{formatCompactNumber(locale, count(tab))}</span>
+      </a>
+    ))
   }
-</style>
-
-<script>
-  // Keep the active segment in view when the bar scrolls (six tabs do not fit a phone).
-  const bar = document.querySelector<HTMLElement>('[data-profile-tabs]');
-  const current = bar?.querySelector<HTMLElement>('[aria-current="page"]');
-  if (bar && current && bar.scrollWidth > bar.clientWidth) {
-    bar.scrollLeft = current.offsetLeft - (bar.clientWidth - current.offsetWidth) / 2;
-  }
-</script>
+</nav>

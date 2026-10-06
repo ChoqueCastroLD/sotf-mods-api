@@ -15,48 +15,42 @@ describe('WCAG contrast helpers', () => {
   it('match the reference values', () => {
     expect(contrastRatio('#000000', '#FFFFFF')).toBeCloseTo(21, 5);
     expect(contrastRatio('#FFFFFF', '#FFFFFF')).toBe(1);
-    // research/03 §4.1 verified pairs
-    expect(contrastRatio(palette.flare[400], palette.night[975])).toBeCloseTo(7.15, 2);
-    expect(contrastRatio(palette.flare[600], '#FFFFFF')).toBeCloseTo(5.2, 2);
+    expect(contrastRatio(palette.flare[400], palette.night[950])).toBeGreaterThanOrEqual(4.5);
+    expect(contrastRatio(palette.flare[500], '#FFFFFF')).toBeGreaterThanOrEqual(4.5);
   });
 });
 
-describe('logo colours (PLAN §3.2)', () => {
-  it('match the plan', () => {
-    expect(logoColors.night).toEqual({ background: '#090F0C', foreground: '#F5F4EC', flare: '#FF7335' });
-    expect(logoColors.day.flare).toBe('#E75803');
-    expect(logoColors.day.background).toBe('#F5F4EC');
+describe('logo colours', () => {
+  it('use the red of the old logo on both themes', () => {
+    expect(logoColors.night.flare).toBe('#FE0E0F');
+    expect(logoColors.day.flare).toBe('#FE0E0F');
+    expect(logoColors.night.background).toBe('#15191E');
   });
 
   for (const theme of ['night', 'day'] as const) {
-    it(`keep the pin ≥ 3:1 on every ${theme} surface`, () => {
+    it(`keep the logo red at least 3:1 on every ${theme} surface`, () => {
       for (const surface of themeSurfaces[theme]) {
-        expect(contrastRatio(logoColors[theme].flare, surface)).toBeGreaterThanOrEqual(3);
-      }
-    });
-
-    it(`keep «SOTF» ≥ 4.5:1 and «MODS» ≥ 3:1 on every ${theme} surface`, () => {
-      for (const surface of themeSurfaces[theme]) {
-        expect(contrastRatio(logoColors[theme].foreground, surface)).toBeGreaterThanOrEqual(4.5);
-        expect(contrastRatio(logoColors[theme].flare, surface)).toBeGreaterThanOrEqual(3);
+        expect(contrastRatio(logoColors[theme].flare, surface), surface).toBeGreaterThanOrEqual(3);
       }
     });
   }
 
-  it('keep the adaptive logo flare (Day flare) ≥ 3:1 on every surface of both themes', () => {
-    for (const surface of [...themeSurfaces.night, ...themeSurfaces.day, '#FFFFFF']) {
-      expect(contrastRatio(logoColors.day.flare, surface), surface).toBeGreaterThanOrEqual(3);
-    }
+  it('keeps the dark neutrals of the visual direction', () => {
+    expect(palette.night[950]).toBe('#15191E');
+    expect(palette.night[900]).toBe('#1D232A');
+    expect(palette.night[800]).toBe('#2A323C');
+    expect(palette.flare[500]).toBe('#E11D1D');
+    expect(palette.flare[600]).toBe('#C81414');
   });
 });
 
 describe('colour utilities', () => {
   it('normalises hex input and rejects anything else', () => {
     expect(normalizeHex('#abc')).toBe('#AABBCC');
-    expect(normalizeHex('ff7335')).toBe('#FF7335');
-    expect(normalizeHex(' #FF7335 ')).toBe('#FF7335');
+    expect(normalizeHex('e11d1d')).toBe('#E11D1D');
+    expect(normalizeHex(' #E11D1D ')).toBe('#E11D1D');
     expect(normalizeHex('red')).toBeNull();
-    expect(normalizeHex('#FF7335"/><script>')).toBeNull();
+    expect(normalizeHex('#E11D1D"/><script>')).toBeNull();
     expect(normalizeHex(undefined)).toBeNull();
     expect(() => hexToRgb('nope')).toThrow(TypeError);
   });
@@ -64,14 +58,14 @@ describe('colour utilities', () => {
   it('round-trips and mixes colours', () => {
     expect(rgbToHex(hexToRgb('#123456'))).toBe('#123456');
     expect(mixHex('#000000', '#FFFFFF', 0.5)).toBe('#808080');
-    expect(mixHex('#FF7335', '#090F0C', 0)).toBe('#FF7335');
-    expect(mixHex('#FF7335', '#090F0C', 1)).toBe('#090F0C');
+    expect(mixHex('#E11D1D', '#15191E', 0)).toBe('#E11D1D');
+    expect(mixHex('#E11D1D', '#15191E', 1)).toBe('#15191E');
   });
 
-  it('exposes the 8 validated chart slots in fixed order', () => {
+  it('exposes the 8 chart slots in fixed order', () => {
     expect(chartSlots.night).toHaveLength(8);
     expect(chartSlots.day).toHaveLength(8);
-    expect(chartSlots.night[0]).toBe('#E75803');
-    expect(chartSlots.day[0]).toBe('#E75803');
+    expect(chartSlots.night[0]).toBe('#E11D1D');
+    expect(chartSlots.day[0]).toBe('#C81414');
   });
 });

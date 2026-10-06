@@ -12,7 +12,6 @@ const TONES: Readonly<Record<string, IconTone>> = {
   '/ranger/admin/ecosystem': 'signal',
   '/ranger/admin/taxonomy': 'primary',
   '/ranger/admin/recategorize': 'primary',
-  '/ranger/admin/awards': 'featured',
   '/ranger/admin/announcements': 'warning',
   '/ranger/admin/settings': 'neutral',
   '/ranger/admin/integrations': 'success',

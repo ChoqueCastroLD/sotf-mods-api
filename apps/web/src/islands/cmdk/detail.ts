@@ -1,10 +1,9 @@
 /**
- * Details of the highlighted row for the preview pane: the mod / build, creator or kit behind it,
+ * Details of the highlighted row for the preview pane: the mod, build or user behind it,
  * fetched from the public API the first time a row is highlighted (one small request, edge-cached,
- * kept for the page) and read defensively: the wire shapes are `ModDetailDTO`, `UserProfileDTO`
- * and `KitDTO`, but only what the preview needs is taken and anything missing is skipped.
+ * kept for the page) and read defensively: the wire shapes are `ModDetailDTO` and `UserProfileDTO`,
+ * but only what the preview needs is taken and anything missing is skipped.
  */
-import type { CompatStatus } from '@sotf/contracts/common';
 import type { EntryItem } from './types.ts';
 
 export interface PreviewImage {
@@ -31,7 +30,6 @@ export interface ModDetail {
   followers: number;
   rating: number | null;
   ratingCount: number;
-  compat: CompatStatus | null;
   hero: PreviewImage | null;
   gallery: PreviewImage[];
   dependencies: Mini[];
@@ -50,17 +48,7 @@ export interface UserDetail {
   top: Mini[];
 }
 
-export interface KitDetail {
-  kind: 'kit';
-  description: string;
-  owner: { id: number; handle: string; name: string; avatar: string | null } | null;
-  items: number;
-  followers: number;
-  cover: PreviewImage | null;
-  top: Mini[];
-}
-
-export type Detail = ModDetail | UserDetail | KitDetail;
+export type Detail = ModDetail | UserDetail;
 
 type Json = Record<string, unknown>;
 
@@ -134,7 +122,6 @@ function parseMod(body: Json): ModDetail {
     if (entry) dependencies.push(entry);
     else dependencies.push({ title, path: '', thumb: null, note: null });
   }
-  const compat = str(body.compatStatus);
   return {
     kind: 'mod',
     description: str(body.shortDescription) ?? '',
@@ -147,7 +134,6 @@ function parseMod(body: Json): ModDetail {
     followers: num(body.followers),
     rating: typeof body.ratingAvg === 'number' ? body.ratingAvg : null,
     ratingCount: num(body.ratingCount),
-    compat: compat === 'works' || compat === 'mixed' || compat === 'broken' || compat === 'untested' ? compat : null,
     hero,
     // Hero + up to four more shots; the hero shot itself is not repeated in the strip.
     gallery: (gallery.length > 0 ? gallery.slice(1, 5) : []) as PreviewImage[],
@@ -178,21 +164,6 @@ function parseUser(body: Json, mods: Json[]): UserDetail {
   };
 }
 
-function parseKit(body: Json): KitDetail {
-  return {
-    kind: 'kit',
-    description: '',
-    owner: author(body.owner),
-    items: num(body.itemsCount),
-    followers: num(body.followersCount),
-    cover: pickImage(body.cover, 640),
-    top: list(body.items)
-      .map((entry) => (isObject(entry.mod) ? cardMini(entry.mod) : null))
-      .filter((entry): entry is Mini => entry !== null)
-      .slice(0, 4),
-  };
-}
-
 async function getJson(path: string): Promise<Json | null> {
   const response = await fetch(path, { headers: { accept: 'application/json' }, credentials: 'omit' });
   if (!response.ok) return null;
@@ -202,7 +173,7 @@ async function getJson(path: string): Promise<Json | null> {
 
 const cache = new Map<string, Promise<Detail | null>>();
 
-/** Details of a mod, build, creator or kit; null for other entries or when the request fails. */
+/** Details of a mod, build or user; null for other entries or when the request fails. */
 export function loadDetail(item: EntryItem): Promise<Detail | null> {
   if (typeof item.id !== 'number') return Promise.resolve(null);
   const cached = cache.get(item.key);
@@ -216,8 +187,6 @@ export function loadDetail(item: EntryItem): Promise<Detail | null> {
       getJson(`/api/v2/users/${handle}`),
       getJson(`/api/v2/users/${handle}/mods?limit=3&sort=downloads`).catch(() => null),
     ]).then(([body, mods]) => (body ? parseUser(body, mods ? list(mods.items) : []) : null));
-  } else if (item.type === 'kit') {
-    request = getJson(`/api/v2/kits/${item.id}`).then((body) => (body ? parseKit(body) : null));
   } else {
     return Promise.resolve(null);
   }

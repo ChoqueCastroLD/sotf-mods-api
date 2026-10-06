@@ -62,17 +62,16 @@ export function Avatar({ name, id, src, size = 40, alt = '', className }: Avatar
       aria-hidden={alt ? undefined : true}
     >
       <circle cx="32" cy="32" r="32" fill="var(--color-raised)" />
-      <circle cx="32" cy="32" r="27.5" fill="none" stroke={ring} strokeWidth="3" />
-      <path d="M32 1.5v7M32 55.5v7M1.5 32h7M55.5 32h7" stroke={ring} strokeWidth="3" strokeLinecap="round" />
+      <circle cx="32" cy="32" r="30" fill="none" stroke={ring} strokeWidth="2" />
       <text
         x="32"
         y="33"
         textAnchor="middle"
         dominantBaseline="central"
         fill="var(--color-fg)"
-        fontFamily="var(--font-display)"
-        fontWeight="800"
-        fontSize={initials.length > 1 ? 24 : 28}
+        fontFamily="var(--font-sans)"
+        fontWeight="700"
+        fontSize={initials.length > 1 ? 22 : 26}
         className="uppercase"
       >
         {initials}

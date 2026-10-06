@@ -1,9 +1,9 @@
 /**
  * Builds every committed brand asset from source:
  *
- *   1. `src/generated/brand-data.gen.ts` (font outlines + isotype geometry),
- *   2. the SVG assets (logos, favicon, topo texture, Field kit sprite),
- *   3. the raster assets (scripts/build-icons.ts),
+ *   1. `src/generated/brand-data.gen.ts` (Onest outlines of the initials),
+ *   2. the SVG assets (Field kit sprite),
+ *   3. the raster assets from `sources/` (scripts/build-icons.ts): logos, favicons, icons, OG,
  *   4. `assets/manifest.json` with the SHA-256 of every file.
  *
  * Usage:
@@ -16,14 +16,12 @@ import { existsSync } from 'node:fs';
 import { mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { dirname, join, relative, sep } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
-import { type BrandModule, type BuiltFile, buildRasterAssets, log } from './build-icons.ts';
+import { type BuiltFile, buildRasterAssets, log } from './build-icons.ts';
 import { generateBrandDataSource } from './lib/sources.ts';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const ASSETS = join(ROOT, 'assets');
 const GENERATED = join(ROOT, 'src', 'generated', 'brand-data.gen.ts');
-
-type FullBrandModule = BrandModule & typeof import('../src/index.ts');
 
 function sha256(bytes: Buffer): string {
   return createHash('sha256').update(bytes).digest('hex');
@@ -33,27 +31,9 @@ function text(path: string, content: string): BuiltFile {
   return { path, bytes: Buffer.from(content.endsWith('\n') ? content : `${content}\n`, 'utf8') };
 }
 
-/** SVG assets, from the (freshly generated) brand module. */
-function buildVectorAssets(brand: FullBrandModule): BuiltFile[] {
-  const files: BuiltFile[] = [
-    text('public/favicon.svg', brand.faviconSvg()),
-    text('public/brand/mark.svg', brand.markSvg({ title: 'SOTF Mods' })),
-    text('public/brand/mark-day.svg', brand.markSvg({ title: 'SOTF Mods', color: brand.logoColors.day.flare })),
-    text('public/brand/mark-simple.svg', brand.markSvg({ variant: 'simple', title: 'SOTF Mods' })),
-    text('public/brand/topo.svg', brand.topoSvg(brand.TOPO_TEXTURE_SEED, brand.TOPO_TEXTURE_OPTIONS)),
-    text('public/brand/field-kit.svg', brand.fieldKitSprite()),
-    text('public/brand/og-default.svg', brand.ogDefaultSvg()),
-  ];
-  for (const layout of ['horizontal', 'stacked', 'wordmark'] as const) {
-    for (const theme of ['night', 'day'] as const) {
-      const name = layout === 'wordmark' ? `wordmark-${theme}` : `logo-${layout}-${theme}`;
-      files.push(text(`public/brand/${name}.svg`, brand.lockupSvg({ layout, theme })));
-    }
-  }
-  files.push(
-    text('public/brand/logo-horizontal-adaptive.svg', brand.lockupSvg({ layout: 'horizontal', theme: 'adaptive' })),
-  );
-  return files;
+/** Vector assets: the Field kit icon sprite (the only SVG the site still ships from this package). */
+function buildVectorAssets(brand: typeof import('../src/index.ts')): BuiltFile[] {
+  return [text('public/brand/field-kit.svg', brand.fieldKitSprite())];
 }
 
 function manifest(files: readonly BuiltFile[]): BuiltFile {
@@ -88,8 +68,8 @@ async function listFiles(directory: string): Promise<string[]> {
  * that `write()` can regenerate `brand-data.gen.ts` first and build from the fresh geometry.
  */
 export async function buildAll(): Promise<BuiltFile[]> {
-  const brand = (await import(pathToFileURL(join(ROOT, 'src', 'index.ts')).href)) as FullBrandModule;
-  const files = [...buildVectorAssets(brand), ...(await buildRasterAssets(brand))];
+  const brand = (await import(pathToFileURL(join(ROOT, 'src', 'index.ts')).href)) as typeof import('../src/index.ts');
+  const files = [...buildVectorAssets(brand), ...(await buildRasterAssets())];
   files.push(manifest(files));
   return files;
 }
@@ -100,7 +80,7 @@ async function readGenerated(): Promise<string> {
 
 async function check(): Promise<number> {
   if ((await readGenerated()) !== generateBrandDataSource()) {
-    console.error('src/generated/brand-data.gen.ts is out of date with the fonts or src/mark-geometry.ts.');
+    console.error('src/generated/brand-data.gen.ts is out of date with sources/fonts.');
     console.error('Run `pnpm --filter @sotf/brand build:assets` and commit the result.');
     return 1;
   }

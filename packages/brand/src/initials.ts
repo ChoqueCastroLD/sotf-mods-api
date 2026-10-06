@@ -1,5 +1,5 @@
 /**
- * Initials in the display face, as outlines when possible so avatars and covers render the
+ * Initials in the UI face (Onest Bold), as outlines when possible so avatars and covers render the
  * same everywhere (inline, `<img>`, OG rasterisation, e-mail) without loading a font.
  */
 
@@ -7,11 +7,10 @@ import { CAP_UNITS, INITIAL_GLYPHS, type OutlinedText } from './generated/brand-
 import { attrs, escapeXml, fmt } from './svg.ts';
 
 /** Font stack used when a character has no outline (non-Latin scripts). */
-export const DISPLAY_FONT_STACK =
-  "'Big Shoulders Variable','Sofia Sans Extra Condensed Variable','Arial Narrow',system-ui,sans-serif";
+export const DISPLAY_FONT_STACK = "'Onest Variable',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif";
 
-/** Big Shoulders cap height / em (1600 / 2000). */
-const CAP_RATIO = 0.8;
+/** Onest cap height / em (708 / 1000). */
+const CAP_RATIO = 0.71;
 
 /** A grapheme that starts with a letter or a number (combining marks may follow). */
 const LETTER_OR_NUMBER = /^[\p{L}\p{N}]/u;
@@ -84,8 +83,8 @@ export function hasOutlines(text: string): boolean {
 }
 
 /**
- * SVG element(s) drawing `text` in the display face: outlines for A–Z / 0–9, otherwise a
- * `<text>` element with the display font stack.
+ * SVG element(s) drawing `text` in the UI face: outlines for A–Z / 0–9, otherwise a
+ * `<text>` element with the UI font stack.
  */
 export function initialsElement(text: string, options: InitialsOptions): string {
   const anchor = options.anchor ?? 'middle';
@@ -124,7 +123,7 @@ export function initialsElement(text: string, options: InitialsOptions): string 
     fill: options.fill,
     opacity,
     'font-family': DISPLAY_FONT_STACK,
-    'font-weight': 800,
+    'font-weight': 700,
     'font-size': fmt(fontSize, 2),
     'text-anchor': anchor,
   })}>${escapeXml(text)}</text>`;

@@ -795,11 +795,11 @@
   "auth_error_terms": "Aceite os termos para criar sua conta.",
   "auth_error_turnstile_failed": "A verificação de segurança não terminou. Verifique sua conexão ou permita challenges.cloudflare.com no seu bloqueador e tente de novo.",
   "auth_field_display_name": "Nome de exibição",
-  "auth_field_display_name_hint": "Como outros sobreviventes veem você. Dá para mudar depois.",
+  "auth_field_display_name_hint": "O nome que outros usuários veem. Dá para mudar depois.",
   "auth_field_email": "E-mail",
   "auth_field_email_hint": "Para entrar e receber e-mails importantes da conta. Nunca é exibido publicamente.",
   "auth_field_handle": "Nome de usuário",
-  "auth_field_handle_hint": "Seu endereço na ilha: {url}. Não pode ser alterado depois.",
+  "auth_field_handle_hint": "O endereço do seu perfil: {url}. Não pode ser alterado depois.",
   "auth_field_handle_placeholder": "seu-nome",
   "auth_field_identifier": "E-mail ou nome de usuário",
   "auth_field_new_password": "Senha",
@@ -824,7 +824,7 @@
   "auth_login_create_account": "Crie uma conta",
   "auth_login_forgot": "Esqueceu a senha?",
   "auth_login_heading": "Entrar",
-  "auth_login_intro": "Que bom ver você de novo, sobrevivente.",
+  "auth_login_intro": "Entre na sua conta.",
   "auth_login_legacy_note": "Tinha conta antes da reconstrução? Sua senha continua funcionando.",
   "auth_login_new_here": "É novo por aqui?",
   "auth_login_passkey": "Entrar com uma chave de acesso",
@@ -843,7 +843,7 @@
   "auth_meta_login_title": "Entrar",
   "auth_meta_logout_description": "Saia do SOTF Mods neste dispositivo.",
   "auth_meta_logout_title": "Sair",
-  "auth_meta_register_description": "Participe do SOTF Mods: guarde mods na sua mochila, receba avisos quando forem atualizados e compartilhe suas criações.",
+  "auth_meta_register_description": "Participe do SOTF Mods: siga mods, receba avisos quando forem atualizados e compartilhe suas criações.",
   "auth_meta_register_title": "Crie sua conta",
   "auth_meta_reset_description": "Escolha uma nova senha para sua conta do SOTF Mods.",
   "auth_meta_reset_title": "Escolha uma nova senha",
@@ -3655,6 +3655,100 @@
       }
     }
   ],
+  "explore_catalog_all_categories": "Todas as categorias",
+  "explore_catalog_category_label": "Categoria",
+  "explore_catalog_category_link": "Categoria: {name}",
+  "explore_catalog_comments": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} comentário",
+        "count__plural=*": "{count__number} comentários"
+      }
+    }
+  ],
+  "explore_catalog_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod",
+        "count__plural=*": "{count__number} mods"
+      }
+    }
+  ],
+  "explore_catalog_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} download",
+        "count__plural=*": "{count__number} downloads"
+      }
+    }
+  ],
+  "explore_catalog_empty_clear": "Limpar filtros",
+  "explore_catalog_empty_text": "Nenhum mod corresponde a estes filtros. Altere a busca ou limpe os filtros.",
+  "explore_catalog_empty_title": "Nenhum mod encontrado",
+  "explore_catalog_empty_unapproved": "No momento não há mods não aprovados.",
+  "explore_catalog_error_text": "Tente novamente em instantes.",
+  "explore_catalog_error_title": "Não foi possível carregar os mods",
+  "explore_catalog_filters": "Filtros",
+  "explore_catalog_followers": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} seguidor",
+        "count__plural=*": "{count__number} seguidores"
+      }
+    }
+  ],
+  "explore_catalog_nsfw": "NSFW",
+  "explore_catalog_pending_approval": "Aguardando aprovação",
+  "explore_catalog_retry": "Tentar novamente",
+  "explore_catalog_search_button": "Buscar",
+  "explore_catalog_search_label": "Buscar mods",
+  "explore_catalog_search_placeholder": "Buscar mods",
+  "explore_catalog_sort_downloads": "Mais baixados",
+  "explore_catalog_sort_label": "Ordenar por",
+  "explore_catalog_sort_oldest": "Mais antigos",
+  "explore_catalog_sort_trending": "Em alta esta semana",
+  "explore_catalog_trusted": "Confiável",
+  "explore_catalog_type_all": "Todos os tipos",
+  "explore_catalog_type_label": "Tipo",
+  "explore_catalog_unapproved": "Não aprovados",
+  "explore_catalog_unapproved_back": "Voltar para todos os mods",
+  "explore_catalog_unapproved_description": "Mods que passaram nas verificações automáticas e aguardam aprovação.",
+  "explore_catalog_unapproved_heading": "Mods não aprovados",
+  "explore_catalog_unapproved_notice": "Estes mods passaram nas verificações automáticas e aguardam a aprovação de um moderador. Eles não fazem parte da lista principal.",
+  "explore_catalog_unapproved_title": "Mods não aprovados",
+  "explore_catalog_updated": "Atualizado {when}",
   "explore_categories_browse": "Ver",
   "explore_categories_builds_heading": "Categorias de builds",
   "explore_categories_description": "Todas as categorias de mods e builds de Sons of the Forest no SOTF Mods, com o que cada uma abrange e quantos itens tem.",
@@ -4163,7 +4257,7 @@
   "jams_countdown_voting_close": "A votação encerra em",
   "jams_countdown_voting_open": "A votação abre em",
   "jams_cta_join": "Participar do jam",
-  "jams_cta_results": "Ver o pódio",
+  "jams_cta_results": "Ver os resultados",
   "jams_cta_view": "Ver o jam",
   "jams_cta_vote": "Votar agora",
   "jams_detail_description_fallback": "{title}: um Mod Jam de Sons of the Forest. Veja o tema, as inscrições e os resultados.",
@@ -4287,29 +4381,29 @@
   "jams_error_text": "Tente novamente em instantes.",
   "jams_error_title": "Não foi possível carregar os jams",
   "jams_first_discord": "Entrar no Discord",
-  "jams_first_hint": "Abra suas configurações de sinais para receber novidades dos jams no app ou por e-mail e siga o jam assim que for anunciado.",
+  "jams_first_hint": "Ative as notificações para receber novidades dos jams no app ou por e-mail e siga o jam assim que for anunciado.",
   "jams_first_judged": "As inscrições são avaliadas em",
   "jams_first_kicker": "Temporada um · Data anunciada aqui primeiro",
   "jams_first_notify": "Receber avisos",
-  "jams_first_prize": "Cada inscrição ganha uma insígnia de participante; lugares no pódio e a vitória geral rendem mais.",
+  "jams_first_prize": "Todas as inscrições aparecem na página do jam. As melhores de cada categoria são anunciadas com os resultados.",
   "jams_first_text": "Uma disputa temática para toda a comunidade: um tema, alguns dias para criar algo novo e depois todos votam. A data será anunciada primeiro aqui.",
   "jams_first_title": "O primeiro Mod Jam está a caminho",
   "jams_follow": "Seguir jam",
   "jams_follow_done": "Você receberá novidades sobre este jam.",
   "jams_following": "Seguindo",
   "jams_guest_hint": "Entre para participar, seguir este jam e votar.",
-  "jams_how_1_text": "Todo jam tem um nome, um cronograma e um tema, às vezes lacrado até o primeiro dia.",
-  "jams_how_1_title": "O tema é revelado",
+  "jams_how_1_text": "Todo jam tem um nome, um cronograma e um tema, às vezes secreto até o primeiro dia.",
+  "jams_how_1_title": "O tema é anunciado",
   "jams_how_2_text": "Crie um novo mod ou build em poucos dias, sozinho ou com coautores.",
   "jams_how_2_title": "Crie",
   "jams_how_3_text": "Membros verificados avaliam cada inscrição de 1 a 5 estrelas em cada categoria.",
   "jams_how_3_title": "Vote",
-  "jams_how_4_text": "As notas são médias bayesianas. As insígnias vão para toda a equipe.",
-  "jams_how_4_title": "Pódio",
+  "jams_how_4_text": "As notas são médias ponderadas. Os resultados aparecem por categoria e no geral.",
+  "jams_how_4_title": "Resultados",
   "jams_how_title": "Como funciona um jam",
   "jams_hub_archive": "Arquivo",
   "jams_hub_description": "Competições temáticas com tempo limitado em que a comunidade cria novos mods de Sons of the Forest e vota nos melhores.",
-  "jams_hub_intro": "Crie em dias, vote em uma semana, ganhe emblemas. Cada jam tem um tema, um prazo e quatro categorias de votação.",
+  "jams_hub_intro": "Crie um mod em poucos dias e depois vote nos melhores. Cada jam tem um tema, um prazo e quatro categorias de votação.",
   "jams_hub_readout": "MOD JAMS",
   "jams_hub_results": "Resultados",
   "jams_hub_running": "Em andamento",
@@ -4329,7 +4423,7 @@
   "jams_mine_title": "Mod Jams",
   "jams_my_entries": "Suas inscrições",
   "jams_mystery_reveal": "Revelado em {date}",
-  "jams_mystery_title": "Tema lacrado",
+  "jams_mystery_title": "Tema secreto",
   "jams_nav": "Jams",
   "jams_phase_announced": "Anunciado",
   "jams_phase_archived": "Arquivado",
@@ -4340,7 +4434,7 @@
   "jams_phase_voting": "Votação",
   "jams_prizes_title": "Prêmios",
   "jams_rank": "#{rank}",
-  "jams_results_method": "As notas são médias bayesianas. Uma inscrição precisa de pelo menos {min} votos para ser classificada.",
+  "jams_results_method": "As notas são médias bayesianas. Uma inscrição precisa de pelo menos {min} votos para entrar na classificação.",
   "jams_results_summary": [
     {
       "declarations": [
@@ -4363,7 +4457,7 @@
       }
     }
   ],
-  "jams_results_tabs_label": "Categoria do pódio",
+  "jams_results_tabs_label": "Categoria dos resultados",
   "jams_results_title": "Resultados",
   "jams_rules_title": "Regras",
   "jams_schedule_tba": "A anunciar",
@@ -4379,7 +4473,7 @@
   "jams_submit_action": "Enviar inscrição",
   "jams_submit_choose": "Escolher…",
   "jams_submit_confirm": "Enviar inscrição",
-  "jams_submit_done": "Inscrição enviada. Boa sorte!",
+  "jams_submit_done": "Inscrição enviada.",
   "jams_submit_intro": "Escolha um dos seus mods ou builds publicados. Você pode retirá-lo até o fim das inscrições.",
   "jams_submit_mod": "Mod ou build",
   "jams_submit_none": "Você ainda não tem mods ou builds publicados que possam participar deste jam.",
@@ -4403,12 +4497,12 @@
   "jams_unit_seconds": "Seg",
   "jams_verify_to_submit": "Verifique o e-mail para participar",
   "jams_vote_action": "Avaliar",
-  "jams_vote_blocked_activity": "Participe um pouco mais da comunidade para liberar a votação.",
+  "jams_vote_blocked_activity": "Sua conta ainda não tem atividade suficiente para votar.",
   "jams_vote_blocked_email": "Verifique seu e-mail para votar.",
   "jams_vote_blocked_new": "Sua conta é muito recente para votar neste jam.",
   "jams_vote_blocked_phase": "A votação não está aberta no momento.",
   "jams_vote_continue": "Continuar votando",
-  "jams_vote_dock_title": "Sua cédula",
+  "jams_vote_dock_title": "Votação",
   "jams_vote_intro": "Dê de 1 a 5 estrelas em cada categoria. Você pode alterar seus votos até o fim da votação.",
   "jams_vote_nothing": "Ainda não há nada para avaliar.",
   "jams_vote_own": "Sua inscrição",
@@ -5119,6 +5213,10 @@
   "landing_faq_hint": "Respostas curtas, conferidas com o catálogo.",
   "landing_faq_more": "Saiba mais",
   "landing_faq_title": "Perguntas dos sobreviventes",
+  "landing_featured_label": "Mods em destaque da semana",
+  "landing_featured_next": "Próximos mods",
+  "landing_featured_prev": "Mods anteriores",
+  "landing_h1": "Mods de Sons of the Forest",
   "landing_hall_hint": "Os mods mais baixados de todos os tempos",
   "landing_hall_show_all": [
     {
@@ -5186,6 +5284,23 @@
   ],
   "landing_map_legend_label": "Legenda do mapa",
   "landing_map_title": "Mapa da ilha",
+  "landing_meta_description": [
+    {
+      "declarations": [
+        "input count",
+        "input mods",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Baixe {mods} mod de Sons of the Forest e builds para o RedLoader. Downloads diretos e gratuitos, com avaliações e comentários da comunidade.",
+        "count__plural=*": "Baixe {mods} mods de Sons of the Forest e builds para o RedLoader. Downloads diretos e gratuitos, com avaliações e comentários da comunidade."
+      }
+    }
+  ],
+  "landing_meta_title": "Mods de Sons of the Forest | SOTF Mods",
   "landing_motw_period": "Semana de {start}",
   "landing_motw_title": "Mod da semana",
   "landing_notes_all": "Todas as atualizações recentes",
@@ -5269,11 +5384,49 @@
   "landing_stat_downloads": "Downloads",
   "landing_stat_mods": "Mods",
   "landing_stat_survivors": "Sobreviventes",
+  "landing_stats_aria": "Estatísticas do site",
+  "landing_stats_downloads": "Downloads",
   "landing_stats_label": "A ilha em números",
+  "landing_stats_mods": "Mods publicados",
+  "landing_stats_users": "Usuários",
   "landing_trending_all": "Todos os mods",
   "landing_trending_empty": "Semana tranquila na ilha. Os mods aparecem aqui conforme os sobreviventes os baixam.",
   "landing_trending_hint": "Por downloads nos últimos 7 dias",
   "landing_trending_title": "Em alta nesta semana",
+  "landing_weekly_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} download esta semana",
+        "count__plural=*": "{display} downloads esta semana"
+      }
+    }
+  ],
+  "landing_weekly_empty": "Ainda não há downloads registrados esta semana.",
+  "landing_weekly_hint": "Classificados por downloads dos últimos 7 dias",
+  "landing_weekly_less": "Mostrar menos",
+  "landing_weekly_more": "Mostrar mais",
+  "landing_weekly_rank": [
+    {
+      "declarations": [
+        "input rank",
+        "local rank__number = rank: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Posição {rank__number}"
+      }
+    }
+  ],
+  "landing_weekly_this_week": "esta semana",
+  "landing_weekly_title": "Mods da semana",
   "langprompt_hint": "Seu idioma salvo é {language}.",
   "langprompt_original": "Ver o original ({language})",
   "langprompt_remember": "Lembrar minha escolha",
@@ -5320,7 +5473,7 @@
   "logs_err_file_type": "Use um ficheiro .log ou .txt, ou um .gz ou .zip que contenha um.",
   "logs_err_generic": "Algo correu mal. Tente de novo.",
   "logs_err_network": "Não foi possível contactar o servidor. Verifique a ligação e tente de novo.",
-  "logs_err_rate": "Muitos pedidos — tente de novo em {seconds} s",
+  "logs_err_rate": "Muitos pedidos. Tente de novo em {seconds} s",
   "logs_err_too_large": "Esse log excede {max}. Envie apenas a parte à volta do problema.",
   "logs_err_turnstile": "A verificação humana falhou. Tente de novo.",
   "logs_expired_now": "Expirado",
@@ -5647,6 +5800,7 @@
   "meta_title_template": "{title} | SOTF Mods",
   "mod_action_add_to_kit": "Kit",
   "mod_action_install": "Instalar",
+  "mod_action_install_manager": "Instalar com o RedManager",
   "mod_action_more": "Mais ações",
   "mod_action_report": "Denunciar",
   "mod_action_report_mod": "Denunciar este mod",
@@ -5743,11 +5897,15 @@
   "mod_deps_sheet_text": "{name} não funciona sem estes mods. Baixe-os também ou continue se você já tem.",
   "mod_deps_sheet_title": "Você também precisa de {names}",
   "mod_description_empty": "O criador ainda não escreveu uma descrição.",
+  "mod_detail_game": "Versão do jogo",
+  "mod_detail_loader": "RedLoader",
+  "mod_details_title": "Detalhes",
   "mod_download_done_label": "Baixado ✓",
   "mod_download_unavailable": "Nenhum arquivo disponível para download agora.",
   "mod_fact_game_version": "Versão do jogo declarada",
   "mod_fact_license": "Licença",
   "mod_fact_loader_version": "RedLoader declarado",
+  "mod_fact_multiplayer": "Multijogador",
   "mod_fact_platform": "Plataforma",
   "mod_fact_published": "Publicado",
   "mod_fact_size": "Tamanho do arquivo",
@@ -6192,6 +6350,7 @@
   "mod_stats_title": "Downloads ao longo do tempo",
   "mod_support_title": "Apoie o criador",
   "mod_tab_comments": "Comentários",
+  "mod_tab_description": "Descrição",
   "mod_tab_overview": "Visão geral",
   "mod_tab_reviews": "Avaliações",
   "mod_tab_versions": "Versões",
@@ -6252,6 +6411,7 @@
       }
     }
   ],
+  "mod_versions_section_title": "Versões e registro de alterações",
   "mod_versions_title": [
     {
       "declarations": [
@@ -6621,6 +6781,7 @@
   "profile_builds_title": "Builds de {name}",
   "profile_cards_empty_action": "Explorar mods",
   "profile_cards_empty_description": "{name} ainda não publicou nada aqui. Explore o que o resto da ilha criou.",
+  "profile_cards_empty_text": "{name} ainda não publicou nada aqui.",
   "profile_creator_top_mod": "Mod principal: {mod}",
   "profile_creators_count": [
     {
@@ -6653,6 +6814,7 @@
   "profile_creators_title": "Criadores",
   "profile_day_on_island": "Dia {day} na ilha",
   "profile_feed_title": "Novidades de {name}",
+  "profile_follow_done": "Seguindo. Você será notificado quando houver algo novo.",
   "profile_follow_error": "Não foi possível atualizar o seguimento. Verifique sua conexão e tente de novo.",
   "profile_follow_name": "Seguir {name}",
   "profile_follow_own": "Você não pode seguir a si mesmo.",
@@ -6668,6 +6830,7 @@
   "profile_link_copy_failed": "Não foi possível copiar o link. Copie-o da barra de endereços.",
   "profile_link_website": "Site",
   "profile_links_label": "Links",
+  "profile_member_since": "Membro desde {date}",
   "profile_meta_description_creator": [
     {
       "declarations": [
@@ -6722,9 +6885,27 @@
       }
     }
   ],
+  "profile_meta_description_user": [
+    {
+      "declarations": [
+        "input name",
+        "input reviews",
+        "local reviews__plural = reviews: plural",
+        "local reviews__number = reviews: number"
+      ],
+      "selectors": [
+        "reviews__plural"
+      ],
+      "match": {
+        "reviews__plural=one": "{name} no SOTF Mods, a comunidade de mods de Sons of the Forest: {reviews__number} avaliação.",
+        "reviews__plural=*": "{name} no SOTF Mods, a comunidade de mods de Sons of the Forest: {reviews__number} avaliações."
+      }
+    }
+  ],
   "profile_meta_title_creator": "{name} (@{handle}) — criador de mods de Sons of the Forest",
   "profile_meta_title_member": "{name} (@{handle}) — comunidade de mods de Sons of the Forest",
   "profile_meta_title_tab": "{tab} · {name} (@{handle})",
+  "profile_meta_title_user": "{name} (@{handle})",
   "profile_mods_empty_title": "Nenhum mod ainda",
   "profile_mods_title": "Mods de {name}",
   "profile_pinned_title": "Fixados",
@@ -6747,6 +6928,9 @@
   "profile_reviews_older": "Avaliações anteriores",
   "profile_reviews_pagination": "Mais avaliações",
   "profile_reviews_title": "Avaliações de {name}",
+  "profile_role_admin": "Administrador",
+  "profile_role_moderator": "Moderador",
+  "profile_search_type_users": "Usuários",
   "profile_sort_downloads": "Mais baixados",
   "profile_sort_label": "Ordenar",
   "profile_sort_new": "Mais novos",
@@ -6793,8 +6977,10 @@
       }
     }
   ],
+  "profile_stat_published_label": "Mods publicados",
   "profile_stat_rating_label": "Nota média",
   "profile_stat_rating_title": "{rating} de 5 em média",
+  "profile_stat_reviews_label": "Avaliações",
   "profile_stats_label": "Estatísticas",
   "profile_tab_activity": "Atividade",
   "profile_tab_badges": "Insígnias",
@@ -6812,6 +6998,7 @@
   "profile_tier_landmark": "Marco",
   "profile_tier_lean_to": "Abrigo",
   "profile_tier_treehouse": "Casa na árvore",
+  "profile_trusted": "De confiança",
   "profile_unfollowed": "Você deixou de seguir.",
   "profile_verified_creator": "Criador verificado",
   "profile_xp_bug_report_resolved": "Relato de bug marcado como resolvido pelo criador",
@@ -7444,7 +7631,7 @@
   "requests_delete_title": "Excluir este pedido?",
   "requests_deleted_done": "Pedido excluído.",
   "requests_detail_description": "Pedido de mod de {author}: {title}",
-  "requests_detail_title": "{title} — Pedido de mod",
+  "requests_detail_title": "{title} (pedido de mod)",
   "requests_edit": "Editar pedido",
   "requests_edited": "editado",
   "requests_empty_filtered_text": "Tente outro estado ou mostre todos os pedidos.",
@@ -7522,7 +7709,7 @@
       ],
       "selectors": [],
       "match": {
-        "": "{title} — página {page__number}"
+        "": "{title}, página {page__number}"
       }
     }
   ],
@@ -7584,6 +7771,7 @@
       }
     }
   ],
+  "requests_votes_short": "votos",
   "search_page_about": "Sobre o SOTF Mods",
   "search_page_achievements": "Conquistas",
   "search_page_brand": "Recursos da marca",
@@ -8236,6 +8424,37 @@
   "settings_verify_title": "Verifique seu endereço de e-mail",
   "settings_visibility_text": "Desative o que você prefere guardar para si.",
   "settings_visibility_title": "No seu perfil",
+  "shell_404_home": "Voltar ao início",
+  "shell_404_text": "Esta página não existe ou foi movida. Confira o endereço ou busque o que você precisa.",
+  "shell_404_title": "Página não encontrada",
+  "shell_410_text": "Este conteúdo não está mais disponível. Você pode explorar outros mods.",
+  "shell_410_title": "Esta página foi removida",
+  "shell_500_text": "O servidor teve um problema. Recarregue a página em um minuto ou volte ao início.",
+  "shell_500_title": "Algo deu errado",
+  "shell_cmdk_empty_hint": "Tente menos palavras ou refine com mods:, builds:, @usuário, > para comandos ou by:/cat:/sort:.",
+  "shell_cmdk_go_dashboard": "Painel",
+  "shell_cmdk_go_login": "Entrar",
+  "shell_cmdk_go_moderation": "Moderação",
+  "shell_cmdk_go_mods": "Mods",
+  "shell_cmdk_go_notifications": "Notificações",
+  "shell_cmdk_go_upload": "Enviar um mod",
+  "shell_cmdk_go_upload_build": "Enviar uma build",
+  "shell_cmdk_group_users": "Usuários",
+  "shell_cmdk_input_label": "Buscar mods, builds, usuários e páginas",
+  "shell_cmdk_kind_user": "Usuário",
+  "shell_cmdk_loading": "Carregando a busca…",
+  "shell_cmdk_no_results": "Nenhum resultado para “{query}”.",
+  "shell_cmdk_placeholder": "Buscar mods, builds, usuários…",
+  "shell_cmdk_searching": "Buscando…",
+  "shell_footer_developers": "Desenvolvedores e API",
+  "shell_footer_github_backend": "Contribua para o backend do projeto",
+  "shell_footer_github_frontend": "Contribua para o frontend do projeto",
+  "shell_footer_partners": "Parceiros",
+  "shell_footer_redloader": "Wiki oficial sobre como usar o RedLoader",
+  "shell_footer_related": "Sites relacionados",
+  "shell_footer_since": "Mods de qualidade desde março de 2023",
+  "shell_footer_tonihub": "Despejos de dados atualizados para Sons of the Forest",
+  "shell_footer_tutorials": "Um guia inicial sobre como fazer mods usando o RedLoader",
   "shell_install_app": "Instalar o app",
   "shell_install_app_hint": "Adicione o SOTF Mods à tela inicial",
   "shell_install_ios_hint": "Para instalar no iPhone ou iPad, toque em Compartilhar e depois em “Adicionar à Tela de Início”.",
@@ -8243,20 +8462,34 @@
   "shell_more_help": "Ajuda",
   "shell_more_install_guide": "Guia de instalação",
   "shell_more_label": "Mais",
+  "shell_nav_account": "Conta",
+  "shell_nav_dashboard": "Painel",
+  "shell_nav_login": "Entrar",
+  "shell_nav_logout": "Sair",
+  "shell_nav_menu": "Menu",
+  "shell_nav_moderation": "Moderação",
+  "shell_nav_notifications": "Notificações",
+  "shell_nav_profile": "Perfil",
+  "shell_nav_register": "Registrar",
+  "shell_nav_search": "Buscar",
+  "shell_nav_settings": "Configurações",
+  "shell_nav_upload": "Enviar",
   "shell_offline_available": "Disponível off-line",
   "shell_offline_back_online": "Você voltou a ficar online. Recarregando…",
-  "shell_offline_body": "Não conseguimos chegar à ilha agora. Verifique sua conexão e tente novamente.",
-  "shell_offline_checking": "Procurando sinal…",
-  "shell_offline_eyebrow": "Sem sinal",
-  "shell_offline_meta_description": "Sem conexão no momento. Tente novamente quando voltar a ter sinal.",
+  "shell_offline_body": "Não foi possível acessar o SOTF Mods agora. Verifique sua conexão e tente novamente.",
+  "shell_offline_checking": "Verificando a conexão…",
+  "shell_offline_eyebrow": "Offline",
+  "shell_offline_meta_description": "Sem conexão no momento. Tente novamente quando voltar a ficar online.",
   "shell_offline_meta_title": "Off-line",
   "shell_offline_retry": "Tentar novamente",
   "shell_offline_saved": "Salvo neste dispositivo",
-  "shell_offline_still": "Ainda sem sinal. Tente novamente daqui a pouco.",
-  "shell_offline_title": "Você está fora de alcance",
+  "shell_offline_still": "Ainda offline. Tente novamente em instantes.",
+  "shell_offline_title": "Você está offline",
   "shell_ptr_loading": "Atualizando…",
   "shell_ptr_pull": "Puxe para atualizar",
   "shell_ptr_release": "Solte para atualizar",
+  "shell_relogin_banner": "Reconstruímos o SOTF Mods. Entre novamente com a mesma senha.",
+  "shell_search_placeholder": "Buscar mods, builds, usuários",
   "signals_action_download": "Baixar",
   "signals_announcement": "Novo anúncio dos guardas",
   "signals_announcement_titled": "Anúncio: {title}",
@@ -9372,6 +9605,7 @@
   "ui_domain_tier_landmark": "Marco",
   "ui_domain_tier_lean_to": "Abrigo",
   "ui_domain_tier_treehouse": "Casa na árvore",
+  "ui_domain_trusted": "Confiável",
   "ui_domain_trusted_creator": "Criador de confiança",
   "ui_domain_value_not_declared": "Não declarado",
   "ui_domain_value_unknown": "Desconhecido",

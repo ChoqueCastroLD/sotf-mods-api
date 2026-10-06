@@ -1,0 +1,52 @@
+---
+/**
+ * Plain empty and error states of the list pages (jams, requests, profile tabs): a short title,
+ * one line of text and one action. No illustration. The error variant offers «Try again» and the
+ * request reference.
+ */
+import { ErrorState } from '@sotf/ui/error-state';
+
+interface Props {
+  kind: 'empty' | 'error';
+  title: string;
+  text?: string;
+  /** Empty: a link under the text. */
+  action?: { href: string; label: string; nofollow?: boolean } | null;
+  /** Error: URL of the retry link. */
+  retryHref?: string;
+  reference?: string;
+  headingLevel?: 2 | 3;
+}
+
+const { kind, title, text, action = null, retryHref, reference, headingLevel = 2 } = Astro.props;
+const Heading = `h${headingLevel}` as 'h2' | 'h3';
+---
+
+{
+  kind === 'error' ? (
+    <ErrorState
+      title={title}
+      description={text}
+      retryHref={retryHref}
+      reference={reference}
+      headingLevel={headingLevel}
+      className="rounded-lg border border-border bg-surface"
+    />
+  ) : (
+    <div class="flex flex-col items-start gap-2 border-y border-border py-10">
+      <Heading class="text-lg font-bold text-fg">{title}</Heading>
+      {text && <p class="max-w-(--container-prose) text-sm text-fg-muted">{text}</p>}
+      {
+        action && (
+          <a
+            href={action.href}
+            rel={action.nofollow ? 'nofollow' : undefined}
+            class="mt-1 inline-flex min-h-11 items-center font-semibold text-link hover:underline md:min-h-9"
+          >
+            {action.label}
+          </a>
+        )
+      }
+    </div>
+  )
+}

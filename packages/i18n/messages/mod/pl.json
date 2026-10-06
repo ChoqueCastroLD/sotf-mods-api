@@ -243,5 +243,12 @@
   "mod_graph_required_by": "Wymagany przez",
   "mod_compat_report_cta": "Zgłoś, czy działa",
   "mod_action_more": "Więcej akcji",
-  "mod_action_report_mod": "Zgłoś tego moda"
+  "mod_action_report_mod": "Zgłoś tego moda",
+  "mod_tab_description": "Opis",
+  "mod_action_install_manager": "Zainstaluj przez RedManager",
+  "mod_versions_section_title": "Wersje i lista zmian",
+  "mod_details_title": "Szczegóły",
+  "mod_detail_game": "Wersja gry",
+  "mod_detail_loader": "RedLoader",
+  "mod_fact_multiplayer": "Tryb wieloosobowy"
 }

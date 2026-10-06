@@ -1,8 +1,8 @@
 ---
 /**
- * «How to install this mod» (T0-08 InstallButton → modal): steps by kind and platform, required
- * dependencies first, «Needs RedLoader, not BepInEx», multiplayer note and the full guide at
- * `/install`. Opened by `[data-dialog-open="install-dialog"]` (a link to `/install` without JS).
+ * «Install with RedManager» (modal): RedManager first, then the manual steps by kind and platform,
+ * required dependencies first, «Needs RedLoader, not BepInEx», multiplayer note and the full guide
+ * at `/install`. Opened by `[data-dialog-open="install-dialog"]` (a link to `/install` without JS).
  */
 import { m } from '@sotf/i18n/messages';
 import { Icon } from '@sotf/ui/icons';
@@ -30,13 +30,18 @@ const SERVER_PATH = 'Sons Of The Forest Dedicated Server/Mods';
 ---
 
 <ModDialog id="install-dialog" title={m.mod_install_title()} description={m.mod_install_intro({ name: mod.name })}>
+  <p class="text-sm text-fg-muted">
+    {m.mod_install_manager_tip()}
+    <a href={installHref} class="ms-1 font-medium text-link underline underline-offset-3">{m.content_install_get_redmanager()}</a>
+  </p>
+
   <p class="flex items-start gap-2 rounded-md border border-warning/40 bg-warning-soft p-3 text-sm">
     <Icon icon={TriangleAlert} size={18} className="mt-0.5 shrink-0 text-warning" />
     <span>{m.mod_install_redloader_not_bepinex()}</span>
   </p>
 
   <ol class="grid list-none gap-4 [counter-reset:step]">
-    <li class="grid grid-cols-[2rem_1fr] gap-3 [counter-increment:step] before:flex before:size-8 before:items-center before:justify-center before:rounded-full before:border before:border-border-strong before:font-mono before:text-sm before:content-[counter(step)]">
+    <li class="grid grid-cols-[2rem_1fr] gap-3 [counter-increment:step] before:flex before:size-8 before:items-center before:justify-center before:rounded-full before:border before:border-border-strong before:text-sm before:tabular-nums before:content-[counter(step)]">
       <div class="grid gap-1">
         <p class="font-semibold">{m.mod_install_step_loader_title()}</p>
         <p class="text-sm text-fg-muted">
@@ -50,7 +55,7 @@ const SERVER_PATH = 'Sons Of The Forest Dedicated Server/Mods';
 
     {
       required.length > 0 && (
-        <li class="grid grid-cols-[2rem_1fr] gap-3 [counter-increment:step] before:flex before:size-8 before:items-center before:justify-center before:rounded-full before:border before:border-border-strong before:font-mono before:text-sm before:content-[counter(step)]">
+        <li class="grid grid-cols-[2rem_1fr] gap-3 [counter-increment:step] before:flex before:size-8 before:items-center before:justify-center before:rounded-full before:border before:border-border-strong before:text-sm before:tabular-nums before:content-[counter(step)]">
           <div class="grid gap-1">
             <p class="font-semibold">{m.mod_install_step_dependencies_title()}</p>
             <ul class="grid gap-1 text-sm">
@@ -75,7 +80,7 @@ const SERVER_PATH = 'Sons Of The Forest Dedicated Server/Mods';
       )
     }
 
-    <li class="grid grid-cols-[2rem_1fr] gap-3 [counter-increment:step] before:flex before:size-8 before:items-center before:justify-center before:rounded-full before:border before:border-border-strong before:font-mono before:text-sm before:content-[counter(step)]">
+    <li class="grid grid-cols-[2rem_1fr] gap-3 [counter-increment:step] before:flex before:size-8 before:items-center before:justify-center before:rounded-full before:border before:border-border-strong before:text-sm before:tabular-nums before:content-[counter(step)]">
       <div class="grid gap-1">
         <p class="font-semibold">
           {latest ? m.mod_install_step_download_version({ name: mod.name, version: latest.version }) : m.mod_install_step_download({ name: mod.name })}
@@ -90,7 +95,7 @@ const SERVER_PATH = 'Sons Of The Forest Dedicated Server/Mods';
       </div>
     </li>
 
-    <li class="grid grid-cols-[2rem_1fr] gap-3 [counter-increment:step] before:flex before:size-8 before:items-center before:justify-center before:rounded-full before:border before:border-border-strong before:font-mono before:text-sm before:content-[counter(step)]">
+    <li class="grid grid-cols-[2rem_1fr] gap-3 [counter-increment:step] before:flex before:size-8 before:items-center before:justify-center before:rounded-full before:border before:border-border-strong before:text-sm before:tabular-nums before:content-[counter(step)]">
       <div class="grid gap-2">
         <p class="font-semibold">{m.mod_install_step_extract_title()}</p>
         {
@@ -113,7 +118,7 @@ const SERVER_PATH = 'Sons Of The Forest Dedicated Server/Mods';
       </div>
     </li>
 
-    <li class="grid grid-cols-[2rem_1fr] gap-3 [counter-increment:step] before:flex before:size-8 before:items-center before:justify-center before:rounded-full before:border before:border-border-strong before:font-mono before:text-sm before:content-[counter(step)]">
+    <li class="grid grid-cols-[2rem_1fr] gap-3 [counter-increment:step] before:flex before:size-8 before:items-center before:justify-center before:rounded-full before:border before:border-border-strong before:text-sm before:tabular-nums before:content-[counter(step)]">
       <div class="grid gap-1">
         <p class="font-semibold">{m.mod_install_step_launch_title()}</p>
         <p class="text-sm text-fg-muted">{m.mod_install_step_launch_text()}</p>
@@ -131,7 +136,6 @@ const SERVER_PATH = 'Sons Of The Forest Dedicated Server/Mods';
     )
   }
 
-  <p class="text-sm text-fg-muted">{m.mod_install_manager_tip()}</p>
   <a href={installHref} class="inline-flex min-h-11 items-center gap-2 self-start font-semibold text-link">
     {m.mod_install_full_guide()}
     <Icon icon={ArrowRight} size={16} className="rtl:rotate-180" />

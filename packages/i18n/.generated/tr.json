@@ -795,11 +795,11 @@
   "auth_error_terms": "Hesabını oluşturmak için koşulları kabul et.",
   "auth_error_turnstile_failed": "Güvenlik kontrolü tamamlanmadı. Bağlantını kontrol et veya engelleyicinde challenges.cloudflare.com’a izin verip tekrar dene.",
   "auth_field_display_name": "Görünen ad",
-  "auth_field_display_name_hint": "Diğer hayatta kalanlar seni böyle görür. Daha sonra değiştirebilirsin.",
+  "auth_field_display_name_hint": "Diğer kullanıcıların gördüğü ad. Daha sonra değiştirebilirsin.",
   "auth_field_email": "E-posta",
   "auth_field_email_hint": "Giriş ve önemli hesap e-postaları için. Asla herkese açık gösterilmez.",
   "auth_field_handle": "Kullanıcı adı",
-  "auth_field_handle_hint": "Adadaki adresin: {url}. Daha sonra değiştirilemez.",
+  "auth_field_handle_hint": "Profil adresin: {url}. Daha sonra değiştirilemez.",
   "auth_field_handle_placeholder": "kullanici-adin",
   "auth_field_identifier": "E-posta veya kullanıcı adı",
   "auth_field_new_password": "Şifre",
@@ -824,7 +824,7 @@
   "auth_login_create_account": "Hesap oluştur",
   "auth_login_forgot": "Şifreni mi unuttun?",
   "auth_login_heading": "Giriş yap",
-  "auth_login_intro": "Tekrar hoş geldin, hayatta kalan.",
+  "auth_login_intro": "Hesabına giriş yap.",
   "auth_login_legacy_note": "Yenilemeden önce hesabın var mıydı? Şifren hâlâ geçerli.",
   "auth_login_new_here": "Burada yeni misin?",
   "auth_login_passkey": "Geçiş anahtarıyla giriş yap",
@@ -843,7 +843,7 @@
   "auth_meta_login_title": "Giriş yap",
   "auth_meta_logout_description": "Bu cihazda SOTF Mods’tan çıkış yap.",
   "auth_meta_logout_title": "Çıkış yap",
-  "auth_meta_register_description": "SOTF Mods’a katıl: modları sırt çantana koy, güncellendiklerinde haber al ve kendi eserlerini paylaş.",
+  "auth_meta_register_description": "SOTF Mods’a katıl: modları takip et, güncellendiklerinde haber al ve kendi eserlerini paylaş.",
   "auth_meta_register_title": "Hesabını oluştur",
   "auth_meta_reset_description": "SOTF Mods hesabın için yeni bir şifre seç.",
   "auth_meta_reset_title": "Yeni bir şifre seç",
@@ -3655,6 +3655,100 @@
       }
     }
   ],
+  "explore_catalog_all_categories": "Tüm kategoriler",
+  "explore_catalog_category_label": "Kategori",
+  "explore_catalog_category_link": "Kategori: {name}",
+  "explore_catalog_comments": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} yorum",
+        "count__plural=*": "{count__number} yorum"
+      }
+    }
+  ],
+  "explore_catalog_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod",
+        "count__plural=*": "{count__number} mod"
+      }
+    }
+  ],
+  "explore_catalog_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} indirme",
+        "count__plural=*": "{count__number} indirme"
+      }
+    }
+  ],
+  "explore_catalog_empty_clear": "Filtreleri temizle",
+  "explore_catalog_empty_text": "Bu filtrelere uyan mod yok. Aramayı değiştirin veya filtreleri temizleyin.",
+  "explore_catalog_empty_title": "Mod bulunamadı",
+  "explore_catalog_empty_unapproved": "Şu anda onaylanmamış mod yok.",
+  "explore_catalog_error_text": "Birazdan tekrar deneyin.",
+  "explore_catalog_error_title": "Modlar yüklenemedi",
+  "explore_catalog_filters": "Filtreler",
+  "explore_catalog_followers": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} takipçi",
+        "count__plural=*": "{count__number} takipçi"
+      }
+    }
+  ],
+  "explore_catalog_nsfw": "NSFW",
+  "explore_catalog_pending_approval": "Onay bekliyor",
+  "explore_catalog_retry": "Tekrar dene",
+  "explore_catalog_search_button": "Ara",
+  "explore_catalog_search_label": "Mod ara",
+  "explore_catalog_search_placeholder": "Mod ara",
+  "explore_catalog_sort_downloads": "En çok indirilen",
+  "explore_catalog_sort_label": "Sıralama",
+  "explore_catalog_sort_oldest": "En eski",
+  "explore_catalog_sort_trending": "Bu hafta öne çıkanlar",
+  "explore_catalog_trusted": "Güvenilir",
+  "explore_catalog_type_all": "Tüm türler",
+  "explore_catalog_type_label": "Tür",
+  "explore_catalog_unapproved": "Onaylanmamış",
+  "explore_catalog_unapproved_back": "Tüm modlara dön",
+  "explore_catalog_unapproved_description": "Otomatik kontrolleri geçen ve onay bekleyen modlar.",
+  "explore_catalog_unapproved_heading": "Onaylanmamış modlar",
+  "explore_catalog_unapproved_notice": "Bu modlar otomatik kontrolleri geçti ve bir moderatörün onayını bekliyor. Ana listenin parçası değiller.",
+  "explore_catalog_unapproved_title": "Onaylanmamış modlar",
+  "explore_catalog_updated": "Güncellendi: {when}",
   "explore_categories_browse": "Göz at",
   "explore_categories_builds_heading": "Yapı kategorileri",
   "explore_categories_description": "SOTF Mods’taki tüm Sons of the Forest mod ve yapı kategorileri; her birinin neyi kapsadığı ve kaç öğe içerdiği.",
@@ -4163,7 +4257,7 @@
   "jams_countdown_voting_close": "Oylama şu süre sonra kapanır",
   "jams_countdown_voting_open": "Oylama şu süre sonra açılır",
   "jams_cta_join": "Jam'e katıl",
-  "jams_cta_results": "Podyumu gör",
+  "jams_cta_results": "Sonuçları gör",
   "jams_cta_view": "Jam'i gör",
   "jams_cta_vote": "Şimdi oy ver",
   "jams_detail_description_fallback": "{title}: bir Sons of the Forest Mod Jam'i. Temayı, başvuruları ve sonuçları görün.",
@@ -4287,29 +4381,29 @@
   "jams_error_text": "Birazdan tekrar deneyin.",
   "jams_error_title": "Jam'ler yüklenemedi",
   "jams_first_discord": "Discord'a katıl",
-  "jams_first_hint": "Jam haberlerinin uygulamada veya e-postayla size ulaşması için sinyal ayarlarınızı açın ve jam duyurulur duyurulmaz takip edin.",
+  "jams_first_hint": "Jam haberlerinin uygulamada veya e-postayla size ulaşması için bildirimleri aç ve jam duyurulur duyurulmaz takip et.",
   "jams_first_judged": "Başvurular şunlara göre puanlanır",
   "jams_first_kicker": "İlk sezon · Tarih önce burada duyurulur",
   "jams_first_notify": "Bildirim al",
-  "jams_first_prize": "Her başvuru bir katılımcı rozeti kazanır; podyum yerleri ve genel birincilik daha fazlasını getirir.",
+  "jams_first_prize": "Tüm başvurular jam sayfasında listelenir. Her kategorideki en iyiler sonuçlarla birlikte duyurulur.",
   "jams_first_text": "Tüm topluluk için temalı bir yarışma: bir tema, yeni bir şey yapmak için birkaç gün, ardından herkes oy verir. Tarih ilk burada duyurulacak.",
   "jams_first_title": "İlk Mod Jam yolda",
   "jams_follow": "Jam'i takip et",
   "jams_follow_done": "Bu jam hakkında güncellemeler alacaksınız.",
   "jams_following": "Takip ediliyor",
   "jams_guest_hint": "Başvuru yapmak, bu jam'i takip etmek ve oy vermek için giriş yapın.",
-  "jams_how_1_text": "Her jam'in bir adı, bir takvimi ve bazen ilk güne kadar mühürlü kalan bir teması vardır.",
-  "jams_how_1_title": "Tema açıklanır",
+  "jams_how_1_text": "Her jam'in bir adı, bir takvimi ve bazen ilk güne kadar gizli kalan bir teması vardır.",
+  "jams_how_1_title": "Tema duyurulur",
   "jams_how_2_text": "Birkaç gün içinde tek başına ya da ortak yazarlarla yeni bir mod veya yapı yap.",
   "jams_how_2_title": "Yap",
   "jams_how_3_text": "Doğrulanmış üyeler her başvuruyu her kategoride 1 ile 5 yıldız arasında puanlar.",
   "jams_how_3_title": "Oy ver",
-  "jams_how_4_text": "Puanlar Bayesçi ortalamalardır. Rozetler tüm ekibe gider.",
-  "jams_how_4_title": "Podyum",
+  "jams_how_4_text": "Puanlar ağırlıklı ortalamalardır. Sonuçlar her kategori için ve genel olarak gösterilir.",
+  "jams_how_4_title": "Sonuçlar",
   "jams_how_title": "Jam nasıl işler",
   "jams_hub_archive": "Arşiv",
   "jams_hub_description": "Topluluğun yeni Sons of the Forest modları yaptığı ve en iyilere oy verdiği, temalı ve süreli yarışmalar.",
-  "jams_hub_intro": "Günler içinde yap, bir hafta içinde oy ver, rozet kazan. Her jam'in bir teması, bir son tarihi ve dört oylama kategorisi vardır.",
+  "jams_hub_intro": "Birkaç günde bir mod yap, sonra en iyilere oy ver. Her jam'in bir teması, bir son tarihi ve dört oylama kategorisi vardır.",
   "jams_hub_readout": "MOD JAM'LERİ",
   "jams_hub_results": "Sonuçlar",
   "jams_hub_running": "Şu anda devam edenler",
@@ -4329,7 +4423,7 @@
   "jams_mine_title": "Mod Jam'leri",
   "jams_my_entries": "Başvurularınız",
   "jams_mystery_reveal": "{date} tarihinde açıklanır",
-  "jams_mystery_title": "Tema mühürlü",
+  "jams_mystery_title": "Gizli tema",
   "jams_nav": "Jam'ler",
   "jams_phase_announced": "Duyuruldu",
   "jams_phase_archived": "Arşivlendi",
@@ -4340,7 +4434,7 @@
   "jams_phase_voting": "Oylama",
   "jams_prizes_title": "Ödüller",
   "jams_rank": "#{rank}",
-  "jams_results_method": "Puanlar Bayes ortalamasıdır. Bir başvurunun sıralamaya girmesi için en az {min} oy gerekir.",
+  "jams_results_method": "Puanlar Bayesçi ortalamalardır. Bir başvurunun sıralanması için en az {min} oy gerekir.",
   "jams_results_summary": [
     {
       "declarations": [
@@ -4363,7 +4457,7 @@
       }
     }
   ],
-  "jams_results_tabs_label": "Podyum kategorisi",
+  "jams_results_tabs_label": "Sonuç kategorisi",
   "jams_results_title": "Sonuçlar",
   "jams_rules_title": "Kurallar",
   "jams_schedule_tba": "Duyurulacak",
@@ -4379,7 +4473,7 @@
   "jams_submit_action": "Başvuru yap",
   "jams_submit_choose": "Seçin…",
   "jams_submit_confirm": "Başvur",
-  "jams_submit_done": "Başvuru gönderildi. Bol şans!",
+  "jams_submit_done": "Başvuru gönderildi.",
   "jams_submit_intro": "Yayımlanmış modlarınızdan veya build'lerinizden birini seçin. Başvurular kapanana kadar geri çekebilirsiniz.",
   "jams_submit_mod": "Mod veya build",
   "jams_submit_none": "Bu jam'e katılabilecek yayımlanmış modunuz veya build'iniz henüz yok.",
@@ -4403,12 +4497,12 @@
   "jams_unit_seconds": "Sn",
   "jams_verify_to_submit": "Başvuru için e-postanızı doğrulayın",
   "jams_vote_action": "Puanla",
-  "jams_vote_blocked_activity": "Oylamanın kilidini açmak için toplulukta biraz daha aktif olun.",
+  "jams_vote_blocked_activity": "Hesabının oy vermek için henüz yeterli etkinliği yok.",
   "jams_vote_blocked_email": "Oy vermek için e-posta adresinizi doğrulayın.",
   "jams_vote_blocked_new": "Hesabınız bu jam'de oy vermek için çok yeni.",
   "jams_vote_blocked_phase": "Oylama şu anda açık değil.",
   "jams_vote_continue": "Oylamaya devam et",
-  "jams_vote_dock_title": "Oy pusulan",
+  "jams_vote_dock_title": "Oylama",
   "jams_vote_intro": "Her kategoride 1 ile 5 yıldız verin. Oylama kapanana kadar oylarınızı değiştirebilirsiniz.",
   "jams_vote_nothing": "Henüz puanlanacak bir şey yok.",
   "jams_vote_own": "Sizin başvurunuz",
@@ -5119,6 +5213,10 @@
   "landing_faq_hint": "Katalogla doğrulanmış kısa yanıtlar.",
   "landing_faq_more": "Devamını oku",
   "landing_faq_title": "Hayatta kalanların soruları",
+  "landing_featured_label": "Haftanın öne çıkan modları",
+  "landing_featured_next": "Sonraki modlar",
+  "landing_featured_prev": "Önceki modlar",
+  "landing_h1": "Sons of the Forest Modları",
   "landing_hall_hint": "Tüm zamanların en çok indirilen modları",
   "landing_hall_show_all": [
     {
@@ -5186,6 +5284,23 @@
   ],
   "landing_map_legend_label": "Harita göstergesi",
   "landing_map_title": "Ada haritası",
+  "landing_meta_description": [
+    {
+      "declarations": [
+        "input count",
+        "input mods",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{mods} Sons of the Forest modunu indirin ve RedLoader için buildler. Topluluğun puanları ve yorumlarıyla ücretsiz, doğrudan indirmeler.",
+        "count__plural=*": "{mods} Sons of the Forest modunu indirin ve RedLoader için buildler. Topluluğun puanları ve yorumlarıyla ücretsiz, doğrudan indirmeler."
+      }
+    }
+  ],
+  "landing_meta_title": "Sons of the Forest Modları | SOTF Mods",
   "landing_motw_period": "{start} haftası",
   "landing_motw_title": "Haftanın modu",
   "landing_notes_all": "Tüm son güncellemeler",
@@ -5269,11 +5384,49 @@
   "landing_stat_downloads": "İndirme",
   "landing_stat_mods": "Mod",
   "landing_stat_survivors": "Hayatta kalan",
+  "landing_stats_aria": "Site istatistikleri",
+  "landing_stats_downloads": "İndirmeler",
   "landing_stats_label": "Rakamlarla ada",
+  "landing_stats_mods": "Yayınlanan modlar",
+  "landing_stats_users": "Kullanıcılar",
   "landing_trending_all": "Tüm modlar",
   "landing_trending_empty": "Adada sakin bir hafta. Hayatta kalanlar indirdikçe modlar burada görünecek.",
   "landing_trending_hint": "Son 7 günün indirmelerine göre",
   "landing_trending_title": "Bu haftanın popülerleri",
+  "landing_weekly_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Bu hafta {display} indirme",
+        "count__plural=*": "Bu hafta {display} indirme"
+      }
+    }
+  ],
+  "landing_weekly_empty": "Bu hafta henüz indirme kaydedilmedi.",
+  "landing_weekly_hint": "Son 7 gündeki indirmelere göre sıralı",
+  "landing_weekly_less": "Daha az göster",
+  "landing_weekly_more": "Daha fazla göster",
+  "landing_weekly_rank": [
+    {
+      "declarations": [
+        "input rank",
+        "local rank__number = rank: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{rank__number}. sıra"
+      }
+    }
+  ],
+  "landing_weekly_this_week": "bu hafta",
+  "landing_weekly_title": "Haftanın modları",
   "langprompt_hint": "Kayıtlı diliniz: {language}.",
   "langprompt_original": "Orijinali gör ({language})",
   "langprompt_remember": "Seçimimi hatırla",
@@ -5320,7 +5473,7 @@
   "logs_err_file_type": "Bir .log veya .txt dosyası ya da içinde biri bulunan bir .gz veya .zip kullanın.",
   "logs_err_generic": "Bir şeyler ters gitti. Tekrar deneyin.",
   "logs_err_network": "Sunucuya ulaşılamadı. Bağlantınızı kontrol edip tekrar deneyin.",
-  "logs_err_rate": "Çok fazla istek — {seconds} sn sonra tekrar deneyin",
+  "logs_err_rate": "Çok fazla istek. {seconds} sn sonra tekrar deneyin",
   "logs_err_too_large": "Bu log {max} sınırından büyük. Yalnızca sorunun çevresindeki kısmı gönderin.",
   "logs_err_turnstile": "İnsan doğrulaması başarısız oldu. Tekrar deneyin.",
   "logs_expired_now": "Süresi doldu",
@@ -5647,6 +5800,7 @@
   "meta_title_template": "{title} | SOTF Mods",
   "mod_action_add_to_kit": "Kit",
   "mod_action_install": "Kur",
+  "mod_action_install_manager": "RedManager ile yükle",
   "mod_action_more": "Diğer eylemler",
   "mod_action_report": "Şikâyet et",
   "mod_action_report_mod": "Bu modu şikâyet et",
@@ -5743,11 +5897,15 @@
   "mod_deps_sheet_text": "{name} bu modlar olmadan çalışmaz. Onları da indir ya da zaten varsa devam et.",
   "mod_deps_sheet_title": "Şunlara da ihtiyacın var: {names}",
   "mod_description_empty": "Yapımcı henüz bir açıklama yazmadı.",
+  "mod_detail_game": "Oyun sürümü",
+  "mod_detail_loader": "RedLoader",
+  "mod_details_title": "Ayrıntılar",
   "mod_download_done_label": "İndirildi ✓",
   "mod_download_unavailable": "Şu anda indirilebilir bir dosya yok.",
   "mod_fact_game_version": "Belirtilen oyun sürümü",
   "mod_fact_license": "Lisans",
   "mod_fact_loader_version": "Belirtilen RedLoader",
+  "mod_fact_multiplayer": "Çok oyunculu",
   "mod_fact_platform": "Platform",
   "mod_fact_published": "Yayımlandı",
   "mod_fact_size": "Dosya boyutu",
@@ -6192,6 +6350,7 @@
   "mod_stats_title": "Zaman içinde indirmeler",
   "mod_support_title": "Yapımcıyı destekle",
   "mod_tab_comments": "Yorumlar",
+  "mod_tab_description": "Açıklama",
   "mod_tab_overview": "Genel bakış",
   "mod_tab_reviews": "İncelemeler",
   "mod_tab_versions": "Sürümler",
@@ -6252,6 +6411,7 @@
       }
     }
   ],
+  "mod_versions_section_title": "Sürümler ve değişiklik günlüğü",
   "mod_versions_title": [
     {
       "declarations": [
@@ -6621,6 +6781,7 @@
   "profile_builds_title": "{name} kullanıcısının yapıları",
   "profile_cards_empty_action": "Modları keşfet",
   "profile_cards_empty_description": "{name} burada henüz bir şey yayınlamadı. Adanın geri kalanının neler yaptığını keşfet.",
+  "profile_cards_empty_text": "{name} burada henüz bir şey yayınlamadı.",
   "profile_creator_top_mod": "En popüler mod: {mod}",
   "profile_creators_count": [
     {
@@ -6653,6 +6814,7 @@
   "profile_creators_title": "Üreticiler",
   "profile_day_on_island": "Adada {day}. gün",
   "profile_feed_title": "{name} kullanıcısının yeni yayınları",
+  "profile_follow_done": "Takip ediyorsun. Yeni bir şey yayınladığında bildirim alacaksın.",
   "profile_follow_error": "Takip güncellenemedi. Bağlantını kontrol edip tekrar dene.",
   "profile_follow_name": "{name} kullanıcısını takip et",
   "profile_follow_own": "Kendini takip edemezsin.",
@@ -6668,6 +6830,7 @@
   "profile_link_copy_failed": "Bağlantı kopyalanamadı. Adres çubuğundan kopyalayın.",
   "profile_link_website": "Web sitesi",
   "profile_links_label": "Bağlantılar",
+  "profile_member_since": "{date} tarihinden beri üye",
   "profile_meta_description_creator": [
     {
       "declarations": [
@@ -6722,9 +6885,27 @@
       }
     }
   ],
+  "profile_meta_description_user": [
+    {
+      "declarations": [
+        "input name",
+        "input reviews",
+        "local reviews__plural = reviews: plural",
+        "local reviews__number = reviews: number"
+      ],
+      "selectors": [
+        "reviews__plural"
+      ],
+      "match": {
+        "reviews__plural=one": "{name}, Sons of the Forest mod topluluğu SOTF Mods’ta: {reviews__number} inceleme.",
+        "reviews__plural=*": "{name}, Sons of the Forest mod topluluğu SOTF Mods’ta: {reviews__number} inceleme."
+      }
+    }
+  ],
   "profile_meta_title_creator": "{name} (@{handle}) — Sons of the Forest mod üreticisi",
   "profile_meta_title_member": "{name} (@{handle}) — Sons of the Forest mod topluluğu",
   "profile_meta_title_tab": "{tab} · {name} (@{handle})",
+  "profile_meta_title_user": "{name} (@{handle})",
   "profile_mods_empty_title": "Henüz mod yok",
   "profile_mods_title": "{name} kullanıcısının modları",
   "profile_pinned_title": "Sabitlenenler",
@@ -6747,6 +6928,9 @@
   "profile_reviews_older": "Daha eski incelemeler",
   "profile_reviews_pagination": "Daha fazla inceleme",
   "profile_reviews_title": "{name} kullanıcısının incelemeleri",
+  "profile_role_admin": "Yönetici",
+  "profile_role_moderator": "Moderatör",
+  "profile_search_type_users": "Kullanıcılar",
   "profile_sort_downloads": "En çok indirilen",
   "profile_sort_label": "Sırala",
   "profile_sort_new": "En yeni",
@@ -6793,8 +6977,10 @@
       }
     }
   ],
+  "profile_stat_published_label": "Yayınlanan modlar",
   "profile_stat_rating_label": "Ort. puan",
   "profile_stat_rating_title": "Ortalama 5 üzerinden {rating}",
+  "profile_stat_reviews_label": "İncelemeler",
   "profile_stats_label": "İstatistikler",
   "profile_tab_activity": "Etkinlik",
   "profile_tab_badges": "Rozetler",
@@ -6812,6 +6998,7 @@
   "profile_tier_landmark": "Simge yapı",
   "profile_tier_lean_to": "Sundurma",
   "profile_tier_treehouse": "Ağaç ev",
+  "profile_trusted": "Güvenilir",
   "profile_unfollowed": "Takipten çıkıldı.",
   "profile_verified_creator": "Doğrulanmış üretici",
   "profile_xp_bug_report_resolved": "Üretici tarafından çözüldü olarak işaretlenen hata bildirimi",
@@ -7444,7 +7631,7 @@
   "requests_delete_title": "Bu istek silinsin mi?",
   "requests_deleted_done": "İstek silindi.",
   "requests_detail_description": "{author} tarafından mod isteği: {title}",
-  "requests_detail_title": "{title} — Mod isteği",
+  "requests_detail_title": "{title} (mod isteği)",
   "requests_edit": "İsteği düzenle",
   "requests_edited": "düzenlendi",
   "requests_empty_filtered_text": "Başka bir durum deneyin veya tüm istekleri gösterin.",
@@ -7522,7 +7709,7 @@
       ],
       "selectors": [],
       "match": {
-        "": "{title} — sayfa {page__number}"
+        "": "{title}, sayfa {page__number}"
       }
     }
   ],
@@ -7584,6 +7771,7 @@
       }
     }
   ],
+  "requests_votes_short": "oy",
   "search_page_about": "SOTF Mods hakkında",
   "search_page_achievements": "Başarımlar",
   "search_page_brand": "Marka varlıkları",
@@ -8236,6 +8424,37 @@
   "settings_verify_title": "E-posta adresini doğrula",
   "settings_visibility_text": "Kendine saklamayı tercih ettiğin her şeyi kapat.",
   "settings_visibility_title": "Profilinde",
+  "shell_404_home": "Ana sayfaya dön",
+  "shell_404_text": "Bu sayfa mevcut değil veya taşınmış. Adresi kontrol edin ya da ihtiyacınız olanı arayın.",
+  "shell_404_title": "Sayfa bulunamadı",
+  "shell_410_text": "Bu içerik artık mevcut değil. Bunun yerine diğer modlara göz atabilirsiniz.",
+  "shell_410_title": "Bu sayfa kaldırıldı",
+  "shell_500_text": "Sunucuda bir sorun oluştu. Sayfayı bir dakika sonra yenileyin veya ana sayfaya dönün.",
+  "shell_500_title": "Bir şeyler ters gitti",
+  "shell_cmdk_empty_hint": "Daha az kelime deneyin veya mods:, builds:, @kullanıcı, komutlar için > ya da by:/cat:/sort: ile daraltın.",
+  "shell_cmdk_go_dashboard": "Panel",
+  "shell_cmdk_go_login": "Giriş yap",
+  "shell_cmdk_go_moderation": "Moderasyon",
+  "shell_cmdk_go_mods": "Modlar",
+  "shell_cmdk_go_notifications": "Bildirimler",
+  "shell_cmdk_go_upload": "Mod yükle",
+  "shell_cmdk_go_upload_build": "Yapı yükle",
+  "shell_cmdk_group_users": "Kullanıcılar",
+  "shell_cmdk_input_label": "Mod, yapı, kullanıcı ve sayfa ara",
+  "shell_cmdk_kind_user": "Kullanıcı",
+  "shell_cmdk_loading": "Arama yükleniyor…",
+  "shell_cmdk_no_results": "“{query}” için sonuç yok.",
+  "shell_cmdk_placeholder": "Mod, yapı, kullanıcı ara…",
+  "shell_cmdk_searching": "Aranıyor…",
+  "shell_footer_developers": "Geliştiriciler ve API",
+  "shell_footer_github_backend": "Projeye backend'de katkıda bulun",
+  "shell_footer_github_frontend": "Projeye frontend'de katkıda bulun",
+  "shell_footer_partners": "Ortaklar",
+  "shell_footer_redloader": "RedLoader’ı nasıl kullanacağınızla ilgili resmi wiki",
+  "shell_footer_related": "İlgili siteler",
+  "shell_footer_since": "Mart 2023'ten beri kaliteli modlar",
+  "shell_footer_tonihub": "Sons of the Forest için güncel veri dökümleri",
+  "shell_footer_tutorials": "RedLoader kullanarak mod yapmaya başlama kılavuzu",
   "shell_install_app": "Uygulamayı yükle",
   "shell_install_app_hint": "SOTF Mods’u ana ekrana ekle",
   "shell_install_ios_hint": "iPhone veya iPad’e yüklemek için Paylaş’a dokun, ardından “Ana Ekrana Ekle”yi seç.",
@@ -8243,20 +8462,34 @@
   "shell_more_help": "Yardım",
   "shell_more_install_guide": "Kurulum rehberi",
   "shell_more_label": "Daha fazla",
+  "shell_nav_account": "Hesap",
+  "shell_nav_dashboard": "Panel",
+  "shell_nav_login": "Giriş yap",
+  "shell_nav_logout": "Çıkış yap",
+  "shell_nav_menu": "Menü",
+  "shell_nav_moderation": "Moderasyon",
+  "shell_nav_notifications": "Bildirimler",
+  "shell_nav_profile": "Profil",
+  "shell_nav_register": "Kayıt ol",
+  "shell_nav_search": "Ara",
+  "shell_nav_settings": "Ayarlar",
+  "shell_nav_upload": "Yükle",
   "shell_offline_available": "Çevrimdışı da çalışır",
-  "shell_offline_back_online": "Yeniden çevrimiçisin. Sayfa yenileniyor…",
-  "shell_offline_body": "Şu anda adaya ulaşamıyoruz. Bağlantını kontrol edip tekrar dene.",
-  "shell_offline_checking": "Sinyal aranıyor…",
-  "shell_offline_eyebrow": "Sinyal yok",
-  "shell_offline_meta_description": "Şu anda bağlantı yok. Kapsama alanına döndüğünde tekrar dene.",
+  "shell_offline_back_online": "Tekrar çevrimiçisiniz. Yeniden yükleniyor…",
+  "shell_offline_body": "SOTF Mods şu anda erişilemiyor. Bağlantınızı kontrol edip tekrar deneyin.",
+  "shell_offline_checking": "Bağlantı kontrol ediliyor…",
+  "shell_offline_eyebrow": "Çevrimdışı",
+  "shell_offline_meta_description": "Şu anda bağlantı yok. Çevrimiçi olduğunuzda tekrar deneyin.",
   "shell_offline_meta_title": "Çevrimdışı",
   "shell_offline_retry": "Tekrar dene",
   "shell_offline_saved": "Bu cihazda kayıtlı",
-  "shell_offline_still": "Hâlâ sinyal yok. Biraz sonra tekrar dene.",
-  "shell_offline_title": "Kapsama alanı dışındasın",
+  "shell_offline_still": "Hâlâ çevrimdışı. Birazdan tekrar deneyin.",
+  "shell_offline_title": "Çevrimdışısınız",
   "shell_ptr_loading": "Yenileniyor…",
   "shell_ptr_pull": "Yenilemek için çek",
   "shell_ptr_release": "Yenilemek için bırak",
+  "shell_relogin_banner": "SOTF Mods yeniden oluşturuldu. Aynı şifrenizle tekrar giriş yapın.",
+  "shell_search_placeholder": "Mod, yapı, kullanıcı ara",
   "signals_action_download": "İndir",
   "signals_announcement": "Koruculardan yeni duyuru",
   "signals_announcement_titled": "Duyuru: {title}",
@@ -9372,6 +9605,7 @@
   "ui_domain_tier_landmark": "Simge yapı",
   "ui_domain_tier_lean_to": "Sundurma",
   "ui_domain_tier_treehouse": "Ağaç ev",
+  "ui_domain_trusted": "Güvenilir",
   "ui_domain_trusted_creator": "Güvenilir içerik üretici",
   "ui_domain_value_not_declared": "Belirtilmemiş",
   "ui_domain_value_unknown": "Bilinmiyor",

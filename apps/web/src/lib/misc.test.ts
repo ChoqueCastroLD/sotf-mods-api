@@ -99,7 +99,7 @@ describe('web app manifest', () => {
       name: 'SOTF Mods',
       start_url: '/',
       display: 'standalone',
-      theme_color: '#090F0C',
+      theme_color: '#15191E',
     });
     expect(manifest.icons.map((icon: { purpose: string }) => icon.purpose)).toEqual([
       'any',

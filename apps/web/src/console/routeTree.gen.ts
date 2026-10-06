@@ -17,7 +17,6 @@ import { Route as SettingsRouteImport } from './routes/settings.tsx'
 import { Route as SignalsRouteImport } from './routes/signals.tsx'
 import { Route as BasecampIndexRouteImport } from './routes/basecamp/index.tsx'
 import { Route as BasecampAnalyticsRouteImport } from './routes/basecamp/analytics.tsx'
-import { Route as BasecampBadgesRouteImport } from './routes/basecamp/badges.tsx'
 import { Route as BasecampInboxRouteImport } from './routes/basecamp/inbox.tsx'
 import { Route as BasecampInvitesRouteImport } from './routes/basecamp/invites.tsx'
 import { Route as BasecampJamsRouteImport } from './routes/basecamp/jams.tsx'
@@ -46,11 +45,8 @@ import { Route as BasecampModsIndexRouteImport } from './routes/basecamp/mods/in
 import { Route as BasecampNewIndexRouteImport } from './routes/basecamp/new/index.tsx'
 import { Route as BasecampNewBuildRouteImport } from './routes/basecamp/new/build.tsx'
 import { Route as BasecampNewModRouteImport } from './routes/basecamp/new/mod.tsx'
-import { Route as MeKitsIndexRouteImport } from './routes/me/kits/index.tsx'
-import { Route as MeKitsKitIdRouteImport } from './routes/me/kits/$kitId.tsx'
 import { Route as RangerAdminIndexRouteImport } from './routes/ranger/admin/index.tsx'
 import { Route as RangerAdminAnnouncementsRouteImport } from './routes/ranger/admin/announcements.tsx'
-import { Route as RangerAdminAwardsRouteImport } from './routes/ranger/admin/awards.tsx'
 import { Route as RangerAdminEcosystemRouteImport } from './routes/ranger/admin/ecosystem.tsx'
 import { Route as RangerAdminGameBuildsRouteImport } from './routes/ranger/admin/game-builds.tsx'
 import { Route as RangerAdminIntegrationsRouteImport } from './routes/ranger/admin/integrations.tsx'
@@ -104,11 +100,6 @@ const BasecampIndexRoute = BasecampIndexRouteImport.update({
 const BasecampAnalyticsRoute = BasecampAnalyticsRouteImport.update({
   id: '/analytics',
   path: '/analytics',
-  getParentRoute: () => BasecampRoute,
-} as any)
-const BasecampBadgesRoute = BasecampBadgesRouteImport.update({
-  id: '/badges',
-  path: '/badges',
   getParentRoute: () => BasecampRoute,
 } as any)
 const BasecampInboxRoute = BasecampInboxRouteImport.update({
@@ -251,16 +242,6 @@ const BasecampNewModRoute = BasecampNewModRouteImport.update({
   path: '/new/mod',
   getParentRoute: () => BasecampRoute,
 } as any)
-const MeKitsIndexRoute = MeKitsIndexRouteImport.update({
-  id: '/kits/',
-  path: '/kits/',
-  getParentRoute: () => MeRoute,
-} as any)
-const MeKitsKitIdRoute = MeKitsKitIdRouteImport.update({
-  id: '/kits/$kitId',
-  path: '/kits/$kitId',
-  getParentRoute: () => MeRoute,
-} as any)
 const RangerAdminIndexRoute = RangerAdminIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -272,11 +253,6 @@ const RangerAdminAnnouncementsRoute =
     path: '/announcements',
     getParentRoute: () => RangerAdminRouteRoute,
   } as any)
-const RangerAdminAwardsRoute = RangerAdminAwardsRouteImport.update({
-  id: '/awards',
-  path: '/awards',
-  getParentRoute: () => RangerAdminRouteRoute,
-} as any)
 const RangerAdminEcosystemRoute = RangerAdminEcosystemRouteImport.update({
   id: '/ecosystem',
   path: '/ecosystem',
@@ -358,7 +334,6 @@ export interface FileRoutesByFullPath {
   '/signals': typeof SignalsRouteWithChildren
   '/ranger/admin': typeof RangerAdminRouteRouteWithChildren
   '/basecamp/analytics': typeof BasecampAnalyticsRoute
-  '/basecamp/badges': typeof BasecampBadgesRoute
   '/basecamp/inbox': typeof BasecampInboxRoute
   '/basecamp/invites': typeof BasecampInvitesRoute
   '/basecamp/jams': typeof BasecampJamsRoute
@@ -384,9 +359,7 @@ export interface FileRoutesByFullPath {
   '/basecamp/drafts/$draftId': typeof BasecampDraftsDraftIdRoute
   '/basecamp/new/build': typeof BasecampNewBuildRoute
   '/basecamp/new/mod': typeof BasecampNewModRoute
-  '/me/kits/$kitId': typeof MeKitsKitIdRoute
   '/ranger/admin/announcements': typeof RangerAdminAnnouncementsRoute
-  '/ranger/admin/awards': typeof RangerAdminAwardsRoute
   '/ranger/admin/ecosystem': typeof RangerAdminEcosystemRoute
   '/ranger/admin/game-builds': typeof RangerAdminGameBuildsRoute
   '/ranger/admin/integrations': typeof RangerAdminIntegrationsRoute
@@ -400,7 +373,6 @@ export interface FileRoutesByFullPath {
   '/basecamp/drafts/': typeof BasecampDraftsIndexRoute
   '/basecamp/mods/': typeof BasecampModsIndexRoute
   '/basecamp/new/': typeof BasecampNewIndexRoute
-  '/me/kits/': typeof MeKitsIndexRoute
   '/ranger/admin/': typeof RangerAdminIndexRoute
   '/ranger/jams/': typeof RangerJamsIndexRoute
   '/ranger/users/': typeof RangerUsersIndexRoute
@@ -410,7 +382,6 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/basecamp/analytics': typeof BasecampAnalyticsRoute
-  '/basecamp/badges': typeof BasecampBadgesRoute
   '/basecamp/inbox': typeof BasecampInboxRoute
   '/basecamp/invites': typeof BasecampInvitesRoute
   '/basecamp/jams': typeof BasecampJamsRoute
@@ -436,9 +407,7 @@ export interface FileRoutesByTo {
   '/basecamp/drafts/$draftId': typeof BasecampDraftsDraftIdRoute
   '/basecamp/new/build': typeof BasecampNewBuildRoute
   '/basecamp/new/mod': typeof BasecampNewModRoute
-  '/me/kits/$kitId': typeof MeKitsKitIdRoute
   '/ranger/admin/announcements': typeof RangerAdminAnnouncementsRoute
-  '/ranger/admin/awards': typeof RangerAdminAwardsRoute
   '/ranger/admin/ecosystem': typeof RangerAdminEcosystemRoute
   '/ranger/admin/game-builds': typeof RangerAdminGameBuildsRoute
   '/ranger/admin/integrations': typeof RangerAdminIntegrationsRoute
@@ -452,7 +421,6 @@ export interface FileRoutesByTo {
   '/basecamp/drafts': typeof BasecampDraftsIndexRoute
   '/basecamp/mods': typeof BasecampModsIndexRoute
   '/basecamp/new': typeof BasecampNewIndexRoute
-  '/me/kits': typeof MeKitsIndexRoute
   '/ranger/admin': typeof RangerAdminIndexRoute
   '/ranger/jams': typeof RangerJamsIndexRoute
   '/ranger/users': typeof RangerUsersIndexRoute
@@ -469,7 +437,6 @@ export interface FileRoutesById {
   '/signals': typeof SignalsRouteWithChildren
   '/ranger/admin': typeof RangerAdminRouteRouteWithChildren
   '/basecamp/analytics': typeof BasecampAnalyticsRoute
-  '/basecamp/badges': typeof BasecampBadgesRoute
   '/basecamp/inbox': typeof BasecampInboxRoute
   '/basecamp/invites': typeof BasecampInvitesRoute
   '/basecamp/jams': typeof BasecampJamsRoute
@@ -495,9 +462,7 @@ export interface FileRoutesById {
   '/basecamp/drafts/$draftId': typeof BasecampDraftsDraftIdRoute
   '/basecamp/new/build': typeof BasecampNewBuildRoute
   '/basecamp/new/mod': typeof BasecampNewModRoute
-  '/me/kits/$kitId': typeof MeKitsKitIdRoute
   '/ranger/admin/announcements': typeof RangerAdminAnnouncementsRoute
-  '/ranger/admin/awards': typeof RangerAdminAwardsRoute
   '/ranger/admin/ecosystem': typeof RangerAdminEcosystemRoute
   '/ranger/admin/game-builds': typeof RangerAdminGameBuildsRoute
   '/ranger/admin/integrations': typeof RangerAdminIntegrationsRoute
@@ -511,7 +476,6 @@ export interface FileRoutesById {
   '/basecamp/drafts/': typeof BasecampDraftsIndexRoute
   '/basecamp/mods/': typeof BasecampModsIndexRoute
   '/basecamp/new/': typeof BasecampNewIndexRoute
-  '/me/kits/': typeof MeKitsIndexRoute
   '/ranger/admin/': typeof RangerAdminIndexRoute
   '/ranger/jams/': typeof RangerJamsIndexRoute
   '/ranger/users/': typeof RangerUsersIndexRoute
@@ -529,7 +493,6 @@ export interface FileRouteTypes {
     | '/signals'
     | '/ranger/admin'
     | '/basecamp/analytics'
-    | '/basecamp/badges'
     | '/basecamp/inbox'
     | '/basecamp/invites'
     | '/basecamp/jams'
@@ -555,9 +518,7 @@ export interface FileRouteTypes {
     | '/basecamp/drafts/$draftId'
     | '/basecamp/new/build'
     | '/basecamp/new/mod'
-    | '/me/kits/$kitId'
     | '/ranger/admin/announcements'
-    | '/ranger/admin/awards'
     | '/ranger/admin/ecosystem'
     | '/ranger/admin/game-builds'
     | '/ranger/admin/integrations'
@@ -571,7 +532,6 @@ export interface FileRouteTypes {
     | '/basecamp/drafts/'
     | '/basecamp/mods/'
     | '/basecamp/new/'
-    | '/me/kits/'
     | '/ranger/admin/'
     | '/ranger/jams/'
     | '/ranger/users/'
@@ -581,7 +541,6 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/basecamp/analytics'
-    | '/basecamp/badges'
     | '/basecamp/inbox'
     | '/basecamp/invites'
     | '/basecamp/jams'
@@ -607,9 +566,7 @@ export interface FileRouteTypes {
     | '/basecamp/drafts/$draftId'
     | '/basecamp/new/build'
     | '/basecamp/new/mod'
-    | '/me/kits/$kitId'
     | '/ranger/admin/announcements'
-    | '/ranger/admin/awards'
     | '/ranger/admin/ecosystem'
     | '/ranger/admin/game-builds'
     | '/ranger/admin/integrations'
@@ -623,7 +580,6 @@ export interface FileRouteTypes {
     | '/basecamp/drafts'
     | '/basecamp/mods'
     | '/basecamp/new'
-    | '/me/kits'
     | '/ranger/admin'
     | '/ranger/jams'
     | '/ranger/users'
@@ -639,7 +595,6 @@ export interface FileRouteTypes {
     | '/signals'
     | '/ranger/admin'
     | '/basecamp/analytics'
-    | '/basecamp/badges'
     | '/basecamp/inbox'
     | '/basecamp/invites'
     | '/basecamp/jams'
@@ -665,9 +620,7 @@ export interface FileRouteTypes {
     | '/basecamp/drafts/$draftId'
     | '/basecamp/new/build'
     | '/basecamp/new/mod'
-    | '/me/kits/$kitId'
     | '/ranger/admin/announcements'
-    | '/ranger/admin/awards'
     | '/ranger/admin/ecosystem'
     | '/ranger/admin/game-builds'
     | '/ranger/admin/integrations'
@@ -681,7 +634,6 @@ export interface FileRouteTypes {
     | '/basecamp/drafts/'
     | '/basecamp/mods/'
     | '/basecamp/new/'
-    | '/me/kits/'
     | '/ranger/admin/'
     | '/ranger/jams/'
     | '/ranger/users/'
@@ -754,13 +706,6 @@ declare module '@tanstack/react-router' {
       path: '/analytics'
       fullPath: '/basecamp/analytics'
       preLoaderRoute: typeof BasecampAnalyticsRouteImport
-      parentRoute: typeof BasecampRoute
-    }
-    '/basecamp/badges': {
-      id: '/basecamp/badges'
-      path: '/badges'
-      fullPath: '/basecamp/badges'
-      preLoaderRoute: typeof BasecampBadgesRouteImport
       parentRoute: typeof BasecampRoute
     }
     '/basecamp/inbox': {
@@ -959,20 +904,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BasecampNewModRouteImport
       parentRoute: typeof BasecampRoute
     }
-    '/me/kits/': {
-      id: '/me/kits/'
-      path: '/kits'
-      fullPath: '/me/kits/'
-      preLoaderRoute: typeof MeKitsIndexRouteImport
-      parentRoute: typeof MeRoute
-    }
-    '/me/kits/$kitId': {
-      id: '/me/kits/$kitId'
-      path: '/kits/$kitId'
-      fullPath: '/me/kits/$kitId'
-      preLoaderRoute: typeof MeKitsKitIdRouteImport
-      parentRoute: typeof MeRoute
-    }
     '/ranger/admin/': {
       id: '/ranger/admin/'
       path: '/'
@@ -985,13 +916,6 @@ declare module '@tanstack/react-router' {
       path: '/announcements'
       fullPath: '/ranger/admin/announcements'
       preLoaderRoute: typeof RangerAdminAnnouncementsRouteImport
-      parentRoute: typeof RangerAdminRouteRoute
-    }
-    '/ranger/admin/awards': {
-      id: '/ranger/admin/awards'
-      path: '/awards'
-      fullPath: '/ranger/admin/awards'
-      preLoaderRoute: typeof RangerAdminAwardsRouteImport
       parentRoute: typeof RangerAdminRouteRoute
     }
     '/ranger/admin/ecosystem': {
@@ -1097,7 +1021,6 @@ declare module '@tanstack/react-router' {
 
 interface BasecampRouteChildren {
   BasecampAnalyticsRoute: typeof BasecampAnalyticsRoute
-  BasecampBadgesRoute: typeof BasecampBadgesRoute
   BasecampInboxRoute: typeof BasecampInboxRoute
   BasecampInvitesRoute: typeof BasecampInvitesRoute
   BasecampJamsRoute: typeof BasecampJamsRoute
@@ -1114,7 +1037,6 @@ interface BasecampRouteChildren {
 
 const BasecampRouteChildren: BasecampRouteChildren = {
   BasecampAnalyticsRoute: BasecampAnalyticsRoute,
-  BasecampBadgesRoute: BasecampBadgesRoute,
   BasecampInboxRoute: BasecampInboxRoute,
   BasecampInvitesRoute: BasecampInvitesRoute,
   BasecampJamsRoute: BasecampJamsRoute,
@@ -1137,23 +1059,18 @@ interface MeRouteChildren {
   MeBackpackRoute: typeof MeBackpackRoute
   MeDownloadsRoute: typeof MeDownloadsRoute
   MeIndexRoute: typeof MeIndexRoute
-  MeKitsKitIdRoute: typeof MeKitsKitIdRoute
-  MeKitsIndexRoute: typeof MeKitsIndexRoute
 }
 
 const MeRouteChildren: MeRouteChildren = {
   MeBackpackRoute: MeBackpackRoute,
   MeDownloadsRoute: MeDownloadsRoute,
   MeIndexRoute: MeIndexRoute,
-  MeKitsKitIdRoute: MeKitsKitIdRoute,
-  MeKitsIndexRoute: MeKitsIndexRoute,
 }
 
 const MeRouteWithChildren = MeRoute._addFileChildren(MeRouteChildren)
 
 interface RangerAdminRouteRouteChildren {
   RangerAdminAnnouncementsRoute: typeof RangerAdminAnnouncementsRoute
-  RangerAdminAwardsRoute: typeof RangerAdminAwardsRoute
   RangerAdminEcosystemRoute: typeof RangerAdminEcosystemRoute
   RangerAdminGameBuildsRoute: typeof RangerAdminGameBuildsRoute
   RangerAdminIntegrationsRoute: typeof RangerAdminIntegrationsRoute
@@ -1167,7 +1084,6 @@ interface RangerAdminRouteRouteChildren {
 
 const RangerAdminRouteRouteChildren: RangerAdminRouteRouteChildren = {
   RangerAdminAnnouncementsRoute: RangerAdminAnnouncementsRoute,
-  RangerAdminAwardsRoute: RangerAdminAwardsRoute,
   RangerAdminEcosystemRoute: RangerAdminEcosystemRoute,
   RangerAdminGameBuildsRoute: RangerAdminGameBuildsRoute,
   RangerAdminIntegrationsRoute: RangerAdminIntegrationsRoute,

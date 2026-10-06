@@ -3,7 +3,7 @@ export type Jams_How_4_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Scores are Bayesian averages. Badges go to the whole team." |
+* | "Scores are weighted averages. Results are shown for each category and overall." |
 *
 * @param {Jams_How_4_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

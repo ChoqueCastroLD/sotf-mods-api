@@ -3,7 +3,7 @@ export type Jams_Submit_DoneInputs = {};
 /**
 * | output |
 * | --- |
-* | "Entry submitted. Good luck!" |
+* | "Entry submitted." |
 *
 * @param {Jams_Submit_DoneInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -9,7 +9,7 @@ import { useSuspenseQuery } from '@tanstack/react-query';
 import { ArrowUpRight } from 'lucide-react';
 import { formatInstant, Panel } from '../admin/shared.tsx';
 import { myJamsQuery } from './api.ts';
-import { JamArtThumb, JamEmpty, StagePips } from './JamArtThumb.tsx';
+import { JamEmpty, StagePips } from './JamArtThumb.tsx';
 import { jamPhaseLabel, jamPhaseVariant } from './phase.ts';
 
 const link = 'inline-flex items-center gap-1 font-semibold text-fg hover:text-link';
@@ -20,8 +20,7 @@ export function MyJamsScreen() {
   return (
     <div className="grid gap-6">
       <header className="grid gap-1">
-        <p className="readout text-signal">{m.jams_mine_readout()}</p>
-        <h1 className="font-display-caps text-display-xs text-fg">{m.jams_mine_title()}</h1>
+        <h1 className="text-2xl font-bold text-fg">{m.jams_mine_title()}</h1>
         <p className="max-w-prose text-sm text-fg-muted">{m.jams_mine_description()}</p>
       </header>
 
@@ -43,9 +42,8 @@ export function MyJamsScreen() {
                 key={jam.id}
                 className="flex flex-wrap items-center gap-4 rounded-lg border border-border bg-surface p-3"
               >
-                <JamArtThumb jam={jam} className="h-16 w-36 max-sm:hidden" />
                 <div className="grid min-w-0 flex-1 gap-1">
-                  <a href={`/jams/${jam.slug}`} className={`${link} font-display-caps text-2xl leading-none`}>
+                  <a href={`/jams/${jam.slug}`} className={`${link} text-lg`}>
                     {jam.title}
                     <Icon icon={ArrowUpRight} size={16} />
                   </a>
@@ -75,7 +73,6 @@ export function MyJamsScreen() {
                 key={entry.entryId}
                 className="flex flex-wrap items-center gap-4 rounded-lg border border-border bg-surface p-3"
               >
-                <JamArtThumb jam={entry.jam} className="h-12 w-28 max-sm:hidden" />
                 <div className="grid min-w-0 flex-1 gap-0.5">
                   <a href={`/jams/${entry.jam.slug}`} className={link}>
                     {entry.jam.title}

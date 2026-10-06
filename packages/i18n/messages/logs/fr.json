@@ -25,7 +25,7 @@
   "logs_err_archive": "Impossible de lire cette archive.",
   "logs_err_network": "Impossible de joindre le serveur. Vérifiez votre connexion et réessayez.",
   "logs_err_turnstile": "La vérification humaine a échoué. Réessayez.",
-  "logs_err_rate": "Trop de requêtes — réessayez dans {seconds} s",
+  "logs_err_rate": "Trop de requêtes. Réessayez dans {seconds} s",
   "logs_err_busy": "Le partage de logs est surchargé pour le moment. Réessayez dans quelques minutes.",
   "logs_err_generic": "Une erreur s’est produite. Réessayez.",
   "logs_done_title": "Votre log est prêt",

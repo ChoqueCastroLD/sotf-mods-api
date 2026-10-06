@@ -49,16 +49,16 @@ export const PROSE_LOCATOR_CLASSES = [
   '[&_.md-alert_p]:my-1.5 [&_.md-alert>:last-child]:mb-0 [&_.md-alert>:first-child]:mt-0',
   '[&_.md-alert-title]:flex [&_.md-alert-title]:items-center [&_.md-alert-title]:gap-1.5 [&_.md-alert-title]:font-semibold',
   '[&_.md-alert-title]:before:text-base [&_.md-alert-title]:before:leading-none',
-  '[&_.md-alert-note]:border-signal [&_.md-alert-note]:bg-signal-soft [&_.md-alert-note_.md-alert-title]:text-signal',
+  '[&_.md-alert-note]:border-border-strong [&_.md-alert-note]:bg-raised [&_.md-alert-note_.md-alert-title]:text-fg',
   "[&_.md-alert-note_.md-alert-title]:before:content-['ⓘ']",
   '[&_.md-alert-tip]:border-success [&_.md-alert-tip]:bg-success-soft [&_.md-alert-tip_.md-alert-title]:text-success',
-  "[&_.md-alert-tip_.md-alert-title]:before:content-['✦']",
-  '[&_.md-alert-important]:border-blueprint [&_.md-alert-important]:bg-blueprint-surface [&_.md-alert-important_.md-alert-title]:text-blueprint',
-  "[&_.md-alert-important_.md-alert-title]:before:content-['❖']",
+  "[&_.md-alert-tip_.md-alert-title]:before:content-['✓']",
+  '[&_.md-alert-important]:border-primary [&_.md-alert-important]:bg-primary-soft [&_.md-alert-important_.md-alert-title]:text-primary',
+  "[&_.md-alert-important_.md-alert-title]:before:content-['!']",
   '[&_.md-alert-warning]:border-warning [&_.md-alert-warning]:bg-warning-soft [&_.md-alert-warning_.md-alert-title]:text-warning',
   "[&_.md-alert-warning_.md-alert-title]:before:content-['▲']",
   '[&_.md-alert-caution]:border-danger [&_.md-alert-caution]:bg-danger-soft [&_.md-alert-caution_.md-alert-title]:text-danger',
-  "[&_.md-alert-caution_.md-alert-title]:before:content-['⬣']",
+  "[&_.md-alert-caution_.md-alert-title]:before:content-['✕']",
   // Spoilers: blurred until hover, focus, focus-within or revealed; visible focus ring.
   '[&_.md-spoiler]:rounded-xs [&_.md-spoiler]:bg-fg/10 [&_.md-spoiler]:px-0.5 [&_.md-spoiler]:blur-[5px]',
   '[&_.md-spoiler]:transition-[filter] [&_.md-spoiler]:duration-(--dur-fast) motion-reduce:[&_.md-spoiler]:transition-none',
@@ -150,7 +150,7 @@ export function AdSlot({ format, client, slot, showNotice = false, className }: 
       data-ad-slot-container={format}
       className={cn('flex flex-col gap-1.5', className)}
     >
-      <p className="readout">{t('ui_domain_ad_label')}</p>
+      <p className="text-xs text-fg-subtle">{t('ui_domain_ad_label')}</p>
       <div
         className={cn('overflow-hidden rounded-lg border border-border bg-surface', AD_HEIGHT_CLASS[format])}
         style={{ contain: 'layout paint' }}

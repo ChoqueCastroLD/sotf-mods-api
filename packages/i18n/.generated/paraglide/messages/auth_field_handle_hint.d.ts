@@ -5,7 +5,7 @@ export type Auth_Field_Handle_HintInputs = {
 /**
 * | output |
 * | --- |
-* | "Your address on the island: {url}. It can’t be changed later." |
+* | "Your profile address: {url}. It can’t be changed later." |
 *
 * @param {Auth_Field_Handle_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

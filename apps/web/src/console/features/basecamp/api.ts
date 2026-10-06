@@ -5,20 +5,18 @@
  * on a `mod.updated` event (`lib/stream.ts`), so the summary, the table, the editor and the charts
  * refresh by themselves when the listing or its status changes (moderation, another tab):
  *
- *   ['studio', 'mods', 'overview']                       the summary (KPIs, attention, table, milestone)
+ *   ['studio', 'mods', 'overview']                       the summary (KPIs, attention, table)
  *   ['studio', 'mods', 'list']                           «My mods»
  *   ['studio', 'mods', modId]                            owner view of one mod (shared with the wizard)
  *   ['studio', 'mods', modId, 'compat']                  compatibility by version and build
  *   ['studio', 'mods', 'analytics', mod|'all', range]    analytics
  *   ['studio', 'mods', 'inbox', types, state]            inbox (cursor pages)
  *
- * Badges (`['gamification', …]`) and the live counters (`['studio', 'live', modId]`, polled) sit
- * outside that prefix. Only `import type` from `@sotf/contracts/*`: the schema modules pull Zod,
+ * The live counters (`['studio', 'live', modId]`, polled) sit outside that prefix. Only `import type` from `@sotf/contracts/*`: the schema modules pull Zod,
  * which these route chunks do not ship; constants mirrored here are checked against the types.
  */
 import type { CompatStatus, ModStatus, VersionStatus } from '@sotf/contracts/common';
 import type { ModCompatDTO } from '@sotf/contracts/compat';
-import type { BadgeCatalogDTO, UserBadgesDTO } from '@sotf/contracts/gamification';
 import type {
   CoAuthoredModDTO,
   CoAuthorInviteDTO,
@@ -75,8 +73,6 @@ export type InboxItem = z.output<typeof InboxItemDTO>;
 export type InboxPage = z.output<typeof InboxPageDTO>;
 export type InboxState = 'open' | 'all';
 export type ModCompat = z.output<typeof ModCompatDTO>;
-export type BadgeCatalog = z.output<typeof BadgeCatalogDTO>;
-export type UserBadges = z.output<typeof UserBadgesDTO>;
 export type ModLive = z.output<typeof ModLiveDTO>;
 export type ListingPatch = z.input<typeof UpdateStudioModBody>;
 export type Transition = StudioTransition;
@@ -142,8 +138,6 @@ export const basecampKeys = {
     [...studio, 'inbox', types.join(','), state, modId ?? 'all'] as const,
   inboxAll: [...studio, 'inbox'] as const,
   live: (modId: number) => ['studio', 'live', modId] as const,
-  badgeCatalog: ['gamification', 'badges'] as const,
-  userBadges: (handle: string) => ['gamification', 'user-badges', handle] as const,
   knowledge: (modId: number) => [...queryKeys.studioMod(modId), 'knowledge'] as const,
   team: (modId: number) => [...queryKeys.studioMod(modId), 'team'] as const,
   invites: [...studio, 'invites'] as const,
@@ -225,20 +219,6 @@ export function modLiveQuery(modId: number) {
     queryKey: basecampKeys.live(modId),
     queryFn: ({ signal }): Promise<ModLive> => api.stats.modLive({ params: { id: modId } }, { signal }),
     staleTime: 30_000,
-  });
-}
-
-export const badgeCatalogQuery = queryOptions({
-  queryKey: basecampKeys.badgeCatalog,
-  queryFn: ({ signal }): Promise<BadgeCatalog> => api.gamification.badges({}, { signal }),
-  staleTime: 60 * 60_000,
-});
-
-export function userBadgesQuery(handle: string) {
-  return queryOptions({
-    queryKey: basecampKeys.userBadges(handle),
-    queryFn: ({ signal }): Promise<UserBadges> => api.gamification.userBadges({ params: { handle } }, { signal }),
-    staleTime: 5 * 60_000,
   });
 }
 

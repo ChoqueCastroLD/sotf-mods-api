@@ -40,12 +40,7 @@ export const IOS_SPLASH_SCREENS: ReadonlyArray<{ href: string; media: string }> 
 export const PULL_TO_REFRESH_TEMPLATES: ReadonlySet<string> = new Set([
   'home',
   'explore',
-  'kits',
   'requests',
   'jams',
-  'news',
-  'creators',
   'search',
-  'best',
-  'patch-radar',
 ]);

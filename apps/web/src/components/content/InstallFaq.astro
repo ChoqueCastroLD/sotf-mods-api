@@ -13,7 +13,7 @@ const { items } = Astro.props;
 ---
 
 <section id="faq" aria-labelledby="faq-title" class="flex flex-col gap-4 scroll-mt-32 lg:scroll-mt-20">
-  <h2 id="faq-title" class="font-display-caps text-display-xs text-fg">{m.content_install_faq_title()}</h2>
+  <h2 id="faq-title" class="text-2xl font-bold text-fg">{m.content_install_faq_title()}</h2>
   <dl class="grid gap-3">
     {
       items.map((item) => (

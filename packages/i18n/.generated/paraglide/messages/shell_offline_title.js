@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Shell_Offline_TitleInputs */
 
 const en_shell_offline_title = /** @type {(inputs: Shell_Offline_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`You’re off the grid`)
+	return /** @type {LocalizedString} */ (`You are offline`)
 };
 
 const es_shell_offline_title = /** @type {(inputs: Shell_Offline_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Estás fuera de cobertura`)
+	return /** @type {LocalizedString} */ (`Estás sin conexión`)
 };
 
 const de_shell_offline_title = /** @type {(inputs: Shell_Offline_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Du bist außer Reichweite`)
+	return /** @type {LocalizedString} */ (`Du bist offline`)
 };
 
 const fr_shell_offline_title = /** @type {(inputs: Shell_Offline_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vous êtes hors de portée`)
+	return /** @type {LocalizedString} */ (`Vous êtes hors ligne`)
 };
 
 const it_shell_offline_title = /** @type {(inputs: Shell_Offline_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sei fuori portata`)
+	return /** @type {LocalizedString} */ (`Sei offline`)
 };
 
 const nl_shell_offline_title = /** @type {(inputs: Shell_Offline_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Je bent buiten bereik`)
+	return /** @type {LocalizedString} */ (`Je bent offline`)
 };
 
 const pl_shell_offline_title = /** @type {(inputs: Shell_Offline_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Jesteś poza zasięgiem`)
+	return /** @type {LocalizedString} */ (`Jesteś offline`)
 };
 
 const pt_shell_offline_title = /** @type {(inputs: Shell_Offline_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Você está fora de alcance`)
+	return /** @type {LocalizedString} */ (`Você está offline`)
 };
 
 const ru_shell_offline_title = /** @type {(inputs: Shell_Offline_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Вы вне зоны доступа`)
+	return /** @type {LocalizedString} */ (`Нет подключения`)
 };
 
 const sv_shell_offline_title = /** @type {(inputs: Shell_Offline_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Du är utom räckhåll`)
+	return /** @type {LocalizedString} */ (`Du är offline`)
 };
 
 const tr_shell_offline_title = /** @type {(inputs: Shell_Offline_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kapsama alanı dışındasın`)
+	return /** @type {LocalizedString} */ (`Çevrimdışısınız`)
 };
 
 const zh_shell_offline_title = /** @type {(inputs: Shell_Offline_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`你已失去信号`)
+	return /** @type {LocalizedString} */ (`你已离线`)
 };
 
 const ja_shell_offline_title = /** @type {(inputs: Shell_Offline_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`電波の届かない場所です`)
+	return /** @type {LocalizedString} */ (`オフラインです`)
 };
 
 /**
 * | output |
 * | --- |
-* | "You’re off the grid" |
+* | "You are offline" |
 *
 * @param {Shell_Offline_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

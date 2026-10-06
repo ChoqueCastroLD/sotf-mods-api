@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Jams_Mystery_TitleInputs */
 
 const en_jams_mystery_title = /** @type {(inputs: Jams_Mystery_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Theme sealed`)
+	return /** @type {LocalizedString} */ (`Secret theme`)
 };
 
 const es_jams_mystery_title = /** @type {(inputs: Jams_Mystery_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tema sellado`)
+	return /** @type {LocalizedString} */ (`Tema secreto`)
 };
 
 const de_jams_mystery_title = /** @type {(inputs: Jams_Mystery_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Thema versiegelt`)
+	return /** @type {LocalizedString} */ (`Geheimes Thema`)
 };
 
 const fr_jams_mystery_title = /** @type {(inputs: Jams_Mystery_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Thème scellé`)
+	return /** @type {LocalizedString} */ (`Thème secret`)
 };
 
 const it_jams_mystery_title = /** @type {(inputs: Jams_Mystery_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tema sigillato`)
+	return /** @type {LocalizedString} */ (`Tema segreto`)
 };
 
 const nl_jams_mystery_title = /** @type {(inputs: Jams_Mystery_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Thema verzegeld`)
+	return /** @type {LocalizedString} */ (`Geheim thema`)
 };
 
 const pl_jams_mystery_title = /** @type {(inputs: Jams_Mystery_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Temat zapieczętowany`)
+	return /** @type {LocalizedString} */ (`Tajny temat`)
 };
 
 const pt_jams_mystery_title = /** @type {(inputs: Jams_Mystery_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tema lacrado`)
+	return /** @type {LocalizedString} */ (`Tema secreto`)
 };
 
 const ru_jams_mystery_title = /** @type {(inputs: Jams_Mystery_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Тема под печатью`)
+	return /** @type {LocalizedString} */ (`Тема скрыта`)
 };
 
 const sv_jams_mystery_title = /** @type {(inputs: Jams_Mystery_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Temat förseglat`)
+	return /** @type {LocalizedString} */ (`Hemligt tema`)
 };
 
 const tr_jams_mystery_title = /** @type {(inputs: Jams_Mystery_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tema mühürlü`)
+	return /** @type {LocalizedString} */ (`Gizli tema`)
 };
 
 const zh_jams_mystery_title = /** @type {(inputs: Jams_Mystery_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`主题已封存`)
+	return /** @type {LocalizedString} */ (`主题保密`)
 };
 
 const ja_jams_mystery_title = /** @type {(inputs: Jams_Mystery_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`テーマは封印中`)
+	return /** @type {LocalizedString} */ (`テーマは非公開`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Theme sealed" |
+* | "Secret theme" |
 *
 * @param {Jams_Mystery_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

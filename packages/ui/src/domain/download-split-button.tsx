@@ -1,11 +1,11 @@
 /**
  * DownloadSplitButton (research/03 §5.1), presentational: the main part is a real link to the
  * download route of the recommended version («Download v2.4.1 · 1.2 MB»); the split part is a
- * disclosure with the other versions (stable, beta, older) with date and compatibility.
+ * disclosure with the other versions (stable, beta, older) with date and size.
  *
- * Counting (`sendBeacon`), the «Downloaded ✓» transition and the 24 h «Did it work?» prompt are
- * the page's job (WP-62): it passes `state="done"` and the component shows the confirmation and
- * the install hint. Download links carry `rel="nofollow"` (they are 302s to R2).
+ * Counting (`sendBeacon`) and the «Downloaded ✓» transition are the page's job (WP-62): it passes
+ * `state="done"` and the component shows the confirmation and the install hint. Download links
+ * carry `rel="nofollow"` (they are 302s to R2).
  */
 import { Check, Download } from 'lucide-react';
 import type { MouseEvent } from 'react';
@@ -13,10 +13,12 @@ import { Badge } from '../badge.tsx';
 import { buttonClasses } from '../button.tsx';
 import { cn } from '../cn.ts';
 import { Icon } from '../icons.tsx';
-import { CompatBadge } from './compat.tsx';
-import type { CompatStatus, VersionChannel, VersionDTO } from './contracts.ts';
+import type { VersionChannel, VersionDTO } from './contracts.ts';
 import { DisclosureMenu, disclosureItemClasses } from './disclosure.tsx';
 import { formatBytes, formatDate, useDomainI18n } from './i18n.ts';
+
+/** Versions longer than this (GUIDs) are not printed in the button. */
+const LONG_VERSION = 18;
 
 export interface DownloadOption {
   version: string;
@@ -25,20 +27,16 @@ export interface DownloadOption {
   /** Bytes. */
   size?: number | null;
   channel?: VersionChannel;
-  /** Compatibility on the current build. */
-  compat?: CompatStatus | null;
 }
 
 /** Option of a published version. */
 export function downloadOptionOf(version: VersionDTO): DownloadOption {
-  const current = version.compat.find((aggregate) => aggregate.gameBuild.isCurrent);
   return {
     version: version.version,
     href: version.downloadPath,
     publishedAt: version.publishedAt,
     size: version.fileSize,
     channel: version.channel,
-    compat: current?.status ?? null,
   };
 }
 
@@ -71,10 +69,16 @@ export function DownloadSplitButton({
   menuClassName,
 }: DownloadSplitButtonProps) {
   const { t, locale, timeZone } = useDomainI18n();
-  const label =
-    typeof primary.size === 'number'
-      ? t('ui_domain_download_version_size', { version: primary.version, size: formatBytes(locale, primary.size) })
-      : t('ui_domain_download_version', { version: primary.version });
+  // Some uploads carry a GUID instead of a version number: say «Download» then.
+  const plainVersion = primary.version.length <= LONG_VERSION;
+  const fileSize = typeof primary.size === 'number' ? formatBytes(locale, primary.size) : null;
+  const label = plainVersion
+    ? fileSize
+      ? t('ui_domain_download_version_size', { version: primary.version, size: fileSize })
+      : t('ui_domain_download_version', { version: primary.version })
+    : fileSize
+      ? `${t('ui_domain_download')} · ${fileSize}`
+      : t('ui_domain_download');
   const done = state === 'done';
   const hasMenu = others.length > 0 || Boolean(allVersionsHref);
   return (
@@ -108,7 +112,9 @@ export function DownloadSplitButton({
             summary={<span className="sr-only">{t('ui_domain_download_other_versions')}</span>}
             panelClassName={cn('w-72', menuClassName)}
           >
-            <p className="px-2.5 pt-1.5 pb-1 readout">{t('ui_domain_download_other_versions')}</p>
+            <p className="px-2.5 pt-1.5 pb-1 text-xs font-medium text-fg-muted">
+              {t('ui_domain_download_other_versions')}
+            </p>
             <ul>
               {others.map((option) => (
                 <li key={option.version}>
@@ -140,7 +146,6 @@ export function DownloadSplitButton({
                         </span>
                       ) : null}
                     </span>
-                    {option.compat ? <CompatBadge status={option.compat} short size="sm" /> : null}
                   </a>
                 </li>
               ))}

@@ -3,7 +3,7 @@ export type Shell_Offline_BodyInputs = {};
 /**
 * | output |
 * | --- |
-* | "We can’t reach the island right now. Check your connection and try again." |
+* | "SOTF Mods cannot be reached right now. Check your connection and try again." |
 *
 * @param {Shell_Offline_BodyInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

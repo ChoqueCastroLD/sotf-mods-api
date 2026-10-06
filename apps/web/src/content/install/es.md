@@ -1,6 +1,6 @@
 ---
 title: Cómo instalar mods de Sons of the Forest
-seoTitle: Cómo instalar mods de Sons of the Forest (2026) — Guía de RedLoader
+seoTitle: Cómo instalar mods de Sons of the Forest (2026): Guía de RedLoader
 description: Instala RedLoader con RedManager, pon los mods en la carpeta Mods y compruébalos en el juego. Guía paso a paso con soluciones para antivirus y parches.
 tldr: Instala RedLoader, el cargador de mods, con RedManager (o a mano), pon cada mod en la carpeta Mods dentro de la carpeta del juego y abre el juego. RedManager puede instalar cualquier mod de SOTF Mods con un clic. Lleva unos tres minutos, y la guía de abajo cubre cada paso y los problemas habituales.
 anchors: [check, redloader, mods, verify, antivirus, bepinex, update, dedicated, troubleshooting, oneclick]
@@ -27,7 +27,7 @@ faq:
   - q: ¿Dónde están los archivos del juego?
     a: En Steam, haz clic derecho en Sons of the Forest, elige Administrar y luego Ver archivos locales. La carpeta que se abre contiene SonsOfTheForest.exe; RedLoader y tus mods van ahí.
   - q: ¿Los mods funcionan después de una actualización del juego?
-    a: No siempre. Un parche del juego puede romper RedLoader o algunos mods hasta que se actualicen. El Radar de parches muestra la build actual del juego, el estado de RedLoader y qué mods populares han confirmado los jugadores que funcionan.
+    a: No siempre. Un parche del juego puede romper RedLoader o algunos mods hasta que se actualicen. Mira la página del mod, sus comentarios y reseñas para saber si funciona con la versión actual del juego.
 ---
 
 # Revisa tu juego
@@ -39,7 +39,7 @@ Encuentra la carpeta del juego: en Steam, haz clic derecho en **Sons of the Fore
 `C:\Program Files (x86)\Steam\steamapps\common\Sons Of The Forest`
 
 > [!TIP]
-> ¿Acaba de salir una actualización del juego? Mira primero el [Radar de parches](/patch-radar): muestra si RedLoader y los mods populares ya funcionan en la nueva build.
+> ¿Acaba de salir una actualización del juego? Mira la página del mod, sus comentarios y reseñas para saber si ya funciona con la nueva versión.
 
 # Instala RedLoader
 
@@ -94,7 +94,7 @@ Antes de fiarte de un archivo:
 - **Compara el checksum.** Cada versión en SOTF Mods muestra el SHA-256 del archivo. En Windows, ejecuta `Get-FileHash .\archivo.zip` en PowerShell (o `certutil -hashfile archivo.zip SHA256`) y compara el resultado.
 - **Revisa el análisis.** Cada versión publicada se analiza con VirusTotal; el informe está enlazado en la página de la versión. También puedes subir el archivo tú mismo a [VirusTotal](https://www.virustotal.com).
 
-Si todo coincide, puedes restaurar el archivo de la cuarentena y añadir una exclusión **solo para la carpeta del juego**. Nunca desactives el antivirus por completo. Si algo no cuadra, reporta el mod desde su página: los guardabosques revisan los reportes rápido.
+Si todo coincide, puedes restaurar el archivo de la cuarentena y añadir una exclusión **solo para la carpeta del juego**. Nunca desactives el antivirus por completo. Si algo no cuadra, reporta el mod desde su página: los moderadores revisan los reportes rápido.
 
 # ¿BepInEx o RedLoader?
 
@@ -107,7 +107,7 @@ SOTF Mods publica mods para **RedLoader**. Los mods hechos para BepInEx (habitua
 
 **Actualizar un mod:** RedManager muestra las actualizaciones disponibles. A mano, descarga la nueva versión y sobrescribe los archivos antiguos. Lee antes el registro de cambios: algunas actualizaciones necesitan una librería nueva o una configuración limpia.
 
-**Actualizar RedLoader:** usa RedManager o extrae la nueva versión encima de la anterior. Tras un parche del juego, espera a que el [Radar de parches](/patch-radar) muestre que RedLoader funciona en la nueva build.
+**Actualizar RedLoader:** usa RedManager o extrae la nueva versión encima de la anterior. Tras un parche del juego, si el juego deja de iniciarse, espera a una nueva versión de RedLoader.
 
 **Quitar un mod:** borra su `.dll` y su carpeta de `Mods`. Mira antes la página del mod: algunos mods no se pueden quitar a mitad de partida sin riesgo.
 
@@ -131,7 +131,7 @@ RedLoader no se está ejecutando. Asegúrate de que sus archivos están junto a 
 
 ## El juego se cuelga o se cierra al arrancar
 
-Suele pasar tras una actualización del juego. Mira en el [Radar de parches](/patch-radar) el estado de RedLoader en la build actual. Para encontrar el mod culpable, saca todos los mods de `Mods` y vuelve a añadirlos de pocos en pocos.
+Suele pasar tras una actualización del juego. Busca en las [versiones de RedLoader](https://github.com/ToniMacaroni/RedLoader/releases) una que admita la nueva build. Para encontrar el mod culpable, saca todos los mods de `Mods` y vuelve a añadirlos de pocos en pocos.
 
 ## Un mod no aparece en la lista
 

@@ -1,6 +1,11 @@
 /**
- * ModCard (research/03 §5.2) in four variants, all rendered from a `ModCardDTO`:
+ * ModCard (research/03 §5.2) in five variants, all rendered from a `ModCardDTO`:
  *
+ * - `list` (the catalogue, `/` and `/mods`): a plain row separated by a hairline, like the old
+ *   site's horizontal card but lighter: 16:9 thumbnail · name + latest version · short description ·
+ *   author (avatar, name, «Trusted») · icon row (comments, followers, downloads, last update,
+ *   category link). Below ~34 rem of its own width it becomes a compact row (thumbnail, name,
+ *   author, downloads). Its texts come from the `labels` prop (the page's `explore` namespace).
  * - `grid` (default): 16:9 cover (lazy) · up to 2 badges top-left · an action slot top-right
  *   (favourite) · title (1 line) · author + category · description (2 lines) · downloads,
  *   rating, version and compatibility. The card is container-query aware: below 260 px of
@@ -13,19 +18,20 @@
  * nest; the author link and the action slot sit above it. The cover carries
  * `view-transition-name: mod-cover-{id}` so it morphs into the mod header (PLAN §3.7).
  */
-import { ArrowRight, Download, Star } from 'lucide-react';
+import { ArrowRight, Clock, Download, MessageSquare, Star, Tag, Users } from 'lucide-react';
 import type { CSSProperties, ReactNode } from 'react';
 import { Badge } from '../badge.tsx';
 import { buttonClasses } from '../button.tsx';
 import { cn } from '../cn.ts';
 import { Icon } from '../icons.tsx';
-import { COMPAT_STATUS_STYLE, CompatBadge, useCompatLabel } from './compat.tsx';
 import type { ModCardDTO } from './contracts.ts';
 import {
   type DomainMessageKey,
   formatCompact,
   formatCount,
+  formatDate,
   formatRating,
+  formatRelative,
   SLOT,
   useDomainI18n,
   useProfileHref,
@@ -34,7 +40,7 @@ import {
 import { CardLink, Cover, cardClasses, cardControlClasses, Placeholder } from './shared.tsx';
 import { TrustedMark } from './stamps.tsx';
 
-export const MOD_CARD_VARIANTS = ['grid', 'row', 'compact', 'feature'] as const;
+export const MOD_CARD_VARIANTS = ['grid', 'row', 'compact', 'feature', 'list'] as const;
 export type ModCardVariant = (typeof MOD_CARD_VARIANTS)[number];
 
 /** Width (px) of a grid card below which it switches to the compact layout. */
@@ -60,7 +66,7 @@ export interface ModCardProps {
    * show it (cached HTML must not depend on the render time unless the caller decides so).
    */
   now?: string | number | Date;
-  /** Label of the current game build, for the compatibility text («Works on 1.0.4»). */
+  /** Kept for callers written before compatibility left the cards; ignored. */
   currentBuild?: string | null;
   /** Direct download (row). Default: the latest version's download route; `null` hides it. */
   downloadHref?: string | null;
@@ -76,15 +82,25 @@ export interface ModCardProps {
    * author and the downloads, for two-column mobile grids.
    */
   narrow?: 'row' | 'tile';
+  /** `list` only: the texts of the row (the web page builds them from its message catalogue). */
+  labels?: ModCardListLabels;
   className?: string;
 }
 
-const AWARD_KEY: Record<ModCardDTO['awards'][number]['kind'], DomainMessageKey> = {
-  mod_of_week: 'ui_domain_award_mod_of_week',
-  staff_pick: 'ui_domain_award_staff_pick',
-  build_of_month: 'ui_domain_award_build_of_month',
-  mod_of_month: 'ui_domain_award_mod_of_month',
-};
+/** Texts of the `list` variant (the page's language; plain strings so the ui package stays catalogue-free). */
+export interface ModCardListLabels {
+  /** Badge of verified creators. */
+  trusted: string;
+  /** Badge of `pending` mods in the unapproved view. */
+  pendingApproval: string;
+  comments: (count: number) => string;
+  followers: (count: number) => string;
+  downloads: (count: number) => string;
+  /** «Updated 3 days ago». */
+  updated: (when: string) => string;
+  /** Accessible name of the category link. */
+  category: (name: string) => string;
+}
 
 const STATUS_KEY: Partial<Record<ModCardDTO['status'], DomainMessageKey>> = {
   pending: 'ui_domain_status_pending',
@@ -125,21 +141,6 @@ function useBadges(mod: ModCardDTO, isNew: boolean, now: ModCardProps['now']): R
     badges.push(
       <Badge key="nsfw" variant="danger" size="sm">
         {t('ui_domain_badge_nsfw')}
-      </Badge>,
-    );
-  }
-  if (mod.isFeatured) {
-    badges.push(
-      <Badge key="featured" variant="featured" size="sm">
-        {t('ui_domain_badge_featured')}
-      </Badge>,
-    );
-  }
-  const award = mod.awards[0];
-  if (award) {
-    badges.push(
-      <Badge key="award" variant="featured" size="sm">
-        {t(AWARD_KEY[award.kind])}
       </Badge>,
     );
   }
@@ -279,7 +280,6 @@ function GridCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
     action,
     isNew = false,
     now,
-    currentBuild,
     priority,
     viewTransition = true,
     narrow = 'row',
@@ -360,16 +360,6 @@ function GridCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
                 {t('ui_domain_version_label', { version: mod.latestVersion })}
               </span>
             ) : null}
-            <CompatBadge
-              status={mod.compatStatus}
-              build={currentBuild}
-              short
-              size="sm"
-              className={cn('ms-auto', CQ.hide)}
-            />
-            {tile && mod.compatStatus !== 'untested' ? (
-              <CompatDot status={mod.compatStatus} build={currentBuild} />
-            ) : null}
           </div>
         </div>
       </div>
@@ -377,25 +367,8 @@ function GridCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
   );
 }
 
-/** Icon-only compatibility mark of the narrow tile (the status text stays for screen readers). */
-function CompatDot({ status, build }: { status: ModCardDTO['compatStatus']; build?: string | null | undefined }) {
-  const label = useCompatLabel();
-  const style = COMPAT_STATUS_STYLE[status];
-  const text = label(status, build);
-  return (
-    <span
-      title={text}
-      data-compat={status}
-      className={cn('ms-auto hidden items-center @max-[260px]/card:inline-flex', style.tone)}
-    >
-      <Icon icon={style.icon} size={16} />
-      <span className="sr-only">{text}</span>
-    </span>
-  );
-}
-
 function RowCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
-  const { mod, action, isNew = false, now, currentBuild, className, Heading } = props;
+  const { mod, action, isNew = false, now, className, Heading } = props;
   const { t } = useDomainI18n();
   const badges = useBadges(mod, isNew, now);
   const download = props.downloadHref === undefined ? modDownloadHref(mod) : props.downloadHref;
@@ -424,7 +397,6 @@ function RowCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
               {t('ui_domain_version_label', { version: mod.latestVersion })}
             </span>
           ) : null}
-          <CompatBadge status={mod.compatStatus} build={currentBuild} short size="sm" />
         </div>
         {download ? (
           <a
@@ -464,9 +436,8 @@ function CompactCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
 }
 
 function FeatureCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
-  const { mod, action, quote, currentBuild, priority, viewTransition = true, className, Heading } = props;
+  const { mod, action, quote, priority, viewTransition = true, className, Heading } = props;
   const { t } = useDomainI18n();
-  const award = mod.awards[0];
   return (
     <article data-variant="feature" data-mod-id={mod.id} className={cn('@container/feature', className)}>
       <div className={cn(cardClasses, 'grid overflow-hidden @min-[40rem]/feature:grid-cols-2')}>
@@ -484,7 +455,7 @@ function FeatureCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
         {action ? <div className={cn('absolute z-10 end-3 top-3')}>{action}</div> : null}
         <div className="flex min-w-0 flex-col gap-3 p-5 @min-[40rem]/feature:p-8">
           <Badge variant="featured" className="self-start">
-            {award ? t(AWARD_KEY[award.kind]) : t('ui_domain_badge_featured')}
+            {t('ui_domain_badge_featured')}
           </Badge>
           <Heading className="font-display-caps text-display-sm text-balance">
             <CardLink href={mod.canonicalPath}>{displayName(mod)}</CardLink>
@@ -501,7 +472,6 @@ function FeatureCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
           <div className="flex flex-wrap items-center gap-3 text-xs text-fg-muted">
             <Downloads value={mod.downloads} />
             <Rating mod={mod} />
-            <CompatBadge status={mod.compatStatus} build={currentBuild} size="sm" />
           </div>
           <span
             aria-hidden="true"
@@ -510,6 +480,190 @@ function FeatureCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
             {t('ui_domain_feature_cta')}
             <Icon icon={ArrowRight} size={16} />
           </span>
+        </div>
+      </div>
+    </article>
+  );
+}
+
+/** Small pill of the catalogue row: «Trusted» (old site's `badge-primary`, softer). */
+function TrustedPill({ label }: { label: string }) {
+  return (
+    <span className="inline-flex h-4.5 shrink-0 items-center rounded-full border border-primary/40 bg-primary/12 px-1.5 text-2xs leading-none font-semibold text-fg">
+      {label}
+    </span>
+  );
+}
+
+function Avatar({ mod }: { mod: ModCardDTO }) {
+  if (mod.userAvatarUrl) {
+    return (
+      <img
+        src={mod.userAvatarUrl}
+        alt=""
+        width={20}
+        height={20}
+        loading="lazy"
+        decoding="async"
+        className="size-5 shrink-0 rounded-full bg-raised object-cover"
+      />
+    );
+  }
+  return (
+    <span
+      aria-hidden="true"
+      className="inline-flex size-5 shrink-0 items-center justify-center rounded-full bg-raised text-[0.625rem] font-semibold text-fg-muted uppercase"
+    >
+      {Array.from(mod.userDisplayName.trim())[0] ?? '?'}
+    </span>
+  );
+}
+
+function ListStat({
+  icon,
+  value,
+  label,
+  className,
+}: {
+  icon: typeof Download;
+  value: string;
+  label: string;
+  className?: string;
+}) {
+  return (
+    <span title={label} className={cn('inline-flex items-center gap-1 tabular-nums', className)}>
+      <Icon icon={icon} size={14} className="text-fg-subtle" />
+      <span aria-hidden="true">{value}</span>
+      <span className="sr-only">{label}</span>
+    </span>
+  );
+}
+
+const PLAIN_LABELS: ModCardListLabels = {
+  trusted: 'Trusted',
+  pendingApproval: 'Pending approval',
+  comments: (count) => `${count} comments`,
+  followers: (count) => `${count} followers`,
+  downloads: (count) => `${count} downloads`,
+  updated: (when) => `Updated ${when}`,
+  category: (name) => `Category: ${name}`,
+};
+
+function ListCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
+  const { mod, now, priority, viewTransition = true, labels = PLAIN_LABELS, action, className, Heading } = props;
+  const { t, locale, taxonomy, href } = useDomainI18n();
+  const profileHref = useProfileHref();
+  const local = (path: string) => (href ? href(path) : path);
+  const category = mod.category ? (taxonomy?.(mod.category.nameKey, mod.category.name) ?? mod.category.name) : null;
+  const reference =
+    now === undefined ? null : now instanceof Date ? now.getTime() : typeof now === 'number' ? now : Date.parse(now);
+  const updated =
+    reference === null ? formatDate(locale, mod.lastReleasedAt) : formatRelative(locale, mod.lastReleasedAt, reference);
+  const pending = mod.status === 'pending';
+  const comments = mod.commentsCount;
+  return (
+    <article
+      data-variant="list"
+      data-mod-id={mod.id}
+      className={cn(
+        '@container/list group/card relative isolate flex gap-3 rounded-lg px-2 py-3 transition-colors duration-(--dur-fast) hover:bg-fg/4 @min-[34rem]/list:gap-4 @min-[34rem]/list:px-3 @min-[34rem]/list:py-4',
+        'has-[[data-card-link]:focus-visible]:outline-2 has-[[data-card-link]:focus-visible]:outline-offset-[-2px] has-[[data-card-link]:focus-visible]:outline-focus',
+        className,
+      )}
+    >
+      <div
+        className="relative aspect-video w-24 shrink-0 self-start overflow-hidden rounded-md bg-raised @min-[34rem]/list:w-56 @min-[34rem]/list:self-center"
+        style={coverStyle(mod, viewTransition)}
+      >
+        <Cover
+          image={mod.thumbnail}
+          seed={mod.slug}
+          name={displayName(mod)}
+          category={mod.category}
+          sizes="(min-width: 34rem) 224px, 96px"
+          priority={priority}
+          className={cn(
+            'transition-transform duration-(--dur-slow) ease-out motion-safe:group-hover/card:scale-[1.04]',
+            mod.nsfw && 'scale-105 blur-md group-hover/card:blur-none',
+          )}
+        />
+        {mod.nsfw ? (
+          <Badge variant="danger" size="sm" className="absolute start-1.5 top-1.5">
+            {t('ui_domain_badge_nsfw')}
+          </Badge>
+        ) : null}
+      </div>
+      <div className="flex min-w-0 flex-1 flex-col gap-1 @min-[34rem]/list:gap-2">
+        <div className="flex min-w-0 items-baseline gap-2">
+          <Heading className="min-w-0 truncate text-base font-bold @min-[34rem]/list:text-xl">
+            <CardLink href={mod.canonicalPath}>{displayName(mod)}</CardLink>
+          </Heading>
+          {mod.latestVersion ? (
+            <span className="shrink-0 font-mono text-xs text-fg-subtle">{mod.latestVersion}</span>
+          ) : null}
+          {pending ? (
+            <Badge variant="warning" size="sm" className="shrink-0 self-center">
+              {labels.pendingApproval}
+            </Badge>
+          ) : null}
+          {action ? <span className={cn(cardControlClasses, 'ms-auto')}>{action}</span> : null}
+        </div>
+        <OriginalName card={mod} />
+        <p className="line-clamp-2 hidden text-sm text-fg-muted @min-[34rem]/list:block">
+          {displayShortDescription(mod)}
+        </p>
+        <div className="mt-auto flex min-w-0 flex-wrap items-center justify-between gap-x-4 gap-y-1.5 text-xs text-fg-muted">
+          <a
+            href={profileHref(mod.userHandle)}
+            className={cn(cardControlClasses, 'inline-flex min-w-0 items-center gap-1.5 rounded-xs hover:text-fg')}
+          >
+            <Avatar mod={mod} />
+            <span className="truncate text-sm text-fg @max-[34rem]/list:text-xs @max-[34rem]/list:text-fg-muted">
+              {mod.userDisplayName}
+            </span>
+            {mod.verifiedCreator ? <TrustedPill label={labels.trusted} /> : null}
+          </a>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+            {comments !== undefined ? (
+              <ListStat
+                icon={MessageSquare}
+                value={formatCompact(locale, comments)}
+                label={labels.comments(comments)}
+                className="@max-[34rem]/list:hidden"
+              />
+            ) : null}
+            <ListStat
+              icon={Users}
+              value={formatCompact(locale, mod.followers)}
+              label={labels.followers(mod.followers)}
+              className="@max-[34rem]/list:hidden"
+            />
+            <ListStat
+              icon={Download}
+              value={formatCompact(locale, mod.downloads)}
+              label={labels.downloads(mod.downloads)}
+            />
+            <ListStat
+              icon={Clock}
+              value={updated}
+              label={labels.updated(updated)}
+              className="@max-[34rem]/list:hidden"
+            />
+            {category && mod.category ? (
+              <a
+                href={local(`/categories/${encodeURIComponent(mod.category.slug)}`)}
+                title={labels.category(category)}
+                className={cn(
+                  cardControlClasses,
+                  'inline-flex items-center gap-1 rounded-xs hover:text-fg hover:underline @max-[34rem]/list:hidden',
+                )}
+              >
+                <Icon icon={Tag} size={14} className="text-fg-subtle" />
+                <span>{category}</span>
+                <span className="sr-only">{labels.category(category)}</span>
+              </a>
+            ) : null}
+          </div>
         </div>
       </div>
     </article>
@@ -525,6 +679,8 @@ export function ModCard({ variant = 'grid', headingLevel = 3, ...props }: ModCar
       return <CompactCard {...props} Heading={Heading} />;
     case 'feature':
       return <FeatureCard {...props} Heading={Heading} />;
+    case 'list':
+      return <ListCard {...props} Heading={Heading} />;
     default:
       return <GridCard {...props} Heading={Heading} />;
   }
@@ -549,6 +705,25 @@ export function ModCardSkeleton({ variant = 'grid', narrow = 'row', className }:
           <Placeholder className="h-3 w-4/5" />
         </span>
         <Placeholder className="h-8 w-24 shrink-0 rounded-md" />
+      </div>
+    );
+  }
+  if (variant === 'list') {
+    return (
+      <div
+        aria-hidden="true"
+        className={cn(
+          '@container/list flex gap-3 px-2 py-3 @min-[34rem]/list:gap-4 @min-[34rem]/list:px-3 @min-[34rem]/list:py-4',
+          className,
+        )}
+      >
+        <Placeholder className="aspect-video h-auto w-24 shrink-0 rounded-md @min-[34rem]/list:w-56" />
+        <span className="flex flex-1 flex-col gap-2">
+          <Placeholder className="h-5 w-2/5" />
+          <Placeholder className="hidden h-3 w-4/5 @min-[34rem]/list:block" />
+          <Placeholder className="hidden h-3 w-3/5 @min-[34rem]/list:block" />
+          <Placeholder className="mt-auto h-4 w-1/3" />
+        </span>
       </div>
     );
   }

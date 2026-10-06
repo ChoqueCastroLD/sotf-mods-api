@@ -1,7 +1,6 @@
-import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { TOPO_TEXTURE_OPTIONS, TOPO_TEXTURE_SEED, topoLines, topoSvg } from '../src/topo.ts';
-import { gzipSize, rasterise, sha256 } from './helpers.ts';
+import { topoLines, topoSvg } from '../src/topo.ts';
+import { rasterise, sha256 } from './helpers.ts';
 
 const small = { width: 320, height: 180, levels: 8 } as const;
 
@@ -48,24 +47,5 @@ describe('topoSvg', () => {
 
   it('rejects an empty artboard', () => {
     expect(() => topoLines('x', { width: 0 })).toThrow(RangeError);
-  });
-});
-
-describe('/brand/topo.svg texture', () => {
-  const asset = readFileSync(new URL('../assets/public/brand/topo.svg', import.meta.url), 'utf8');
-
-  it('is the committed output of the texture seed', () => {
-    expect(asset).toBe(`${topoSvg(TOPO_TEXTURE_SEED, TOPO_TEXTURE_OPTIONS)}\n`);
-  });
-
-  it('stays within the 4.5 KB gzip budget (PLAN §12.3 WP-01)', () => {
-    expect(gzipSize(asset)).toBeLessThanOrEqual(4.5 * 1024);
-  });
-
-  it('works as a CSS mask: intrinsic size, currentColor strokes, no fills', () => {
-    expect(asset).toContain('width="1440" height="720"');
-    expect(asset).toContain('preserveAspectRatio="xMidYMid slice"');
-    expect(asset).toContain('stroke="currentColor"');
-    expect(asset).not.toMatch(/<(rect|image|text)\b/);
   });
 });

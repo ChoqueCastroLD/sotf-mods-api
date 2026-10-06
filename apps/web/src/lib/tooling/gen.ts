@@ -31,7 +31,7 @@ function sha256(path: string): string {
 
 /** App shortcuts (long-press the home-screen icon). English: the manifest is not localized. */
 const SHORTCUTS = [
-  { name: 'Explore mods', short_name: 'Explore', url: '/mods' },
+  { name: 'Mods', short_name: 'Mods', url: '/mods' },
   { name: 'Install guide', short_name: 'Install', url: '/install' },
   { name: 'Search', short_name: 'Search', url: '/search' },
   { name: 'Share logs', short_name: 'Logs', url: '/logs' },

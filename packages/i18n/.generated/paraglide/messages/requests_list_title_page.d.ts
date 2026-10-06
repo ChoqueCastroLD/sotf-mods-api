@@ -6,7 +6,7 @@ export type Requests_List_Title_PageInputs = {
 /**
 * | output |
 * | --- |
-* | "{title} — page {page__number}" |
+* | "{title}, page {page__number}" |
 *
 * @param {Requests_List_Title_PageInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

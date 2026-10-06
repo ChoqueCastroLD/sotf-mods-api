@@ -1,6 +1,6 @@
 {
   "requests_list_title": "Peticiones de mods",
-  "requests_list_title_page": "{title} — página {page, number}",
+  "requests_list_title_page": "{title}, página {page, number}",
   "requests_list_description": "Pide el mod que te gustaría tener en Sons of the Forest, vota los que quieres y sigue a los creadores que los adoptan.",
   "requests_list_readout": "Tablón de peticiones",
   "requests_action_new": "Pedir un mod",
@@ -29,7 +29,7 @@
   "requests_by": "de {name}",
   "requests_adopted_by": "En curso por {name}",
   "requests_fulfilled_by": "Cumplida con {mod}",
-  "requests_detail_title": "{title} — Petición de mod",
+  "requests_detail_title": "{title} (petición de mod)",
   "requests_detail_description": "Petición de mod de {author}: {title}",
   "requests_back": "Todas las peticiones",
   "requests_view_mod": "Ver el mod",
@@ -89,5 +89,6 @@
   "requests_badge_adopter": "Trabajando en ello",
   "requests_badge_author": "Autor de la petición",
   "requests_comment_delete_title": "¿Eliminar este comentario?",
-  "requests_comment_delete_text": "No se puede deshacer."
+  "requests_comment_delete_text": "No se puede deshacer.",
+  "requests_votes_short": "votos"
 }

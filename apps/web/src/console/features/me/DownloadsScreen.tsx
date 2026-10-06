@@ -1,8 +1,7 @@
 /**
  * `/me/downloads` (T0-17, PLAN §4.3): one row per mod I downloaded while signed in — the last
- * version I got, the current one and its compatibility, with «Update available» or «Broken on the
- * current build». Actions: download, «Did it work?» (highlighted while the server still waits for
- * an answer), follow / unfollow and remove from the list (with «Undo»). The page can clear the
+ * version I got and the current one, with «Update available». Actions: download, follow / unfollow
+ * and remove from the list. The page can clear the
  * whole history and turn the history off (`settings.downloadHistory`).
  *
  * Removing one row detaches my downloads of that mod on the server (`DELETE /me/downloads/:modId`;
@@ -18,7 +17,7 @@ import { EmptyState } from '@sotf/ui/empty-state';
 import { Icon } from '@sotf/ui/icons';
 import { Switch } from '@sotf/ui/switch';
 import { useQuery, useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
-import { ArrowUpCircle, CircleHelp, Download, Heart, HeartOff, History, Search, Trash2, X } from 'lucide-react';
+import { ArrowUpCircle, Download, Heart, HeartOff, History, Search, Trash2, X } from 'lucide-react';
 import { useEffect, useMemo, useState } from 'react';
 import { track } from '../../../scripts/beacon.ts';
 import { DomainI18nBridge } from '../../components/DomainI18nBridge.tsx';
@@ -34,11 +33,9 @@ import {
   followLookupQuery,
   meApi,
   meKeys,
-  promptsQuery,
   storeSettings,
 } from './api.ts';
-import { DidItWorkDialog, type ReportTarget } from './DidItWorkDialog.tsx';
-import { CompatLine, isBrokenNow, localDate, ModThumb, publicHref } from './shared.tsx';
+import { localDate, ModThumb, publicHref } from './shared.tsx';
 
 /** Rows hidden in this browser by an earlier version (modId → `lastDownloaded.at`). */
 const HIDDEN_KEY = 'sotf_me_downloads_hidden';
@@ -72,7 +69,6 @@ export function DownloadsScreen() {
   const [legacyHidden] = useState<Record<string, string>>(() => readHidden());
   const [confirmClear, setConfirmClear] = useState(false);
   const [toggling, setToggling] = useState(false);
-  const [report, setReport] = useState<ReportTarget | null>(null);
   const [followBusy, setFollowBusy] = useState<ReadonlySet<number>>(new Set());
   useDocumentTitle(m.me_downloads_title());
 
@@ -92,11 +88,6 @@ export function DownloadsScreen() {
   const ids = useMemo(() => items.map((item) => item.mod.id).sort((a, b) => a - b), [items]);
   const lookup = useQuery(followLookupQuery(ids));
   const followed = lookup.data;
-  const prompts = useQuery(promptsQuery);
-  const pendingVersions = useMemo(
-    () => new Set((prompts.data ?? []).map((prompt) => prompt.modVersionId)),
-    [prompts.data],
-  );
 
   const remove = async (item: DownloadItem) => {
     const previous = queryClient.getQueryData<DownloadHistory>(meKeys.downloads);
@@ -120,7 +111,6 @@ export function DownloadsScreen() {
         current ? { ...current, items: [], updatesAvailable: 0 } : current,
       );
       storage.remove(HIDDEN_KEY);
-      void queryClient.invalidateQueries({ queryKey: meKeys.prompts });
       notify.success(m.me_downloads_cleared());
     } catch (failure) {
       notify.error(m.me_action_failed(), { description: failureDescription(failure) });
@@ -185,7 +175,6 @@ export function DownloadsScreen() {
       <div className="grid gap-6">
         <header className="flex flex-wrap items-end justify-between gap-4">
           <div className="grid gap-1">
-            <p className="readout text-signal">{m.me_downloads_readout()}</p>
             <h1 className="font-display-caps text-display-xs text-fg">{m.me_downloads_title()}</h1>
             <p className="max-w-prose text-sm text-fg-muted">
               {items.length > 0
@@ -238,9 +227,6 @@ export function DownloadsScreen() {
           <ul className="grid gap-2" aria-label={m.me_downloads_list_label()}>
             {items.map((item) => {
               const href = downloadHref(item);
-              const brokenNow = isBrokenNow(item.compat);
-              const build = item.compat.gameBuild;
-              const promptPending = pendingVersions.has(item.lastDownloaded.versionId);
               const following = followed?.has(item.mod.id) ?? null;
               return (
                 <li
@@ -273,7 +259,6 @@ export function DownloadsScreen() {
                         ) : (
                           <span className="text-fg-muted">{m.me_no_current_version()}</span>
                         )}
-                        <CompatLine compat={item.compat} />
                       </div>
                     </div>
                   </div>
@@ -292,29 +277,9 @@ export function DownloadsScreen() {
                         className="inline-flex h-10 items-center gap-2 rounded-md bg-primary px-3 text-sm font-semibold text-primary-fg hover:bg-primary/90 md:h-9"
                       >
                         <Icon icon={Download} size={16} />
-                        {item.hasUpdate || brokenNow ? m.me_action_update() : m.me_action_download()}
+                        {item.hasUpdate ? m.me_action_update() : m.me_action_download()}
                         <span className="sr-only"> · {item.mod.name}</span>
                       </a>
-                    ) : null}
-                    {build ? (
-                      <Button
-                        variant={promptPending ? 'outline' : 'secondary'}
-                        size="sm"
-                        icon={<Icon icon={CircleHelp} size={16} />}
-                        onClick={() =>
-                          setReport({
-                            modId: item.mod.id,
-                            modName: item.mod.name,
-                            modVersionId: item.lastDownloaded.versionId,
-                            version: item.lastDownloaded.version,
-                            gameBuildId: build.id,
-                            gameBuildLabel: build.label,
-                          })
-                        }
-                      >
-                        {m.me_did_it_work()}
-                        <span className="sr-only"> · {item.mod.name}</span>
-                      </Button>
                     ) : null}
                     {following === null ? null : (
                       <Button
@@ -345,7 +310,6 @@ export function DownloadsScreen() {
           </ul>
         )}
 
-        <DidItWorkDialog target={report} onClose={() => setReport(null)} />
         <ConfirmDialog
           open={confirmClear}
           onOpenChange={setConfirmClear}

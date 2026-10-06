@@ -1,8 +1,7 @@
 /**
  * Discord announcer (PLAN §7.1 T0-31, §2.9 `discord.announce`).
  *
- * - `discordJobsForEvent(event)`: which domain events are announced (new mod, new version, Mod of
- *   the Week, milestones ≥ 10 k). NSFW content is never announced.
+ * - `discordJobsForEvent(event)`: which domain events are announced (new mod, new version). NSFW content is never announced.
  * - `announceOnDiscord(deps, job)`: loads the mod, builds the message and posts it to every webhook
  *   of `SiteSetting.discordWebhooks` subscribed to the event (betas skipped where `excludeBeta`).
  *
@@ -19,7 +18,6 @@ import type { JobPayload } from '@sotf/contracts/jobs';
 import { profilePath, versionsPath } from '@sotf/contracts/seo';
 import {
   auditLog,
-  award,
   category,
   type Database,
   type Executor,
@@ -45,9 +43,6 @@ export interface DiscordWebhook {
   excludeBeta: boolean;
 }
 
-/** Milestones announced on Discord (PLAN §7.2: ≥ 10 k). */
-export const DISCORD_MILESTONE_MIN = 10_000;
-
 /** Announcements of a domain event (empty when it is not announced). */
 export function discordJobsForEvent(event: DomainEvent): DiscordJob[] {
   switch (event.type) {
@@ -57,14 +52,6 @@ export function discordJobsForEvent(event: DomainEvent): DiscordJob[] {
       return event.payload.nsfw
         ? []
         : [{ event: 'version.published', modId: event.payload.modId, versionId: event.payload.versionId }];
-    case 'award.created':
-      return event.payload.kind === 'mod_of_week'
-        ? [{ event: 'award.mod_of_week', modId: event.payload.modId, awardId: event.payload.awardId }]
-        : [];
-    case 'milestone.reached':
-      return event.payload.threshold >= DISCORD_MILESTONE_MIN
-        ? [{ event: 'milestone.10k', modId: event.payload.modId, threshold: event.payload.threshold }]
-        : [];
     default:
       return [];
   }
@@ -131,6 +118,8 @@ export function changelogForDiscord(source: string | null): string {
 
 /** Loads what the message needs; null when the mod must not be announced (any more). */
 export async function loadAnnouncement(deps: DiscordDeps, job: DiscordJob): Promise<DiscordAnnouncement | null> {
+  // Awards and milestones are no longer announced (jobs queued before the removal are dropped).
+  if (job.event !== 'mod.published' && job.event !== 'version.published') return null;
   const ref = await loadModRef(deps.db, job.modId);
   if (ref?.status !== 'published' || ref.nsfw || !ref.path || !ref.authorHandle) return null;
   const [row] = await deps.db
@@ -208,19 +197,6 @@ export async function loadAnnouncement(deps: DiscordDeps, job: DiscordJob): Prom
       changelog: changelogForDiscord(v.changelogMd ?? v.changelog),
       url: localizedUrl(deps.siteUrl, 'en', versionsPath(ref.kind, ref.authorHandle, ref.slug, v.version)),
     };
-  }
-  if (job.event === 'award.mod_of_week') {
-    if (!job.awardId) return null;
-    const [a] = await deps.db
-      .select({ kind: award.kind, periodStart: award.periodStart, modId: award.modId })
-      .from(award)
-      .where(eq(award.id, job.awardId));
-    if (!a || a.modId !== job.modId) return null;
-    announcement.award = { kind: a.kind, periodStart: a.periodStart };
-  }
-  if (job.event === 'milestone.10k') {
-    if (!job.threshold || job.threshold < DISCORD_MILESTONE_MIN) return null;
-    announcement.threshold = job.threshold;
   }
   return announcement;
 }

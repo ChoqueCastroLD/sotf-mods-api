@@ -1,6 +1,6 @@
 /**
  * Search operators of the palette: `by:handle`, `cat:slug`, `sort:downloads|new|updated|rating`,
- * `type:mod|library|build|kit` and `mp:yes|no`. They can appear anywhere in the query; the rest
+ * `type:mod|library|build` and `mp:yes|no`. They can appear anywhere in the query; the rest
  * of the words is the text search. Pure functions, no DOM: the engine applies the filters and the
  * palette shows them as chips and completes their values.
  */
@@ -11,7 +11,7 @@ export type Operator = (typeof OPERATORS)[number];
 export const SORTS = ['downloads', 'new', 'updated', 'rating'] as const;
 export type Sort = (typeof SORTS)[number];
 
-export const TYPE_VALUES = ['mod', 'library', 'build', 'kit'] as const;
+export const TYPE_VALUES = ['mod', 'library', 'build'] as const;
 export type TypeValue = (typeof TYPE_VALUES)[number];
 
 export const MP_VALUES = ['yes', 'no'] as const;

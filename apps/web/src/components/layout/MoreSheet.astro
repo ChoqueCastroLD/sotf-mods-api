@@ -1,74 +1,70 @@
 ---
 /**
- * «More» on phones: the same destinations as `MoreMenu.astro`, as a bottom sheet (`Sheet.astro`)
- * opened from the top bar's «⋯» button (`MoreSheetTrigger`). Grouped rows with 44 px+ targets,
- * the current page marked, and an «Install app» row that appears once the browser can install
- * the PWA (or, on iOS Safari, a short hint, because iOS has no install prompt).
+ * Menu of phones: a bottom sheet (`Sheet.astro`) opened from the header's menu button. A plain list
+ * of what the tab bar does not carry (Jams, Requests, Discord, install guide, logs, developers,
+ * about), with the current page marked, plus an «Install app» row that appears once the browser can
+ * install the PWA (or, on iOS Safari, a short hint, because iOS has no install prompt).
  */
 import { m } from '@sotf/i18n/messages';
 import { Icon } from '@sotf/ui/icons';
-import { ChevronRight, Share, Smartphone } from 'lucide-react';
+import { ExternalLink, Share, Smartphone } from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
-import { isCurrentPath, moreGroups } from './nav-items.ts';
+import { DISCORD_ICON_PATH, isCurrentPath, menuNav } from './nav-items.ts';
 import Sheet from './Sheet.astro';
 
 const locale = Astro.locals.locale;
 const current = Astro.locals.pagePath.split('?', 1)[0] ?? '/';
-const groups = moreGroups();
+const items = menuNav();
 const rowClass =
-  'press flex min-h-14 w-full items-center gap-3.5 px-3.5 text-start text-base text-fg aria-[current=page]:bg-primary-soft';
+  'press flex min-h-13 w-full items-center gap-3.5 px-1 text-start text-base text-fg aria-[current=page]:font-semibold aria-[current=page]:text-primary';
 ---
 
-<Sheet id="more-sheet" title={m.shell_more_label()}>
-  <div class="grid gap-5 pt-1">
-    <section data-install-app-row hidden>
-      <button
-        type="button"
-        data-install-app
-        class="press flex min-h-16 w-full items-center gap-3.5 rounded-lg border border-primary/60 bg-primary-soft px-3.5 text-start"
-      >
-        <span class="flex size-10 shrink-0 items-center justify-center rounded-md bg-primary text-primary-fg">
+<Sheet id="menu-sheet" title={m.shell_nav_menu()}>
+  <div class="grid gap-3 pt-1">
+    <ul class="divide-y divide-border">
+      {
+        items.map((item) => {
+          const external = item.external !== undefined;
+          return (
+            <li>
+              <a
+                href={external ? item.external : href(item.path ?? '/', locale)}
+                target={external ? '_blank' : undefined}
+                rel={external ? 'noopener' : undefined}
+                aria-current={item.path && isCurrentPath(current, item.path) ? 'page' : undefined}
+                class={rowClass}
+              >
+                <span class="flex size-6 shrink-0 items-center justify-center text-fg-muted">
+                  {item.icon === 'discord' ? (
+                    <svg class="size-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                      <path d={DISCORD_ICON_PATH} />
+                    </svg>
+                  ) : (
+                    <Icon icon={item.icon} size={20} />
+                  )}
+                </span>
+                <span class="min-w-0 flex-1 truncate">{item.label}</span>
+                {external && <Icon icon={ExternalLink} size={16} className="text-fg-subtle" />}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+    <section data-install-app-row hidden class="border-t border-border pt-3">
+      <button type="button" data-install-app class="press flex min-h-13 w-full items-center gap-3.5 px-1 text-start">
+        <span class="flex size-6 shrink-0 items-center justify-center text-fg-muted">
           <Icon icon={Smartphone} size={20} />
         </span>
         <span class="grid">
-          <span class="font-semibold text-fg">{m.shell_install_app()}</span>
+          <span class="text-base text-fg">{m.shell_install_app()}</span>
           <span class="text-sm text-fg-muted">{m.shell_install_app_hint()}</span>
         </span>
       </button>
     </section>
-    <p
-      data-install-ios-hint
-      hidden
-      class="flex items-start gap-3 rounded-lg border border-border bg-sunken p-3.5 text-sm text-fg-muted"
-    >
-      <Icon icon={Share} size={20} className="mt-0.5 text-primary" />
+    <p data-install-ios-hint hidden class="flex items-start gap-3 border-t border-border pt-3 text-sm text-fg-muted">
+      <Icon icon={Share} size={20} className="mt-0.5 shrink-0" />
       <span>{m.shell_install_ios_hint()}</span>
     </p>
-    {
-      groups.map((group) => (
-        <section aria-labelledby={`more-${group.id}`}>
-          <h3 id={`more-${group.id}`} class="readout mb-2 px-1">
-            {group.title}
-          </h3>
-          <ul class="divide-y divide-border overflow-hidden rounded-lg border border-border bg-surface">
-            {group.items.map((item) => (
-              <li>
-                <a
-                  href={href(item.path, locale)}
-                  aria-current={isCurrentPath(current, item.path) ? 'page' : undefined}
-                  class={rowClass}
-                >
-                  <span class="flex size-9 shrink-0 items-center justify-center rounded-md bg-sunken text-primary">
-                    <Icon icon={item.icon} size={20} />
-                  </span>
-                  <span class="min-w-0 flex-1 truncate">{item.label}</span>
-                  <Icon icon={ChevronRight} size={18} className="text-fg-subtle rtl:rotate-180" />
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ))
-    }
   </div>
 </Sheet>

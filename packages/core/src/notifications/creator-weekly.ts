@@ -1,27 +1,22 @@
 /**
  * Weekly creator report (PLAN §7.3 `creator.weekly_report`, §2.9 `creator.weekly`): every Monday,
  * each creator with published content gets "your mods last week: +X downloads, followers,
- * comments, reviews", the best mods of the week and the week's milestones, awards and badges
- * (gamification signals have no email of their own; they are summarised here).
+ * comments, reviews" and the mods with the most activity.
  *
  * Opt-out: the `creator.weekly_report` email preference (default weekly), one click in the email.
- * Weeks are Monday–Sunday in UTC; a creator with no activity and no highlights gets no email.
+ * Weeks are Monday–Sunday in UTC; a creator with no activity gets no email.
  */
 import { modPath } from '@sotf/contracts/seo';
 import {
-  award,
-  badge,
   comment,
   emailOutbox,
   mod,
   modFavorite,
-  modMilestone,
   modReview,
   modVersion,
   modVersionDownloadDaily,
   notificationPreference,
   user,
-  userBadge,
   withTx,
 } from '@sotf/db';
 import { and, eq, gte, inArray, isNotNull, isNull, lt, lte, ne, notExists, or, sql } from 'drizzle-orm';
@@ -182,44 +177,6 @@ export async function sendCreatorWeeklyReport(
     for (const r of comments) put(r.modId, 'comments', r.n);
     for (const r of reviews) put(r.modId, 'reviews', r.n);
 
-    const milestones = await tx
-      .select({ modId: modMilestone.modId, threshold: modMilestone.threshold })
-      .from(modMilestone)
-      .where(and(inArray(modMilestone.modId, ids), gte(modMilestone.reachedAt, from), lt(modMilestone.reachedAt, to)));
-    const awards = await tx
-      .select({ modId: award.modId, kind: award.kind })
-      .from(award)
-      .where(and(inArray(award.modId, ids), gte(award.createdAt, from), lt(award.createdAt, to)));
-    const badges = await tx
-      .select({ key: badge.key })
-      .from(userBadge)
-      .innerJoin(badge, eq(badge.id, userBadge.badgeId))
-      .where(and(eq(userBadge.userId, userId), gte(userBadge.awardedAt, from), lt(userBadge.awardedAt, to)));
-    const nameOf = new Map(mods.map((m) => [m.id, m.name]));
-    const highlights: NotificationEmailPayload<'notify.creator_weekly'>['highlights'] = [
-      ...milestones.map((m) => ({
-        kind: 'milestone' as const,
-        modName: nameOf.get(m.modId) ?? null,
-        threshold: m.threshold,
-        awardKind: null,
-        badgeKey: null,
-      })),
-      ...awards.map((a) => ({
-        kind: 'award' as const,
-        modName: nameOf.get(a.modId) ?? null,
-        threshold: null,
-        awardKind: a.kind,
-        badgeKey: null,
-      })),
-      ...badges.map((b) => ({
-        kind: 'badge' as const,
-        modName: null,
-        threshold: null,
-        awardKind: null,
-        badgeKey: b.key,
-      })),
-    ].slice(0, 20);
-
     const totals = { downloads: 0, downloadsPrevious, followers: 0, comments: 0, reviews: 0 };
     for (const v of per.values()) {
       totals.downloads += v.downloads;
@@ -228,7 +185,7 @@ export async function sendCreatorWeeklyReport(
       totals.reviews += v.reviews;
     }
     const activity = totals.downloads + totals.followers + totals.comments + totals.reviews;
-    if (activity === 0 && highlights.length === 0) return 'empty';
+    if (activity === 0) return 'empty';
 
     const locale = localeOf(account);
     const top = mods
@@ -253,7 +210,6 @@ export async function sendCreatorWeeklyReport(
       weekEnd,
       totals,
       mods: top,
-      highlights,
       basecampUrl: localizedUrl(deps.siteUrl, locale, '/basecamp/analytics'),
       unsubscribe: unsubscribeUrls(deps.siteUrl, token, locale),
     };

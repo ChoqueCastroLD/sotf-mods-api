@@ -3,7 +3,7 @@ export type Jams_How_1_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "The theme drops" |
+* | "Theme announced" |
 *
 * @param {Jams_How_1_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

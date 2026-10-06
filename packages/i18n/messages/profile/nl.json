@@ -240,5 +240,16 @@
   "profile_badge_jam_podium_name": "Jam-podium",
   "profile_badge_jam_podium_hint": "Eindig in de top 3 van een categorie in een Mod Jam. Kan meerdere keren worden verdiend.",
   "profile_badge_jam_champion_name": "Jamkampioen",
-  "profile_badge_jam_champion_hint": "Win een Mod Jam in het algemeen klassement. Kan meerdere keren worden verdiend."
+  "profile_badge_jam_champion_hint": "Win een Mod Jam in het algemeen klassement. Kan meerdere keren worden verdiend.",
+  "profile_member_since": "Lid sinds {date}",
+  "profile_trusted": "Vertrouwd",
+  "profile_role_moderator": "Moderator",
+  "profile_role_admin": "Beheerder",
+  "profile_stat_published_label": "Gepubliceerde mods",
+  "profile_stat_reviews_label": "Reviews",
+  "profile_meta_title_user": "{name} (@{handle})",
+  "profile_meta_description_user": "{name} op SOTF Mods, de moddingcommunity van Sons of the Forest: {reviews, plural, one {# review} other {# reviews}}.",
+  "profile_cards_empty_text": "{name} heeft hier nog niets gepubliceerd.",
+  "profile_follow_done": "Je volgt nu. Je krijgt een melding als er iets nieuws uitkomt.",
+  "profile_search_type_users": "Gebruikers"
 }

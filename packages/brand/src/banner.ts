@@ -1,12 +1,12 @@
 /**
- * Profile banners (PLAN §3.6): every survivor gets their own terrain, seeded by the user id.
- * «Reroll terrain» stores a `seedOverride` and passes it here.
+ * Profile banners: a quiet gradient in the page neutrals with a hint of the red, seeded by the
+ * user id so every profile has its own slightly different one. No artwork.
+ * The seed override (stored when a user picks another one) is passed here.
  */
 
 import { type BrandTheme, mixHex, palette } from './colors.ts';
-import { type Seed, seedKey } from './random.ts';
+import { createRng, hashSeed, type Seed, seedKey } from './random.ts';
 import { fmt, svgRoot } from './svg.ts';
-import { topoGroup, topoLines } from './topo.ts';
 
 export interface BannerOptions {
   readonly theme?: BrandTheme;
@@ -18,39 +18,33 @@ export interface BannerOptions {
   readonly className?: string;
 }
 
-/** Seed used for a user's banner; exposed so the settings UI can preview rerolls. */
+/** Seed used for a user's banner; exposed so the settings UI can preview other seeds. */
 export function bannerSeed(userId: Seed, seedOverride?: Seed | null): string {
   return seedOverride === undefined || seedOverride === null || seedOverride === ''
     ? `banner:${seedKey(userId)}`
     : `banner:${seedKey(userId)}:${seedKey(seedOverride)}`;
 }
 
-/** Banner SVG for a user profile or creator card. */
+/** Banner SVG for a user profile. */
 export function bannerSvg(userId: Seed, seedOverride?: Seed | null, options: BannerOptions = {}): string {
   const theme = options.theme ?? 'night';
   const width = options.width ?? 1600;
   const height = options.height ?? 400;
-  const lines = topoLines(bannerSeed(userId, seedOverride), {
-    width,
-    height,
-    levels: 13,
-    peaks: 3,
-    roughness: 0.45,
-    step: height / 26,
-    // The avatar overlaps the bottom-left corner: keep the camp marker to the right.
-    summitRegion: [0.35, 0.2, 0.92, 0.75],
-  });
-  const background = theme === 'night' ? palette.night[950] : palette.night[25];
-  // Night: faint paper-white lines; Day: the field guide's blueprint-blue contours.
-  const regular = theme === 'night' ? palette.night[700] : mixHex(palette.night[25], palette.blueprint[600], 0.32);
-  const flare = theme === 'night' ? palette.flare[400] : palette.flare[500];
-  const unit = height / 400;
-  const { x, y } = lines.summit;
+  const key = bannerSeed(userId, seedOverride);
+  const rng = createRng(key);
+  // Gradient ids are unique per banner: several banners can share one HTML document.
+  const id = hashSeed(key).toString(36);
+  const dark = theme === 'night';
+  const from = dark ? palette.night[900] : palette.night[100];
+  const to = dark ? palette.night[950] : palette.night[50];
+  const tint = mixHex(from, palette.flare[500], dark ? 0.16 : 0.1);
+  // Seeded: where the red hint sits (x 20 to 90 %) and how strong it is.
+  const x = fmt(20 + rng.next() * 70, 1);
   const body =
-    `<rect width="${fmt(width)}" height="${fmt(height)}" fill="${background}"/>` +
-    topoGroup(lines, { color: regular, strokeWidth: 1.25 * unit, indexStrokeWidth: 2.25 * unit }) +
-    `<circle cx="${fmt(x, 1)}" cy="${fmt(y, 1)}" r="${fmt(16 * unit, 1)}" fill="none" stroke="${flare}" stroke-width="${fmt(2 * unit, 1)}" opacity=".45"/>` +
-    `<circle cx="${fmt(x, 1)}" cy="${fmt(y, 1)}" r="${fmt(6 * unit, 1)}" fill="${flare}"/>`;
+    `<defs><linearGradient id="bn${id}" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${from}"/><stop offset="1" stop-color="${to}"/></linearGradient>` +
+    `<radialGradient id="bt${id}" cx="${x}%" cy="${fmt(100 - rng.next() * 30, 1)}%" r="70%"><stop offset="0" stop-color="${tint}" stop-opacity=".9"/><stop offset="1" stop-color="${tint}" stop-opacity="0"/></radialGradient></defs>` +
+    `<rect width="${fmt(width)}" height="${fmt(height)}" fill="url(#bn${id})"/>` +
+    `<rect width="${fmt(width)}" height="${fmt(height)}" fill="url(#bt${id})"/>`;
   return svgRoot(
     {
       viewBox: [0, 0, width, height],

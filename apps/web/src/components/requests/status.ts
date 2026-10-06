@@ -18,7 +18,7 @@ export function statusLabel(status: RequestStatus | 'all'): string {
 
 /** Badge colours per status (tokens of the design system). */
 export const STATUS_CLASSES: Readonly<Record<RequestStatus, string>> = {
-  open: 'bg-signal-soft text-signal',
+  open: 'bg-fg/10 text-fg',
   adopted: 'bg-warning-soft text-warning',
   fulfilled: 'bg-success/15 text-success',
   closed: 'bg-fg/8 text-fg-muted',

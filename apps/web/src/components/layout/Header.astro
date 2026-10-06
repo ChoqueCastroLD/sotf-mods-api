@@ -1,33 +1,34 @@
 ---
 /**
- * Site header (research/03 §5.4): logo · destinations that fit (`nav-items.ts`) · «More» · search
- * (field ≥ lg, icon at md, the centre tab below md) · account slot. Sticky; on phones it is a
- * compact 56 px bar that slides away while scrolling down and returns on the first upward flick
- * (`data-scroll-dir`, transform only); from md it compacts instead (CSS scroll timeline). Notch
- * and landscape insets are honoured. Works without JavaScript: the search is a real GET form to
- * `/search`, the account slot starts with «Sign in» and is upgraded by `account-hint.ts`.
+ * Site header, modelled on the old navbar: logo on the left, a pill menu in the centre (Mods,
+ * Builds, Jams, Requests, Discord), and on the right the search field (opens the Ctrl+K palette),
+ * the language switcher and the account area (`HeaderAccount.astro`).
  *
- * «More» (Help: install guide, Share logs, Patch Radar, Developers, plus the destinations the bar
- * had to drop) is a popover from md (`MoreMenu.astro`) and a bottom sheet on phones
- * (`MoreSheet.astro`, opened by the «⋯» button here).
+ * Phones get a compact bar: logo, search and the menu button (the menu sheet is `MoreSheet.astro`);
+ * account, notifications and the rest live in the bottom tab bar. Sticky; on phones the bar slides
+ * away while scrolling down and returns on the first upward flick (`data-scroll-dir`).
+ *
+ * Works without JavaScript: the search is a real GET form to `/search`, the account area starts as
+ * the guest state and is upgraded by `scripts/account-hint.ts`.
  */
-import { lockupSvg } from '@sotf/brand/logo';
 import { m } from '@sotf/i18n/messages';
 import { Icon } from '@sotf/ui/icons';
 import { Kbd } from '@sotf/ui/kbd';
-import { Ellipsis, Search } from 'lucide-react';
-import { href } from '../../lib/i18n.ts';
+import { LanguageSwitcher } from '@sotf/ui/language-switcher';
+import { Menu, Search } from 'lucide-react';
+import { href, languageLinks } from '../../lib/i18n.ts';
 import HeaderAccount from '../account/HeaderAccount.astro';
-import MoreMenu from './MoreMenu.astro';
-import { barItems, isCurrentPath, SHOW_FROM } from './nav-items.ts';
+import { DISCORD_ICON_PATH, isCurrentPath, mainNav, PATHS } from './nav-items.ts';
+import SiteLogo from './SiteLogo.astro';
 
 const locale = Astro.locals.locale;
 const current = Astro.locals.pagePath.split('?', 1)[0] ?? '/';
 
-const NAV = barItems();
-const isCurrent = (path: string) => isCurrentPath(current, path);
-const logo = lockupSvg({ layout: 'horizontal', theme: 'adaptive', height: 24, title: '' });
-const searchHref = href('/search', locale);
+const NAV = mainNav();
+const isCurrent = (path: string | undefined) =>
+  path !== undefined && (isCurrentPath(current, path) || (path === PATHS.mods && current === '/'));
+const searchHref = href(PATHS.search, locale);
+const languages = languageLinks(Astro.locals.pagePath);
 ---
 
 <header
@@ -36,83 +37,97 @@ const searchHref = href('/search', locale);
 >
   <div
     data-header-bar
-    class="mx-auto flex h-14 w-full max-w-(--container-wide) items-center gap-2 ps-[max(1rem,var(--safe-left))] pe-[max(0.75rem,var(--safe-right))] md:h-16 md:gap-3 md:px-6 lg:gap-6"
+    class="mx-auto flex h-13 w-full max-w-(--container-wide) items-center gap-3 ps-[max(1rem,var(--safe-left))] pe-[max(0.75rem,var(--safe-right))] md:h-16 md:gap-4 md:px-6"
   >
     <a
-      href={href('/', locale)}
-      class="press touch-target flex min-h-11 shrink-0 items-center rounded-md text-fg"
+      href={href(PATHS.home, locale)}
+      class="press touch-target flex min-h-11 shrink-0 items-center rounded-md"
       aria-label={`${m.common_site_name()} · ${m.common_nav_home()}`}
     >
-      <Fragment set:html={logo} />
+      <SiteLogo variant="header" height={32} eager />
     </a>
 
-    <nav aria-label={m.common_nav_label()} class="hidden md:block">
-      <ul class="flex items-center gap-0.5 lg:gap-1">
+    <nav aria-label={m.common_nav_label()} class="hidden min-w-0 flex-1 justify-center md:flex">
+      <ul class="flex items-center gap-0.5 rounded-full border border-border bg-surface p-1">
         {
-          NAV.map((item) => (
-            <li class={SHOW_FROM[item.from]}>
-              <a
-                href={href(item.path, locale)}
-                aria-current={isCurrent(item.path) ? 'page' : undefined}
-                data-loc-pip
-                class="loc-host loc-frame flex h-10 items-center rounded-md px-3 text-sm font-medium text-fg-muted transition-colors duration-(--dur-fast) hover:text-fg aria-[current=page]:text-fg lg:px-3.5"
-              >
-                {item.label}
-                {isCurrent(item.path) && <span class="loc-pip" aria-hidden="true" />}
-              </a>
-            </li>
-          ))
+          NAV.map((item) => {
+            const external = item.external !== undefined;
+            return (
+              <li>
+                <a
+                  href={external ? item.external : href(item.path ?? '/', locale)}
+                  target={external ? '_blank' : undefined}
+                  rel={external ? 'noopener' : undefined}
+                  aria-current={isCurrent(item.path) ? 'page' : undefined}
+                  class="flex h-9 items-center gap-2 rounded-full px-3 text-sm font-medium text-fg-muted transition-colors duration-(--dur-fast) hover:bg-fg/8 hover:text-fg aria-[current=page]:bg-raised aria-[current=page]:text-fg lg:px-4"
+                >
+                  <span class="hidden xl:flex">
+                    {item.icon === 'discord' ? (
+                      <svg class="size-[18px]" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false">
+                        <path d={DISCORD_ICON_PATH} />
+                      </svg>
+                    ) : (
+                      <Icon icon={item.icon} size={18} />
+                    )}
+                  </span>
+                  {item.label}
+                </a>
+              </li>
+            );
+          })
         }
       </ul>
     </nav>
 
-    <search class="ms-auto hidden w-full max-w-sm min-w-0 lg:block">
-      <form method="get" action={searchHref} class="flex items-center" data-header-search>
-        <label for="site-search" class="sr-only">{m.common_search_label()}</label>
-        <div class="relative w-full">
-          <span class="pointer-events-none absolute inset-y-0 start-3 flex items-center text-fg-subtle">
-            <Icon icon={Search} size={18} />
-          </span>
-          <input
-            id="site-search"
-            name="q"
-            type="search"
-            enterkeyhint="search"
-            autocomplete="off"
-            maxlength="100"
-            placeholder={m.common_search_placeholder()}
-            data-cmdk-input
-            class="h-10 w-full rounded-md border border-border-strong bg-sunken ps-10 pe-12 text-sm text-fg placeholder:text-fg-subtle focus-visible:outline-2 focus-visible:outline-focus"
-          />
-          <span class="pointer-events-none absolute inset-y-0 end-2 flex items-center" aria-hidden="true">
-            <Kbd>/</Kbd>
-          </span>
-        </div>
-      </form>
-    </search>
+    <div class="ms-auto flex items-center gap-1 md:ms-0 md:gap-2" data-topbar-actions>
+      <search class="hidden w-52 min-w-0 lg:block xl:w-72">
+        <form method="get" action={searchHref} class="flex items-center" data-header-search>
+          <label for="site-search" class="sr-only">{m.common_search_label()}</label>
+          <div class="relative w-full">
+            <span class="pointer-events-none absolute inset-y-0 start-3 flex items-center text-fg-subtle">
+              <Icon icon={Search} size={16} />
+            </span>
+            <input
+              id="site-search"
+              name="q"
+              type="search"
+              enterkeyhint="search"
+              autocomplete="off"
+              maxlength="100"
+              placeholder={m.shell_search_placeholder()}
+              data-cmdk-input
+              class="h-10 w-full rounded-full border border-border-strong bg-sunken ps-9 pe-16 text-sm text-fg placeholder:text-fg-subtle focus-visible:outline-2 focus-visible:outline-focus"
+            />
+            <span class="pointer-events-none absolute inset-y-0 end-2.5 flex items-center" aria-hidden="true">
+              <Kbd><span data-kbd-mod>Ctrl</span>&nbsp;K</Kbd>
+            </span>
+          </div>
+        </form>
+      </search>
 
-    <div class="ms-auto flex items-center gap-1 lg:ms-0" data-topbar-actions>
       <a
         href={searchHref}
-        class="press hidden size-11 items-center justify-center rounded-full text-fg-muted hover:text-fg md:flex lg:hidden"
+        class="press flex size-11 items-center justify-center rounded-full text-fg-muted hover:bg-fg/8 hover:text-fg lg:hidden"
         aria-label={m.common_search_label()}
       >
         <Icon icon={Search} size={20} />
       </a>
-      <MoreMenu />
+
+      <LanguageSwitcher languages={languages} current={locale} compact className="hidden md:block" />
+
+      <HeaderAccount />
+
       <button
         type="button"
-        data-sheet-open="more-sheet"
+        data-sheet-open="menu-sheet"
         data-haptic
         aria-haspopup="dialog"
         aria-expanded="false"
-        aria-label={m.shell_more_label()}
-        class="press flex size-10 items-center justify-center rounded-full border border-border-strong text-fg hover:bg-fg/8 md:hidden"
+        aria-label={m.shell_nav_menu()}
+        class="press flex size-11 items-center justify-center rounded-full text-fg hover:bg-fg/8 md:hidden"
       >
-        <Icon icon={Ellipsis} size={20} />
+        <Icon icon={Menu} size={22} />
       </button>
     </div>
-
-    <HeaderAccount />
   </div>
 </header>

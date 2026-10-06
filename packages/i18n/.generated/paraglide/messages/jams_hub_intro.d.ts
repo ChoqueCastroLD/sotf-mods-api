@@ -3,7 +3,7 @@ export type Jams_Hub_IntroInputs = {};
 /**
 * | output |
 * | --- |
-* | "Build in days, vote in a week, earn badges. Every jam has a theme, a deadline and four voting categories." |
+* | "Build a mod in a few days, then vote for the best ones. Every jam has a theme, a deadline and four voting categories." |
 *
 * @param {Jams_Hub_IntroInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -1,24 +1,22 @@
 ---
 /**
- * Gallery of a build inside the plan frame (research/03 §6.6): cyanotype grid, corner ticks and
- * a dimension line with the piece count. The pictures are a scroll-snap strip (swipe on phones,
- * arrows or the numbered ticks elsewhere) that works without JavaScript; the first picture is the
- * LCP (eager, preloaded by the page). NSFW builds keep their pictures behind a disclosure.
+ * Gallery of a build: the same cover + thumbnail strip as the mod page (`GalleryCarousel`,
+ * `GalleryStrip`; swipeable carousel on phones, lightbox on tap). A build without pictures gets a
+ * quiet placeholder; NSFW builds keep their pictures behind a disclosure.
  */
-import { formatNumber } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
+import { GalleryStrip } from '@sotf/ui/domain';
 import { Icon } from '@sotf/ui/icons';
-import { DraftingCompass, EyeOff } from 'lucide-react';
+import { EyeOff } from 'lucide-react';
 import Picture from '../layout/Picture.astro';
-import type { BuildSpec, ModDetailDTO } from './data.ts';
+import GalleryCarousel from '../mod/GalleryCarousel.astro';
+import type { ModDetailDTO } from './data.ts';
 
 interface Props {
   build: ModDetailDTO;
-  spec: BuildSpec;
 }
 
-const { build, spec } = Astro.props;
-const locale = Astro.locals.locale;
+const { build } = Astro.props;
 const seen = new Set<string>();
 const images = [build.thumbnail, ...build.gallery].filter((image): image is NonNullable<typeof image> => {
   if (!image || seen.has(image.url)) return false;
@@ -26,41 +24,23 @@ const images = [build.thumbnail, ...build.gallery].filter((image): image is NonN
   return true;
 });
 const total = images.length;
-const offset = build.video ? 1 : 0;
-/** Position of a picture in the lightbox (video first), or null when the lightbox does not hold it. */
-const lightboxIndex = (url: string): number | null => {
-  const position = build.gallery.findIndex((image) => image.url === url);
-  return position === -1 ? null : position + offset;
-};
-const sizes = '(min-width: 80rem) 760px, (min-width: 64rem) 58vw, 100vw';
-const pieces =
-  spec.elements === null
-    ? null
-    : m.builds_stat_pieces({ count: spec.elements, display: formatNumber(locale, spec.elements) });
-const corner = 'absolute size-4 border-blueprint';
+const sizes = '(min-width: 80rem) 700px, (min-width: 48rem) 55vw, 100vw';
+const label = m.builds_gallery_label({ name: build.name });
 ---
 
-<figure class="texture-blueprint relative grid gap-3 rounded-lg border border-blueprint/40 p-3 max-md:-mx-4 max-md:rounded-none max-md:border-x-0 max-md:px-0 max-md:pt-2 md:p-4" data-build-gallery>
-  <span aria-hidden="true" class="pointer-events-none absolute inset-1.5">
-    <span class={`${corner} start-0 top-0 border-s-2 border-t-2`}></span>
-    <span class={`${corner} end-0 top-0 border-e-2 border-t-2`}></span>
-    <span class={`${corner} start-0 bottom-0 border-s-2 border-b-2`}></span>
-    <span class={`${corner} end-0 bottom-0 border-e-2 border-b-2`}></span>
-  </span>
-
+<figure class="grid min-w-0 gap-3" data-build-gallery>
   {
-    total === 0 ? (
-      <div class="flex aspect-video flex-col items-center justify-center gap-3 rounded-md border border-dashed border-blueprint/50 p-6 text-center text-blueprint">
-        <Icon icon={DraftingCompass} size={40} />
+    total === 0 && !build.video ? (
+      <div class="flex aspect-video items-center justify-center rounded-lg border border-border bg-raised p-6 text-center">
         <p class="max-w-sm text-sm text-fg-muted">{m.builds_gallery_placeholder()}</p>
       </div>
     ) : build.nsfw ? (
-      <details class="group rounded-md border border-blueprint/40 bg-surface" data-nsfw-gate>
+      <details class="group rounded-lg border border-border bg-surface" data-nsfw-gate>
         <summary class="flex aspect-video cursor-pointer list-none flex-col items-center justify-center gap-3 p-6 text-center [&::-webkit-details-marker]:hidden">
-          <Icon icon={EyeOff} size={32} className="text-blueprint" />
+          <Icon icon={EyeOff} size={32} className="text-fg-muted" />
           <span class="font-semibold text-fg">{m.builds_nsfw_title()}</span>
           <span class="max-w-sm text-sm text-fg-muted">{m.builds_nsfw_text()}</span>
-          <span class="inline-flex min-h-11 items-center rounded-md border border-border-strong px-4 font-semibold text-fg">
+          <span class="inline-flex min-h-11 items-center rounded-md border border-border-strong px-4 font-medium text-fg">
             {m.builds_nsfw_show()}
           </span>
         </summary>
@@ -76,107 +56,18 @@ const corner = 'absolute size-4 border-blueprint';
         </div>
       </details>
     ) : (
-      <div class="grid min-w-0 gap-2" data-carousel>
-        <div class="relative min-w-0">
-          <ul
-            class="flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain bg-surface [scrollbar-width:none] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus md:rounded-md md:[scrollbar-width:thin]"
-            aria-label={m.builds_gallery_label({ name: build.name })}
-            tabindex={total > 1 ? 0 : undefined}
-            data-gallery-track
-            data-carousel-track
-          >
-            {images.map((image, index) => {
-              const opens = lightboxIndex(image.url);
-              const picture = (
-                <Picture
-                  image={image}
-                  sizes={sizes}
-                  priority={index === 0}
-                  hero={index === 0}
-                  alt={image.alt || (index === 0 ? m.builds_og_alt({ name: build.name }) : '')}
-                  class="aspect-video w-full object-contain"
-                />
-              );
-              return (
-                <li
-                  id={`build-image-${index + 1}`}
-                  class="relative w-full shrink-0 snap-center snap-always"
-                  aria-label={m.builds_gallery_image({ index: index + 1, total })}
-                  data-carousel-slide
-                >
-                  {opens === null ? (
-                    picture
-                  ) : (
-                    <a href={image.url} data-gallery-index={opens} data-gallery-kind="image" class="block">
-                      {picture}
-                    </a>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
-          {total > 1 && (
-            <>
-              <p
-                data-carousel-chip
-                aria-hidden="true"
-                data-template={m.mod_gallery_counter({ index: '{index}', total: '{total}' })}
-                class="pointer-events-none absolute end-3 top-3 rounded-full bg-night-975/70 px-2.5 py-1 font-mono text-xs text-white tabular-nums backdrop-blur-sm md:hidden"
-              >
-                {m.mod_gallery_counter({ index: 1, total })}
-              </p>
-              <div data-carousel-dots data-js-only hidden class="absolute inset-x-0 bottom-2 z-10 flex justify-center md:hidden">
-                <div class="flex items-center rounded-full bg-night-975/55 px-1 backdrop-blur-sm">
-                  {images.map((_, index) => (
-                    <button
-                      type="button"
-                      data-carousel-dot={index}
-                      aria-label={m.builds_gallery_image({ index: index + 1, total })}
-                      aria-current={index === 0 ? 'true' : undefined}
-                      class="group flex size-6 items-center justify-center"
-                    >
-                      <span class="block size-1.5 rounded-full bg-white/50 transition-[width,background-color] duration-(--dur-base) group-aria-[current=true]:w-4 group-aria-[current=true]:bg-blueprint motion-reduce:transition-none" />
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </>
-          )}
-        </div>
-        {total > 1 && (
-          <ol class="flex flex-wrap justify-center gap-1.5 max-md:hidden" aria-label={m.builds_gallery_label({ name: build.name })}>
-            {images.map((_, index) => (
-              <li>
-                <a
-                  href={`#build-image-${index + 1}`}
-                  data-gallery-tick={index}
-                  aria-current={index === 0 ? 'true' : undefined}
-                  class="inline-flex size-8 items-center justify-center rounded-xs border border-blueprint/50 font-mono text-2xs text-blueprint tabular-nums hover:bg-blueprint/10 aria-[current=true]:bg-blueprint aria-[current=true]:text-blueprint-surface"
-                >
-                  <span class="sr-only">{m.builds_gallery_image({ index: index + 1, total })}</span>
-                  <span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
-                </a>
-              </li>
-            ))}
-          </ol>
+      <>
+        <GalleryCarousel mod={build} sizes={sizes} label={label} />
+        {(build.gallery.length > 1 || build.video) && (
+          <div data-gallery-strip class="max-md:hidden">
+            <GalleryStrip
+              images={build.gallery}
+              video={build.video ? { id: build.video.id, url: build.video.url } : null}
+              label={label}
+            />
+          </div>
         )}
-      </div>
-    )
-  }
-
-  {
-    pieces && (
-      <figcaption class="flex items-center gap-2 px-4 font-mono text-2xs text-blueprint md:px-0">
-        <span aria-hidden="true" class="flex flex-1 items-center">
-          <span class="h-3 w-px bg-current"></span>
-          <span class="h-px flex-1 bg-current"></span>
-        </span>
-        <span class="shrink-0 tabular-nums">{pieces}{spec.sizeClass ? ` · ${spec.sizeClass}` : ''}</span>
-        <span aria-hidden="true" class="flex flex-1 items-center">
-          <span class="h-px flex-1 bg-current"></span>
-          <span class="h-3 w-px bg-current"></span>
-        </span>
-      </figcaption>
+      </>
     )
   }
 </figure>

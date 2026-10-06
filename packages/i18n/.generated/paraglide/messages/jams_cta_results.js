@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Jams_Cta_ResultsInputs */
 
 const en_jams_cta_results = /** @type {(inputs: Jams_Cta_ResultsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`See the podium`)
+	return /** @type {LocalizedString} */ (`See the results`)
 };
 
 const es_jams_cta_results = /** @type {(inputs: Jams_Cta_ResultsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ver el podio`)
+	return /** @type {LocalizedString} */ (`Ver los resultados`)
 };
 
 const de_jams_cta_results = /** @type {(inputs: Jams_Cta_ResultsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Podium ansehen`)
+	return /** @type {LocalizedString} */ (`Ergebnisse ansehen`)
 };
 
 const fr_jams_cta_results = /** @type {(inputs: Jams_Cta_ResultsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Voir le podium`)
+	return /** @type {LocalizedString} */ (`Voir les résultats`)
 };
 
 const it_jams_cta_results = /** @type {(inputs: Jams_Cta_ResultsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vedi il podio`)
+	return /** @type {LocalizedString} */ (`Vedi i risultati`)
 };
 
 const nl_jams_cta_results = /** @type {(inputs: Jams_Cta_ResultsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bekijk het podium`)
+	return /** @type {LocalizedString} */ (`Bekijk de resultaten`)
 };
 
 const pl_jams_cta_results = /** @type {(inputs: Jams_Cta_ResultsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zobacz podium`)
+	return /** @type {LocalizedString} */ (`Zobacz wyniki`)
 };
 
 const pt_jams_cta_results = /** @type {(inputs: Jams_Cta_ResultsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ver o pódio`)
+	return /** @type {LocalizedString} */ (`Ver os resultados`)
 };
 
 const ru_jams_cta_results = /** @type {(inputs: Jams_Cta_ResultsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Смотреть пьедестал`)
+	return /** @type {LocalizedString} */ (`Смотреть результаты`)
 };
 
 const sv_jams_cta_results = /** @type {(inputs: Jams_Cta_ResultsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Visa prispallen`)
+	return /** @type {LocalizedString} */ (`Visa resultaten`)
 };
 
 const tr_jams_cta_results = /** @type {(inputs: Jams_Cta_ResultsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Podyumu gör`)
+	return /** @type {LocalizedString} */ (`Sonuçları gör`)
 };
 
 const zh_jams_cta_results = /** @type {(inputs: Jams_Cta_ResultsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`查看领奖台`)
+	return /** @type {LocalizedString} */ (`查看结果`)
 };
 
 const ja_jams_cta_results = /** @type {(inputs: Jams_Cta_ResultsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`表彰台を見る`)
+	return /** @type {LocalizedString} */ (`結果を見る`)
 };
 
 /**
 * | output |
 * | --- |
-* | "See the podium" |
+* | "See the results" |
 *
 * @param {Jams_Cta_ResultsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

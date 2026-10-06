@@ -1,7 +1,7 @@
 ---
 /**
  * `/about` (research/03 §6.15, PLAN §3.1, §4.2): what SOTF Mods is, who runs it, how moderation
- * and compatibility work, and the mandatory fan disclaimer. Markdown per locale
+ * works, and the mandatory fan disclaimer. Markdown per locale
  * (`content/about`), JSON-LD `AboutPage`; edge-cached a day, purged on deploy.
  */
 import { m } from '@sotf/i18n/messages';
@@ -24,10 +24,7 @@ const siteUrl = loadEnv().siteUrl.replace(/\/+$/, '');
 const path = '/about';
 const links = [
   { href: href('/install', locale), label: m.common_nav_install() },
-  { href: href('/patch-radar', locale), label: m.common_term_patch_radar() },
-  { href: href('/brand', locale), label: m.common_footer_brand() },
   { href: href('/developers', locale), label: m.common_footer_developers() },
-  { href: href('/news', locale), label: m.common_nav_news() },
   { href: SOCIAL_LINKS.discord, label: 'Discord', external: true },
   { href: SOCIAL_LINKS.github, label: 'GitHub', external: true },
 ];
@@ -52,7 +49,7 @@ const links = [
     }),
   ]}
 >
-  <aside aria-labelledby="about-disclaimer-title" class="flex items-start gap-3 rounded-lg border border-border-strong bg-surface p-5">
+  <aside aria-labelledby="about-disclaimer-title" class="flex items-start gap-3 border-y border-border py-5">
     <Icon icon={Scale} size={20} className="mt-0.5 shrink-0 text-fg-muted" />
     <div class="grid gap-1">
       <h2 id="about-disclaimer-title" class="font-semibold text-fg">{m.content_about_disclaimer_title()}</h2>
@@ -60,7 +57,7 @@ const links = [
     </div>
   </aside>
   <nav aria-labelledby="about-links-title" class="border-t border-border pt-6">
-    <h2 id="about-links-title" class="readout mb-3">{m.content_about_links_title()}</h2>
+    <h2 id="about-links-title" class="mb-3 text-sm font-bold text-fg">{m.content_about_links_title()}</h2>
     <ul class="flex flex-wrap gap-2">
       {
         links.map((link) => (

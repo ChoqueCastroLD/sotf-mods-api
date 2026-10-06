@@ -1,6 +1,6 @@
 {
   "requests_list_title": "Mod requests",
-  "requests_list_title_page": "{title} — page {page, number}",
+  "requests_list_title_page": "{title}, page {page, number}",
   "requests_list_description": "Ask for the mod you wish existed in Sons of the Forest, vote for the ones you want and follow the creators who take them on.",
   "requests_list_readout": "Request board",
   "requests_action_new": "Ask for a mod",
@@ -29,7 +29,7 @@
   "requests_by": "by {name}",
   "requests_adopted_by": "In progress by {name}",
   "requests_fulfilled_by": "Fulfilled with {mod}",
-  "requests_detail_title": "{title} — Mod request",
+  "requests_detail_title": "{title} (mod request)",
   "requests_detail_description": "Mod request by {author}: {title}",
   "requests_back": "All requests",
   "requests_view_mod": "View the mod",
@@ -89,5 +89,6 @@
   "requests_badge_adopter": "Working on it",
   "requests_badge_author": "Requester",
   "requests_comment_delete_title": "Delete this comment?",
-  "requests_comment_delete_text": "This cannot be undone."
+  "requests_comment_delete_text": "This cannot be undone.",
+  "requests_votes_short": "votes"
 }

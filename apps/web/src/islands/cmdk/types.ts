@@ -2,12 +2,12 @@
  * Items shown by the palette. Paths are the unprefixed site paths of the API (the palette adds
  * the locale prefix when it navigates).
  */
-import type { CompatStatus, ModKind } from '@sotf/contracts/common';
+import type { ModKind } from '@sotf/contracts/common';
 
-export type EntryType = 'mod' | 'build' | 'kit' | 'user' | 'category' | 'page';
+export type EntryType = 'mod' | 'build' | 'user' | 'category' | 'page';
 
 export interface EntryItem {
-  /** Unique key (`mod:20`, `kit:5`, `page:install`…); also the cmdk item value. */
+  /** Unique key (`mod:20`, `user:5`, `page:install`…); also the cmdk item value. */
   key: string;
   type: EntryType;
   /** Entity id (number) or slug/key (categories, pages). */
@@ -18,9 +18,8 @@ export interface EntryItem {
   path: string;
   thumb: string | null;
   kind?: ModKind;
-  compat?: CompatStatus;
   downloads?: number;
-  /** Items of a kit, mods of a creator. */
+  /** Mods of a user. */
   count?: number;
   categorySlug?: string | null;
   tags?: readonly string[];
@@ -34,48 +33,38 @@ export interface EntryItem {
   rating?: number | null;
   /** Index in `MULTIPLAYER_ROLES` (0 solo only … 3 all players, 4 unknown). */
   mp?: number;
-  /** Scout's one-line reason for citing the mod (shown instead of the usual meta line). */
-  note?: string;
 }
 
 /** Icon of an action (resolved to a glyph by `present.tsx`). */
 export type ActionIcon =
   | 'explore'
   | 'builds'
-  | 'kits'
   | 'requests'
   | 'install'
-  | 'radar'
-  | 'creators'
-  | 'compare'
   | 'jams'
   | 'developers'
   | 'settings'
-  | 'basecamp'
+  | 'dashboard'
   | 'upload'
-  | 'signals'
-  | 'backpack'
-  | 'history'
-  | 'ranger'
-  | 'night'
-  | 'day'
-  | 'system'
+  | 'notifications'
+  | 'moderation'
+  | 'login'
   | 'language';
 
 export interface ActionItem {
   key: `action:${string}`;
   type: 'action';
-  /** `go-explore`, `theme-dark`, `language-es`… */
+  /** `go-explore`, `language-es`… */
   id: string;
   title: string;
   /** Extra words that find the action (English + localised). */
   keywords: string;
   icon: ActionIcon;
-  /** `go` = navigation («Go to»), `settings` = theme and language. */
+  /** `go` = navigation («Go to»), `settings` = language. */
   section: 'go' | 'settings';
-  /** Marks the current theme / language. */
+  /** Marks the current language. */
   current: boolean;
-  /** Where it goes, for `⌘Enter` (null for in-place actions like the theme). */
+  /** Where it goes, for `⌘Enter` (null for in-place actions). */
   path: string | null;
   run: () => void;
 }
@@ -114,14 +103,12 @@ export type GroupId =
   | 'trending'
   | 'mods'
   | 'builds'
-  | 'kits'
-  | 'creators'
+  | 'users'
   | 'categories'
   | 'pages'
   | 'go'
   | 'actions'
-  | 'server'
-  | 'scout';
+  | 'server';
 
 export interface ResultItem {
   item: PaletteItem;

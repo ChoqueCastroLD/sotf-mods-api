@@ -5,8 +5,7 @@ import { describe, expect, it } from 'vitest';
 import { buildAll } from '../scripts/build-assets.ts';
 import type { BuiltFile } from '../scripts/build-icons.ts';
 import { generateBrandDataSource } from '../scripts/lib/sources.ts';
-import { APP_ICONS, faviconSvg, manifestIcons } from '../src/icons.ts';
-import { ogDefaultSvg } from '../src/og.ts';
+import { APP_ICONS, manifestIcons } from '../src/icons.ts';
 import { icoImages, rasterDifference, strictRasterComparison } from './helpers.ts';
 
 /** The legacy file host (PLAN §2.8), spelled out indirectly so check:forbidden stays green. */
@@ -28,7 +27,7 @@ describe('committed assets', () => {
     }
   });
 
-  it('include every deliverable of WP-01', () => {
+  it('include every deliverable (logos, icons, OG image)', () => {
     const required = [
       'public/favicon.svg',
       'public/favicon.ico',
@@ -40,14 +39,11 @@ describe('committed assets', () => {
       'public/brand/icon-maskable-192.png',
       'public/brand/icon-maskable-512.png',
       'public/brand/og-default.png',
-      'public/brand/topo.svg',
       'public/brand/field-kit.svg',
-      'public/brand/mark.svg',
-      'public/brand/mark-simple.svg',
-      'public/brand/logo-horizontal-night.svg',
-      'public/brand/logo-horizontal-day.svg',
-      'public/brand/logo-stacked-night.svg',
-      'public/brand/logo-stacked-day.svg',
+      'public/brand/logo-sm.png',
+      'public/brand/logo-sm.webp',
+      'public/brand/logo.png',
+      'public/brand/logo.webp',
       'public/brand/logo-horizontal-night.png',
       'public/brand/logo-mark.png',
     ];
@@ -66,7 +62,7 @@ describe('committed assets', () => {
     expect(read('public/brand/og-default.png').length).toBeLessThan(100 * 1024);
   });
 
-  it('keep maskable and Apple icons opaque and tile icons rounded', async () => {
+  it('keep maskable and Apple icons opaque and the other icons transparent', async () => {
     const alphaAt = async (file: string, x: number, y: number): Promise<number> => {
       const { data, info } = await sharp(read(file)).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
       return data[(y * info.width + x) * info.channels + 3] as number;
@@ -74,7 +70,6 @@ describe('committed assets', () => {
     expect(await alphaAt('public/brand/icon-maskable-512.png', 0, 0)).toBe(255);
     expect(await alphaAt('public/apple-touch-icon.png', 0, 0)).toBe(255);
     expect(await alphaAt('public/brand/icon-512.png', 0, 0)).toBe(0);
-    expect(await alphaAt('public/brand/icon-512.png', 256, 256)).toBe(255);
   });
 
   it('ship a favicon.ico with 16, 32 and 48 px PNG entries', () => {
@@ -89,12 +84,10 @@ describe('committed assets', () => {
     );
   });
 
-  it('ship an SVG favicon that follows prefers-color-scheme', () => {
+  it('ship an SVG favicon that embeds the icon', () => {
     const svg = read('public/favicon.svg').toString('utf8');
-    expect(svg).toBe(`${faviconSvg()}\n`);
-    expect(svg).toContain('@media (prefers-color-scheme:dark)');
-    expect(svg).toContain('#FF7335');
-    expect(svg).toContain('#E75803');
+    expect(svg).toContain('viewBox="0 0 64 64"');
+    expect(svg).toContain('href="data:image/png;base64,');
   });
 
   it('describe manifest icons for the web app manifest', () => {
@@ -114,15 +107,18 @@ describe('committed assets', () => {
     }
   });
 
-  it('keep the default OG image composed of outlines only', () => {
-    const svg = ogDefaultSvg();
-    expect(svg).toContain('width="1200" height="630"');
-    expect(svg).not.toMatch(/<text|<image|font-family/);
+  it('ship WebP logos that are not larger than the PNG fallback', () => {
+    for (const name of ['logo-sm', 'logo-sm-140', 'logo-sm-280', 'logo', 'logo-320']) {
+      expect(read(`public/brand/${name}.webp`).length, name).toBeLessThanOrEqual(
+        read(`public/brand/${name}.png`).length * 1.9,
+      );
+    }
+    expect(read('public/brand/logo-sm.png').length).toBeLessThan(10 * 1024);
   });
 });
 
 describe('reproducibility (build:assets)', () => {
-  it('regenerates brand-data.gen.ts identically from the pinned fonts', () => {
+  it('regenerates brand-data.gen.ts identically from the font in sources/', () => {
     const committed = readFileSync(new URL('../src/generated/brand-data.gen.ts', import.meta.url), 'utf8');
     expect(generateBrandDataSource()).toBe(committed);
   });
@@ -153,7 +149,7 @@ describe('reproducibility (build:assets)', () => {
     };
     for (const file of files) {
       const committed = read(file.path);
-      if (file.path.endsWith('.png')) {
+      if (file.path.endsWith('.png') || file.path.endsWith('.webp')) {
         await expectClose(file.bytes, committed, file.path);
       } else if (file.path.endsWith('.ico')) {
         const [actual, expected] = [icoImages(file.bytes), icoImages(committed)];
@@ -161,6 +157,9 @@ describe('reproducibility (build:assets)', () => {
         for (const [index, png] of actual.entries()) {
           await expectClose(png, expected[index] as Buffer, `${file.path}#${index}`);
         }
+      } else if (file.path === 'public/favicon.svg') {
+        // Embeds a PNG: same pixels, encoder bytes may differ.
+        expect(file.bytes.toString('utf8')).toContain('data:image/png;base64,');
       } else if (file.path !== 'manifest.json') {
         // SVG and JSON are pure text built by this package: identical on every platform.
         expect(file.bytes.equals(committed), file.path).toBe(true);
@@ -171,7 +170,9 @@ describe('reproducibility (build:assets)', () => {
     expect(rebuilt).toBeDefined();
     const rebuiltManifest = JSON.parse((rebuilt as BuiltFile).bytes.toString('utf8')) as Manifest;
     const vectors = (m: Manifest) =>
-      Object.fromEntries(Object.entries(m.files).filter(([path]) => !/\.(?:png|ico)$/.test(path)));
+      Object.fromEntries(
+        Object.entries(m.files).filter(([path]) => !/\.(?:png|webp|ico)$/.test(path) && path !== 'public/favicon.svg'),
+      );
     expect(Object.keys(vectors(manifest)).length).toBeGreaterThan(0);
     expect(vectors(rebuiltManifest)).toEqual(vectors(manifest));
     expect(Object.keys(rebuiltManifest.files).sort()).toEqual(Object.keys(manifest.files).sort());

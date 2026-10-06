@@ -6,8 +6,7 @@
  *   (Fortress, Landmark) use Solafite, reserved for the exceptional.
  * - `BadgeStamp`: a badge of the field notebook. Locked badges are dashed and muted, say
  *   «Locked» in text and may show their progress.
- * - `TrustedMark`: `badge-check` in Signal with an accessible name (and a native tooltip, so it
- *   works on non-hydrated pages).
+ * - `TrustedMark`: the small «Trusted» tag of the old site.
  *
  * `animate` plays the `stamp` motion once (only on the unlock moment; reduced motion skips it).
  */
@@ -223,26 +222,26 @@ export function BadgeStamp({
 }
 
 export interface TrustedMarkProps {
-  /** Show the label next to the icon (profiles); icon only in cards and bylines. */
+  /** Kept for callers that used to choose between an icon and a label: both show the word now. */
   withLabel?: boolean;
+  /** Ignored (the badge scales with the surrounding text); kept so existing callers still type-check. */
   size?: number;
   className?: string;
 }
 
-export function TrustedMark({ withLabel = false, size = 16, className }: TrustedMarkProps) {
+/** The old site's «Trusted» badge: a small red-tinted tag with the word, next to an author name. */
+export function TrustedMark({ className }: TrustedMarkProps) {
   const { t } = useDomainI18n();
-  const label = t('ui_domain_trusted_creator');
-  if (withLabel) {
-    return (
-      <span className={cn('inline-flex items-center gap-1 text-xs font-medium text-signal', className)}>
-        <Icon icon={BadgeCheck} size={size} />
-        {label}
-      </span>
-    );
-  }
+  const label = t('ui_domain_trusted');
   return (
-    <span role="img" aria-label={label} title={label} className={cn('inline-flex shrink-0 text-signal', className)}>
-      <Icon icon={BadgeCheck} size={size} />
+    <span
+      title={t('ui_domain_trusted_creator')}
+      className={cn(
+        'inline-flex h-[1.125rem] shrink-0 items-center rounded-sm border border-primary/40 bg-primary/10 px-1.5 text-2xs font-semibold leading-none text-primary',
+        className,
+      )}
+    >
+      {label}
     </span>
   );
 }

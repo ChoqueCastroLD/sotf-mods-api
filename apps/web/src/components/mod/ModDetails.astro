@@ -1,0 +1,125 @@
+---
+/**
+ * «Details» of the sidebar: a plain definition list with hairlines (version, size, game and
+ * RedLoader versions, platform, multiplayer, licence, published, source). Only what is known is
+ * listed; nothing says «Unknown».
+ */
+import { formatBytes, formatDate } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import type { ModDetailDTO } from './data.ts';
+import { multiplayerLabel, platformLabel } from './format.ts';
+import { licenseHref, licenseLabel } from './i18n.ts';
+import { SIDE_BLOCK_CLASSES, SIDE_TITLE_CLASSES } from './styles.ts';
+
+interface Props {
+  mod: ModDetailDTO;
+}
+
+const { mod } = Astro.props;
+const locale = Astro.locals.locale;
+const latest = mod.latestVersion;
+const licenseUrl = mod.license ? licenseHref(mod.license) : null;
+const multiplayer = mod.multiplayerRole ? multiplayerLabel(mod.multiplayerRole) : null;
+let sourceHost: string | null = null;
+if (mod.sourceUrl) {
+  try {
+    const url = new URL(mod.sourceUrl);
+    sourceHost = `${url.hostname.replace(/^www\./, '')}${url.pathname.replace(/\/$/, '')}`;
+  } catch {
+    sourceHost = mod.sourceUrl;
+  }
+}
+const row = 'flex items-baseline justify-between gap-4 border-b border-border py-2 last:border-b-0';
+---
+
+<section aria-labelledby="details-title" class={SIDE_BLOCK_CLASSES}>
+  <h2 id="details-title" class={SIDE_TITLE_CLASSES}>{m.mod_details_title()}</h2>
+  <dl class="-mt-1 flex flex-col text-sm">
+    {
+      latest && (
+        <div class={row}>
+          <dt class="text-fg-muted">{m.mod_fact_version()}</dt>
+          <dd class="text-end font-mono text-xs">{latest.version}</dd>
+        </div>
+      )
+    }
+    {
+      latest && typeof latest.fileSize === 'number' && (
+        <div class={row}>
+          <dt class="text-fg-muted">{m.mod_fact_size()}</dt>
+          <dd class="text-end tabular-nums">{formatBytes(locale, latest.fileSize)}</dd>
+        </div>
+      )
+    }
+    {
+      latest?.gameVersionDeclared && (
+        <div class={row}>
+          <dt class="text-fg-muted">{m.mod_detail_game()}</dt>
+          <dd class="text-end font-mono text-xs">{latest.gameVersionDeclared}</dd>
+        </div>
+      )
+    }
+    {
+      latest?.loaderVersionDeclared && (
+        <div class={row}>
+          <dt class="text-fg-muted">{m.mod_detail_loader()}</dt>
+          <dd class="text-end font-mono text-xs">{m.mod_capsule_loader_short({ version: latest.loaderVersionDeclared })}</dd>
+        </div>
+      )
+    }
+    {
+      mod.platform && (
+        <div class={row}>
+          <dt class="text-fg-muted">{m.mod_fact_platform()}</dt>
+          <dd class="text-end">{platformLabel(mod.platform)}</dd>
+        </div>
+      )
+    }
+    {
+      multiplayer && (
+        <div class={row}>
+          <dt class="text-fg-muted">{m.mod_fact_multiplayer()}</dt>
+          <dd class="text-end">{multiplayer}</dd>
+        </div>
+      )
+    }
+    {
+      mod.license && (
+        <div class={row}>
+          <dt class="text-fg-muted">{m.mod_fact_license()}</dt>
+          <dd class="text-end">
+            {licenseUrl ? (
+              <a href={licenseUrl} rel="noopener" class="text-link underline underline-offset-3">
+                {licenseLabel(mod.license)}
+              </a>
+            ) : (
+              licenseLabel(mod.license)
+            )}
+          </dd>
+        </div>
+      )
+    }
+    {
+      mod.publishedAt && (
+        <div class={row}>
+          <dt class="text-fg-muted">{m.mod_fact_published()}</dt>
+          <dd class="text-end">
+            <time datetime={mod.publishedAt}>{formatDate(locale, mod.publishedAt)}</time>
+          </dd>
+        </div>
+      )
+    }
+    {
+      mod.sourceUrl && (
+        <div class={row}>
+          <dt class="shrink-0 text-fg-muted">{m.mod_fact_source()}</dt>
+          <dd class="min-w-0 text-end">
+            <a href={mod.sourceUrl} rel="ugc nofollow noopener" class="block truncate text-link underline underline-offset-3">
+              {sourceHost}
+            </a>
+          </dd>
+        </div>
+      )
+    }
+  </dl>
+</section>

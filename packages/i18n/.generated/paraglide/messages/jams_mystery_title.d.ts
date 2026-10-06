@@ -3,7 +3,7 @@ export type Jams_Mystery_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Theme sealed" |
+* | "Secret theme" |
 *
 * @param {Jams_Mystery_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

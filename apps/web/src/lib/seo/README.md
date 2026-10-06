@@ -8,7 +8,7 @@ when the API is down.
 
 | Route | Module | Cache tags |
 |---|---|---|
-| `/sitemap.xml`, `/sitemaps/{static,mods,builds,categories,tags,kits,creators,news,best}.xml` | `sitemaps.ts`, `xml.ts` | `sitemap` (1 h) |
+| `/sitemap.xml`, `/sitemaps/{static,mods,builds,categories,tags,requests,jams,creators}.xml` | `sitemaps.ts`, `xml.ts` | `sitemap` (1 h) |
 | `/robots.txt` (exact PLAN §8.6 file; `Disallow: /` outside production) | `pages/robots.txt.ts` | `html` (1 day) |
 | `/llms.txt`, `/llms-full.txt` | `llms.ts` | `sitemap`, `list:*` |
 | `/feed.xml`, `/builds/feed.xml`, `/categories/:slug/feed.xml`, `/profile/:h/feed.xml`, `/mods/:u/:s/feed.xml` | `feeds.ts`, `feed-routes.ts` | `feed` + entity |

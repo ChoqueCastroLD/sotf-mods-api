@@ -3,7 +3,7 @@
  * daily downloads (zero-filled) total and unique with release and patch markers, views and the
  * view → download conversion, downloads by version (≤ 8 + «Other»: stacked daily bars and totals) and by channel (web, RedManager,
  * client), referrers grouped (Google, Discord, YouTube, GitHub, AI assistants, internal, direct),
- * visitor language and country, followers gained, ratings over time, compatibility by build and CSV export.
+ * visitor language and country, followers gained, ratings over time and CSV export.
  * The whole legacy history since 2023 is included in «All». Every chart has «View as table».
  */
 import { buttonClasses } from '@sotf/ui/button';
@@ -18,7 +18,6 @@ import { useEffect } from 'react';
 import { DomainI18nBridge } from '../../components/DomainI18nBridge.tsx';
 import { activeLocale } from '../../lib/messages.ts';
 import { type Analytics, type AnalyticsRange, analyticsCsvHref, analyticsQuery, CHANNELS, modsQuery } from './api.ts';
-import { CompatReports } from './CompatReports.tsx';
 import { CategoryFigure, RatingsFigure, SeriesFigure, VersionSeriesFigure } from './charts/figures.tsx';
 import { prefetchCharts } from './charts/lazy.tsx';
 import { number, percent } from './format.ts';
@@ -323,14 +322,6 @@ export function AnalyticsScreen({
 
             <Panel title={bt('basecamp_analytics_ratings_title')}>
               <RatingsFigure analytics={analytics.data} range={range} />
-            </Panel>
-
-            <Panel title={bt('basecamp_analytics_compat_title')}>
-              {selected ? (
-                <CompatReports modId={selected.mod.id} />
-              ) : (
-                <p className="text-sm text-fg-muted">{bt('basecamp_analytics_compat_pick')}</p>
-              )}
             </Panel>
           </div>
         )}

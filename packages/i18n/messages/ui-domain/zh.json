@@ -180,5 +180,6 @@
   "ui_domain_reaction_laugh": "大笑",
   "ui_domain_reaction_party": "庆祝",
   "ui_domain_reaction_pray": "感谢",
-  "ui_domain_reaction_fire": "火"
+  "ui_domain_reaction_fire": "火",
+  "ui_domain_trusted": "受信任"
 }

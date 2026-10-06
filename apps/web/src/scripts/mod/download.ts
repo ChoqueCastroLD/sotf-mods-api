@@ -5,47 +5,19 @@
  *   the server) and turns the header button into «Downloaded ✓» with the install hint;
  * - mods with required dependencies open the «You also need X, Y» sheet first (unless the
  *   visitor said «I already have them» for this mod): «Download all» follows each dependency's
- *   download route one after the other (each counts) and then the mod's;
- * - the last download is remembered locally (no account needed) for the «Did it work?» prompt,
- *   offered on this page during the next 24 h and linked to the field-report form.
+ *   download route one after the other (each counts) and then the mod's.
  */
 import { pageEntity, track } from '../beacon.ts';
 import { fill } from './data.ts';
 import { closeDialog, openDialog } from './dialogs.ts';
-import { toast } from './toast.ts';
 import type { ModPageData } from './types.ts';
 
 const DEPS_OK_KEY = (modId: number) => `sotf:deps-ok:${modId}`;
-const LAST_DOWNLOAD_KEY = (modId: number) => `sotf:dl:${modId}`;
-const PROMPTED_KEY = (modId: number, version: string) => `sotf:dl-prompted:${modId}:${version}`;
-const PROMPT_WINDOW_MS = 24 * 60 * 60 * 1000;
-const PROMPT_DELAY_MS = 2 * 60 * 1000;
 const SEQUENTIAL_GAP_MS = 1200;
-
-interface LastDownload {
-  version: string;
-  at: number;
-}
 
 function storage(): Storage | null {
   try {
     return window.localStorage;
-  } catch {
-    return null;
-  }
-}
-
-function remember(modId: number, version: string): void {
-  storage()?.setItem(LAST_DOWNLOAD_KEY(modId), JSON.stringify({ version, at: Date.now() } satisfies LastDownload));
-}
-
-function lastDownload(modId: number): LastDownload | null {
-  try {
-    const raw = storage()?.getItem(LAST_DOWNLOAD_KEY(modId));
-    const value = raw ? (JSON.parse(raw) as Partial<LastDownload>) : null;
-    return value && typeof value.version === 'string' && typeof value.at === 'number'
-      ? { version: value.version, at: value.at }
-      : null;
   } catch {
     return null;
   }
@@ -69,7 +41,6 @@ function markDone(root: HTMLElement, data: ModPageData, doc: Document): void {
   area.dataset.done = '';
   const label = primary.querySelector('span.truncate');
   if (label) label.textContent = data.messages.downloadDone;
-  primary.classList.remove('shadow-glow');
   const hint = doc.createElement('p');
   hint.setAttribute('role', 'status');
   hint.className = 'mt-2 text-sm text-fg-muted';
@@ -92,7 +63,6 @@ export function initDownloads(root: HTMLElement, data: ModPageData, doc: Documen
   const completed = (link: HTMLAnchorElement) => {
     const version = versionOf(link);
     track('download_click', { ...pageEntity(), props: { version } });
-    remember(data.modId, version);
     markDone(root, data, doc);
   };
 
@@ -166,22 +136,5 @@ export function initDownloads(root: HTMLElement, data: ModPageData, doc: Documen
   sheet.addEventListener('close', () => {
     pending = null;
     if (progress) progress.textContent = '';
-  });
-}
-
-/** «Did v1.2 work in your game? Report» during the 24 h after a download from this browser. */
-export function initCompatPrompt(data: ModPageData, now: number = Date.now()): void {
-  const last = lastDownload(data.modId);
-  if (!last || !data.latestVersion) return;
-  const age = now - last.at;
-  if (age < PROMPT_DELAY_MS || age > PROMPT_WINDOW_MS) return;
-  const key = PROMPTED_KEY(data.modId, last.version);
-  if (storage()?.getItem(key)) return;
-  storage()?.setItem(key, '1');
-  track('compat_prompt_shown', { ...pageEntity(), props: { version: last.version } });
-  toast(fill(data.messages.compatPrompt, { version: last.version }), {
-    label: data.messages.compatPromptAction,
-    href: '#field-report',
-    onClick: () => track('compat_prompt_answered', { ...pageEntity(), props: { version: last.version } }),
   });
 }

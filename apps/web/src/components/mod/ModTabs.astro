@@ -1,12 +1,11 @@
 ---
 /**
- * Tab bar of the mod pages (research/03 §6.3): Overview · Field notes · Versions (n) · Reviews (n)
- * · Comments (n). Links (real pages and anchors of the overview), `aria-current="page"` on the
- * active page, horizontal scroll on phones.
+ * Tab bar of the mod pages: Description · Versions (n) · Comments (n) · Reviews (n). Plain links
+ * (real pages and anchors of the overview), `aria-current="page"` on the active page, a hairline
+ * under the row with the current tab underlined in red; horizontal scroll on phones.
  */
 import { formatNumber } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
-import { tabClasses, tabListClasses } from '@sotf/ui/tabs';
 import { href } from '../../lib/i18n.ts';
 import type { ModDetailDTO } from './data.ts';
 import { reviewsPagePath, versionsPagePath } from './format.ts';
@@ -23,8 +22,7 @@ const { mod, active, versionsCount } = Astro.props;
 const locale = Astro.locals.locale;
 const overview = href(mod.canonicalPath, locale);
 const tabs: Array<{ key: string; label: string; count?: number | null; href: string; current: boolean }> = [
-  { key: 'overview', label: m.mod_tab_overview(), href: overview, current: active === 'overview' },
-  { key: 'field-notes', label: m.common_term_field_notes(), href: `${overview}#field-notes`, current: false },
+  { key: 'overview', label: m.mod_tab_description(), href: overview, current: active === 'overview' },
   {
     key: 'versions',
     label: m.mod_tab_versions(),
@@ -32,6 +30,7 @@ const tabs: Array<{ key: string; label: string; count?: number | null; href: str
     href: href(versionsPagePath(mod), locale),
     current: active === 'versions',
   },
+  { key: 'comments', label: m.mod_tab_comments(), count: mod.commentsCount, href: `${overview}#comments`, current: false },
   {
     key: 'reviews',
     label: m.mod_tab_reviews(),
@@ -39,41 +38,33 @@ const tabs: Array<{ key: string; label: string; count?: number | null; href: str
     href: href(reviewsPagePath(mod), locale),
     current: active === 'reviews',
   },
-  { key: 'comments', label: m.mod_tab_comments(), count: mod.commentsCount, href: `${overview}#comments`, current: false },
 ];
-const indicator = 'loc-host loc-frame [--loc-pip-y:-4px]';
-// Phones: a segmented control (pill on the current segment) instead of the Locator underline.
-const segment =
-  'max-md:h-10 max-md:rounded-lg max-md:px-3.5 max-md:text-[0.9375rem] max-md:active:bg-fg/8 ' +
-  'max-md:aria-[current=page]:bg-surface max-md:aria-[current=page]:text-fg max-md:aria-[current=page]:shadow-[0_1px_0_0_var(--color-border-strong),0_0_0_1px_var(--color-border-strong)] ' +
-  'max-md:aria-[current=page]:[--loc-o:0]! max-md:aria-[current=page]:[--loc-pip-o:0]! max-md:hover:[--loc-o:0]! max-md:hover:[--loc-pip-o:0]!';
+const TAB =
+  'relative inline-flex h-11 items-center gap-1.5 whitespace-nowrap px-3 text-[0.9375rem] font-medium text-fg-muted max-md:px-2.5 max-md:text-sm ' +
+  'hover:text-fg aria-[current=page]:text-fg ' +
+  'after:absolute after:inset-x-3 max-md:after:inset-x-2.5 after:-bottom-px after:h-0.5 after:rounded-full after:bg-primary after:opacity-0 aria-[current=page]:after:opacity-100 ' +
+  'focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus';
 ---
 
 <nav
   aria-label={m.mod_tabs_label()}
   data-mod-tabs
-  class="max-md:sticky max-md:top-[4.0625rem] max-md:z-(--z-raised) max-md:-mx-4 max-md:mt-5 max-md:bg-bg/92 max-md:px-3 max-md:py-2 max-md:supports-[backdrop-filter]:bg-bg/80 max-md:supports-[backdrop-filter]:backdrop-blur-md md:mt-8"
+  class="mt-6 border-b border-border max-md:sticky max-md:top-[4.0625rem] max-md:z-(--z-raised) max-md:-mx-4 max-md:bg-bg/95 max-md:px-1 max-md:supports-[backdrop-filter]:bg-bg/85 max-md:supports-[backdrop-filter]:backdrop-blur-md md:mt-8"
 >
-  <ul
-    class:list={[
-      tabListClasses,
-      'max-md:snap-x max-md:snap-proximity max-md:gap-1 max-md:rounded-xl max-md:border max-md:border-border max-md:bg-raised max-md:p-1 max-md:mask-none',
-    ]}
-  >
+  <ul class="-mx-3 flex overflow-x-auto overscroll-x-contain [scrollbar-width:none] max-md:mx-0 max-md:snap-x max-md:snap-proximity [&::-webkit-scrollbar]:hidden">
     {
       tabs.map((tab) => (
-        <li class="flex max-md:snap-center">
+        <li class="flex shrink-0 max-md:snap-center">
           <a
             href={tab.href}
-            data-loc-pip
             data-tab-key={tab.key}
             data-tab-page={tab.key === 'overview' || tab.key === 'versions' || tab.key === 'reviews' ? '' : undefined}
             aria-current={tab.current ? 'page' : undefined}
-            class:list={[tabClasses, indicator, segment]}
+            class={TAB}
           >
             {tab.label}
-            {typeof tab.count === 'number' && (
-              <span class="rounded-full bg-fg/8 px-1.5 text-xs tabular-nums text-fg-muted">{formatNumber(locale, tab.count)}</span>
+            {typeof tab.count === 'number' && tab.count > 0 && (
+              <span class="text-xs tabular-nums text-fg-subtle">{formatNumber(locale, tab.count)}</span>
             )}
           </a>
         </li>

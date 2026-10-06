@@ -1,27 +1,25 @@
 ---
 /**
- * Status banners of a mod (T0-08): in review, unlisted, archived (with successor), broken on the
- * current build, possibly outdated, adult content. The API decides which apply (`mod.banners`);
- * each banner pairs an icon with text (status is never colour alone) and offers the next step.
+ * Status banners of a mod: pending approval, unlisted, archived (with successor), adult content.
+ * The API decides which apply (`mod.banners`); each banner pairs an icon with text (status is
+ * never colour alone). Compatibility banners are gone with the compatibility reports.
  */
 import { m } from '@sotf/i18n/messages';
 import { Icon } from '@sotf/ui/icons';
-import { Archive, CircleAlert, EyeOff, Hourglass, Info, TriangleAlert } from 'lucide-react';
+import { Archive, EyeOff, Hourglass, Info } from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
 import type { ModDetailDTO } from './data.ts';
 
 interface Props {
   mod: ModDetailDTO;
-  /** Localised overview path (the field-report anchor lives there). */
-  overviewHref: string;
+  /** Localised overview path. */
+  overviewHref?: string;
 }
 
-const { mod, overviewHref } = Astro.props;
-const reportHref = `${overviewHref}#field-report`;
+const { mod } = Astro.props;
 const locale = Astro.locals.locale;
-const build = mod.compatCurrent.gameBuild?.label ?? null;
 
-type Tone = 'info' | 'warning' | 'danger' | 'signal';
+type Tone = 'info' | 'warning' | 'danger';
 interface Item {
   key: string;
   tone: Tone;
@@ -37,7 +35,7 @@ for (const banner of mod.banners) {
     case 'pending_review':
       items.push({
         key: banner,
-        tone: 'signal',
+        tone: 'warning',
         icon: Hourglass,
         title: m.mod_banner_pending_title(),
         text: m.mod_banner_pending_text(),
@@ -66,26 +64,6 @@ for (const banner of mod.banners) {
           : {}),
       });
       break;
-    case 'broken_on_current':
-      items.push({
-        key: banner,
-        tone: 'danger',
-        icon: CircleAlert,
-        title: m.mod_banner_broken_title(),
-        text: build ? m.common_compat_broken({ build }) : m.mod_banner_broken_text(),
-        action: { label: m.mod_banner_broken_action(), href: reportHref },
-      });
-      break;
-    case 'possibly_outdated':
-      items.push({
-        key: banner,
-        tone: 'warning',
-        icon: TriangleAlert,
-        title: m.mod_banner_outdated_title(),
-        text: m.mod_banner_outdated_text(),
-        action: { label: m.mod_banner_outdated_action(), href: reportHref },
-      });
-      break;
     case 'nsfw':
       items.push({
         key: banner,
@@ -99,8 +77,7 @@ for (const banner of mod.banners) {
 }
 
 const toneClasses: Record<Tone, { box: string; icon: string }> = {
-  info: { box: 'border-border bg-raised', icon: 'text-signal' },
-  signal: { box: 'border-signal/40 bg-signal-soft', icon: 'text-signal' },
+  info: { box: 'border-border bg-surface', icon: 'text-fg-muted' },
   warning: { box: 'border-warning/40 bg-warning-soft', icon: 'text-warning' },
   danger: { box: 'border-danger/40 bg-danger-soft', icon: 'text-danger' },
 };
@@ -112,7 +89,7 @@ const toneClasses: Record<Tone, { box: string; icon: string }> = {
       {items.map((item) => (
         <li
           data-mod-banner={item.key}
-          class:list={['flex items-start gap-3 rounded-lg border p-3 text-sm text-fg md:items-center', toneClasses[item.tone].box]}
+          class:list={['flex items-start gap-3 rounded-md border px-3 py-2.5 text-sm text-fg md:items-center', toneClasses[item.tone].box]}
         >
           <span class:list={['mt-0.5 flex md:mt-0', toneClasses[item.tone].icon]}>
             <Icon icon={item.icon} size={18} />

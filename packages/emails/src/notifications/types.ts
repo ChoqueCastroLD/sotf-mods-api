@@ -52,13 +52,6 @@ export interface CreatorWeeklyPayload {
     comments: number;
     reviews: number;
   }>;
-  highlights: Array<{
-    kind: 'milestone' | 'award' | 'badge';
-    modName: string | null;
-    threshold: number | null;
-    awardKind: string | null;
-    badgeKey: string | null;
-  }>;
   basecampUrl: string;
   unsubscribe: UnsubscribeLinks;
 }

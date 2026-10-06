@@ -1,8 +1,8 @@
 ---
 /**
- * `/mods/:user/:slug/versions` (WP-62, PLAN §4.2): every version in semver order — the version
- * table (size, game/loader, downloads, reports, direct download) and the full field notes
- * (changelogs) with an anchor per version. SSR, edge-cached with `mod:{id}`.
+ * `/mods/:user/:slug/versions` (PLAN §4.2): every version in semver order: the version table
+ * (size, game/loader, downloads, direct download) and the full changelog with an anchor per
+ * version. SSR, edge-cached with `mod:{id}`.
  */
 import { m } from '@sotf/i18n/messages';
 import { VersionTable } from '@sotf/ui/domain';
@@ -41,7 +41,7 @@ const latest = versions.find((version) => version.isLatest) ?? versions[0] ?? nu
   seo={{
     title: subpageTitle(label, mod),
     description: truncate(
-      m.mod_versions_meta_description({ name: mod.name, count: versions.length, version: latest?.version ?? '—' }),
+      m.mod_versions_meta_description({ name: mod.name, count: versions.length, version: latest?.version ?? '-' }),
       160,
     ),
     path: versionsPagePath(mod),
@@ -69,8 +69,8 @@ const latest = versions.find((version) => version.isLatest) ?? versions[0] ?? nu
     }
   </section>
 
-  <section id="field-notes" aria-labelledby="field-notes-title" class="grid gap-4 max-md:hidden">
-    <h2 id="field-notes-title" class={SECTION_TITLE_CLASSES}>{m.common_term_field_notes()}</h2>
+  <section id="changelog" aria-labelledby="changelog-title" class="grid gap-4 max-md:hidden">
+    <h2 id="changelog-title" class={SECTION_TITLE_CLASSES}>{m.mod_changelog_title()}</h2>
     {
       versions.length > 0 ? (
         <VersionTimeline mod={mod} versions={versions} />

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Jams_Submit_DoneInputs */
 
 const en_jams_submit_done = /** @type {(inputs: Jams_Submit_DoneInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Entry submitted. Good luck!`)
+	return /** @type {LocalizedString} */ (`Entry submitted.`)
 };
 
 const es_jams_submit_done = /** @type {(inputs: Jams_Submit_DoneInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Participación enviada. ¡Suerte!`)
+	return /** @type {LocalizedString} */ (`Participación enviada.`)
 };
 
 const de_jams_submit_done = /** @type {(inputs: Jams_Submit_DoneInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Beitrag eingereicht. Viel Erfolg!`)
+	return /** @type {LocalizedString} */ (`Beitrag eingereicht.`)
 };
 
 const fr_jams_submit_done = /** @type {(inputs: Jams_Submit_DoneInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Participation envoyée. Bonne chance !`)
+	return /** @type {LocalizedString} */ (`Participation envoyée.`)
 };
 
 const it_jams_submit_done = /** @type {(inputs: Jams_Submit_DoneInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Iscrizione inviata. In bocca al lupo!`)
+	return /** @type {LocalizedString} */ (`Iscrizione inviata.`)
 };
 
 const nl_jams_submit_done = /** @type {(inputs: Jams_Submit_DoneInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Inzending ingediend. Succes!`)
+	return /** @type {LocalizedString} */ (`Inzending ingediend.`)
 };
 
 const pl_jams_submit_done = /** @type {(inputs: Jams_Submit_DoneInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zgłoszenie wysłane. Powodzenia!`)
+	return /** @type {LocalizedString} */ (`Zgłoszenie wysłane.`)
 };
 
 const pt_jams_submit_done = /** @type {(inputs: Jams_Submit_DoneInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Inscrição enviada. Boa sorte!`)
+	return /** @type {LocalizedString} */ (`Inscrição enviada.`)
 };
 
 const ru_jams_submit_done = /** @type {(inputs: Jams_Submit_DoneInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Работа отправлена. Удачи!`)
+	return /** @type {LocalizedString} */ (`Работа отправлена.`)
 };
 
 const sv_jams_submit_done = /** @type {(inputs: Jams_Submit_DoneInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bidraget är inskickat. Lycka till!`)
+	return /** @type {LocalizedString} */ (`Bidraget är inskickat.`)
 };
 
 const tr_jams_submit_done = /** @type {(inputs: Jams_Submit_DoneInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Başvuru gönderildi. Bol şans!`)
+	return /** @type {LocalizedString} */ (`Başvuru gönderildi.`)
 };
 
 const zh_jams_submit_done = /** @type {(inputs: Jams_Submit_DoneInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`作品已提交，祝你好运！`)
+	return /** @type {LocalizedString} */ (`作品已提交。`)
 };
 
 const ja_jams_submit_done = /** @type {(inputs: Jams_Submit_DoneInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`応募しました。がんばってください！`)
+	return /** @type {LocalizedString} */ (`応募しました。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Entry submitted. Good luck!" |
+* | "Entry submitted." |
 *
 * @param {Jams_Submit_DoneInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

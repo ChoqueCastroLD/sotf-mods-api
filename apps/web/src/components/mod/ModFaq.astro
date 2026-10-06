@@ -1,9 +1,7 @@
 ---
 /**
- * Per-mod FAQ (PLAN §8.7 GEO «FAQ por mod generada a partir de los hechos», WP-61 templates):
- * questions answered from the mod's declared metadata and its field-report aggregate, fully
- * visible (not collapsed) so readers and answer engines get exactly the text of the `FAQPage`
- * JSON-LD the page emits with {@link modFaqJsonLd}.
+ * Questions and answers the author wrote for this mod (plain list, all visible, the same text the
+ * `FAQPage` JSON-LD carries). Nothing is generated: without author entries the section is absent.
  */
 import { m } from '@sotf/i18n/messages';
 import type { FaqEntry } from '../../lib/seo/faq.ts';
@@ -18,13 +16,13 @@ const { items } = Astro.props;
 
 {
   items.length > 0 && (
-    <section id="faq" data-fold="closed" aria-labelledby="faq-title" class="grid scroll-mt-24 gap-4">
+    <section id="faq" aria-labelledby="faq-title" class="grid scroll-mt-24 gap-4">
       <h2 id="faq-title" class={SECTION_TITLE_CLASSES}>
-        {m.content_install_faq_title()}
+        {m.mod_faq_title()}
       </h2>
-      <dl class="grid gap-3">
+      <dl class="grid divide-y divide-border">
         {items.map((item) => (
-          <div id={item.id} class="scroll-mt-24 rounded-lg border border-border bg-surface p-4 sm:p-5">
+          <div id={item.id} class="scroll-mt-24 py-4 first:pt-0 last:pb-0">
             <dt class="font-semibold text-balance text-fg">{item.question}</dt>
             <dd class="mt-1.5 text-pretty text-fg-muted">{item.answer}</dd>
           </div>

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Jams_How_4_TitleInputs */
 
 const en_jams_how_4_title = /** @type {(inputs: Jams_How_4_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Podium`)
+	return /** @type {LocalizedString} */ (`Results`)
 };
 
 const es_jams_how_4_title = /** @type {(inputs: Jams_How_4_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Podio`)
+	return /** @type {LocalizedString} */ (`Resultados`)
 };
 
 const de_jams_how_4_title = /** @type {(inputs: Jams_How_4_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Podium`)
+	return /** @type {LocalizedString} */ (`Ergebnisse`)
 };
 
 const fr_jams_how_4_title = /** @type {(inputs: Jams_How_4_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Podium`)
+	return /** @type {LocalizedString} */ (`Résultats`)
 };
 
 const it_jams_how_4_title = /** @type {(inputs: Jams_How_4_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Podio`)
+	return /** @type {LocalizedString} */ (`Risultati`)
 };
 
 const nl_jams_how_4_title = /** @type {(inputs: Jams_How_4_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Podium`)
+	return /** @type {LocalizedString} */ (`Resultaten`)
 };
 
 const pl_jams_how_4_title = /** @type {(inputs: Jams_How_4_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Podium`)
+	return /** @type {LocalizedString} */ (`Wyniki`)
 };
 
 const pt_jams_how_4_title = /** @type {(inputs: Jams_How_4_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pódio`)
+	return /** @type {LocalizedString} */ (`Resultados`)
 };
 
 const ru_jams_how_4_title = /** @type {(inputs: Jams_How_4_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Пьедестал`)
+	return /** @type {LocalizedString} */ (`Результаты`)
 };
 
 const sv_jams_how_4_title = /** @type {(inputs: Jams_How_4_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Prispall`)
+	return /** @type {LocalizedString} */ (`Resultat`)
 };
 
 const tr_jams_how_4_title = /** @type {(inputs: Jams_How_4_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Podyum`)
+	return /** @type {LocalizedString} */ (`Sonuçlar`)
 };
 
 const zh_jams_how_4_title = /** @type {(inputs: Jams_How_4_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`领奖台`)
+	return /** @type {LocalizedString} */ (`结果`)
 };
 
 const ja_jams_how_4_title = /** @type {(inputs: Jams_How_4_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`表彰台`)
+	return /** @type {LocalizedString} */ (`結果`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Podium" |
+* | "Results" |
 *
 * @param {Jams_How_4_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

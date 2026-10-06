@@ -10,7 +10,6 @@ export const EDITOR_TABS = [
   'knowledge',
   'team',
   'compat',
-  'bundles',
   'settings',
 ] as const;
 export type EditorTab = (typeof EDITOR_TABS)[number];

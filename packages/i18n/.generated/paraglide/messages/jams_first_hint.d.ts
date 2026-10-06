@@ -3,7 +3,7 @@ export type Jams_First_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "Open your signal settings so jam updates reach you in the app or by email, then follow the jam the moment it is announced." |
+* | "Turn on notifications so jam updates reach you in the app or by email, then follow the jam when it is announced." |
 *
 * @param {Jams_First_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

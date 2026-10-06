@@ -3,7 +3,7 @@ export type Shell_Offline_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "You’re off the grid" |
+* | "You are offline" |
 *
 * @param {Shell_Offline_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

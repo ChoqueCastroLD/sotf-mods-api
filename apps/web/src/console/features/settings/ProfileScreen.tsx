@@ -1,12 +1,10 @@
 /**
- * Settings → Profile (T0-15, research/03 §6.11): avatar (crop → WebP), banner (generated terrain
- * with «Reroll terrain», or an own image with crop), display name, bio (Markdown, 500), links and
- * up to three pinned mods, and the badges featured in the profile header (`PATCH /me/badges/featured`).
- * Each card saves on its own (`PATCH /me/profile`) with a toast; photos
- * apply as soon as they are uploaded. The handle is shown read-only (immutable in T0).
+ * Settings → Profile (T0-15, research/03 §6.11): avatar (crop → WebP), display name, bio
+ * (Markdown, 500), links and up to three pinned mods. Each card saves on its own
+ * (`PATCH /me/profile`) with a toast; the avatar applies as soon as it is uploaded. The handle is
+ * shown read-only (immutable in T0).
  */
 
-import { bannerSvg } from '@sotf/brand/banner';
 import { localizePath } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import { Avatar } from '@sotf/ui/avatar';
@@ -18,7 +16,7 @@ import { Input } from '@sotf/ui/input';
 import { Select } from '@sotf/ui/select';
 import { Textarea } from '@sotf/ui/textarea';
 import { useQuery, useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
-import { Dices, ExternalLink, ImagePlus, Mountain, Plus, Trash2, Upload } from 'lucide-react';
+import { ExternalLink, Plus, Trash2, Upload } from 'lucide-react';
 import { type ChangeEvent, useMemo, useRef, useState } from 'react';
 import { useMe } from '../../hooks/use-me.ts';
 import { activeLocale } from '../../lib/messages.ts';
@@ -34,7 +32,6 @@ import {
   settingsKeys,
 } from './api.ts';
 import { failureDescription } from './errors.ts';
-import { FeaturedBadgesCard } from './FeaturedBadgesCard.tsx';
 import { type CropResult, ImageCropDialog } from './ImageCropDialog.tsx';
 import { SettingsCard, SettingsPage } from './layout.tsx';
 import { type ImagePurpose, ImageUploadFailure, SOURCE_LIMITS, uploadImage, validateSource } from './upload.ts';
@@ -79,16 +76,6 @@ function isHttpUrl(value: string): boolean {
   } catch {
     return false;
   }
-}
-
-function terrainUri(userId: number, seed: number | null): string {
-  return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(bannerSvg(userId, seed, { width: 800, height: 200 }))}`;
-}
-
-function randomSeed(): number {
-  const values = new Uint32Array(1);
-  crypto.getRandomValues(values);
-  return (values[0] ?? 1) % 2_147_483_647;
 }
 
 function uploadErrorText(error: unknown, purpose: ImagePurpose): string {
@@ -162,16 +149,6 @@ export function ProfileScreen() {
         onRetry={() => void mods.refetch()}
         save={save}
       />
-      <FeaturedBadgesCard
-        key={`badges-${profile.featuredBadgeKeys.join(',')}`}
-        handle={handle}
-        featured={profile.featuredBadgeKeys}
-        onSaved={(keys) =>
-          queryClient.setQueryData<SelfProfile>(settingsKeys.profile(handle), (current) =>
-            current ? { ...current, featuredBadgeKeys: keys } : current,
-          )
-        }
-      />
     </SettingsPage>
   );
 }
@@ -190,13 +167,9 @@ function PhotoCard({
   store: (next: SelfProfile) => void;
 }) {
   const avatarInput = useRef<HTMLInputElement>(null);
-  const bannerInput = useRef<HTMLInputElement>(null);
   const [cropping, setCropping] = useState<{ file: File; purpose: ImagePurpose } | null>(null);
   const [progress, setProgress] = useState<{ purpose: ImagePurpose; ratio: number } | null>(null);
-  const [seed, setSeed] = useState<number | null>(profile.bannerSeed);
-  const [savingTerrain, setSavingTerrain] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const terrainDirty = profile.banner === null && seed !== profile.bannerSeed;
 
   const pick = (purpose: ImagePurpose) => (event: ChangeEvent<HTMLInputElement>) => {
     const file = event.currentTarget.files?.[0];
@@ -217,9 +190,8 @@ function PhotoCard({
     setProgress({ purpose, ratio: 0 });
     try {
       const uploadId = await uploadImage(file, purpose, (ratio) => setProgress({ purpose, ratio }));
-      const body: ProfileUpdate = purpose === 'avatar' ? { avatarUploadId: uploadId } : { bannerUploadId: uploadId };
-      store(await settingsApi.updateProfile(body));
-      notify.success(purpose === 'avatar' ? m.settings_avatar_saved() : m.settings_banner_saved());
+      store(await settingsApi.updateProfile({ avatarUploadId: uploadId }));
+      notify.success(m.settings_avatar_saved());
     } catch (failure) {
       const text = uploadErrorText(failure, purpose);
       setError(text);
@@ -231,136 +203,62 @@ function PhotoCard({
   };
 
   const removeAvatar = () => void save({ avatarUploadId: null }, m.settings_avatar_removed());
-  const applyTerrain = async () => {
-    setSavingTerrain(true);
-    await save({ bannerUploadId: null, bannerSeed: seed }, m.settings_banner_terrain_saved());
-    setSavingTerrain(false);
-  };
-
   const busy = progress !== null;
-  const bannerSrc = profile.banner && seed === profile.bannerSeed ? profile.banner.url : terrainUri(userId, seed);
 
   return (
-    <SettingsCard id="profile-photos" title={m.settings_photos_title()} description={m.settings_photos_text()}>
-      <div className="grid gap-3">
-        <div className="relative overflow-hidden rounded-lg border border-border">
-          <img src={bannerSrc} alt="" width={800} height={200} className="aspect-[4/1] w-full object-cover" />
-          <div className="absolute start-4 -bottom-0 translate-y-1/3">
-            <Avatar
-              name={profile.displayName}
-              id={userId}
-              src={profile.avatar?.url ?? null}
-              size={96}
-              className="ring-4 ring-surface"
-            />
+    <SettingsCard id="profile-photos" title={m.settings_avatar_label()} description={m.settings_photos_text()}>
+      <div className="flex flex-wrap items-center gap-4">
+        <Avatar name={profile.displayName} id={userId} src={profile.avatar?.url ?? null} size={96} />
+        <div className="grid gap-2">
+          <div className="flex flex-wrap gap-2">
+            <Button
+              variant="secondary"
+              size="sm"
+              icon={<Icon icon={Upload} size={16} />}
+              disabled={busy}
+              onClick={() => avatarInput.current?.click()}
+            >
+              {profile.avatar ? m.settings_avatar_change() : m.settings_avatar_upload()}
+            </Button>
+            {profile.avatar ? (
+              <Button
+                variant="ghost"
+                size="sm"
+                icon={<Icon icon={Trash2} size={16} />}
+                disabled={busy}
+                onClick={removeAvatar}
+              >
+                {m.settings_avatar_remove()}
+              </Button>
+            ) : null}
           </div>
-        </div>
-        <div className="h-6" aria-hidden="true" />
-        {progress ? (
-          <div className="grid gap-1" role="status">
-            <span className="text-sm text-fg-muted">
-              {progress.purpose === 'avatar' ? m.settings_avatar_uploading() : m.settings_banner_uploading()}
-            </span>
-            <progress
-              className="h-2 w-full overflow-hidden rounded-full accent-(--color-signal)"
-              value={Math.round(progress.ratio * 100)}
-              max={100}
-            />
-          </div>
-        ) : null}
-        {error ? (
-          <p role="alert" className="text-sm text-danger">
-            {error}
-          </p>
-        ) : null}
-        <div className="grid gap-4 md:grid-cols-2">
-          <fieldset className="grid content-start gap-2">
-            <legend className="mb-2 text-sm font-semibold text-fg">{m.settings_avatar_label()}</legend>
-            <div className="flex flex-wrap gap-2">
-              <Button
-                variant="secondary"
-                size="sm"
-                icon={<Icon icon={Upload} size={16} />}
-                disabled={busy}
-                onClick={() => avatarInput.current?.click()}
-              >
-                {profile.avatar ? m.settings_avatar_change() : m.settings_avatar_upload()}
-              </Button>
-              {profile.avatar ? (
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  icon={<Icon icon={Trash2} size={16} />}
-                  disabled={busy}
-                  onClick={removeAvatar}
-                >
-                  {m.settings_avatar_remove()}
-                </Button>
-              ) : null}
-            </div>
-            <p className="text-xs text-fg-muted">{m.settings_avatar_hint({ max: 5 })}</p>
-            <input
-              ref={avatarInput}
-              type="file"
-              accept={SOURCE_LIMITS.avatar.types.join(',')}
-              className="sr-only"
-              tabIndex={-1}
-              aria-hidden="true"
-              onChange={pick('avatar')}
-            />
-          </fieldset>
-          <fieldset className="grid content-start gap-2">
-            <legend className="mb-2 text-sm font-semibold text-fg">{m.settings_banner_label()}</legend>
-            <div className="flex flex-wrap gap-2">
-              <Button
-                variant="secondary"
-                size="sm"
-                icon={<Icon icon={Dices} size={16} />}
-                disabled={busy}
-                onClick={() => setSeed(randomSeed())}
-              >
-                {m.settings_banner_reroll()}
-              </Button>
-              <Button
-                variant="secondary"
-                size="sm"
-                icon={<Icon icon={ImagePlus} size={16} />}
-                disabled={busy}
-                onClick={() => bannerInput.current?.click()}
-              >
-                {m.settings_banner_upload()}
-              </Button>
-              {profile.banner || terrainDirty ? (
-                <Button
-                  size="sm"
-                  icon={<Icon icon={Mountain} size={16} />}
-                  disabled={busy}
-                  loading={savingTerrain}
-                  onClick={() => void applyTerrain()}
-                >
-                  {m.settings_banner_use_terrain()}
-                </Button>
-              ) : null}
-            </div>
-            <p className="text-xs text-fg-muted">
-              {profile.banner && seed === profile.bannerSeed
-                ? m.settings_banner_custom_hint()
-                : terrainDirty
-                  ? m.settings_banner_reroll_hint()
-                  : m.settings_banner_terrain_hint()}
-            </p>
-            <input
-              ref={bannerInput}
-              type="file"
-              accept={SOURCE_LIMITS.banner.types.join(',')}
-              className="sr-only"
-              tabIndex={-1}
-              aria-hidden="true"
-              onChange={pick('banner')}
-            />
-          </fieldset>
+          <p className="text-xs text-fg-muted">{m.settings_avatar_hint({ max: 5 })}</p>
+          <input
+            ref={avatarInput}
+            type="file"
+            accept={SOURCE_LIMITS.avatar.types.join(',')}
+            className="sr-only"
+            tabIndex={-1}
+            aria-hidden="true"
+            onChange={pick('avatar')}
+          />
         </div>
       </div>
+      {progress ? (
+        <div className="grid gap-1" role="status">
+          <span className="text-sm text-fg-muted">{m.settings_avatar_uploading()}</span>
+          <progress
+            className="h-2 w-full overflow-hidden rounded-full accent-primary"
+            value={Math.round(progress.ratio * 100)}
+            max={100}
+          />
+        </div>
+      ) : null}
+      {error ? (
+        <p role="alert" className="text-sm text-danger">
+          {error}
+        </p>
+      ) : null}
       <ImageCropDialog
         file={cropping?.file ?? null}
         purpose={cropping?.purpose ?? 'avatar'}

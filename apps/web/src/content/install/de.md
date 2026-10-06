@@ -1,6 +1,6 @@
 ---
 title: Mods für Sons of the Forest installieren
-seoTitle: Sons-of-the-Forest-Mods installieren (2026) – RedLoader-Anleitung
+seoTitle: Sons-of-the-Forest-Mods installieren (2026): RedLoader-Anleitung
 description: RedLoader mit RedManager installieren, Mods in den Ordner Mods legen und im Spiel prüfen. Schritt-für-Schritt-Anleitung mit Lösungen für Virenwarnungen und Patches.
 tldr: Installiere RedLoader, den Mod-Loader, mit RedManager (oder von Hand), leg jeden Mod in den Ordner Mods in deinem Spielverzeichnis und starte das Spiel. RedManager installiert jeden Mod von SOTF Mods mit einem Klick. Das dauert etwa drei Minuten; die Anleitung unten deckt jeden Schritt und die üblichen Probleme ab.
 anchors: [check, redloader, mods, verify, antivirus, bepinex, update, dedicated, troubleshooting, oneclick]
@@ -27,7 +27,7 @@ faq:
   - q: Wo sind meine Spieldateien?
     a: Klicke in Steam mit der rechten Maustaste auf Sons of the Forest, wähle Verwalten und dann Lokale Dateien durchsuchen. Der Ordner, der sich öffnet, enthält SonsOfTheForest.exe; dort kommen RedLoader und deine Mods hin.
   - q: Funktionieren Mods nach einem Spielupdate?
-    a: Nicht immer. Ein Spielpatch kann RedLoader oder einzelne Mods kaputt machen, bis sie aktualisiert werden. Patch Radar zeigt den aktuellen Spiel-Build, den Status von RedLoader und welche beliebten Mods Spieler als funktionsfähig bestätigt haben.
+    a: Nicht immer. Ein Spielpatch kann RedLoader oder einzelne Mods kaputt machen, bis sie aktualisiert werden. Prüfe auf der Mod-Seite, in den Kommentaren und Bewertungen, ob der Mod mit der aktuellen Spielversion läuft.
 ---
 
 # Spiel prüfen
@@ -39,7 +39,7 @@ Finde deinen Spielordner: Rechtsklick auf **Sons of the Forest** in Steam → **
 `C:\Program Files (x86)\Steam\steamapps\common\Sons Of The Forest`
 
 > [!TIP]
-> Gerade ein Spielupdate gehabt? Schau zuerst in den [Patch Radar](/patch-radar): Er zeigt, ob RedLoader und die beliebten Mods schon mit dem neuen Build funktionieren.
+> Gerade ein Spielupdate gehabt? Prüfe auf der Mod-Seite, in den Kommentaren und Bewertungen, ob der Mod schon mit der neuen Version funktioniert.
 
 # RedLoader installieren
 
@@ -94,7 +94,7 @@ Bevor du einer Datei vertraust:
 - **Vergleiche die Prüfsumme.** Jede Version auf SOTF Mods zeigt den SHA-256 der Datei. Führe unter Windows in der PowerShell `Get-FileHash .\datei.zip` aus (oder `certutil -hashfile datei.zip SHA256`) und vergleiche das Ergebnis.
 - **Sieh dir den Scan an.** Jede veröffentlichte Version wird mit VirusTotal gescannt; der Bericht ist auf der Versionsseite verlinkt. Du kannst die Datei auch selbst bei [VirusTotal](https://www.virustotal.com) hochladen.
 
-Passt alles, kannst du die Datei aus der Quarantäne holen und eine Ausnahme **nur für den Spielordner** anlegen. Schalte deinen Virenschutz nie ganz ab. Wirkt etwas verdächtig, melde den Mod über seine Seite: Die Ranger prüfen Meldungen schnell.
+Passt alles, kannst du die Datei aus der Quarantäne holen und eine Ausnahme **nur für den Spielordner** anlegen. Schalte deinen Virenschutz nie ganz ab. Wirkt etwas verdächtig, melde den Mod über seine Seite: Die Moderatoren prüfen Meldungen schnell.
 
 # BepInEx oder RedLoader?
 
@@ -107,7 +107,7 @@ SOTF Mods listet Mods für **RedLoader**. Mods für BepInEx (auf anderen Seiten 
 
 **Mod aktualisieren:** RedManager zeigt verfügbare Updates. Von Hand lädst du die neue Version herunter und überschreibst die alten Dateien. Lies vorher das Änderungsprotokoll: Manche Updates brauchen eine neue Bibliothek oder eine frische Konfiguration.
 
-**RedLoader aktualisieren:** Nutze RedManager oder entpacke das neue Release über das alte. Warte nach einem Spielpatch, bis der [Patch Radar](/patch-radar) zeigt, dass RedLoader mit dem neuen Build funktioniert.
+**RedLoader aktualisieren:** Nutze RedManager oder entpacke das neue Release über das alte. Wenn das Spiel nach einem Patch nicht mehr startet, warte auf ein neues RedLoader-Release.
 
 **Mod entfernen:** Lösche seine `.dll` und seinen Ordner aus `Mods`. Schau vorher auf die Mod-Seite: Manche Mods lassen sich nicht gefahrlos mitten im Spielstand entfernen.
 
@@ -131,7 +131,7 @@ RedLoader läuft nicht. Achte darauf, dass seine Dateien neben `SonsOfTheForest.
 
 ## Das Spiel stürzt beim Start ab oder schließt sich
 
-Das passiert meist nach einem Spielupdate. Sieh im [Patch Radar](/patch-radar) nach dem RedLoader-Status auf dem aktuellen Build. Um einen fehlerhaften Mod zu finden, nimm alle Mods aus `Mods` heraus und füge sie in kleinen Gruppen wieder hinzu.
+Das passiert meist nach einem Spielupdate. Suche bei den [RedLoader-Releases](https://github.com/ToniMacaroni/RedLoader/releases) nach einer Version, die den neuen Build unterstützt. Um einen fehlerhaften Mod zu finden, nimm alle Mods aus `Mods` heraus und füge sie in kleinen Gruppen wieder hinzu.
 
 ## Ein Mod fehlt in der Liste
 

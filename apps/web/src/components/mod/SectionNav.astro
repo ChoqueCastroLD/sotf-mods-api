@@ -1,41 +1,34 @@
 ---
 /**
- * Sticky segmented control that jumps between the sections of a long page on phones (builds and
- * kits): a pill scroller under the site header, the current section highlighted while scrolling
+ * Sticky tab strip that jumps between the sections of a long page on phones (builds): plain
+ * underlined links under the site header, the current section marked while scrolling
  * (`scripts/mod/section-nav.ts`, scroll-spy) and centred in the strip. Plain anchors, so it works
  * without JavaScript (only the highlight needs it). Hidden from `md` up.
  */
 interface Props {
   label: string;
   items: ReadonlyArray<{ id: string; label: string; count?: string | null }>;
-  /** Accent of the current pill: `blueprint` for builds. */
-  accent?: 'signal' | 'blueprint';
 }
 
-const { label, items, accent = 'signal' } = Astro.props;
+const { label, items } = Astro.props;
 ---
 
 <nav
   aria-label={label}
   data-section-nav
-  class="sticky top-[4.0625rem] z-(--z-raised) -mx-4 bg-bg/92 px-3 py-2 supports-[backdrop-filter]:bg-bg/80 supports-[backdrop-filter]:backdrop-blur-md md:hidden"
+  class="sticky top-[4.0625rem] z-(--z-raised) -mx-4 border-b border-border bg-bg/95 px-1 supports-[backdrop-filter]:bg-bg/85 supports-[backdrop-filter]:backdrop-blur-md md:hidden"
 >
-  <ul class="flex snap-x snap-proximity gap-1 overflow-x-auto overscroll-x-contain rounded-xl border border-border bg-raised p-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+  <ul class="flex snap-x snap-proximity overflow-x-auto overscroll-x-contain [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
     {
       items.map((item) => (
-        <li class="flex snap-center">
+        <li class="flex shrink-0 snap-center">
           <a
             href={`#${item.id}`}
             data-section-link={item.id}
-            class:list={[
-              'inline-flex h-10 shrink-0 items-center gap-1.5 rounded-lg px-3.5 text-[0.9375rem] font-medium whitespace-nowrap text-fg-muted select-none active:bg-fg/8',
-              'aria-[current=true]:bg-surface aria-[current=true]:text-fg aria-[current=true]:shadow-[0_0_0_1px_var(--color-border-strong)]',
-              accent === 'blueprint' && 'aria-[current=true]:shadow-[0_0_0_1px_var(--color-blueprint)]',
-              'focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus',
-            ]}
+            class="relative inline-flex h-11 items-center gap-1.5 whitespace-nowrap px-3 text-[0.9375rem] font-medium text-fg-muted select-none after:absolute after:inset-x-3 after:-bottom-px after:h-0.5 after:rounded-full after:bg-primary after:opacity-0 aria-[current=true]:text-fg aria-[current=true]:after:opacity-100 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"
           >
             {item.label}
-            {item.count && <span class="rounded-full bg-fg/8 px-1.5 text-xs tabular-nums text-fg-muted">{item.count}</span>}
+            {item.count && <span class="text-xs tabular-nums text-fg-subtle">{item.count}</span>}
           </a>
         </li>
       ))

@@ -1,10 +1,10 @@
 /**
- * Scopes of the palette (PLAN §7.9, research/03 §5.5): typed as prefixes — `mods:`, `builds:`,
- * `kits:`, `@creator`, `>` for actions, `ask:` / `?` for Scout (only offered when the API says it is available) — or picked with `Tab` / the chips. A typed prefix is
- * consumed into the scope chip, so the input only keeps the words.
+ * Scopes of the palette: typed as prefixes (`mods:`, `builds:`, `@user`, `>` for commands) or picked
+ * with `Tab` / the chips. A typed prefix is consumed into the scope chip, so the input only keeps
+ * the words.
  */
 
-export const SCOPES = ['all', 'mods', 'builds', 'kits', 'creators', 'actions', 'scout'] as const;
+export const SCOPES = ['all', 'mods', 'builds', 'users', 'actions'] as const;
 export type Scope = (typeof SCOPES)[number];
 
 export interface ParsedQuery {
@@ -17,10 +17,8 @@ export interface ParsedQuery {
 const WORD_PREFIXES: ReadonlyArray<readonly [RegExp, Scope]> = [
   [/^\s*(?:mods?|libs?|libraries):\s*/i, 'mods'],
   [/^\s*(?:builds?|blueprints?):\s*/i, 'builds'],
-  [/^\s*kits?:\s*/i, 'kits'],
-  [/^\s*(?:creators?|users?):\s*/i, 'creators'],
+  [/^\s*(?:creators?|users?):\s*/i, 'users'],
   [/^\s*(?:actions?|commands?):\s*/i, 'actions'],
-  [/^\s*(?:ask|scout):\s*/i, 'scout'],
 ];
 
 /** Detects a scope prefix at the start of the typed text. */
@@ -31,8 +29,7 @@ export function parseQuery(raw: string): ParsedQuery {
   }
   const trimmed = raw.trimStart();
   if (trimmed.startsWith('>')) return { scope: 'actions', text: trimmed.slice(1).trimStart() };
-  if (trimmed.startsWith('?')) return { scope: 'scout', text: trimmed.slice(1).trimStart() };
-  if (trimmed.startsWith('@')) return { scope: 'creators', text: trimmed.slice(1) };
+  if (trimmed.startsWith('@')) return { scope: 'users', text: trimmed.slice(1) };
   return { scope: null, text: raw };
 }
 

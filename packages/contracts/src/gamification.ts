@@ -409,7 +409,7 @@ export const gamificationEndpoints = {
     auth: 'session',
     body: FeaturedBadgesBody,
     response: FeaturedBadgesDTO,
-    errors: ['UNAUTHENTICATED'],
+    errors: ['UNAUTHENTICATED', 'GONE'],
     cache: cache.noStore,
     rateLimit: 'userWrite',
   }),

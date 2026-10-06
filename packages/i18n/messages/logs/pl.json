@@ -25,7 +25,7 @@
   "logs_err_archive": "Nie udało się odczytać tego archiwum.",
   "logs_err_network": "Nie można połączyć się z serwerem. Sprawdź połączenie i spróbuj ponownie.",
   "logs_err_turnstile": "Weryfikacja, że jesteś człowiekiem, nie powiodła się. Spróbuj ponownie.",
-  "logs_err_rate": "Zbyt wiele żądań — spróbuj ponownie za {seconds} s",
+  "logs_err_rate": "Zbyt wiele żądań. Spróbuj ponownie za {seconds} s",
   "logs_err_busy": "Udostępnianie logów jest teraz przeciążone. Spróbuj ponownie za kilka minut.",
   "logs_err_generic": "Coś poszło nie tak. Spróbuj ponownie.",
   "logs_done_title": "Twój log jest gotowy",

@@ -1,240 +1,32 @@
 ---
 /**
- * Landing `/` (T0-05, research/03 §5.10 and §6.1, PLAN §4.2, §4.5).
+ * `/`: the catalogue, like the original site's mods page. The default listing (newest mods) under a
+ * slim carousel of the week's top mods, with the site figures and «Mods of the week» beside it.
+ * Same view as `/mods` (see `components/explore/catalog-page.ts`): `/` is the canonical of the
+ * default listing and redirects any filtered or paged variant to `/mods…`.
  *
- * Sections, functional first (search and the catalogue are why people come): hero (search) ·
- * personal block (signed-in only) · Patch Radar band, here only while a breaking build is current ·
- * Find your next mod (category chips + sort tabs) · Start here · Blueprints · Legends (hall of
- * fame) · Field notes + Featured Kit / Mod of the Week · Patch Radar band (calm state) · Creator
- * spotlight · FAQ · footer (layout).
- *
- * - SSR, edge-cached 300 s with tags `home`, `list:*`, `compat` (60 s when a block failed, so
- *   it heals quickly). The HTML never depends on the visitor: the live figures are polled by
- *   the landing script and the personal block is filled in the browser.
- * - LCP = the `h1` (text, preloaded font, no hero image); every block below reserves its space
- *   or renders nothing; no ads in the first viewport (no ad slot on the landing yet, see
- *   docs/backlog/WP-53.md).
- * - JSON-LD: `WebSite` + `SearchAction`, `Organization` and `FAQPage` (the visible FAQ).
+ * - SSR, edge-cached (`home`, `list:mods`); 503 and not cached while the listing read fails.
+ * - One `h1` («Sons of the Forest Mods»), `WebSite` + `SearchAction`, `Organization` and the
+ *   `CollectionPage` + `ItemList` of the first page as JSON-LD.
  */
-
-import { formatCompactNumber, formatDate, formatNumber } from '@sotf/i18n';
-import { m } from '@sotf/i18n/messages';
-import AdUnit from '../components/ads/AdUnit.astro';
-import BlueprintCards from '../components/landing/BlueprintCards.tsx';
-import CreatorSpotlight from '../components/landing/CreatorSpotlight.astro';
-import { categoryNames, currentBuildLabel, currentLoader, loadLanding } from '../components/landing/data.ts';
-import type { DomainScopeProps } from '../components/landing/domain.tsx';
-import EmptyNote from '../components/landing/EmptyNote.astro';
-import Faq from '../components/landing/Faq.astro';
-import FeaturedKitCard from '../components/landing/FeaturedKitCard.tsx';
-import FieldNotes from '../components/landing/FieldNotes.astro';
-import HallOfFame from '../components/landing/HallOfFame.astro';
-import Hero from '../components/landing/Hero.astro';
-import { faqPageJsonLd } from '../components/landing/jsonld.ts';
-import ModOfWeekCard from '../components/landing/ModOfWeekCard.tsx';
-import PatchRadarBand from '../components/landing/PatchRadarBand.astro';
-import PersonalBlock from '../components/landing/PersonalBlock.astro';
-import PicksTabs from '../components/landing/PicksTabs.astro';
-import SectionError from '../components/landing/SectionError.astro';
-import SectionHeader from '../components/landing/SectionHeader.astro';
-import StartHere from '../components/landing/StartHere.astro';
-import { faqFor } from '../content/faq/index.ts';
-import BaseLayout from '../layouts/BaseLayout.astro';
+import CatalogPage from '../components/explore/CatalogPage.astro';
+import { loadCatalogPage } from '../components/explore/catalog-page.ts';
 import { setPageCache } from '../lib/cache/page.ts';
 import { EDGE_TTL, pageCache } from '../lib/cache/policy.ts';
-import { loadEnv } from '../lib/env.ts';
-import { href, toHtmlLang } from '../lib/i18n.ts';
 import { localizeCards } from '../lib/localize.ts';
 import { ensureLocals } from '../lib/request-context.ts';
-import { organizationJsonLd, websiteJsonLd } from '../lib/seo/jsonld.ts';
-
-/** Edge TTL while a block is in its error state: short, so the page heals within a minute. */
-const DEGRADED_TTL_SECONDS = 60;
 
 const locale = ensureLocals(Astro).locale;
-const siteUrl = loadEnv().siteUrl.replace(/\/+$/, '');
-const data = await localizeCards(await loadLanding(), locale);
+setPageCache(Astro, pageCache.custom(EDGE_TTL.list, ['home', 'list:mods']));
 
-setPageCache(
-  Astro,
-  pageCache.custom(data.degraded ? DEGRADED_TTL_SECONDS : EDGE_TTL.list, [
-    'home',
-    'list:mods',
-    'list:builds',
-    'list:kits',
-    'compat',
-  ]),
-);
+const page = await loadCatalogPage({ url: Astro.url, locale, mode: 'home' });
+if (page.kind === 'redirect') return Astro.redirect(page.location, 301);
+await localizeCards({ listing: page.listing.list, aside: page.aside }, locale);
 
-const currentBuild = currentBuildLabel(data);
-const loader = currentLoader(data);
-const scope: DomainScopeProps = {
-  lang: toHtmlLang(locale),
-  taxonomy: Object.fromEntries(categoryNames(data.categories, locale)),
-};
-
-const stats = data.stats;
-const figuresDate = stats ? formatDate(locale, stats.generatedAt, 'long') : null;
-const faq = faqFor(
-  locale,
-  stats && figuresDate
-    ? {
-        mods: formatNumber(locale, stats.mods),
-        builds: formatNumber(locale, stats.builds),
-        creators: formatNumber(locale, stats.creators),
-        downloads: formatNumber(locale, stats.downloads),
-        date: figuresDate,
-      }
-    : null,
-);
-
-const description =
-  stats && figuresDate
-    ? m.meta_home_description({
-        modCount: stats.mods,
-        mods: formatNumber(locale, stats.mods),
-        downloadCount: stats.downloads,
-        downloads: formatCompactNumber(locale, stats.downloads),
-        date: figuresDate,
-      })
-    : m.meta_default_description();
-
-const pageUrl = `${siteUrl}${href('/', locale)}`;
-const jsonLd = [
-  websiteJsonLd(siteUrl, locale, href('/search', locale)),
-  organizationJsonLd(siteUrl),
-  faqPageJsonLd(faq, pageUrl, locale),
-];
-
-const modOfWeek = data.awards?.modOfWeek ?? null;
-/** A breaking game build is news: the radar moves up under the hero until it is resolved. */
-const radarUrgent = (data.radar?.build ?? data.ecosystem?.currentBuild)?.isBreaking === true;
-const sectionClass = 'mx-auto w-full max-w-(--container-wide) px-4 py-8 md:px-6 md:py-14';
+if (page.listing.list === null) {
+  setPageCache(Astro, false);
+  Astro.response.status = 503;
+}
 ---
 
-<BaseLayout template="home" seo={{ title: m.meta_home_title(), rawTitle: true, description, path: '/' }} jsonLd={jsonLd}>
-  <Hero
-    locale={locale}
-    stats={data.stats}
-    pulse={data.pulse}
-    currentBuild={currentBuild}
-    loader={loader}
-    mapSources={{ trending: data.trending, updated: data.picks.updated, legends: data.legends }}
-    categories={data.categories}
-  />
-
-  <PersonalBlock locale={locale} />
-
-  {radarUrgent && <PatchRadarBand locale={locale} radar={data.radar} ecosystem={data.ecosystem} loader={loader} />}
-
-  {
-    data.trending === null ? (
-      <section class={sectionClass} aria-labelledby="picks-title">
-        <SectionHeader id="picks-title" title={m.landing_picks_title()} />
-        <SectionError />
-      </section>
-    ) : data.trending.length === 0 ? (
-      <section class={sectionClass} aria-labelledby="picks-title">
-        <SectionHeader id="picks-title" title={m.landing_picks_title()} />
-        <EmptyNote text={m.landing_trending_empty()} />
-      </section>
-    ) : (
-      <PicksTabs
-        locale={locale}
-        scope={scope}
-        picks={data.picks}
-        currentBuild={currentBuild}
-        modCount={data.stats?.mods ?? null}
-        categories={data.categories}
-      />
-    )
-  }
-
-  <StartHere />
-
-  {
-    data.builds !== null && data.builds.length > 0 && (
-      <section class="texture-blueprint border-y border-blueprint/30" aria-labelledby="blueprints-title">
-        <div class={sectionClass}>
-          <SectionHeader
-            id="blueprints-title"
-            title={m.common_term_blueprints()}
-            hint={m.landing_blueprints_hint()}
-            link={{ href: href('/builds', locale), label: m.landing_blueprints_all() }}
-            tone="blueprint"
-          />
-          <BlueprintCards scope={scope} builds={data.builds} label={m.common_term_blueprints()} />
-        </div>
-      </section>
-    )
-  }
-
-  <HallOfFame locale={locale} mods={data.legends} categories={data.categories} />
-
-  <div class:list={[sectionClass, 'grid gap-10 lg:grid-cols-12 lg:gap-12']}>
-    <div class="min-w-0 lg:col-span-7">
-      <FieldNotes locale={locale} notes={data.notes} />
-    </div>
-    {
-      (data.kit || modOfWeek) && (
-        <div class="grid min-w-0 content-start gap-10 lg:col-span-5">
-          {
-            data.kit && (
-              <section aria-labelledby="kit-title" class="min-w-0">
-                <SectionHeader
-                  id="kit-title"
-                  title={m.landing_kit_title()}
-                  hint={m.landing_kit_hint()}
-                  link={{ href: href('/kits', locale), label: m.landing_kit_all() }}
-                />
-                <FeaturedKitCard scope={scope} kit={data.kit} currentBuild={currentBuild} />
-              </section>
-            )
-          }
-          {
-            modOfWeek && (
-              <section aria-labelledby="motw-title" class="min-w-0">
-                <SectionHeader
-                  id="motw-title"
-                  title={m.landing_motw_title()}
-                  hint={m.landing_motw_period({ start: formatDate(locale, modOfWeek.periodStart, 'long') })}
-                />
-                <ModOfWeekCard
-                  scope={scope}
-                  mod={modOfWeek.mod}
-                  reason={modOfWeek.reason}
-                  currentBuild={currentBuild}
-                />
-              </section>
-            )
-          }
-        </div>
-      )
-    }
-  </div>
-
-  {!radarUrgent && <PatchRadarBand locale={locale} radar={data.radar} ecosystem={data.ecosystem} loader={loader} />}
-
-  {
-    data.creators !== null && (data.creators.legends.length > 0 || data.creators.rising.length > 0) && (
-      <section class={sectionClass} aria-labelledby="creators-title">
-        <SectionHeader
-          id="creators-title"
-          title={m.landing_creators_title()}
-          hint={m.landing_creators_hint()}
-          link={{ href: href('/creators', locale), label: m.landing_creators_all() }}
-        />
-        <CreatorSpotlight locale={locale} legends={data.creators.legends} rising={data.creators.rising} />
-        <AdUnit placement="home" format="inline" class="mt-8" />
-      </section>
-    )
-  }
-
-  <Faq locale={locale} items={faq} figuresDate={figuresDate} />
-</BaseLayout>
-
-<script>
-  import { initLanding } from '../islands/landing/index.ts';
-
-  initLanding();
-</script>
+<CatalogPage page={page} />

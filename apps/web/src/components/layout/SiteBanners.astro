@@ -5,18 +5,13 @@
  * - «sign in again» after the legacy-token cleanup (hidden until the inline script sets
  *   `html[data-relogin]`);
  * - the language suggestion, a floating notice filled by `scripts/lang-suggest.ts` in the
- *   *suggested* locale (never a redirect, PLAN §4.1; out of the flow, so no layout shift);
- * - «Game build X may break mods» → `/patch-radar` while the current game build is a breaking
- *   one released less than {@link BREAKING_BANNER_DAYS} days ago (PLAN §7.10). Dismissible per
- *   build (`data-banner-id`, hidden before first paint by `BANNER_INIT_SCRIPT`). The game builds
- *   are read with a short budget and memoized, so the banner never slows a page down.
+ *   *suggested* locale (never a redirect, PLAN §4.1; out of the flow, so no layout shift).
  */
 import { m } from '@sotf/i18n/messages';
 import { Icon } from '@sotf/ui/icons';
-import { FlaskConical, KeyRound, Languages, Radar, X } from 'lucide-react';
+import { FlaskConical, KeyRound, Languages, X } from 'lucide-react';
 import { loadEnv } from '../../lib/env.ts';
 import { href } from '../../lib/i18n.ts';
-import { breakingBuild } from './breaking-build.ts';
 
 const env = loadEnv();
 const locale = Astro.locals.locale;
@@ -29,8 +24,6 @@ const envNotice =
         ? m.common_env_development()
         : null;
 const loginHref = href('/login', locale);
-const onRadar = Astro.locals.pagePath === '/patch-radar' || Astro.locals.pagePath.startsWith('/patch-radar/');
-const breaking = onRadar ? null : await breakingBuild();
 ---
 
 {
@@ -44,38 +37,11 @@ const breaking = onRadar ? null : await breakingBuild();
   )
 }
 
-{
-  breaking && (
-    <div
-      data-banner-id={`patch-${breaking.id}`}
-      class="border-b border-warning/40 bg-warning-soft text-fg"
-      role="note"
-    >
-      <div class="mx-auto flex max-w-(--container-wide) items-center gap-3 px-4 py-1.5 text-sm md:px-6">
-        <Icon icon={Radar} size={18} className="shrink-0 text-warning" />
-        <p class="min-w-0 flex-1">
-          <a href={href('/patch-radar', locale)} class="font-semibold underline underline-offset-4">
-            {m.signals_patch_breaking({ build: breaking.label })}
-          </a>
-        </p>
-        <button
-          type="button"
-          data-banner-dismiss
-          class="flex size-11 shrink-0 items-center justify-center rounded-md text-fg-muted hover:bg-fg/8 hover:text-fg"
-          aria-label={m.common_action_dismiss()}
-        >
-          <Icon icon={X} size={18} />
-        </button>
-      </div>
-    </div>
-  )
-}
-
-<div data-relogin-banner class="border-b border-signal/40 bg-signal-soft text-fg" role="status">
+<div data-relogin-banner class="border-b border-border bg-raised text-fg" role="status">
   <div class="mx-auto flex max-w-(--container-wide) items-center gap-3 px-4 py-2 text-sm md:px-6">
-    <Icon icon={KeyRound} size={18} className="text-signal" />
+    <Icon icon={KeyRound} size={18} className="text-fg-muted" />
     <p class="flex-1">
-      <a href={loginHref} class="font-semibold underline underline-offset-4">{m.common_relogin_banner()}</a>
+      <a href={loginHref} class="font-semibold underline underline-offset-4">{m.shell_relogin_banner()}</a>
     </p>
     <button
       type="button"
@@ -100,10 +66,9 @@ const breaking = onRadar ? null : await breakingBuild();
   aria-labelledby="locale-prompt-title"
   class="lang-sheet fixed inset-x-3 bottom-20 z-(--z-toast) mx-auto max-w-2xl overflow-hidden rounded-lg border border-border-strong bg-raised text-fg shadow-lg max-md:inset-x-0 max-md:bottom-0 max-md:mx-0 max-md:max-w-none max-md:rounded-b-none max-md:rounded-t-2xl max-md:border-x-0 max-md:border-b-0 md:bottom-4"
 >
-  <div class="h-0.5 bg-signal max-md:hidden" aria-hidden="true"></div>
   <span aria-hidden="true" class="mx-auto mt-2 block h-1 w-10 rounded-full bg-border-strong md:hidden"></span>
   <div class="flex items-start gap-3 px-4 pt-3 pb-4 max-md:px-5 max-md:pt-4 max-md:pb-[calc(1.25rem+env(safe-area-inset-bottom))]">
-    <Icon icon={Languages} size={20} className="mt-0.5 shrink-0 text-signal" />
+    <Icon icon={Languages} size={20} className="mt-0.5 shrink-0 text-fg-muted" />
     <div class="min-w-0 flex-1">
       <p id="locale-prompt-title" role="status" class="font-semibold" data-locale-prompt-title></p>
       <p class="mt-0.5 text-sm text-fg-muted" data-locale-prompt-hint></p>
@@ -157,7 +122,7 @@ const breaking = onRadar ? null : await breakingBuild();
   <span aria-hidden="true" class="mx-auto mt-2 block h-1 w-10 rounded-full bg-border-strong md:hidden"></span>
   <div class="flex flex-wrap items-center gap-3 px-4 py-2 text-sm max-md:grid max-md:gap-4 max-md:px-5 max-md:pt-4 max-md:pb-[calc(1.25rem+env(safe-area-inset-bottom))] max-md:text-base">
     <div class="flex min-w-0 flex-1 items-center gap-3">
-      <Icon icon={Languages} size={20} className="shrink-0 text-signal" />
+      <Icon icon={Languages} size={20} className="shrink-0 text-fg-muted" />
       <p class="flex-1 text-balance max-md:font-semibold" data-lang-suggest-text></p>
     </div>
     <div class="flex items-center gap-2 max-md:grid max-md:grid-cols-2 max-md:[&>*]:h-12 max-md:[&>*]:justify-center">

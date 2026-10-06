@@ -1,53 +1,24 @@
 /**
- * Fonts of the OG cards (PLAN §3.3, §8.6): Big Shoulders 800 for the display title and Martian Mono
- * for readouts, loaded from the self-hosted `@fontsource/*` packages as WOFF (satori reads TTF, OTF
- * and WOFF, not WOFF2). Every subset is its own family and the templates use family stacks, so
- * glyphs a subset lacks (Latin Extended, Vietnamese, Cyrillic) come from the next one.
+ * Fonts of the OG cards: Onest (400 and 700), the same family as the site. Static instances cut from
+ * the Onest variable font (SIL OFL 1.1) are embedded as base64 WOFF in `./fonts/onest.gen.ts` (satori
+ * reads TTF, OTF and WOFF, not WOFF2; embedding keeps the bundled worker free of font files). Every subset is its own family and the templates use a family stack, so glyphs a
+ * subset lacks (Latin Extended, Vietnamese, Cyrillic) come from the next one.
  *
- * Loaded once per process (≈ 400 KB in memory).
+ * Loaded once per process (about 130 KB in memory).
  */
-import { readFile } from 'node:fs/promises';
-import { createRequire } from 'node:module';
 import type { Font } from 'satori';
+import { ONEST_WOFF } from './fonts/onest.gen.ts';
 
-const require = createRequire(import.meta.url);
+const NAME = 'Onest';
+const SUBSETS = ['latin', 'latin-ext', 'vietnamese', 'cyrillic', 'cyrillic-ext'] as const;
 
-const DISPLAY_NAME = 'Big Shoulders';
-const MONO_NAME = 'Martian Mono';
-const DISPLAY_SUBSETS = ['latin', 'latin-ext', 'vietnamese'] as const;
-const MONO_SUBSETS = ['latin', 'latin-ext', 'cyrillic', 'cyrillic-ext'] as const;
-
-/** Each subset is registered as its own family (`Big Shoulders latin-ext`): satori walks a font-family list glyph by glyph, not the subsets of one family. */
-function familyName(name: string, subset: string): string {
-  return subset === 'latin' ? name : `${name} ${subset}`;
+/** Each subset is registered as its own family (`Onest latin-ext`): satori walks a font-family list glyph by glyph, not the subsets of one family. */
+function familyName(subset: string): string {
+  return subset === 'latin' ? NAME : `${NAME} ${subset}`;
 }
 
-/** CSS font-family stacks for the templates: display first, then the mono subsets as fallback. */
-export const MONO_FAMILY = MONO_SUBSETS.map((subset) => familyName(MONO_NAME, subset)).join(', ');
-export const DISPLAY_FAMILY = [...DISPLAY_SUBSETS.map((subset) => familyName(DISPLAY_NAME, subset)), MONO_FAMILY].join(
-  ', ',
-);
-
-interface FontFile {
-  family: string;
-  weight: 400 | 500 | 700 | 800;
-  specifier: string;
-}
-
-const FONT_FILES: readonly FontFile[] = [
-  ...DISPLAY_SUBSETS.map((subset) => ({
-    family: familyName(DISPLAY_NAME, subset),
-    weight: 800 as const,
-    specifier: `@fontsource/big-shoulders/files/big-shoulders-${subset}-800-normal.woff`,
-  })),
-  ...MONO_SUBSETS.flatMap((subset) =>
-    ([400, 700] as const).map((weight) => ({
-      family: familyName(MONO_NAME, subset),
-      weight,
-      specifier: `@fontsource/martian-mono/files/martian-mono-${subset}-${weight}-normal.woff`,
-    })),
-  ),
-];
+/** CSS font-family stack of the templates. */
+export const SANS_FAMILY = SUBSETS.map(familyName).join(', ');
 
 /**
  * Characters the registered subsets can draw: Basic Latin, Latin-1, Latin Extended A/B and
@@ -80,16 +51,13 @@ let loading: Promise<Font[]> | undefined;
 
 /** The satori font list (cached). */
 export function ogFonts(): Promise<Font[]> {
-  loading ??= Promise.all(
-    FONT_FILES.map(async (file) => ({
-      name: file.family,
+  loading ??= Promise.resolve(
+    ONEST_WOFF.map((file) => ({
+      name: familyName(file.subset),
       weight: file.weight,
       style: 'normal' as const,
-      data: await readFile(require.resolve(file.specifier)),
+      data: Buffer.from(file.base64, 'base64'),
     })),
-  ).catch((error: unknown) => {
-    loading = undefined;
-    throw error;
-  });
+  );
   return loading;
 }

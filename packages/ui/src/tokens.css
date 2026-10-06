@@ -1,22 +1,17 @@
 /* =====================================================================
    @sotf/ui · tokens.css
-   Source of truth of the "Locator" design system (PLAN §3.3).
-
-   Section 1 is a LITERAL copy of research/03 §4.4. The only change is that the four
-   Fontsource @imports moved to ./fonts.css (together with the fontaine fallbacks).
-   test/tokens-literal.test.ts fails if section 1 drifts from the research block.
-   Section 2 holds the additions of WP-12 (never edit section 1 to add things).
+   Design tokens of SOTF Mods: an evolution of the old site. DaisyUI-like dark neutrals, one red
+   accent (the red of the logo), one sans family (Onest), 8 px surfaces, no textures, no glows.
+   Dark is the default; Light = [data-theme="light"]; "system" follows the OS.
+   The scale names (night, flare, signal, blueprint, ...) are historical and kept so existing
+   utilities keep working: night = neutrals, flare = red, signal and blueprint = neutrals.
    ===================================================================== */
 
-/* ===== Section 1 · research/03 §4.4 (literal) ===== */
-/* =====================================================================
-   SOTF Mods v2 · "Locator" design tokens · Tailwind CSS 4.3.x
-   Night (dark) = default · Day (light) = [data-theme="light"]
-   ===================================================================== */
+/* ===== Section 1 · tokens and brand utilities ===== */
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-/* Fontsource variable fonts (OFL-1.1) + fontaine metric fallbacks: see ./fonts.css (WP-12) */
+/* Self-hosted Onest (OFL-1.1) + a metric-matched local fallback: see ./fonts.css */
 @import "./fonts.css";
 
 /* ---------- Variants ---------- */
@@ -41,44 +36,47 @@
   --color-white: #FFFFFF;
   --color-black: #000000;
 
-  /* ---------- Raw scales (OKLCH-generated) ---------- */
-  --color-night-25:  #FCFAF4;
-  --color-night-50:  #F5F4EC;
-  --color-night-100: #E7E7DE;
-  --color-night-200: #D2D4CA;
-  --color-night-300: #B4B7AE;
-  --color-night-400: #90968D;
-  --color-night-500: #656D65;
-  --color-night-600: #4D554E;
-  --color-night-700: #38413B;
-  --color-night-800: #252C27;
-  --color-night-900: #171E1A;
-  --color-night-950: #0F1612;
-  --color-night-975: #090F0C;
+  /* ---------- Raw scales ---------- */
+  /* Neutrals (DaisyUI dark): 950 page, 900 surface, 800 border, 700 strong border, 100 text. */
+  --color-night-25:  #FFFFFF;
+  --color-night-50:  #F6F7F8;
+  --color-night-100: #E5E7EB;
+  --color-night-200: #D1D5DB;
+  --color-night-300: #B4BAC3;
+  --color-night-400: #9CA3AF;
+  --color-night-500: #6B7280;
+  --color-night-600: #4B5563;
+  --color-night-700: #3D4651;
+  --color-night-800: #2A323C;
+  --color-night-900: #1D232A;
+  --color-night-950: #15191E;
+  --color-night-975: #111418;
 
-  --color-flare-50:  #FEF4F1;
-  --color-flare-100: #FEE7DF;
-  --color-flare-200: #FECDBA;
-  --color-flare-300: #FFA37F;
-  --color-flare-400: #FF7335;
-  --color-flare-500: #E75803;
-  --color-flare-600: #BD4600;
-  --color-flare-700: #963601;
-  --color-flare-800: #712701;
-  --color-flare-900: #4D1700;
-  --color-flare-950: #2F0B00;
+  /* The accent: red. 500 is the primary (the logo red, a notch calmer), 600 its hover. */
+  --color-flare-50:  #FEF2F2;
+  --color-flare-100: #FEE2E2;
+  --color-flare-200: #FECACA;
+  --color-flare-300: #FCA5A5;
+  --color-flare-400: #F87171;
+  --color-flare-500: #E11D1D;
+  --color-flare-600: #C81414;
+  --color-flare-700: #A31010;
+  --color-flare-800: #7F0D0D;
+  --color-flare-900: #5A0A0A;
+  --color-flare-950: #330505;
 
-  --color-signal-50:  #E7FBFF;
-  --color-signal-100: #D0F4FB;
-  --color-signal-200: #A6E6F1;
-  --color-signal-300: #6BCFE0;
-  --color-signal-400: #2DB6CA;
-  --color-signal-500: #059EB1;
-  --color-signal-600: #068090;
-  --color-signal-700: #026572;
-  --color-signal-800: #044B55;
-  --color-signal-900: #003239;
-  --color-signal-950: #001D21;
+  /* Former cyan "signal": neutral gray now. */
+  --color-signal-50:  #F9FAFB;
+  --color-signal-100: #F3F4F6;
+  --color-signal-200: #E5E7EB;
+  --color-signal-300: #D1D5DB;
+  --color-signal-400: #9CA3AF;
+  --color-signal-500: #6B7280;
+  --color-signal-600: #4B5563;
+  --color-signal-700: #374151;
+  --color-signal-800: #1F2937;
+  --color-signal-900: #161C25;
+  --color-signal-950: #0F141B;
 
   --color-lichen-50:  #EBFCEB;
   --color-lichen-100: #D8F7D8;
@@ -116,75 +114,75 @@
   --color-blood-900: #56060B;
   --color-blood-950: #360003;
 
-  --color-blueprint-50:  #F2F7FE;
-  --color-blueprint-100: #E3EEFE;
-  --color-blueprint-200: #C3DBFF;
-  --color-blueprint-300: #96C0FE;
-  --color-blueprint-400: #66A3FE;
-  --color-blueprint-500: #498BEB;
-  --color-blueprint-600: #3270C8;
-  --color-blueprint-700: #2257A4;
-  --color-blueprint-800: #16417D;
-  --color-blueprint-900: #0B2A56;
-  --color-blueprint-950: #031736;
+  /* Former blue "blueprint": neutral gray now. */
+  --color-blueprint-50:  #F9FAFB;
+  --color-blueprint-100: #F3F4F6;
+  --color-blueprint-200: #E5E7EB;
+  --color-blueprint-300: #D1D5DB;
+  --color-blueprint-400: #9CA3AF;
+  --color-blueprint-500: #6B7280;
+  --color-blueprint-600: #4B5563;
+  --color-blueprint-700: #374151;
+  --color-blueprint-800: #1F2937;
+  --color-blueprint-900: #161C25;
+  --color-blueprint-950: #0F141B;
 
   /* ---------- Semantic tokens: light-dark(DAY, NIGHT) ---------- */
-  --color-bg:             light-dark(#F5F4EC, #090F0C);
-  --color-surface:        light-dark(#FCFAF4, #0F1612);
-  --color-raised:         light-dark(#FFFFFF, #171E1A);
-  --color-overlay:        light-dark(#FFFFFF, #171E1A);
-  --color-sunken:         light-dark(#F0EFE7, #090F0C);
-  --color-border:         light-dark(#D2D4CA, #252C27);   /* decorative only (<3:1) */
-  --color-border-strong:  #656D65;                        /* controls: >=3:1 in both themes */
+  --color-bg:             light-dark(#F6F7F8, #15191E);
+  --color-surface:        light-dark(#FFFFFF, #1D232A);
+  --color-raised:         light-dark(#FFFFFF, #232A32);
+  --color-overlay:        light-dark(#FFFFFF, #232A32);
+  --color-sunken:         light-dark(#EDEFF2, #111418);
+  --color-border:         light-dark(#E1E4E8, #2A323C);   /* hairlines */
+  --color-border-strong:  light-dark(#838B98, #3D4651);   /* controls */
 
-  --color-fg:             light-dark(#0F1612, #F5F4EC);
-  --color-fg-muted:       light-dark(#4D554E, #B4B7AE);
-  --color-fg-subtle:      light-dark(#656D65, #90968D);
-  --color-fg-inverse:     light-dark(#F5F4EC, #0F1612);
+  --color-fg:             light-dark(#1B2027, #E5E7EB);
+  --color-fg-muted:       light-dark(#4B5563, #9CA3AF);
+  --color-fg-subtle:      light-dark(#636B78, #8A92A0);
+  --color-fg-inverse:     light-dark(#F6F7F8, #15191E);
 
-  --color-primary:        light-dark(#BD4600, #FF7335);
-  --color-primary-hover:  light-dark(#963601, #FFA37F);
-  --color-primary-fg:     light-dark(#FFFFFF, #090F0C);
-  --color-primary-soft:   light-dark(#FEE7DF, #2F0B00);
-  --color-link:           light-dark(#963601, #FFA37F);
+  --color-primary:        #E11D1D;
+  --color-primary-hover:  #C81414;
+  --color-primary-fg:     #FFFFFF;
+  --color-primary-soft:   light-dark(#FDECEC, #2C1719);
+  --color-link:           light-dark(#B91C1C, #F87171);
 
-  --color-signal:         light-dark(#026572, #6BCFE0);   /* live / info */
-  --color-signal-soft:    light-dark(#D0F4FB, #001D21);
+  --color-signal:         light-dark(#4B5563, #9CA3AF);   /* info: neutral */
+  --color-signal-soft:    light-dark(#EDEFF2, #232A32);
   --color-success:        light-dark(#136C21, #87D48A);
-  --color-success-soft:   light-dark(#D8F7D8, #001F03);
+  --color-success-soft:   light-dark(#D8F7D8, #12261A);
   --color-warning:        light-dark(#745301, #E4B65C);
-  --color-warning-soft:   light-dark(#FDEAC9, #221600);
+  --color-warning-soft:   light-dark(#FDEAC9, #2A2210);
   --color-danger:         light-dark(#C92F33, #FF6E68);
-  --color-danger-fg:      light-dark(#FFFFFF, #090F0C);
-  --color-danger-soft:    light-dark(#FEE7E4, #360003);
-  --color-featured:       light-dark(#745301, #F5D49A);   /* Solafite: featured, achievements */
-  --color-featured-soft:  light-dark(#FDEAC9, #221600);
+  --color-danger-fg:      light-dark(#FFFFFF, #15191E);
+  --color-danger-soft:    light-dark(#FEE7E4, #3A1618);
+  --color-featured:       light-dark(#374151, #E5E7EB);   /* featured: neutral emphasis */
+  --color-featured-soft:  light-dark(#E5E7EB, #2A323C);
 
-  --color-blueprint:          light-dark(#2257A4, #96C0FE);
-  --color-blueprint-surface:  light-dark(#F2F7FE, #031736);
-  --color-blueprint-grid:     light-dark(rgb(50 112 200 / 0.14), rgb(150 192 254 / 0.12));
+  --color-blueprint:          light-dark(#4B5563, #9CA3AF);
+  --color-blueprint-surface:  light-dark(#F6F7F8, #1D232A);
+  --color-blueprint-grid:     transparent;
 
-  --color-focus:          light-dark(#068090, #6BCFE0);
-  --color-selection:      light-dark(#FECDBA, #712701);
-  --color-topo:           light-dark(rgb(50 112 200 / 0.16), rgb(245 244 236 / 0.07));
+  --color-focus:          light-dark(#C81414, #F87171);
+  --color-selection:      light-dark(#FECACA, #5A1D1D);
+  --color-topo:           transparent;
 
-  /* ---------- Chart slots (validated order; never cycle) ---------- */
-  --color-chart-1: #E75803;
-  --color-chart-2: light-dark(#3270C8, #498BEB);
-  --color-chart-3: #05A388;
-  --color-chart-4: #B38309;
-  --color-chart-5: #D15D9A;
-  --color-chart-6: light-dark(#136C21, #40A449);
-  --color-chart-7: light-dark(#7A5BC0, #9575E2);
-  --color-chart-8: light-dark(#C92F33, #ED4A49);
-  --color-chart-grid: light-dark(#E7E7DE, #252C27);
+  /* ---------- Chart slots (fixed order; slot 1 is the red accent) ---------- */
+  --color-chart-1: light-dark(#C81414, #E11D1D);
+  --color-chart-2: light-dark(#5B6B85, #7C8DA6);
+  --color-chart-3: light-dark(#3F7D68, #5E9C86);
+  --color-chart-4: light-dark(#8F6B2E, #B8935A);
+  --color-chart-5: light-dark(#8A5A7C, #A77A99);
+  --color-chart-6: light-dark(#4C7F48, #6FA06B);
+  --color-chart-7: light-dark(#6A62A0, #8A82B8);
+  --color-chart-8: light-dark(#A84848, #C46A6A);
+  --color-chart-grid: light-dark(#E5E7EB, #2A323C);
 
-  /* ---------- Typography ---------- */
+  /* ---------- Typography: one sans family. Mono only for versions, code and file names. ---------- */
   --font-sans: "Onest Variable", "Onest Fallback", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
                "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
-  --font-display: "Big Shoulders Variable", "Sofia Sans Extra Condensed Variable", "Big Shoulders Fallback",
-                  "Arial Narrow", "PingFang SC", "Microsoft YaHei", sans-serif;
-  --font-mono: "Martian Mono Variable", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --font-display: var(--font-sans);
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
 
   --text-2xs: 0.6875rem;  --text-2xs--line-height: 1rem;
   --text-xs: 0.75rem;     --text-xs--line-height: 1rem;
@@ -193,15 +191,15 @@
   --text-lg: 1.125rem;    --text-lg--line-height: 1.75rem;
   --text-xl: 1.25rem;     --text-xl--line-height: 1.75rem;  --text-xl--letter-spacing: -0.005em;
   --text-2xl: 1.5rem;     --text-2xl--line-height: 2rem;    --text-2xl--letter-spacing: -0.01em;
-  /* fluid display (360px -> 1440px) */
-  --text-display-xs: clamp(1.5rem, 1.333rem + 0.741vw, 2rem);      --text-display-xs--line-height: 1;
-  --text-display-sm: clamp(2rem, 1.75rem + 1.111vw, 2.75rem);      --text-display-sm--line-height: 0.95;
-  --text-display-md: clamp(2.5rem, 2rem + 2.222vw, 4rem);          --text-display-md--line-height: 0.92; --text-display-md--letter-spacing: -0.005em;
-  --text-display-lg: clamp(3.25rem, 2.167rem + 4.815vw, 6.5rem);   --text-display-lg--line-height: 0.9;  --text-display-lg--letter-spacing: -0.005em;
-  --text-display-xl: clamp(5rem, 3rem + 8.889vw, 11rem);           --text-display-xl--line-height: 0.85; --text-display-xl--letter-spacing: -0.01em;
+  /* Headings: modest, fluid (360px -> 1440px). The old display sizes (up to 11rem) are gone. */
+  --text-display-xs: clamp(1.375rem, 1.25rem + 0.5vw, 1.625rem);   --text-display-xs--line-height: 1.2;
+  --text-display-sm: clamp(1.5rem, 1.35rem + 0.7vw, 1.875rem);     --text-display-sm--line-height: 1.15;
+  --text-display-md: clamp(1.75rem, 1.5rem + 1vw, 2.25rem);        --text-display-md--line-height: 1.12; --text-display-md--letter-spacing: -0.015em;
+  --text-display-lg: clamp(2rem, 1.7rem + 1.3vw, 2.75rem);         --text-display-lg--line-height: 1.1;  --text-display-lg--letter-spacing: -0.02em;
+  --text-display-xl: clamp(2.25rem, 1.85rem + 1.8vw, 3.25rem);     --text-display-xl--line-height: 1.08; --text-display-xl--letter-spacing: -0.02em;
 
   --font-weight-strong: 650;
-  --tracking-label: 0.04em;
+  --tracking-label: 0em;
 
   /* ---------- Layout ---------- */
   --breakpoint-xs: 30rem;
@@ -212,22 +210,22 @@
 
   --radius-xs: 4px;
   --radius-sm: 6px;
-  --radius-md: 10px;   /* controls */
-  --radius-lg: 14px;   /* cards */
-  --radius-xl: 20px;   /* dialogs, sheets */
-  --radius-2xl: 28px;  /* hero cards */
+  --radius-md: 8px;    /* controls */
+  --radius-lg: 8px;    /* surfaces */
+  --radius-xl: 12px;   /* dialogs, sheets */
+  --radius-2xl: 12px;
 
   --aspect-cover: 16 / 9;
   --aspect-banner: 4 / 1;
   --aspect-og: 1200 / 630;
 
-  /* ---------- Elevation (color via --elev-color, set per theme below) ---------- */
+  /* ---------- Elevation: light shadows, for overlays only ---------- */
   --shadow-xs: 0 1px 0 0 var(--elev-color-soft);
   --shadow-sm: 0 1px 2px 0 var(--elev-color-soft);
-  --shadow-md: 0 8px 24px -12px var(--elev-color);
-  --shadow-lg: 0 24px 48px -16px var(--elev-color);
-  --shadow-glow: 0 8px 28px -10px var(--glow-color);
-  --inset-shadow-highlight: inset 0 1px 0 0 var(--highlight-color);
+  --shadow-md: 0 4px 16px -6px var(--elev-color);
+  --shadow-lg: 0 12px 32px -12px var(--elev-color);
+  --shadow-glow: none;
+  --inset-shadow-highlight: inset 0 0 0 0 transparent;
 
   /* ---------- Motion ---------- */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -237,19 +235,18 @@
   --ease-spring: linear(0, 0.006, 0.025 2.8%, 0.101 6.1%, 0.539 18.9%, 0.721 25.3%, 0.849 31.5%,
                         0.937 38.1%, 0.968 41.8%, 0.991 45.7%, 1.006 50.1%, 1.015 55%, 1.017 63.9%, 1.001 85.9%, 1);
 
-  --animate-ping-locator: ping-locator 2.4s var(--ease-out) infinite;
+  /* Pulses and stamps were decoration: no animation. */
+  --animate-ping-locator: none;
   --animate-sweep: sweep 1.2s linear infinite;
   --animate-draw: draw 1.2s var(--ease-in-out) both;
   --animate-shimmer: shimmer 1.6s linear infinite;
-  --animate-stamp: stamp 480ms var(--ease-spring) both;
+  --animate-stamp: none;
   --animate-rise: rise 320ms var(--ease-out) both;
   --animate-blink: blink 7s steps(1, end) infinite;
 
-  @keyframes ping-locator { 0% { transform: scale(1); opacity: .55 } 80%, 100% { transform: scale(2.6); opacity: 0 } }
   @keyframes sweep { to { transform: rotate(1turn) } }
   @keyframes draw { from { stroke-dashoffset: var(--path-length, 1000) } to { stroke-dashoffset: 0 } }
   @keyframes shimmer { from { background-position: 200% 0 } to { background-position: -200% 0 } }
-  @keyframes stamp { 0% { transform: scale(1.35) rotate(-10deg); opacity: 0 } 60% { opacity: 1 } 100% { transform: scale(1) rotate(-4deg); opacity: 1 } }
   @keyframes rise { from { transform: translateY(6px); opacity: 0 } to { transform: none; opacity: 1 } }
   @keyframes blink { 0%, 95%, 100% { transform: scaleY(1) } 96%, 98% { transform: scaleY(.1) } }
 }
@@ -261,10 +258,10 @@
     --z-base: 0; --z-raised: 10; --z-sticky: 20; --z-dropdown: 30; --z-overlay: 40;
     --z-drawer: 50; --z-modal: 60; --z-popover: 70; --z-toast: 80; --z-skip: 100;
     --dur-instant: 80ms; --dur-fast: 140ms; --dur-base: 200ms; --dur-slow: 320ms; --dur-slower: 480ms; --dur-hero: 700ms;
-    --elev-color:      light-dark(rgb(15 22 18 / 0.16), rgb(0 0 0 / 0.60));
-    --elev-color-soft: light-dark(rgb(15 22 18 / 0.08), rgb(0 0 0 / 0.35));
-    --glow-color:      light-dark(rgb(189 70 0 / 0.45), rgb(255 115 53 / 0.55));
-    --highlight-color: light-dark(rgb(255 255 255 / 0.70), rgb(255 255 255 / 0.05));
+    --elev-color:      light-dark(rgb(17 24 39 / 0.16), rgb(0 0 0 / 0.5));
+    --elev-color-soft: light-dark(rgb(17 24 39 / 0.08), rgb(0 0 0 / 0.3));
+    --glow-color:      transparent;
+    --highlight-color: transparent;
     accent-color: var(--color-primary);
   }
   :root[data-theme="light"]  { color-scheme: light; }
@@ -276,10 +273,9 @@
   :focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; }
   h1, h2, h3 { text-wrap: balance; }
   p, li { text-wrap: pretty; }
-  :lang(zh) :is(h1, h2, h3, .font-display) { font-family: var(--font-sans); text-transform: none; letter-spacing: 0; }
 
   @media (prefers-reduced-motion: no-preference) {
-    @view-transition { navigation: auto; }   /* static site: cross-document transitions (Chromium/Safari; Firefox degrades gracefully) */
+    @view-transition { navigation: auto; }   /* cross-document transitions (Chromium/Safari; Firefox degrades gracefully) */
   }
   @media (prefers-reduced-motion: reduce) {
     :root:not([data-motion="full"]), :root:not([data-motion="full"]) *,
@@ -289,22 +285,15 @@
   }
 }
 
-/* ---------- Brand utilities ---------- */
-@utility font-display-caps { font-family: var(--font-display); text-transform: uppercase; font-weight: 800; }
-@utility readout { font-family: var(--font-mono); font-size: var(--text-2xs); line-height: 1rem;
-                   letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-fg-subtle); }
-@utility tag-notch { clip-path: polygon(6px 0, 100% 0, 100% 100%, 0 100%, 0 6px); }
-@utility texture-topo {   /* contour texture: 1 shared SVG (~4 KB gz) used as a mask, tinted by token */
-  position: relative; isolation: isolate;
-  &::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-              background: var(--color-topo); mask: url("/brand/topo.svg") center / cover no-repeat; }
-}
-@utility texture-blueprint {
-  background-color: var(--color-blueprint-surface);
-  background-image: linear-gradient(var(--color-blueprint-grid) 1px, transparent 1px),
-                    linear-gradient(90deg, var(--color-blueprint-grid) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
+/* ---------- Brand utilities ----------
+   The old decoration utilities stay defined (many pages still use them) but are harmless:
+   sentence-case bold sans, small muted labels, no textures, no notches. */
+@utility font-display-caps { font-family: var(--font-sans); font-weight: 700; text-transform: none; letter-spacing: normal; }
+@utility readout { font-family: var(--font-sans); font-size: var(--text-xs); line-height: 1rem; font-weight: 400;
+                   letter-spacing: normal; text-transform: none; color: var(--color-fg-subtle); }
+@utility tag-notch { --notch: none; }
+@utility texture-topo { --texture: none; }
+@utility texture-blueprint { --texture: none; }
 @utility skeleton {
   background: linear-gradient(90deg, var(--color-raised) 0%,
               color-mix(in oklab, var(--color-raised), var(--color-fg) 6%) 50%, var(--color-raised) 100%);
@@ -314,8 +303,8 @@
   --tw-prose-body: var(--color-fg-muted);        --tw-prose-headings: var(--color-fg);
   --tw-prose-lead: var(--color-fg-muted);        --tw-prose-links: var(--color-link);
   --tw-prose-bold: var(--color-fg);              --tw-prose-counters: var(--color-fg-subtle);
-  --tw-prose-bullets: var(--color-primary);      --tw-prose-hr: var(--color-border);
-  --tw-prose-quotes: var(--color-fg);            --tw-prose-quote-borders: var(--color-primary);
+  --tw-prose-bullets: var(--color-fg-subtle);    --tw-prose-hr: var(--color-border);
+  --tw-prose-quotes: var(--color-fg);            --tw-prose-quote-borders: var(--color-border-strong);
   --tw-prose-captions: var(--color-fg-subtle);   --tw-prose-code: var(--color-fg);
   --tw-prose-pre-code: var(--color-fg);          --tw-prose-pre-bg: var(--color-sunken);
   --tw-prose-th-borders: var(--color-border-strong); --tw-prose-td-borders: var(--color-border);
@@ -333,10 +322,6 @@
   /* Themes apply to the whole document only (data-theme on <html>): light-dark() is lowered by
      Lightning CSS for older browsers into custom properties resolved at :root, so a nested
      [data-theme] would not re-theme its subtree. Previews of the other theme use an iframe. */
-
-  /* Adaptive lockup of @sotf/brand (lockupSvg({ theme: 'adaptive' })): its Flare parts default
-     to the Day flare #E75803 (>= 3:1 on every surface); Night brightens them to #FF7335. */
-  .brand-flare { fill: light-dark(#E75803, #FF7335); }
 
   /* Anchor targets clear the sticky header. */
   :target { scroll-margin-top: 5rem; }

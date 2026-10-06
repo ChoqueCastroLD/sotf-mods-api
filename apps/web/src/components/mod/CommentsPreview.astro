@@ -1,8 +1,9 @@
 ---
 /**
- * Comments on the overview (T0-08, §7.6): the first 10 top-level comments by «top» with their
- * first replies, server-rendered (indexable, fast), and the mount point of the comments island
- * (WP-70: write, react, reply, load more from `data-next-cursor`, sort).
+ * Comments on the overview: the first 10 top-level comments by «top» with their first replies,
+ * server-rendered (indexable, fast), and the mount point of the comments island (write, react,
+ * reply, load more from `data-next-cursor`, sort). `[data-sheet-body]` must stay a direct child of
+ * the section: `scripts/mod/sheets.ts` moves it into the phone sheet.
  */
 import { m } from '@sotf/i18n/messages';
 import { localizeHtml } from '@sotf/markdown/labels';
@@ -50,9 +51,9 @@ const items = (comments?.items ?? []).map((comment) => ({
     <button
       type="button"
       data-dialog-open="comments-sheet"
-      class="flex min-h-12 w-full items-center gap-3 rounded-lg border border-border bg-raised px-3 text-start font-semibold text-fg active:bg-fg/8"
+      class="flex min-h-12 w-full items-center gap-3 rounded-md border border-border px-3 text-start font-medium text-fg active:bg-fg/8"
     >
-      <Icon icon={MessageSquareText} size={18} className="text-signal" />
+      <Icon icon={MessageSquareText} size={18} className="text-fg-muted" />
       <span class="min-w-0 flex-1">{m.entity_comments_see_all({ count: mod.commentsCount })}</span>
       <Icon icon={ChevronRight} size={18} className="text-fg-subtle rtl:rotate-180" />
     </button>
@@ -60,7 +61,7 @@ const items = (comments?.items ?? []).map((comment) => ({
       type="button"
       data-dialog-open="comments-sheet"
       data-compose
-      class="flex min-h-12 w-full items-center rounded-full border border-border-strong bg-sunken px-4 text-start text-fg-muted active:bg-fg/8"
+      class="flex min-h-12 w-full items-center rounded-md border border-border-strong bg-sunken px-4 text-start text-fg-muted active:bg-fg/8"
     >
       {m.entity_comments_write()}
     </button>

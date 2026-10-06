@@ -8,8 +8,7 @@
  *   (`markUndone`); `install_redloader` can only be self-reported; the others are also derived from real activity
  *   (first counted download, first followed mod, first Field report, first kit) and their time is
  *   stored the first time they are observed, so the checklist keeps its dates.
- * - Completing every step sets `completedAt` once and emits `user.onboarding_completed` in the same
- *   transaction (XP +10 and the `survived-day-one` badge are granted by its consumer).
+ * - Completing every step sets `completedAt` once. Nothing is awarded for it any more.
  * - `timeZone` is the browser time zone reported by the client (header `Sotf-Time-Zone`), used by
  *   the `night-owl` badge.
  */
@@ -24,7 +23,6 @@ import type { z } from 'zod';
 import { queryOne, toDate } from '../follows/sql.ts';
 import type { Ctx } from '../kernel/context.ts';
 import { errors } from '../kernel/errors.ts';
-import type { Jobs } from '../kernel/jobs.ts';
 
 export type OnboardingDTO = z.infer<typeof OnboardingSchema>;
 type OnboardingStepKey = (typeof ONBOARDING_STEPS)[number];
@@ -93,11 +91,8 @@ function toDto(state: OnboardingState): OnboardingDTO {
   return { steps, completed: Boolean(state.completedAt), dismissed: Boolean(state.dismissedAt) };
 }
 
-/**
- * Brings the stored state up to date (derived steps, completion) and returns whether it changed
- * and whether it just completed.
- */
-function advance(loaded: Loaded, now: Date): { state: OnboardingState; changed: boolean; justCompleted: boolean } {
+/** Brings the stored state up to date (derived steps, completion) and returns whether it changed. */
+function advance(loaded: Loaded, now: Date): { state: OnboardingState; changed: boolean } {
   const state: OnboardingState = { ...loaded.state, steps: { ...(loaded.state.steps ?? {}) } };
   const steps = state.steps as Record<string, string>;
   let changed = false;
@@ -107,30 +102,22 @@ function advance(loaded: Loaded, now: Date): { state: OnboardingState; changed: 
       changed = true;
     }
   }
-  let justCompleted = false;
   if (!state.completedAt && ONBOARDING_STEPS.every((key) => Boolean(steps[key]))) {
     state.completedAt = now.toISOString();
     changed = true;
-    justCompleted = true;
   }
-  return { state, changed, justCompleted };
+  return { state, changed };
 }
 
 async function save(tx: Executor, userId: number, state: OnboardingState): Promise<void> {
   await tx.execute(sql`UPDATE "User" SET "onboarding" = ${JSON.stringify(state)}::jsonb WHERE "id" = ${userId}`);
 }
 
-async function completed(tx: Executor, jobs: Jobs, userId: number): Promise<void> {
-  await jobs.emitNew(tx, 'user.onboarding_completed', { userId }, { actorId: userId });
-}
-
 /**
- * Re-evaluates a user's checklist inside `tx` (used by the endpoints, the event consumers and the
- * nightly run). Returns the DTO.
+ * Re-evaluates a user's checklist inside `tx` (used by the endpoints). Returns the DTO.
  */
 export async function syncOnboarding(
   tx: Executor,
-  jobs: Jobs,
   userId: number,
   now: Date,
   patch?: (state: OnboardingState) => OnboardingState,
@@ -141,7 +128,6 @@ export async function syncOnboarding(
   if (patch) loaded.state = patch({ ...loaded.state, steps: { ...(loaded.state.steps ?? {}) } });
   const next = advance(loaded, now);
   if (next.changed || JSON.stringify(next.state) !== before) await save(tx, userId, next.state);
-  if (next.justCompleted) await completed(tx, jobs, userId);
   return toDto(next.state);
 }
 
@@ -158,9 +144,7 @@ function withTimeZone(timeZone: string | null | undefined) {
 /** `GET /me/onboarding`. */
 export async function getOnboarding(ctx: Ctx, timeZone?: string | null): Promise<OnboardingDTO> {
   const userId = actorId(ctx);
-  const dto = await withTx(ctx.db, (tx) =>
-    syncOnboarding(tx, ctx.jobs, userId, ctx.clock.now(), withTimeZone(timeZone)),
-  );
+  const dto = await withTx(ctx.db, (tx) => syncOnboarding(tx, userId, ctx.clock.now(), withTimeZone(timeZone)));
   if (!dto) throw errors.unauthenticated();
   return dto;
 }
@@ -174,7 +158,7 @@ export async function updateOnboarding(
   const userId = actorId(ctx);
   const now = ctx.clock.now();
   const dto = await withTx(ctx.db, (tx) =>
-    syncOnboarding(tx, ctx.jobs, userId, now, (current) => {
+    syncOnboarding(tx, userId, now, (current) => {
       const state = withTimeZone(timeZone)(current);
       const steps = { ...(state.steps ?? {}) };
       // Unticking is ignored once the checklist is complete (the badge is already awarded).
@@ -188,27 +172,4 @@ export async function updateOnboarding(
   );
   if (!dto) throw errors.unauthenticated();
   return dto;
-}
-
-/**
- * Nightly: users whose self-reported step is set but whose completion was never recorded (the
- * download step has no event). Returns how many completed.
- */
-export async function completePendingOnboardings(ctx: Ctx, limit = 5000): Promise<number> {
-  const rows = await ctx.db.execute<{ id: number }>(sql`
-    SELECT u."id" FROM "User" u
-     WHERE u."deletedAt" IS NULL
-       AND (u."onboarding"->'steps'->>'install_redloader') IS NOT NULL
-       AND (u."onboarding"->>'completedAt') IS NULL
-       AND EXISTS (SELECT 1 FROM "ModDownload" d WHERE d."userId" = u."id")
-       AND EXISTS (SELECT 1 FROM "ModFavorite" f WHERE f."userId" = u."id")
-       AND EXISTS (SELECT 1 FROM "CompatReport" c WHERE c."userId" = u."id")
-       AND EXISTS (SELECT 1 FROM "Kit" k WHERE k."ownerId" = u."id")
-     LIMIT ${limit}`);
-  let done = 0;
-  for (const { id } of rows.rows) {
-    const dto = await withTx(ctx.db, (tx) => syncOnboarding(tx, ctx.jobs, Number(id), ctx.clock.now()));
-    if (dto?.completed) done += 1;
-  }
-  return done;
 }

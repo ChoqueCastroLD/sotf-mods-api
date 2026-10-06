@@ -1,7 +1,8 @@
 /**
- * @sotf/brand — the «Locator» brand assets of SOTF Mods as pure, deterministic functions.
+ * @sotf/brand: the brand assets of SOTF Mods (the old red logo, favicons, default avatars,
+ * covers and banners) as pure, deterministic functions.
  *
- * Import from sub-paths (`@sotf/brand/moon`, `@sotf/brand/topo`, …) in client code to keep
+ * Import from sub-paths (`@sotf/brand/logo`, `@sotf/brand/colors`, …) in client code to keep
  * bundles minimal; this barrel is convenient on the server.
  */
 
@@ -35,15 +36,7 @@ export {
   fieldKitUse,
   isFieldKitIcon,
 } from './field-kit.ts';
-export {
-  APP_ICONS,
-  type AppIconShape,
-  type AppIconSpec,
-  appIconSvg,
-  FAVICON_ICO_SIZES,
-  faviconSvg,
-  manifestIcons,
-} from './icons.ts';
+export { APP_ICONS, type AppIconShape, type AppIconSpec, FAVICON_ICO_SIZES, manifestIcons } from './icons.ts';
 export {
   DISPLAY_FONT_STACK,
   graphemes,
@@ -54,27 +47,16 @@ export {
   upperInitial,
 } from './initials.ts';
 export {
-  type LockupGeometry,
+  LOGO_FILES,
+  LOGO_PATHS,
   type LockupLayout,
   type LockupOptions,
   type LockupTheme,
-  lockupBody,
-  lockupGeometry,
+  type LogoFile,
   lockupSvg,
+  logoPicture,
 } from './logo.ts';
-export {
-  CLEAR_SPACE_RATIO,
-  MARK_BOUNDS,
-  MARK_MIN_SIZE,
-  MARK_VIEWBOX,
-  type MarkSvgOptions,
-  type MarkVariant,
-  markPath,
-  markPathData,
-  markSvg,
-  markVariantForSize,
-  PIN_PATH,
-} from './mark.ts';
+export { LOGO_WORDMARK_DATA_URI, LOGO_WORDMARK_SIZE } from './logo-data.ts';
 export {
   MOON_PHASE_NAMES,
   type MoonPhase,
@@ -83,7 +65,7 @@ export {
   moonPhase,
   SYNODIC_MONTH,
 } from './moon.ts';
-export { OG_DEFAULT_SEED, OG_HEIGHT, OG_WIDTH, ogDefaultSvg } from './og.ts';
+export { OG_HEIGHT, OG_WIDTH } from './og.ts';
 export { createRng, hashSeed, type Rng, type Seed } from './random.ts';
 export {
   TOPO_TEXTURE_OPTIONS,

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Field_Display_Name_HintInputs */
 
 const en_auth_field_display_name_hint = /** @type {(inputs: Auth_Field_Display_Name_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`How other survivors see you. You can change it later.`)
+	return /** @type {LocalizedString} */ (`The name other users see. You can change it later.`)
 };
 
 const es_auth_field_display_name_hint = /** @type {(inputs: Auth_Field_Display_Name_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Cómo te ven otros supervivientes. Puedes cambiarlo más tarde.`)
+	return /** @type {LocalizedString} */ (`El nombre que ven otros usuarios. Puedes cambiarlo más tarde.`)
 };
 
 const de_auth_field_display_name_hint = /** @type {(inputs: Auth_Field_Display_Name_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`So sehen dich andere Überlebende. Du kannst ihn später ändern.`)
+	return /** @type {LocalizedString} */ (`Der Name, den andere Nutzer sehen. Du kannst ihn später ändern.`)
 };
 
 const fr_auth_field_display_name_hint = /** @type {(inputs: Auth_Field_Display_Name_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ce que voient les autres survivants. Vous pourrez le changer plus tard.`)
+	return /** @type {LocalizedString} */ (`Le nom que voient les autres utilisateurs. Vous pourrez le changer plus tard.`)
 };
 
 const it_auth_field_display_name_hint = /** @type {(inputs: Auth_Field_Display_Name_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Come ti vedono gli altri sopravvissuti. Puoi cambiarlo in seguito.`)
+	return /** @type {LocalizedString} */ (`Il nome che vedono gli altri utenti. Puoi cambiarlo in seguito.`)
 };
 
 const nl_auth_field_display_name_hint = /** @type {(inputs: Auth_Field_Display_Name_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zo zien andere overlevenden je. Je kunt dit later wijzigen.`)
+	return /** @type {LocalizedString} */ (`De naam die andere gebruikers zien. Je kunt dit later wijzigen.`)
 };
 
 const pl_auth_field_display_name_hint = /** @type {(inputs: Auth_Field_Display_Name_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tak widzą cię inni ocalali. Możesz ją później zmienić.`)
+	return /** @type {LocalizedString} */ (`Nazwa widoczna dla innych użytkowników. Możesz ją później zmienić.`)
 };
 
 const pt_auth_field_display_name_hint = /** @type {(inputs: Auth_Field_Display_Name_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Como outros sobreviventes veem você. Dá para mudar depois.`)
+	return /** @type {LocalizedString} */ (`O nome que outros usuários veem. Dá para mudar depois.`)
 };
 
 const ru_auth_field_display_name_hint = /** @type {(inputs: Auth_Field_Display_Name_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Так вас видят другие выжившие. Его можно изменить позже.`)
+	return /** @type {LocalizedString} */ (`Имя, которое видят другие пользователи. Его можно изменить позже.`)
 };
 
 const sv_auth_field_display_name_hint = /** @type {(inputs: Auth_Field_Display_Name_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Så ser andra överlevare dig. Du kan ändra det senare.`)
+	return /** @type {LocalizedString} */ (`Namnet som andra användare ser. Du kan ändra det senare.`)
 };
 
 const tr_auth_field_display_name_hint = /** @type {(inputs: Auth_Field_Display_Name_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Diğer hayatta kalanlar seni böyle görür. Daha sonra değiştirebilirsin.`)
+	return /** @type {LocalizedString} */ (`Diğer kullanıcıların gördüğü ad. Daha sonra değiştirebilirsin.`)
 };
 
 const zh_auth_field_display_name_hint = /** @type {(inputs: Auth_Field_Display_Name_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`其他幸存者看到的名字，之后可以修改。`)
+	return /** @type {LocalizedString} */ (`其他用户看到的名字，之后可以修改。`)
 };
 
 const ja_auth_field_display_name_hint = /** @type {(inputs: Auth_Field_Display_Name_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ほかのサバイバーに表示される名前です。あとから変更できます。`)
+	return /** @type {LocalizedString} */ (`ほかのユーザーに表示される名前です。あとから変更できます。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "How other survivors see you. You can change it later." |
+* | "The name other users see. You can change it later." |
 *
 * @param {Auth_Field_Display_Name_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

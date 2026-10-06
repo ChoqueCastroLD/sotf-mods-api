@@ -1,19 +1,14 @@
 /**
- * SEO of the profile (PLAN §4.5 «Perfil»), creators directory and achievements pages.
- *
- * - Profile title «{displayName} (@{handle}) — Sons of the Forest mod creator» (non-creators get
- *   the community variant), description from the bio or the stats; JSON-LD `ProfilePage` →
- *   `mainEntity: Person` (`name`, `alternateName`, `image`, `sameAs`, `interactionStatistic`).
- * - Creators: `CollectionPage` + `ItemList` of the profiles on the page.
- * - Achievements: `CollectionPage` + `DefinedTermSet` of the badges, ranks and tiers (rules that
- *   answer engines can quote).
+ * SEO of the profile (PLAN §4.5 «Perfil»): title «{displayName} (@{handle}) on SOTF Mods»,
+ * description from the bio or the stats; JSON-LD `ProfilePage` → `mainEntity: Person` (`name`,
+ * `alternateName`, `image`, `sameAs`, `interactionStatistic`).
  */
 import { absoluteUrl, profilePath } from '@sotf/contracts/seo';
 import { formatCompactNumber, type Locale, localizePath, toHreflang } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
-import type { CollectionPage, DefinedTermSet, Person, ProfilePage, WithContext } from 'schema-dts';
+import type { Person, ProfilePage, WithContext } from 'schema-dts';
 import type { JsonLd } from '../../lib/seo/jsonld.ts';
-import type { CreatorCardDTO, UserPublicDTO } from './data.ts';
+import type { UserPublicDTO } from './data.ts';
 
 /** Plain text of the API's bio HTML (escaped paragraphs or sanitised Markdown). */
 export function bioText(html: string | null): string {
@@ -37,10 +32,7 @@ function isCreator(user: UserPublicDTO): boolean {
 }
 
 export function profileTitle(user: UserPublicDTO): string {
-  const name = user.displayName || user.handle;
-  return isCreator(user)
-    ? m.profile_meta_title_creator({ name, handle: user.handle })
-    : m.profile_meta_title_member({ name, handle: user.handle });
+  return m.profile_meta_title_user({ name: user.displayName || user.handle, handle: user.handle });
 }
 
 export function profileDescription(user: UserPublicDTO, locale: Locale): string {
@@ -56,7 +48,7 @@ export function profileDescription(user: UserPublicDTO, locale: Locale): string 
         downloads: formatCompactNumber(locale, stats.downloadsTotal),
         followers: stats.followersCount,
       })
-    : m.profile_meta_description_member({ name, reviews: stats.reviewsCount, reports: stats.compatReportsCount });
+    : m.profile_meta_description_user({ name, reviews: stats.reviewsCount });
   return bio ? `${bio} · ${facts}` : facts;
 }
 
@@ -121,65 +113,5 @@ export function profileJsonLd({ user, locale, siteUrl, pageUrl }: ProfileJsonLdI
         }
       : {}),
   } as WithContext<ProfilePage>;
-  return page;
-}
-
-export function creatorsJsonLd(input: {
-  creators: readonly CreatorCardDTO[];
-  locale: Locale;
-  siteUrl: string;
-  pageUrl: string;
-  offset: number;
-}): JsonLd {
-  const page: WithContext<CollectionPage> = {
-    '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    '@id': `${input.pageUrl}#page`,
-    url: input.pageUrl,
-    name: m.profile_creators_title(),
-    description: m.profile_creators_meta_description(),
-    inLanguage: toHreflang(input.locale),
-    isPartOf: { '@id': `${input.siteUrl}/#website` },
-    mainEntity: {
-      '@type': 'ItemList',
-      numberOfItems: input.creators.length,
-      itemListElement: input.creators.map((creator, index) => ({
-        '@type': 'ListItem',
-        position: input.offset + index + 1,
-        url: absoluteUrl(localizePath(profilePath(creator.user.handle), input.locale), input.siteUrl),
-        name: creator.user.displayName || creator.user.handle,
-      })),
-    },
-  };
-  return page;
-}
-
-export function achievementsJsonLd(input: {
-  locale: Locale;
-  siteUrl: string;
-  pageUrl: string;
-  badges: ReadonlyArray<{ name: string; description: string }>;
-}): JsonLd {
-  const terms: DefinedTermSet = {
-    '@type': 'DefinedTermSet',
-    '@id': `${input.pageUrl}#badges`,
-    name: m.profile_achievements_badges_title(),
-    hasDefinedTerm: input.badges.map((badge) => ({
-      '@type': 'DefinedTerm',
-      name: badge.name,
-      ...(badge.description ? { description: badge.description } : {}),
-    })),
-  };
-  const page: WithContext<CollectionPage> = {
-    '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    '@id': `${input.pageUrl}#page`,
-    url: input.pageUrl,
-    name: m.profile_achievements_title(),
-    description: m.profile_achievements_meta_description(),
-    inLanguage: toHreflang(input.locale),
-    isPartOf: { '@id': `${input.siteUrl}/#website` },
-    mainEntity: terms,
-  };
   return page;
 }

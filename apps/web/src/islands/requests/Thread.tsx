@@ -166,9 +166,9 @@ export function Thread({ requestId, initial, session, verifyHref, count, onCount
 
   return (
     <section aria-labelledby="request-comments-title" className="flex flex-col gap-4">
-      <h2 id="request-comments-title" className="text-lg font-semibold text-fg">
+      <h2 id="request-comments-title" className="text-xl font-bold text-fg">
         {t('requests_comments_title')}
-        <span className="ms-1 font-mono text-sm font-normal text-fg-muted">{count}</span>
+        <span className="ms-1 text-sm font-normal text-fg-muted tabular-nums">{count}</span>
       </h2>
 
       {session.emailVerified ? (
@@ -191,7 +191,7 @@ export function Thread({ requestId, initial, session, verifyHref, count, onCount
       {items.length === 0 ? (
         <p className="text-sm text-fg-muted">{t('requests_comments_empty')}</p>
       ) : (
-        <ol className="flex flex-col gap-3">
+        <ol className="flex flex-col border-t border-border">
           {items.map((comment) => {
             const own = comment.author?.id === session.id;
             const menu: MenuItem[] = [];
@@ -210,7 +210,7 @@ export function Thread({ requestId, initial, session, verifyHref, count, onCount
               <li
                 key={comment.id}
                 id={`c-${comment.id}`}
-                className="flex flex-col gap-2 rounded-lg border border-border bg-surface p-4 target:border-signal"
+                className="flex flex-col gap-2 border-b border-border py-4 target:bg-fg/4"
               >
                 <div className="flex items-start justify-between gap-2">
                   <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">

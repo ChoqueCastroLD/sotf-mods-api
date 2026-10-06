@@ -6,11 +6,11 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Shell_Offline_Back_OnlineInputs */
 
 const en_shell_offline_back_online = /** @type {(inputs: Shell_Offline_Back_OnlineInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`You’re back online. Reloading…`)
+	return /** @type {LocalizedString} */ (`You are back online. Reloading…`)
 };
 
 const es_shell_offline_back_online = /** @type {(inputs: Shell_Offline_Back_OnlineInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Has vuelto a tener conexión. Recargando…`)
+	return /** @type {LocalizedString} */ (`Has vuelto a conectarte. Recargando…`)
 };
 
 const de_shell_offline_back_online = /** @type {(inputs: Shell_Offline_Back_OnlineInputs) => LocalizedString} */ () => {
@@ -30,7 +30,7 @@ const nl_shell_offline_back_online = /** @type {(inputs: Shell_Offline_Back_Onli
 };
 
 const pl_shell_offline_back_online = /** @type {(inputs: Shell_Offline_Back_OnlineInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Znów jesteś online. Wczytuję ponownie…`)
+	return /** @type {LocalizedString} */ (`Znów jesteś online. Odświeżanie…`)
 };
 
 const pt_shell_offline_back_online = /** @type {(inputs: Shell_Offline_Back_OnlineInputs) => LocalizedString} */ () => {
@@ -38,7 +38,7 @@ const pt_shell_offline_back_online = /** @type {(inputs: Shell_Offline_Back_Onli
 };
 
 const ru_shell_offline_back_online = /** @type {(inputs: Shell_Offline_Back_OnlineInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Связь восстановлена. Перезагружаем…`)
+	return /** @type {LocalizedString} */ (`Подключение восстановлено. Перезагрузка…`)
 };
 
 const sv_shell_offline_back_online = /** @type {(inputs: Shell_Offline_Back_OnlineInputs) => LocalizedString} */ () => {
@@ -46,11 +46,11 @@ const sv_shell_offline_back_online = /** @type {(inputs: Shell_Offline_Back_Onli
 };
 
 const tr_shell_offline_back_online = /** @type {(inputs: Shell_Offline_Back_OnlineInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Yeniden çevrimiçisin. Sayfa yenileniyor…`)
+	return /** @type {LocalizedString} */ (`Tekrar çevrimiçisiniz. Yeniden yükleniyor…`)
 };
 
 const zh_shell_offline_back_online = /** @type {(inputs: Shell_Offline_Back_OnlineInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`已恢复连接，正在重新加载…`)
+	return /** @type {LocalizedString} */ (`已恢复在线。正在重新加载…`)
 };
 
 const ja_shell_offline_back_online = /** @type {(inputs: Shell_Offline_Back_OnlineInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_shell_offline_back_online = /** @type {(inputs: Shell_Offline_Back_Onli
 /**
 * | output |
 * | --- |
-* | "You’re back online. Reloading…" |
+* | "You are back online. Reloading…" |
 *
 * @param {Shell_Offline_Back_OnlineInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

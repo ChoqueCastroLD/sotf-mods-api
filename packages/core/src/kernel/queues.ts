@@ -42,17 +42,8 @@ export const QUEUE_OVERRIDES: Partial<Record<JobQueue, QueueConfig>> = {
   'stats.rollup': { policy: 'singleton' },
   'stats.trending': { policy: 'singleton' },
   'legacy.counters': { policy: 'singleton' },
-  // Idempotent anyway (advisory lock per week, ON CONFLICT DO NOTHING); one run at a time.
-  'awards.mod-of-week': { policy: 'singleton' },
-  'milestones.check': { policy: 'singleton' },
-  'gamification.evaluate': { retryLimit: 3 },
-  // Sweeps: one run at a time; the next schedule retries anyway.
-  'compat.reconcile': { policy: 'singleton', retryLimit: 2 },
-  // A probe that overlaps the next one is useless: skip it, never retry.
-  'compat.uptime-probe': { policy: 'singleton', retryLimit: 0, expireInSeconds: 2 * 60 },
   'build.geometry': { retryLimit: 2, expireInSeconds: 10 * 60 },
   'bundle.build': { retryLimit: 2, expireInSeconds: 30 * 60 },
-  'bundle.sweep': { policy: 'singleton', retryLimit: 1 },
   'security.rescan': { policy: 'singleton', retryLimit: 1 },
   'markdown.rerender': { policy: 'singleton', retryLimit: 2, expireInSeconds: 60 * 60 },
   'ops.alerts': { policy: 'singleton', retryLimit: 1, expireInSeconds: 4 * 60 },

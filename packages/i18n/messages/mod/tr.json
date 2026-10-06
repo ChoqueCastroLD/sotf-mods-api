@@ -243,5 +243,12 @@
   "mod_graph_required_by": "Şunlar için gerekli",
   "mod_compat_report_cta": "Çalışıp çalışmadığını bildir",
   "mod_action_more": "Diğer eylemler",
-  "mod_action_report_mod": "Bu modu şikâyet et"
+  "mod_action_report_mod": "Bu modu şikâyet et",
+  "mod_tab_description": "Açıklama",
+  "mod_action_install_manager": "RedManager ile yükle",
+  "mod_versions_section_title": "Sürümler ve değişiklik günlüğü",
+  "mod_details_title": "Ayrıntılar",
+  "mod_detail_game": "Oyun sürümü",
+  "mod_detail_loader": "RedLoader",
+  "mod_fact_multiplayer": "Çok oyunculu"
 }

@@ -1,15 +1,15 @@
 ---
 /**
- * Published results: one podium per category behind a row of category tabs (the overall podium
+ * Published results: one ranking per category behind a row of category tabs (the overall ranking
  * first). The tabs are native radio inputs styled as pills: arrow keys, focus and announcements
- * come from the platform, they work without JavaScript, and `:has()` swaps the podium. Without
+ * come from the platform, they work without JavaScript, and `:has()` swaps the ranking. Without
  * `:has()` support the first panel stays visible.
  */
 import { JAM_OVERALL_KEY } from '@sotf/contracts/jams';
 import { m } from '@sotf/i18n/messages';
 import type { JamResultsDTO } from './data.ts';
-import Podium from './Podium.astro';
 import { categoryLabel } from './phase.ts';
+import Podium from './Podium.astro';
 
 interface Props {
   results: JamResultsDTO;
@@ -27,10 +27,10 @@ const panels = [
 ---
 
 <div class="jam-board flex flex-col gap-6" data-jam-board>
-  <div role="radiogroup" aria-label={m.jams_results_tabs_label()} class="flex flex-wrap gap-2">
+  <div role="radiogroup" aria-label={m.jams_results_tabs_label()} class="flex flex-wrap gap-x-6 border-b border-border">
     {
       panels.map((panel, index) => (
-        <label class="relative inline-flex min-h-11 cursor-pointer select-none items-center rounded-full border border-border-strong bg-surface px-4 text-sm font-semibold text-fg-muted transition-colors duration-(--dur-fast) hover:text-fg has-[:checked]:border-primary has-[:checked]:bg-primary has-[:checked]:text-primary-fg has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-focus">
+        <label class="relative -mb-px inline-flex min-h-11 cursor-pointer select-none items-center border-b-2 border-transparent px-0.5 text-sm font-semibold text-fg-muted hover:text-fg has-[:checked]:border-primary has-[:checked]:text-fg has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-focus">
           <input
             type="radio"
             name={`${id}-tab`}
@@ -48,7 +48,7 @@ const panels = [
     panels.map((panel, index) => (
       <div data-panel={index} data-key={panel.key}>
         <h3 class="sr-only">{panel.label}</h3>
-        <Podium placements={panel.placements} trophy={panel.key === JAM_OVERALL_KEY} />
+        <Podium placements={panel.placements} />
       </div>
     ))
   }
@@ -74,10 +74,5 @@ const panels = [
   .jam-board:has([data-tab='7']:checked) [data-panel='7'],
   .jam-board:has([data-tab='8']:checked) [data-panel='8'] {
     display: block;
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .jam-board [data-panel] {
-      animation: rise 320ms var(--ease-out) both;
-    }
   }
 </style>

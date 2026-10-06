@@ -8,11 +8,10 @@ import { pageEntity, track } from '../beacon.ts';
 import { initCarousels } from './carousel.ts';
 import { pageData } from './data.ts';
 import { DIALOG_OPEN_EVENT, type DialogOpenDetail, initDialogs } from './dialogs.ts';
-import { initCompatPrompt, initDownloads } from './download.ts';
+import { initDownloads } from './download.ts';
 import { initFolds } from './fold.ts';
 import { initFollow, setFollowers } from './follow.ts';
 import { initGallery } from './gallery.ts';
-import { initKitAdd } from './kit-add.ts';
 import { compactFormat, startLiveCounters } from './live.ts';
 import { initNsfwGate } from './nsfw.ts';
 import { initProse } from './prose.ts';
@@ -23,7 +22,6 @@ import { initTabs } from './tabs.ts';
 import { initTranslation } from './translation.ts';
 import type { ModPageData } from './types.ts';
 import { initVersions } from './versions.ts';
-import { initWhatsNew } from './whats-new.ts';
 
 let started = false;
 
@@ -70,9 +68,6 @@ export function initModPage(doc: Document = document): void {
   safely(() => initVersions(root, doc));
   safely(() => initGallery(root, data, doc));
   safely(() => initProse(root, data.messages.videoEmbedTitle, doc));
-  // Members get the «Did it work?» callout in place from the field-report island (server truth,
-  // `GET /me/compat-prompts`); the browser-local toast is only for guests, so only one shows.
-  safely(() => session.then((summary) => (summary ? undefined : initCompatPrompt(data))));
   safely(() => track('mod_view', pageEntity()));
   safely(() => initLiveMod(root, data, doc));
   safely(() => import('../../islands/stats/boot.ts').then(({ bootStats }) => bootStats(root)));
@@ -86,13 +81,9 @@ export function initModPage(doc: Document = document): void {
 
   void session.then((summary) => {
     if (!summary) return;
-    for (const hint of root.querySelectorAll<HTMLElement>(
-      '[data-review-guest-hint], [data-comment-guest-hint], [data-field-report-guest]',
-    )) {
+    for (const hint of root.querySelectorAll<HTMLElement>('[data-review-guest-hint], [data-comment-guest-hint]')) {
       hint.hidden = true;
     }
     safely(() => initFollow(root, data, summary, doc));
-    safely(() => initWhatsNew(root, data, doc));
-    safely(() => initKitAdd(root, data, doc));
   });
 }

@@ -1,12 +1,10 @@
 ---
 /**
- * SPEC SHEET (research/03 §6.6): the technical facts of the blueprint as a monospace `<dl>` on
- * the cyanotype grid — pieces, structures, BuildShare version, GUID (copyable), size class with its
- * scale, uploader, blueprint and original authors, version, file, dates and downloads. It is the
- * citable answer of the page (GEO), so every value is plain text; unknown facts say so.
+ * Details of a build: a plain definition list with hairlines (pieces, structures, size, BuildShare
+ * version, GUID with copy, authors, version, file, dates, downloads). It stays the citable answer
+ * of the page, so every value is plain text; unknown facts are simply left out.
  */
 
-import { BUILD_SIZE_CLASSES } from '@sotf/contracts/manifest';
 import { profilePath } from '@sotf/contracts/seo';
 import { formatBytes, formatDate, formatNumber } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
@@ -24,77 +22,55 @@ interface Props {
 const { build, spec } = Astro.props;
 const locale = Astro.locals.locale;
 const latest = build.latestVersion;
-const unknown = m.builds_spec_unknown();
 const shortGuid = spec.guid && spec.guid.length > 12 ? `${spec.guid.slice(0, 8)}…${spec.guid.slice(-4)}` : spec.guid;
-const dt = 'readout text-blueprint';
-const dd = 'min-w-0 font-mono text-sm text-fg tabular-nums break-words';
-const unknownClass = 'min-w-0 font-mono text-sm text-fg-subtle';
+const row = 'flex items-baseline justify-between gap-4 border-b border-border py-2 last:border-b-0';
+const dt = 'shrink-0 text-fg-muted';
+const dd = 'min-w-0 text-end tabular-nums break-words';
 ---
 
-<section
-  id="spec"
-  data-fold="closed"
-  aria-labelledby="spec-title"
-  class="texture-blueprint relative grid scroll-mt-32 gap-4 rounded-lg border border-blueprint/40 p-4 md:scroll-mt-24 md:p-5"
-  data-spec-sheet
->
-  <h2 id="spec-title" class="font-display-caps text-display-xs text-blueprint">{m.builds_spec_title()}</h2>
-  <dl class="grid grid-cols-[auto_1fr] items-baseline gap-x-4 gap-y-2.5 sm:grid-cols-[minmax(8rem,auto)_1fr] lg:grid-cols-1 lg:gap-y-1 xl:grid-cols-[minmax(8rem,auto)_1fr] xl:gap-y-2.5">
-    <dt class={dt}>{m.builds_spec_pieces()}</dt>
-    <dd class={spec.elements === null ? unknownClass : dd}>
-      {spec.elements === null ? unknown : formatNumber(locale, spec.elements)}
-    </dd>
-
+<section id="spec" data-fold="closed" aria-labelledby="spec-title" class="grid scroll-mt-32 gap-3 md:scroll-mt-24" data-spec-sheet>
+  <h2 id="spec-title" class="text-sm font-semibold text-fg">{m.mod_details_title()}</h2>
+  <dl class="-mt-1 flex flex-col text-sm">
     {
-      spec.structures !== null && (
-        <>
-          <dt class={dt}>{m.builds_spec_structures()}</dt>
-          <dd class={dd}>{formatNumber(locale, spec.structures)}</dd>
-        </>
+      spec.elements !== null && (
+        <div class={row}>
+          <dt class={dt}>{m.builds_spec_pieces()}</dt>
+          <dd class={dd}>{formatNumber(locale, spec.elements)}</dd>
+        </div>
       )
     }
-
-    <dt class={dt}>{m.builds_spec_size()}</dt>
-    <dd class={spec.sizeClass ? dd : unknownClass}>
-      {
-        spec.sizeClass ? (
-          <span class="grid gap-1.5">
-            <span>
-              <strong class="font-semibold">{spec.sizeClass}</strong> · {m.builds_size_name({ size: spec.sizeClass })}
-            </span>
-            <span class="flex gap-1" role="img" aria-label={`${m.builds_size_scale_label()}: ${sizeRangeLabel(spec.sizeClass, locale)}`}>
-              {BUILD_SIZE_CLASSES.map((size) => (
-                <span
-                  class:list={[
-                    'inline-flex h-6 min-w-8 items-center justify-center rounded-xs border px-1 text-2xs',
-                    size === spec.sizeClass
-                      ? 'border-blueprint bg-blueprint font-semibold text-blueprint-surface'
-                      : 'border-blueprint/40 text-blueprint',
-                  ]}
-                  aria-hidden="true"
-                >
-                  {size}
-                </span>
-              ))}
-            </span>
-            <span class="text-xs text-fg-muted">{sizeRangeLabel(spec.sizeClass, locale)}</span>
-          </span>
-        ) : (
-          unknown
-        )
-      }
-    </dd>
-
-    <dt class={dt}>{m.builds_spec_buildshare()}</dt>
-    <dd class={spec.buildShareVersion ? dd : unknownClass}>
-      {spec.buildShareVersion ? `v${spec.buildShareVersion}` : unknown}
-    </dd>
-
-    <dt class={dt}>{m.builds_spec_guid()}</dt>
-    <dd class={spec.guid ? dd : unknownClass}>
-      {
-        spec.guid ? (
-          <span class="flex items-center gap-1.5">
+    {
+      spec.structures !== null && (
+        <div class={row}>
+          <dt class={dt}>{m.builds_spec_structures()}</dt>
+          <dd class={dd}>{formatNumber(locale, spec.structures)}</dd>
+        </div>
+      )
+    }
+    {
+      spec.sizeClass && (
+        <div class={row}>
+          <dt class={dt}>{m.builds_spec_size()}</dt>
+          <dd class={dd}>
+            {m.builds_size_name({ size: spec.sizeClass })}
+            <span class="block text-xs text-fg-muted">{sizeRangeLabel(spec.sizeClass, locale)}</span>
+          </dd>
+        </div>
+      )
+    }
+    {
+      spec.buildShareVersion && (
+        <div class={row}>
+          <dt class={dt}>{m.builds_spec_buildshare()}</dt>
+          <dd class={`${dd} font-mono text-xs`}>v{spec.buildShareVersion}</dd>
+        </div>
+      )
+    }
+    {
+      spec.guid && (
+        <div class={row}>
+          <dt class={dt}>{m.builds_spec_guid()}</dt>
+          <dd class={`${dd} flex items-center justify-end gap-1.5 font-mono text-xs`}>
             <code title={spec.guid} data-guid={spec.guid}>
               <span aria-hidden="true">{shortGuid}</span>
               <span class="sr-only">{spec.guid}</span>
@@ -103,37 +79,34 @@ const unknownClass = 'min-w-0 font-mono text-sm text-fg-subtle';
               type="button"
               data-copy-text={spec.guid}
               data-copied={m.builds_spec_guid_copied()}
-              class="inline-flex size-8 items-center justify-center rounded-sm text-blueprint hover:bg-blueprint/10"
+              class="inline-flex size-8 items-center justify-center rounded-sm text-fg-muted hover:bg-fg/8 hover:text-fg"
               title={m.builds_spec_copy_guid()}
             >
               <Icon icon={Copy} size={16} label={m.builds_spec_copy_guid()} />
             </button>
-          </span>
-        ) : (
-          unknown
-        )
-      }
-    </dd>
-
-    <dt class={dt}>{m.builds_spec_uploader()}</dt>
-    <dd class={dd}>
-      <a href={href(profilePath(build.userHandle), locale)} class="underline-offset-3 hover:underline">
-        @{build.userHandle}
-      </a>
-    </dd>
-
-    {
-      spec.blueprintAuthor && (
-        <>
-          <dt class={dt}>{m.builds_spec_blueprint_author()}</dt>
-          <dd class={dd}>{spec.blueprintAuthor}</dd>
-        </>
+          </dd>
+        </div>
       )
     }
-
+    <div class={row}>
+      <dt class={dt}>{m.builds_spec_uploader()}</dt>
+      <dd class={dd}>
+        <a href={href(profilePath(build.userHandle), locale)} class="text-link underline-offset-3 hover:underline">
+          @{build.userHandle}
+        </a>
+      </dd>
+    </div>
+    {
+      spec.blueprintAuthor && (
+        <div class={row}>
+          <dt class={dt}>{m.builds_spec_blueprint_author()}</dt>
+          <dd class={dd}>{spec.blueprintAuthor}</dd>
+        </div>
+      )
+    }
     {
       build.originalAuthor && (
-        <>
+        <div class={row}>
           <dt class={dt}>{m.builds_spec_original_author()}</dt>
           <dd class={dd}>
             {build.originalAuthor.url ? (
@@ -141,7 +114,7 @@ const unknownClass = 'min-w-0 font-mono text-sm text-fg-subtle';
                 href={build.originalAuthor.url}
                 rel="nofollow ugc noopener"
                 target="_blank"
-                class="underline underline-offset-3"
+                class="text-link underline underline-offset-3"
               >
                 {build.originalAuthor.name}
                 <span class="sr-only">{m.common_new_tab()}</span>
@@ -150,35 +123,41 @@ const unknownClass = 'min-w-0 font-mono text-sm text-fg-subtle';
               build.originalAuthor.name
             )}
           </dd>
-        </>
+        </div>
       )
     }
-
     {
       latest && (
         <>
-          <dt class={dt}>{m.builds_spec_version()}</dt>
-          <dd class={dd}>v{latest.version}</dd>
-          <dt class={dt}>{m.builds_spec_file()}</dt>
-          <dd class={dd}>
-            {latest.fileName ?? '.json'}
-            {typeof latest.fileSize === 'number' && ` · ${formatBytes(locale, latest.fileSize)}`}
-          </dd>
+          <div class={row}>
+            <dt class={dt}>{m.builds_spec_version()}</dt>
+            <dd class={`${dd} font-mono text-xs`}>v{latest.version}</dd>
+          </div>
+          <div class={row}>
+            <dt class={dt}>{m.builds_spec_file()}</dt>
+            <dd class={dd}>
+              {latest.fileName ?? '.json'}
+              {typeof latest.fileSize === 'number' && ` · ${formatBytes(locale, latest.fileSize)}`}
+            </dd>
+          </div>
         </>
       )
     }
-
-    <dt class={dt}>{m.builds_spec_updated()}</dt>
-    <dd class={dd}><time datetime={build.lastReleasedAt}>{formatDate(locale, build.lastReleasedAt, 'medium')}</time></dd>
-
-    <dt class={dt}>{m.builds_spec_published()}</dt>
-    <dd class={dd}>
-      <time datetime={build.publishedAt ?? build.createdAt}>
-        {formatDate(locale, build.publishedAt ?? build.createdAt, 'medium')}
-      </time>
-    </dd>
-
-    <dt class={dt}>{m.builds_spec_downloads()}</dt>
-    <dd class={dd} data-live="downloads-full">{formatNumber(locale, build.downloads)}</dd>
+    <div class={row}>
+      <dt class={dt}>{m.builds_spec_updated()}</dt>
+      <dd class={dd}><time datetime={build.lastReleasedAt}>{formatDate(locale, build.lastReleasedAt, 'medium')}</time></dd>
+    </div>
+    <div class={row}>
+      <dt class={dt}>{m.builds_spec_published()}</dt>
+      <dd class={dd}>
+        <time datetime={build.publishedAt ?? build.createdAt}>
+          {formatDate(locale, build.publishedAt ?? build.createdAt, 'medium')}
+        </time>
+      </dd>
+    </div>
+    <div class={row}>
+      <dt class={dt}>{m.builds_spec_downloads()}</dt>
+      <dd class={dd} data-live="downloads-full">{formatNumber(locale, build.downloads)}</dd>
+    </div>
   </dl>
 </section>

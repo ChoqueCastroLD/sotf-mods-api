@@ -3,7 +3,7 @@ export type Shell_Offline_EyebrowInputs = {};
 /**
 * | output |
 * | --- |
-* | "No signal" |
+* | "Offline" |
 *
 * @param {Shell_Offline_EyebrowInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

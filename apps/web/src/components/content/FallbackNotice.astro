@@ -26,8 +26,8 @@ const language = names.of(toHtmlLang(locale)) ?? locale;
 const original = names.of(toHtmlLang(textLocale)) ?? textLocale;
 ---
 
-<aside class="flex items-start gap-3 rounded-lg border border-signal/40 bg-signal-soft p-4 text-sm text-fg">
-  <Icon icon={Languages} size={20} className="mt-0.5 shrink-0 text-signal" />
+<aside class="flex items-start gap-3 rounded-lg border border-border bg-raised p-4 text-sm text-fg">
+  <Icon icon={Languages} size={20} className="mt-0.5 shrink-0 text-fg-muted" />
   <div class="grid gap-1">
     <p>{m.content_fallback_text({ language, original })}</p>
     {binding && <p class="text-fg-muted">{m.content_fallback_binding()}</p>}

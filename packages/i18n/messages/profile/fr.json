@@ -240,5 +240,16 @@
   "profile_badge_jam_podium_name": "Podium de Jam",
   "profile_badge_jam_podium_hint": "Terminez dans le top 3 d'une catégorie d'une Mod Jam. Peut être obtenu plusieurs fois.",
   "profile_badge_jam_champion_name": "Champion de Jam",
-  "profile_badge_jam_champion_hint": "Remportez une Mod Jam au classement général. Peut être obtenu plusieurs fois."
+  "profile_badge_jam_champion_hint": "Remportez une Mod Jam au classement général. Peut être obtenu plusieurs fois.",
+  "profile_member_since": "Membre depuis le {date}",
+  "profile_trusted": "De confiance",
+  "profile_role_moderator": "Modérateur",
+  "profile_role_admin": "Administrateur",
+  "profile_stat_published_label": "Mods publiés",
+  "profile_stat_reviews_label": "Avis",
+  "profile_meta_title_user": "{name} (@{handle})",
+  "profile_meta_description_user": "{name} sur SOTF Mods, la communauté de modding de Sons of the Forest : {reviews, plural, one {# avis} other {# avis}}.",
+  "profile_cards_empty_text": "{name} n’a encore rien publié ici.",
+  "profile_follow_done": "Abonné. Vous serez averti à chaque nouvelle publication.",
+  "profile_search_type_users": "Utilisateurs"
 }

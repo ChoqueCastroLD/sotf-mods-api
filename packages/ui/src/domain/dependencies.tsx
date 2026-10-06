@@ -66,7 +66,7 @@ export function ModChip({ dependency, href, className }: ModChipProps) {
     </>
   );
   const classes = cn(
-    'inline-flex h-8 max-w-full items-center gap-1.5 rounded-full border bg-raised px-3 text-sm text-fg',
+    'inline-flex h-8 max-w-full items-center gap-1.5 rounded-md border bg-raised px-3 text-sm text-fg',
     kind.classes,
     className,
   );
@@ -116,7 +116,7 @@ export function DependencyList({ dependencies, headingLevel = 3, className }: De
         if (items.length === 0) return null;
         return (
           <section key={kind} className="flex flex-col gap-2">
-            <Heading className="readout">{t(GROUP_TITLE[kind])}</Heading>
+            <Heading className="text-sm font-medium text-fg-muted">{t(GROUP_TITLE[kind])}</Heading>
             <ul className="flex flex-wrap gap-2">
               {items.map((dependency) => (
                 <li key={`${dependency.kind}:${dependency.manifestId}`} className="min-w-0 max-w-full">

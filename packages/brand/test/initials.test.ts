@@ -66,11 +66,11 @@ describe('initialsElement', () => {
     expect(element.match(/<path/g)).toHaveLength(2);
   });
 
-  it('falls back to escaped text with the display font stack', () => {
+  it('falls back to escaped text with the UI font stack', () => {
     const element = initialsElement('É<', { x: 1, y: 2, capHeight: 8, fill: '#000', anchor: 'start' });
     expect(element).toContain('<text');
     expect(element).toContain('É&lt;</text>');
     expect(element).toContain('text-anchor="start"');
-    expect(element).toContain('font-size="10"');
+    expect(element).toContain('font-size="11.27"');
   });
 });

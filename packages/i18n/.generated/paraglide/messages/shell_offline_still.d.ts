@@ -3,7 +3,7 @@ export type Shell_Offline_StillInputs = {};
 /**
 * | output |
 * | --- |
-* | "Still no signal. Try again in a moment." |
+* | "Still offline. Try again in a moment." |
 *
 * @param {Shell_Offline_StillInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

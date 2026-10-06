@@ -3,7 +3,7 @@ export type Auth_Login_IntroInputs = {};
 /**
 * | output |
 * | --- |
-* | "Welcome back, survivor." |
+* | "Sign in to your account." |
 *
 * @param {Auth_Login_IntroInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

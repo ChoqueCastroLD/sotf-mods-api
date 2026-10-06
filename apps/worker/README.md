@@ -28,11 +28,10 @@ the recurring schedules. Business logic lives in `@sotf/core`.
   alert and admin every 6 h. The backup age is not checked here (user cron).
 - Sweeps: `security.rescan` (hourly) enqueues again the `"SecurityScan"` rows still `pending` after
   6 h without a live `security.scan` job; `markdown.rerender` (nightly) re-renders descriptions
-  and changelogs older than `RENDER_VERSION` in batches; `compat.reconcile` (03:20) follows the
-  trust-level recomputation; `legacy.mentions` runs every 10 min after the cut-over.
+  and changelogs older than `RENDER_VERSION` in batches; `legacy.mentions` runs every 10 min after the cut-over.
 - Deployment variables: `ops/coolify/env/worker.env.example`.
 
-## Backfills run by the worker (B15, B16…)
+## Backfills run by the worker (B15)
 
 Worker-side backfills are the `backfill.run` job. They are enqueued with the API image's
 `backfill` entry, from the Coolify terminal of `sotf-v2-api` (or `sotf-v2-worker`):
@@ -50,16 +49,15 @@ Operator guide: `ops/runbooks/deploy/05-migrations-and-backfills.md` and
 | Group (`src/jobs/…`) | Queues | Event subscribers | Owner |
 |---|---|---|---|
 | `accounts` | `account.export`, `account.delete`, `accounts.trust-level`, `cleanup.sessions` | | WP-30 |
-| `backfill` | `backfill.run` (B15, B16) | | WP-84 |
+| `backfill` | `backfill.run` (B15) | | WP-84 |
 | `builds` | `build.extract` | | WP-40 |
 | `cdn` | `cdn.purge` | | WP-61 |
 | `cleanup` | `cleanup.analytics` | | WP-52 |
-| `compat` | `compat.aggregate`, `compat.reconcile`, `compat.uptime-probe` | `compat.mod-status` | WP-50 |
+| `compat` | `compat.aggregate` | `compat.mod-status` | WP-50 |
 | `digests` | `notifications.digest`, `creator.weekly` | | WP-43 |
 | `discord` | `discord.announce` | `discord.enqueue-on-event` | WP-43 |
 | `downloads` | `cleanup.download-unique` | | WP-31 |
 | `email` | `email.send` | | WP-30 |
-| `gamification` | `gamification.evaluate`, `awards.mod-of-week`, `milestones.check` | `gamification.xp` | WP-60 |
 | `indexnow` | `indexnow.ping` | | WP-61 |
 | `inspection` | `inspection.run` | | WP-40 |
 | `kelvinseek` | `cleanup.kelvinseek` | | WP-32 |
@@ -74,6 +72,8 @@ Operator guide: `ops/runbooks/deploy/05-migrations-and-backfills.md` and
 | `security-scan` | `security.scan` | | WP-51 |
 | `stats` | `stats.rollup`, `stats.trending` | `stats.unfollows` | WP-52 |
 | `uploads` | `cleanup.uploads` | | WP-31 |
+
+Retired queues (gamification, Patch Radar uptime, bundle sweep) are listed in `RETIRED_JOB_SCHEDULES` of `@sotf/contracts/jobs`; the runtime deletes their schedules on start.
 
 Notification details: `src/jobs/notifications/README.md`; compatibility: `src/jobs/compat/README.md`.
 

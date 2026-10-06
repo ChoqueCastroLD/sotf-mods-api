@@ -1,6 +1,6 @@
 ---
 title: Sons of the Forest の Mod の導入方法
-seoTitle: Sons of the Forest の Mod 導入方法（2026）— RedLoader ガイド
+seoTitle: Sons of the Forest の Mod 導入方法（2026）：RedLoader ガイド
 description: RedManager で RedLoader を導入し、Mod を Mods フォルダーに入れてゲーム内で確認します。ウイルス対策の誤検知やパッチ対応も含む手順ガイド。
 tldr: Mod ローダーの RedLoader を RedManager（または手動）で導入し、各 Mod をゲームフォルダー内の Mods フォルダーに入れてゲームを起動します。RedManager なら SOTF Mods のどの Mod もワンクリックで導入できます。所要時間は約 3 分。下のガイドで各手順とよくある問題を解説します。
 anchors: [check, redloader, mods, verify, antivirus, bepinex, update, dedicated, troubleshooting, oneclick]
@@ -27,7 +27,7 @@ faq:
   - q: ゲームファイルはどこにありますか？
     a: Steam で Sons of the Forest を右クリックし、管理、ローカルファイルを閲覧の順に選びます。開いたフォルダーに SonsOfTheForest.exe があり、RedLoader と Mod はそこに入れます。
   - q: ゲームのアップデート後も Mod は動きますか？
-    a: 必ずしも動くとは限りません。パッチで RedLoader や一部の Mod が更新されるまで動かなくなることがあります。Patch Radar では現在のゲームビルド、RedLoader の状態、プレイヤーが動作を確認した人気 Mod を確認できます。
+    a: 必ずしも動くとは限りません。パッチで RedLoader や一部の Mod が更新されるまで動かなくなることがあります。Mod のページ、コメント、レビューで、現在のゲームバージョンで動くか確認してください。
 ---
 
 # ゲームを確認
@@ -39,7 +39,7 @@ Mod は **Steam 版 Sons of the Forest の PC 版**で動作します（Windows�
 `C:\Program Files (x86)\Steam\steamapps\common\Sons Of The Forest`
 
 > [!TIP]
-> ゲームが更新されたばかりなら、まず [Patch Radar](/patch-radar) を確認しましょう。RedLoader と人気 Mod が新しいビルドで動くかどうかがわかります。
+> ゲームが更新されたばかりなら、Mod のページ、コメント、レビューで、新しいバージョンですでに動くか確認しましょう。
 
 # RedLoader を導入
 
@@ -94,7 +94,7 @@ RedManager は同じ開発者による RedLoader 用の無料 Mod マネージ�
 - **チェックサムを照合します。** SOTF Mods の各バージョンにはファイルの SHA-256 が表示されています。Windows の PowerShell で `Get-FileHash .\file.zip`（または `certutil -hashfile file.zip SHA256`）を実行して比べてください。
 - **スキャン結果を確認します。** 公開された各バージョンは VirusTotal でスキャンされ、レポートはバージョンページにリンクされています。自分で [VirusTotal](https://www.virustotal.com) にアップロードすることもできます。
 
-すべて一致すれば、ファイルを隔離から戻し、**ゲームフォルダーだけ**を除外に追加できます。ウイルス対策を完全に無効にするのはやめましょう。怪しい点があれば Mod のページから報告してください。レンジャーがすぐに確認します。
+すべて一致すれば、ファイルを隔離から戻し、**ゲームフォルダーだけ**を除外に追加できます。ウイルス対策を完全に無効にするのはやめましょう。怪しい点があれば Mod のページから報告してください。モデレーターがすぐに確認します。
 
 # BepInEx と RedLoader
 
@@ -107,7 +107,7 @@ SOTF Mods に掲載されているのは **RedLoader** 用の Mod です。BepIn
 
 **Mod の更新：** RedManager が利用可能な更新を表示します。手動の場合は新しいバージョンをダウンロードして古いファイルに上書きします。先に変更履歴を読んでください。新しいライブラリや設定の初期化が必要な更新もあります。
 
-**RedLoader の更新：** RedManager を使うか、新しいリリースを古いものの上に展開します。ゲームにパッチが入ったら、[Patch Radar](/patch-radar) で RedLoader が新ビルドで動くと表示されるまで待ちましょう。
+**RedLoader の更新：** RedManager を使うか、新しいリリースを古いものの上に展開します。ゲームにパッチが入ったあとでゲームが起動しなくなった場合は、RedLoader の新しいリリースを待ちましょう。
 
 **Mod の削除：** `Mods` からその `.dll` とフォルダーを削除します。先に Mod のページを確認してください。プレイ途中で安全に外せない Mod もあります。
 
@@ -131,7 +131,7 @@ RedLoader が動いていません。ファイルが `SonsOfTheForest.exe` と�
 
 ## 起動時にゲームがクラッシュする・閉じる
 
-たいていはゲームのアップデート後に起こります。[Patch Radar](/patch-radar) で現在のビルドでの RedLoader の状態を確認してください。原因の Mod を探すには、`Mods` からすべての Mod を出し、少しずつ戻していきます。
+たいていはゲームのアップデート後に起こります。[RedLoader のリリース](https://github.com/ToniMacaroni/RedLoader/releases) で、新しいビルドに対応したバージョンを探してください。原因の Mod を探すには、`Mods` からすべての Mod を出し、少しずつ戻していきます。
 
 ## Mod が一覧に出ない
 

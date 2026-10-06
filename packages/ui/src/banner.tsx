@@ -1,9 +1,9 @@
 /**
- * Banner (research/03 §5.6): global announcements (Patch Radar «Patch 1.0.4 is out: check your
- * mods»), maintenance, winter. Icon + text, optional action, dismissible; with `persistId` the
- * dismissal survives reloads (see `dismissals.ts`, which also hides it before first paint).
+ * Banner: global announcements (a game update, maintenance, winter). Icon + text, optional action,
+ * dismissible; with `persistId` the dismissal survives reloads (see `dismissals.ts`, which also
+ * hides it before first paint).
  */
-import { CircleAlert, Info, Radar, Snowflake, TriangleAlert, X } from 'lucide-react';
+import { CircleAlert, Info, Snowflake, TriangleAlert, X } from 'lucide-react';
 import { type ReactNode, useEffect, useState } from 'react';
 import { cn } from './cn.ts';
 import { isDismissed, rememberDismissal } from './dismissals.ts';
@@ -16,7 +16,7 @@ const TONE: Record<BannerTone, { classes: string; icon: ReactNode }> = {
   info: { classes: 'border-border bg-raised', icon: <Icon icon={Info} size={18} className="text-signal" /> },
   signal: {
     classes: 'border-signal/40 bg-signal-soft',
-    icon: <Icon icon={Radar} size={18} className="text-signal" />,
+    icon: <Icon icon={Info} size={18} className="text-signal" />,
   },
   warning: {
     classes: 'border-warning/40 bg-warning-soft',

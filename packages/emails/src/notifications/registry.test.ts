@@ -86,11 +86,6 @@ const weekly: CreatorWeeklyPayload = {
       reviews: 2,
     },
   ],
-  highlights: [
-    { kind: 'milestone', modName: "Axel's Mod Menu", threshold: 100000, awardKind: null, badgeKey: null },
-    { kind: 'award', modName: "Axel's Mod Menu", threshold: null, awardKind: 'mod_of_week', badgeKey: null },
-    { kind: 'badge', modName: null, threshold: null, awardKind: null, badgeKey: 'first-mod' },
-  ],
   basecampUrl: `${SITE}/basecamp/analytics`,
   unsubscribe: UNSUB,
 };

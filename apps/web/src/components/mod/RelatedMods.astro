@@ -1,34 +1,24 @@
 ---
 /**
- * Related mods (same category or tags + text similarity), compact cards ×4.
+ * One simple list of related mods (same category or tags + text similarity) in the sidebar.
  */
 import { m } from '@sotf/i18n/messages';
-import { ModCard } from '@sotf/ui/domain';
-import { href } from '../../lib/i18n.ts';
-import type { ModCardDTO, ModDetailDTO } from './data.ts';
-import { PANEL_CLASSES, READOUT_CLASSES } from './styles.ts';
+import type { ModCardDTO } from './data.ts';
+import ModList from './ModList.astro';
+import { SIDE_BLOCK_CLASSES, SIDE_TITLE_CLASSES } from './styles.ts';
 
 interface Props {
-  mod: ModDetailDTO;
   related: ModCardDTO[];
 }
 
-const { mod, related } = Astro.props;
-const locale = Astro.locals.locale;
-const currentBuild = mod.compatCurrent.gameBuild?.label ?? null;
+const { related } = Astro.props;
 ---
 
 {
   related.length > 0 && (
-    <section data-fold="closed" aria-labelledby="related-title" class:list={[PANEL_CLASSES, 'grid gap-3']}>
-      <h2 id="related-title" class={READOUT_CLASSES}>{m.mod_related_title()}</h2>
-      <ul class="grid gap-2">
-        {related.map((card) => (
-          <li>
-            <ModCard mod={{ ...card, canonicalPath: href(card.canonicalPath, locale) }} variant="compact" headingLevel={3} viewTransition={false} currentBuild={currentBuild} />
-          </li>
-        ))}
-      </ul>
+    <section data-fold="closed" aria-labelledby="related-title" class={SIDE_BLOCK_CLASSES}>
+      <h2 id="related-title" class={SIDE_TITLE_CLASSES}>{m.mod_related_title()}</h2>
+      <ModList mods={related} />
     </section>
   )
 }

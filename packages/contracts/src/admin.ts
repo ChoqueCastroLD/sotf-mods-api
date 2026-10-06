@@ -855,7 +855,7 @@ export const adminEndpoints = {
     summary: 'Grant a manual badge (translator)',
     params: z.object({ id: IdParam, badgeKey: z.enum(MANUAL_BADGE_KEYS) }),
     response: ManualBadgeDTO,
-    errors: ['FORBIDDEN', 'NOT_FOUND', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN', 'NOT_FOUND', 'REAUTH_REQUIRED', 'GONE'],
   }),
   revokeManualBadge: defineEndpoint({
     ...adminWrite,
@@ -866,7 +866,7 @@ export const adminEndpoints = {
     summary: 'Remove a manual badge (translator)',
     params: z.object({ id: IdParam, badgeKey: z.enum(MANUAL_BADGE_KEYS) }),
     response: ManualBadgeDTO,
-    errors: ['FORBIDDEN', 'NOT_FOUND', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN', 'NOT_FOUND', 'REAUTH_REQUIRED', 'GONE'],
   }),
   listAwards: defineEndpoint({
     ...adminRead,
@@ -888,7 +888,7 @@ export const adminEndpoints = {
     body: AwardInputBody,
     status: 201,
     response: AwardDTO,
-    errors: ['FORBIDDEN', 'NOT_FOUND', 'CONFLICT', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN', 'NOT_FOUND', 'CONFLICT', 'REAUTH_REQUIRED', 'GONE'],
   }),
   deleteAward: defineEndpoint({
     ...adminWrite,
@@ -899,7 +899,7 @@ export const adminEndpoints = {
     summary: 'Delete an award',
     params: IdParams,
     responseKind: 'empty',
-    errors: ['FORBIDDEN', 'NOT_FOUND', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN', 'NOT_FOUND', 'REAUTH_REQUIRED', 'GONE'],
   }),
   listAnnouncements: defineEndpoint({
     ...adminRead,

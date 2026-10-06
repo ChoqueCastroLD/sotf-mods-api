@@ -7,9 +7,11 @@
 import { formatBytes, formatDate } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import { localizeHtml } from '@sotf/markdown/labels';
+import { Badge } from '@sotf/ui/badge';
 import { ProseLocator } from '@sotf/ui/domain';
 import { Icon } from '@sotf/ui/icons';
 import { Download } from 'lucide-react';
+import { isShortVersion } from '../mod/format.ts';
 import VersionRows from '../mod/VersionRows.astro';
 import type { ModDetailDTO, VersionDTO } from './data.ts';
 import { markdownLabels } from './i18n.ts';
@@ -28,7 +30,7 @@ const list = versions ?? (build.latestVersion ? [build.latestVersion] : []);
 
 <section id="versions" aria-labelledby="versions-title" class="grid scroll-mt-32 gap-4 md:scroll-mt-24">
   <div class="flex flex-wrap items-baseline justify-between gap-2">
-    <h2 id="versions-title" class="font-display-caps text-display-xs text-fg">{m.builds_versions_title()}</h2>
+    <h2 id="versions-title" class="text-xl font-bold text-fg">{m.builds_versions_title()}</h2>
     {versions && <p class="text-sm text-fg-muted">{m.builds_versions_count({ count: versions.length })}</p>}
   </div>
   {
@@ -36,57 +38,45 @@ const list = versions ?? (build.latestVersion ? [build.latestVersion] : []);
       <p class="text-fg-muted">{m.builds_versions_empty()}</p>
     ) : (
       <>
-      <VersionRows mod={build} versions={list} detailsHref="#versions" />
-      <ol class="grid gap-3 border-s-2 border-blueprint/40 ps-4 max-md:hidden">
-        {list.map((version) => {
-          const withdrawn = version.status !== 'active';
-          const changelog = version.changelogHtml.trim() ? localizeHtml(version.changelogHtml, labels) : '';
-          return (
-            <li id={`v-${version.version}`} class="relative grid gap-2" data-version={version.version}>
-              <span
-                aria-hidden="true"
-                class="absolute -start-[1.4rem] top-1.5 size-3 rounded-full border-2 border-blueprint bg-bg"
-              />
-              <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
-                <span class="font-mono font-semibold text-fg">v{version.version}</span>
-                {version.isLatest && (
-                  <span class="inline-flex h-5 items-center rounded-xs bg-blueprint px-1.5 text-2xs font-semibold text-blueprint-surface">
-                    {m.builds_versions_latest()}
-                  </span>
-                )}
-                {withdrawn && (
-                  <span class="inline-flex h-5 items-center rounded-xs border border-warning px-1.5 text-2xs font-semibold text-warning">
-                    {m.builds_versions_yanked()}
-                  </span>
-                )}
-                <time datetime={version.publishedAt} class="text-xs text-fg-muted">
-                  {formatDate(locale, version.publishedAt, 'medium')}
-                </time>
-                {typeof version.fileSize === 'number' && (
-                  <span class="text-xs text-fg-muted">{formatBytes(locale, version.fileSize)}</span>
-                )}
-                {!withdrawn && (
-                  <a
-                    href={version.downloadPath}
-                    rel="nofollow"
-                    data-download={version.version}
-                    class="ms-auto inline-flex min-h-8 items-center gap-1.5 text-sm font-semibold text-link hover:underline"
-                  >
-                    <Icon icon={Download} size={16} />
-                    {m.builds_versions_download({ version: version.version })}
-                  </a>
-                )}
-              </div>
-              {withdrawn && version.statusReason && <p class="text-sm text-fg-muted">{version.statusReason}</p>}
-              {changelog && (
-                <div data-changelog>
-                  <ProseLocator html={changelog} size="sm" />
+        <VersionRows mod={build} versions={list} detailsHref="#versions" />
+        <ol class="grid divide-y divide-border max-md:hidden">
+          {list.map((version) => {
+            const withdrawn = version.status !== 'active';
+            const changelog = version.changelogHtml.trim() ? localizeHtml(version.changelogHtml, labels) : '';
+            return (
+              <li id={`v-${version.version}`} class="grid gap-2 py-4 first:pt-0 last:pb-0" data-version={version.version}>
+                <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                  <span class="font-mono font-semibold text-fg">v{version.version}</span>
+                  {version.isLatest && <Badge variant="neutral" size="sm">{m.builds_versions_latest()}</Badge>}
+                  {withdrawn && <Badge variant="warning" size="sm">{m.builds_versions_yanked()}</Badge>}
+                  <time datetime={version.publishedAt} class="text-sm text-fg-muted">
+                    {formatDate(locale, version.publishedAt, 'medium')}
+                  </time>
+                  {typeof version.fileSize === 'number' && (
+                    <span class="text-sm text-fg-muted">{formatBytes(locale, version.fileSize)}</span>
+                  )}
+                  {!withdrawn && (
+                    <a
+                      href={version.downloadPath}
+                      rel="nofollow"
+                      data-download={version.version}
+                      class="ms-auto inline-flex min-h-8 items-center gap-1.5 text-sm font-medium text-link hover:underline"
+                    >
+                      <Icon icon={Download} size={16} />
+                      {isShortVersion(version.version) ? m.builds_versions_download({ version: version.version }) : m.common_action_download()}
+                    </a>
+                  )}
                 </div>
-              )}
-            </li>
-          );
-        })}
-      </ol>
+                {withdrawn && version.statusReason && <p class="text-sm text-fg-muted">{version.statusReason}</p>}
+                {changelog && (
+                  <div data-changelog>
+                    <ProseLocator html={changelog} size="sm" />
+                  </div>
+                )}
+              </li>
+            );
+          })}
+        </ol>
       </>
     )
   }

@@ -2,7 +2,7 @@
 /**
  * Admin additions (backlog WP-42, WP-51, WP-60, WP-83, WP-50): the admin taxonomy reads carry the
  * retired state, the hub intro, tag descriptions and sort orders; recategorisation suggestions
- * carry the current tags; kit staff picks; the manual `translator` badge; the Markdown source of
+ * carry the current tags; kit staff picks; the Markdown source of
  * game build and ecosystem notes. Runs on the small development seed.
  */
 import type { TestDb } from '@sotf/db/testing';
@@ -142,33 +142,24 @@ describe('kit staff picks', () => {
   });
 });
 
-describe('manual badges', () => {
-  it('grants and removes the translator badge', async () => {
+describe('removed badges and awards', () => {
+  it('answers 410 to the manual badge and award writes and writes nothing', async () => {
     const url = `/api/v2/admin/users/${member.userId}/badges/translator`;
-    expect((await call('PUT', url, ranger)).status).toBe(403);
-    const granted = await call('PUT', url, admin);
-    expect(granted.status).toBe(200);
-    expect(granted.body).toEqual({ userId: member.userId, badgeKey: 'translator', granted: true });
-    const held = await exec(
-      db,
-      `SELECT count(*)::int AS n FROM "UserBadge" ub JOIN "Badge" b ON b."id" = ub."badgeId"
-        WHERE ub."userId" = $1 AND b."key" = 'translator'`,
-      [member.userId],
-    );
-    expect(held.rows[0].n).toBe(1);
-    expect((await call('PUT', url, admin)).body.granted).toBe(true);
-
-    const removed = await call('DELETE', url, admin);
-    expect(removed.status).toBe(200);
-    expect(removed.body.granted).toBe(false);
-    const audit = await exec(
-      db,
-      `SELECT "action" FROM "AuditLog" WHERE "targetType" = 'user' AND "targetId" = $1 AND "action" LIKE 'badge.%' ORDER BY "id"`,
-      [member.userId],
-    );
-    expect(audit.rows.map((r) => r.action)).toEqual(['badge.grant', 'badge.revoke']);
-    expect((await call('PUT', '/api/v2/admin/users/99999999/badges/translator', admin)).status).toBe(404);
-    expect((await call('PUT', `/api/v2/admin/users/${member.userId}/badges/early-adopter`, admin)).status).toBe(422);
+    expect((await call('PUT', url, admin)).status).toBe(410);
+    expect((await call('DELETE', url, admin)).status).toBe(410);
+    const held = await exec(db, `SELECT count(*)::int AS n FROM "UserBadge" WHERE "userId" = $1`, [member.userId]);
+    expect(held.rows[0].n).toBe(0);
+    expect((await call('GET', '/api/v2/admin/awards', admin)).status).toBe(200);
+    expect(
+      (
+        await call('POST', '/api/v2/admin/awards', admin, {
+          kind: 'mod_of_week',
+          modId: 20,
+          periodStart: '2026-09-28',
+          periodEnd: '2026-10-04',
+        })
+      ).status,
+    ).toBe(410);
   });
 });
 

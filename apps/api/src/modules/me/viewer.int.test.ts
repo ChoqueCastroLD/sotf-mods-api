@@ -2,11 +2,10 @@
 /**
  * Session reads and writes added for the web islands and the console (backlogs WP-30, WP-31,
  * WP-41, WP-42, WP-60, WP-62, WP-70, WP-71, WP-80, WP-81): `GET /me/profile`, creator defaults in
- * the settings, kits in `/me/home`, `GET /me/kits/:id`, `GET /mods/:id/kits`, the featured badges,
+ * the settings, kits in `/me/home`, `GET /me/kits/:id`, `GET /mods/:id/kits`,
  * removing one mod from "My downloads", the social-state lookup and the Turnstile exemption of a
  * creator answering on their own mod. Runs on the small development seed.
  */
-import { BADGES } from '@sotf/contracts/gamification';
 import type { TurnstileVerifier } from '@sotf/core/auth/index';
 import type { TestDb } from '@sotf/db/testing';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
@@ -172,36 +171,10 @@ describe('kits', () => {
   });
 });
 
-describe('featured badges', () => {
-  it('features earned badges only and shows them on the profile', async () => {
+describe('badges (read only)', () => {
+  it('still serves the stored badge data and no longer accepts featuring', async () => {
     expect((await t.app.inject({ method: 'GET', url: '/api/v2/badges' })).statusCode).toBe(200);
-    const [first, second, third] = BADGES.filter((b) => !b.secret).map((b) => b.key as string);
-    for (const key of [first, second, third]) {
-      await exec(
-        db,
-        `INSERT INTO "UserBadge" ("userId", "badgeId", "contextKey", "isFeatured")
-         SELECT $1, b."id", '', true FROM "Badge" b WHERE b."key" = $2`,
-        [member.userId, key],
-      );
-    }
-    const res = await call('PATCH', '/api/v2/me/badges/featured', member, { keys: [second] });
-    expect(res.status).toBe(200);
-    expect(res.body).toEqual({ featuredBadgeKeys: [second] });
-    const featured = await exec(
-      db,
-      `SELECT b."key" FROM "UserBadge" ub JOIN "Badge" b ON b."id" = ub."badgeId" WHERE ub."userId" = $1 AND ub."isFeatured"`,
-      [member.userId],
-    );
-    expect(featured.rows.map((r) => r.key)).toEqual([second]);
-    const profile = await t.app.inject({ method: 'GET', url: '/api/v2/users/viewer-member' });
-    expect(profile.json().featuredBadgeKeys).toEqual([second]);
-
-    const unearned = BADGES.map((b) => b.key as string).find((key) => ![first, second, third].includes(key));
-    expect((await call('PATCH', '/api/v2/me/badges/featured', member, { keys: [unearned] })).status).toBe(422);
-    expect((await call('PATCH', '/api/v2/me/badges/featured', member, { keys: [first, first] })).status).toBe(422);
-    expect((await call('PATCH', '/api/v2/me/badges/featured', member, { keys: [] })).body).toEqual({
-      featuredBadgeKeys: [],
-    });
+    expect((await call('PATCH', '/api/v2/me/badges/featured', member, { keys: [] })).status).toBe(410);
   });
 });
 

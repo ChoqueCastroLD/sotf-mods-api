@@ -1,7 +1,7 @@
 /**
  * Weekly creator report (WP-43, PLAN §7.3 `creator.weekly_report`): totals of the week with the
- * trend against the week before, the mods with activity and the week's highlights (milestones,
- * awards, badges), a button to Basecamp analytics and the one-click unsubscribe link.
+ * trend against the week before, the mods with activity, a button to the dashboard analytics and the
+ * one-click unsubscribe link.
  */
 import { Button, Heading, Link, Section, Text } from '@react-email/components';
 import { formatDate, formatPercent, type Locale } from '@sotf/i18n';
@@ -29,14 +29,6 @@ function trend(p: CreatorWeeklyPayload, locale: Locale): string {
   return downloads > downloadsPrevious
     ? m.emails_notify_creator_trend_up({ percent }, o)
     : m.emails_notify_creator_trend_down({ percent }, o);
-}
-
-function highlightText(item: CreatorWeeklyPayload['highlights'][number], locale: Locale): string {
-  const o = { locale };
-  const mod = item.modName ?? '';
-  if (item.kind === 'milestone') return m.emails_notify_item_milestone({ mod, threshold: item.threshold ?? 0 }, o);
-  if (item.kind === 'award') return m.emails_notify_item_award({ kind: item.awardKind ?? 'other', mod }, o);
-  return m.emails_notify_item_badge({}, o);
 }
 
 export function creatorWeeklyEmail(
@@ -81,18 +73,6 @@ export function creatorWeeklyEmail(
             mod.url ? h(Link, { href: mod.url, style: { color: emailColors.link } }, mod.name) : mod.name,
           ),
           h(Text, { style: { ...emailStyles.muted, margin: 0 } }, stats),
-        ),
-      );
-    }
-  }
-  if (p.highlights.length > 0) {
-    body.push(h(Text, { key: 'hl', style: styles.subheading }, m.emails_notify_creator_highlights_heading({}, o)));
-    for (const [i, item] of p.highlights.entries()) {
-      body.push(
-        h(
-          Text,
-          { key: `hl${i}`, style: { ...emailStyles.text, margin: '0 0 6px' } },
-          `• ${highlightText(item, locale)}`,
         ),
       );
     }

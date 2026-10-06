@@ -25,7 +25,7 @@ export function ScreenHeader({
   keepReadout = false,
 }: {
   keepReadout?: boolean;
-  readout: string;
+  readout?: string;
   title: ReactNode;
   description?: ReactNode;
   actions?: ReactNode;
@@ -33,7 +33,7 @@ export function ScreenHeader({
   return (
     <header className="flex flex-wrap items-end justify-between gap-4">
       <div className="grid min-w-0 gap-1">
-        <p className={cn('readout text-signal', !keepReadout && 'max-md:hidden')}>{readout}</p>
+        {readout ? <p className={cn('readout text-signal', !keepReadout && 'max-md:hidden')}>{readout}</p> : null}
         <h1 className="font-display-caps text-display-xs text-fg break-words">{title}</h1>
         {description ? <p className="max-w-prose text-sm text-fg-muted max-md:line-clamp-2">{description}</p> : null}
       </div>

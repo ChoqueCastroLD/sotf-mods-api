@@ -1,16 +1,15 @@
 ---
 /**
- * The four stages of a jam (announce → build → vote → results) as waypoints on a trail: done
- * stages are filled with a check, the current one is a pulsing signal, the rest are outlines.
- * Horizontal from `md` up, vertical below. The state is also text (`sr-only`), never colour alone.
- * `tone="art"` is the glass variant for use over a painting.
+ * The four stages of a jam (announce, build, vote, results) as a plain row: done stages are
+ * marked with a check, the current one is bold with a red rule, the rest are muted. Horizontal
+ * from `md` up, vertical below. The state is also text (`sr-only`), never colour alone.
  */
 import type { JamSummaryDTO } from '@sotf/contracts/jams';
 import { formatDate, toHreflang } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import { Icon } from '@sotf/ui/icons';
 import { Check } from 'lucide-react';
-import { JAM_STAGES, phaseLabel, stageDates, stageLabel, stageStates } from './phase.ts';
+import { JAM_STAGES, stageDates, stageLabel, stageStates } from './phase.ts';
 
 interface Props {
   jam: Pick<
@@ -23,14 +22,12 @@ interface Props {
     | 'votingCloseAt'
     | 'resultsPublishedAt'
   >;
-  tone?: 'surface' | 'art';
   class?: string;
 }
 
-const { jam, tone = 'surface', class: className } = Astro.props;
+const { jam, class: className } = Astro.props;
 const locale = Astro.locals.locale;
 const states = stageStates(jam.phase);
-const art = tone === 'art';
 
 function when(stage: (typeof JAM_STAGES)[number]): string | null {
   const { from, to } = stageDates(jam, stage);
@@ -47,65 +44,27 @@ const stateText = (state: (typeof states)[number]) =>
   state === 'done' ? m.jams_stage_done() : state === 'current' ? m.jams_stage_current() : m.jams_stage_next();
 ---
 
-<ol
-  class:list={[
-    'grid gap-0 max-md:gap-y-1 md:grid-cols-4',
-    art ? 'rounded-lg border border-white/10 bg-night-975/55 px-4 py-4 backdrop-blur-sm md:px-6' : '',
-    className,
-  ]}
-  aria-label={m.jams_schedule_title()}
->
+<ol class:list={['grid gap-4 md:grid-cols-4 md:gap-6', className]} aria-label={m.jams_schedule_title()}>
   {
     JAM_STAGES.map((stage, index) => {
       const state = states[index] ?? 'upcoming';
-      const reached = state !== 'upcoming';
       const dates = when(stage);
       return (
         <li
-          class="relative flex gap-3 max-md:pb-4 max-md:last:pb-0 md:flex-col md:items-center md:gap-2 md:text-center"
+          class:list={['flex flex-col gap-0.5 border-t-2 pt-3', state === 'upcoming' ? 'border-border' : 'border-primary']}
           aria-current={state === 'current' ? 'step' : undefined}
         >
-          {index > 0 && (
-            <span
-              aria-hidden="true"
-              class:list={[
-                'absolute max-md:start-4 max-md:-top-3 max-md:h-[calc(100%-0.5rem)] max-md:w-0.5 md:end-1/2 md:top-4 md:h-0.5 md:w-full md:-translate-y-1/2',
-                reached ? 'bg-primary' : art ? 'bg-white/20' : 'bg-border-strong/50',
-              ]}
-            />
-          )}
           <span
             class:list={[
-              'relative z-10 grid size-8 shrink-0 place-items-center rounded-full text-xs font-bold md:mx-auto',
-              state === 'done' && 'bg-primary text-primary-fg',
-              state === 'current' && 'bg-night-975 text-primary ring-2 ring-primary',
-              state === 'upcoming' && (art ? 'bg-night-975 text-night-300 ring-1 ring-white/25' : 'bg-surface text-fg-subtle ring-1 ring-border-strong'),
+              'flex items-center gap-1.5 text-sm',
+              state === 'current' ? 'font-bold text-fg' : state === 'done' ? 'font-semibold text-fg' : 'text-fg-muted',
             ]}
           >
-            {state === 'current' && (
-              <span class="absolute inset-0 animate-ping-locator rounded-full bg-primary/50" aria-hidden="true" />
-            )}
-            {state === 'done' ? <Icon icon={Check} size={16} strokeWidth={2.5} /> : <span class="relative">{index + 1}</span>}
+            {state === 'done' && <Icon icon={Check} size={14} strokeWidth={2.5} className="text-primary" />}
+            {stageLabel(stage)}
           </span>
-          <span class="flex min-w-0 flex-col gap-0.5">
-            <span
-              class:list={[
-                'font-display-caps text-lg leading-none',
-                state === 'upcoming' ? (art ? 'text-night-300' : 'text-fg-muted') : art ? 'text-night-50' : 'text-fg',
-              ]}
-            >
-              {stageLabel(stage)}
-            </span>
-            {dates && (
-              <span class:list={['font-mono text-xs tabular-nums', art ? 'text-night-200' : 'text-fg-muted']}>
-                {dates}
-              </span>
-            )}
-            {state === 'current' && (
-              <span class="readout text-primary">{phaseLabel(jam.phase)}</span>
-            )}
-            <span class="sr-only">{stateText(state)}</span>
-          </span>
+          {dates && <span class="text-xs text-fg-muted tabular-nums">{dates}</span>}
+          <span class="sr-only">{stateText(state)}</span>
         </li>
       );
     })

@@ -1,6 +1,6 @@
 ---
 title: Så installerar du moddar till Sons of the Forest
-seoTitle: Installera moddar till Sons of the Forest (2026) – RedLoader-guide
+seoTitle: Installera moddar till Sons of the Forest (2026): RedLoader-guide
 description: Installera RedLoader med RedManager, lägg moddar i mappen Mods och kontrollera dem i spelet. Steg-för-steg-guide med lösningar på antivirusvarningar och patchar.
 tldr: Installera RedLoader, modd-laddaren, med RedManager (eller manuellt), lägg varje modd i mappen Mods i spelmappen och starta spelet. RedManager kan installera vilken modd som helst från SOTF Mods med ett klick. Det tar ungefär tre minuter, och guiden nedan går igenom varje steg och de vanliga problemen.
 anchors: [check, redloader, mods, verify, antivirus, bepinex, update, dedicated, troubleshooting, oneclick]
@@ -27,7 +27,7 @@ faq:
   - q: Var finns spelfilerna?
     a: Högerklicka på Sons of the Forest i Steam, välj Hantera och sedan Bläddra bland lokala filer. Mappen som öppnas innehåller SonsOfTheForest.exe; dit ska RedLoader och dina moddar.
   - q: Fungerar moddar efter en speluppdatering?
-    a: Inte alltid. En patch kan förstöra RedLoader eller enskilda moddar tills de uppdateras. Patch Radar visar spelets aktuella build, RedLoaders status och vilka populära moddar spelarna har bekräftat fungerar.
+    a: Inte alltid. En patch kan förstöra RedLoader eller enskilda moddar tills de uppdateras. Titta på moddens sida, kommentarerna och recensionerna för att se om den fungerar med den aktuella spelversionen.
 ---
 
 # Kontrollera spelet
@@ -39,7 +39,7 @@ Hitta spelmappen: högerklicka på **Sons of the Forest** i Steam → **Hantera*
 `C:\Program Files (x86)\Steam\steamapps\common\Sons Of The Forest`
 
 > [!TIP]
-> Kom det nyss en speluppdatering? Kolla först [Patch Radar](/patch-radar): där ser du om RedLoader och de populära moddarna redan fungerar på den nya builden.
+> Kom det nyss en speluppdatering? Titta på moddens sida, kommentarerna och recensionerna för att se om den redan fungerar med den nya versionen.
 
 # Installera RedLoader
 
@@ -94,7 +94,7 @@ Innan du litar på en fil:
 - **Jämför kontrollsumman.** Varje version på SOTF Mods visar filens SHA-256. Kör `Get-FileHash .\fil.zip` i PowerShell på Windows (eller `certutil -hashfile fil.zip SHA256`) och jämför resultatet.
 - **Titta på skanningen.** Varje publicerad version skannas med VirusTotal; rapporten är länkad på versionssidan. Du kan också ladda upp filen till [VirusTotal](https://www.virustotal.com) själv.
 
-Stämmer allt kan du återställa filen från karantänen och lägga till ett undantag **bara för spelmappen**. Stäng aldrig av antivirusprogrammet helt. Om något verkar fel, rapportera modden från dess sida: rangers går igenom rapporter snabbt.
+Stämmer allt kan du återställa filen från karantänen och lägga till ett undantag **bara för spelmappen**. Stäng aldrig av antivirusprogrammet helt. Om något verkar fel, rapportera modden från dess sida: moderatorer går igenom rapporter snabbt.
 
 # BepInEx eller RedLoader?
 
@@ -107,7 +107,7 @@ SOTF Mods listar moddar för **RedLoader**. Moddar gjorda för BepInEx (vanliga 
 
 **Uppdatera en modd:** RedManager visar tillgängliga uppdateringar. Manuellt laddar du ner den nya versionen och skriver över de gamla filerna. Läs ändringsloggen först: vissa uppdateringar kräver ett nytt bibliotek eller en ren konfiguration.
 
-**Uppdatera RedLoader:** använd RedManager eller packa upp den nya releasen över den gamla. Vänta efter en spelpatch tills [Patch Radar](/patch-radar) visar att RedLoader fungerar på den nya builden.
+**Uppdatera RedLoader:** använd RedManager eller packa upp den nya releasen över den gamla. Om spelet inte längre startar efter en spelpatch, vänta på en ny RedLoader-release.
 
 **Ta bort en modd:** radera dess `.dll` och mapp i `Mods`. Kolla moddsidan först: vissa moddar går inte att ta bort säkert mitt i ett spel.
 
@@ -131,7 +131,7 @@ RedLoader körs inte. Se till att filerna ligger bredvid `SonsOfTheForest.exe` (
 
 ## Spelet kraschar eller stängs vid start
 
-Det händer oftast efter en speluppdatering. Kolla RedLoaders status på den aktuella builden i [Patch Radar](/patch-radar). För att hitta en trasig modd, flytta ut alla moddar ur `Mods` och lägg tillbaka dem några i taget.
+Det händer oftast efter en speluppdatering. Leta bland [RedLoaders releaser](https://github.com/ToniMacaroni/RedLoader/releases) efter en version som stöder den nya builden. För att hitta en trasig modd, flytta ut alla moddar ur `Mods` och lägg tillbaka dem några i taget.
 
 ## En modd syns inte i listan
 

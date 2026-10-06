@@ -7,7 +7,7 @@
  * - inline head scripts (hashed in the CSP): theme, dismissed banners, legacy-token cleanup,
  *   Speculation Rules;
  * - the two preloaded fonts, `SeoHead`, icons and the web manifest;
- * - header, global banners, `<main id="main">`, footer, the mobile tab bar and the phone «More»
+ * - header, global banners, `<main id="main">`, footer, the mobile tab bar and the phone menu
  *   sheet (`chrome={false}` renders a bare document, e.g. embeds);
  * - app-shell metadata: installable web manifest, iOS standalone tags (opaque black status bar: the
  *   page starts below it, so nothing hides under the clock; the home-indicator inset is still
@@ -46,7 +46,7 @@ interface Props {
   /** Page template name for RUM and analytics (`home`, `mod`, `explore`, `404`…). */
   template: string;
   preloadImage?: { href: string; srcset?: string; sizes?: string; type?: string };
-  /** Header, banners, footer, tab bar and More sheet. Default true. */
+  /** Header, banners, footer, tab bar and menu sheet. Default true. */
   chrome?: boolean;
   /** Load the shared client module. Default true; only the self-contained offline page opts out. */
   boot?: boolean;
@@ -122,7 +122,7 @@ const locale = ensureLocals(Astro).locale;
         >
           <div data-ptr-chip>
             <span data-ptr-diamond />
-            <span data-ptr-label class="readout text-fg" />
+            <span data-ptr-label class="text-xs font-medium text-fg" />
           </div>
         </div>
       )

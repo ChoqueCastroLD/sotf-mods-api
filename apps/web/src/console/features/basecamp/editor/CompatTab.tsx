@@ -1,7 +1,7 @@
 /**
  * «Compatibility» tab of the mod editor (PLAN §7.5, §7.10): where the mod runs (platform,
- * multiplayer role, dedicated server, «can it be removed without breaking the save?»), the game
- * builds the creator tested per version, and what players report in the field for each build.
+ * multiplayer role, dedicated server, «can it be removed without breaking the save?»), and the game
+ * builds the creator tested per version.
  */
 import { Button } from '@sotf/ui/button';
 import { RadioCardGroup } from '@sotf/ui/radio-card';
@@ -23,7 +23,6 @@ import {
   type SafeToRemove,
 } from '../../upload/types.ts';
 import { basecampApi, basecampKeys, type ListingPatch, type StudioMod, storeStudioMod, storeVersion } from '../api.ts';
-import { CompatReports } from '../CompatReports.tsx';
 import { bt } from '../i18n.ts';
 import { reportFailure } from '../shared.tsx';
 import { SaveBar } from './ListingTab.tsx';
@@ -209,14 +208,6 @@ export function CompatTab({ studio, onDirty }: { studio: StudioMod; onDirty: (di
         description={bt('basecamp_compat_tested_hint')}
       >
         <TestedBuilds studio={studio} />
-      </FieldGroup>
-
-      <FieldGroup
-        id="basecamp-compat-field"
-        title={bt('basecamp_compat_field')}
-        description={bt('basecamp_compat_field_hint')}
-      >
-        <CompatReports modId={studio.mod.id} />
       </FieldGroup>
     </div>
   );

@@ -240,5 +240,16 @@
   "profile_badge_jam_podium_name": "Пьедестал джема",
   "profile_badge_jam_podium_hint": "Займите место в тройке лучших в категории Mod Jam. Можно получить несколько раз.",
   "profile_badge_jam_champion_name": "Чемпион джема",
-  "profile_badge_jam_champion_hint": "Выиграйте Mod Jam в общем зачёте. Можно получить несколько раз."
+  "profile_badge_jam_champion_hint": "Выиграйте Mod Jam в общем зачёте. Можно получить несколько раз.",
+  "profile_member_since": "Участник с {date}",
+  "profile_trusted": "Проверенный",
+  "profile_role_moderator": "Модератор",
+  "profile_role_admin": "Администратор",
+  "profile_stat_published_label": "Опубликовано модов",
+  "profile_stat_reviews_label": "Отзывы",
+  "profile_meta_title_user": "{name} (@{handle})",
+  "profile_meta_description_user": "{name} на SOTF Mods, в сообществе моддинга Sons of the Forest: {reviews, plural, one {# отзыв} few {# отзыва} many {# отзывов} other {# отзыва}}.",
+  "profile_cards_empty_text": "{name} ещё ничего здесь не опубликовал(а).",
+  "profile_follow_done": "Вы подписаны. Мы уведомим вас, когда выйдет что-то новое.",
+  "profile_search_type_users": "Пользователи"
 }

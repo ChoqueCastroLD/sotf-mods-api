@@ -1,7 +1,7 @@
 ---
 title: SOTF Mods hakkında
-description: SOTF Mods, 2023’ten beri Sons of the Forest modlamanın evi — ücretsiz indirmeler, sahada test edilmiş uyumluluk ve içerik üreticileri için bir alan.
-anchors: [what, who, trust, compatibility, money, contact]
+description: SOTF Mods, 2023’ten beri Sons of the Forest modlamanın evi: ücretsiz indirmeler, incelemeler ve yorumlarla mod sayfaları ve içerik üreticileri için bir alan.
+anchors: [what, who, trust, money, contact]
 ---
 
 # SOTF Mods nedir
@@ -12,22 +12,18 @@ Her şey doğrudan depolamamızdan ücretsiz indirilir: hesap yok, bekleme süre
 
 # Kim yönetiyor
 
-Siteyi oyunculardan ve mod yapımcılarından oluşan küçük bir gönüllü ekip yönetir; moderasyonu ise yeni yüklemeleri inceleyen ve bildirimleri ele alan eski topluluk üyeleri olan **korucular** yapar. Sitenin kodu [GitHub](https://github.com/ChoqueCastroLD/sotf-mods-api)’da açıktır.
+Siteyi oyunculardan ve mod yapımcılarından oluşan küçük bir gönüllü ekip yönetir; moderasyonu ise yeni yüklemeleri inceleyen ve bildirimleri ele alan eski topluluk üyeleri olan **moderatörler** yapar. Sitenin kodu [GitHub](https://github.com/ChoqueCastroLD/sotf-mods-api)’da açıktır.
 
 Modlar yapımcılarına aittir. Biz onları barındırır, gösterir ve bulunmalarına yardım ederiz; her modla ilgili emek ve kararlar yapımcısına aittir.
 
 # İndirmeleri nasıl güvenilir tutuyoruz
 
-- Her yeni mod herkese açılmadan önce Ranger Station’da incelenir.
+- Her yeni mod herkese açılmadan önce bir moderatör tarafından incelenir.
 - Her dosya taranır ve indirdiğini doğrulayabilmen için her sürüm boyutunu ve SHA-256 sağlama toplamını gösterir.
-- Herkes bir modu, yorumu veya incelemeyi bildirebilir; korucular hızlı davranır ve her işlem kaydedilir.
+- Herkes bir modu, yorumu veya incelemeyi bildirebilir; moderatörler hızlı davranır ve her işlem kaydedilir.
 - Yetişkin içerik, sen açmadıkça gizlidir.
 
 Nelere izin verildiğini öğrenmek için [içerik politikasını](/content-policy) oku.
-
-# Sahada test edilmiş uyumluluk
-
-Bir oyun yaması modları bir gecede bozabilir. Bu yüzden her mod, oyuncuların **güncel oyun sürümünde** çalıştığını doğrulayıp doğrulamadığını gösterir ve [Patch Radar](/patch-radar) her güncellemeden sonra en popüler modları takip eder. Veriler senden gelir: bir modu denedikten sonra çalışıp çalışmadığını söyle.
 
 # Site nasıl finanse ediliyor
 

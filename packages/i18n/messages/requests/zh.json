@@ -1,6 +1,6 @@
 {
   "requests_list_title": "模组请求",
-  "requests_list_title_page": "{title} — 第 {page, number} 页",
+  "requests_list_title_page": "{title}，第 {page, number} 页",
   "requests_list_description": "提出你希望在 Sons of the Forest 中出现的模组，为想要的请求投票，并关注接手的创作者。",
   "requests_list_readout": "请求板",
   "requests_action_new": "请求模组",
@@ -29,7 +29,7 @@
   "requests_by": "由 {name} 提出",
   "requests_adopted_by": "{name} 正在制作",
   "requests_fulfilled_by": "已由 {mod} 完成",
-  "requests_detail_title": "{title} — 模组请求",
+  "requests_detail_title": "{title}（模组请求）",
   "requests_detail_description": "{author} 提出的模组请求：{title}",
   "requests_back": "全部请求",
   "requests_view_mod": "查看模组",
@@ -89,5 +89,6 @@
   "requests_badge_adopter": "正在制作",
   "requests_badge_author": "请求者",
   "requests_comment_delete_title": "删除此评论？",
-  "requests_comment_delete_text": "此操作无法撤销。"
+  "requests_comment_delete_text": "此操作无法撤销。",
+  "requests_votes_short": "票"
 }

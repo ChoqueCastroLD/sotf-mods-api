@@ -1,6 +1,6 @@
 ---
 title: 如何安装 Sons of the Forest 模组
-seoTitle: 如何安装 Sons of the Forest 模组（2026）— RedLoader 指南
+seoTitle: 如何安装 Sons of the Forest 模组（2026）：RedLoader 指南
 description: 用 RedManager 安装 RedLoader，把模组放进 Mods 文件夹，并在游戏中确认加载。分步指南，附杀毒软件误报和游戏补丁问题的解决办法。
 tldr: 用 RedManager（或手动）安装模组加载器 RedLoader，把每个模组放进游戏目录下的 Mods 文件夹，然后启动游戏。RedManager 可以一键安装 SOTF Mods 上的任何模组。整个过程大约三分钟，下面的指南涵盖每一步和常见问题。
 anchors: [check, redloader, mods, verify, antivirus, bepinex, update, dedicated, troubleshooting, oneclick]
@@ -27,7 +27,7 @@ faq:
   - q: 游戏文件在哪里？
     a: 在 Steam 中右键点击 Sons of the Forest，选择管理，再选择浏览本地文件。打开的文件夹里有 SonsOfTheForest.exe，RedLoader 和你的模组都放在这里。
   - q: 游戏更新后模组还能用吗？
-    a: 不一定。游戏补丁可能会让 RedLoader 或部分模组失效，直到它们更新为止。Patch Radar 会显示当前游戏版本、RedLoader 的状态，以及玩家确认可用的热门模组。
+    a: 不一定。游戏补丁可能会让 RedLoader 或部分模组失效，直到它们更新为止。请查看模组页面、评论和评价，确认它能否在当前游戏版本上运行。
 ---
 
 # 检查游戏
@@ -39,7 +39,7 @@ faq:
 `C:\Program Files (x86)\Steam\steamapps\common\Sons Of The Forest`
 
 > [!TIP]
-> 游戏刚更新？先看看 [Patch Radar](/patch-radar)：它会显示 RedLoader 和热门模组是否已经能在新版本上运行。
+> 游戏刚更新？请查看模组页面、评论和评价，确认它是否已经能在新版本上运行。
 
 # 安装 RedLoader
 
@@ -94,7 +94,7 @@ RedManager 是同一位开发者为 RedLoader 制作的免费模组管理器。�
 - **核对校验值。** SOTF Mods 上的每个版本都会显示文件的 SHA-256。在 Windows 的 PowerShell 中运行 `Get-FileHash .\file.zip`（或 `certutil -hashfile file.zip SHA256`）并比对结果。
 - **查看扫描报告。** 每个发布的版本都经过 VirusTotal 扫描，报告链接在版本页面上。你也可以自己把文件上传到 [VirusTotal](https://www.virustotal.com)。
 
-如果一切吻合，可以把文件从隔离区恢复，并**只为游戏文件夹**添加排除项。切勿完全关闭杀毒软件。如果发现可疑之处，请在模组页面举报：护林员会尽快处理。
+如果一切吻合，可以把文件从隔离区恢复，并**只为游戏文件夹**添加排除项。切勿完全关闭杀毒软件。如果发现可疑之处，请在模组页面举报：版主会尽快处理。
 
 # BepInEx 还是 RedLoader？
 
@@ -107,7 +107,7 @@ SOTF Mods 收录的是 **RedLoader** 模组。为 BepInEx 制作的模组（在�
 
 **更新模组：** RedManager 会显示可用更新。手动更新时，下载新版本并覆盖旧文件。请先阅读更新日志：有些更新需要新的库或全新的配置。
 
-**更新 RedLoader：** 使用 RedManager，或把新版本解压覆盖旧版本。游戏打补丁后，请等 [Patch Radar](/patch-radar) 显示 RedLoader 可在新版本上运行后再更新。
+**更新 RedLoader：** 使用 RedManager，或把新版本解压覆盖旧版本。游戏打补丁后，如果游戏无法启动，请等待新的 RedLoader 版本。
 
 **移除模组：** 删除 `Mods` 中该模组的 `.dll` 和文件夹。请先查看模组页面：有些模组不能在游戏进行中安全移除。
 
@@ -131,7 +131,7 @@ RedLoader 没有运行。确认它的文件在 `SonsOfTheForest.exe` 旁边（�
 
 ## 游戏启动时崩溃或关闭
 
-这通常发生在游戏更新之后。在 [Patch Radar](/patch-radar) 查看 RedLoader 在当前版本上的状态。要找出有问题的模组，把所有模组移出 `Mods`，再每次放回几个。
+这通常发生在游戏更新之后。请在 [RedLoader 发布页](https://github.com/ToniMacaroni/RedLoader/releases) 查找支持新游戏版本的版本。要找出有问题的模组，把所有模组移出 `Mods`，再每次放回几个。
 
 ## 某个模组不在列表中
 

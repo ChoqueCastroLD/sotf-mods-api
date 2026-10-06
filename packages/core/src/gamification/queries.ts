@@ -14,7 +14,6 @@ import {
   BADGES,
   type BadgeCatalogDTO,
   CREATOR_TIERS,
-  FEATURED_BADGES_MAX,
   SURVIVOR_RANKS,
   type UserBadgesDTO,
 } from '@sotf/contracts/gamification';
@@ -24,10 +23,7 @@ import type { z } from 'zod';
 import { rankOf, tierOf } from '../catalog/snapshot.ts';
 import { resolveUserId } from '../catalog/users.ts';
 import { intArray, query, queryOne, toDate, toInt } from '../follows/sql.ts';
-import { purge } from '../kernel/cache-tags.ts';
 import type { Ctx } from '../kernel/context.ts';
-import { errors } from '../kernel/errors.ts';
-import { publishCacheInvalidation } from '../kernel/notify.ts';
 import { BADGE_CRITERIA, badgeIds, REVIEW_TEXT_MIN } from './catalog.ts';
 
 type BadgeCatalog = z.infer<typeof BadgeCatalogDTO>;
@@ -197,48 +193,4 @@ export async function gamificationRefs(
     });
   }
   return out;
-}
-
-/**
- * `PATCH /me/badges/featured`: the signed-in user picks which earned badges the profile header
- * features (≤ 6, `FEATURED_BADGES_MAX`). Unknown or unearned keys are a 422; for repeatable badges
- * the most recent award is featured. Replaces the previous choice (automatic featuring of new
- * badges keeps filling free slots, see `awardBadges`). Purges the profile.
- */
-export async function setFeaturedBadges(ctx: Ctx, keys: readonly string[]): Promise<{ featuredBadgeKeys: string[] }> {
-  if (!ctx.actor) throw errors.unauthenticated();
-  const userId = ctx.actor.userId;
-  const unique = [...new Set(keys)].slice(0, FEATURED_BADGES_MAX);
-  const featured = await ctx.db.transaction(async (tx) => {
-    const earned = await query<{ key: string }>(
-      tx,
-      sql`SELECT DISTINCT b."key" FROM "UserBadge" ub JOIN "Badge" b ON b."id" = ub."badgeId"
-           WHERE ub."userId" = ${userId} AND b."retiredAt" IS NULL AND b."key" = ANY(${textList(unique)})`,
-    );
-    const earnedKeys = new Set(earned.map((r) => r.key));
-    const missing = unique.filter((key) => !earnedKeys.has(key));
-    if (missing.length > 0) {
-      throw errors.validation('You can only feature badges you have earned', [
-        { path: 'keys', code: 'not_earned', message: `not earned: ${missing.join(', ')}` },
-      ]);
-    }
-    await tx.execute(sql`UPDATE "UserBadge" SET "isFeatured" = false WHERE "userId" = ${userId} AND "isFeatured"`);
-    if (unique.length > 0) {
-      await tx.execute(sql`
-        UPDATE "UserBadge" ub SET "isFeatured" = true
-         WHERE ub."id" IN (
-           SELECT DISTINCT ON (b."key") x."id" FROM "UserBadge" x JOIN "Badge" b ON b."id" = x."badgeId"
-            WHERE x."userId" = ${userId} AND b."key" = ANY(${textList(unique)})
-            ORDER BY b."key", x."awardedAt" DESC, x."id" DESC)`);
-    }
-    await publishCacheInvalidation(tx, [`user:${userId}`]);
-    await purge(ctx.jobs, [`user:${userId}`], 'featured badges changed', { tx });
-    return unique;
-  });
-  ctx.caches?.invalidate([`user:${userId}`]);
-  return { featuredBadgeKeys: featured };
-}
-
-function textList(values: readonly string[]) {
-  return sql`${`{${values.map((v) => `"${v.replace(/["\\]/g, '')}"`).join(',')}}`}::text[]`;
 }

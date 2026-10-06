@@ -25,7 +25,7 @@
   "logs_err_archive": "Impossibile leggere questo archivio.",
   "logs_err_network": "Impossibile raggiungere il server. Controlla la connessione e riprova.",
   "logs_err_turnstile": "Il controllo umano non è riuscito. Riprova.",
-  "logs_err_rate": "Troppe richieste — riprova tra {seconds} s",
+  "logs_err_rate": "Troppe richieste. Riprova tra {seconds} s",
   "logs_err_busy": "La condivisione dei log è molto richiesta in questo momento. Riprova tra qualche minuto.",
   "logs_err_generic": "Qualcosa è andato storto. Riprova.",
   "logs_done_title": "Il tuo log è pronto",

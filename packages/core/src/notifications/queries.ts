@@ -1,7 +1,8 @@
 /**
  * Reading and marking signals (PLAN §5.2 `/notifications*`, §7.3): the cursor feed of `/signals`
  * with its filters, the unread counter of the bell and "mark as read". Hidden rows (in-app channel
- * off, kept only for the email) are never listed or counted.
+ * off, kept only for the email, or of a type in `HIDDEN_NOTIFICATION_TYPES`) are never listed or
+ * counted.
  */
 import type { NotificationDTO, NotificationType } from '@sotf/contracts/notifications';
 import { NOTIFICATION_FILTER_TYPES, type NOTIFICATION_FILTERS } from '@sotf/contracts/notifications';
@@ -13,6 +14,7 @@ import { gamificationRefs } from '../gamification/queries.ts';
 import { errors } from '../kernel/errors.ts';
 import { publishNotificationNotice } from '../realtime/index.ts';
 import { INTERNAL_DATA_KEYS, unreadCount, visibleNotification } from './service.ts';
+import { visibleTypes } from './visibility.ts';
 
 export type NotificationFilter = (typeof NOTIFICATION_FILTERS)[number];
 
@@ -43,7 +45,7 @@ export async function listNotifications(
 ): Promise<{ items: NotificationDTO[]; nextCursor: string | null }> {
   const conditions = [eq(notification.userId, userId), visibleNotification];
   if (input.filter !== 'all') {
-    conditions.push(inArray(notification.type, [...NOTIFICATION_FILTER_TYPES[input.filter]]));
+    conditions.push(inArray(notification.type, visibleTypes(NOTIFICATION_FILTER_TYPES[input.filter])));
   }
   if (input.cursor) {
     const position = decodeCursor(input.cursor);

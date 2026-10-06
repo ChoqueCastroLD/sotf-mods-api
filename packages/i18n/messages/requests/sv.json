@@ -1,6 +1,6 @@
 {
   "requests_list_title": "Modönskemål",
-  "requests_list_title_page": "{title} — sida {page, number}",
+  "requests_list_title_page": "{title}, sida {page, number}",
   "requests_list_description": "Be om moddarna du saknar i Sons of the Forest, rösta på dem du vill ha och följ skaparna som tar sig an dem.",
   "requests_list_readout": "Önskelista",
   "requests_action_new": "Önska en mod",
@@ -29,7 +29,7 @@
   "requests_by": "av {name}",
   "requests_adopted_by": "{name} arbetar på den",
   "requests_fulfilled_by": "Uppfyllt med {mod}",
-  "requests_detail_title": "{title} — Modönskemål",
+  "requests_detail_title": "{title} (modönskemål)",
   "requests_detail_description": "Modönskemål från {author}: {title}",
   "requests_back": "Alla önskemål",
   "requests_view_mod": "Visa modden",
@@ -89,5 +89,6 @@
   "requests_badge_adopter": "Jobbar på det",
   "requests_badge_author": "Önskare",
   "requests_comment_delete_title": "Ta bort den här kommentaren?",
-  "requests_comment_delete_text": "Det går inte att ångra."
+  "requests_comment_delete_text": "Det går inte att ångra.",
+  "requests_votes_short": "röster"
 }

@@ -1,6 +1,6 @@
 /**
- * Presentation helpers of the Mod Jams pages: the phase label and tone, the accent colour and the
- * deadline a countdown points at. Pure (no I/O); the labels come from the `jams` i18n namespace.
+ * Presentation helpers of the Mod Jams pages: the phase label and tone and the deadline a
+ * countdown points at. Pure (no I/O); the labels come from the `jams` i18n namespace.
  */
 import type { JamPhase, JamSummaryDTO } from '@sotf/contracts/jams';
 import { m } from '@sotf/i18n/messages';
@@ -42,23 +42,10 @@ export function phaseTone(phase: JamPhase): JamPhaseTone {
 
 export const PHASE_TONE_CLASSES: Readonly<Record<JamPhaseTone, string>> = {
   live: 'bg-success-soft text-success',
-  soon: 'bg-signal-soft text-signal',
+  soon: 'bg-fg/10 text-fg',
   wait: 'bg-warning-soft text-warning',
   done: 'bg-fg/8 text-fg-muted',
 };
-
-/** Accent colours of the jam hero (the OG image uses the same palette). */
-export const ACCENT_HEX: Readonly<Record<string, string>> = {
-  signal: '#F2A93B',
-  forest: '#4FA36B',
-  ember: '#E8643C',
-  ocean: '#3B9AD9',
-  violet: '#8E6BD8',
-};
-
-export function accentHex(accent: string): string {
-  return ACCENT_HEX[accent] ?? ACCENT_HEX.signal ?? '#F2A93B';
-}
 
 export interface JamDeadline {
   /** What the countdown waits for. */
@@ -117,57 +104,8 @@ export function categoryLabel(category: { key: string; label: string | null }): 
 }
 
 /* ------------------------------------------------------------------------------------------ *
- * Hero art and the four stages of a jam (announce → build → vote → results).
+ * The four stages of a jam (announce → build → vote → results).
  * ------------------------------------------------------------------------------------------ */
-
-export type JamSeason = 'winter' | 'spring' | 'summer' | 'autumn';
-export type JamArtName = JamSeason | 'generic';
-
-/** Words (any of the site languages) that name a season in a title, slug or theme. */
-const SEASON_WORDS: ReadonlyArray<readonly [JamSeason, RegExp]> = [
-  ['winter', /winter|invierno|hiver|inverno|zima|зим|vinter|kış|冬|snow|frost|nieve|neige/i],
-  ['spring', /spring|primavera|printemps|frühling|fruhling|lente|wiosn|весн|\bvår\b|ilkbahar|春|thaw|bloom/i],
-  ['summer', /summer|verano|\bété\b|estate|sommer|zomer|lato|лет[оау]|sommar|\byaz\b|夏/i],
-  ['autumn', /autumn|\bfall\b|otoño|automne|autunno|herbst|herfst|jesie|осен|\bhöst\b|sonbahar|秋|harvest|cosecha/i],
-];
-
-/** Season of a calendar month on the island (northern hemisphere, meteorological). */
-export function seasonOfMonth(month: number): JamSeason {
-  if (month === 11 || month <= 1) return 'winter';
-  if (month <= 4) return 'spring';
-  if (month <= 7) return 'summer';
-  return 'autumn';
-}
-
-type ArtSource = Pick<
-  JamSummaryDTO,
-  'slug' | 'title' | 'theme' | 'announceAt' | 'submissionsOpenAt' | 'votingOpenAt' | 'phase'
->;
-
-/**
- * Which painting a jam gets: the season named in its slug, title or theme, otherwise the season of
- * its schedule, otherwise the generic workbench. Deterministic: the same jam always gets the same
- * art, whatever the viewer's date.
- */
-export function jamArtName(jam: ArtSource): JamArtName {
-  for (const text of [jam.slug.replace(/-/g, ' '), jam.title, jam.theme ?? '']) {
-    for (const [season, pattern] of SEASON_WORDS) if (pattern.test(text)) return season;
-  }
-  const at = jam.submissionsOpenAt ?? jam.announceAt ?? jam.votingOpenAt;
-  if (!at) return 'generic';
-  const month = new Date(at).getUTCMonth();
-  return Number.isNaN(month) ? 'generic' : seasonOfMonth(month);
-}
-
-/** `object-position` that keeps the focal point of each painting in view when it is cropped. */
-export const ART_FOCUS: Readonly<Record<JamArtName | 'cabin', string>> = {
-  winter: '60% 55%',
-  spring: '68% 45%',
-  summer: '55% 50%',
-  autumn: '72% 55%',
-  generic: '58% 55%',
-  cabin: '50% 50%',
-};
 
 export const JAM_STAGES = ['announce', 'build', 'vote', 'results'] as const;
 export type JamStage = (typeof JAM_STAGES)[number];

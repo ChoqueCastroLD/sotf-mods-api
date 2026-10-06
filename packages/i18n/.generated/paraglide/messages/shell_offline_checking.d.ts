@@ -3,7 +3,7 @@ export type Shell_Offline_CheckingInputs = {};
 /**
 * | output |
 * | --- |
-* | "Looking for a signal…" |
+* | "Checking the connection…" |
 *
 * @param {Shell_Offline_CheckingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

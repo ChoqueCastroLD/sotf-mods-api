@@ -17,7 +17,6 @@ import type {
 import type { ApiClient } from '@sotf/contracts/client';
 import { isApiError } from '@sotf/contracts/client';
 import type { JamSummaryDTO } from '@sotf/contracts/jams';
-import type { KitCardDTO } from '@sotf/contracts/kits';
 import { MAX_PAGE_SIZE } from '@sotf/contracts/pagination';
 import type { RequestDTO } from '@sotf/contracts/requests';
 import type { z } from 'zod';
@@ -112,12 +111,6 @@ export function allTags(): Promise<TagDTO[]> {
 export function allCreators(): Promise<Creator[]> {
   return memoized('creators', () =>
     allPages((page) => api().catalog.creators({ query: { sort: 'recent', page, pageSize: MAX_PAGE_SIZE } })),
-  );
-}
-
-export function allKits(): Promise<KitCardDTO[]> {
-  return memoized('kits', () =>
-    allPages((page) => api().kits.list({ query: { sort: 'new', page, pageSize: MAX_PAGE_SIZE } })),
   );
 }
 

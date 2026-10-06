@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Shell_Offline_CheckingInputs */
 
 const en_shell_offline_checking = /** @type {(inputs: Shell_Offline_CheckingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Looking for a signal…`)
+	return /** @type {LocalizedString} */ (`Checking the connection…`)
 };
 
 const es_shell_offline_checking = /** @type {(inputs: Shell_Offline_CheckingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Buscando señal…`)
+	return /** @type {LocalizedString} */ (`Comprobando la conexión…`)
 };
 
 const de_shell_offline_checking = /** @type {(inputs: Shell_Offline_CheckingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Suche nach Signal…`)
+	return /** @type {LocalizedString} */ (`Verbindung wird geprüft…`)
 };
 
 const fr_shell_offline_checking = /** @type {(inputs: Shell_Offline_CheckingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Recherche du signal…`)
+	return /** @type {LocalizedString} */ (`Vérification de la connexion…`)
 };
 
 const it_shell_offline_checking = /** @type {(inputs: Shell_Offline_CheckingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Cerco il segnale…`)
+	return /** @type {LocalizedString} */ (`Controllo della connessione…`)
 };
 
 const nl_shell_offline_checking = /** @type {(inputs: Shell_Offline_CheckingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zoeken naar signaal…`)
+	return /** @type {LocalizedString} */ (`Verbinding controleren…`)
 };
 
 const pl_shell_offline_checking = /** @type {(inputs: Shell_Offline_CheckingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Szukam sygnału…`)
+	return /** @type {LocalizedString} */ (`Sprawdzanie połączenia…`)
 };
 
 const pt_shell_offline_checking = /** @type {(inputs: Shell_Offline_CheckingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Procurando sinal…`)
+	return /** @type {LocalizedString} */ (`Verificando a conexão…`)
 };
 
 const ru_shell_offline_checking = /** @type {(inputs: Shell_Offline_CheckingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ищем сигнал…`)
+	return /** @type {LocalizedString} */ (`Проверка подключения…`)
 };
 
 const sv_shell_offline_checking = /** @type {(inputs: Shell_Offline_CheckingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Letar efter signal…`)
+	return /** @type {LocalizedString} */ (`Kontrollerar anslutningen…`)
 };
 
 const tr_shell_offline_checking = /** @type {(inputs: Shell_Offline_CheckingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sinyal aranıyor…`)
+	return /** @type {LocalizedString} */ (`Bağlantı kontrol ediliyor…`)
 };
 
 const zh_shell_offline_checking = /** @type {(inputs: Shell_Offline_CheckingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`正在搜索信号…`)
+	return /** @type {LocalizedString} */ (`正在检查连接…`)
 };
 
 const ja_shell_offline_checking = /** @type {(inputs: Shell_Offline_CheckingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`電波を探しています…`)
+	return /** @type {LocalizedString} */ (`接続を確認しています…`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Looking for a signal…" |
+* | "Checking the connection…" |
 *
 * @param {Shell_Offline_CheckingInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

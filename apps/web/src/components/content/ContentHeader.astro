@@ -1,6 +1,6 @@
 ---
 /**
- * Header of a content page: readout eyebrow, the page's single `<h1>`, an optional lead and a
+ * Header of a content page: a small label, the page's single `<h1>`, an optional lead and a
  * metadata line (dates, «verified with…») passed in the default slot.
  */
 interface Props {
@@ -17,12 +17,12 @@ const { eyebrow, title, id, lead, textLang } = Astro.props;
 ---
 
 <header class="flex flex-col gap-3">
-  <p class="readout text-signal">{eyebrow}</p>
-  <h1 id={id} lang={textLang} class="font-display-caps text-display-sm text-balance text-fg">{title}</h1>
+  <p class="text-sm font-semibold text-fg-muted">{eyebrow}</p>
+  <h1 id={id} lang={textLang} class="text-3xl font-bold text-balance text-fg md:text-4xl">{title}</h1>
   {lead && <p lang={textLang} class="max-w-(--container-prose) text-lg text-pretty text-fg-muted">{lead}</p>}
   {
     Astro.slots.has('default') && (
-      <div class="flex flex-wrap items-center gap-x-4 gap-y-1 font-mono text-sm text-fg-muted">
+      <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-fg-muted">
         <slot />
       </div>
     )

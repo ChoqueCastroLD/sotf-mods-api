@@ -3,7 +3,7 @@ export type Jams_How_4_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Podium" |
+* | "Results" |
 *
 * @param {Jams_How_4_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -175,6 +175,35 @@ export function formatDateTime(locale: string, iso: string, timeZone = 'UTC'): s
   return dateFormat(locale, { dateStyle: 'medium', timeStyle: 'short', timeZone }).format(new Date(iso));
 }
 
+const RELATIVE_UNITS = [
+  ['year', 365 * 86_400_000],
+  ['month', 30 * 86_400_000],
+  ['week', 7 * 86_400_000],
+  ['day', 86_400_000],
+  ['hour', 3_600_000],
+  ['minute', 60_000],
+] as const;
+
+/**
+ * `3 days ago` · `hace 3 días` for an instant relative to `now` (an explicit reference: public HTML is
+ * shared and cached, so the caller decides how fresh «now» is). Future instants read «in 3 days».
+ */
+export function formatRelative(locale: string, iso: string, now: number | Date): string {
+  const reference = now instanceof Date ? now.getTime() : now;
+  const diff = Date.parse(iso) - reference;
+  const abs = Math.abs(diff);
+  const key = `r|${locale}`;
+  let format = formatters.get(key) as unknown as Intl.RelativeTimeFormat | undefined;
+  if (!format) {
+    format = new Intl.RelativeTimeFormat(locale, { numeric: 'auto' });
+    formatters.set(key, format as never);
+  }
+  for (const [unit, size] of RELATIVE_UNITS) {
+    if (abs >= size) return format.format(Math.round(diff / size), unit);
+  }
+  return format.format(0, 'minute');
+}
+
 /** Placeholder passed for arguments that are React nodes (a private-use character). */
 export const SLOT = '\uE000';
 

@@ -437,7 +437,7 @@ export default function LogViewer({ id, labels, basePath, firstErrorLine, counts
         key={row.kind === 'fold' ? `f${line.n}` : line.n}
         data-line={line.n}
         style={{ position: 'absolute', top, height, left: 0, right: 0 }}
-        className={`flex border-s-[3px] ${LEVEL_STRIPE[line.level]} ${isActive ? 'bg-flare-400/15' : ''} ${row.kind === 'fold' ? 'bg-surface' : ''}`}
+        className={`flex border-s-[3px] ${LEVEL_STRIPE[line.level]} ${isActive ? 'bg-primary/15' : ''} ${row.kind === 'fold' ? 'bg-surface' : ''}`}
       >
         <button
           type="button"
@@ -518,7 +518,7 @@ export default function LogViewer({ id, labels, basePath, firstErrorLine, counts
                   onClick={() => changeLevel(value)}
                   className={`inline-flex min-h-12 min-w-0 flex-col items-center justify-center gap-0.5 rounded-md border px-1 text-center text-[13px] leading-tight font-medium md:h-10 md:min-h-0 md:flex-row md:gap-1.5 md:px-3 md:text-sm ${
                     level === value
-                      ? 'border-flare-500 bg-flare-400/15 text-fg'
+                      ? 'border-primary bg-primary/15 text-fg'
                       : 'border-transparent text-fg-muted hover:text-fg md:border-border-strong md:bg-raised'
                   }`}
                 >
@@ -539,7 +539,7 @@ export default function LogViewer({ id, labels, basePath, firstErrorLine, counts
                 aria-pressed={wrap}
                 icon={<Icon icon={WrapText} size={16} />}
                 onClick={() => setWrap((value) => !value)}
-                className={`max-md:min-h-11 max-md:justify-center ${wrap ? 'border-flare-500 bg-flare-400/10' : ''}`}
+                className={`max-md:min-h-11 max-md:justify-center ${wrap ? 'border-primary bg-primary/10' : ''}`}
                 title={labels.wrap}
               >
                 {labels.wrap}

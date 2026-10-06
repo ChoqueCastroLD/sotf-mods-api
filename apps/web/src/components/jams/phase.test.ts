@@ -1,35 +1,6 @@
 import type { JamSummaryDTO } from '@sotf/contracts/jams';
 import { describe, expect, it } from 'vitest';
-import { jamArtName, pickFeatured, seasonOfMonth, stageStates } from './phase.ts';
-
-const base = {
-  slug: 'a-jam',
-  title: 'A Jam',
-  theme: null,
-  announceAt: null,
-  submissionsOpenAt: null,
-  votingOpenAt: null,
-  phase: 'announced',
-} as const;
-
-describe('jamArtName', () => {
-  it('prefers the season named in the slug, title or theme', () => {
-    expect(jamArtName({ ...base, slug: 'winter-jam-2026' })).toBe('winter');
-    expect(jamArtName({ ...base, title: 'Summer Mod Jam' })).toBe('summer');
-    expect(jamArtName({ ...base, theme: 'Lost in the autumn fog' })).toBe('autumn');
-    expect(jamArtName({ ...base, title: 'Waterfall Jam' })).toBe('generic');
-  });
-
-  it('falls back to the season of the schedule, then to the generic painting', () => {
-    expect(jamArtName({ ...base, submissionsOpenAt: '2026-07-10T12:00:00.000Z' })).toBe('summer');
-    expect(jamArtName({ ...base, announceAt: '2026-12-01T12:00:00.000Z' })).toBe('winter');
-    expect(jamArtName(base)).toBe('generic');
-  });
-
-  it('maps every month to a season of the northern hemisphere', () => {
-    expect([0, 2, 5, 8, 11].map(seasonOfMonth)).toEqual(['winter', 'spring', 'summer', 'autumn', 'winter']);
-  });
-});
+import { pickFeatured, stageStates } from './phase.ts';
 
 describe('stageStates', () => {
   it('marks the stages before the current one as done', () => {

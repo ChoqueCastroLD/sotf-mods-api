@@ -1,6 +1,5 @@
 /**
- * Server-side data of the public profile `/profile/:handle` (WP-64, T0-15, PLAN §4.2), the
- * creators directory `/creators` and `/achievements`.
+ * Server-side data of the public profile `/profile/:handle` (WP-64, T0-15, PLAN §4.2).
  *
  * - `resolveProfilePage()` runs the tolerant resolver (`GET /api/v2/resolve`): 200, 301 (renamed
  *   handle, case), 404 (unknown or banned) or 410 (deleted account); the profile is then read with
@@ -8,43 +7,30 @@
  * - The HTML is shared by every visitor (edge-cached with `user:{id}`): nothing here reads cookies.
  *   The follow state and «this is you» are filled in by `profile-page.ts` after load.
  * - Every tab is one request; a failed tab renders an error state inside the page (with retry)
- *   instead of failing the whole profile. The badge notebook is also read for the header counts,
- *   with the short budget of an optional block.
+ *   instead of failing the whole profile.
  */
-import type {
-  CreatorCardDTO as CreatorCardSchema,
-  ModCardDTO,
-  UserActivityDTO,
-  UserPublicDTO,
-  UserReviewDTO as UserReviewSchema,
-} from '@sotf/contracts/catalog';
+import type { ModCardDTO, UserPublicDTO, UserReviewDTO as UserReviewSchema } from '@sotf/contracts/catalog';
 import { isApiError } from '@sotf/contracts/client';
-import type { BadgeCatalogDTO, UserBadgesDTO } from '@sotf/contracts/gamification';
-import type { KitCardDTO } from '@sotf/contracts/kits';
 import { profilePath } from '@sotf/contracts/seo';
 import type { z } from 'zod';
 import { optional, serverApi } from '../../lib/api.ts';
 import { href } from '../../lib/i18n.ts';
 
-export type { KitCardDTO, ModCardDTO, UserPublicDTO };
-export type UserActivity = z.infer<typeof UserActivityDTO>;
-export type CreatorCardDTO = z.infer<typeof CreatorCardSchema>;
+export type { ModCardDTO, UserPublicDTO };
 export type UserReviewDTO = z.infer<typeof UserReviewSchema>;
-export type UserBadges = z.infer<typeof UserBadgesDTO>;
-export type BadgeCatalog = z.infer<typeof BadgeCatalogDTO>;
 
 // -----------------------------------------------------------------------------------------------
 // Tabs
 // -----------------------------------------------------------------------------------------------
 
-export const PROFILE_TABS = ['mods', 'builds', 'kits', 'badges', 'activity', 'reviews'] as const;
+export const PROFILE_TABS = ['mods', 'builds', 'reviews'] as const;
 export type ProfileTab = (typeof PROFILE_TABS)[number];
 
 /** Sorts offered on the Mods and Builds tabs (subset of `ModSort`). */
 export const PROFILE_SORTS = ['downloads', 'updated', 'new'] as const;
 export type ProfileSort = (typeof PROFILE_SORTS)[number];
 
-/** Items per page of the Mods, Builds and Kits tabs. */
+/** Items per page of the Mods and Builds tabs. */
 export const PROFILE_PAGE_SIZE = 24;
 /** Reviews per page of the Reviews tab. */
 export const PROFILE_REVIEWS_LIMIT = 10;
@@ -68,21 +54,17 @@ export function visibleTabs(user: UserPublicDTO, active: ProfileTab): ProfileTab
         return user.stats.modsCount > 0;
       case 'builds':
         return user.stats.buildsCount > 0;
-      case 'kits':
-        return !user.privacy.hideKits;
-      case 'activity':
-        return !user.privacy.hideActivity;
       default:
         return true;
     }
   });
 }
 
-/** Tab shown without `?tab`: the creator's work first, the field notebook for everyone else. */
+/** Tab shown without `?tab`: the creator's work first, the reviews for everyone else. */
 export function defaultTab(user: UserPublicDTO): ProfileTab {
   if (user.stats.modsCount > 0) return 'mods';
   if (user.stats.buildsCount > 0) return 'builds';
-  return 'badges';
+  return 'reviews';
 }
 
 export interface ProfileQuery {
@@ -221,11 +203,7 @@ export interface CardPage<T> {
 
 export type TabContent =
   | { tab: 'mods' | 'builds'; state: 'ok'; data: CardPage<ModCardDTO> }
-  | { tab: 'kits'; state: 'ok'; data: CardPage<KitCardDTO> }
   | { tab: 'reviews'; state: 'ok'; data: { items: UserReviewDTO[]; nextCursor: string | null } }
-  | { tab: 'activity'; state: 'ok'; data: UserActivity }
-  | { tab: 'badges'; state: 'ok'; data: { badges: UserBadges; catalog: BadgeCatalog | null } }
-  | { tab: ProfileTab; state: 'hidden' }
   | { tab: ProfileTab; state: 'error' };
 
 /** Budget of a tab request: longer than an optional block (the tab is the page's content). */
@@ -239,25 +217,8 @@ function cardPage<T>(page: { items: T[]; page: number; totalPages: number; total
   return { items: page.items, page: page.page, totalPages: page.totalPages, total: page.total };
 }
 
-/** Badge catalog (`GET /badges`): icons, groups and unlock shares; cached by the API for an hour. */
-export function loadBadgeCatalog(timeoutMs = TAB_TIMEOUT_MS): Promise<BadgeCatalog | null> {
-  return optional((signal) => serverApi().gamification.badges({}, { signal }), timeoutMs);
-}
-
-/** The user's notebook (earned + locked with progress). */
-export function loadUserBadges(handle: string, timeoutMs = TAB_TIMEOUT_MS): Promise<UserBadges | null> {
-  return optional((signal) => serverApi().gamification.userBadges({ params: { handle } }, { signal }), timeoutMs);
-}
-
-/**
- * Content of the active tab. `badges` is passed in when the page already read the notebook (it
- * is shared with the header) so the tab does not ask twice.
- */
-export async function loadTab(
-  user: UserPublicDTO,
-  query: ProfileQuery,
-  badges: UserBadges | null,
-): Promise<TabContent> {
+/** Content of the active tab. */
+export async function loadTab(user: UserPublicDTO, query: ProfileQuery): Promise<TabContent> {
   const api = serverApi();
   const handle = user.handle;
   const pageQuery = { page: query.page, pageSize: PROFILE_PAGE_SIZE };
@@ -271,11 +232,6 @@ export async function loadTab(
           : api.catalog.userBuilds({ params: { handle }, query: { ...pageQuery, sort: query.sort } }, { signal }),
       );
       return page ? { tab, state: 'ok', data: cardPage(page) } : { tab, state: 'error' };
-    }
-    case 'kits': {
-      if (user.privacy.hideKits) return { tab: 'kits', state: 'hidden' };
-      const page = await attempt((signal) => api.kits.userKits({ params: { handle }, query: pageQuery }, { signal }));
-      return page ? { tab: 'kits', state: 'ok', data: cardPage(page) } : { tab: 'kits', state: 'error' };
     }
     case 'reviews': {
       const page = await attempt((signal) =>
@@ -291,45 +247,5 @@ export async function loadTab(
         ? { tab: 'reviews', state: 'ok', data: { items: page.items, nextCursor: page.nextCursor } }
         : { tab: 'reviews', state: 'error' };
     }
-    case 'activity': {
-      if (user.privacy.hideActivity) return { tab: 'activity', state: 'hidden' };
-      const activity = await attempt((signal) => api.catalog.userActivity({ params: { handle } }, { signal }));
-      return activity ? { tab: 'activity', state: 'ok', data: activity } : { tab: 'activity', state: 'error' };
-    }
-    case 'badges': {
-      const [notebook, catalog] = await Promise.all([
-        badges ? Promise.resolve(badges) : loadUserBadges(handle),
-        loadBadgeCatalog(),
-      ]);
-      return notebook
-        ? { tab: 'badges', state: 'ok', data: { badges: notebook, catalog } }
-        : { tab: 'badges', state: 'error' };
-    }
   }
-}
-
-// -----------------------------------------------------------------------------------------------
-// Creators directory
-// -----------------------------------------------------------------------------------------------
-
-export const CREATOR_DIRECTORY_SORTS = ['downloads', 'followers', 'recent', 'spotlight'] as const;
-export type CreatorDirectorySort = (typeof CREATOR_DIRECTORY_SORTS)[number];
-export const CREATORS_PAGE_SIZE = 24;
-
-export function isCreatorSort(value: string | null): value is CreatorDirectorySort {
-  return value !== null && (CREATOR_DIRECTORY_SORTS as readonly string[]).includes(value);
-}
-
-/** One page of the creators directory, or null when the API is unavailable. */
-export function loadCreators(sort: CreatorDirectorySort, page: number): Promise<CardPage<CreatorCardDTO> | null> {
-  return attempt((signal) =>
-    serverApi().catalog.creators({ query: { sort, page, pageSize: CREATORS_PAGE_SIZE } }, { signal }),
-  ).then((result) => (result ? cardPage(result) : null));
-}
-
-/** Parses `?page=` of the listing pages (null = malformed, redirect to the clean URL). */
-export function parsePage(raw: string | null): number | null {
-  if (raw === null) return 1;
-  if (!/^[1-9]\d{0,3}$/.test(raw)) return null;
-  return Math.min(Number(raw), MAX_PAGE);
 }

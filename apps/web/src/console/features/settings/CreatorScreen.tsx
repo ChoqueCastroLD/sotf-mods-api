@@ -1,5 +1,5 @@
 /**
- * Settings → Creator (research/03 §6.11 «CREATOR»): creator status (verified mark, spotlight tier),
+ * Settings → Creator (research/03 §6.11 «CREATOR»): creator status (Trusted mark),
  * support links (Ko-fi, Patreon… from the profile links, shown on the profile and next to each
  * mod), the default license for new mods and reply templates for comments and reviews.
  *
@@ -12,7 +12,6 @@ import { localizePath } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import { Badge } from '@sotf/ui/badge';
 import { Button } from '@sotf/ui/button';
-import { TierStamp } from '@sotf/ui/domain';
 import { Field } from '@sotf/ui/field';
 import { Icon } from '@sotf/ui/icons';
 import { Input } from '@sotf/ui/input';
@@ -22,7 +21,6 @@ import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
 import { BadgeCheck, Copy, ExternalLink, Plus, Trash2 } from 'lucide-react';
 import { useRef, useState } from 'react';
-import { DomainI18nBridge } from '../../components/DomainI18nBridge.tsx';
 import { useMe } from '../../hooks/use-me.ts';
 import { activeLocale } from '../../lib/messages.ts';
 import { notify } from '../../lib/notify.ts';
@@ -121,7 +119,6 @@ export function CreatorScreen() {
   const me = useMe();
   const profile = useQuery(profileQuery(me.user.handle));
   const supportLinks = (profile.data?.links ?? []).filter((link) => link.kind === 'kofi' || link.kind === 'patreon');
-  const tier = profile.data?.creatorTier ?? null;
 
   return (
     <SettingsPage section="creator">
@@ -134,11 +131,6 @@ export function CreatorScreen() {
           ) : (
             <Badge variant="neutral">{m.settings_creator_not_verified()}</Badge>
           )}
-          {tier ? (
-            <DomainI18nBridge>
-              <TierStamp tier={tier} size="sm" iconMode="inline" />
-            </DomainI18nBridge>
-          ) : null}
         </div>
         <p className="text-sm text-fg-muted">
           {me.user.verifiedCreator ? m.settings_creator_verified_text() : m.settings_creator_not_verified_text()}
@@ -147,9 +139,6 @@ export function CreatorScreen() {
           <Link to="/basecamp" className="font-semibold text-link">
             {m.settings_creator_basecamp()}
           </Link>
-          <a href="/basecamp/badges" className="font-semibold text-link">
-            {m.settings_creator_badges()}
-          </a>
         </div>
       </SettingsCard>
 

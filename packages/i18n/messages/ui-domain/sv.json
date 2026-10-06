@@ -180,5 +180,6 @@
   "ui_domain_reaction_laugh": "Skratt",
   "ui_domain_reaction_party": "Fest",
   "ui_domain_reaction_pray": "Tack",
-  "ui_domain_reaction_fire": "Eld"
+  "ui_domain_reaction_fire": "Eld",
+  "ui_domain_trusted": "Betrodd"
 }

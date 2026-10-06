@@ -1,22 +1,21 @@
 /**
- * The command palette, «el bloc de órdenes» (PLAN §7.1 T0-07, §7.9; research/03 §5.5).
+ * The command palette (Ctrl+K): search of mods, builds, users and pages, plus a few commands.
  *
  * - Modal `role="dialog"` (640 px at 12 vh; 880 px with the preview pane at ≥ lg; full screen
  *   below md), focus kept inside, background `inert`, scroll locked, focus returned on close.
  * - ARIA combobox + listbox with `aria-activedescendant`; results come from the MiniSearch engine
- *   (`engine.ts`), grouped Recent searches · Recent · Trending · Mods · Builds · Kits · Creators ·
+ *   (`engine.ts`), grouped Recent searches · Recent · Trending · Mods · Builds · Users ·
  *   Categories · Pages · Go to · Settings, best group first, «See all» → `/search`.
  * - Operators (`by:` `cat:` `sort:` `type:` `mp:`) become chips and complete their values.
  * - Keys: ↑↓ move · Enter open · ⌘/Ctrl+Enter new tab · Shift+Enter download · → actions menu
  *   (letters inside it run an action) · Tab / Shift+Tab scope · Backspace on an empty field drops
  *   the scope · Esc closes the menu, then the palette.
  * - States: index loading (skeleton after 300 ms), error (what happened, what to do, retry, ref),
- *   offline (recent items and actions keep working), empty (brand microcopy + hint).
+ *   offline (recent items and actions keep working), empty (message + hint).
  */
 import { type Locale, localizePath, matchLocale } from '@sotf/i18n';
 import { Kbd } from '@sotf/ui/kbd';
-import { onThemeChange } from '@sotf/ui/theme';
-import { Ellipsis, Eraser, RotateCw, Search, Sparkles, WifiOff, X } from 'lucide-react';
+import { Ellipsis, Eraser, RotateCw, Search, WifiOff, X } from 'lucide-react';
 import {
   type CSSProperties,
   type KeyboardEvent as ReactKeyboardEvent,
@@ -44,7 +43,6 @@ import {
 } from './engine.ts';
 import { t } from './i18n.ts';
 import {
-  compareTarget,
   copyText,
   type ItemAction,
   itemActionsFor,
@@ -65,7 +63,6 @@ import { leavePending } from './pending.ts';
 import { Glyph, ITEM_ACTION_ICONS, Preview, RowContent } from './present.tsx';
 import { clearRecents, clearSearches, readRecents, readSearches, rememberRecent, rememberSearch } from './recents.ts';
 import { cycleScope, parseQuery, SCOPES, type Scope } from './scope.ts';
-import { askScout, loadScoutAvailable, SCOUT_MAX_LENGTH, SCOUT_MIN_LENGTH, type ScoutResult } from './scout.ts';
 import { hintedSession, loadSession, type Session } from './session.ts';
 import { buildSuggestions, operatorLabel } from './suggest.ts';
 import {
@@ -88,7 +85,6 @@ export interface OpenRequest {
 }
 
 const NO_ITEMS: ResultItem[] = [];
-const NO_ENTRIES: EntryItem[] = [];
 const SEE_ALL = '__see_all';
 const CLEAR_RECENT = '__clear_recent';
 const SERVER_DEBOUNCE_MS = 350;
@@ -101,21 +97,14 @@ type IndexState =
   | { status: 'ready'; index: PaletteIndex }
   | { status: 'error'; ref: string | null; offline: boolean };
 
-type ScoutState =
-  | { status: 'loading'; question: string }
-  | { status: 'done'; question: string; answer: string; items: EntryItem[] }
-  | { status: 'error'; question: string; reason: 'rate' | 'unavailable' | 'error' };
-
 type ServerState = { key: string; status: 'loading' | 'done'; items: ResultItem[] } | null;
 
 const SCOPE_TYPE_PARAM: Record<Scope, string | null> = {
   all: null,
   mods: 'mod',
   builds: 'build',
-  kits: 'kit',
-  creators: 'user',
+  users: 'user',
   actions: null,
-  scout: null,
 };
 
 function scopeLabel(scope: Scope): string {
@@ -126,12 +115,8 @@ function scopeLabel(scope: Scope): string {
       return t('cmdk_term_mods');
     case 'builds':
       return t('cmdk_term_builds');
-    case 'kits':
-      return t('cmdk_term_kits');
-    case 'creators':
-      return t('cmdk_term_creators');
-    case 'scout':
-      return t('cmdk_scout_scope');
+    case 'users':
+      return t('shell_cmdk_group_users');
     default:
       return t('cmdk_group_actions');
   }
@@ -153,18 +138,14 @@ function groupLabel(id: GroupId): string {
       return t('cmdk_term_mods');
     case 'builds':
       return t('cmdk_term_builds');
-    case 'kits':
-      return t('cmdk_term_kits');
-    case 'creators':
-      return t('cmdk_term_creators');
+    case 'users':
+      return t('shell_cmdk_group_users');
     case 'categories':
       return t('cmdk_group_categories');
     case 'pages':
       return t('cmdk_group_pages');
     case 'actions':
       return t('cmdk_group_settings');
-    case 'scout':
-      return t('cmdk_scout_group');
     default:
       return t('cmdk_group_server');
   }
@@ -179,14 +160,14 @@ function isApple(): boolean {
   return /mac|iphone|ipad|ipod/i.test(nav.userAgentData?.platform ?? nav.platform ?? '');
 }
 
-const ENTITY_TYPES = new Set(['mod', 'build', 'kit', 'user', 'category']);
+const ENTITY_TYPES = new Set(['mod', 'build', 'user', 'category']);
 
 function entityOf(item: PaletteItem): {
-  entityType?: 'mod' | 'build' | 'kit' | 'user' | 'category';
+  entityType?: 'mod' | 'build' | 'user' | 'category';
   entityId?: number;
 } {
   if (!isEntry(item) || !ENTITY_TYPES.has(item.type) || typeof item.id !== 'number') return {};
-  return { entityType: item.type as 'mod' | 'build' | 'kit' | 'user' | 'category', entityId: item.id };
+  return { entityType: item.type as 'mod' | 'build' | 'user' | 'category', entityId: item.id };
 }
 
 /** Makes everything outside the palette inert while it is open; returns the undo. */
@@ -216,16 +197,9 @@ export interface PaletteProps {
 export function Palette({ request, host, onClose }: PaletteProps) {
   const locale = useMemo(pageLocale, []);
   const modKey = useMemo(() => (isApple() ? '⌘' : 'Ctrl'), []);
-  const initial = useMemo(() => {
-    const parsed = parseQuery(request.query);
-    // Scout is offered only once the status call says so: until then its prefix is plain text.
-    return parsed.scope === 'scout' ? { scope: null, text: request.query } : parsed;
-  }, [request.query]);
+  const initial = useMemo(() => parseQuery(request.query), [request.query]);
   const [search, setSearch] = useState(initial.text);
   const [scope, setScope] = useState<Scope>(initial.scope ?? 'all');
-  const [scoutAvailable, setScoutAvailable] = useState(false);
-  const [scoutState, setScoutState] = useState<ScoutState | null>(null);
-  const scoutRequest = useRef<AbortController | null>(null);
   const [indexState, setIndexState] = useState<IndexState>({ status: 'loading' });
   const [attempt, setAttempt] = useState(0);
   const [online, setOnline] = useState(() => navigator.onLine !== false);
@@ -235,7 +209,6 @@ export function Palette({ request, host, onClose }: PaletteProps) {
   const [detail, setDetail] = useState<{ key: string; data: Detail | null; done: boolean } | null>(null);
   const [follows, setFollows] = useState<Record<string, boolean | null>>({});
   const [menu, setMenu] = useState<{ key: string; index: number } | null>(null);
-  const [themeTick, setThemeTick] = useState(0);
   const [server, setServer] = useState<ServerState>(null);
   const [active, setActive] = useState('');
   const [announcement, setAnnouncement] = useState('');
@@ -252,19 +225,7 @@ export function Palette({ request, host, onClose }: PaletteProps) {
   // Modal plumbing: inert background + scroll lock for the palette's lifetime.
   useLayoutEffect(() => isolate(host), [host]);
 
-  // Scout: offered only while the API reports it available; a pending question dies with the palette.
-  useEffect(() => {
-    let alive = true;
-    loadScoutAvailable().then((available) => {
-      if (alive) setScoutAvailable(available);
-    });
-    return () => {
-      alive = false;
-      scoutRequest.current?.abort();
-    };
-  }, []);
-
-  // Commands depend on who is signed in (Basecamp, Signals, Ranger Station…).
+  // Commands depend on who is signed in (dashboard, notifications, moderation…).
   useEffect(() => {
     let alive = true;
     loadSession().then((next) => {
@@ -274,8 +235,6 @@ export function Palette({ request, host, onClose }: PaletteProps) {
       alive = false;
     };
   }, []);
-
-  const scopes = useMemo(() => SCOPES.filter((value) => value !== 'scout' || scoutAvailable), [scoutAvailable]);
 
   useEffect(() => {
     track('cmdk_open', { props: { source: request.source } });
@@ -304,11 +263,9 @@ export function Palette({ request, host, onClose }: PaletteProps) {
     const update = () => setOnline(navigator.onLine !== false);
     window.addEventListener('online', update);
     window.addEventListener('offline', update);
-    const stopTheme = onThemeChange(() => setThemeTick((tick) => tick + 1));
     return () => {
       window.removeEventListener('online', update);
       window.removeEventListener('offline', update);
-      stopTheme();
     };
   }, []);
 
@@ -325,7 +282,7 @@ export function Palette({ request, host, onClose }: PaletteProps) {
         go: (path) => go(localizePath(path, locale)),
         goTo: go,
       }),
-    [locale, session, go, themeTick],
+    [locale, session, go],
   );
   const actionSearch = useMemo(() => new ActionSearch(actions), [actions]);
   const index = indexState.status === 'ready' ? indexState.index : null;
@@ -341,12 +298,9 @@ export function Palette({ request, host, onClose }: PaletteProps) {
   const local = useMemo((): { groups: ResultGroup[]; contentHits: number } => {
     const wrap = (items: readonly PaletteItem[]): ResultItem[] => items.map((item) => ({ item, terms: [] }));
     const suggestGroup: ResultGroup[] =
-      suggestions.length > 0 && scope !== 'actions' && scope !== 'scout'
-        ? [{ id: 'suggest', items: wrap(suggestions) }]
-        : [];
+      suggestions.length > 0 && scope !== 'actions' ? [{ id: 'suggest', items: wrap(suggestions) }] : [];
     if (text === '' && !filtered) {
       const groups: ResultGroup[] = [...suggestGroup];
-      if (scope === 'scout') return { groups: [], contentHits: 0 };
       if (scope === 'all') {
         if (searches.length > 0 && suggestGroup.length === 0) {
           groups.push({
@@ -364,23 +318,18 @@ export function Palette({ request, host, onClose }: PaletteProps) {
         const quick = quickIds
           .map((id) => actions.find((action) => action.id === id))
           .filter((action): action is ActionItem => action !== undefined);
-        const themeAction = actions.find((action) => action.id.startsWith('theme-') && !action.current);
-        if (suggestGroup.length === 0) {
-          groups.push({ id: 'go', items: wrap(quick) });
-          if (themeAction) groups.push({ id: 'actions', items: wrap([themeAction]) });
-        }
+        if (suggestGroup.length === 0) groups.push({ id: 'go', items: wrap(quick) });
       } else if (scope === 'actions') {
         groups.push({ id: 'go', items: wrap(actions.filter((action) => action.section === 'go')) });
         groups.push({ id: 'actions', items: wrap(actions.filter((action) => action.section === 'settings')) });
       } else if (index) {
-        const type = scope === 'mods' ? 'mod' : scope === 'builds' ? 'build' : scope === 'kits' ? 'kit' : 'user';
+        const type = scope === 'mods' ? 'mod' : scope === 'builds' ? 'build' : 'user';
         const id: GroupId = scope;
         const items = index.top(type, SCOPED_LIMIT);
         if (items.length > 0) groups.push({ id, items: wrap(items) });
       }
       return { groups, contentHits: 0 };
     }
-    if (scope === 'scout') return { groups: [], contentHits: 0 };
     const scored = index && scope !== 'actions' ? index.query(text, scope, filters) : [];
     const actionHits =
       !filtered && text !== '' && (scope === 'all' || scope === 'actions') ? actionSearch.query(text) : [];
@@ -396,7 +345,6 @@ export function Palette({ request, host, onClose }: PaletteProps) {
     text.length >= 2 &&
     !filtered &&
     scope !== 'actions' &&
-    scope !== 'scout' &&
     online &&
     (indexState.status === 'error' || (indexState.status === 'ready' && local.contentHits === 0));
   useEffect(() => {
@@ -420,16 +368,11 @@ export function Palette({ request, host, onClose }: PaletteProps) {
   const serverItems = server?.key === serverKey && server.status === 'done' ? server.items : NO_ITEMS;
   const serverLoading = wantsServer && (server?.key !== serverKey || server.status === 'loading');
 
-  // Scout's answer belongs to the question it was asked for; editing the text hides it.
-  const scoutView = scope === 'scout' && scoutState?.question === text ? scoutState : null;
-  const scoutItems = scoutView?.status === 'done' ? scoutView.items : NO_ENTRIES;
-
   const groups = useMemo(() => {
     const list = [...local.groups];
     if (serverItems.length > 0) list.push({ id: 'server', items: serverItems });
-    if (scoutItems.length > 0) list.push({ id: 'scout', items: scoutItems.map((item) => ({ item, terms: [] })) });
     return list;
-  }, [local.groups, serverItems, scoutItems]);
+  }, [local.groups, serverItems]);
 
   const lookup = useMemo(() => {
     const map = new Map<string, PaletteItem>();
@@ -438,11 +381,10 @@ export function Palette({ request, host, onClose }: PaletteProps) {
   }, [groups]);
 
   const resultCount = groups.reduce((sum, group) => sum + group.items.length, 0);
-  const showSeeAll = text !== '' && !filtered && scope !== 'actions' && scope !== 'scout';
-  const indexLoading =
-    indexState.status === 'loading' && scope !== 'actions' && scope !== 'scout' && (text !== '' || scope !== 'all');
-  const busy = indexLoading || serverLoading || scoutView?.status === 'loading';
-  const isEmpty = (text !== '' || filtered) && scope !== 'scout' && resultCount === 0 && !busy;
+  const showSeeAll = text !== '' && !filtered && scope !== 'actions';
+  const indexLoading = indexState.status === 'loading' && scope !== 'actions' && (text !== '' || scope !== 'all');
+  const busy = indexLoading || serverLoading;
+  const isEmpty = (text !== '' || filtered) && resultCount === 0 && !busy;
 
   // Every selectable row, in visual order (arrow keys, `aria-activedescendant`).
   const options = useMemo(() => {
@@ -463,8 +405,7 @@ export function Palette({ request, host, onClose }: PaletteProps) {
   // The first row is active after every change of the results (as in any combobox).
   const optionsKey = options.join('\n');
   useEffect(() => {
-    // In Scout mode Enter asks: no row is active until the arrows pick a cited mod.
-    setActive(scope === 'scout' ? '' : (options[0] ?? ''));
+    setActive(options[0] ?? '');
   }, [optionsKey, scope]);
 
   // Scroll back to the top when the query or scope changes.
@@ -474,16 +415,11 @@ export function Palette({ request, host, onClose }: PaletteProps) {
 
   const status = useMemo(() => {
     if (announcement) return announcement;
-    if (scoutView?.status === 'loading') return t('cmdk_scout_thinking');
-    if (scoutView?.status === 'done')
-      return `${scoutView.answer} ${t('cmdk_results_count', { count: scoutView.items.length })}`;
-    if (scoutView?.status === 'error') return t('cmdk_scout_error_title');
-    if (scope === 'scout') return '';
-    if (indexLoading) return t('cmdk_loading');
-    if (serverLoading && resultCount === 0) return t('cmdk_searching');
+    if (indexLoading) return t('shell_cmdk_loading');
+    if (serverLoading && resultCount === 0) return t('shell_cmdk_searching');
     if (text === '' && !filtered) return '';
     return t('cmdk_results_count', { count: resultCount });
-  }, [announcement, scoutView, scope, indexLoading, serverLoading, resultCount, text, filtered]);
+  }, [announcement, indexLoading, serverLoading, resultCount, text, filtered]);
 
   // ---------------------------------------------------------------------------------------------
   // Commands
@@ -562,29 +498,6 @@ export function Palette({ request, host, onClose }: PaletteProps) {
     },
     [lookup, scope, text, search, parsed.pending, seeAllUrl, groupOf, hrefOf, go, openInNewTab, close],
   );
-
-  const ask = useCallback(() => {
-    const question = text;
-    if (question.length < SCOUT_MIN_LENGTH) return;
-    scoutRequest.current?.abort();
-    const controller = new AbortController();
-    scoutRequest.current = controller;
-    setScoutState({ status: 'loading', question });
-    track('cmdk_select', { props: { group: 'scout_ask', scope: 'scout', queryLength: question.length } });
-    askScout(question, locale, controller.signal).then((result: ScoutResult) => {
-      if (controller.signal.aborted) return;
-      setScoutState(
-        result.ok
-          ? { status: 'done', question, answer: result.answer, items: result.items }
-          : { status: 'error', question, reason: result.reason },
-      );
-      if (!result.ok && result.reason === 'unavailable') {
-        // The daily cap may be spent: the next open asks the status again.
-        setScoutAvailable(false);
-        setScope('all');
-      }
-    });
-  }, [text, locale]);
 
   const download = useCallback((item: EntryItem) => {
     const path = latestDownloadPath(item);
@@ -678,18 +591,6 @@ export function Palette({ request, host, onClose }: PaletteProps) {
         case 'download':
           download(item);
           return;
-        case 'kit':
-          track('cmdk_select', { ...entityOf(item), props: { group: 'action', action: 'kit' } });
-          close(false);
-          go(hrefOf(`/me/kits?add=${item.id}`));
-          return;
-        case 'compare': {
-          const target = compareTarget(item);
-          if (!target) return;
-          close(false);
-          go(hrefOf(target));
-          return;
-        }
         case 'versions':
           close(false);
           go(hrefOf(`${item.path}/versions`));
@@ -802,7 +703,7 @@ export function Palette({ request, host, onClose }: PaletteProps) {
       case 'Tab':
         event.preventDefault();
         if (!inInput) inputRef.current?.focus();
-        else setScope((current) => cycleScope(current, event.shiftKey ? -1 : 1, scopes));
+        else setScope((current) => cycleScope(current, event.shiftKey ? -1 : 1));
         return;
       case 'ArrowDown':
       case 'ArrowUp': {
@@ -840,7 +741,6 @@ export function Palette({ request, host, onClose }: PaletteProps) {
         if (event.shiftKey && !mod && activeItem && isEntry(activeItem) && latestDownloadPath(activeItem)) {
           download(activeItem);
         } else if (active) select(active, mod);
-        else if (scope === 'scout') ask();
         return;
       case 'Backspace':
         if (inInput && search === '' && scope !== 'all') {
@@ -853,13 +753,12 @@ export function Palette({ request, host, onClose }: PaletteProps) {
 
   const onInput = (raw: string) => {
     const prefix = parseQuery(raw);
-    if (prefix.scope && (prefix.scope !== 'scout' || scoutAvailable)) {
+    if (prefix.scope) {
       setScope(prefix.scope);
       setSearch(prefix.text);
     } else {
       setSearch(raw);
     }
-    if (scope === 'scout' || prefix.scope === 'scout') setActive('');
     setMenu(null);
   };
 
@@ -917,7 +816,7 @@ export function Palette({ request, host, onClose }: PaletteProps) {
       },
       onMouseDown: (event: ReactMouseEvent) => event.preventDefault(),
       onClick: (event: ReactMouseEvent) => select(value, event.metaKey || event.ctrlKey),
-      className: `flex min-h-11 cursor-pointer items-center gap-3 rounded-lg px-3 py-1.5 select-none data-selected:bg-fg/8 data-selected:shadow-[inset_2px_0_0_var(--color-primary)] pointer-coarse:data-selected:bg-transparent pointer-coarse:data-selected:shadow-none pointer-coarse:active:bg-fg/8 max-md:min-h-16 md:min-h-10 md:rounded-md ${extra}`,
+      className: `flex min-h-11 cursor-pointer items-center gap-3 rounded-lg px-3 py-1.5 select-none data-selected:bg-fg/8 pointer-coarse:data-selected:bg-transparent pointer-coarse:active:bg-fg/8 max-md:min-h-16 md:min-h-10 md:rounded-md ${extra}`,
     };
   };
 
@@ -953,12 +852,7 @@ export function Palette({ request, host, onClose }: PaletteProps) {
     );
   }
 
-  const placeholder =
-    scope === 'actions'
-      ? t('cmdk_placeholder_actions')
-      : scope === 'scout'
-        ? t('cmdk_scout_placeholder')
-        : t('cmdk_placeholder');
+  const placeholder = scope === 'actions' ? t('cmdk_placeholder_actions') : t('shell_cmdk_placeholder');
   const activeIndex = optionIndex.get(active);
   const listId = `${ids}-list`;
   const menuId = `${ids}-menu`;
@@ -975,7 +869,7 @@ export function Palette({ request, host, onClose }: PaletteProps) {
     <div className="fixed inset-0 z-(--z-modal)">
       <div
         aria-hidden="true"
-        className="absolute inset-0 hidden bg-night-975/60 md:block"
+        className="absolute inset-0 hidden bg-black/60 md:block"
         onMouseDown={() => close(true)}
       />
       <div
@@ -988,13 +882,9 @@ export function Palette({ request, host, onClose }: PaletteProps) {
         className="absolute inset-0 flex flex-col outline-none overflow-hidden bg-overlay pt-[env(safe-area-inset-top)] text-fg max-md:motion-safe:animate-rise md:pt-0 md:inset-x-4 md:top-[12vh] md:bottom-auto md:mx-auto md:max-h-[76vh] md:max-w-160 md:rounded-xl md:border md:border-border md:shadow-lg md:motion-safe:animate-rise lg:max-w-220"
       >
         <div className="flex items-center gap-2 border-b border-border px-3 md:px-4">
-          <span className="relative flex size-5 shrink-0 items-center justify-center text-fg-subtle">
-            {busy ? (
-              <span
-                aria-hidden="true"
-                className="absolute inset-0 rounded-full border border-primary motion-safe:animate-ping-locator"
-              />
-            ) : null}
+          <span
+            className={`flex size-5 shrink-0 items-center justify-center text-fg-subtle ${busy ? 'motion-safe:animate-pulse' : ''}`}
+          >
             <Glyph icon={Search} size={18} />
           </span>
           {scope !== 'all' ? (
@@ -1004,7 +894,7 @@ export function Palette({ request, host, onClose }: PaletteProps) {
               onMouseDown={(event) => event.preventDefault()}
               onClick={() => pickScope('all')}
               aria-label={t('cmdk_scope_remove', { scope: scopeLabel(scope) })}
-              className="inline-flex h-7 shrink-0 items-center gap-1 rounded-sm bg-primary-soft px-2 font-mono text-2xs text-primary"
+              className="inline-flex h-7 shrink-0 items-center gap-1 rounded-sm bg-primary-soft px-2 text-xs font-medium text-primary"
             >
               {scopeLabel(scope)}
               <Glyph icon={X} size={12} />
@@ -1024,14 +914,14 @@ export function Palette({ request, host, onClose }: PaletteProps) {
                   ? undefined
                   : `${ids}-o${activeIndex}`
             }
-            aria-label={t('cmdk_input_label')}
+            aria-label={t('shell_cmdk_input_label')}
             aria-describedby={`${ids}-status`}
             value={search}
             onChange={(event) => onInput(event.target.value)}
             // biome-ignore lint/a11y/noAutofocus: the palette is a modal opened on purpose; its field takes focus
             autoFocus
             placeholder={placeholder}
-            maxLength={scope === 'scout' ? SCOUT_MAX_LENGTH : 100}
+            maxLength={100}
             enterKeyHint="go"
             autoComplete="off"
             autoCorrect="off"
@@ -1057,7 +947,7 @@ export function Palette({ request, host, onClose }: PaletteProps) {
 
         <fieldset className="flex min-w-0 shrink-0 gap-1 overflow-x-auto border-b border-border px-3 py-2 md:px-4">
           <legend className="sr-only">{t('cmdk_scope_label')}</legend>
-          {scopes.map((value) => (
+          {SCOPES.map((value) => (
             <button
               key={value}
               type="button"
@@ -1072,9 +962,7 @@ export function Palette({ request, host, onClose }: PaletteProps) {
           ))}
         </fieldset>
 
-        {scope !== 'actions' &&
-        scope !== 'scout' &&
-        (parsed.tokens.some((token) => token.value !== '') || search === '') ? (
+        {scope !== 'actions' && (parsed.tokens.some((token) => token.value !== '') || search === '') ? (
           <fieldset
             className={`flex min-w-0 shrink-0 items-center gap-1 overflow-x-auto border-b border-border px-3 py-1.5 md:px-4 ${
               parsed.tokens.some((token) => token.value !== '') ? '' : 'max-md:hidden'
@@ -1179,25 +1067,14 @@ export function Palette({ request, host, onClose }: PaletteProps) {
               </div>
             ) : null}
 
-            {scope === 'scout' ? (
-              <ScoutPanel
-                text={text}
-                view={scoutView}
-                onRetry={() => {
-                  ask();
-                  inputRef.current?.focus();
-                }}
-              />
-            ) : null}
-
             {isEmpty ? (
               <div className="flex flex-col gap-1 px-4 py-6 text-center">
                 <p className="text-sm font-medium text-fg">
                   {scope === 'actions'
                     ? t('cmdk_empty_actions', { query: text })
-                    : t('cmdk_no_results', { query: text })}
+                    : t('shell_cmdk_no_results', { query: text })}
                 </p>
-                {scope !== 'actions' ? <p className="text-xs text-fg-muted">{t('cmdk_empty_hint')}</p> : null}
+                {scope !== 'actions' ? <p className="text-xs text-fg-muted">{t('shell_cmdk_empty_hint')}</p> : null}
               </div>
             ) : null}
 
@@ -1221,7 +1098,7 @@ export function Palette({ request, host, onClose }: PaletteProps) {
                   <div
                     id={`${ids}-g-${group.id}`}
                     role="presentation"
-                    className="px-3 pt-2 pb-1 font-mono text-2xs tracking-wide text-fg-subtle uppercase"
+                    className="px-3 pt-2 pb-1 text-xs font-semibold text-fg-subtle"
                   >
                     {groupLabel(group.id)}
                   </div>
@@ -1306,10 +1183,7 @@ export function Palette({ request, host, onClose }: PaletteProps) {
               aria-label={t('cmdk_act_menu_label', { title: isEntry(menuItem) ? menuItem.title : '' })}
               className="absolute inset-x-0 bottom-0 z-20 flex max-h-[70%] flex-col gap-0.5 overflow-y-auto rounded-t-xl border border-border-strong bg-overlay p-2 pb-4 shadow-lg motion-safe:animate-rise md:inset-x-auto md:end-3 md:bottom-12 md:w-72 md:rounded-xl md:pb-2"
             >
-              <p
-                aria-hidden="true"
-                className="truncate px-3 pt-1 pb-1.5 font-mono text-2xs tracking-wide text-fg-subtle uppercase"
-              >
+              <p aria-hidden="true" className="truncate px-3 pt-1 pb-1.5 text-xs font-semibold text-fg-subtle">
                 {isEntry(menuItem) ? menuItem.title : ''}
               </p>
               {menuActions.map((entry, position) => (
@@ -1326,7 +1200,7 @@ export function Palette({ request, host, onClose }: PaletteProps) {
                   }}
                   onMouseDown={(event) => event.preventDefault()}
                   onClick={() => void runItemAction(entry.id, menuItem)}
-                  className="flex min-h-12 cursor-pointer items-center gap-3 rounded-md px-3 py-1.5 text-sm text-fg select-none data-selected:bg-fg/8 data-selected:shadow-[inset_2px_0_0_var(--color-primary)] md:min-h-9"
+                  className="flex min-h-12 cursor-pointer items-center gap-3 rounded-md px-3 py-1.5 text-sm text-fg select-none data-selected:bg-fg/8 md:min-h-9"
                 >
                   <span className="flex size-6 shrink-0 items-center justify-center text-fg-muted">
                     <Glyph icon={ITEM_ACTION_ICONS[entry.id]} size={16} />
@@ -1375,10 +1249,7 @@ export function Palette({ request, host, onClose }: PaletteProps) {
             </>
           ) : (
             <>
-              <Hint
-                keys={['↵']}
-                label={scope === 'scout' && !active ? t('cmdk_scout_hint_ask') : t('cmdk_hint_open')}
-              />
+              <Hint keys={['↵']} label={t('cmdk_hint_open')} />
               <Hint keys={[modKey, '↵']} label={t('cmdk_hint_new_tab')} />
               {activeEntry && latestDownloadPath(activeEntry) ? (
                 <Hint keys={['⇧', '↵']} label={t('cmdk_hint_download')} />
@@ -1402,61 +1273,5 @@ function Hint({ keys, label }: { keys: readonly string[]; label: string }) {
       ))}
       <span>{label}</span>
     </span>
-  );
-}
-
-function ScoutPanel({ text, view, onRetry }: { text: string; view: ScoutState | null; onRetry: () => void }) {
-  if (view?.status === 'loading') {
-    return (
-      <div aria-hidden="true" className="flex flex-col gap-2 px-4 py-4">
-        <p className="flex items-center gap-2 text-sm text-fg-muted">
-          <span className="text-primary">
-            <Glyph icon={Sparkles} size={16} />
-          </span>
-          {t('cmdk_scout_thinking')}
-        </p>
-        <span className={`${SKELETON} w-4/5`} />
-        <span className={`${SKELETON} w-3/5`} />
-      </div>
-    );
-  }
-  if (view?.status === 'error') {
-    return (
-      <div role="alert" className="flex flex-col items-start gap-2 border-b border-border px-4 py-3 text-sm">
-        <p className="font-medium text-fg">
-          {view.reason === 'rate' ? t('cmdk_scout_error_rate') : t('cmdk_scout_error_title')}
-        </p>
-        <p className="text-fg-muted">
-          {view.reason === 'rate' ? t('cmdk_scout_error_rate_hint') : t('cmdk_scout_error_hint')}
-        </p>
-        <button
-          type="button"
-          onClick={onRetry}
-          className="inline-flex min-h-11 items-center gap-1.5 rounded-md px-2 text-sm font-medium text-link hover:bg-fg/8 md:min-h-8"
-        >
-          <Glyph icon={RotateCw} size={14} />
-          {t('cmdk_retry')}
-        </button>
-      </div>
-    );
-  }
-  if (view?.status === 'done') {
-    return (
-      <div className="flex flex-col gap-1 border-b border-border px-4 py-3">
-        <p className="flex items-center gap-1.5 font-mono text-2xs tracking-wide text-fg-subtle uppercase">
-          <span className="text-primary">
-            <Glyph icon={Sparkles} size={12} />
-          </span>
-          {t('cmdk_scout_answer_label')}
-        </p>
-        <p className="text-sm text-fg">{view.answer === '' ? t('cmdk_scout_no_picks') : view.answer}</p>
-        <p className="text-2xs text-fg-subtle">{t('cmdk_scout_ai_note')}</p>
-      </div>
-    );
-  }
-  return (
-    <p className="px-4 py-4 text-sm text-fg-muted">
-      {text.length >= SCOUT_MIN_LENGTH ? t('cmdk_scout_press_enter') : t('cmdk_scout_intro')}
-    </p>
   );
 }

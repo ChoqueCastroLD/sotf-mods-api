@@ -1,6 +1,6 @@
 {
   "requests_list_title": "Richieste di mod",
-  "requests_list_title_page": "{title} — pagina {page, number}",
+  "requests_list_title_page": "{title}, pagina {page, number}",
   "requests_list_description": "Chiedi il mod che vorresti in Sons of the Forest, vota quelli che vuoi e segui i creator che li prendono in carico.",
   "requests_list_readout": "Bacheca delle richieste",
   "requests_action_new": "Chiedi un mod",
@@ -29,7 +29,7 @@
   "requests_by": "di {name}",
   "requests_adopted_by": "{name} ci sta lavorando",
   "requests_fulfilled_by": "Realizzata con {mod}",
-  "requests_detail_title": "{title} — Richiesta di mod",
+  "requests_detail_title": "{title} (richiesta di mod)",
   "requests_detail_description": "Richiesta di mod di {author}: {title}",
   "requests_back": "Tutte le richieste",
   "requests_view_mod": "Vedi il mod",
@@ -89,5 +89,6 @@
   "requests_badge_adopter": "Ci lavora",
   "requests_badge_author": "Richiedente",
   "requests_comment_delete_title": "Eliminare questo commento?",
-  "requests_comment_delete_text": "Non si può annullare."
+  "requests_comment_delete_text": "Non si può annullare.",
+  "requests_votes_short": "voti"
 }

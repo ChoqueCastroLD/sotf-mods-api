@@ -25,7 +25,7 @@
   "logs_err_archive": "No se pudo leer ese archivo comprimido.",
   "logs_err_network": "No se pudo conectar con el servidor. Revisa tu conexión e inténtalo de nuevo.",
   "logs_err_turnstile": "Falló la comprobación humana. Inténtalo de nuevo.",
-  "logs_err_rate": "Demasiadas solicitudes — vuelve a intentarlo en {seconds} s",
+  "logs_err_rate": "Demasiadas solicitudes. Vuelve a intentarlo en {seconds} s",
   "logs_err_busy": "Compartir logs está saturado ahora mismo. Inténtalo de nuevo en unos minutos.",
   "logs_err_generic": "Algo salió mal. Inténtalo de nuevo.",
   "logs_done_title": "Tu log está listo",

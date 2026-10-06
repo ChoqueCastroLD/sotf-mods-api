@@ -2,15 +2,13 @@
  * `/llms.txt` and `/llms-full.txt` (PLAN §8.7 GEO, llmstxt.org format): a Markdown map of the site
  * for LLM tools and generative search engines.
  *
- * - `llms.txt`: H1 «SOTF Mods», a blockquote summary, then link lists: guides (install, Patch
- *   Radar, best-of hubs), categories, the top 50 mods, the API (`/developers`, OpenAPI) and the
- *   community (Discord).
+ * - `llms.txt`: H1 «SOTF Mods», a blockquote summary, then link lists: guides (install, requests,
+ *   jams), categories, the top 50 mods, the API (`/developers`, OpenAPI) and the community (Discord).
  * - `llms-full.txt`: every published mod, library and build in compact Markdown (name, author,
- *   category, version, compatibility, multiplayer, downloads, short description and URL).
+ *   category, version, multiplayer, downloads, short description and URL).
  */
 import type { ModCardDTO } from '@sotf/contracts/catalog';
 import { absoluteUrl, categoryPath, profilePath } from '@sotf/contracts/seo';
-import { BEST_TOPICS, type BestTopic } from '../../content/best/hubs.ts';
 import { SOCIAL_LINKS } from '../site.ts';
 import type { CategoryDTO } from './data.ts';
 import { isoDay, mdInline } from './markdown.ts';
@@ -18,16 +16,7 @@ import { isoDay, mdInline } from './markdown.ts';
 const numberFormat = new Intl.NumberFormat('en-US');
 
 const SUMMARY =
-  'SOTF Mods (sotf-mods.com) is the community home of Sons of the Forest modding since 2023: free, direct downloads of mods, libraries, builds (BuildShare blueprints) and mod Kits for the RedLoader mod loader, with field-tested compatibility on every game patch, reviews and creator profiles.';
-
-const BEST_TITLES: Readonly<Record<BestTopic, string>> = {
-  mods: 'Best Sons of the Forest mods',
-  'quality-of-life-mods': 'Best quality-of-life mods',
-  'multiplayer-mods': 'Best multiplayer mods',
-  'dedicated-server-mods': 'Best dedicated server mods',
-  'building-mods': 'Best building mods',
-  libraries: 'Mod libraries',
-};
+  'SOTF Mods (sotf-mods.com) is the community home of Sons of the Forest modding since 2023: free, direct downloads of mods, libraries and builds (BuildShare) for the RedLoader mod loader, with reviews, comments and creator profiles.';
 
 const MULTIPLAYER: Readonly<Record<string, string>> = {
   client_side: 'client-side',
@@ -60,12 +49,8 @@ export function llmsTxt(input: {
     '## Guides',
     '',
     link('How to install Sons of the Forest mods', url('/install'), 'RedLoader and RedManager, step by step'),
-    link('Patch Radar', url('/patch-radar'), 'which popular mods work on the current game patch'),
-    ...BEST_TOPICS.map((topic) => link(BEST_TITLES[topic], url(`/best/${topic}`))),
-    link('Mod Kits', url('/kits'), 'curated collections of mods that work together'),
     link('Mod requests', url('/requests'), 'what players ask modders to build, most voted first'),
     link('Mod Jams', url('/jams'), 'community mod-making events with themes, voting and public results'),
-    link('Creators', url('/creators')),
     '',
     '## Categories',
     '',
@@ -123,7 +108,6 @@ export function llmsFullTxt(input: { siteUrl: string; cards: readonly ModCardDTO
       card.latestVersion
         ? `Version: ${card.latestVersion} (${isoDay(card.lastReleasedAt)})`
         : `Updated: ${isoDay(card.lastReleasedAt)}`,
-      card.kind === 'build' ? null : `Compatibility with the current patch: ${card.compatStatus}`,
       card.kind === 'build' ? null : `Multiplayer: ${MULTIPLAYER[card.multiplayerRole ?? 'unknown'] ?? 'not stated'}`,
       `Downloads: ${numberFormat.format(card.downloads)}`,
       card.ratingAvg !== null && card.ratingCount >= 3

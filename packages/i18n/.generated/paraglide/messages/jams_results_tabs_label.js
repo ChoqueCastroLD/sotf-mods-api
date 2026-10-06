@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Jams_Results_Tabs_LabelInputs */
 
 const en_jams_results_tabs_label = /** @type {(inputs: Jams_Results_Tabs_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Podium category`)
+	return /** @type {LocalizedString} */ (`Results category`)
 };
 
 const es_jams_results_tabs_label = /** @type {(inputs: Jams_Results_Tabs_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Categoría del podio`)
+	return /** @type {LocalizedString} */ (`Categoría de los resultados`)
 };
 
 const de_jams_results_tabs_label = /** @type {(inputs: Jams_Results_Tabs_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Podium-Kategorie`)
+	return /** @type {LocalizedString} */ (`Ergebniskategorie`)
 };
 
 const fr_jams_results_tabs_label = /** @type {(inputs: Jams_Results_Tabs_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Catégorie du podium`)
+	return /** @type {LocalizedString} */ (`Catégorie des résultats`)
 };
 
 const it_jams_results_tabs_label = /** @type {(inputs: Jams_Results_Tabs_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Categoria del podio`)
+	return /** @type {LocalizedString} */ (`Categoria dei risultati`)
 };
 
 const nl_jams_results_tabs_label = /** @type {(inputs: Jams_Results_Tabs_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Podiumcategorie`)
+	return /** @type {LocalizedString} */ (`Resultatencategorie`)
 };
 
 const pl_jams_results_tabs_label = /** @type {(inputs: Jams_Results_Tabs_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kategoria podium`)
+	return /** @type {LocalizedString} */ (`Kategoria wyników`)
 };
 
 const pt_jams_results_tabs_label = /** @type {(inputs: Jams_Results_Tabs_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Categoria do pódio`)
+	return /** @type {LocalizedString} */ (`Categoria dos resultados`)
 };
 
 const ru_jams_results_tabs_label = /** @type {(inputs: Jams_Results_Tabs_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Категория пьедестала`)
+	return /** @type {LocalizedString} */ (`Категория результатов`)
 };
 
 const sv_jams_results_tabs_label = /** @type {(inputs: Jams_Results_Tabs_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Prispallskategori`)
+	return /** @type {LocalizedString} */ (`Resultatkategori`)
 };
 
 const tr_jams_results_tabs_label = /** @type {(inputs: Jams_Results_Tabs_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Podyum kategorisi`)
+	return /** @type {LocalizedString} */ (`Sonuç kategorisi`)
 };
 
 const zh_jams_results_tabs_label = /** @type {(inputs: Jams_Results_Tabs_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`领奖台类别`)
+	return /** @type {LocalizedString} */ (`结果类别`)
 };
 
 const ja_jams_results_tabs_label = /** @type {(inputs: Jams_Results_Tabs_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`表彰台のカテゴリー`)
+	return /** @type {LocalizedString} */ (`結果のカテゴリー`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Podium category" |
+* | "Results category" |
 *
 * @param {Jams_Results_Tabs_LabelInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

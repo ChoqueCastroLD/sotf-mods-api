@@ -829,11 +829,11 @@
   "auth_error_terms": "Примите условия, чтобы создать аккаунт.",
   "auth_error_turnstile_failed": "Проверка безопасности не завершилась. Проверьте подключение или разрешите challenges.cloudflare.com в блокировщике и попробуйте снова.",
   "auth_field_display_name": "Отображаемое имя",
-  "auth_field_display_name_hint": "Так вас видят другие выжившие. Его можно изменить позже.",
+  "auth_field_display_name_hint": "Имя, которое видят другие пользователи. Его можно изменить позже.",
   "auth_field_email": "Email",
   "auth_field_email_hint": "Для входа и важных писем об аккаунте. Никогда не показывается публично.",
   "auth_field_handle": "Имя пользователя",
-  "auth_field_handle_hint": "Ваш адрес на острове: {url}. Изменить его потом будет нельзя.",
+  "auth_field_handle_hint": "Адрес вашего профиля: {url}. Изменить его потом будет нельзя.",
   "auth_field_handle_placeholder": "vashe-imya",
   "auth_field_identifier": "Email или имя пользователя",
   "auth_field_new_password": "Пароль",
@@ -858,7 +858,7 @@
   "auth_login_create_account": "Создайте аккаунт",
   "auth_login_forgot": "Забыли пароль?",
   "auth_login_heading": "Вход",
-  "auth_login_intro": "С возвращением, выживший.",
+  "auth_login_intro": "Войдите в свой аккаунт.",
   "auth_login_legacy_note": "Был аккаунт до обновления сайта? Ваш пароль по-прежнему работает.",
   "auth_login_new_here": "Впервые здесь?",
   "auth_login_passkey": "Войти с ключом доступа",
@@ -877,7 +877,7 @@
   "auth_meta_login_title": "Вход",
   "auth_meta_logout_description": "Выйдите из SOTF Mods на этом устройстве.",
   "auth_meta_logout_title": "Выход",
-  "auth_meta_register_description": "Присоединяйтесь к SOTF Mods: складывайте моды в рюкзак, получайте уведомления об обновлениях и делитесь своими творениями.",
+  "auth_meta_register_description": "Присоединяйтесь к SOTF Mods: следите за модами, получайте уведомления об обновлениях и делитесь своими творениями.",
   "auth_meta_register_title": "Создайте аккаунт",
   "auth_meta_reset_description": "Задайте новый пароль для аккаунта SOTF Mods.",
   "auth_meta_reset_title": "Задайте новый пароль",
@@ -3817,6 +3817,108 @@
       }
     }
   ],
+  "explore_catalog_all_categories": "Все категории",
+  "explore_catalog_category_label": "Категория",
+  "explore_catalog_category_link": "Категория: {name}",
+  "explore_catalog_comments": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} комментарий",
+        "count__plural=few": "{count__number} комментария",
+        "count__plural=many": "{count__number} комментариев",
+        "count__plural=*": "{count__number} комментария"
+      }
+    }
+  ],
+  "explore_catalog_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} мод",
+        "count__plural=few": "{count__number} мода",
+        "count__plural=many": "{count__number} модов",
+        "count__plural=*": "{count__number} мода"
+      }
+    }
+  ],
+  "explore_catalog_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} скачивание",
+        "count__plural=few": "{count__number} скачивания",
+        "count__plural=many": "{count__number} скачиваний",
+        "count__plural=*": "{count__number} скачивания"
+      }
+    }
+  ],
+  "explore_catalog_empty_clear": "Сбросить фильтры",
+  "explore_catalog_empty_text": "Нет модов, подходящих под эти фильтры. Измените запрос или сбросьте фильтры.",
+  "explore_catalog_empty_title": "Моды не найдены",
+  "explore_catalog_empty_unapproved": "Сейчас нет неодобренных модов.",
+  "explore_catalog_error_text": "Повторите попытку через минуту.",
+  "explore_catalog_error_title": "Не удалось загрузить моды",
+  "explore_catalog_filters": "Фильтры",
+  "explore_catalog_followers": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} подписчик",
+        "count__plural=few": "{count__number} подписчика",
+        "count__plural=many": "{count__number} подписчиков",
+        "count__plural=*": "{count__number} подписчика"
+      }
+    }
+  ],
+  "explore_catalog_nsfw": "NSFW",
+  "explore_catalog_pending_approval": "Ожидает одобрения",
+  "explore_catalog_retry": "Повторить",
+  "explore_catalog_search_button": "Найти",
+  "explore_catalog_search_label": "Поиск модов",
+  "explore_catalog_search_placeholder": "Поиск модов",
+  "explore_catalog_sort_downloads": "Больше всего скачиваний",
+  "explore_catalog_sort_label": "Сортировка",
+  "explore_catalog_sort_oldest": "Сначала старые",
+  "explore_catalog_sort_trending": "В тренде на этой неделе",
+  "explore_catalog_trusted": "Проверенный",
+  "explore_catalog_type_all": "Все типы",
+  "explore_catalog_type_label": "Тип",
+  "explore_catalog_unapproved": "Не одобрены",
+  "explore_catalog_unapproved_back": "Назад ко всем модам",
+  "explore_catalog_unapproved_description": "Моды, прошедшие автоматические проверки и ожидающие одобрения.",
+  "explore_catalog_unapproved_heading": "Неодобренные моды",
+  "explore_catalog_unapproved_notice": "Эти моды прошли автоматические проверки и ждут одобрения модератора. Они не входят в основной список.",
+  "explore_catalog_unapproved_title": "Неодобренные моды",
+  "explore_catalog_updated": "Обновлено {when}",
   "explore_categories_browse": "Смотреть",
   "explore_categories_builds_heading": "Категории построек",
   "explore_categories_description": "Все категории модов и построек для Sons of the Forest на SOTF Mods: что в них входит и сколько в каждой элементов.",
@@ -4349,7 +4451,7 @@
   "jams_countdown_voting_close": "Голосование закроется через",
   "jams_countdown_voting_open": "Голосование начнётся через",
   "jams_cta_join": "Участвовать в джеме",
-  "jams_cta_results": "Смотреть пьедестал",
+  "jams_cta_results": "Смотреть результаты",
   "jams_cta_view": "Открыть джем",
   "jams_cta_vote": "Голосовать",
   "jams_detail_description_fallback": "{title}: мод-джем Sons of the Forest. Тема, работы и результаты.",
@@ -4475,11 +4577,11 @@
   "jams_error_text": "Повторите попытку через минуту.",
   "jams_error_title": "Не удалось загрузить джемы",
   "jams_first_discord": "Зайти в Discord",
-  "jams_first_hint": "Откройте настройки сигналов, чтобы новости о джемах приходили в приложении или на почту, и следите за джемом, как только его объявят.",
+  "jams_first_hint": "Включите уведомления, чтобы новости о джемах приходили в приложении или на почту, и следите за джемом, как только его объявят.",
   "jams_first_judged": "Работы оцениваются по",
   "jams_first_kicker": "Первый сезон · Дату объявим здесь первыми",
   "jams_first_notify": "Получать уведомления",
-  "jams_first_prize": "Каждая работа получает значок участника; места на пьедестале и общая победа дают больше.",
+  "jams_first_prize": "Все работы показаны на странице джема. Лучшие в каждой категории объявляются вместе с результатами.",
   "jams_first_text": "Тематический конкурс для всего сообщества: тема, несколько дней, чтобы создать что-то новое, и голосование для всех. Дату сначала объявим здесь.",
   "jams_first_title": "Первый Mod Jam уже в пути",
   "jams_follow": "Следить за джемом",
@@ -4492,12 +4594,12 @@
   "jams_how_2_title": "Создавайте",
   "jams_how_3_text": "Подтверждённые участники оценивают каждую работу от 1 до 5 звёзд в каждой категории.",
   "jams_how_3_title": "Голосуйте",
-  "jams_how_4_text": "Результаты считаются по байесовскому среднему. Значки получает вся команда.",
-  "jams_how_4_title": "Пьедестал",
+  "jams_how_4_text": "Результаты считаются по взвешенному среднему. Итоги показываются по каждой категории и в целом.",
+  "jams_how_4_title": "Результаты",
   "jams_how_title": "Как проходит джем",
   "jams_hub_archive": "Архив",
   "jams_hub_description": "Тематические соревнования с ограничением по времени: сообщество создаёт новые моды для Sons of the Forest и голосует за лучшие.",
-  "jams_hub_intro": "Создавайте за дни, голосуйте за неделю, получайте значки. У каждого джема есть тема, дедлайн и четыре категории голосования.",
+  "jams_hub_intro": "Сделайте мод за несколько дней, затем голосуйте за лучшие. У каждого джема есть тема, дедлайн и четыре категории голосования.",
   "jams_hub_readout": "МОД-ДЖЕМЫ",
   "jams_hub_results": "Результаты",
   "jams_hub_running": "Проходят сейчас",
@@ -4517,7 +4619,7 @@
   "jams_mine_title": "Мод-джемы",
   "jams_my_entries": "Ваши работы",
   "jams_mystery_reveal": "Откроется {date}",
-  "jams_mystery_title": "Тема под печатью",
+  "jams_mystery_title": "Тема скрыта",
   "jams_nav": "Джемы",
   "jams_phase_announced": "Анонсирован",
   "jams_phase_archived": "В архиве",
@@ -4528,7 +4630,7 @@
   "jams_phase_voting": "Голосование",
   "jams_prizes_title": "Призы",
   "jams_rank": "№{rank}",
-  "jams_results_method": "Оценки — байесовские средние. Чтобы попасть в рейтинг, работа должна набрать не менее {min} голосов.",
+  "jams_results_method": "Оценки считаются как байесовские средние. Чтобы попасть в рейтинг, работа должна набрать не менее {min} голосов.",
   "jams_results_summary": [
     {
       "declarations": [
@@ -4563,7 +4665,7 @@
       }
     }
   ],
-  "jams_results_tabs_label": "Категория пьедестала",
+  "jams_results_tabs_label": "Категория результатов",
   "jams_results_title": "Результаты",
   "jams_rules_title": "Правила",
   "jams_schedule_tba": "Будет объявлено",
@@ -4579,7 +4681,7 @@
   "jams_submit_action": "Отправить работу",
   "jams_submit_choose": "Выбрать…",
   "jams_submit_confirm": "Отправить",
-  "jams_submit_done": "Работа отправлена. Удачи!",
+  "jams_submit_done": "Работа отправлена.",
   "jams_submit_intro": "Выберите один из ваших опубликованных модов или сборок. Работу можно отозвать до конца приёма.",
   "jams_submit_mod": "Мод или сборка",
   "jams_submit_none": "У вас пока нет опубликованных модов или сборок, подходящих для этого джема.",
@@ -4603,12 +4705,12 @@
   "jams_unit_seconds": "Сек",
   "jams_verify_to_submit": "Подтвердите почту, чтобы участвовать",
   "jams_vote_action": "Оценить",
-  "jams_vote_blocked_activity": "Немного поучаствуйте в жизни сообщества, чтобы открыть голосование.",
+  "jams_vote_blocked_activity": "На вашем аккаунте пока недостаточно активности, чтобы голосовать.",
   "jams_vote_blocked_email": "Подтвердите адрес почты, чтобы голосовать.",
   "jams_vote_blocked_new": "Ваш аккаунт слишком новый для голосования в этом джеме.",
   "jams_vote_blocked_phase": "Голосование сейчас закрыто.",
   "jams_vote_continue": "Продолжить голосование",
-  "jams_vote_dock_title": "Ваш бюллетень",
+  "jams_vote_dock_title": "Голосование",
   "jams_vote_intro": "Поставьте от 1 до 5 звёзд в каждой категории. Голоса можно менять до конца голосования.",
   "jams_vote_nothing": "Пока нечего оценивать.",
   "jams_vote_own": "Ваша работа",
@@ -5379,6 +5481,10 @@
   "landing_faq_hint": "Короткие ответы, сверенные с каталогом.",
   "landing_faq_more": "Подробнее",
   "landing_faq_title": "Вопросы выживших",
+  "landing_featured_label": "Избранные моды недели",
+  "landing_featured_next": "Следующие моды",
+  "landing_featured_prev": "Предыдущие моды",
+  "landing_h1": "Моды для Sons of the Forest",
   "landing_hall_hint": "Самые скачиваемые моды за всё время",
   "landing_hall_show_all": [
     {
@@ -5460,6 +5566,25 @@
   ],
   "landing_map_legend_label": "Легенда карты",
   "landing_map_title": "Карта острова",
+  "landing_meta_description": [
+    {
+      "declarations": [
+        "input count",
+        "input mods",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Скачайте {mods} мод для Sons of the Forest и билды для RedLoader. Бесплатные прямые загрузки с оценками и комментариями сообщества.",
+        "count__plural=few": "Скачайте {mods} мода для Sons of the Forest и билды для RedLoader. Бесплатные прямые загрузки с оценками и комментариями сообщества.",
+        "count__plural=many": "Скачайте {mods} модов для Sons of the Forest и билды для RedLoader. Бесплатные прямые загрузки с оценками и комментариями сообщества.",
+        "count__plural=*": "Скачайте {mods} мода для Sons of the Forest и билды для RedLoader. Бесплатные прямые загрузки с оценками и комментариями сообщества."
+      }
+    }
+  ],
+  "landing_meta_title": "Моды для Sons of the Forest | SOTF Mods",
   "landing_motw_period": "Неделя с {start}",
   "landing_motw_title": "Мод недели",
   "landing_notes_all": "Все недавние обновления",
@@ -5543,11 +5668,51 @@
   "landing_stat_downloads": "Загрузки",
   "landing_stat_mods": "Моды",
   "landing_stat_survivors": "Выжившие",
+  "landing_stats_aria": "Статистика сайта",
+  "landing_stats_downloads": "Загрузки",
   "landing_stats_label": "Остров в цифрах",
+  "landing_stats_mods": "Опубликованные моды",
+  "landing_stats_users": "Пользователи",
   "landing_trending_all": "Все моды",
   "landing_trending_empty": "Тихая неделя на острове. Моды появятся здесь, когда выжившие начнут их скачивать.",
   "landing_trending_hint": "По загрузкам за последние 7 дней",
   "landing_trending_title": "Популярное за неделю",
+  "landing_weekly_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} скачивание на этой неделе",
+        "count__plural=few": "{display} скачивания на этой неделе",
+        "count__plural=many": "{display} скачиваний на этой неделе",
+        "count__plural=*": "{display} скачивания на этой неделе"
+      }
+    }
+  ],
+  "landing_weekly_empty": "На этой неделе скачиваний пока нет.",
+  "landing_weekly_hint": "По числу скачиваний за последние 7 дней",
+  "landing_weekly_less": "Показать меньше",
+  "landing_weekly_more": "Показать ещё",
+  "landing_weekly_rank": [
+    {
+      "declarations": [
+        "input rank",
+        "local rank__number = rank: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Место {rank__number}"
+      }
+    }
+  ],
+  "landing_weekly_this_week": "на этой неделе",
+  "landing_weekly_title": "Моды недели",
   "langprompt_hint": "Ваш сохранённый язык: {language}.",
   "langprompt_original": "Смотреть оригинал ({language})",
   "langprompt_remember": "Запомнить мой выбор",
@@ -5594,7 +5759,7 @@
   "logs_err_file_type": "Используйте файл .log или .txt либо .gz или .zip, в котором он лежит.",
   "logs_err_generic": "Что-то пошло не так. Повторите попытку.",
   "logs_err_network": "Не удалось связаться с сервером. Проверьте соединение и повторите попытку.",
-  "logs_err_rate": "Слишком много запросов — повторите через {seconds} с",
+  "logs_err_rate": "Слишком много запросов. Повторите через {seconds} с",
   "logs_err_too_large": "Этот лог больше {max}. Отправьте только часть вокруг проблемы.",
   "logs_err_turnstile": "Проверка на человека не пройдена. Повторите попытку.",
   "logs_expired_now": "Срок истёк",
@@ -5963,6 +6128,7 @@
   "meta_title_template": "{title} | SOTF Mods",
   "mod_action_add_to_kit": "В набор",
   "mod_action_install": "Установка",
+  "mod_action_install_manager": "Установить через RedManager",
   "mod_action_more": "Другие действия",
   "mod_action_report": "Пожаловаться",
   "mod_action_report_mod": "Пожаловаться на мод",
@@ -6063,11 +6229,15 @@
   "mod_deps_sheet_text": "{name} не работает без этих модов. Скачайте и их или продолжайте, если они у вас уже есть.",
   "mod_deps_sheet_title": "Также нужно: {names}",
   "mod_description_empty": "Автор ещё не написал описание.",
+  "mod_detail_game": "Версия игры",
+  "mod_detail_loader": "RedLoader",
+  "mod_details_title": "Сведения",
   "mod_download_done_label": "Скачано ✓",
   "mod_download_unavailable": "Сейчас нет файла для загрузки.",
   "mod_fact_game_version": "Заявленная версия игры",
   "mod_fact_license": "Лицензия",
   "mod_fact_loader_version": "Заявленный RedLoader",
+  "mod_fact_multiplayer": "Мультиплеер",
   "mod_fact_platform": "Платформа",
   "mod_fact_published": "Опубликован",
   "mod_fact_size": "Размер файла",
@@ -6528,6 +6698,7 @@
   "mod_stats_title": "Загрузки по времени",
   "mod_support_title": "Поддержать автора",
   "mod_tab_comments": "Комментарии",
+  "mod_tab_description": "Описание",
   "mod_tab_overview": "Обзор",
   "mod_tab_reviews": "Отзывы",
   "mod_tab_versions": "Версии",
@@ -6592,6 +6763,7 @@
       }
     }
   ],
+  "mod_versions_section_title": "Версии и список изменений",
   "mod_versions_title": [
     {
       "declarations": [
@@ -6995,6 +7167,7 @@
   "profile_builds_title": "Постройки автора {name}",
   "profile_cards_empty_action": "Смотреть моды",
   "profile_cards_empty_description": "{name} ещё ничего здесь не опубликовал(а). Посмотрите, что сделали другие жители острова.",
+  "profile_cards_empty_text": "{name} ещё ничего здесь не опубликовал(а).",
   "profile_creator_top_mod": "Главный мод: {mod}",
   "profile_creators_count": [
     {
@@ -7029,6 +7202,7 @@
   "profile_creators_title": "Авторы",
   "profile_day_on_island": "День {day} на острове",
   "profile_feed_title": "Новые релизы автора {name}",
+  "profile_follow_done": "Вы подписаны. Мы уведомим вас, когда выйдет что-то новое.",
   "profile_follow_error": "Не удалось обновить подписку. Проверьте соединение и попробуйте снова.",
   "profile_follow_name": "Подписаться на {name}",
   "profile_follow_own": "Нельзя подписаться на самого себя.",
@@ -7044,6 +7218,7 @@
   "profile_link_copy_failed": "Не удалось скопировать ссылку. Скопируйте её из адресной строки.",
   "profile_link_website": "Сайт",
   "profile_links_label": "Ссылки",
+  "profile_member_since": "Участник с {date}",
   "profile_meta_description_creator": [
     {
       "declarations": [
@@ -7166,9 +7341,29 @@
       }
     }
   ],
+  "profile_meta_description_user": [
+    {
+      "declarations": [
+        "input name",
+        "input reviews",
+        "local reviews__plural = reviews: plural",
+        "local reviews__number = reviews: number"
+      ],
+      "selectors": [
+        "reviews__plural"
+      ],
+      "match": {
+        "reviews__plural=one": "{name} на SOTF Mods, в сообществе моддинга Sons of the Forest: {reviews__number} отзыв.",
+        "reviews__plural=few": "{name} на SOTF Mods, в сообществе моддинга Sons of the Forest: {reviews__number} отзыва.",
+        "reviews__plural=many": "{name} на SOTF Mods, в сообществе моддинга Sons of the Forest: {reviews__number} отзывов.",
+        "reviews__plural=*": "{name} на SOTF Mods, в сообществе моддинга Sons of the Forest: {reviews__number} отзыва."
+      }
+    }
+  ],
   "profile_meta_title_creator": "{name} (@{handle}) — автор модов для Sons of the Forest",
   "profile_meta_title_member": "{name} (@{handle}) — сообщество моддинга Sons of the Forest",
   "profile_meta_title_tab": "{tab} · {name} (@{handle})",
+  "profile_meta_title_user": "{name} (@{handle})",
   "profile_mods_empty_title": "Модов пока нет",
   "profile_mods_title": "Моды автора {name}",
   "profile_pinned_title": "Закреплённые",
@@ -7191,6 +7386,9 @@
   "profile_reviews_older": "Более старые отзывы",
   "profile_reviews_pagination": "Ещё отзывы",
   "profile_reviews_title": "Отзывы автора {name}",
+  "profile_role_admin": "Администратор",
+  "profile_role_moderator": "Модератор",
+  "profile_search_type_users": "Пользователи",
   "profile_sort_downloads": "Больше всего скачиваний",
   "profile_sort_label": "Сортировка",
   "profile_sort_new": "Новые",
@@ -7251,8 +7449,10 @@
       }
     }
   ],
+  "profile_stat_published_label": "Опубликовано модов",
   "profile_stat_rating_label": "Средняя оценка",
   "profile_stat_rating_title": "В среднем {rating} из 5",
+  "profile_stat_reviews_label": "Отзывы",
   "profile_stats_label": "Статистика",
   "profile_tab_activity": "Активность",
   "profile_tab_badges": "Значки",
@@ -7270,6 +7470,7 @@
   "profile_tier_landmark": "Достопримечательность",
   "profile_tier_lean_to": "Навес",
   "profile_tier_treehouse": "Дом на дереве",
+  "profile_trusted": "Проверенный",
   "profile_unfollowed": "Вы отписались.",
   "profile_verified_creator": "Проверенный автор",
   "profile_xp_bug_report_resolved": "Баг-репорт отмечен автором как решённый",
@@ -7926,7 +8127,7 @@
   "requests_delete_title": "Удалить этот запрос?",
   "requests_deleted_done": "Запрос удалён.",
   "requests_detail_description": "Запрос мода от {author}: {title}",
-  "requests_detail_title": "{title} — запрос мода",
+  "requests_detail_title": "{title} (запрос мода)",
   "requests_edit": "Изменить запрос",
   "requests_edited": "изменено",
   "requests_empty_filtered_text": "Выберите другой статус или покажите все запросы.",
@@ -8006,7 +8207,7 @@
       ],
       "selectors": [],
       "match": {
-        "": "{title} — страница {page__number}"
+        "": "{title}, страница {page__number}"
       }
     }
   ],
@@ -8070,6 +8271,7 @@
       }
     }
   ],
+  "requests_votes_short": "голосов",
   "search_page_about": "О SOTF Mods",
   "search_page_achievements": "Достижения",
   "search_page_brand": "Материалы бренда",
@@ -8730,6 +8932,37 @@
   "settings_verify_title": "Подтвердите адрес почты",
   "settings_visibility_text": "Выключите то, что предпочитаете держать при себе.",
   "settings_visibility_title": "В вашем профиле",
+  "shell_404_home": "На главную",
+  "shell_404_text": "Такой страницы нет, или она была перемещена. Проверьте адрес или воспользуйтесь поиском.",
+  "shell_404_title": "Страница не найдена",
+  "shell_410_text": "Этот материал больше недоступен. Можно посмотреть другие моды.",
+  "shell_410_title": "Страница удалена",
+  "shell_500_text": "На сервере возникла проблема. Обновите страницу через минуту или вернитесь на главную.",
+  "shell_500_title": "Что-то пошло не так",
+  "shell_cmdk_empty_hint": "Попробуйте меньше слов или уточните запрос с помощью mods:, builds:, @пользователь, > для команд или by:/cat:/sort:.",
+  "shell_cmdk_go_dashboard": "Панель",
+  "shell_cmdk_go_login": "Войти",
+  "shell_cmdk_go_moderation": "Модерация",
+  "shell_cmdk_go_mods": "Моды",
+  "shell_cmdk_go_notifications": "Уведомления",
+  "shell_cmdk_go_upload": "Загрузить мод",
+  "shell_cmdk_go_upload_build": "Загрузить постройку",
+  "shell_cmdk_group_users": "Пользователи",
+  "shell_cmdk_input_label": "Поиск модов, построек, пользователей и страниц",
+  "shell_cmdk_kind_user": "Пользователь",
+  "shell_cmdk_loading": "Загрузка поиска…",
+  "shell_cmdk_no_results": "По запросу «{query}» ничего не найдено.",
+  "shell_cmdk_placeholder": "Поиск модов, построек, пользователей…",
+  "shell_cmdk_searching": "Поиск…",
+  "shell_footer_developers": "Разработчикам и API",
+  "shell_footer_github_backend": "Внести вклад в бэкенд проекта",
+  "shell_footer_github_frontend": "Внести вклад в фронтенд проекта",
+  "shell_footer_partners": "Партнеры",
+  "shell_footer_redloader": "Официальная вики по использованию RedLoader",
+  "shell_footer_related": "Связанные сайты",
+  "shell_footer_since": "Качественные моды с марта 2023 года",
+  "shell_footer_tonihub": "Актуальные выгрузки данных для Sons of the Forest",
+  "shell_footer_tutorials": "Начальное руководство по созданию модов с использованием RedLoader",
   "shell_install_app": "Установить приложение",
   "shell_install_app_hint": "Добавьте SOTF Mods на главный экран",
   "shell_install_ios_hint": "Чтобы установить на iPhone или iPad, нажмите «Поделиться», затем «На экран „Домой“».",
@@ -8737,20 +8970,34 @@
   "shell_more_help": "Помощь",
   "shell_more_install_guide": "Руководство по установке",
   "shell_more_label": "Ещё",
+  "shell_nav_account": "Аккаунт",
+  "shell_nav_dashboard": "Панель",
+  "shell_nav_login": "Войти",
+  "shell_nav_logout": "Выйти",
+  "shell_nav_menu": "Меню",
+  "shell_nav_moderation": "Модерация",
+  "shell_nav_notifications": "Уведомления",
+  "shell_nav_profile": "Профиль",
+  "shell_nav_register": "Регистрация",
+  "shell_nav_search": "Поиск",
+  "shell_nav_settings": "Настройки",
+  "shell_nav_upload": "Загрузить",
   "shell_offline_available": "Доступно офлайн",
-  "shell_offline_back_online": "Связь восстановлена. Перезагружаем…",
-  "shell_offline_body": "Сейчас не удаётся добраться до острова. Проверьте подключение и повторите попытку.",
-  "shell_offline_checking": "Ищем сигнал…",
-  "shell_offline_eyebrow": "Нет сигнала",
-  "shell_offline_meta_description": "Сейчас нет подключения. Повторите попытку, когда сеть появится.",
+  "shell_offline_back_online": "Подключение восстановлено. Перезагрузка…",
+  "shell_offline_body": "SOTF Mods сейчас недоступен. Проверьте подключение и повторите попытку.",
+  "shell_offline_checking": "Проверка подключения…",
+  "shell_offline_eyebrow": "Офлайн",
+  "shell_offline_meta_description": "Сейчас нет подключения. Повторите попытку, когда появится интернет.",
   "shell_offline_meta_title": "Офлайн",
   "shell_offline_retry": "Повторить",
   "shell_offline_saved": "Сохранено на этом устройстве",
-  "shell_offline_still": "Сигнала по-прежнему нет. Повторите чуть позже.",
-  "shell_offline_title": "Вы вне зоны доступа",
+  "shell_offline_still": "Подключения всё ещё нет. Повторите через минуту.",
+  "shell_offline_title": "Нет подключения",
   "shell_ptr_loading": "Обновление…",
   "shell_ptr_pull": "Потяните, чтобы обновить",
   "shell_ptr_release": "Отпустите, чтобы обновить",
+  "shell_relogin_banner": "Мы перестроили SOTF Mods. Войдите снова с тем же паролем.",
+  "shell_search_placeholder": "Поиск модов, построек, пользователей",
   "signals_action_download": "Скачать",
   "signals_announcement": "Новое объявление от рейнджеров",
   "signals_announcement_titled": "Объявление: {title}",
@@ -9922,6 +10169,7 @@
   "ui_domain_tier_landmark": "Достопримечательность",
   "ui_domain_tier_lean_to": "Навес",
   "ui_domain_tier_treehouse": "Дом на дереве",
+  "ui_domain_trusted": "Проверенный",
   "ui_domain_trusted_creator": "Проверенный автор",
   "ui_domain_value_not_declared": "Не указано",
   "ui_domain_value_unknown": "Неизвестно",

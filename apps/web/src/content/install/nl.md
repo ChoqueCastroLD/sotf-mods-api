@@ -1,6 +1,6 @@
 ---
 title: Mods voor Sons of the Forest installeren
-seoTitle: Sons of the Forest-mods installeren (2026) — RedLoader-gids
+seoTitle: Sons of the Forest-mods installeren (2026): RedLoader-gids
 description: Installeer RedLoader met RedManager, zet mods in de map Mods en controleer ze in de game. Stapsgewijze gids met oplossingen voor antivirusmeldingen en patches.
 tldr: Installeer RedLoader, de modloader, met RedManager (of handmatig), zet elke mod in de map Mods in je gamemap en start de game. RedManager kan elke mod van SOTF Mods met één klik installeren. Het kost ongeveer drie minuten; de gids hieronder behandelt elke stap en de bekende problemen.
 anchors: [check, redloader, mods, verify, antivirus, bepinex, update, dedicated, troubleshooting, oneclick]
@@ -27,7 +27,7 @@ faq:
   - q: Waar staan mijn gamebestanden?
     a: Klik in Steam met rechts op Sons of the Forest, kies Beheren en daarna Lokale bestanden bekijken. De map die opent bevat SonsOfTheForest.exe; daar horen RedLoader en je mods.
   - q: Werken mods na een game-update?
-    a: Niet altijd. Een patch kan RedLoader of losse mods breken tot ze worden bijgewerkt. Patch Radar toont de huidige gamebuild, de status van RedLoader en welke populaire mods spelers als werkend hebben bevestigd.
+    a: Niet altijd. Een patch kan RedLoader of losse mods breken tot ze worden bijgewerkt. Bekijk de modpagina, de reacties en de reviews om te zien of de mod met de huidige gameversie werkt.
 ---
 
 # Controleer je game
@@ -39,7 +39,7 @@ Zoek je gamemap: klik in Steam met rechts op **Sons of the Forest** → **Behere
 `C:\Program Files (x86)\Steam\steamapps\common\Sons Of The Forest`
 
 > [!TIP]
-> Net een game-update gehad? Kijk eerst in [Patch Radar](/patch-radar): daar zie je of RedLoader en de populaire mods al werken op de nieuwe build.
+> Net een game-update gehad? Bekijk de modpagina, de reacties en de reviews om te zien of de mod al met de nieuwe versie werkt.
 
 # RedLoader installeren
 
@@ -94,7 +94,7 @@ Voordat je een bestand vertrouwt:
 - **Vergelijk de checksum.** Elke versie op SOTF Mods toont de SHA-256 van het bestand. Voer op Windows in PowerShell `Get-FileHash .\bestand.zip` uit (of `certutil -hashfile bestand.zip SHA256`) en vergelijk de uitkomst.
 - **Bekijk de scan.** Elke gepubliceerde versie wordt gescand met VirusTotal; het rapport staat gelinkt op de versiepagina. Je kunt het bestand ook zelf uploaden naar [VirusTotal](https://www.virustotal.com).
 
-Klopt alles, dan kun je het bestand uit quarantaine halen en een uitzondering toevoegen **alleen voor de gamemap**. Zet je virusscanner nooit helemaal uit. Lijkt er iets niet te kloppen, meld de mod dan via zijn pagina: rangers bekijken meldingen snel.
+Klopt alles, dan kun je het bestand uit quarantaine halen en een uitzondering toevoegen **alleen voor de gamemap**. Zet je virusscanner nooit helemaal uit. Lijkt er iets niet te kloppen, meld de mod dan via zijn pagina: moderators bekijken meldingen snel.
 
 # BepInEx of RedLoader?
 
@@ -107,7 +107,7 @@ SOTF Mods toont mods voor **RedLoader**. Mods voor BepInEx (gebruikelijk op ande
 
 **Een mod bijwerken:** RedManager toont beschikbare updates. Handmatig download je de nieuwe versie en overschrijf je de oude bestanden. Lees eerst de changelog: sommige updates vragen om een nieuwe bibliotheek of een schone configuratie.
 
-**RedLoader bijwerken:** gebruik RedManager, of pak de nieuwe release uit over de oude. Wacht na een gamepatch tot [Patch Radar](/patch-radar) laat zien dat RedLoader werkt op de nieuwe build.
+**RedLoader bijwerken:** gebruik RedManager, of pak de nieuwe release uit over de oude. Als de game na een gamepatch niet meer start, wacht dan op een nieuwe RedLoader-release.
 
 **Een mod verwijderen:** verwijder zijn `.dll` en zijn map uit `Mods`. Kijk eerst op de modpagina: sommige mods kun je niet veilig halverwege een savegame verwijderen.
 
@@ -131,7 +131,7 @@ RedLoader draait niet. Controleer of zijn bestanden naast `SonsOfTheForest.exe` 
 
 ## De game crasht of sluit bij het opstarten
 
-Dat gebeurt meestal na een game-update. Bekijk in [Patch Radar](/patch-radar) de status van RedLoader op de huidige build. Om een defecte mod te vinden, haal je alle mods uit `Mods` en zet je ze in kleine groepjes terug.
+Dat gebeurt meestal na een game-update. Zoek bij de [RedLoader-releases](https://github.com/ToniMacaroni/RedLoader/releases) naar een versie die de nieuwe build ondersteunt. Om een defecte mod te vinden, haal je alle mods uit `Mods` en zet je ze in kleine groepjes terug.
 
 ## Een mod staat niet in de lijst
 

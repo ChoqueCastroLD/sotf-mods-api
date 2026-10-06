@@ -91,11 +91,11 @@ const remainingNow = log ? Math.max(0, new Date(log.expiresAt).getTime() - Date.
               </time>
             </p>
           </div>
-          <h1 class="font-display-caps text-display-sm break-words text-fg">{log.title ?? m.logs_viewer_title()}</h1>
+          <h1 class="text-2xl font-bold break-words text-fg md:text-3xl">{log.title ?? m.logs_viewer_title()}</h1>
           <p class="text-sm text-fg-muted">{m.logs_expiry_notice()}</p>
         </header>
 
-        <section class="grid gap-1 rounded-xl border border-border bg-surface p-3 md:gap-3 md:p-4" aria-label={m.logs_summary_label()}>
+        <section class="grid gap-1 border-y border-border py-3 md:gap-3 md:py-4" aria-label={m.logs_summary_label()}>
           <dl class="grid grid-cols-2 gap-x-4 gap-y-2 sm:grid-cols-3 lg:grid-cols-6">
             {[
               [m.logs_sum_game(), summary.gameVersion],
@@ -198,7 +198,7 @@ const remainingNow = log ? Math.max(0, new Date(log.expiresAt).getTime() - Date.
       </div>
     ) : (
       <div class="mx-auto flex max-w-xl flex-col items-center gap-4 py-10 text-center" role={data.kind === 'error' ? 'alert' : undefined}>
-        <h1 class="font-display-caps text-display-sm text-fg">
+        <h1 class="text-2xl font-bold text-fg md:text-3xl">
           {data.kind === 'gone' ? m.logs_gone_title() : m.logs_unavailable_title()}
         </h1>
         <p class="text-base text-fg-muted">{data.kind === 'gone' ? goneText : m.logs_unavailable_text()}</p>

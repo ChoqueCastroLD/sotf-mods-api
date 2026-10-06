@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Auth_Login_IntroInputs */
 
 const en_auth_login_intro = /** @type {(inputs: Auth_Login_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Welcome back, survivor.`)
+	return /** @type {LocalizedString} */ (`Sign in to your account.`)
 };
 
 const es_auth_login_intro = /** @type {(inputs: Auth_Login_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bienvenido de nuevo, superviviente.`)
+	return /** @type {LocalizedString} */ (`Inicia sesión en tu cuenta.`)
 };
 
 const de_auth_login_intro = /** @type {(inputs: Auth_Login_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Willkommen zurück, Überlebender.`)
+	return /** @type {LocalizedString} */ (`Melde dich bei deinem Konto an.`)
 };
 
 const fr_auth_login_intro = /** @type {(inputs: Auth_Login_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bon retour parmi nous, survivant.`)
+	return /** @type {LocalizedString} */ (`Connectez-vous à votre compte.`)
 };
 
 const it_auth_login_intro = /** @type {(inputs: Auth_Login_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bentornato, sopravvissuto.`)
+	return /** @type {LocalizedString} */ (`Accedi al tuo account.`)
 };
 
 const nl_auth_login_intro = /** @type {(inputs: Auth_Login_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Welkom terug, overlevende.`)
+	return /** @type {LocalizedString} */ (`Log in op je account.`)
 };
 
 const pl_auth_login_intro = /** @type {(inputs: Auth_Login_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Witaj z powrotem, ocalały.`)
+	return /** @type {LocalizedString} */ (`Zaloguj się na swoje konto.`)
 };
 
 const pt_auth_login_intro = /** @type {(inputs: Auth_Login_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Que bom ver você de novo, sobrevivente.`)
+	return /** @type {LocalizedString} */ (`Entre na sua conta.`)
 };
 
 const ru_auth_login_intro = /** @type {(inputs: Auth_Login_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`С возвращением, выживший.`)
+	return /** @type {LocalizedString} */ (`Войдите в свой аккаунт.`)
 };
 
 const sv_auth_login_intro = /** @type {(inputs: Auth_Login_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Välkommen tillbaka, överlevare.`)
+	return /** @type {LocalizedString} */ (`Logga in på ditt konto.`)
 };
 
 const tr_auth_login_intro = /** @type {(inputs: Auth_Login_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tekrar hoş geldin, hayatta kalan.`)
+	return /** @type {LocalizedString} */ (`Hesabına giriş yap.`)
 };
 
 const zh_auth_login_intro = /** @type {(inputs: Auth_Login_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`欢迎回来，幸存者。`)
+	return /** @type {LocalizedString} */ (`登录你的账号。`)
 };
 
 const ja_auth_login_intro = /** @type {(inputs: Auth_Login_IntroInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`おかえりなさい、サバイバー。`)
+	return /** @type {LocalizedString} */ (`アカウントにログインしてください。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Welcome back, survivor." |
+* | "Sign in to your account." |
 *
 * @param {Auth_Login_IntroInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

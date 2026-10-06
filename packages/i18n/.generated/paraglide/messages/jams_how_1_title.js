@@ -6,35 +6,35 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Jams_How_1_TitleInputs */
 
 const en_jams_how_1_title = /** @type {(inputs: Jams_How_1_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`The theme drops`)
+	return /** @type {LocalizedString} */ (`Theme announced`)
 };
 
 const es_jams_how_1_title = /** @type {(inputs: Jams_How_1_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Se revela el tema`)
+	return /** @type {LocalizedString} */ (`Se anuncia el tema`)
 };
 
 const de_jams_how_1_title = /** @type {(inputs: Jams_How_1_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Das Thema fällt`)
+	return /** @type {LocalizedString} */ (`Das Thema wird bekannt gegeben`)
 };
 
 const fr_jams_how_1_title = /** @type {(inputs: Jams_How_1_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Le thème tombe`)
+	return /** @type {LocalizedString} */ (`Le thème est annoncé`)
 };
 
 const it_jams_how_1_title = /** @type {(inputs: Jams_How_1_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Arriva il tema`)
+	return /** @type {LocalizedString} */ (`Il tema viene annunciato`)
 };
 
 const nl_jams_how_1_title = /** @type {(inputs: Jams_How_1_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Het thema valt`)
+	return /** @type {LocalizedString} */ (`Het thema wordt bekendgemaakt`)
 };
 
 const pl_jams_how_1_title = /** @type {(inputs: Jams_How_1_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Temat zostaje ujawniony`)
+	return /** @type {LocalizedString} */ (`Ogłoszenie tematu`)
 };
 
 const pt_jams_how_1_title = /** @type {(inputs: Jams_How_1_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`O tema é revelado`)
+	return /** @type {LocalizedString} */ (`O tema é anunciado`)
 };
 
 const ru_jams_how_1_title = /** @type {(inputs: Jams_How_1_TitleInputs) => LocalizedString} */ () => {
@@ -42,11 +42,11 @@ const ru_jams_how_1_title = /** @type {(inputs: Jams_How_1_TitleInputs) => Local
 };
 
 const sv_jams_how_1_title = /** @type {(inputs: Jams_How_1_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Temat avslöjas`)
+	return /** @type {LocalizedString} */ (`Temat tillkännages`)
 };
 
 const tr_jams_how_1_title = /** @type {(inputs: Jams_How_1_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tema açıklanır`)
+	return /** @type {LocalizedString} */ (`Tema duyurulur`)
 };
 
 const zh_jams_how_1_title = /** @type {(inputs: Jams_How_1_TitleInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_jams_how_1_title = /** @type {(inputs: Jams_How_1_TitleInputs) => Local
 /**
 * | output |
 * | --- |
-* | "The theme drops" |
+* | "Theme announced" |
 *
 * @param {Jams_How_1_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

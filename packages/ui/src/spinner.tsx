@@ -9,8 +9,8 @@ export interface RadarSpinnerProps extends Omit<SVGProps<SVGSVGElement>, 'ref'> 
 }
 
 /**
- * The «sweep» loading indicator (PLAN §3.7): a radar ring with a rotating beam. Under
- * `prefers-reduced-motion` the beam stops (tokens.css shortens every animation to 1 ms).
+ * The loading indicator: a ring with a turning arc. Under `prefers-reduced-motion` the arc stops
+ * (tokens.css shortens every animation to 1 ms). The name is historical.
  */
 export function RadarSpinner({ size = 16, label, className, ...rest }: RadarSpinnerProps) {
   const a11y = label ? { role: 'img', 'aria-label': label } : { 'aria-hidden': true as const };
@@ -26,11 +26,9 @@ export function RadarSpinner({ size = 16, label, className, ...rest }: RadarSpin
       {...a11y}
       {...rest}
     >
-      <circle cx="8" cy="8" r="6.25" stroke="currentColor" strokeOpacity="0.3" strokeWidth="1.5" />
-      <circle cx="8" cy="8" r="1.25" fill="currentColor" />
+      <circle cx="8" cy="8" r="6.25" stroke="currentColor" strokeOpacity="0.25" strokeWidth="1.75" />
       <g className="origin-center animate-sweep">
-        <path d="M8 8V1.75" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        <path d="M8 1.75A6.25 6.25 0 0 1 13.4 4.9L8 8Z" fill="currentColor" fillOpacity="0.35" />
+        <path d="M8 1.75A6.25 6.25 0 0 1 14.25 8" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
       </g>
     </svg>
   );

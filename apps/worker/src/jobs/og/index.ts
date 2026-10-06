@@ -43,17 +43,9 @@ export function ogTargetsOf(event: DomainEvent): OgPayload[] {
       return [{ entityType: 'mod', entityId: event.payload.modId }];
     case 'user.profile_updated':
       return [{ entityType: 'user', entityId: event.payload.userId }];
-    case 'kit.created':
-    case 'kit.updated':
-    case 'kit.deleted':
-      return [{ entityType: 'kit', entityId: event.payload.kitId }];
     case 'jam.phase_changed':
     case 'jam.changed':
       return [{ entityType: 'jam', entityId: event.payload.jamId }];
-    case 'milestone.reached':
-      return [{ entityType: 'milestone', entityId: `${event.payload.modId}-${event.payload.threshold}` }];
-    case 'game_build.created':
-      return event.payload.isCurrent ? [{ entityType: 'patch-radar', entityId: 'current' }] : [];
     default:
       return [];
   }
@@ -103,13 +95,8 @@ export default defineJobGroup({
         'review.visibility_changed',
         'compat.aggregate_changed',
         'user.profile_updated',
-        'kit.created',
-        'kit.updated',
-        'kit.deleted',
-        'milestone.reached',
         'jam.phase_changed',
         'jam.changed',
-        'game_build.created',
       ],
       handler: async (event, { ctx }) => {
         for (const target of ogTargetsOf(event)) await enqueueRender(ctx, target);

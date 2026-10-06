@@ -2,7 +2,8 @@
  * Explore (T0-06, PLAN §5.2 `GET /mods`): filters with inclusion and exclusion, sorts, page-based
  * pagination and facet counts, computed over the cached snapshot.
  *
- * - Only `published` items; NSFW only with `nsfw=1` (T0-30). The response is shared by every
+ * - Only `published` items (with `unapproved=1`: only `pending` ones whose checks passed, never both
+ *   at once); NSFW only with `nsfw=1` (T0-30). The response is shared by every
  *   visitor (edge cache, no cookie), so the age-gated opt-in is enforced by the caller: the web only
  *   sends `nsfw=1` for visitors who opted in, and the cards carry `nsfw` so thumbnails are blurred.
  * - `category` accepts legacy slugs (`qol` → `quality-of-life`) and matches mods whose legacy
@@ -15,7 +16,13 @@ import type { FacetsDTO, ModListQuery, ModSort } from '@sotf/contracts/catalog';
 import type { ModKind } from '@sotf/contracts/common';
 import { totalPages } from '@sotf/contracts/pagination';
 import type { z } from 'zod';
-import { type CatalogEntry, type CatalogSnapshot, compareCategories, isListable } from './snapshot.ts';
+import {
+  type CatalogEntry,
+  type CatalogSnapshot,
+  compareCategories,
+  isListable,
+  isUnapprovedListable,
+} from './snapshot.ts';
 
 export type Facets = z.infer<typeof FacetsDTO>;
 type FacetName = keyof Facets;
@@ -122,6 +129,7 @@ const SORT_KEYS: Record<Exclude<ModSort, 'relevance'>, SortKey[]> = {
   rating: [(e) => e.ratingBayes, (e) => e.ratingCount],
   follows: [(e) => e.followers],
   comments: [(e) => e.commentsCount],
+  week: [(e) => e.downloads7d, (e) => e.downloads],
 };
 
 /** Sorts entries in place (stable, ties broken by id in the same direction). */
@@ -242,7 +250,10 @@ export function runListQuery(
   relevance: Relevance = undefined,
 ): ListResult {
   const r = resolve(snapshot, query, now);
-  const pool = snapshot.entries.filter((e) => isListable(snapshot, e, query.nsfw === true));
+  const includeNsfw = query.nsfw === true;
+  const pool = snapshot.entries.filter((e) =>
+    query.unapproved ? isUnapprovedListable(snapshot, e, includeNsfw) : isListable(snapshot, e, includeNsfw),
+  );
   const matched = sortEntries(
     pool.filter((e) => matches(e, query, r, relevance)),
     query.sort,

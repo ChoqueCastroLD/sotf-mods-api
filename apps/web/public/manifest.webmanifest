@@ -13,8 +13,8 @@
     "minimal-ui"
   ],
   "orientation": "any",
-  "background_color": "#090F0C",
-  "theme_color": "#090F0C",
+  "background_color": "#15191E",
+  "theme_color": "#15191E",
   "categories": [
     "games",
     "entertainment",
@@ -49,8 +49,8 @@
   ],
   "shortcuts": [
     {
-      "name": "Explore mods",
-      "short_name": "Explore",
+      "name": "Mods",
+      "short_name": "Mods",
       "url": "/mods",
       "icons": [
         {

@@ -400,7 +400,7 @@ function AnnouncementForm({
         <Input
           value={values.href}
           maxLength={ADMIN_LIMITS.announcementHrefMax}
-          placeholder="/patch-radar"
+          placeholder="/install"
           spellCheck={false}
           onChange={(event) => set('href', event.currentTarget.value)}
         />

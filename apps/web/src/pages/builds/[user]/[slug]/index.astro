@@ -1,14 +1,15 @@
 ---
 /**
- * Build page `/builds/:user/:slug` (WP-63, T0-24, research/03 §6.6) — Blueprint sub-aesthetic
- * (`data-surface="blueprint"`: cyanotype grid, corner ticks, dimension lines).
+ * Build page `/builds/:user/:slug`, laid out like the mod page: gallery and header with the
+ * download, then About, Preview, How to import, Required mods, Versions, Reviews and Comments in
+ * one column and a plain details list in the sidebar.
  *
  * - SSR, edge-cached 900 s with `mod:{id}` + `user:{id}` (PLAN §4.2); the resolver answers
  *   301/404/410 for old, mistyped or removed URLs and sends mods reached through `/builds` to
  *   `/mods/…`. Unknown sub-paths are 404.
- * - Gallery · header (uploader, blueprint and original authors, stats, size S/M/L/XL, download,
- *   follow ♥, copy link) · description · «How to import (3 steps)» · required mods · versions ·
- *   reviews and comments (first page in the HTML + WP-70 mount points) · spec sheet · related.
+ * - Gallery · header (uploader, authors, stats, size S/M/L/XL, download, follow, copy link) ·
+ *   description · «How to import (3 steps)» · required mods · versions · reviews and comments
+ *   (first page in the HTML + island mount points) · details · more builds.
  * - Discovery links (WP-61): Markdown alternate, builds RSS feed and oEmbed.
  * - JSON-LD `CreativeWork` (+ `BreadcrumbList` of the visible trail); `aggregateRating` only with ≥ 3
  *   visible reviews. Everything user-specific is filled in by `build-page.ts` after load.
@@ -19,8 +20,6 @@ import { m } from '@sotf/i18n/messages';
 import { localizeHtml } from '@sotf/markdown/labels';
 import { Breadcrumbs } from '@sotf/ui/breadcrumbs';
 import { ProseLocator } from '@sotf/ui/domain';
-import { Icon } from '@sotf/ui/icons';
-import { ArrowRight } from 'lucide-react';
 import BuildGallery from '../../../../components/builds/BuildGallery.astro';
 import BuildHeader from '../../../../components/builds/BuildHeader.astro';
 import BuildMoreSheet from '../../../../components/builds/BuildMoreSheet.astro';
@@ -95,7 +94,7 @@ const preloadImage = hero
   : undefined;
 const ogImage = build.nsfw ? undefined : (build.ogImage?.url ?? build.thumbnail?.url ?? build.gallery[0]?.url);
 const ogSized = build.ogImage !== null && ogImage === build.ogImage?.url;
-const sectionTitle = 'font-display-caps text-display-xs text-fg';
+const sectionTitle = 'text-xl font-bold text-fg';
 const trail: { label: string; path?: string }[] = [
   { label: m.common_nav_home(), path: '/' },
   { label: m.common_term_builds(), path: '/builds' },
@@ -143,110 +142,97 @@ const visibleCrumbs = trail.map((crumb) => ({
     <link rel="alternate" type="application/json+oembed" href={oembedHref} title={build.name} />
   </Fragment>
 
-  <div class="mx-auto grid w-full max-w-(--container-wide) grid-cols-1 gap-6 px-4 py-6 md:px-6 md:py-10">
-  <Breadcrumbs items={visibleCrumbs} />
-  <article
-    data-surface="blueprint"
-    data-build-page
-    data-mod-id={build.id}
-    class="grid grid-cols-1 gap-8 md:gap-10"
-    aria-labelledby="build-title"
-  >
-    <StatusBanners build={build} />
+  <div class="mx-auto grid w-full max-w-(--container-content) grid-cols-1 gap-4 px-4 py-4 md:gap-5 md:px-6 md:py-8">
+    <Breadcrumbs items={visibleCrumbs} />
+    <article data-build-page data-mod-id={build.id} class="grid grid-cols-1 gap-6" aria-labelledby="build-title">
+      <StatusBanners build={build} />
 
-    <div class="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:items-start lg:gap-10">
-      <div class="grid min-w-0 gap-6">
-        <BuildGallery build={build} spec={spec} />
-        <BuildViewer build={build} preview={extras.preview} />
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] md:items-start md:gap-8">
+        <BuildGallery build={build} />
+        <BuildHeader build={build} spec={spec} versions={extras.versions} />
       </div>
-      <BuildHeader build={build} spec={spec} versions={extras.versions} />
-    </div>
 
-    <SectionNav
-      label={m.mod_tabs_label()}
-      accent="blueprint"
-      items={[
-        { id: 'about', label: m.mod_tab_overview() },
-        { id: 'versions', label: m.mod_tab_versions(), count: extras.versions ? String(extras.versions.length) : null },
-        { id: 'reviews', label: m.mod_tab_reviews(), count: build.reviewsSummary.count > 0 ? String(build.reviewsSummary.count) : null },
-        { id: 'comments', label: m.mod_tab_comments(), count: build.commentsCount > 0 ? String(build.commentsCount) : null },
-        { id: 'spec', label: m.builds_spec_title() },
-      ]}
-    />
+      <SectionNav
+        label={m.mod_tabs_label()}
+        items={[
+          { id: 'about', label: m.mod_tab_description() },
+          { id: 'versions', label: m.mod_tab_versions(), count: extras.versions ? String(extras.versions.length) : null },
+          { id: 'comments', label: m.mod_tab_comments(), count: build.commentsCount > 0 ? String(build.commentsCount) : null },
+          { id: 'reviews', label: m.mod_tab_reviews(), count: build.reviewsSummary.count > 0 ? String(build.reviewsSummary.count) : null },
+          { id: 'spec', label: m.mod_details_title() },
+        ]}
+      />
 
-    <div class="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_22rem] lg:items-start xl:grid-cols-[minmax(0,1fr)_24rem]">
-      <div class="grid min-w-0 gap-10">
-        <section id="about" aria-labelledby="about-title" class="grid scroll-mt-32 gap-4 md:scroll-mt-24">
-          <h2 id="about-title" class={sectionTitle}>{m.builds_description_title()}</h2>
-          <Clamp>
-            {
-              translatedHtml && translation ? (
-                <TranslatedText
-                  html
-                  translated={translatedHtml}
-                  original={descriptionHtml}
-                  locale={locale}
-                  sourceLang={build.contentLang}
-                  source={translation.sources?.description ?? 'machine'}
-                  class="max-w-(--container-prose)"
-                />
-              ) : descriptionHtml ? (
-                <ProseLocator
-                  html={descriptionHtml}
-                  lang={build.contentLang ?? undefined}
-                  className="max-w-(--container-prose)"
-                />
-              ) : (
-                <p class="text-fg-muted">{m.builds_description_empty()}</p>
-              )
-            }
-          </Clamp>
-        </section>
+      <div class="mt-2 grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_19rem] lg:items-start lg:gap-12">
+        <div class="grid min-w-0 gap-12">
+          <section id="about" aria-labelledby="about-title" class="grid scroll-mt-32 gap-4 md:scroll-mt-24">
+            <h2 id="about-title" class={sectionTitle}>{m.builds_description_title()}</h2>
+            <Clamp>
+              {
+                translatedHtml && translation ? (
+                  <TranslatedText
+                    html
+                    translated={translatedHtml}
+                    original={descriptionHtml}
+                    locale={locale}
+                    sourceLang={build.contentLang}
+                    source={translation.sources?.description ?? 'machine'}
+                    class="max-w-(--container-prose)"
+                  />
+                ) : descriptionHtml ? (
+                  <ProseLocator
+                    html={descriptionHtml}
+                    lang={build.contentLang ?? undefined}
+                    className="max-w-(--container-prose)"
+                  />
+                ) : (
+                  <p class="text-fg-muted">{m.builds_description_empty()}</p>
+                )
+              }
+            </Clamp>
+          </section>
 
-        <ImportSteps build={build} />
+          <BuildViewer build={build} preview={extras.preview} />
 
-        {
-          otherDependencies.length > 0 && (
-            <section id="dependencies" aria-labelledby="dependencies-title" class="grid gap-3">
-              <h2 id="dependencies-title" class={sectionTitle}>
-                {m.builds_requires_title()}
+          <ImportSteps build={build} />
+
+          {
+            otherDependencies.length > 0 && (
+              <section id="dependencies" aria-labelledby="dependencies-title" class="grid gap-3">
+                <h2 id="dependencies-title" class={sectionTitle}>
+                  {m.builds_requires_title()}
+                </h2>
+                <BuildDependencies lang={lang} dependencies={otherDependencies} />
+              </section>
+            )
+          }
+
+          <VersionsList build={build} versions={extras.versions} />
+
+          <BuildSocial build={build} reviews={extras.reviews} comments={extras.comments} />
+        </div>
+
+        <aside class="grid min-w-0 content-start gap-6 max-lg:border-t max-lg:border-border max-lg:pt-8">
+          <SpecSheet build={build} spec={spec} />
+        </aside>
+      </div>
+
+      {
+        extras.related.length > 0 && (
+          <section aria-labelledby="related-title" class="mt-4 grid gap-4 border-t border-border pt-8">
+            <div class="flex flex-wrap items-baseline justify-between gap-3">
+              <h2 id="related-title" class={sectionTitle}>
+                {m.builds_related_title()}
               </h2>
-              <BuildDependencies lang={lang} dependencies={otherDependencies} />
-            </section>
-          )
-        }
-
-        <VersionsList build={build} versions={extras.versions} />
-
-        <BuildSocial build={build} reviews={extras.reviews} comments={extras.comments} />
-      </div>
-
-      <aside class="order-first grid min-w-0 gap-6 max-md:order-none lg:sticky lg:top-24 lg:order-none">
-        <SpecSheet build={build} spec={spec} />
-      </aside>
-    </div>
-
-    {
-      extras.related.length > 0 && (
-        <section aria-labelledby="related-title" class="grid gap-4">
-          <div class="flex flex-wrap items-baseline justify-between gap-3">
-            <h2 id="related-title" class={sectionTitle}>
-              {m.builds_related_title()}
-            </h2>
-            <a
-              href={href('/builds', locale)}
-              class="inline-flex min-h-11 items-center gap-1.5 font-semibold text-link"
-            >
-              {m.builds_related_all()}
-              <Icon icon={ArrowRight} size={16} className="rtl:rotate-180" />
-            </a>
-          </div>
-          <RelatedBuildGrid lang={lang} builds={extras.related} label={m.builds_related_title()} />
-        </section>
-      )
-    }
-  </article>
-
+              <a href={href('/builds', locale)} class="inline-flex min-h-9 items-center font-medium text-link hover:underline">
+                {m.builds_related_all()}
+              </a>
+            </div>
+            <RelatedBuildGrid lang={lang} builds={extras.related} label={m.builds_related_title()} />
+          </section>
+        )
+      }
+    </article>
   </div>
 
   <MobileDownloadBar build={build} />

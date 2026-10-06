@@ -1,6 +1,6 @@
 {
   "requests_list_title": "Modverzoeken",
-  "requests_list_title_page": "{title} — pagina {page, number}",
+  "requests_list_title_page": "{title}, pagina {page, number}",
   "requests_list_description": "Vraag de mod die je mist in Sons of the Forest, stem op de mods die je wilt en volg de makers die ze oppakken.",
   "requests_list_readout": "Verzoekenbord",
   "requests_action_new": "Mod aanvragen",
@@ -29,7 +29,7 @@
   "requests_by": "door {name}",
   "requests_adopted_by": "{name} werkt eraan",
   "requests_fulfilled_by": "Vervuld met {mod}",
-  "requests_detail_title": "{title} — Modverzoek",
+  "requests_detail_title": "{title} (modverzoek)",
   "requests_detail_description": "Modverzoek van {author}: {title}",
   "requests_back": "Alle verzoeken",
   "requests_view_mod": "Bekijk de mod",
@@ -89,5 +89,6 @@
   "requests_badge_adopter": "Werkt eraan",
   "requests_badge_author": "Aanvrager",
   "requests_comment_delete_title": "Deze reactie verwijderen?",
-  "requests_comment_delete_text": "Dit kan niet ongedaan worden gemaakt."
+  "requests_comment_delete_text": "Dit kan niet ongedaan worden gemaakt.",
+  "requests_votes_short": "stemmen"
 }

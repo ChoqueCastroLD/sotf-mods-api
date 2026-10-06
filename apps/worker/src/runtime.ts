@@ -8,7 +8,7 @@
  */
 
 import { parseDomainEvent } from '@sotf/contracts/domain-events';
-import { JOB_SCHEDULES, type JobQueue, parseJobPayload } from '@sotf/contracts/jobs';
+import { JOB_SCHEDULES, type JobQueue, parseJobPayload, RETIRED_JOB_SCHEDULES } from '@sotf/contracts/jobs';
 import { DOMAIN_EVENT_QUEUE, ensureQueues, type Jobs, type KernelDeps, queueConfig, systemCtx } from '@sotf/core';
 import type { Job, PgBoss } from 'pg-boss';
 import { isQueueEnabled } from './coexist.ts';
@@ -190,6 +190,8 @@ export async function startRuntime(options: RuntimeOptions): Promise<RuntimeStat
         await boss.unschedule(schedule.queue, schedule.key);
       }
     }
+    // Schedules of removed queues live in the database until deleted.
+    for (const retired of RETIRED_JOB_SCHEDULES) await boss.unschedule(retired.queue, retired.key);
   }
   log.info(state, 'worker runtime started');
   return state;

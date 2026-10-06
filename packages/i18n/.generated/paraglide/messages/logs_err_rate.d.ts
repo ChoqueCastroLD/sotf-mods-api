@@ -5,7 +5,7 @@ export type Logs_Err_RateInputs = {
 /**
 * | output |
 * | --- |
-* | "Too many requests — try again in {seconds} s" |
+* | "Too many requests. Try again in {seconds} s" |
 *
 * @param {Logs_Err_RateInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

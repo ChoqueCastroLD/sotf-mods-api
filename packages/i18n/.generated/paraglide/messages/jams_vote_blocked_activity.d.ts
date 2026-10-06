@@ -3,7 +3,7 @@ export type Jams_Vote_Blocked_ActivityInputs = {};
 /**
 * | output |
 * | --- |
-* | "Take part in the community a little more to unlock voting." |
+* | "Your account does not have enough activity to vote yet." |
 *
 * @param {Jams_Vote_Blocked_ActivityInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

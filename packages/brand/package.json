@@ -2,7 +2,7 @@
   "name": "@sotf/brand",
   "version": "0.0.0",
   "private": true,
-  "description": "SOTF Mods «Locator» brand: isotype, lockups, favicons, OG image, topography texture, Field kit icons and deterministic generative artwork.",
+  "description": "SOTF Mods brand: the old red logo (optimized), favicons and icons, default OG image, and deterministic default avatars, covers and banners.",
   "type": "module",
   "sideEffects": false,
   "exports": {

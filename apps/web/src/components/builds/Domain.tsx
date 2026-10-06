@@ -89,9 +89,9 @@ export interface RelatedBuildsProps {
 export function RelatedBuildGrid({ lang, builds, label }: RelatedBuildsProps) {
   return (
     <Scope lang={lang}>
-      <ul aria-label={label} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <ul aria-label={label} className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {builds.map((build) => (
-          <li key={build.id}>
+          <li key={build.id} className="min-w-0">
             <BuildCard build={build} headingLevel={3} className="h-full" />
           </li>
         ))}

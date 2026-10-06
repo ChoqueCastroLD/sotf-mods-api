@@ -1,20 +1,15 @@
 /**
  * Presentational pieces of the palette: result rows with their thumbnails, highlighted titles,
- * the compat mark and the preview pane (≥ lg): hero image, gallery strip, the facts that decide
+ * and the preview pane (≥ lg): hero image, gallery strip, the facts that decide
  * whether to install, and the actions. Every status carries text, never colour alone. Images are
  * small, rounded, lazy and always inside a box of fixed size (`object-cover`), so nothing shifts
  * when they load; the icon shows only when there is no image (or it fails).
  */
-import type { CompatStatus } from '@sotf/contracts/common';
 import { formatCompactNumber, formatDate, type Locale } from '@sotf/i18n';
 import { Avatar } from '@sotf/ui/avatar';
 import {
-  Backpack,
+  Bell,
   Check,
-  CircleAlert,
-  CircleCheck,
-  CircleDashed,
-  CircleX,
   Clock,
   Code,
   Download,
@@ -24,34 +19,26 @@ import {
   FilePlus2,
   FileText,
   FolderTree,
-  GitCompareArrows,
   Globe,
   Heart,
   History,
   Hourglass,
   Info,
+  LayoutDashboard,
   LayoutGrid,
-  Library,
   LibraryBig,
   Lightbulb,
+  LogIn,
   type LucideIcon,
-  Monitor,
-  Moon,
   Package,
   Puzzle,
-  Radar,
-  Radio,
-  Search,
   Settings,
   ShieldCheck,
   Star,
-  Sun,
   Tag,
-  TentTree,
   Trophy,
   Upload,
   UserRound,
-  UsersRound,
 } from 'lucide-react';
 import { type ReactNode, useEffect, useState } from 'react';
 import type { Detail, Mini, PreviewImage } from './detail.ts';
@@ -75,13 +62,6 @@ const BUTTON =
 const PRIMARY = `${BUTTON} bg-primary text-primary-fg hover:bg-primary-hover`;
 const SECONDARY = `${BUTTON} border border-border-strong bg-raised text-fg shadow-xs inset-shadow-highlight hover:bg-[color-mix(in_oklab,var(--color-raised),var(--color-fg)_7%)]`;
 
-export const COMPAT_ICON: Record<CompatStatus, { icon: LucideIcon; tone: string; label: () => string }> = {
-  works: { icon: CircleCheck, tone: 'text-success', label: () => t('cmdk_compat_works') },
-  mixed: { icon: CircleAlert, tone: 'text-warning', label: () => t('cmdk_compat_mixed') },
-  broken: { icon: CircleX, tone: 'text-danger', label: () => t('cmdk_compat_broken') },
-  untested: { icon: CircleDashed, tone: 'text-fg-muted', label: () => t('cmdk_compat_untested') },
-};
-
 export function Highlighted({ segments }: { segments: readonly TextSegment[] }) {
   return (
     <>
@@ -99,26 +79,18 @@ export function Highlighted({ segments }: { segments: readonly TextSegment[] }) 
 }
 
 const ACTION_ICONS: Record<ActionIcon, LucideIcon> = {
-  explore: Search,
+  explore: Package,
   builds: DraftingCompass,
-  kits: Package,
   requests: Lightbulb,
   install: Info,
-  radar: Radar,
-  creators: UsersRound,
-  compare: GitCompareArrows,
   jams: Trophy,
   developers: Code,
   settings: Settings,
-  basecamp: TentTree,
+  dashboard: LayoutDashboard,
   upload: Upload,
-  signals: Radio,
-  backpack: Backpack,
-  history: History,
-  ranger: ShieldCheck,
-  night: Moon,
-  day: Sun,
-  system: Monitor,
+  notifications: Bell,
+  moderation: ShieldCheck,
+  login: LogIn,
   language: Globe,
 };
 
@@ -128,8 +100,6 @@ export function entryIcon(item: EntryItem): LucideIcon {
       return item.kind === 'library' ? LibraryBig : Puzzle;
     case 'build':
       return DraftingCompass;
-    case 'kit':
-      return Package;
     case 'user':
       return UserRound;
     case 'category':
@@ -139,17 +109,15 @@ export function entryIcon(item: EntryItem): LucideIcon {
   }
 }
 
-/** Kind label of an entry («Mod», «Library», «Kit»…). */
+/** Kind label of an entry («Mod», «Library», «Build»…). */
 export function kindLabel(item: EntryItem): string {
   switch (item.type) {
     case 'mod':
       return item.kind === 'library' ? t('cmdk_kind_library') : t('cmdk_kind_mod');
     case 'build':
       return t('cmdk_kind_build');
-    case 'kit':
-      return t('cmdk_kind_kit');
     case 'user':
-      return t('cmdk_kind_creator');
+      return t('shell_cmdk_kind_user');
     case 'category':
       return t('cmdk_kind_category');
     default:
@@ -171,9 +139,6 @@ function entryMeta(item: EntryItem, locale: Locale): string {
   if (item.type === 'user') {
     if (item.subtitle) parts.push(item.subtitle);
     if (item.count !== undefined) parts.push(t('cmdk_mods_count', { count: item.count }));
-  } else if (item.type === 'kit') {
-    if (item.subtitle) parts.push(item.subtitle);
-    if (item.count !== undefined) parts.push(t('cmdk_kit_items', { count: item.count }));
   } else if (item.type === 'mod' || item.type === 'build') {
     parts.push(kindLabel(item));
     if (item.subtitle) parts.push(item.subtitle);
@@ -271,17 +236,6 @@ function Thumb({ item }: { item: PaletteItem }) {
   );
 }
 
-export function CompatMark({ status, withText = false }: { status: CompatStatus; withText?: boolean }) {
-  const style = COMPAT_ICON[status];
-  const label = style.label();
-  return (
-    <span className={`inline-flex items-center gap-1 ${style.tone}`} title={withText ? undefined : label}>
-      <Glyph icon={style.icon} size={14} />
-      <span className={withText ? 'text-xs text-fg-muted' : 'sr-only'}>{label}</span>
-    </span>
-  );
-}
-
 /** Content of one result row (the option wrapper lives in the palette). */
 export function RowContent({ result, locale }: { result: ResultItem; locale: Locale }) {
   const { item } = result;
@@ -328,10 +282,9 @@ export function RowContent({ result, locale }: { result: ResultItem; locale: Loc
           <Highlighted segments={highlight(item.title, result.terms)} />
         </span>
         <span className="truncate text-xs text-fg-muted">
-          {snippet ? <Highlighted segments={snippet} /> : (item.note ?? entryMeta(item, locale))}
+          {snippet ? <Highlighted segments={snippet} /> : entryMeta(item, locale)}
         </span>
       </span>
-      {item.compat && (item.type === 'mod' || item.type === 'build') ? <CompatMark status={item.compat} /> : null}
     </>
   );
 }
@@ -401,7 +354,7 @@ function MiniList({
   if (entries.length === 0) return null;
   return (
     <section className="flex flex-col gap-1.5">
-      <h3 className="font-mono text-2xs tracking-wide text-fg-subtle uppercase">{label}</h3>
+      <h3 className="text-xs font-medium text-fg-subtle">{label}</h3>
       <ul className="flex flex-col gap-1">
         {entries.map((entry) => {
           const body = (
@@ -494,11 +447,10 @@ export function Preview({
 
   const mod = detail?.kind === 'mod' ? detail : null;
   const creator = detail?.kind === 'user' ? detail : null;
-  const kit = detail?.kind === 'kit' ? detail : null;
   const category = mod?.category ?? (item.categorySlug ? categoryName(item.categorySlug) : null);
   const icon = <Glyph icon={entryIcon(item)} size={32} />;
   const heroImage: PreviewImage | null =
-    mod?.hero ?? creator?.banner ?? kit?.cover ?? (item.thumb ? { src: item.thumb, alt: '' } : null);
+    mod?.hero ?? creator?.banner ?? (item.thumb ? { src: item.thumb, alt: '' } : null);
   const primary = actions.find((action) => action.id === 'download');
   const open = actions.find((action) => action.id === 'open');
   const version = mod?.version;
@@ -515,29 +467,21 @@ export function Preview({
           <Avatar name={item.title} id={item.id} src={creator?.avatar ?? item.thumb} size={48} />
         ) : null}
         <div className="min-w-0 flex-1">
-          <p className="font-mono text-2xs tracking-wide text-fg-subtle uppercase">{kindLabel(item)}</p>
-          <p className="line-clamp-2 font-display text-lg leading-tight font-semibold text-fg">{item.title}</p>
+          <p className="text-xs font-medium text-fg-subtle">{kindLabel(item)}</p>
+          <p className="line-clamp-2 text-lg leading-tight font-semibold text-fg">{item.title}</p>
           {item.type === 'user' || !item.subtitle ? (
             item.subtitle ? (
               <p className="truncate text-sm text-fg-muted">{item.subtitle}</p>
             ) : null
           ) : (
             <p className="mt-0.5 flex min-w-0 items-center gap-1.5 text-sm text-fg-muted">
-              {(mod?.author ?? kit?.owner) ? (
-                <Avatar
-                  name={(mod?.author ?? kit?.owner)?.name ?? ''}
-                  id={(mod?.author ?? kit?.owner)?.id ?? 0}
-                  src={(mod?.author ?? kit?.owner)?.avatar}
-                  size={20}
-                />
+              {mod?.author ? (
+                <Avatar name={mod.author.name} id={mod.author.id} src={mod.author.avatar} size={20} />
               ) : null}
               <span className="truncate">{item.subtitle}</span>
             </p>
           )}
         </div>
-        {item.compat && (item.type === 'mod' || item.type === 'build') ? (
-          <CompatMark status={item.compat} withText />
-        ) : null}
       </div>
 
       {mod?.description ? <p className="line-clamp-3 text-sm text-fg-muted">{mod.description}</p> : null}
@@ -574,10 +518,6 @@ export function Preview({
             <code className="font-mono">{item.manifestId}</code>
           </Fact>
         ) : null}
-        {item.type === 'kit' ? (
-          <Fact label={t('cmdk_fact_contents')}>{t('cmdk_kit_items', { count: kit?.items ?? item.count ?? 0 })}</Fact>
-        ) : null}
-        {kit ? <Fact label={t('cmdk_fact_followers')}>{formatCompactNumber(locale, kit.followers)}</Fact> : null}
         {item.type === 'user' ? (
           <Fact label={t('cmdk_fact_published')}>
             {t('cmdk_mods_count', { count: creator?.mods ?? item.count ?? 0 })}
@@ -591,7 +531,6 @@ export function Preview({
 
       {mod ? <MiniList label={t('cmdk_fact_deps')} entries={mod.dependencies} hrefOf={hrefOf} /> : null}
       {creator ? <MiniList label={t('cmdk_preview_top_mods')} entries={creator.top} hrefOf={hrefOf} /> : null}
-      {kit ? <MiniList label={t('cmdk_preview_kit_items')} entries={kit.top} hrefOf={hrefOf} /> : null}
 
       {(mod?.tags ?? item.tags ?? []).length > 0 ? (
         <ul className="flex flex-wrap gap-1">
@@ -658,10 +597,8 @@ export const ITEM_ACTION_ICONS: Record<ItemAction['id'], LucideIcon> = {
   'new-tab': LayoutGrid,
   download: Download,
   follow: Heart,
-  kit: Library,
   'copy-link': FilePlus2,
   'copy-id': Check,
-  compare: GitCompareArrows,
   versions: History,
   report: Hourglass,
 };

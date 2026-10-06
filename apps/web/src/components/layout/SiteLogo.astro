@@ -1,0 +1,34 @@
+---
+/**
+ * The SOTF-MODS logo of the old site (red, one line) for the header and the auth pages, or the
+ * stacked "Sons of the Forest Mods" logo for the footer (grayscale there). Plain `<img>`, explicit
+ * size (no layout shift). Files: `public/brand/logo-sm.png` (419 x 110) and `logo.png` (640 x 360).
+ */
+interface Props {
+  variant?: 'header' | 'footer';
+  /** Rendered height in px (width follows the aspect ratio). */
+  height?: number;
+  class?: string;
+  eager?: boolean;
+}
+
+const { variant = 'header', height, class: className, eager = false } = Astro.props;
+const FILES = {
+  header: { src: '/brand/logo-sm.png', width: 419, height: 110 },
+  footer: { src: '/brand/logo.png', width: 640, height: 360 },
+} as const;
+const file = FILES[variant];
+const h = height ?? (variant === 'header' ? 30 : 64);
+const w = Math.round((file.width / file.height) * h);
+---
+
+<img
+  src={file.src}
+  width={w}
+  height={h}
+  alt=""
+  decoding="async"
+  loading={eager ? 'eager' : 'lazy'}
+  class:list={['block select-none', className]}
+  style={variant === 'footer' ? 'filter: grayscale(1) brightness(2.2); opacity: 0.85' : undefined}
+/>

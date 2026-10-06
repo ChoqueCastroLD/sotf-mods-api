@@ -180,5 +180,6 @@
   "ui_domain_reaction_laugh": "Risata",
   "ui_domain_reaction_party": "Festa",
   "ui_domain_reaction_pray": "Grazie",
-  "ui_domain_reaction_fire": "Fuoco"
+  "ui_domain_reaction_fire": "Fuoco",
+  "ui_domain_trusted": "Affidabile"
 }

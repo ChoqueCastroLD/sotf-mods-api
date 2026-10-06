@@ -1,14 +1,13 @@
 ---
 /**
- * The winner of a jam in one compact row: trophy, mod thumbnail, name, team and score. Used in the
- * hub hero and on past-jam cards. With `link={false}` it holds no anchors (it sits inside a card
- * that is already one link).
+ * The winner of a jam in one line: label, mod name, team and score. Used on the hub and on past
+ * jams. With `link={false}` it holds no anchors (it sits inside a row that is already one link).
  */
 import { profilePath } from '@sotf/contracts/seo';
 import { formatNumber } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import { Icon } from '@sotf/ui/icons';
-import { Star, Trophy } from 'lucide-react';
+import { Star } from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
 import type { JamResultsDTO } from './data.ts';
 
@@ -17,78 +16,43 @@ type Placement = JamResultsDTO['overall'][number];
 interface Props {
   placement: Placement;
   link?: boolean;
-  onArt?: boolean;
   class?: string;
 }
 
-const { placement, link = true, onArt = false, class: className } = Astro.props;
+const { placement, link = true, class: className } = Astro.props;
 const locale = Astro.locals.locale;
 const mod = placement.entry.mod;
-const thumb = mod.thumbnail;
 const authors = placement.entry.authors.map((a) => a.displayName || a.handle);
-const modPath = href(mod.canonicalPath, locale);
 ---
 
-<div class:list={['flex min-w-0 items-center gap-3', className]}>
-  <span
-    class:list={[
-      'relative grid size-14 shrink-0 place-items-center overflow-hidden rounded-md ring-2 ring-featured/70',
-      onArt ? 'bg-night-900' : 'bg-sunken',
-    ]}
-  >
+<p class:list={['flex min-w-0 flex-wrap items-baseline gap-x-2 gap-y-0.5 text-sm', className]}>
+  <span class="text-fg-muted">{m.jams_winner_label()}</span>
+  {
+    link ? (
+      <a href={href(mod.canonicalPath, locale)} class="font-semibold text-fg hover:underline">
+        {mod.name}
+      </a>
+    ) : (
+      <span class="font-semibold text-fg">{mod.name}</span>
+    )
+  }
+  <span class="text-fg-muted">
+    {m.jams_by()}{' '}
     {
-      thumb ? (
-        <img
-          src={thumb.url}
-          alt=""
-          width="56"
-          height="56"
-          loading="lazy"
-          decoding="async"
-          class="size-full object-cover"
-        />
-      ) : (
-        <Icon icon={Trophy} size={24} className="text-featured" />
-      )
+      link
+        ? placement.entry.authors.map((author, index) => (
+            <>
+              {index > 0 && ', '}
+              <a href={href(profilePath(author.handle), locale)} class="hover:underline">
+                {author.displayName || author.handle}
+              </a>
+            </>
+          ))
+        : authors.join(', ')
     }
   </span>
-  <div class="flex min-w-0 flex-col gap-0.5">
-    <p class="readout flex items-center gap-1.5 text-featured">
-      <Icon icon={Trophy} size={12} />
-      {m.jams_winner_label()}
-    </p>
-    {
-      link ? (
-        <a
-          href={modPath}
-          class:list={['truncate font-semibold hover:underline', onArt ? 'text-night-50' : 'text-fg']}
-        >
-          {mod.name}
-        </a>
-      ) : (
-        <p class:list={['truncate font-semibold', onArt ? 'text-night-50' : 'text-fg']}>{mod.name}</p>
-      )
-    }
-    <p class:list={['flex min-w-0 items-center gap-2 text-xs', onArt ? 'text-night-200' : 'text-fg-muted']}>
-      <span class="truncate">
-        {m.jams_by()}{' '}
-        {
-          link
-            ? placement.entry.authors.map((author, index) => (
-                <>
-                  {index > 0 && ', '}
-                  <a href={href(profilePath(author.handle), locale)} class="font-semibold hover:underline">
-                    {author.displayName || author.handle}
-                  </a>
-                </>
-              ))
-            : authors.join(', ')
-        }
-      </span>
-      <span class="inline-flex shrink-0 items-center gap-1 font-mono tabular-nums">
-        <Icon icon={Star} size={12} className="fill-current text-featured" />
-        {formatNumber(locale, placement.average, { maximumFractionDigits: 2, minimumFractionDigits: 2 })}
-      </span>
-    </p>
-  </div>
-</div>
+  <span class="inline-flex items-center gap-1 text-fg-muted tabular-nums">
+    <Icon icon={Star} size={13} className="fill-current" />
+    {formatNumber(locale, placement.average, { maximumFractionDigits: 2, minimumFractionDigits: 2 })}
+  </span>
+</p>

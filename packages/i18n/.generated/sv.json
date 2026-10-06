@@ -795,11 +795,11 @@
   "auth_error_terms": "Godkänn villkoren för att skapa ditt konto.",
   "auth_error_turnstile_failed": "Säkerhetskontrollen blev inte klar. Kontrollera anslutningen eller tillåt challenges.cloudflare.com i din blockerare och försök igen.",
   "auth_field_display_name": "Visningsnamn",
-  "auth_field_display_name_hint": "Så ser andra överlevare dig. Du kan ändra det senare.",
+  "auth_field_display_name_hint": "Namnet som andra användare ser. Du kan ändra det senare.",
   "auth_field_email": "E-post",
   "auth_field_email_hint": "För inloggning och viktiga kontomejl. Visas aldrig offentligt.",
   "auth_field_handle": "Användarnamn",
-  "auth_field_handle_hint": "Din adress på ön: {url}. Den kan inte ändras senare.",
+  "auth_field_handle_hint": "Adressen till din profil: {url}. Den kan inte ändras senare.",
   "auth_field_handle_placeholder": "ditt-namn",
   "auth_field_identifier": "E-post eller användarnamn",
   "auth_field_new_password": "Lösenord",
@@ -824,7 +824,7 @@
   "auth_login_create_account": "Skapa ett konto",
   "auth_login_forgot": "Glömt lösenordet?",
   "auth_login_heading": "Logga in",
-  "auth_login_intro": "Välkommen tillbaka, överlevare.",
+  "auth_login_intro": "Logga in på ditt konto.",
   "auth_login_legacy_note": "Hade du ett konto före ombyggnaden? Ditt lösenord fungerar fortfarande.",
   "auth_login_new_here": "Ny här?",
   "auth_login_passkey": "Logga in med en passkey",
@@ -843,7 +843,7 @@
   "auth_meta_login_title": "Logga in",
   "auth_meta_logout_description": "Logga ut från SOTF Mods på den här enheten.",
   "auth_meta_logout_title": "Logga ut",
-  "auth_meta_register_description": "Gå med i SOTF Mods: lägg moddar i ryggsäcken, få en signal när de uppdateras och dela dina egna skapelser.",
+  "auth_meta_register_description": "Gå med i SOTF Mods: följ moddar, få en avisering när de uppdateras och dela dina egna skapelser.",
   "auth_meta_register_title": "Skapa ditt konto",
   "auth_meta_reset_description": "Välj ett nytt lösenord för ditt SOTF Mods-konto.",
   "auth_meta_reset_title": "Välj ett nytt lösenord",
@@ -3655,6 +3655,100 @@
       }
     }
   ],
+  "explore_catalog_all_categories": "Alla kategorier",
+  "explore_catalog_category_label": "Kategori",
+  "explore_catalog_category_link": "Kategori: {name}",
+  "explore_catalog_comments": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} kommentar",
+        "count__plural=*": "{count__number} kommentarer"
+      }
+    }
+  ],
+  "explore_catalog_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod",
+        "count__plural=*": "{count__number} mods"
+      }
+    }
+  ],
+  "explore_catalog_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nedladdning",
+        "count__plural=*": "{count__number} nedladdningar"
+      }
+    }
+  ],
+  "explore_catalog_empty_clear": "Rensa filter",
+  "explore_catalog_empty_text": "Inga mods matchar de här filtren. Ändra sökningen eller rensa filtren.",
+  "explore_catalog_empty_title": "Inga mods hittades",
+  "explore_catalog_empty_unapproved": "Det finns inga ej godkända mods just nu.",
+  "explore_catalog_error_text": "Försök igen om en stund.",
+  "explore_catalog_error_title": "Det gick inte att läsa in mods",
+  "explore_catalog_filters": "Filter",
+  "explore_catalog_followers": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} följare",
+        "count__plural=*": "{count__number} följare"
+      }
+    }
+  ],
+  "explore_catalog_nsfw": "NSFW",
+  "explore_catalog_pending_approval": "Väntar på godkännande",
+  "explore_catalog_retry": "Försök igen",
+  "explore_catalog_search_button": "Sök",
+  "explore_catalog_search_label": "Sök mods",
+  "explore_catalog_search_placeholder": "Sök mods",
+  "explore_catalog_sort_downloads": "Mest nedladdade",
+  "explore_catalog_sort_label": "Sortera efter",
+  "explore_catalog_sort_oldest": "Äldst",
+  "explore_catalog_sort_trending": "Populärt den här veckan",
+  "explore_catalog_trusted": "Betrodd",
+  "explore_catalog_type_all": "Alla typer",
+  "explore_catalog_type_label": "Typ",
+  "explore_catalog_unapproved": "Ej godkända",
+  "explore_catalog_unapproved_back": "Tillbaka till alla mods",
+  "explore_catalog_unapproved_description": "Mods som har klarat de automatiska kontrollerna och väntar på godkännande.",
+  "explore_catalog_unapproved_heading": "Ej godkända mods",
+  "explore_catalog_unapproved_notice": "De här mods har klarat de automatiska kontrollerna och väntar på att en moderator ska godkänna dem. De ingår inte i huvudlistan.",
+  "explore_catalog_unapproved_title": "Ej godkända mods",
+  "explore_catalog_updated": "Uppdaterad {when}",
   "explore_categories_browse": "Bläddra",
   "explore_categories_builds_heading": "Byggkategorier",
   "explore_categories_description": "Alla kategorier av moddar och byggen till Sons of the Forest på SOTF Mods, med vad varje kategori omfattar och hur många objekt den har.",
@@ -4163,7 +4257,7 @@
   "jams_countdown_voting_close": "Röstningen stänger om",
   "jams_countdown_voting_open": "Röstningen öppnar om",
   "jams_cta_join": "Delta i jammen",
-  "jams_cta_results": "Visa prispallen",
+  "jams_cta_results": "Visa resultaten",
   "jams_cta_view": "Visa jammen",
   "jams_cta_vote": "Rösta nu",
   "jams_detail_description_fallback": "{title}: en Sons of the Forest Mod Jam. Se tema, bidrag och resultat.",
@@ -4287,29 +4381,29 @@
   "jams_error_text": "Försök igen om en stund.",
   "jams_error_title": "Kunde inte läsa in jams",
   "jams_first_discord": "Gå med i Discord",
-  "jams_first_hint": "Öppna dina signalinställningar så att nyheter om jams når dig i appen eller via e-post, och följ jammen så fort den tillkännages.",
+  "jams_first_hint": "Aktivera aviseringar så att nyheter om jams når dig i appen eller via e-post, och följ jammen så fort den tillkännages.",
   "jams_first_judged": "Bidragen bedöms efter",
   "jams_first_kicker": "Säsong ett · Datum meddelas här först",
   "jams_first_notify": "Få aviseringar",
-  "jams_first_prize": "Varje bidrag ger ett deltagarmärke; prispallsplatser och totalsegern ger fler.",
+  "jams_first_prize": "Alla bidrag visas på jammens sida. De bästa i varje kategori tillkännages med resultaten.",
   "jams_first_text": "En tematisk tävling för hela communityn: ett tema, några dagar att skapa något nytt, sedan röstar alla. Datumet tillkännages här först.",
   "jams_first_title": "Den första Mod Jammen är på väg",
   "jams_follow": "Följ jammen",
   "jams_follow_done": "Du får uppdateringar om den här jammen.",
   "jams_following": "Följer",
   "jams_guest_hint": "Logga in för att skicka in bidrag, följa den här jammen och rösta.",
-  "jams_how_1_text": "Varje jam har ett namn, ett schema och ett tema, ibland förseglat till första dagen.",
-  "jams_how_1_title": "Temat avslöjas",
+  "jams_how_1_text": "Varje jam har ett namn, ett schema och ett tema, ibland hemligt till första dagen.",
+  "jams_how_1_title": "Temat tillkännages",
   "jams_how_2_text": "Skapa en ny mod eller ett nytt bygge på några dagar, ensam eller med medförfattare.",
   "jams_how_2_title": "Bygg",
   "jams_how_3_text": "Verifierade medlemmar betygsätter varje bidrag med 1 till 5 stjärnor i varje kategori.",
   "jams_how_3_title": "Rösta",
-  "jams_how_4_text": "Poängen är bayesianska medelvärden. Märkena går till hela laget.",
-  "jams_how_4_title": "Prispall",
+  "jams_how_4_text": "Poängen är viktade medelvärden. Resultaten visas per kategori och totalt.",
+  "jams_how_4_title": "Resultat",
   "jams_how_title": "Så fungerar en jam",
   "jams_hub_archive": "Arkiv",
   "jams_hub_description": "Tidsbegränsade tävlingar med tema där communityn bygger nya Sons of the Forest-moddar och röstar på de bästa.",
-  "jams_hub_intro": "Bygg på några dagar, rösta på en vecka, tjäna märken. Varje jam har ett tema, en deadline och fyra röstningskategorier.",
+  "jams_hub_intro": "Bygg en modd på några dagar och rösta sedan på de bästa. Varje jam har ett tema, en deadline och fyra röstningskategorier.",
   "jams_hub_readout": "MOD JAMS",
   "jams_hub_results": "Resultat",
   "jams_hub_running": "Pågår nu",
@@ -4329,7 +4423,7 @@
   "jams_mine_title": "Mod Jams",
   "jams_my_entries": "Dina bidrag",
   "jams_mystery_reveal": "Avslöjas {date}",
-  "jams_mystery_title": "Temat förseglat",
+  "jams_mystery_title": "Hemligt tema",
   "jams_nav": "Jams",
   "jams_phase_announced": "Tillkännagiven",
   "jams_phase_archived": "Arkiverad",
@@ -4363,7 +4457,7 @@
       }
     }
   ],
-  "jams_results_tabs_label": "Prispallskategori",
+  "jams_results_tabs_label": "Resultatkategori",
   "jams_results_title": "Resultat",
   "jams_rules_title": "Regler",
   "jams_schedule_tba": "Meddelas senare",
@@ -4379,7 +4473,7 @@
   "jams_submit_action": "Skicka in bidrag",
   "jams_submit_choose": "Välj …",
   "jams_submit_confirm": "Skicka in",
-  "jams_submit_done": "Bidraget är inskickat. Lycka till!",
+  "jams_submit_done": "Bidraget är inskickat.",
   "jams_submit_intro": "Välj en av dina publicerade moddar eller builds. Du kan dra tillbaka det tills bidragen stänger.",
   "jams_submit_mod": "Modd eller build",
   "jams_submit_none": "Du har inga publicerade moddar eller builds som kan delta i den här jammen ännu.",
@@ -4403,12 +4497,12 @@
   "jams_unit_seconds": "Sek",
   "jams_verify_to_submit": "Verifiera din e-post för att skicka in",
   "jams_vote_action": "Betygsätt",
-  "jams_vote_blocked_activity": "Delta lite mer i communityn för att låsa upp röstning.",
+  "jams_vote_blocked_activity": "Ditt konto har ännu inte tillräcklig aktivitet för att rösta.",
   "jams_vote_blocked_email": "Verifiera din e-postadress för att rösta.",
   "jams_vote_blocked_new": "Ditt konto är för nytt för att rösta i den här jammen.",
   "jams_vote_blocked_phase": "Röstningen är inte öppen just nu.",
   "jams_vote_continue": "Fortsätt rösta",
-  "jams_vote_dock_title": "Din röstsedel",
+  "jams_vote_dock_title": "Röstning",
   "jams_vote_intro": "Ge 1 till 5 stjärnor i varje kategori. Du kan ändra dina röster tills röstningen stänger.",
   "jams_vote_nothing": "Det finns inget att betygsätta än.",
   "jams_vote_own": "Ditt bidrag",
@@ -5119,6 +5213,10 @@
   "landing_faq_hint": "Korta svar, kontrollerade mot katalogen.",
   "landing_faq_more": "Läs mer",
   "landing_faq_title": "Frågor från överlevare",
+  "landing_featured_label": "Utvalda mods den här veckan",
+  "landing_featured_next": "Nästa mods",
+  "landing_featured_prev": "Föregående mods",
+  "landing_h1": "Sons of the Forest-mods",
   "landing_hall_hint": "De mest nedladdade moddarna genom tiderna",
   "landing_hall_show_all": [
     {
@@ -5186,6 +5284,23 @@
   ],
   "landing_map_legend_label": "Kartans teckenförklaring",
   "landing_map_title": "Ökarta",
+  "landing_meta_description": [
+    {
+      "declarations": [
+        "input count",
+        "input mods",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Ladda ner {mods} Sons of the Forest-mod och builds för RedLoader. Gratis direkta nedladdningar med omdömen och kommentarer från communityn.",
+        "count__plural=*": "Ladda ner {mods} Sons of the Forest-mods och builds för RedLoader. Gratis direkta nedladdningar med omdömen och kommentarer från communityn."
+      }
+    }
+  ],
+  "landing_meta_title": "Sons of the Forest-mods | SOTF Mods",
   "landing_motw_period": "Veckan från {start}",
   "landing_motw_title": "Veckans modd",
   "landing_notes_all": "Alla senaste uppdateringar",
@@ -5269,11 +5384,49 @@
   "landing_stat_downloads": "Nedladdningar",
   "landing_stat_mods": "Moddar",
   "landing_stat_survivors": "Överlevare",
+  "landing_stats_aria": "Webbplatsens statistik",
+  "landing_stats_downloads": "Nedladdningar",
   "landing_stats_label": "Ön i siffror",
+  "landing_stats_mods": "Publicerade mods",
+  "landing_stats_users": "Användare",
   "landing_trending_all": "Alla moddar",
   "landing_trending_empty": "En lugn vecka på ön. Moddar dyker upp här när överlevare laddar ned dem.",
   "landing_trending_hint": "Efter nedladdningar de senaste 7 dagarna",
   "landing_trending_title": "Populärt den här veckan",
+  "landing_weekly_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} nedladdning den här veckan",
+        "count__plural=*": "{display} nedladdningar den här veckan"
+      }
+    }
+  ],
+  "landing_weekly_empty": "Inga nedladdningar har registrerats den här veckan än.",
+  "landing_weekly_hint": "Rangordnade efter nedladdningar de senaste 7 dagarna",
+  "landing_weekly_less": "Visa färre",
+  "landing_weekly_more": "Visa fler",
+  "landing_weekly_rank": [
+    {
+      "declarations": [
+        "input rank",
+        "local rank__number = rank: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Plats {rank__number}"
+      }
+    }
+  ],
+  "landing_weekly_this_week": "den här veckan",
+  "landing_weekly_title": "Veckans mods",
   "langprompt_hint": "Ditt sparade språk är {language}.",
   "langprompt_original": "Visa originalet ({language})",
   "langprompt_remember": "Kom ihåg mitt val",
@@ -5320,7 +5473,7 @@
   "logs_err_file_type": "Använd en .log- eller .txt-fil, eller en .gz eller .zip som innehåller en.",
   "logs_err_generic": "Något gick fel. Försök igen.",
   "logs_err_network": "Servern kunde inte nås. Kontrollera anslutningen och försök igen.",
-  "logs_err_rate": "För många förfrågningar — försök igen om {seconds} s",
+  "logs_err_rate": "För många förfrågningar. Försök igen om {seconds} s",
   "logs_err_too_large": "Loggen är större än {max}. Skicka bara delen kring problemet.",
   "logs_err_turnstile": "Kontrollen att du är människa misslyckades. Försök igen.",
   "logs_expired_now": "Utgången",
@@ -5647,6 +5800,7 @@
   "meta_title_template": "{title} | SOTF Mods",
   "mod_action_add_to_kit": "Kit",
   "mod_action_install": "Installera",
+  "mod_action_install_manager": "Installera med RedManager",
   "mod_action_more": "Fler åtgärder",
   "mod_action_report": "Anmäl",
   "mod_action_report_mod": "Anmäl den här modden",
@@ -5743,11 +5897,15 @@
   "mod_deps_sheet_text": "{name} fungerar inte utan de här moddarna. Ladda ner dem också, eller fortsätt om du redan har dem.",
   "mod_deps_sheet_title": "Du behöver också {names}",
   "mod_description_empty": "Skaparen har inte skrivit någon beskrivning än.",
+  "mod_detail_game": "Spelversion",
+  "mod_detail_loader": "RedLoader",
+  "mod_details_title": "Detaljer",
   "mod_download_done_label": "Nedladdad ✓",
   "mod_download_unavailable": "Det finns ingen fil att ladda ner just nu.",
   "mod_fact_game_version": "Angiven spelversion",
   "mod_fact_license": "Licens",
   "mod_fact_loader_version": "Angiven RedLoader",
+  "mod_fact_multiplayer": "Flerspelare",
   "mod_fact_platform": "Plattform",
   "mod_fact_published": "Publicerad",
   "mod_fact_size": "Filstorlek",
@@ -6192,6 +6350,7 @@
   "mod_stats_title": "Nedladdningar över tid",
   "mod_support_title": "Stöd skaparen",
   "mod_tab_comments": "Kommentarer",
+  "mod_tab_description": "Beskrivning",
   "mod_tab_overview": "Översikt",
   "mod_tab_reviews": "Recensioner",
   "mod_tab_versions": "Versioner",
@@ -6252,6 +6411,7 @@
       }
     }
   ],
+  "mod_versions_section_title": "Versioner och ändringslogg",
   "mod_versions_title": [
     {
       "declarations": [
@@ -6621,6 +6781,7 @@
   "profile_builds_title": "Byggen av {name}",
   "profile_cards_empty_action": "Utforska moddar",
   "profile_cards_empty_description": "{name} har inte publicerat något här än. Utforska vad resten av ön har gjort.",
+  "profile_cards_empty_text": "{name} har inte publicerat något här än.",
   "profile_creator_top_mod": "Toppmodd: {mod}",
   "profile_creators_count": [
     {
@@ -6653,6 +6814,7 @@
   "profile_creators_title": "Skapare",
   "profile_day_on_island": "Dag {day} på ön",
   "profile_feed_title": "Nya släpp från {name}",
+  "profile_follow_done": "Du följer nu. Du får en avisering när något nytt släpps.",
   "profile_follow_error": "Det gick inte att uppdatera följningen. Kontrollera anslutningen och försök igen.",
   "profile_follow_name": "Följ {name}",
   "profile_follow_own": "Du kan inte följa dig själv.",
@@ -6668,6 +6830,7 @@
   "profile_link_copy_failed": "Länken kunde inte kopieras. Kopiera den från adressfältet.",
   "profile_link_website": "Webbplats",
   "profile_links_label": "Länkar",
+  "profile_member_since": "Medlem sedan {date}",
   "profile_meta_description_creator": [
     {
       "declarations": [
@@ -6722,9 +6885,27 @@
       }
     }
   ],
+  "profile_meta_description_user": [
+    {
+      "declarations": [
+        "input name",
+        "input reviews",
+        "local reviews__plural = reviews: plural",
+        "local reviews__number = reviews: number"
+      ],
+      "selectors": [
+        "reviews__plural"
+      ],
+      "match": {
+        "reviews__plural=one": "{name} på SOTF Mods, moddinggemenskapen för Sons of the Forest: {reviews__number} recension.",
+        "reviews__plural=*": "{name} på SOTF Mods, moddinggemenskapen för Sons of the Forest: {reviews__number} recensioner."
+      }
+    }
+  ],
   "profile_meta_title_creator": "{name} (@{handle}) — modskapare för Sons of the Forest",
   "profile_meta_title_member": "{name} (@{handle}) — moddinggemenskapen för Sons of the Forest",
   "profile_meta_title_tab": "{tab} · {name} (@{handle})",
+  "profile_meta_title_user": "{name} (@{handle})",
   "profile_mods_empty_title": "Inga moddar än",
   "profile_mods_title": "Moddar av {name}",
   "profile_pinned_title": "Fästa",
@@ -6747,6 +6928,9 @@
   "profile_reviews_older": "Äldre recensioner",
   "profile_reviews_pagination": "Fler recensioner",
   "profile_reviews_title": "Recensioner av {name}",
+  "profile_role_admin": "Administratör",
+  "profile_role_moderator": "Moderator",
+  "profile_search_type_users": "Användare",
   "profile_sort_downloads": "Mest nedladdade",
   "profile_sort_label": "Sortera",
   "profile_sort_new": "Nyaste",
@@ -6793,8 +6977,10 @@
       }
     }
   ],
+  "profile_stat_published_label": "Publicerade moddar",
   "profile_stat_rating_label": "Snittbetyg",
   "profile_stat_rating_title": "{rating} av 5 i snitt",
+  "profile_stat_reviews_label": "Recensioner",
   "profile_stats_label": "Statistik",
   "profile_tab_activity": "Aktivitet",
   "profile_tab_badges": "Märken",
@@ -6812,6 +6998,7 @@
   "profile_tier_landmark": "Landmärke",
   "profile_tier_lean_to": "Vindskydd",
   "profile_tier_treehouse": "Trädkoja",
+  "profile_trusted": "Betrodd",
   "profile_unfollowed": "Du följer inte längre.",
   "profile_verified_creator": "Verifierad skapare",
   "profile_xp_bug_report_resolved": "Buggrapport markerad som löst av skaparen",
@@ -7444,7 +7631,7 @@
   "requests_delete_title": "Ta bort det här önskemålet?",
   "requests_deleted_done": "Önskemålet är borttaget.",
   "requests_detail_description": "Modönskemål från {author}: {title}",
-  "requests_detail_title": "{title} — Modönskemål",
+  "requests_detail_title": "{title} (modönskemål)",
   "requests_edit": "Redigera önskemålet",
   "requests_edited": "redigerad",
   "requests_empty_filtered_text": "Prova en annan status eller visa alla önskemål.",
@@ -7522,7 +7709,7 @@
       ],
       "selectors": [],
       "match": {
-        "": "{title} — sida {page__number}"
+        "": "{title}, sida {page__number}"
       }
     }
   ],
@@ -7584,6 +7771,7 @@
       }
     }
   ],
+  "requests_votes_short": "röster",
   "search_page_about": "Om SOTF Mods",
   "search_page_achievements": "Prestationer",
   "search_page_brand": "Varumärkesmaterial",
@@ -8236,6 +8424,37 @@
   "settings_verify_title": "Bekräfta din e-postadress",
   "settings_visibility_text": "Stäng av det du hellre håller för dig själv.",
   "settings_visibility_title": "På din profil",
+  "shell_404_home": "Tillbaka till startsidan",
+  "shell_404_text": "Sidan finns inte eller har flyttats. Kontrollera adressen eller sök efter det du behöver.",
+  "shell_404_title": "Sidan hittades inte",
+  "shell_410_text": "Innehållet är inte längre tillgängligt. Du kan bläddra bland andra moddar.",
+  "shell_410_title": "Sidan har tagits bort",
+  "shell_500_text": "Servern hade ett problem. Ladda om sidan om en minut eller gå tillbaka till startsidan.",
+  "shell_500_title": "Något gick fel",
+  "shell_cmdk_empty_hint": "Prova färre ord, eller avgränsa med mods:, builds:, @användare, > för kommandon eller by:/cat:/sort:.",
+  "shell_cmdk_go_dashboard": "Översikt",
+  "shell_cmdk_go_login": "Logga in",
+  "shell_cmdk_go_moderation": "Moderering",
+  "shell_cmdk_go_mods": "Moddar",
+  "shell_cmdk_go_notifications": "Aviseringar",
+  "shell_cmdk_go_upload": "Ladda upp en mod",
+  "shell_cmdk_go_upload_build": "Ladda upp ett bygge",
+  "shell_cmdk_group_users": "Användare",
+  "shell_cmdk_input_label": "Sök moddar, byggen, användare och sidor",
+  "shell_cmdk_kind_user": "Användare",
+  "shell_cmdk_loading": "Laddar sökning…",
+  "shell_cmdk_no_results": "Inga resultat för ”{query}”.",
+  "shell_cmdk_placeholder": "Sök moddar, byggen, användare…",
+  "shell_cmdk_searching": "Söker…",
+  "shell_footer_developers": "Utvecklare och API",
+  "shell_footer_github_backend": "Bidra till projektets backend",
+  "shell_footer_github_frontend": "Bidra till projektets frontend",
+  "shell_footer_partners": "Partners",
+  "shell_footer_redloader": "Officiell wiki om hur man använder RedLoader",
+  "shell_footer_related": "Relaterade webbplatser",
+  "shell_footer_since": "Mods av hög kvalitet sedan mars 2023",
+  "shell_footer_tonihub": "Uppdaterade datauttag för Sons of the Forest",
+  "shell_footer_tutorials": "En startguide om hur man gör mods med hjälp av RedLoader",
   "shell_install_app": "Installera appen",
   "shell_install_app_hint": "Lägg till SOTF Mods på hemskärmen",
   "shell_install_ios_hint": "Installera på iPhone eller iPad genom att trycka på Dela och sedan ”Lägg till på hemskärmen”.",
@@ -8243,20 +8462,34 @@
   "shell_more_help": "Hjälp",
   "shell_more_install_guide": "Installationsguide",
   "shell_more_label": "Mer",
+  "shell_nav_account": "Konto",
+  "shell_nav_dashboard": "Översikt",
+  "shell_nav_login": "Logga in",
+  "shell_nav_logout": "Logga ut",
+  "shell_nav_menu": "Meny",
+  "shell_nav_moderation": "Moderering",
+  "shell_nav_notifications": "Aviseringar",
+  "shell_nav_profile": "Profil",
+  "shell_nav_register": "Registrera dig",
+  "shell_nav_search": "Sök",
+  "shell_nav_settings": "Inställningar",
+  "shell_nav_upload": "Ladda upp",
   "shell_offline_available": "Fungerar offline",
   "shell_offline_back_online": "Du är online igen. Laddar om…",
-  "shell_offline_body": "Vi når inte ön just nu. Kontrollera anslutningen och försök igen.",
-  "shell_offline_checking": "Letar efter signal…",
-  "shell_offline_eyebrow": "Ingen signal",
-  "shell_offline_meta_description": "Ingen anslutning just nu. Försök igen när du har täckning igen.",
+  "shell_offline_body": "SOTF Mods kan inte nås just nu. Kontrollera din anslutning och försök igen.",
+  "shell_offline_checking": "Kontrollerar anslutningen…",
+  "shell_offline_eyebrow": "Offline",
+  "shell_offline_meta_description": "Ingen anslutning just nu. Försök igen när du är online igen.",
   "shell_offline_meta_title": "Offline",
   "shell_offline_retry": "Försök igen",
   "shell_offline_saved": "Sparad på den här enheten",
-  "shell_offline_still": "Fortfarande ingen signal. Försök igen om en stund.",
-  "shell_offline_title": "Du är utom räckhåll",
+  "shell_offline_still": "Fortfarande offline. Försök igen om en stund.",
+  "shell_offline_title": "Du är offline",
   "shell_ptr_loading": "Uppdaterar…",
   "shell_ptr_pull": "Dra för att uppdatera",
   "shell_ptr_release": "Släpp för att uppdatera",
+  "shell_relogin_banner": "Vi har byggt om SOTF Mods. Logga in igen med samma lösenord.",
+  "shell_search_placeholder": "Sök moddar, byggen, användare",
   "signals_action_download": "Ladda ned",
   "signals_announcement": "Nytt meddelande från rangers",
   "signals_announcement_titled": "Meddelande: {title}",
@@ -9372,6 +9605,7 @@
   "ui_domain_tier_landmark": "Landmärke",
   "ui_domain_tier_lean_to": "Vindskydd",
   "ui_domain_tier_treehouse": "Trädkoja",
+  "ui_domain_trusted": "Betrodd",
   "ui_domain_trusted_creator": "Betrodd skapare",
   "ui_domain_value_not_declared": "Inte angivet",
   "ui_domain_value_unknown": "Okänd",

@@ -1,6 +1,6 @@
 {
   "requests_list_title": "Demandes de mods",
-  "requests_list_title_page": "{title} — page {page, number}",
+  "requests_list_title_page": "{title}, page {page, number}",
   "requests_list_description": "Demandez le mod qui manque à Sons of the Forest, votez pour ceux que vous voulez et suivez les créateurs qui s’en chargent.",
   "requests_list_readout": "Tableau des demandes",
   "requests_action_new": "Demander un mod",
@@ -29,7 +29,7 @@
   "requests_by": "par {name}",
   "requests_adopted_by": "{name} s’en occupe",
   "requests_fulfilled_by": "Réalisée avec {mod}",
-  "requests_detail_title": "{title} — Demande de mod",
+  "requests_detail_title": "{title} (demande de mod)",
   "requests_detail_description": "Demande de mod de {author} : {title}",
   "requests_back": "Toutes les demandes",
   "requests_view_mod": "Voir le mod",
@@ -89,5 +89,6 @@
   "requests_badge_adopter": "S’en occupe",
   "requests_badge_author": "Demandeur",
   "requests_comment_delete_title": "Supprimer ce commentaire ?",
-  "requests_comment_delete_text": "Cette action est irréversible."
+  "requests_comment_delete_text": "Cette action est irréversible.",
+  "requests_votes_short": "votes"
 }

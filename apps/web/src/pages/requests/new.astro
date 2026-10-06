@@ -29,12 +29,12 @@ const loginHref = loginHrefFor(href('/login', locale), href('/requests/new', loc
 >
   <div class="flex flex-col gap-6">
     <header class="flex flex-col gap-2">
-      <h1 class="font-display-caps text-display-sm text-fg">{m.requests_new_title()}</h1>
+      <h1 class="text-3xl font-bold text-fg md:text-4xl">{m.requests_new_title()}</h1>
       <p class="max-w-(--container-prose) text-base text-fg-muted">{m.requests_new_intro()}</p>
     </header>
     <div data-island="request-new">
       <div
-        class="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border bg-surface p-4"
+        class="flex flex-wrap items-center justify-between gap-3 border-y border-border py-4"
         data-request-guest-hint
       >
         <p class="text-sm text-fg">{m.requests_new_guest_title()}</p>

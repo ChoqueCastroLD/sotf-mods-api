@@ -4,10 +4,11 @@
  * - `bundle.build {bundleId}`: builds the zip of a bundle's kit (`buildBundle` of core); with
  *   `removeKey` it deletes the zip of a detached bundle instead. Idempotent (the key embeds the
  *   fingerprint of the resolved versions).
- * - `bundle.sweep` (every 15 minutes): enqueues `bundle.build` for the bundles whose items published a
- *   new version (or whose kit changed) since they were built.
+ *
+ * `bundle.sweep` (the 15-minute rebuild of stale bundles) was retired with the kits; existing zips
+ * stay in storage and are rebuilt only when the owner asks for it.
  */
-import { buildBundle, staleBundleIds } from '@sotf/core/bundles/index';
+import { buildBundle } from '@sotf/core/bundles/index';
 import { defineJob, defineJobGroup } from '../../define-job.ts';
 
 export default defineJobGroup({
@@ -28,16 +29,6 @@ export default defineJobGroup({
           siteUrl: services.env.PUBLIC_SITE_URL,
           publicOrigins: ['https://r2.sotf-mods.com'],
         });
-      },
-    }),
-    defineJob({
-      queue: 'bundle.sweep',
-      handler: async (_data, { ctx }) => {
-        const ids = await staleBundleIds(ctx);
-        for (const bundleId of ids) {
-          await ctx.jobs.enqueue('bundle.build', { bundleId }, { singletonKey: `bundle:${bundleId}` });
-        }
-        return { enqueued: ids.length };
       },
     }),
   ],

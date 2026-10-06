@@ -1,9 +1,9 @@
 ---
 /**
- * An entry of a jam as a large image-led card: the mod's thumbnail with a soft scrim, name,
- * team, short description and the notes from the authors. The title link stretches over the card;
- * the team links and the vote slot sit above it. During voting the island mounts the rating
- * control into `[data-jam-vote-slot]`.
+ * An entry of a jam as an image-led card: the mod's thumbnail, name, team, short description and
+ * the notes from the authors. The title link stretches over the card; the team links and the
+ * vote slot sit above it. During voting the island mounts the rating control into
+ * `[data-jam-vote-slot]`.
  */
 import { profilePath } from '@sotf/contracts/seo';
 import { formatCompactNumber } from '@sotf/i18n';
@@ -11,14 +11,12 @@ import { m } from '@sotf/i18n/messages';
 import { localizeHtml } from '@sotf/markdown/labels';
 import { PROSE_LOCATOR_CLASSES } from '@sotf/ui/domain';
 import { Icon } from '@sotf/ui/icons';
-import { Download, Hammer, Package, Sparkles } from 'lucide-react';
+import { Download, Package } from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
 import type { JamEntryDTO } from './data.ts';
-import { accentHex } from './phase.ts';
 
 interface Props {
   entry: JamEntryDTO;
-  accent: string;
   voting: boolean;
   /** Markdown labels of the mod domain (`markdownLabels()`). */
   labels: Parameters<typeof localizeHtml>[1];
@@ -26,19 +24,18 @@ interface Props {
   eager?: boolean;
 }
 
-const { entry, accent, voting, labels, eager = false } = Astro.props;
+const { entry, voting, labels, eager = false } = Astro.props;
 const locale = Astro.locals.locale;
 const mod = entry.mod;
 const thumb = mod.thumbnail;
-const color = accentHex(accent);
 const description = mod.shortDescription.trim();
 ---
 
 <li
-  class="group relative flex min-w-0 flex-col overflow-hidden rounded-xl border border-border bg-surface transition-[border-color,box-shadow,translate] duration-(--dur-base) hover:-translate-y-0.5 hover:border-border-strong hover:shadow-md focus-within:border-border-strong motion-reduce:hover:translate-y-0"
+  class="group relative flex min-w-0 flex-col overflow-hidden rounded-lg border border-border bg-surface hover:border-border-strong focus-within:border-border-strong"
   data-jam-entry={entry.id}
 >
-  <div class="relative aspect-[16/10] w-full overflow-hidden bg-sunken" style={`--accent: ${color};`}>
+  <div class="relative aspect-[16/10] w-full overflow-hidden bg-sunken">
     {
       thumb ? (
         <img
@@ -49,37 +46,19 @@ const description = mod.shortDescription.trim();
           height={thumb.height ?? 400}
           loading={eager ? 'eager' : 'lazy'}
           decoding="async"
-          class="size-full object-cover transition-transform duration-(--dur-slower) ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+          class="size-full object-cover"
         />
       ) : (
-        <div
-          class="texture-topo grid size-full place-items-center text-fg-subtle"
-          style={`background: linear-gradient(135deg, ${color}33, transparent 70%);`}
-        >
+        <div class="grid size-full place-items-center text-fg-subtle">
           <Icon icon={Package} size={44} />
         </div>
       )
     }
-    <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-night-975/75 to-transparent" aria-hidden="true"></div>
-    <div class="absolute start-3 top-3 flex flex-wrap gap-2">
-      <span class="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-night-975/70 px-2.5 py-1 text-xs font-semibold text-night-50 backdrop-blur-sm">
-        <Icon icon={mod.kind === 'build' ? Hammer : Package} size={13} />
-        {mod.category?.name ?? (mod.kind === 'build' ? m.common_term_builds() : m.common_term_mods())}
-      </span>
-      {
-        entry.createdDuringJam && (
-          <span class="inline-flex items-center gap-1.5 rounded-full border border-primary/40 bg-night-975/70 px-2.5 py-1 text-xs font-semibold text-primary backdrop-blur-sm">
-            <Icon icon={Sparkles} size={13} />
-            {m.jams_entry_during()}
-          </span>
-        )
-      }
-    </div>
   </div>
 
   <div class="flex flex-1 flex-col gap-3 p-4">
     <div class="flex flex-col gap-1">
-      <h3 class="font-display-caps text-2xl leading-none text-fg">
+      <h3 class="text-lg font-bold text-fg">
         <a
           href={href(mod.canonicalPath, locale)}
           class="outline-none after:absolute after:inset-0 after:z-0 after:content-[''] focus-visible:after:ring-2 focus-visible:after:ring-focus"
@@ -99,11 +78,19 @@ const description = mod.shortDescription.trim();
           ))
         }
       </p>
+      {
+        (mod.category || entry.createdDuringJam) && (
+          <p class="text-xs text-fg-muted">
+            {mod.category?.name ?? (mod.kind === 'build' ? m.common_term_builds() : m.common_term_mods())}
+            {entry.createdDuringJam && ` · ${m.jams_entry_during()}`}
+          </p>
+        )
+      }
     </div>
     {description && <p class="line-clamp-2 text-sm text-fg-muted">{description}</p>}
     {
       entry.notesHtml && (
-        <details class="relative z-10 rounded-md border border-border bg-sunken/50 px-3 text-sm">
+        <details class="relative z-10 border-t border-border text-sm">
           <summary class="min-h-11 cursor-pointer list-none py-3 font-semibold text-fg marker:hidden md:min-h-10 md:py-2.5">
             {m.jams_entry_notes()}
           </summary>
@@ -112,7 +99,7 @@ const description = mod.shortDescription.trim();
       )
     }
     <div class="mt-auto flex flex-col gap-3">
-      <p class="flex items-center gap-x-4 font-mono text-xs text-fg-subtle tabular-nums">
+      <p class="flex items-center gap-x-4 text-xs text-fg-subtle tabular-nums">
         <span class="inline-flex items-center gap-1.5">
           <Icon icon={Download} size={13} />
           {formatCompactNumber(locale, mod.downloads)}

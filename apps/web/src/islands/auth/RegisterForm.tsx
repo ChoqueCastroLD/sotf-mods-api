@@ -7,7 +7,7 @@
  * handle, breached password) mapped back onto their fields.
  *
  * On success the API has already signed the user in (session cookie) and queued the verification
- * email: the island switches to «Day 1 on the island» with the 3 onboarding cards (Welcome.tsx).
+ * email: the island switches to the welcome screen (Welcome.tsx).
  */
 import { type Locale, localizePath } from '@sotf/i18n';
 import { Button } from '@sotf/ui/button';

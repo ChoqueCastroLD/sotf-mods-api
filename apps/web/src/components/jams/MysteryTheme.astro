@@ -1,44 +1,22 @@
 ---
 /**
- * The teaser of a theme that is still secret: sealed look, the reveal date and the promise. Used
- * in the hero of a jam and on its card; `variant="chip"` is the one-line version.
+ * The line shown while a theme is still secret: when it will be revealed.
  */
 import { formatDate } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
-import { Icon } from '@sotf/ui/icons';
-import { LockKeyhole } from 'lucide-react';
 
 interface Props {
   revealAt?: string | null;
-  variant?: 'chip' | 'panel';
   class?: string;
 }
 
-const { revealAt = null, variant = 'panel', class: className } = Astro.props;
+const { revealAt = null, class: className } = Astro.props;
 const locale = Astro.locals.locale;
 const reveal = revealAt ? m.jams_mystery_reveal({ date: formatDate(locale, revealAt, 'medium') }) : m.jams_theme_hidden();
 ---
 
-{
-  variant === 'chip' ? (
-    <p class:list={['inline-flex items-center gap-2 text-sm font-semibold text-night-100', className]}>
-      <Icon icon={LockKeyhole} size={16} className="text-primary" />
-      {m.jams_theme_hidden_short()}
-    </p>
-  ) : (
-    <div
-      class:list={[
-        'relative flex items-center gap-3 overflow-hidden rounded-lg border border-dashed border-primary/50 bg-night-975/55 px-4 py-3 backdrop-blur-sm',
-        className,
-      ]}
-    >
-      <span class="grid size-10 shrink-0 place-items-center rounded-full bg-primary/15 text-primary ring-1 ring-primary/40">
-        <Icon icon={LockKeyhole} size={20} />
-      </span>
-      <div class="min-w-0">
-        <p class="font-display-caps text-lg leading-tight text-night-50">{m.jams_mystery_title()}</p>
-        <p class="text-sm text-night-200">{reveal}</p>
-      </div>
-    </div>
-  )
-}
+<p class:list={['flex flex-wrap items-baseline gap-x-2 text-sm', className]}>
+  <span class="text-fg-muted">{m.jams_theme_heading()}</span>
+  <span class="font-semibold text-fg">{m.jams_mystery_title()}</span>
+  <span class="text-fg-muted">{reveal}</span>
+</p>

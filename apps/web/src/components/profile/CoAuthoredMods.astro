@@ -19,15 +19,15 @@ const locale = Astro.locals.locale;
 {
   items.length > 0 && (
     <section aria-labelledby="coauthored-title" class="grid gap-3">
-      <h2 id="coauthored-title" class="font-display-caps text-display-xs text-fg">
+      <h2 id="coauthored-title" class="text-xl font-bold text-fg">
         {m.mod_knowledge_profile_title({ name })}
       </h2>
-      <ul class="grid gap-2 sm:grid-cols-2">
+      <ul class="grid gap-x-8 sm:grid-cols-2">
         {items.map((item) => (
           <li>
             <a
               href={href(item.mod.canonicalPath, locale)}
-              class="flex min-h-11 items-center justify-between gap-3 rounded-lg border border-border bg-surface px-4 py-2 hover:border-border-strong"
+              class="flex min-h-11 items-center justify-between gap-3 border-b border-border py-2 hover:text-link"
             >
               <span class="grid min-w-0">
                 <span class="truncate font-semibold text-fg">{item.mod.name}</span>

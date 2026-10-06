@@ -1,6 +1,6 @@
 ---
 title: Sons of the Forest modları nasıl kurulur
-seoTitle: Sons of the Forest modları nasıl kurulur (2026) — RedLoader rehberi
+seoTitle: Sons of the Forest modları nasıl kurulur (2026): RedLoader rehberi
 description: RedLoader’ı RedManager ile kur, modları Mods klasörüne koy ve oyunda kontrol et. Antivirüs uyarıları ve yamalar için çözümler içeren adım adım rehber.
 tldr: Mod yükleyicisi RedLoader’ı RedManager ile (ya da elle) kur, her modu oyun klasöründeki Mods klasörüne koy ve oyunu başlat. RedManager, SOTF Mods’taki herhangi bir modu tek tıkla kurabilir. Yaklaşık üç dakika sürer; aşağıdaki rehber her adımı ve sık karşılaşılan sorunları anlatıyor.
 anchors: [check, redloader, mods, verify, antivirus, bepinex, update, dedicated, troubleshooting, oneclick]
@@ -27,7 +27,7 @@ faq:
   - q: Oyun dosyaları nerede?
     a: Steam’de Sons of the Forest’a sağ tıkla, Yönet’i ve ardından Yerel dosyalara göz at’ı seç. Açılan klasörde SonsOfTheForest.exe bulunur; RedLoader ve modların oraya gider.
   - q: Oyun güncellemesinden sonra modlar çalışır mı?
-    a: Her zaman değil. Bir yama, güncellenene kadar RedLoader’ı veya bazı modları bozabilir. Patch Radar güncel oyun sürümünü, RedLoader durumunu ve oyuncuların çalıştığını doğruladığı popüler modları gösterir.
+    a: Her zaman değil. Bir yama, güncellenene kadar RedLoader’ı veya bazı modları bozabilir. Modun güncel oyun sürümünde çalışıp çalışmadığını görmek için mod sayfasına, yorumlara ve incelemelere bak.
 ---
 
 # Oyununu kontrol et
@@ -39,7 +39,7 @@ Oyun klasörünü bul: Steam’de **Sons of the Forest**’a sağ tıkla → **Y
 `C:\Program Files (x86)\Steam\steamapps\common\Sons Of The Forest`
 
 > [!TIP]
-> Oyun yeni mi güncellendi? Önce [Patch Radar](/patch-radar)’a bak: RedLoader’ın ve popüler modların yeni sürümde çalışıp çalışmadığını gösterir.
+> Oyun yeni mi güncellendi? Modun yeni sürümde çalışıp çalışmadığını görmek için mod sayfasına, yorumlara ve incelemelere bak.
 
 # RedLoader’ı kur
 
@@ -94,7 +94,7 @@ Bir dosyaya güvenmeden önce:
 - **Sağlama toplamını karşılaştır.** SOTF Mods’taki her sürüm dosyanın SHA-256 değerini gösterir. Windows’ta PowerShell’de `Get-FileHash .\dosya.zip` (ya da `certutil -hashfile dosya.zip SHA256`) çalıştır ve sonucu karşılaştır.
 - **Taramaya bak.** Yayımlanan her sürüm VirusTotal ile taranır; rapor sürüm sayfasında bağlantılıdır. Dosyayı [VirusTotal](https://www.virustotal.com)’e kendin de yükleyebilirsin.
 
-Her şey tutuyorsa dosyayı karantinadan geri alabilir ve **yalnızca oyun klasörü için** bir istisna ekleyebilirsin. Antivirüsünü asla tamamen kapatma. Bir şey yanlış görünüyorsa modu sayfasından bildir: korucular bildirimleri hızla inceler.
+Her şey tutuyorsa dosyayı karantinadan geri alabilir ve **yalnızca oyun klasörü için** bir istisna ekleyebilirsin. Antivirüsünü asla tamamen kapatma. Bir şey yanlış görünüyorsa modu sayfasından bildir: moderatörler bildirimleri hızla inceler.
 
 # BepInEx mi RedLoader mı?
 
@@ -107,7 +107,7 @@ SOTF Mods, **RedLoader** için modları listeler. BepInEx için yapılmış modl
 
 **Bir modu güncelle:** RedManager mevcut güncellemeleri gösterir. Elle yapıyorsan yeni sürümü indir ve eski dosyaların üzerine yaz. Önce değişiklik günlüğünü oku: bazı güncellemeler yeni bir kütüphane ya da temiz bir yapılandırma ister.
 
-**RedLoader’ı güncelle:** RedManager’ı kullan ya da yeni sürümü eskisinin üzerine çıkar. Bir oyun yamasından sonra, [Patch Radar](/patch-radar) RedLoader’ın yeni sürümde çalıştığını gösterene kadar bekle.
+**RedLoader’ı güncelle:** RedManager’ı kullan ya da yeni sürümü eskisinin üzerine çıkar. Bir oyun yamasından sonra oyun açılmıyorsa RedLoader’ın yeni bir sürümünü bekle.
 
 **Bir modu kaldır:** `.dll` dosyasını ve klasörünü `Mods` içinden sil. Önce mod sayfasına bak: bazı modlar oyunun ortasında güvenle kaldırılamaz.
 
@@ -131,7 +131,7 @@ RedLoader çalışmıyor. Dosyalarının `SonsOfTheForest.exe`’nin yanında (a
 
 ## Oyun açılışta çöküyor ya da kapanıyor
 
-Bu genellikle bir oyun güncellemesinden sonra olur. Güncel sürümde RedLoader’ın durumuna [Patch Radar](/patch-radar)’dan bak. Sorunlu modu bulmak için tüm modları `Mods` klasöründen çıkar ve birkaç tane birkaç tane geri ekle.
+Bu genellikle bir oyun güncellemesinden sonra olur. [RedLoader sürümleri](https://github.com/ToniMacaroni/RedLoader/releases) arasında yeni oyun sürümünü destekleyen bir sürüm ara. Sorunlu modu bulmak için tüm modları `Mods` klasöründen çıkar ve onları birkaçar birkaçar geri ekle.
 
 ## Bir mod listede görünmüyor
 

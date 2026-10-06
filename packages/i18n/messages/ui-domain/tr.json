@@ -180,5 +180,6 @@
   "ui_domain_reaction_laugh": "Gülme",
   "ui_domain_reaction_party": "Kutlama",
   "ui_domain_reaction_pray": "Teşekkürler",
-  "ui_domain_reaction_fire": "Ateş"
+  "ui_domain_reaction_fire": "Ateş",
+  "ui_domain_trusted": "Güvenilir"
 }

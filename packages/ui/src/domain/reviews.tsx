@@ -16,7 +16,7 @@ import { Icon } from '../icons.tsx';
 import { ProseLocator } from './content.tsx';
 import type { ReviewDTO, ReviewsSummaryDTO } from './contracts.ts';
 import { formatCount, formatDate, formatDateTime, formatRating, useDomainI18n, useProfileHref } from './i18n.ts';
-import { RankStamp, TrustedMark } from './stamps.tsx';
+import { TrustedMark } from './stamps.tsx';
 
 export interface StarRatingProps {
   /** 0–5 (fractions allowed). */
@@ -41,7 +41,7 @@ export function StarRating({ value, size = 16, showValue = false, className }: S
           ))}
         </span>
         <span
-          className="absolute inset-y-0 start-0 flex overflow-hidden text-featured"
+          className="absolute inset-y-0 start-0 flex overflow-hidden text-warning"
           style={{ width: `${(clamped / 5) * 100}%` }}
           aria-hidden="true"
         >
@@ -73,9 +73,7 @@ export function RatingHistogram({ summary, className }: RatingHistogramProps) {
       <div className="flex flex-col gap-1">
         {summary.showStars && summary.average !== null ? (
           <>
-            <p className="font-display-caps text-display-sm leading-none tabular-nums">
-              {formatRating(locale, summary.average)}
-            </p>
+            <p className="text-3xl font-bold leading-none tabular-nums">{formatRating(locale, summary.average)}</p>
             <StarRating value={summary.average} />
           </>
         ) : (
@@ -93,14 +91,14 @@ export function RatingHistogram({ summary, className }: RatingHistogramProps) {
                 <th scope="row" className="w-10 py-0.5 pe-2 text-start font-normal text-fg-muted">
                   <span className="inline-flex items-center gap-0.5">
                     {star}
-                    <Icon icon={Star} size={12} className="fill-current text-featured" />
+                    <Icon icon={Star} size={12} className="fill-current text-warning" />
                     <span className="sr-only">{t('ui_domain_reviews_stars', { count: star })}</span>
                   </span>
                 </th>
                 <td className="py-0.5">
                   <span className="block h-1.5 w-full rounded-full bg-fg/8">
                     <span
-                      className="block h-full rounded-full bg-featured"
+                      className="block h-full rounded-full bg-warning"
                       style={{ width: `${(count / max) * 100}%` }}
                     />
                   </span>
@@ -132,11 +130,7 @@ export function ReviewCard({ review, creatorName, actions, headingLevel = 3, cla
   const author = review.author;
   const name = author?.displayName ?? t('ui_domain_deleted_user');
   return (
-    <article
-      data-review-id={review.id}
-      data-status={review.status}
-      className={cn('flex flex-col gap-3 rounded-lg border border-border bg-surface p-4 md:p-5', className)}
-    >
+    <article data-review-id={review.id} data-status={review.status} className={cn('flex flex-col gap-3', className)}>
       {review.status === 'hidden' ? (
         <p className="flex items-center gap-1.5 rounded-sm bg-warning-soft px-2 py-1 text-xs text-warning">
           <Icon icon={EyeOff} size={14} />
@@ -154,8 +148,7 @@ export function ReviewCard({ review, creatorName, actions, headingLevel = 3, cla
             ) : (
               <span className="font-semibold text-fg-muted">{name}</span>
             )}
-            {author?.verifiedCreator ? <TrustedMark size={14} /> : null}
-            {author?.survivorRank ? <RankStamp rank={author.survivorRank} size="sm" className="ms-1" /> : null}
+            {author?.verifiedCreator ? <TrustedMark /> : null}
           </p>
           <p className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs text-fg-muted">
             <time dateTime={review.createdAt} title={formatDateTime(locale, review.createdAt, timeZone)}>
@@ -189,7 +182,7 @@ export function ReviewCard({ review, creatorName, actions, headingLevel = 3, cla
         {actions ? <div className="ms-auto flex items-center gap-2">{actions}</div> : null}
       </footer>
       {review.authorReply ? (
-        <section className="ms-4 flex flex-col gap-1.5 border-s-2 border-primary ps-4">
+        <section className="ms-4 flex flex-col gap-1.5 border-s-2 border-border-strong ps-4">
           <p className="flex items-center gap-1.5 text-xs text-fg-muted">
             <Icon icon={CornerDownRight} size={14} />
             <span className="font-semibold text-fg">

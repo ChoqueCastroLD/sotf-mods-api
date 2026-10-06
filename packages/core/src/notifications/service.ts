@@ -25,6 +25,7 @@ import { publishNotificationNotice } from '../realtime/index.ts';
 import { deterministicUuid } from './ids.ts';
 import { forcedEmail, preferencesFor } from './preferences.ts';
 import type { NotificationData, NotificationDraft, NotificationPlan, Retraction } from './rules.ts';
+import { HIDDEN_NOTIFICATION_TYPES, isHiddenNotificationType } from './visibility.ts';
 
 export interface NotifyDeps {
   db: Database;
@@ -48,8 +49,16 @@ export const INSTANT_FLUSH_SECONDS = 30;
 /** Data keys that are bookkeeping, not message values (hidden from the DTO). */
 export const INTERNAL_DATA_KEYS = ['keys', 'inApp', 'targetTitle', 'targetPath', 'legacy'] as const;
 
-/** SQL predicate: the row is visible in the bell and `/signals`. */
-export const visibleNotification = sql`NOT (${notification.data} @> '{"inApp":false}'::jsonb)`;
+/**
+ * SQL predicate: the row is visible in the bell and `/signals` (in-app channel on, type not in
+ * `HIDDEN_NOTIFICATION_TYPES`).
+ */
+export const visibleNotification = sql`(NOT (${notification.data} @> '{"inApp":false}'::jsonb) AND ${
+  notification.type
+} NOT IN (${sql.join(
+  HIDDEN_NOTIFICATION_TYPES.map((type) => sql`${type}`),
+  sql`, `,
+)}))`;
 
 export async function unreadCount(db: Executor, userId: number): Promise<number> {
   const [row] = await db
@@ -206,10 +215,13 @@ async function writeDraft(
 export async function writeNotificationDrafts(
   tx: Executor,
   deps: Pick<NotifyDeps, 'jobs' | 'clock'>,
-  drafts: readonly NotificationDraft[],
+  allDrafts: readonly NotificationDraft[],
   keyPrefix: string,
 ): Promise<Pick<NotifyResult, 'created' | 'grouped' | 'skipped'>> {
   const result = { created: 0, grouped: 0, skipped: 0 };
+  // Hidden types (gamification, kits, Patch Radar) are never created any more.
+  const drafts = allDrafts.filter((d) => !isHiddenNotificationType(d.type));
+  result.skipped += allDrafts.length - drafts.length;
   if (drafts.length === 0) return result;
   const now = deps.clock.now();
   const recipients = [...new Set(drafts.map((d) => d.userId))];
@@ -360,7 +372,8 @@ export async function applyNotificationPlan(
     result.grouped += chunk.grouped;
     result.skipped += chunk.skipped;
   }
-  if (plan.broadcast) result.broadcast = await writeBroadcast(deps, plan.broadcast);
+  if (plan.broadcast && !isHiddenNotificationType(plan.broadcast.type))
+    result.broadcast = await writeBroadcast(deps, plan.broadcast);
   return result;
 }
 

@@ -1,7 +1,7 @@
 /**
- * Onboarding module (WP-60, T0-33): `GET /me/onboarding` and `PATCH /me/onboarding` («Day 1 on the
- * island» checklist). Private responses. The optional `Sotf-Time-Zone` request header (the
- * browser's IANA zone) is stored for the `night-owl` badge.
+ * Onboarding module (WP-60, T0-33): `GET /me/onboarding` and `PATCH /me/onboarding` (the old
+ * checklist state). Private responses. The optional `Sotf-Time-Zone` request header is stored but
+ * nothing uses it any more.
  */
 import { gamificationEndpoints } from '@sotf/contracts/gamification';
 import { getOnboarding, TIME_ZONE_HEADER, updateOnboarding } from '@sotf/core/gamification/index';

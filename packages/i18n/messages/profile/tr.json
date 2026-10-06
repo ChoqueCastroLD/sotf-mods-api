@@ -240,5 +240,16 @@
   "profile_badge_jam_podium_name": "Jam Podyumu",
   "profile_badge_jam_podium_hint": "Bir Mod Jam'de bir kategoride ilk 3'e gir. Birden çok kez kazanılabilir.",
   "profile_badge_jam_champion_name": "Jam Şampiyonu",
-  "profile_badge_jam_champion_hint": "Bir Mod Jam'i genel klasmanda kazan. Birden çok kez kazanılabilir."
+  "profile_badge_jam_champion_hint": "Bir Mod Jam'i genel klasmanda kazan. Birden çok kez kazanılabilir.",
+  "profile_member_since": "{date} tarihinden beri üye",
+  "profile_trusted": "Güvenilir",
+  "profile_role_moderator": "Moderatör",
+  "profile_role_admin": "Yönetici",
+  "profile_stat_published_label": "Yayınlanan modlar",
+  "profile_stat_reviews_label": "İncelemeler",
+  "profile_meta_title_user": "{name} (@{handle})",
+  "profile_meta_description_user": "{name}, Sons of the Forest mod topluluğu SOTF Mods’ta: {reviews, plural, one {# inceleme} other {# inceleme}}.",
+  "profile_cards_empty_text": "{name} burada henüz bir şey yayınlamadı.",
+  "profile_follow_done": "Takip ediyorsun. Yeni bir şey yayınladığında bildirim alacaksın.",
+  "profile_search_type_users": "Kullanıcılar"
 }

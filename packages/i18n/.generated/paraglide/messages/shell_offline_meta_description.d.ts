@@ -3,7 +3,7 @@ export type Shell_Offline_Meta_DescriptionInputs = {};
 /**
 * | output |
 * | --- |
-* | "No connection right now. Try again when you are back in range." |
+* | "No connection right now. Try again when you are back online." |
 *
 * @param {Shell_Offline_Meta_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

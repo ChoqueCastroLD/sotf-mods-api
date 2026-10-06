@@ -1,7 +1,7 @@
 ---
 /**
  * Sticky action bar of the mod page on phones (T0-08): Download (primary, with the version) ·
- * Follow ♥ · More (a bottom sheet with Install, + Kit, Compare, Share, Versions, Report). It sits
+ * Follow · More (a bottom sheet with Install, Versions, Share, Report). It sits
  * above the site's tab bar and follows it down when the tab bar hides while scrolling
  * (`html[data-scroll-dir=down]`), respecting `safe-area-inset-bottom`. A spacer keeps the footer
  * reachable. Hidden from `md` up (the header actions are visible there).
@@ -15,7 +15,7 @@ import { Icon } from '@sotf/ui/icons';
 import { Download, Ellipsis, Heart, History } from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
 import type { ModDetailDTO } from './data.ts';
-import { versionsPagePath } from './format.ts';
+import { isShortVersion, versionsPagePath } from './format.ts';
 import { FOCUS_RING } from './styles.ts';
 
 interface Props {
@@ -44,15 +44,15 @@ const SIDE =
           href={latest.downloadPath}
           rel="nofollow"
           data-download={latest.version}
-          class="inline-flex h-12 min-w-0 flex-1 items-center justify-center gap-2 rounded-md bg-primary px-4 font-semibold text-primary-fg shadow-glow hover:bg-primary-hover active:bg-primary-hover"
+          class="inline-flex h-12 min-w-0 flex-1 items-center justify-center gap-2 rounded-md bg-primary px-4 font-medium text-primary-fg hover:bg-primary-hover active:bg-primary-hover"
         >
           <Icon icon={Download} size={18} />
-          <span class="truncate">{m.common_download_version_short({ version: latest.version })}</span>
+          <span class="truncate">{isShortVersion(latest.version) ? m.common_download_version_short({ version: latest.version }) : m.common_action_download()}</span>
         </a>
       ) : (
         <a
           href={href(versionsPagePath(mod), locale)}
-          class="inline-flex h-12 min-w-0 flex-1 items-center justify-center gap-2 rounded-md border border-border-strong bg-raised px-4 font-semibold text-fg"
+          class="inline-flex h-12 min-w-0 flex-1 items-center justify-center gap-2 rounded-md border border-border-strong bg-raised px-4 font-medium text-fg"
         >
           <Icon icon={History} size={18} />
           <span class="truncate">{m.mod_tab_versions()}</span>

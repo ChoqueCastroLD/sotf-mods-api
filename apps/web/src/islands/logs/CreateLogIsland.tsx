@@ -323,7 +323,7 @@ function Result({
     >
       <header className="flex items-center gap-2">
         <Icon icon={Check} size={20} className="text-success" />
-        <h2 id="log-done-title" className="font-display-caps text-lg text-fg">
+        <h2 id="log-done-title" className="text-lg font-bold text-fg">
           {labels.done_title}
         </h2>
       </header>

@@ -1,26 +1,24 @@
 ---
 /**
- * Cinematic hero of a jam: the season's painting under dark scrims, the phase, the title in the
- * display face, the theme (or the sealed-theme teaser), and a glass panel with the countdown to
- * the next milestone and the actions.
+ * Header of a jam: phase, entries, title, tagline, theme (or the sealed-theme line) and, beside
+ * it, the countdown to the next milestone and the actions.
  *
  * - `mode="detail"`: the `h1` of `/jams/:slug`; the `actions` slot holds the island mount.
- * - `mode="hub"`: a featured jam of `/jams`; `h2`, a call to action link and the stage trail.
- * All text sits on fixed dark scrims, so it reads the same in the Night and Day themes.
+ * - `mode="hub"`: the featured jam of `/jams`; `h2`, a call to action link and the stage row.
  */
 import type { JamSummaryDTO } from '@sotf/contracts/jams';
 import { formatDate, formatNumber } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
+import { buttonClasses } from '@sotf/ui/button';
 import { Icon } from '@sotf/ui/icons';
-import { ArrowRight, Users } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
 import Countdown from './Countdown.astro';
 import { type JamResultsDTO, winnerOf } from './data.ts';
-import JamArt from './JamArt.astro';
 import JamStepper from './JamStepper.astro';
 import MysteryTheme from './MysteryTheme.astro';
 import PhaseBadge from './PhaseBadge.astro';
-import { accentHex, jamArtName, nextDeadline } from './phase.ts';
+import { nextDeadline } from './phase.ts';
 import WinnerSpotlight from './WinnerSpotlight.astro';
 
 interface Props {
@@ -34,8 +32,6 @@ interface Props {
 const { jam, mode, results = null, resultsAnchor } = Astro.props;
 const locale = Astro.locals.locale;
 const Heading = mode === 'detail' ? 'h1' : 'h2';
-const accent = accentHex(jam.accent);
-const art = jamArtName(jam);
 const deadline = nextDeadline(jam);
 const finished = jam.phase === 'results' || jam.phase === 'archived';
 const winner = winnerOf(results);
@@ -49,53 +45,28 @@ const CTA: Record<string, () => string> = {
   archived: () => m.jams_cta_results(),
 };
 const ctaLabel = (CTA[jam.phase] ?? CTA.announced)?.() ?? m.jams_cta_view();
-const primaryCta =
-  'inline-flex h-12 items-center justify-center gap-2 rounded-md bg-primary px-6 font-semibold text-primary-fg shadow-glow transition-colors duration-(--dur-fast) hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus';
+const showSide = mode === 'detail' || deadline !== null || finished;
 ---
 
-<section
-  class="relative isolate overflow-hidden rounded-2xl border border-white/10 bg-night-975 text-night-50"
-  aria-labelledby={mode === 'detail' ? 'jam-title' : `jam-hero-${jam.slug}`}
->
-  <div class="absolute inset-0 -z-20" aria-hidden="true">
-    <JamArt name={art} priority={true} sizes="(min-width: 1536px) 1536px, 100vw" />
-  </div>
-  <div
-    class="absolute inset-0 -z-10"
-    aria-hidden="true"
-    style={`background:
-      linear-gradient(to top, #090F0C 0%, rgb(9 15 12 / 0.82) 32%, rgb(9 15 12 / 0.25) 72%, rgb(9 15 12 / 0.1) 100%),
-      linear-gradient(to right, rgb(9 15 12 / 0.78) 0%, rgb(9 15 12 / 0.35) 55%, transparent 100%),
-      radial-gradient(60% 70% at 15% 105%, ${accent}38, transparent 70%);`}
-  >
-  </div>
-
-  <div
-    class:list={[
-      'relative grid gap-8 p-5 pt-24 sm:p-8 sm:pt-28 md:p-10 md:pt-32 lg:grid-cols-[minmax(0,1.35fr)_minmax(0,1fr)] lg:items-end lg:gap-12',
-      mode === 'detail' ? 'lg:pt-40' : 'lg:pt-32',
-    ]}
-  >
-    <div class="flex min-w-0 flex-col items-start gap-4">
-      <div class="flex flex-wrap items-center gap-2">
-        <PhaseBadge phase={jam.phase} onArt={true} />
-        <span class="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-night-975/70 px-3 py-1 text-xs font-semibold text-night-100 backdrop-blur-sm">
-          <Icon icon={Users} size={14} />
-          {m.jams_entries_count({ count: jam.entryCount })}
-        </span>
+<section aria-labelledby={mode === 'detail' ? 'jam-title' : `jam-hero-${jam.slug}`} class="flex flex-col gap-6">
+  <div class:list={['grid gap-6', showSide && 'lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:gap-12']}>
+    <div class="flex min-w-0 flex-col items-start gap-3">
+      <div class="flex flex-wrap items-center gap-3">
+        <PhaseBadge phase={jam.phase} />
+        <span class="text-sm text-fg-muted">{m.jams_entries_count({ count: jam.entryCount })}</span>
       </div>
       <Heading
         id={mode === 'detail' ? 'jam-title' : `jam-hero-${jam.slug}`}
-        class="font-display-caps text-display-md text-night-50 [text-shadow:0_2px_24px_rgb(0_0_0/0.55)] md:text-display-lg"
+        class="text-3xl font-bold text-balance text-fg md:text-4xl"
       >
         {jam.title}
       </Heading>
-      {jam.tagline && <p class="max-w-[38rem] text-base text-night-100 md:text-lg">{jam.tagline}</p>}
+      {jam.tagline && <p class="max-w-(--container-prose) text-base text-fg-muted md:text-lg">{jam.tagline}</p>}
       {
         jam.theme ? (
-          <p class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-            <span class="readout text-primary">{m.jams_theme_heading()}</span>
-            <span class="font-display-caps text-2xl leading-none text-night-50 md:text-3xl">{jam.theme}</span>
+          <p class="flex flex-wrap items-baseline gap-x-2 text-base">
+            <span class="text-fg-muted">{m.jams_theme_heading()}</span>
+            <span class="font-bold text-fg">{jam.theme}</span>
           </p>
         ) : jam.themeHidden ? (
           <MysteryTheme revealAt={jam.submissionsOpenAt} />
@@ -103,49 +74,43 @@ const primaryCta =
       }
       {
         mode === 'hub' && (
-          <a href={href(`/jams/${jam.slug}`, locale)} class={`${primaryCta} mt-2`}>
+          <a href={href(`/jams/${jam.slug}`, locale)} class={buttonClasses({ variant: 'primary', size: 'lg', className: 'mt-2' })}>
             {ctaLabel}
-            <Icon icon={ArrowRight} size={18} />
+            <Icon icon={ArrowRight} size={18} className="rtl:rotate-180" />
           </a>
         )
       }
     </div>
 
     {
-      (mode === 'detail' || deadline !== null || finished) && (
-    <div class="flex min-w-0 flex-col gap-4 rounded-xl border border-white/10 bg-night-975/60 p-4 backdrop-blur-md md:p-5">
-      {deadline && <Countdown deadline={deadline} />}
-      {
-        !deadline && finished && (
-          <div class="flex flex-col gap-3">
-            {winner && <WinnerSpotlight placement={winner} link={mode === 'detail'} onArt={true} />}
-            {results && (
-              <p class="font-mono text-xs text-night-200 tabular-nums">
-                {m.jams_results_summary({
-                  participants: results.participants,
-                  voters: results.voters,
-                })}
-              </p>
-            )}
-            {!results && jam.resultsPublishedAt && (
-              <p class="font-mono text-xs text-night-200 tabular-nums">
-                {formatDate(locale, jam.resultsPublishedAt, 'medium')} · {formatNumber(locale, jam.entryCount)}
-              </p>
-            )}
-            {mode === 'detail' && resultsAnchor && results && results.overall.length > 0 && (
-              <a href={resultsAnchor} class={primaryCta}>
-                {m.jams_cta_results()}
-                <Icon icon={ArrowRight} size={18} className="rotate-90" />
-              </a>
-            )}
-          </div>
-        )
-      }
-      <slot name="actions" />
-    </div>
+      showSide && (
+        <div class="flex min-w-0 flex-col gap-4 lg:border-s lg:border-border lg:ps-10">
+          {deadline && <Countdown deadline={deadline} />}
+          {!deadline && finished && (
+            <div class="flex flex-col gap-3">
+              {winner && <WinnerSpotlight placement={winner} link={mode === 'detail'} />}
+              {results && (
+                <p class="text-sm text-fg-muted tabular-nums">
+                  {m.jams_results_summary({ participants: results.participants, voters: results.voters })}
+                </p>
+              )}
+              {!results && jam.resultsPublishedAt && (
+                <p class="text-sm text-fg-muted tabular-nums">
+                  {formatDate(locale, jam.resultsPublishedAt, 'medium')} · {formatNumber(locale, jam.entryCount)}
+                </p>
+              )}
+              {mode === 'detail' && resultsAnchor && results && results.overall.length > 0 && (
+                <a href={resultsAnchor} class={buttonClasses({ variant: 'secondary', size: 'md', className: 'self-start' })}>
+                  {m.jams_cta_results()}
+                </a>
+              )}
+            </div>
+          )}
+          <slot name="actions" />
+        </div>
       )
     }
   </div>
 
-  {mode === 'hub' && <JamStepper jam={jam} tone="art" class="relative mx-4 mb-4 sm:mx-8 sm:mb-8 md:mx-10 md:mb-10" />}
+  <JamStepper jam={jam} />
 </section>

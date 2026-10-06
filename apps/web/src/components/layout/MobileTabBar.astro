@@ -1,61 +1,90 @@
 ---
 /**
- * MobileTabBar (research/03 §5.4, < md): Explore · Builds · **Search** (centre) · Kits · You.
- * Real links (works without JavaScript). Phone: an edge-to-edge bar with the search action lifted
- * out of it like a GPS ping button; from `sm` up (large phones in landscape, small tablets) the
- * same bar floats as a centred dock instead of stretching. Safe-area aware (home indicator,
- * landscape notch), 44 px+ targets, slides away while scrolling down (`html[data-scroll-dir]`,
- * `lib/client/chrome.ts`) and returns on the first upward flick.
+ * Bottom tab bar of phones (< md): Mods, Builds, Search, Notifications (Log in for guests) and
+ * Account (Register for guests). Plain: five equal tabs, icon and label, the current one in the
+ * accent colour. Real links (works without JavaScript); the Account tab opens the account menu
+ * (`HeaderAccount.astro`, drawn as a bottom sheet on phones) and the Search tab opens the Ctrl+K
+ * palette full screen (`islands/cmdk/Trigger.ts`).
  *
- * The current destination is marked by the «Locator» waypoint: an orange diamond on the bar's top
- * edge (a real element, so it glides between tabs across pages through a view transition) and a
- * soft glow behind the icon. Pressing a tab sinks the icon and tints a disc behind it;
- * `lib/client/chrome.ts` adds a short vibration where the platform has one.
+ * The page HTML is the same for everyone, so both the guest and the signed-in tabs are rendered:
+ * `html[data-signed-in]` (set by `scripts/account-hint.ts`) decides which pair shows. The bar slides
+ * away while scrolling down (`html[data-scroll-dir]`, `lib/client/chrome.ts`) and returns on the
+ * first upward flick. Safe-area aware, 44 px+ targets.
  */
 import { m } from '@sotf/i18n/messages';
 import { Icon } from '@sotf/ui/icons';
-import { Backpack, Compass, DraftingCompass, Package, Search } from 'lucide-react';
+import { Bell, CircleUser, Hammer, LogIn, Package, Search, UserPlus } from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
-import { isCurrentPath } from './nav-items.ts';
+import { isCurrentPath, PATHS } from './nav-items.ts';
 
 const locale = Astro.locals.locale;
 const current = Astro.locals.pagePath.split('?', 1)[0] ?? '/';
-const isCurrent = (path: string, extra: readonly string[] = []) =>
-  isCurrentPath(current, path) || extra.some((alias) => isCurrentPath(current, alias));
-
-const TABS = [
-  { path: '/mods', label: m.common_nav_explore(), icon: Compass },
-  { path: '/builds', label: m.common_term_builds(), icon: DraftingCompass },
-  { path: '/search', label: m.common_search_label(), icon: Search, primary: true },
-  { path: '/kits', label: m.common_term_kits(), icon: Package },
-  { path: '/me/backpack', label: m.common_nav_you(), icon: Backpack, alias: ['/me', '/basecamp', '/settings', '/signals'] },
-] as const;
+const on = (...paths: string[]) => paths.some((path) => isCurrentPath(current, path));
+const loginHref = `${href(PATHS.login, locale)}?next=${encodeURIComponent(Astro.locals.pagePath)}`;
+const accountPaths = [PATHS.dashboard, '/settings', '/me', PATHS.moderation, PATHS.profile];
 ---
 
 <nav data-tab-bar aria-label={m.common_nav_label()} class="tabbar md:hidden">
   <ul class="tabbar-list">
-    {
-      TABS.map((tab) => {
-        const primary = 'primary' in tab && tab.primary;
-        const active = isCurrent(tab.path, 'alias' in tab ? tab.alias : []);
-        return (
-          <li class="flex">
-            <a
-              href={href(tab.path, locale)}
-              aria-current={active ? 'page' : undefined}
-              data-tab={primary ? 'primary' : 'item'}
-              class="tab"
-            >
-              <span class="tab-icon">
-                <Icon icon={tab.icon} size={primary ? 24 : 22} />
-              </span>
-              <span class:list={['tab-label', primary && 'sr-only']}>{tab.label}</span>
-              {active && !primary && <span class="loc-pip tab-pip" aria-hidden="true" />}
-            </a>
-          </li>
-        );
-      })
-    }
+    <li>
+      <a
+        href={href(PATHS.mods, locale)}
+        class="tab"
+        aria-current={on(PATHS.mods, '/') && !on(PATHS.search) ? 'page' : undefined}
+      >
+        <Icon icon={Package} size={22} />
+        <span class="tab-label">{m.common_term_mods()}</span>
+      </a>
+    </li>
+    <li>
+      <a href={href(PATHS.builds, locale)} class="tab" aria-current={on(PATHS.builds) ? 'page' : undefined}>
+        <Icon icon={Hammer} size={22} />
+        <span class="tab-label">{m.common_term_builds()}</span>
+      </a>
+    </li>
+    <li>
+      <a href={href(PATHS.search, locale)} class="tab" aria-current={on(PATHS.search) ? 'page' : undefined}>
+        <Icon icon={Search} size={22} />
+        <span class="tab-label">{m.shell_nav_search()}</span>
+      </a>
+    </li>
+    <li data-tab-guest>
+      <a href={loginHref} class="tab" aria-current={on(PATHS.login) ? 'page' : undefined}>
+        <Icon icon={LogIn} size={22} />
+        <span class="tab-label">{m.shell_nav_login()}</span>
+      </a>
+    </li>
+    <li data-tab-guest>
+      <a href={href(PATHS.register, locale)} class="tab" aria-current={on(PATHS.register) ? 'page' : undefined}>
+        <Icon icon={UserPlus} size={22} />
+        <span class="tab-label">{m.shell_nav_register()}</span>
+      </a>
+    </li>
+    <li data-tab-user>
+      <a href={PATHS.notifications} class="tab" aria-current={on(PATHS.notifications) ? 'page' : undefined}>
+        <span class="relative flex">
+          <Icon icon={Bell} size={22} />
+          <span
+            data-tab-unread
+            hidden
+            class="absolute -top-1 -end-2 min-w-4 rounded-full bg-primary px-1 text-center text-2xs leading-4 font-semibold text-primary-fg tabular-nums"
+          ></span>
+        </span>
+        <span class="tab-label">{m.shell_nav_notifications()}</span>
+      </a>
+    </li>
+    <li data-tab-user>
+      <button
+        type="button"
+        popovertarget="account-menu"
+        class="tab"
+        aria-haspopup="menu"
+        aria-current={on(...accountPaths) ? 'page' : undefined}
+      >
+        <Icon icon={CircleUser} size={22} />
+        <span class="tab-label">{m.shell_nav_account()}</span>
+      </button>
+    </li>
   </ul>
 </nav>
 
@@ -68,16 +97,9 @@ const TABS = [
     padding-inline: max(var(--safe-left), var(--safe-right));
     padding-block-end: var(--safe-bottom);
     border-block-start: 1px solid var(--color-border);
-    background: color-mix(in oklab, var(--color-surface) 97%, transparent);
-    box-shadow: 0 -12px 28px -18px var(--elev-color);
+    background: var(--color-surface);
     transition: transform var(--dur-slow) var(--ease-out);
     view-transition-name: tab-bar;
-  }
-  @supports (backdrop-filter: blur(1px)) {
-    .tabbar {
-      background: color-mix(in oklab, var(--color-surface) 90%, transparent);
-      backdrop-filter: blur(18px) saturate(1.3);
-    }
   }
   .tabbar-list {
     display: grid;
@@ -86,113 +108,48 @@ const TABS = [
     margin-inline: auto;
     max-inline-size: 32rem;
   }
-  /* Larger phones in landscape and small tablets: a centred floating dock, not a stretched bar. */
-  @media (min-width: 40rem) {
-    .tabbar {
-      inset-inline: 0;
-      inset-block-end: max(0.75rem, var(--safe-bottom));
-      margin-inline: auto;
-      inline-size: min(28rem, calc(100% - 2rem));
-      padding-inline: 0.25rem;
-      padding-block-end: 0;
-      border: 1px solid var(--color-border-strong);
-      border-radius: var(--radius-2xl);
-      box-shadow: var(--shadow-lg);
-    }
-    .tabbar-list {
-      block-size: 3.75rem;
-    }
+  .tabbar-list > li {
+    display: flex;
+  }
+  /* Guest or signed in: the account hint script sets `html[data-signed-in]`. */
+  .tabbar-list > [data-tab-user] {
+    display: none;
+  }
+  :global(html[data-signed-in]) .tabbar-list > [data-tab-user] {
+    display: flex;
+  }
+  :global(html[data-signed-in]) .tabbar-list > [data-tab-guest] {
+    display: none;
   }
 
   .tab {
-    position: relative;
     display: flex;
     flex: 1;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.125rem;
+    gap: 0.25rem;
     min-block-size: 2.75rem;
     color: var(--color-fg-muted);
     font-size: var(--text-2xs);
     font-weight: 500;
-    letter-spacing: 0.01em;
     outline-offset: -4px;
-    border-radius: var(--radius-lg);
     -webkit-user-select: none;
     user-select: none;
+  }
+  .tab:active {
+    background: color-mix(in oklab, var(--color-fg) 8%, transparent);
+  }
+  .tab[aria-current='page'] {
+    color: var(--color-primary);
   }
   .tab-label {
     line-height: 1rem;
   }
-  .tab-icon {
-    position: relative;
-    display: grid;
-    place-items: center;
-    inline-size: 3.25rem;
-    block-size: 1.875rem;
-    border-radius: 999px;
-    transition:
-      transform 90ms var(--ease-out),
-      background-color 140ms var(--ease-out),
-      color 140ms var(--ease-out);
-  }
-  /* Pressed: the icon sinks and a disc tints behind it (a hardware-key feel). */
-  .tab:active .tab-icon {
-    background-color: color-mix(in oklab, var(--color-fg) 14%, transparent);
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .tab:active .tab-icon {
-      transform: scale(0.88);
-    }
-  }
-  /* Current destination: signal orange, soft glow behind the icon, label at full strength. */
-  .tab[aria-current='page'] {
-    color: var(--color-fg);
-  }
-  .tab[aria-current='page'] .tab-icon {
-    color: var(--color-primary);
-    background: radial-gradient(
-      closest-side,
-      color-mix(in oklab, var(--color-primary) 26%, transparent),
-      transparent
-    );
-  }
-  .tab-pip {
-    --loc-vt: tab-pip;
-    inset-block-end: auto;
-    inset-block-start: -4px;
-  }
-
-  /* The centre action: lifted out of the bar, ringed by the bar colour so it reads as cut in. */
-  .tab[data-tab='primary'] {
-    min-block-size: 3rem;
-    overflow: visible;
-  }
-  .tab[data-tab='primary'] .tab-icon {
-    inline-size: 3.5rem;
-    block-size: 3.5rem;
-    margin-block-start: -1.5rem;
-    color: var(--color-primary-fg);
-    background: var(--color-primary);
-    border: 4px solid var(--color-bg);
-    box-shadow:
-      0 0 0 1px color-mix(in oklab, var(--color-primary) 55%, transparent),
-      0 10px 22px -8px var(--glow-color);
-  }
-  .tab[data-tab='primary']:active .tab-icon {
-    background: var(--color-primary-hover);
-  }
-  .tab[data-tab='primary'][aria-current='page'] .tab-icon {
-    color: var(--color-primary-fg);
-    background: var(--color-primary);
-    outline: 2px solid var(--color-fg);
-    outline-offset: 2px;
-  }
 
   /* Hide while scrolling down (set by the chrome script); focus inside keeps it visible. */
   :global(html[data-scroll-dir='down']) .tabbar:not(:focus-within) {
-    transform: translateY(calc(100% + 1.5rem + var(--safe-bottom)));
+    transform: translateY(calc(100% + var(--safe-bottom)));
   }
   @media (prefers-reduced-motion: reduce) {
     .tabbar {

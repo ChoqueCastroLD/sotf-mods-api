@@ -5,7 +5,8 @@
  * - trailing slash → 301 without it (never on `/`);
  * - a locale prefix on an unlocalized path (`/es/api/…`, `/es/basecamp`) or the explicit `/en/…`
  *   prefix → 301 to the canonical path;
- * - legacy static assets, the 2023-era routes, `/loader`, `/upload*` and `/@handle` → 301;
+ * - legacy static assets, the 2023-era routes, `/loader`, `/upload*`, `/@handle` and the removed
+ *   features (`/kits`, `/news`, `/best`…, see `REMOVED_FEATURES`) → 301;
  * - `/images/:file` and `/images/:file/preview` (2023 uploads) → 410.
  *
  * Out of scope here: `/mods/:u/:s.json` → oEmbed (WP-61), the `/mods?…` legacy query mapping
@@ -54,6 +55,36 @@ export const LEGACY_EXACT: Readonly<Record<string, string>> = {
   '/static/images/hd_thumbnail.png': '/brand/og-default.png',
 };
 
+/**
+ * Features removed by CLASSIC.md: first path segment → where it lands. Every path below the segment
+ * redirects too (`/kits/a/b`, `/k/abc123`, `/news/feed.xml`). The query string is dropped because the
+ * old parameters mean nothing on the target. `/badges/mods/:u/:s/:kind.svg` (README badges for mod
+ * embeds) is not a removed page and keeps working.
+ */
+export const REMOVED_FEATURES: Readonly<Record<string, string>> = {
+  kits: '/mods',
+  k: '/mods',
+  'patch-radar': '/mods',
+  best: '/mods',
+  compare: '/mods',
+  creators: '/mods',
+  news: '/',
+  achievements: '/',
+  badges: '/',
+  brand: '/',
+};
+
+/** Target of a removed feature path, or `null` when the path is not one (or must keep working). */
+export function removedFeatureTarget(pathname: string): string | null {
+  const first = pathname.split('/', 2)[1]?.toLowerCase() ?? '';
+  const target = REMOVED_FEATURES[first];
+  if (target === undefined) return null;
+  if (first === 'badges' && /^\/badges\/mods\/.+\.svg$/i.test(pathname)) return null;
+  // `/brand/logo.png` and the other static brand files are assets, not the retired page.
+  if (first === 'brand' && /\.[a-z0-9]+$/i.test(pathname)) return null;
+  return target;
+}
+
 const LEGACY_LOGO = /^\/static\/images\/logo[^/]*\.png$/i;
 const LEGACY_FAVICON = /^\/static\/images\/favicon[^/]*$/i;
 const LEGACY_IMAGE = /^\/images\/[^/]+(?:\/preview)?$/;
@@ -75,6 +106,8 @@ export function legacyRule(pathname: string, search: string, locale: Locale, met
     const location = localizeTarget(targetPath, locale) + (isAsset ? '' : search) + (hash ? `#${hash}` : '');
     return redirect(location, method);
   }
+  const removed = removedFeatureTarget(pathname);
+  if (removed !== null) return redirect(localizeTarget(removed, locale), method);
   if (LEGACY_LOGO.test(pathname)) return redirect('/brand/logo-horizontal-night.png', method);
   if (LEGACY_FAVICON.test(pathname)) return redirect('/favicon.svg', method);
   if (LEGACY_IMAGE.test(pathname)) return { kind: 'gone' };

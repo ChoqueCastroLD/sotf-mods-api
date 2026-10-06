@@ -1,12 +1,12 @@
 ---
 /**
- * Countdown to the next milestone of a jam, as four big readout cells (days, hours, minutes,
- * seconds). The server renders the time left at render time (the page is edge-cached for a few
- * minutes) so crawlers and visitors without JavaScript see a sensible figure next to the exact
- * date; `islands/jams/countdown.ts` then keeps it ticking. A ticking clock is never announced:
- * the cells are `aria-hidden` and the exact instant is in the visible `<time>` caption.
+ * Countdown to the next milestone of a jam: days, hours, minutes and seconds in one line. The
+ * server renders the time left at render time (the page is edge-cached for a few minutes) so
+ * crawlers and visitors without JavaScript see a sensible figure next to the exact date;
+ * `islands/jams/countdown.ts` then keeps it ticking. A ticking clock is never announced: the
+ * figures are `aria-hidden` and the exact instant is in the visible `<time>` caption.
  *
- * `compact` renders a single line (`2 d 04:12:09`) for cards.
+ * `compact` renders only the text (`2 d 04:12:09`) for lists.
  */
 import { formatDateTime } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
@@ -30,7 +30,7 @@ const parts = {
 };
 const pad = (value: number) => String(value).padStart(2, '0');
 const cells = [
-  { unit: 'd', value: String(parts.d).padStart(2, '0'), label: m.jams_unit_days() },
+  { unit: 'd', value: pad(parts.d), label: m.jams_unit_days() },
   { unit: 'h', value: pad(parts.h), label: m.jams_unit_hours() },
   { unit: 'm', value: pad(parts.m), label: m.jams_unit_minutes() },
   { unit: 's', value: pad(parts.s), label: m.jams_unit_seconds() },
@@ -40,37 +40,31 @@ const exact = `${formatDateTime(locale, deadline.at, 'medium', 'short')} UTC`;
 
 {
   compact ? (
-    <p class:list={['flex flex-wrap items-baseline gap-x-2 gap-y-1', className]}>
-      <span class="readout text-fg-muted">{deadlineLabel(deadline.kind)}</span>
+    <p class:list={['flex flex-wrap items-baseline gap-x-2 gap-y-1 text-sm', className]}>
+      <span class="text-fg-muted">{deadlineLabel(deadline.kind)}</span>
       <time
         datetime={deadline.at}
         data-jam-countdown={deadline.at}
         data-locale={locale}
-        class="font-mono text-sm font-semibold text-fg tabular-nums"
+        class="font-semibold text-fg tabular-nums"
       >
         {exact}
       </time>
     </p>
   ) : (
     <div class:list={['flex flex-col gap-2', className]}>
-      <p class="readout text-night-200">{deadlineLabel(deadline.kind)}</p>
-      <div class="flex items-stretch gap-1.5 sm:gap-2" data-jam-clock={deadline.at} aria-hidden="true">
-        {cells.map((cell, index) => (
-          <>
-            {index > 0 && <span class="self-center pb-5 font-mono text-lg text-primary/80 max-sm:hidden sm:text-xl">:</span>}
-            <div class="flex min-w-0 flex-1 flex-col items-center gap-1 rounded-md border border-white/10 bg-night-975/60 px-1.5 py-2 sm:min-w-[4.5rem] sm:flex-none sm:px-2">
-              <span
-                data-unit={cell.unit}
-                class="font-display-caps text-[1.75rem] leading-none text-night-50 tabular-nums sm:text-[2.5rem]"
-              >
-                {cell.value}
-              </span>
-              <span class="readout text-night-300">{cell.label}</span>
-            </div>
-          </>
+      <p class="text-sm text-fg-muted">{deadlineLabel(deadline.kind)}</p>
+      <div class="flex items-baseline gap-4 sm:gap-5" data-jam-clock={deadline.at} aria-hidden="true">
+        {cells.map((cell) => (
+          <div class="flex items-baseline gap-1">
+            <span data-unit={cell.unit} class="text-3xl font-bold tabular-nums text-fg sm:text-4xl">
+              {cell.value}
+            </span>
+            <span class="text-sm text-fg-muted lowercase">{cell.label}</span>
+          </div>
         ))}
       </div>
-      <time datetime={deadline.at} class="font-mono text-xs text-night-200 tabular-nums">
+      <time datetime={deadline.at} class="text-xs text-fg-muted tabular-nums">
         {exact}
       </time>
     </div>

@@ -25,7 +25,7 @@
   "logs_err_archive": "Arkivet gick inte att läsa.",
   "logs_err_network": "Servern kunde inte nås. Kontrollera anslutningen och försök igen.",
   "logs_err_turnstile": "Kontrollen att du är människa misslyckades. Försök igen.",
-  "logs_err_rate": "För många förfrågningar — försök igen om {seconds} s",
+  "logs_err_rate": "För många förfrågningar. Försök igen om {seconds} s",
   "logs_err_busy": "Loggdelning är överbelastad just nu. Försök igen om några minuter.",
   "logs_err_generic": "Något gick fel. Försök igen.",
   "logs_done_title": "Din logg är klar",

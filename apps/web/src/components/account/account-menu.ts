@@ -1,7 +1,7 @@
 /**
  * Account menu of the header (vanilla, public pages: PLAN §8.2 JS ≤ 15 KB). Fills the menu rendered
  * by `HeaderAccount.astro` from the `sotf:account` event of `scripts/account-hint.ts`:
- * name and handle, the profile link, unread Signals, Ranger Station for moderators and admins,
+ * name and handle, the profile link, the unread notification count, Moderation for moderators and admins,
  * and the «verify your email» reminder with a resend button. The native `popover` gives Esc,
  * light dismiss and focus return; the sign-out form keeps the page to come back to.
  */
@@ -30,7 +30,11 @@ export function fillAccountMenu(menu: HTMLElement, summary: MeSummary): void {
   const badge = menu.querySelector('[data-menu-unread]');
   setText(menu, '[data-menu-unread-count]', unread > 99 ? '99+' : String(unread));
   show(badge, unread > 0);
-  show(menu.querySelector('[data-menu-ranger]'), STAFF_ROLES.has(summary.role));
+  // The phone tab bar carries the same count on its Notifications tab.
+  const tabBadge = menu.ownerDocument.querySelector('[data-tab-unread]');
+  if (tabBadge) tabBadge.textContent = unread > 99 ? '99+' : String(unread);
+  show(tabBadge, unread > 0);
+  show(menu.querySelector('[data-menu-moderation]'), STAFF_ROLES.has(summary.role));
   show(menu.querySelector('[data-menu-unverified]'), !summary.emailVerified);
 }
 

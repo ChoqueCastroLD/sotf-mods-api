@@ -58,9 +58,9 @@ const creatorName = mod.author.displayName || mod.author.handle;
     <button
       type="button"
       data-dialog-open="reviews-sheet"
-      class="flex min-h-12 w-full items-center gap-3 rounded-lg border border-border bg-raised px-3 text-start font-semibold text-fg active:bg-fg/8"
+      class="flex min-h-12 w-full items-center gap-3 rounded-md border border-border px-3 text-start font-medium text-fg active:bg-fg/8"
     >
-      <Icon icon={Star} size={18} className="text-featured" />
+      <Icon icon={Star} size={18} className="text-fg-muted" />
       <span class="min-w-0 flex-1">{m.entity_reviews_see_all({ count: summary.count })}</span>
       <Icon icon={ChevronRight} size={18} className="text-fg-subtle rtl:rotate-180" />
     </button>

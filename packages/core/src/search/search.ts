@@ -65,7 +65,7 @@ WITH input AS (
          )::float8 AS sim,
          word_similarity(i.qn, lower(public.sotf_unaccent(m."name")))::float8 AS wsim
     FROM "Mod" m CROSS JOIN input i
-   WHERE m."status" = 'published' AND m."userId" IS NOT NULL
+   WHERE m."status" IN ('published', 'pending') AND m."userId" IS NOT NULL
 )
 SELECT "id", "exact", "fts", "sim", "wsim" FROM scored
  WHERE "exact" OR "matched" OR "sim" >= $2 OR "wsim" >= $3`;

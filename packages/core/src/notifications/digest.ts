@@ -28,6 +28,7 @@ import {
 import { forcedEmail, isNotificationType, preferenceMatrix } from './preferences.ts';
 import { loadUserRefs } from './refs.ts';
 import { createUnsubscribeToken, type UnsubscribeScope, unsubscribeUrls } from './unsubscribe.ts';
+import { isHiddenNotificationType } from './visibility.ts';
 
 export type DigestCadence = Exclude<EmailFrequency, 'off'>;
 
@@ -186,7 +187,7 @@ export async function sendSignalEmails(deps: DigestDeps, cadence: DigestCadence)
       const drop: number[] = [];
       const send: PendingRow[] = [];
       for (const row of pending) {
-        if (!isNotificationType(row.type)) {
+        if (!isNotificationType(row.type) || isHiddenNotificationType(row.type)) {
           drop.push(row.id);
           continue;
         }

@@ -116,7 +116,8 @@ test.describe('@platform', () => {
     for (const path of [
       '/favicon.svg',
       '/favicon.ico',
-      '/brand/topo.svg',
+      '/brand/logo-sm.webp',
+      '/brand/logo.png',
       '/brand/field-kit.svg',
       '/manifest.webmanifest',
     ]) {

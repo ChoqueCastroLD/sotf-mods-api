@@ -6,7 +6,7 @@
  */
 import { z } from 'zod';
 import { DISCORD_EVENTS } from './admin.ts';
-import { EntityId, IsoDate, IsoDateTime, SitePath, Uuid } from './common.ts';
+import { EntityId, IsoDateTime, SitePath, Uuid } from './common.ts';
 import { DomainEventSchema } from './domain-events.ts';
 import { CacheTagSchema } from './internal.ts';
 import { TRANSLATION_LOCALES } from './translations.ts';
@@ -43,7 +43,6 @@ export const JOB_PAYLOADS = {
       .optional()
       .describe('Deletes this zip instead (the bundle was detached)'),
   }),
-  'bundle.sweep': z.object({}),
   'security.rescan': z.object({}),
   'markdown.rerender': z.object({
     batchSize: z.number().int().min(1).max(1000).default(200).describe('Mods re-rendered per run'),
@@ -80,16 +79,6 @@ export const JOB_PAYLOADS = {
   'stats.trending': z.object({}),
   'legacy.counters': z.object({}),
   'compat.aggregate': z.object({ modVersionId: EntityId, gameBuildId: EntityId.optional() }),
-  'compat.reconcile': z.object({}),
-  'compat.uptime-probe': z.object({}),
-  // Gamification
-  'gamification.evaluate': z.object({
-    userId: EntityId.optional(),
-    eventId: Uuid.optional(),
-    nightly: z.boolean().default(false),
-  }),
-  'awards.mod-of-week': z.object({ weekStart: IsoDate.optional() }),
-  'milestones.check': z.object({ modId: EntityId.optional() }),
   // Accounts
   'account.export': z.object({ exportId: Uuid }),
   'account.delete': z.object({ userId: EntityId.optional().describe('Omit for the daily sweep of due deletions') }),
@@ -141,9 +130,6 @@ export const JOB_SCHEDULES: ReadonlyArray<{
   { queue: 'notifications.digest', cron: '0 7 * * *', key: 'daily', data: { frequency: 'daily' } },
   { queue: 'notifications.digest', cron: '0 8 * * 1', key: 'weekly', data: { frequency: 'weekly' } },
   { queue: 'creator.weekly', cron: '0 9 * * 1', key: 'weekly', data: {} },
-  { queue: 'awards.mod-of-week', cron: '5 0 * * 1', key: 'weekly', data: {} },
-  { queue: 'gamification.evaluate', cron: '30 3 * * *', key: 'nightly', data: { nightly: true } },
-  { queue: 'milestones.check', cron: '45 * * * *', key: 'hourly', data: {} },
   { queue: 'accounts.trust-level', cron: '15 3 * * *', key: 'nightly', data: {} },
   { queue: 'account.delete', cron: '0 4 * * *', key: 'daily', data: {} },
   { queue: 'cleanup.sessions', cron: '10 4 * * *', key: 'daily', data: {} },
@@ -161,18 +147,26 @@ export const JOB_SCHEDULES: ReadonlyArray<{
   { queue: 'translation.sweep', cron: '*/30 * * * *', key: 'every-30m', data: {} },
   // Only after the cut-over (`POST_CUTOVER_QUEUES`): drains legacy mentions every 10 minutes.
   { queue: 'legacy.mentions', cron: '*/10 * * * *', key: 'every-10m', data: {} },
-  // After `accounts.trust-level` (03:15): weights follow the reporters' new flags.
-  { queue: 'compat.reconcile', cron: '20 3 * * *', key: 'nightly', data: {} },
   // Re-enqueues scans left `pending` for 6 h (a lost or dropped job).
   { queue: 'security.rescan', cron: '35 * * * *', key: 'hourly', data: {} },
-  // Regenerates the official bundles whose items published a new version.
-  { queue: 'bundle.sweep', cron: '*/15 * * * *', key: 'every-15m', data: {} },
   // Descriptions rendered with an older `RENDER_VERSION` (a pipeline bump) are re-rendered.
   { queue: 'markdown.rerender', cron: '0 5 * * *', key: 'nightly', data: {} },
   { queue: 'ops.alerts', cron: '*/5 * * * *', key: 'every-5m', data: {} },
   { queue: 'jam.advance', cron: '* * * * *', key: 'every-minute', data: {} },
-  // Patch Radar uptime (T1-20): one sample per platform component every 5 minutes.
-  { queue: 'compat.uptime-probe', cron: '*/5 * * * *', key: 'every-5m', data: {} },
+];
+
+/**
+ * Schedules of queues that no longer exist (gamification, Patch Radar and kit features removed in
+ * the Classic redesign). pg-boss keeps schedules in the database, so the worker deletes these on
+ * start; otherwise they would keep enqueuing jobs nobody handles.
+ */
+export const RETIRED_JOB_SCHEDULES: ReadonlyArray<{ queue: string; key: string }> = [
+  { queue: 'awards.mod-of-week', key: 'weekly' },
+  { queue: 'gamification.evaluate', key: 'nightly' },
+  { queue: 'milestones.check', key: 'hourly' },
+  { queue: 'compat.reconcile', key: 'nightly' },
+  { queue: 'compat.uptime-probe', key: 'every-5m' },
+  { queue: 'bundle.sweep', key: 'every-15m' },
 ];
 
 /** Queues that only run after the cut-over (`LEGACY_COEXIST=false`, PLAN §2.9). */
@@ -196,7 +190,6 @@ export const JOB_PAYLOAD_EXAMPLES: { readonly [Q in Exclude<JobQueue, 'domain.ev
   'build.extract': { uploadId: '0192f3a5-1b2c-7d3e-8f40-5a6b7c8d9e0f', modVersionId: 589 },
   'build.geometry': { modVersionId: 589 },
   'bundle.build': { bundleId: 3 },
-  'bundle.sweep': {},
   'security.rescan': {},
   'markdown.rerender': { batchSize: 200 },
   'cdn.purge': { tags: ['mod:20', 'home'], reason: 'event:mod.updated' },
@@ -210,11 +203,6 @@ export const JOB_PAYLOAD_EXAMPLES: { readonly [Q in Exclude<JobQueue, 'domain.ev
   'stats.trending': {},
   'legacy.counters': {},
   'compat.aggregate': { modVersionId: 412, gameBuildId: 7 },
-  'compat.reconcile': {},
-  'compat.uptime-probe': {},
-  'gamification.evaluate': { userId: 301 },
-  'awards.mod-of-week': { weekStart: '2026-09-28' },
-  'milestones.check': { modId: 20 },
   'account.export': { exportId: '0192f3a6-2c3d-7e4f-9a51-6b7c8d9e0f1a' },
   'account.delete': {},
   'accounts.trust-level': {},

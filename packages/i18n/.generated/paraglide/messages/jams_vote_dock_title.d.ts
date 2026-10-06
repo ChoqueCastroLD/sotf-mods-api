@@ -3,7 +3,7 @@ export type Jams_Vote_Dock_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Your ballot" |
+* | "Voting" |
 *
 * @param {Jams_Vote_Dock_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

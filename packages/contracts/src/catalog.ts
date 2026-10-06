@@ -92,6 +92,9 @@ export const ModCardDTO = dto(
     userId: EntityId,
     userHandle: Handle,
     userDisplayName: z.string(),
+    userAvatarUrl: HttpUrl.nullable()
+      .optional()
+      .describe('Avatar of the author (96 px); absent in answers of older API versions'),
     verifiedCreator: z.boolean(),
     category: CategoryRefDTO.nullable(),
     shortDescription: z.string(),
@@ -100,6 +103,7 @@ export const ModCardDTO = dto(
     downloads: Count.describe('All-time downloads, including the legacy history'),
     downloads7d: Count,
     followers: Count,
+    commentsCount: Count.optional().describe('Visible comments; absent in answers of older API versions'),
     ratingAvg: z.number().min(1).max(5).nullable().describe('Mean of visible reviews; null without reviews'),
     ratingCount: Count,
     compatStatus: CompatStatus,
@@ -128,6 +132,7 @@ export const ModCardDTO = dto(
         userId: 12,
         userHandle: 'imaxel',
         userDisplayName: 'ImAxel',
+        userAvatarUrl: 'https://r2.sotf-mods.com/media/0192f3a4-7c1e-7b9a-9e1d-2c4f6a8b0c1d/96.webp',
         verifiedCreator: true,
         category: {
           slug: 'quality-of-life',
@@ -141,6 +146,7 @@ export const ModCardDTO = dto(
         downloads: 117_719,
         downloads7d: 1_542,
         followers: 24,
+        commentsCount: 31,
         ratingAvg: 4.6,
         ratingCount: 14,
         compatStatus: 'works',
@@ -266,6 +272,7 @@ export const MOD_SORTS = [
   'rating',
   'follows',
   'comments',
+  'week',
   'relevance',
 ] as const;
 export const ModSort = z.enum(MOD_SORTS);
@@ -292,6 +299,9 @@ export const ModListQuery = PageQuery.extend({
   minRating: wireInt({ min: 1, max: 5 }).optional(),
   hasSource: wireFlag('Only mods with a source link'),
   verified: wireFlag('Only verified creators'),
+  unapproved: wireFlag(
+    'List `pending` mods whose automated checks passed (instead of published ones); same rule that makes a pending mod reachable by URL',
+  ),
   author: Handle.optional(),
   nsfw: wireFlag('Include NSFW (ignored without opt-in)'),
   q: z.string().trim().max(100).optional(),
@@ -619,7 +629,8 @@ export const catalogEndpoints = {
     method: 'GET',
     path: `${base}/mods`,
     summary: 'Explore mods, libraries and builds',
-    description: 'Only `published` items. Include/exclude facets, sorts and counts (`facets=1`).',
+    description:
+      'Only `published` items (or, with `unapproved=1`, `pending` ones whose checks passed). Include/exclude facets, sorts (`week` = downloads in the last 7 days) and counts (`facets=1`).',
     auth: 'public',
     query: ModListQuery,
     response: ModListDTO,

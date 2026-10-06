@@ -1,5 +1,6 @@
 import { ModListQuery } from '@sotf/contracts/catalog';
 import { describe, expect, it } from 'vitest';
+import { assertReachable } from './detail.ts';
 import { runListQuery, sortEntries } from './listing.ts';
 import { relatedEntries } from './related.ts';
 import type { AuthorInfo, CatalogEntry, CatalogSnapshot, CategoryInfo, TagInfo } from './snapshot.ts';
@@ -267,6 +268,76 @@ describe('Explore listing', () => {
     ]);
     expect(ids(runListQuery(snapshot, query({ sort: 'relevance' }), NOW, relevance).items)).toEqual([4, 1]);
     expect(ids(sortEntries([...catalog.slice(0, 4)], 'downloads', 'asc', undefined))).toEqual([3, 4, 1, 2]);
+  });
+});
+
+describe('Unapproved listing', () => {
+  const pendingCatalog = [
+    entry({ id: 1, status: 'published', downloads: 100 }),
+    entry({ id: 2, status: 'pending', latestChecks: 'passed', downloads: 5, downloads7d: 3 }),
+    entry({ id: 3, status: 'pending', latestChecks: 'passed', downloads: 9, downloads7d: 1 }),
+    entry({ id: 4, status: 'pending', latestChecks: 'failed', downloads: 50 }),
+    entry({ id: 5, status: 'pending', latestChecks: null, downloads: 50 }),
+    entry({ id: 6, status: 'pending', latestChecks: 'passed', nsfw: true, downloads: 7 }),
+    entry({ id: 7, status: 'pending', latestChecks: 'passed', userId: 2, downloads: 7 }),
+    entry({ id: 8, status: 'rejected', latestChecks: 'passed', downloads: 7 }),
+    entry({ id: 9, status: 'unlisted', latestChecks: 'passed', downloads: 7 }),
+  ];
+  const pendingSnapshot = snapshotOf(pendingCatalog);
+
+  it('never mixes pending mods into the default listing', () => {
+    expect(ids(runListQuery(pendingSnapshot, query({ type: 'all' }), NOW).items)).toEqual([1]);
+  });
+
+  it('lists only pending mods whose checks passed, from visible authors, without NSFW', () => {
+    const r = runListQuery(pendingSnapshot, query({ type: 'all', unapproved: '1', sort: 'downloads' }), NOW);
+    expect(ids(r.items)).toEqual([3, 2]);
+    expect(r.total).toBe(2);
+  });
+
+  it('applies the same visibility rule as the mod page (reachable by URL)', () => {
+    const reachable = pendingCatalog.filter((e) => {
+      try {
+        assertReachable(pendingSnapshot, e);
+        return e.status === 'pending';
+      } catch {
+        return false;
+      }
+    });
+    const listed = runListQuery(pendingSnapshot, query({ type: 'all', unapproved: '1', nsfw: '1' }), NOW).items;
+    // NSFW opt-in adds the NSFW one; hidden authors stay out of both.
+    expect(ids(listed).sort()).toEqual([2, 3, 6]);
+    expect(
+      ids(reachable)
+        .filter((id) => id !== 7)
+        .sort(),
+    ).toEqual([2, 3, 6]);
+  });
+
+  it('keeps filters, facets and sorts working', () => {
+    const r = runListQuery(pendingSnapshot, query({ type: 'all', unapproved: 'true', sort: 'week', facets: '1' }), NOW);
+    expect(ids(r.items)).toEqual([2, 3]);
+    expect(r.facets?.category).toEqual([{ value: 'quality-of-life', count: 2 }]);
+    expect(
+      runListQuery(pendingSnapshot, query({ type: 'all', unapproved: '1', category: 'gameplay' }), NOW).total,
+    ).toBe(0);
+  });
+
+  it('parses the flag like the other flags', () => {
+    expect(query({}).unapproved).toBeUndefined();
+    expect(query({ unapproved: '1' }).unapproved).toBe(true);
+    expect(query({ unapproved: '0' }).unapproved).toBe(false);
+  });
+});
+
+describe('week sort', () => {
+  it('orders by downloads of the last 7 days, then all-time downloads', () => {
+    const list = [
+      entry({ id: 1, downloads: 1000, downloads7d: 5 }),
+      entry({ id: 2, downloads: 10, downloads7d: 50 }),
+      entry({ id: 3, downloads: 500, downloads7d: 5 }),
+    ];
+    expect(ids(runListQuery(snapshotOf(list), query({ sort: 'week' }), NOW).items)).toEqual([2, 1, 3]);
   });
 });
 

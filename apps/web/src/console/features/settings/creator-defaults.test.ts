@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest';
 import { initialCreatorDefaults } from './CreatorScreen.tsx';
-import { FEATURED_MAX, toggleFeatured } from './FeaturedBadgesCard.tsx';
 
 describe('initialCreatorDefaults', () => {
   const empty = { defaultLicense: null, replyTemplates: [] };
@@ -25,18 +24,5 @@ describe('initialCreatorDefaults', () => {
     expect(
       initialCreatorDefaults({ ...empty, defaultLicense: 'wtfpl' }, { license: null, templates: [] }).saved.license,
     ).toBeNull();
-  });
-});
-
-describe('toggleFeatured', () => {
-  it('adds and removes keys keeping the order', () => {
-    expect(toggleFeatured(['a', 'b'], 'c')).toEqual(['a', 'b', 'c']);
-    expect(toggleFeatured(['a', 'b', 'c'], 'b')).toEqual(['a', 'c']);
-  });
-
-  it('never exceeds the limit', () => {
-    const full = Array.from({ length: FEATURED_MAX }, (_, index) => `k${index}`);
-    expect(toggleFeatured(full, 'extra')).toEqual(full);
-    expect(toggleFeatured(full, 'k0')).toHaveLength(FEATURED_MAX - 1);
   });
 });

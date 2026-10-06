@@ -10,19 +10,19 @@ const en_jams_results_method = /** @type {(inputs: Jams_Results_MethodInputs) =>
 };
 
 const es_jams_results_method = /** @type {(inputs: Jams_Results_MethodInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Las puntuaciones son promedios bayesianos. Una participación necesita al menos ${i?.min} votos para clasificarse.`)
+	return /** @type {LocalizedString} */ (`Las puntuaciones son medias bayesianas. Una participación necesita al menos ${i?.min} votos para entrar en la clasificación.`)
 };
 
 const de_jams_results_method = /** @type {(inputs: Jams_Results_MethodInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Die Wertungen sind bayessche Durchschnitte. Ein Beitrag braucht mindestens ${i?.min} Stimmen, um platziert zu werden.`)
+	return /** @type {LocalizedString} */ (`Die Wertung nutzt bayessche Durchschnitte. Ein Beitrag braucht mindestens ${i?.min} Stimmen, um platziert zu werden.`)
 };
 
 const fr_jams_results_method = /** @type {(inputs: Jams_Results_MethodInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Les notes sont des moyennes bayésiennes. Une participation doit recueillir au moins ${i?.min} votes pour être classée.`)
+	return /** @type {LocalizedString} */ (`Les scores sont des moyennes bayésiennes. Une participation doit avoir au moins ${i?.min} votes pour être classée.`)
 };
 
 const it_jams_results_method = /** @type {(inputs: Jams_Results_MethodInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`I punteggi sono medie bayesiane. Un'iscrizione richiede almeno ${i?.min} voti per essere classificata.`)
+	return /** @type {LocalizedString} */ (`I punteggi sono medie bayesiane. Un'iscrizione ha bisogno di almeno ${i?.min} voti per entrare in classifica.`)
 };
 
 const nl_jams_results_method = /** @type {(inputs: Jams_Results_MethodInputs) => LocalizedString} */ (i) => {
@@ -34,11 +34,11 @@ const pl_jams_results_method = /** @type {(inputs: Jams_Results_MethodInputs) =>
 };
 
 const pt_jams_results_method = /** @type {(inputs: Jams_Results_MethodInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`As notas são médias bayesianas. Uma inscrição precisa de pelo menos ${i?.min} votos para ser classificada.`)
+	return /** @type {LocalizedString} */ (`As notas são médias bayesianas. Uma inscrição precisa de pelo menos ${i?.min} votos para entrar na classificação.`)
 };
 
 const ru_jams_results_method = /** @type {(inputs: Jams_Results_MethodInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Оценки — байесовские средние. Чтобы попасть в рейтинг, работа должна набрать не менее ${i?.min} голосов.`)
+	return /** @type {LocalizedString} */ (`Оценки считаются как байесовские средние. Чтобы попасть в рейтинг, работа должна набрать не менее ${i?.min} голосов.`)
 };
 
 const sv_jams_results_method = /** @type {(inputs: Jams_Results_MethodInputs) => LocalizedString} */ (i) => {
@@ -46,15 +46,15 @@ const sv_jams_results_method = /** @type {(inputs: Jams_Results_MethodInputs) =>
 };
 
 const tr_jams_results_method = /** @type {(inputs: Jams_Results_MethodInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Puanlar Bayes ortalamasıdır. Bir başvurunun sıralamaya girmesi için en az ${i?.min} oy gerekir.`)
+	return /** @type {LocalizedString} */ (`Puanlar Bayesçi ortalamalardır. Bir başvurunun sıralanması için en az ${i?.min} oy gerekir.`)
 };
 
 const zh_jams_results_method = /** @type {(inputs: Jams_Results_MethodInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`分数为贝叶斯平均值。作品至少需要 ${i?.min} 票才能参与排名。`)
+	return /** @type {LocalizedString} */ (`评分采用贝叶斯平均。作品至少需要 ${i?.min} 票才会进入排名。`)
 };
 
 const ja_jams_results_method = /** @type {(inputs: Jams_Results_MethodInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`スコアはベイズ平均です。順位の対象になるには ${i?.min} 票以上が必要です。`)
+	return /** @type {LocalizedString} */ (`スコアはベイズ平均で計算されます。順位が付くには少なくとも ${i?.min} 票が必要です。`)
 };
 
 /**

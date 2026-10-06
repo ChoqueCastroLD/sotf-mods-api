@@ -25,7 +25,7 @@
   "logs_err_archive": "Bu arşiv okunamadı.",
   "logs_err_network": "Sunucuya ulaşılamadı. Bağlantınızı kontrol edip tekrar deneyin.",
   "logs_err_turnstile": "İnsan doğrulaması başarısız oldu. Tekrar deneyin.",
-  "logs_err_rate": "Çok fazla istek — {seconds} sn sonra tekrar deneyin",
+  "logs_err_rate": "Çok fazla istek. {seconds} sn sonra tekrar deneyin",
   "logs_err_busy": "Log paylaşımı şu anda yoğun. Birkaç dakika sonra tekrar deneyin.",
   "logs_err_generic": "Bir şeyler ters gitti. Tekrar deneyin.",
   "logs_done_title": "Logunuz hazır",

@@ -30,13 +30,11 @@ setPageCache(Astro, pageCache.static());
 >
   <div class="flex max-w-4xl flex-col gap-6">
     <header class="flex flex-col gap-2">
-      <h1 class="font-display-caps text-display-sm text-fg">{m.logs_heading()}</h1>
+      <h1 class="text-3xl font-bold text-fg md:text-4xl">{m.logs_heading()}</h1>
       <p class="max-w-(--container-prose) text-base text-pretty text-fg-muted">{m.logs_intro()}</p>
     </header>
-    <div class="flex items-start gap-3 rounded-xl border border-border bg-surface p-4 text-sm">
-      <span class="flex size-9 shrink-0 items-center justify-center rounded-full bg-signal-soft text-signal" aria-hidden="true">
-        <Icon icon={ShieldCheck} size={18} />
-      </span>
+    <div class="flex items-start gap-3 border-y border-border py-4 text-sm">
+      <Icon icon={ShieldCheck} size={18} className="mt-0.5 shrink-0 text-fg-muted" />
       <div class="flex min-w-0 flex-col gap-1">
         <p class="font-semibold text-fg">{m.logs_privacy_title()}</p>
         <p class="text-fg-muted">{m.logs_privacy_text()}</p>

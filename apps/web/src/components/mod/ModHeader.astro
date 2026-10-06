@@ -1,26 +1,23 @@
 ---
 /**
- * Mod header (research/03 §6.3, T0-08): cover 16:9 + gallery strip, h1, short description, author
- * with TrustedMark, fact chips (category, kind, licence, version, updated), stats (downloads, this
- * week, rating with ≥ 3 reviews, followers), the action bar and the compatibility line. On phones
- * the «At a glance» capsule collapses to one line with a «See all» link.
+ * Mod header, modelled on the old mod page: gallery on the left; on the right the title with the
+ * version, the short description, the author (avatar, name, Trusted tag), a plain stats row
+ * (downloads, followers, rating, updated) and the actions (`ActionBar`).
  *
- * `compact` (sub-pages): no gallery or description, smaller title; the action bar stays.
+ * `compact` (sub-pages): no gallery or description, smaller title; the actions stay.
  */
 import { categoryPath, profilePath } from '@sotf/contracts/seo';
 import { formatCompactNumber, formatDate, formatNumber } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import { Avatar } from '@sotf/ui/avatar';
-import { CompatBadge, displayName, GalleryStrip, StarRating, TrustedMark } from '@sotf/ui/domain';
-import { Icon } from '@sotf/ui/icons';
-import { CalendarClock, Download, Heart, Scale, Star, TrendingUp } from 'lucide-react';
+import { displayName, GalleryStrip, StarRating, TrustedMark } from '@sotf/ui/domain';
 import { href } from '../../lib/i18n.ts';
 import { loadModTranslation } from '../../lib/mod-translation.ts';
 import ActionBar from './ActionBar.astro';
 import type { ModDetailDTO, VersionDTO } from './data.ts';
-import { compatSentence, multiplayerLabel, platformLabel, reviewsPagePath } from './format.ts';
+import { isShortVersion, reviewsPagePath } from './format.ts';
 import GalleryCarousel from './GalleryCarousel.astro';
-import { licenseLabel, taxonomyName } from './i18n.ts';
+import { taxonomyName } from './i18n.ts';
 import TranslatedText from './TranslatedText.astro';
 
 interface Props {
@@ -37,24 +34,16 @@ const locale = Astro.locals.locale;
 const summary = mod.reviewsSummary;
 const author = mod.author;
 const authorName = author.displayName || author.handle;
-const build = mod.compatCurrent.gameBuild?.label ?? mod.latestVersion?.gameVersionDeclared ?? null;
-const loader = mod.latestVersion?.loaderVersionDeclared ?? null;
-const multiplayer = mod.multiplayerRole ? multiplayerLabel(mod.multiplayerRole) : null;
-const oneLine = [
-  build,
-  mod.platform ? platformLabel(mod.platform) : null,
-  multiplayer,
-  loader ? m.mod_capsule_loader_short({ version: loader }) : null,
-].filter((part): part is string => Boolean(part));
-// T1-25: the visitor's language version of the title and short description (the original stays
-// one click away). `resolveModPage` already fetched it (memoized per mod).
+// The visitor's language version of the title and short description (the original stays one
+// click away). `resolveModPage` already fetched it (memoized per mod).
 const translation = !compact && locale !== 'en' && mod.shortDescription ? await loadModTranslation(mod, locale) : null;
 const shownName = displayName(mod);
 const translatedName = shownName !== mod.name;
 const galleryLabel = m.mod_gallery_label({ name: mod.name });
+const stat = 'inline-flex items-center gap-1.5 tabular-nums';
 ---
 
-<header class:list={['grid grid-cols-1 gap-6', compact ? '' : 'md:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] md:items-start']}>
+<header class:list={['grid grid-cols-1 gap-6', compact ? '' : 'md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] md:items-start md:gap-8']}>
   {
     !compact && (
       <div class="grid min-w-0 gap-3">
@@ -78,27 +67,23 @@ const galleryLabel = m.mod_gallery_label({ name: mod.name });
 
   <div class="grid min-w-0 grid-cols-1 content-start gap-4">
     <div class="grid grid-cols-1 gap-2">
-      {
-        mod.kind === 'library' && (
-          <p class="readout text-signal">{m.mod_kind_library()}</p>
-        )
-      }
+      {mod.kind === 'library' && <p class="text-sm font-medium text-fg-muted">{m.mod_kind_library()}</p>}
       <h1
         class:list={[
-          'font-display-caps text-balance break-words text-fg [hyphens:auto]',
-          compact ? 'text-display-xs' : 'text-display-sm',
+          'text-balance break-words font-bold text-fg [hyphens:auto]',
+          compact ? 'text-2xl' : 'text-3xl leading-tight md:text-4xl',
         ]}
         lang={translatedName ? locale : (mod.contentLang ?? undefined)}
       >
         {compact ? <a href={overviewHref} class="hover:underline underline-offset-4">{shownName}</a> : shownName}
+        {mod.latestVersion && isShortVersion(mod.latestVersion.version) && (
+          <span class="ms-2 whitespace-nowrap align-baseline font-mono text-base font-normal text-fg-muted">v{mod.latestVersion.version}</span>
+        )}
       </h1>
       {
         translatedName && (
-          <p
-            class="flex items-baseline gap-2 text-sm text-fg-subtle"
-            data-original-name
-          >
-            <span class="readout shrink-0 text-2xs text-fg-subtle">{m.entity_original_label()}</span>
+          <p class="flex items-baseline gap-2 text-sm text-fg-subtle" data-original-name>
+            <span class="shrink-0">{m.entity_original_label()}</span>
             <span class="min-w-0 break-words text-base text-fg-muted" lang={mod.contentLang ?? 'en'} translate="no">{mod.name}</span>
           </p>
         )
@@ -124,45 +109,22 @@ const galleryLabel = m.mod_gallery_label({ name: mod.name });
       }
     </div>
 
-    <p class="flex flex-wrap items-center gap-x-3 gap-y-2 text-sm text-fg-muted">
+    <p class="flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-border pt-4 text-sm text-fg-muted">
       <a
         href={href(profilePath(author.handle), locale)}
         class="inline-flex min-h-6 items-center gap-2 font-semibold text-fg hover:underline underline-offset-3"
       >
         <Avatar name={authorName} id={author.id} src={author.avatarUrl} size={24} />
         <span>{authorName}</span>
-        {author.verifiedCreator && <TrustedMark size={16} />}
       </a>
+      {author.verifiedCreator && <TrustedMark />}
       {
         mod.category && (
-          <a
-            href={href(categoryPath(mod.category.slug), locale)}
-            class="inline-flex min-h-6 items-center rounded-full border border-border px-2.5 hover:border-border-strong hover:text-fg"
-          >
+          <a href={href(categoryPath(mod.category.slug), locale)} class="text-fg-muted underline-offset-3 hover:text-fg hover:underline">
             {taxonomyName(mod.category)}
           </a>
         )
       }
-      {
-        mod.license && (
-          <span class="inline-flex items-center gap-1">
-            <Icon icon={Scale} size={14} className="text-fg-subtle" />
-            <span class="sr-only">{m.mod_fact_license()}:</span>
-            {licenseLabel(mod.license)}
-          </span>
-        )
-      }
-      {
-        mod.latestVersion && (
-          <span class="inline-flex items-center gap-1 font-mono text-xs">
-            <span class="sr-only">{m.mod_fact_version()}:</span>v{mod.latestVersion.version}
-          </span>
-        )
-      }
-      <span class="inline-flex items-center gap-1">
-        <Icon icon={CalendarClock} size={14} className="text-fg-subtle" />
-        {m.mod_fact_updated({ date: formatDate(locale, mod.lastReleasedAt) })}
-      </span>
     </p>
 
     {
@@ -179,65 +141,30 @@ const galleryLabel = m.mod_gallery_label({ name: mod.name });
       )
     }
 
-    <dl class:list={['flex flex-wrap gap-x-5 gap-y-2 text-sm', compact && 'max-md:hidden']}>
-      <div class="inline-flex items-center gap-1.5">
-        <dt class="text-fg-subtle"><Icon icon={Download} size={16} /><span class="sr-only">{m.mod_stat_downloads()}</span></dt>
-        <dd class="tabular-nums text-fg">
-          <span aria-hidden="true" data-live="downloads-compact">{formatCompactNumber(locale, mod.downloads)}</span>
-          <span class="sr-only" data-live="downloads-full">{formatNumber(locale, mod.downloads)}</span>
-          <span class="text-fg-muted"> {m.mod_stat_downloads_total()}</span>
-        </dd>
-      </div>
-      {
-        mod.downloads7d > 0 && (
-          <div class="inline-flex items-center gap-1.5">
-            <dt class="text-fg-subtle"><Icon icon={TrendingUp} size={16} /><span class="sr-only">{m.mod_stat_this_week()}</span></dt>
-            <dd class="tabular-nums text-fg">
-              {m.mod_stat_this_week_value({ display: formatCompactNumber(locale, mod.downloads7d) })}
-            </dd>
-          </div>
-        )
-      }
+    <ul class:list={['flex flex-wrap gap-x-5 gap-y-2 text-sm text-fg-muted', compact && 'max-md:hidden']}>
+      <li class={stat} title={formatNumber(locale, mod.downloads)}>
+        <span class="text-fg" data-live="downloads-compact">{formatCompactNumber(locale, mod.downloads)}</span>
+        <span class="sr-only" data-live="downloads-full">{formatNumber(locale, mod.downloads)}</span>
+        <span>{m.mod_stat_downloads()}</span>
+      </li>
+      <li class={stat}>
+        <span class="text-fg" data-follow-count-text>{m.common_followers_count({ count: mod.followers })}</span>
+      </li>
       {
         summary.showStars && summary.average !== null && (
-          <div class="inline-flex items-center gap-1.5">
-            <dt class="text-featured"><Icon icon={Star} size={16} className="fill-current" /><span class="sr-only">{m.mod_stat_rating()}</span></dt>
-            <dd class="inline-flex items-center gap-1.5 tabular-nums text-fg">
-              <a href={href(reviewsPagePath(mod), locale)} class="inline-flex items-center gap-1.5 hover:underline underline-offset-3">
-                <StarRating value={summary.average} size={14} />
-                {m.mod_stat_rating_value({ rating: formatNumber(locale, summary.average, { maximumFractionDigits: 1, minimumFractionDigits: 1 }), count: summary.count })}
-              </a>
-            </dd>
-          </div>
+          <li class={stat}>
+            <a href={href(reviewsPagePath(mod), locale)} class="inline-flex items-center gap-1.5 hover:text-fg hover:underline underline-offset-3">
+              <StarRating value={summary.average} size={14} />
+              {m.mod_stat_rating_value({ rating: formatNumber(locale, summary.average, { maximumFractionDigits: 1, minimumFractionDigits: 1 }), count: summary.count })}
+            </a>
+          </li>
         )
       }
-      <div class="inline-flex items-center gap-1.5">
-        <dt class="text-fg-subtle"><Icon icon={Heart} size={16} /><span class="sr-only">{m.mod_stat_followers()}</span></dt>
-        <dd class="tabular-nums text-fg" data-follow-count-text>
-          {m.common_followers_count({ count: mod.followers })}
-        </dd>
-      </div>
-    </dl>
+      <li class={stat}>
+        <time datetime={mod.lastReleasedAt}>{m.mod_fact_updated({ date: formatDate(locale, mod.lastReleasedAt) })}</time>
+      </li>
+    </ul>
 
     <ActionBar mod={mod} versions={versions} loginHref={loginHref} />
-
-    <div class:list={['flex flex-wrap items-center gap-x-3 gap-y-1.5 rounded-md border border-border bg-raised/60 px-3 py-2 text-sm text-fg-muted', compact && 'max-md:hidden']}>
-      <CompatBadge status={mod.compatCurrent.status} build={build} size="sm" />
-      <span class="min-w-0 flex-1 basis-40">{compatSentence(mod)}</span>
-      <a href={`${overviewHref}#field-report`} class="inline-flex min-h-6 items-center font-semibold text-link underline underline-offset-3">
-        {m.mod_compat_report_cta()}
-      </a>
-    </div>
-
-    {
-      oneLine.length > 0 && (
-        <p class="flex items-center gap-2 rounded-md border border-border bg-raised px-3 py-2 text-sm md:hidden">
-          <span class="min-w-0 flex-1 truncate">{oneLine.join(' · ')}</span>
-          <a href={`${overviewHref}#at-a-glance`} class="inline-flex min-h-11 shrink-0 items-center font-semibold text-link">
-            {m.mod_capsule_see_all()}
-          </a>
-        </p>
-      )
-    }
   </div>
 </header>

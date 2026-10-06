@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Shell_Offline_EyebrowInputs */
 
 const en_shell_offline_eyebrow = /** @type {(inputs: Shell_Offline_EyebrowInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`No signal`)
+	return /** @type {LocalizedString} */ (`Offline`)
 };
 
 const es_shell_offline_eyebrow = /** @type {(inputs: Shell_Offline_EyebrowInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sin señal`)
+	return /** @type {LocalizedString} */ (`Sin conexión`)
 };
 
 const de_shell_offline_eyebrow = /** @type {(inputs: Shell_Offline_EyebrowInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kein Signal`)
+	return /** @type {LocalizedString} */ (`Offline`)
 };
 
 const fr_shell_offline_eyebrow = /** @type {(inputs: Shell_Offline_EyebrowInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Aucun signal`)
+	return /** @type {LocalizedString} */ (`Hors ligne`)
 };
 
 const it_shell_offline_eyebrow = /** @type {(inputs: Shell_Offline_EyebrowInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nessun segnale`)
+	return /** @type {LocalizedString} */ (`Offline`)
 };
 
 const nl_shell_offline_eyebrow = /** @type {(inputs: Shell_Offline_EyebrowInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Geen signaal`)
+	return /** @type {LocalizedString} */ (`Offline`)
 };
 
 const pl_shell_offline_eyebrow = /** @type {(inputs: Shell_Offline_EyebrowInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Brak sygnału`)
+	return /** @type {LocalizedString} */ (`Offline`)
 };
 
 const pt_shell_offline_eyebrow = /** @type {(inputs: Shell_Offline_EyebrowInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sem sinal`)
+	return /** @type {LocalizedString} */ (`Offline`)
 };
 
 const ru_shell_offline_eyebrow = /** @type {(inputs: Shell_Offline_EyebrowInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Нет сигнала`)
+	return /** @type {LocalizedString} */ (`Офлайн`)
 };
 
 const sv_shell_offline_eyebrow = /** @type {(inputs: Shell_Offline_EyebrowInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ingen signal`)
+	return /** @type {LocalizedString} */ (`Offline`)
 };
 
 const tr_shell_offline_eyebrow = /** @type {(inputs: Shell_Offline_EyebrowInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sinyal yok`)
+	return /** @type {LocalizedString} */ (`Çevrimdışı`)
 };
 
 const zh_shell_offline_eyebrow = /** @type {(inputs: Shell_Offline_EyebrowInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`无信号`)
+	return /** @type {LocalizedString} */ (`离线`)
 };
 
 const ja_shell_offline_eyebrow = /** @type {(inputs: Shell_Offline_EyebrowInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`圏外`)
+	return /** @type {LocalizedString} */ (`オフライン`)
 };
 
 /**
 * | output |
 * | --- |
-* | "No signal" |
+* | "Offline" |
 *
 * @param {Shell_Offline_EyebrowInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -240,5 +240,16 @@
   "profile_badge_jam_podium_name": "Jam 领奖台",
   "profile_badge_jam_podium_hint": "在 Mod Jam 的某个类别中进入前三名。可重复获得。",
   "profile_badge_jam_champion_name": "Jam 冠军",
-  "profile_badge_jam_champion_hint": "在 Mod Jam 中获得总冠军。可重复获得。"
+  "profile_badge_jam_champion_hint": "在 Mod Jam 中获得总冠军。可重复获得。",
+  "profile_member_since": "注册于 {date}",
+  "profile_trusted": "可信",
+  "profile_role_moderator": "版主",
+  "profile_role_admin": "管理员",
+  "profile_stat_published_label": "已发布模组",
+  "profile_stat_reviews_label": "评价",
+  "profile_meta_title_user": "{name} (@{handle})",
+  "profile_meta_description_user": "{name} 在 SOTF Mods（Sons of the Forest 模组社区）：{reviews, plural, other {# 条评价}}。",
+  "profile_cards_empty_text": "{name} 还没有在这里发布内容。",
+  "profile_follow_done": "已关注。有新发布时你会收到通知。",
+  "profile_search_type_users": "用户"
 }

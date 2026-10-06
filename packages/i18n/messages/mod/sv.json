@@ -243,5 +243,12 @@
   "mod_graph_required_by": "Krävs av",
   "mod_compat_report_cta": "Rapportera om den fungerar",
   "mod_action_more": "Fler åtgärder",
-  "mod_action_report_mod": "Anmäl den här modden"
+  "mod_action_report_mod": "Anmäl den här modden",
+  "mod_tab_description": "Beskrivning",
+  "mod_action_install_manager": "Installera med RedManager",
+  "mod_versions_section_title": "Versioner och ändringslogg",
+  "mod_details_title": "Detaljer",
+  "mod_detail_game": "Spelversion",
+  "mod_detail_loader": "RedLoader",
+  "mod_fact_multiplayer": "Flerspelare"
 }

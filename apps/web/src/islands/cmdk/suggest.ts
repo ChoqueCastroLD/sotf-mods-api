@@ -1,5 +1,5 @@
 /**
- * Completions of the operator being typed (`cat:` → the categories, `by:ax` → creators starting
+ * Completions of the operator being typed (`cat:` → the categories, `by:ax` → users starting
  * with «ax», `sort:` → the four orders…). They are ordinary rows of the list, so the arrows and
  * Enter complete them; the palette then writes `op:value ` into the field.
  */
@@ -24,15 +24,7 @@ function label(op: Operator, value: string): string {
               : 'cmdk_sort_rating',
       );
     case 'type':
-      return t(
-        value === 'mod'
-          ? 'cmdk_kind_mod'
-          : value === 'library'
-            ? 'cmdk_kind_library'
-            : value === 'build'
-              ? 'cmdk_kind_build'
-              : 'cmdk_kind_kit',
-      );
+      return t(value === 'mod' ? 'cmdk_kind_mod' : value === 'library' ? 'cmdk_kind_library' : 'cmdk_kind_build');
     default:
       return t(value === 'yes' ? 'cmdk_mp_yes' : 'cmdk_mp_no');
   }

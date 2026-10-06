@@ -25,7 +25,7 @@
   "logs_err_archive": "Dit archief kon niet worden gelezen.",
   "logs_err_network": "De server is niet bereikbaar. Controleer je verbinding en probeer het opnieuw.",
   "logs_err_turnstile": "De menselijke controle is mislukt. Probeer het opnieuw.",
-  "logs_err_rate": "Te veel verzoeken — probeer het over {seconds} s opnieuw",
+  "logs_err_rate": "Te veel verzoeken. Probeer het over {seconds} s opnieuw",
   "logs_err_busy": "Logs delen is nu druk bezet. Probeer het over een paar minuten opnieuw.",
   "logs_err_generic": "Er ging iets mis. Probeer het opnieuw.",
   "logs_done_title": "Je log is klaar",

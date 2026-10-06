@@ -54,7 +54,7 @@ describe('Discord payloads', () => {
     expect(truncate('x'.repeat(10), 5)).toBe('xxxx…');
   });
 
-  it('maps domain events to announcements (NSFW never, milestones from 10 k)', () => {
+  it('maps domain events to announcements (NSFW never, awards and milestones never)', () => {
     const envelope = {
       id: '0192f3a4-7c1e-7b9a-9e1d-2c4f6a8b0c1d',
       occurredAt: '2026-09-30T12:00:00.000Z',
@@ -67,26 +67,17 @@ describe('Discord payloads', () => {
         payload: { modId: 20, authorId: 12, kind: 'mod', categorySlug: null, nsfw: true },
       }),
     ).toEqual([]);
-    expect(
-      discordJobsForEvent({
-        ...envelope,
-        type: 'milestone.reached',
-        payload: { modId: 20, authorId: 12, threshold: 5000, reachedAt: '2026-09-30T00:00:00.000Z' },
-      }),
-    ).toEqual([]);
-    expect(
-      discordJobsForEvent({
-        ...envelope,
-        type: 'milestone.reached',
-        payload: { modId: 20, authorId: 12, threshold: 10_000, reachedAt: '2026-09-30T00:00:00.000Z' },
-      }),
-    ).toEqual([{ event: 'milestone.10k', modId: 20, threshold: 10_000 }]);
-    expect(
-      discordJobsForEvent({
-        ...envelope,
-        type: 'award.created',
-        payload: { awardId: 3, kind: 'staff_pick', modId: 20, authorId: 12, periodStart: '2026-09-28' },
-      }),
-    ).toEqual([]);
+    for (const event of [
+      {
+        type: 'milestone.reached' as const,
+        payload: { modId: 20, authorId: 12, threshold: 100_000, reachedAt: '2026-09-30T00:00:00.000Z' },
+      },
+      {
+        type: 'award.created' as const,
+        payload: { awardId: 3, kind: 'mod_of_week' as const, modId: 20, authorId: 12, periodStart: '2026-09-28' },
+      },
+    ]) {
+      expect(discordJobsForEvent({ ...envelope, ...event })).toEqual([]);
+    }
   });
 });

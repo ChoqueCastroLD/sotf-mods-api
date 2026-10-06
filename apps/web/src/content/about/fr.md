@@ -1,7 +1,7 @@
 ---
 title: À propos de SOTF Mods
-description: SOTF Mods est la maison du modding de Sons of the Forest depuis 2023 — téléchargements gratuits, compatibilité testée et un espace pour les créateurs.
-anchors: [what, who, trust, compatibility, money, contact]
+description: SOTF Mods est la maison du modding de Sons of the Forest depuis 2023 : téléchargements gratuits, avis et un espace pour les créateurs. Qui le gère et comment.
+anchors: [what, who, trust, money, contact]
 ---
 
 # Ce qu’est SOTF Mods
@@ -12,22 +12,18 @@ Tout se télécharge gratuitement, directement depuis notre stockage : sans comp
 
 # Qui le gère
 
-Le site est géré par une petite équipe bénévole de joueurs et de moddeurs, et modéré par des **rangers** : des membres de longue date qui vérifient les nouveaux envois et traitent les signalements. Le code du site est ouvert sur [GitHub](https://github.com/ChoqueCastroLD/sotf-mods-api).
+Le site est géré par une petite équipe bénévole de joueurs et de moddeurs, et modéré par des **modérateurs** : des membres de longue date qui vérifient les nouveaux envois et traitent les signalements. Le code du site est ouvert sur [GitHub](https://github.com/ChoqueCastroLD/sotf-mods-api).
 
 Les mods appartiennent à leurs créateurs. Nous les hébergeons, les présentons et aidons à les trouver ; le mérite et les décisions sur chaque mod reviennent à son auteur.
 
 # Comment nous gardons des téléchargements fiables
 
-- Chaque nouveau mod est examiné par la Ranger Station avant d’être public.
+- Chaque nouveau mod est examiné par un modérateur avant d’être public.
 - Chaque fichier est analysé, et chaque version affiche sa taille et sa somme de contrôle SHA-256 pour que vous puissiez vérifier ce que vous avez téléchargé.
-- Tout le monde peut signaler un mod, un commentaire ou un avis ; les rangers agissent vite et chaque action est consignée.
+- Tout le monde peut signaler un mod, un commentaire ou un avis ; les modérateurs agissent vite et chaque action est consignée.
 - Le contenu pour adultes est masqué, sauf si vous l’activez.
 
 Lisez la [politique de contenu](/content-policy) pour savoir ce qui est autorisé.
-
-# Une compatibilité testée sur le terrain
-
-Un patch peut casser des mods du jour au lendemain. C’est pourquoi chaque mod indique si des joueurs ont confirmé qu’il fonctionne sur le **build actuel du jeu**, et [Patch Radar](/patch-radar) suit les mods les plus populaires après chaque mise à jour. Les données viennent de vous : après avoir essayé un mod, dites s’il a fonctionné.
 
 # Comment le site est financé
 

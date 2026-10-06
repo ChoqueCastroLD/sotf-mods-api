@@ -79,13 +79,15 @@ describe('CompatBadge: always icon + text', () => {
     expect([...COMPAT_STATUS_VALUES].sort()).toEqual([...COMPAT_STATUSES].sort());
   });
 
-  it('keeps icon + text inside a ModCard (grid, row, feature)', () => {
-    for (const variant of ['grid', 'row', 'feature'] as const) {
-      const html = renderToString(<ModCard mod={modWithoutImage} variant={variant} />);
-      const badge = /<span[^>]*data-compat="broken"[^>]*>([\s\S]*?)<\/span><\/span>/.exec(html)?.[0] ?? '';
-      expect(badge).toContain('<svg');
-      expect(textOf(badge)).toMatch(/Broken/);
+  it('no longer shows compatibility, awards or featured badges inside a ModCard', () => {
+    const broken = { ...modWithoutImage, compatStatus: 'broken' as const, isFeatured: true, awards: mod.awards };
+    for (const variant of ['grid', 'row', 'compact', 'feature', 'list'] as const) {
+      const html = renderToString(<ModCard mod={broken} variant={variant} currentBuild="1.0.4" />);
+      expect(html).not.toContain('data-compat');
+      expect(textOf(html)).not.toMatch(/Broken|Works on|Not verified|Mod of the week/i);
     }
+    // The grid and row cards keep «Featured» out of the cover badges.
+    expect(textOf(renderToString(<ModCard mod={broken} />))).not.toMatch(/Featured/);
   });
 });
 
@@ -197,7 +199,17 @@ describe('i18n catalogue (ui-domain namespace)', () => {
 
   it('every key is used by a component', () => {
     const dynamic = new Set(Object.keys(REACTION_GLYPHS).map((kind) => `ui_domain_reaction_${kind}`));
-    const unused = DOMAIN_MESSAGE_KEYS.filter((key) => !dynamic.has(key) && !source.includes(`'${key}'`));
+    // Award labels left the cards (awards are gone from the UI); the keys wait for the copy cleanup.
+    const retired = new Set([
+      'ui_domain_award_mod_of_week',
+      'ui_domain_award_build_of_month',
+      'ui_domain_award_mod_of_month',
+      // The version table no longer shows compatibility reports.
+      'ui_domain_versions_col_reports',
+    ]);
+    const unused = DOMAIN_MESSAGE_KEYS.filter(
+      (key) => !dynamic.has(key) && !retired.has(key) && !source.includes(`'${key}'`),
+    );
     expect(unused).toEqual([]);
   });
 

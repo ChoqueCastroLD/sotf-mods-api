@@ -25,7 +25,7 @@
   "logs_err_archive": "Could not read that archive.",
   "logs_err_network": "Could not reach the server. Check your connection and try again.",
   "logs_err_turnstile": "The human check failed. Try again.",
-  "logs_err_rate": "Too many requests — try again in {seconds} s",
+  "logs_err_rate": "Too many requests. Try again in {seconds} s",
   "logs_err_busy": "Log sharing is busy right now. Try again in a few minutes.",
   "logs_err_generic": "Something went wrong. Try again.",
   "logs_done_title": "Your log is ready",

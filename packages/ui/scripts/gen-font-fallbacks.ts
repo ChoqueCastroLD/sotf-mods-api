@@ -1,7 +1,6 @@
 /**
- * Generates `src/font-fallbacks.gen.css`: metric-matched local fallback faces for the two fonts
- * that render above the fold (PLAN §3.4, research/03 §4.2), so swapping in the web font causes
- * no layout shift (CLS 0).
+ * Generates `src/font-fallbacks.gen.css`: a metric-matched local fallback face for Onest, the
+ * only web font, so swapping it in causes no layout shift (CLS 0).
  *
  * The overrides are computed by fontaine from the Fontsource woff2 files (never written by hand):
  * `size-adjust` matches the average character width, and the ascent/descent/line-gap overrides
@@ -18,9 +17,6 @@ import { generateFontFace, getMetricsForFamily, readMetrics } from 'fontaine';
 const require = createRequire(import.meta.url);
 const OUTPUT = fileURLToPath(new URL('../src/font-fallbacks.gen.css', import.meta.url).href);
 
-/** Arial Narrow is Arial compressed horizontally to 82 % (same vertical metrics). */
-const ARIAL_NARROW_WIDTH_RATIO = 0.82;
-
 interface FallbackSpec {
   /** Family name referenced by the `--font-*` stacks of tokens.css. */
   name: string;
@@ -28,7 +24,7 @@ interface FallbackSpec {
   file: string;
   /** Local fonts tried in order; all share the metrics of `metricsFamily`. */
   locals: readonly string[];
-  metricsFamily: 'Arial' | 'Arial Narrow';
+  metricsFamily: 'Arial';
 }
 
 const SPECS: readonly FallbackSpec[] = [
@@ -39,19 +35,12 @@ const SPECS: readonly FallbackSpec[] = [
     locals: ['Arial', 'ArialMT', 'Liberation Sans', 'Arimo'],
     metricsFamily: 'Arial',
   },
-  {
-    name: 'Big Shoulders Fallback',
-    file: '@fontsource-variable/big-shoulders/files/big-shoulders-latin-wght-normal.woff2',
-    locals: ['Arial Narrow', 'ArialNarrow', 'Liberation Sans Narrow'],
-    metricsFamily: 'Arial Narrow',
-  },
 ];
 
 async function fallbackMetrics(family: FallbackSpec['metricsFamily']) {
-  const arial = await getMetricsForFamily('Arial');
-  if (!arial) throw new Error('fontaine has no metrics for Arial');
-  if (family === 'Arial') return arial;
-  return { ...arial, xWidthAvg: Math.round(arial.xWidthAvg * ARIAL_NARROW_WIDTH_RATIO) };
+  const metrics = await getMetricsForFamily(family);
+  if (!metrics) throw new Error(`fontaine has no metrics for ${family}`);
+  return metrics;
 }
 
 export async function renderFallbacks(): Promise<string> {

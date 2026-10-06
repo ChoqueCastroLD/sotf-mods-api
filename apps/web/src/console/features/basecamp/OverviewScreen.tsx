@@ -1,7 +1,6 @@
 /**
- * `/basecamp` — the creator summary (PLAN §7.5 «Resumen», research/03 §6.9): greeting and «Day N»,
- * KPIs with sparklines and deltas, the downloads chart with release and patch markers, «Needs
- * attention», «Live», «My mods» and the next milestone or tier.
+ * `/basecamp` — the creator dashboard: greeting, KPIs with sparklines and deltas, the downloads
+ * chart with release markers, «Needs attention», «Live» and «My mods». No milestones or tiers.
  *
  * Phones: KPIs in two columns, «Needs attention» before the chart, the table as cards.
  */
@@ -11,17 +10,16 @@ import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
 import { ChartLine, Inbox, PackagePlus, Plus } from 'lucide-react';
 import { useEffect } from 'react';
-import { ArtBackdrop, ArtState } from '../../components/ArtState.tsx';
+import { ArtState } from '../../components/ArtState.tsx';
 import { DomainI18nBridge } from '../../components/DomainI18nBridge.tsx';
 import { useMe } from '../../hooks/use-me.ts';
 import { type AnalyticsRange, analyticsQuery, overviewQuery } from './api.ts';
 import { SeriesFigure } from './charts/figures.tsx';
 import { prefetchCharts } from './charts/lazy.tsx';
-import { dayNumber, number, partOfDay } from './format.ts';
+import { number, partOfDay } from './format.ts';
 import { bt, useBasecampMessages } from './i18n.ts';
 import { KpiGrid } from './KpiGrid.tsx';
 import { LivePanel } from './LivePanel.tsx';
-import { Milestones } from './Milestones.tsx';
 import { ModsTable } from './ModsTable.tsx';
 import { NeedsAttention } from './NeedsAttention.tsx';
 import { Panel, PanelError, PanelSkeleton, RangeSwitch, ScreenHeader } from './shared.tsx';
@@ -111,12 +109,9 @@ export function OverviewScreen({
   }, [data.mods.length]);
 
   const name = me.user.displayName || me.user.handle;
-  const lifetimeDownloads = data.mods.reduce((sum, row) => sum + row.mod.downloads, 0);
 
   const header = (
     <ScreenHeader
-      keepReadout
-      readout={bt('basecamp_day', { day: number(dayNumber(me.user.createdAt)) })}
       title={greeting(name)}
       actions={
         <>
@@ -161,11 +156,7 @@ export function OverviewScreen({
   return (
     <DomainI18nBridge>
       <div className="flex flex-col gap-6">
-        {/* Phones: the cabin and its waypoint beacon behind the greeting. */}
-        <div className="relative -mx-4 -mt-5 px-4 pt-5 pb-2 md:m-0 md:p-0">
-          <ArtBackdrop art="cabin" />
-          <div className="relative">{header}</div>
-        </div>
+        {header}
         <section aria-label={bt('basecamp_kpis_label')}>
           <KpiGrid kpis={data.kpis} />
         </section>
@@ -192,10 +183,6 @@ export function OverviewScreen({
           }
         >
           <ModsTable rows={data.mods} caption={bt('basecamp_mods_title')} />
-        </Panel>
-
-        <Panel title={bt('basecamp_milestone_title')} className="order-5">
-          <Milestones milestone={data.nextMilestone} tier={data.nextTier} lifetimeDownloads={lifetimeDownloads} />
         </Panel>
       </div>
     </DomainI18nBridge>

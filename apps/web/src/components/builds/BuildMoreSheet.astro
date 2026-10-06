@@ -1,25 +1,16 @@
 ---
 /**
- * «More actions» bottom sheet of the build page on phones (opened from the sticky bar): How to
- * import, + Kit, Copy link, Share (the system share sheet, else the link is copied), the versions
- * and Report, as big tappable rows. Rows are real links or buttons handled by `build-page.ts`.
+ * «More actions» bottom sheet of the build page on phones (opened from the sticky bar): how to
+ * import, versions, share, copy link and report, as big tappable rows.
  */
 import { m } from '@sotf/i18n/messages';
 import { Icon } from '@sotf/ui/icons';
-import { ChevronRight, Flag, History, Link2, ListOrdered, Plus, Share2 } from 'lucide-react';
-import { href } from '../../lib/i18n.ts';
+import { ChevronRight, Flag, History, Link2, ListOrdered, Share2 } from 'lucide-react';
 import ModDialog from '../mod/ModDialog.astro';
-import type { ModDetailDTO } from './data.ts';
 
-interface Props {
-  build: ModDetailDTO;
-}
-
-const { build } = Astro.props;
-const locale = Astro.locals.locale;
 const ROW =
-  'flex min-h-14 w-full items-center gap-3 rounded-lg px-2 py-2 text-start text-base font-medium text-fg active:bg-fg/8 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus';
-const TILE = 'flex size-10 shrink-0 items-center justify-center rounded-lg bg-raised text-blueprint';
+  'flex min-h-14 w-full items-center gap-3 rounded-md px-2 py-2 text-start text-base font-medium text-fg active:bg-fg/8 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus';
+const TILE = 'flex size-6 shrink-0 items-center justify-center text-fg-muted';
 const chevron = 'text-fg-subtle rtl:rotate-180';
 ---
 
@@ -29,13 +20,6 @@ const chevron = 'text-fg-subtle rtl:rotate-180';
       <a href="#import" data-sheet-close-on-click class={ROW}>
         <span class={TILE}><Icon icon={ListOrdered} size={20} /></span>
         <span class="min-w-0 flex-1">{m.builds_action_how_to_import()}</span>
-        <Icon icon={ChevronRight} size={18} className={chevron} />
-      </a>
-    </li>
-    <li>
-      <a href={`${href('/me/kits', locale)}?add=${build.id}`} data-kit-add={build.id} class={ROW}>
-        <span class={TILE}><Icon icon={Plus} size={20} /></span>
-        <span class="min-w-0 flex-1">{m.builds_action_add_to_kit()}</span>
         <Icon icon={ChevronRight} size={18} className={chevron} />
       </a>
     </li>
@@ -60,7 +44,7 @@ const chevron = 'text-fg-subtle rtl:rotate-180';
     </li>
     <li class="mt-1 border-t border-border pt-1">
       <button type="button" hidden data-js-only data-dialog-open="report-dialog" class={ROW}>
-        <span class:list={[TILE, 'text-fg-muted']}><Icon icon={Flag} size={20} /></span>
+        <span class={TILE}><Icon icon={Flag} size={20} /></span>
         <span class="min-w-0 flex-1">{m.mod_action_report()}</span>
       </button>
     </li>

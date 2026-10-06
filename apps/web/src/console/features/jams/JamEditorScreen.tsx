@@ -22,7 +22,7 @@ import { type FormEvent, useState } from 'react';
 import { notify } from '../../lib/notify.ts';
 import { formatInstant, fromLocalInput, Panel, reportFailure, toLocalInput } from '../admin/shared.tsx';
 import { type AdminJam, adminJamQuery, jamKeys, jamsAdminApi, type UpdateJamInput } from './api.ts';
-import { JamArtThumb, StagePips } from './JamArtThumb.tsx';
+import { StagePips } from './JamArtThumb.tsx';
 import { JamEntriesPanel } from './JamEntriesPanel.tsx';
 import { categoryName, JAM_PHASES, jamPhaseLabel, jamPhaseVariant } from './phase.ts';
 
@@ -85,20 +85,15 @@ export function JamEditorScreen() {
 
   return (
     <div className="grid gap-6">
-      <header className="relative isolate overflow-hidden rounded-xl border border-border bg-night-975 text-night-50">
-        <JamArtThumb jam={jam} className="absolute inset-0 -z-20 size-full rounded-none ring-0" />
-        <div
-          className="absolute inset-0 -z-10 bg-gradient-to-r from-night-975 via-night-975/80 to-night-975/30"
-          aria-hidden="true"
-        />
-        <div className="flex flex-wrap items-end justify-between gap-4 p-5 pt-14 md:p-8 md:pt-20">
+      <header className="border-b border-border pb-5">
+        <div className="flex flex-wrap items-end justify-between gap-4">
           <div className="grid gap-2">
-            <a href="/ranger/jams" className="inline-flex items-center gap-1 text-sm text-night-200 hover:text-primary">
+            <a href="/ranger/jams" className="inline-flex items-center gap-1 text-sm text-fg-muted hover:text-link">
               <Icon icon={ArrowLeft} size={16} />
               {m.jams_editor_back()}
             </a>
-            <h1 className="font-display-caps text-display-sm text-night-50">{jam.title}</h1>
-            <p className="flex flex-wrap items-center gap-3 text-sm text-night-200">
+            <h1 className="text-2xl font-bold text-fg">{jam.title}</h1>
+            <p className="flex flex-wrap items-center gap-3 text-sm text-fg-muted">
               <Badge variant={jamPhaseVariant(jam.phase)} size="sm">
                 {jamPhaseLabel(jam.phase)}
               </Badge>
@@ -109,7 +104,7 @@ export function JamEditorScreen() {
           {jam.phase !== 'draft' ? (
             <a
               href={`/jams/${jam.slug}`}
-              className="inline-flex items-center gap-1 rounded-md border border-white/25 bg-night-975/60 px-3 py-2 text-sm font-semibold text-night-50 backdrop-blur-sm hover:bg-night-975/80"
+              className="inline-flex items-center gap-1 rounded-md border border-border-strong px-3 py-2 text-sm font-semibold text-fg hover:bg-fg/6"
               target="_blank"
               rel="noreferrer"
             >

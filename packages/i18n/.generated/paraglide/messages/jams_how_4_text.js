@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Jams_How_4_TextInputs */
 
 const en_jams_how_4_text = /** @type {(inputs: Jams_How_4_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Scores are Bayesian averages. Badges go to the whole team.`)
+	return /** @type {LocalizedString} */ (`Scores are weighted averages. Results are shown for each category and overall.`)
 };
 
 const es_jams_how_4_text = /** @type {(inputs: Jams_How_4_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Las puntuaciones son medias bayesianas. Las insignias son para todo el equipo.`)
+	return /** @type {LocalizedString} */ (`Las puntuaciones son medias ponderadas. Los resultados se muestran por categoría y en total.`)
 };
 
 const de_jams_how_4_text = /** @type {(inputs: Jams_How_4_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Die Wertung nutzt bayessche Durchschnitte. Abzeichen gehen an das ganze Team.`)
+	return /** @type {LocalizedString} */ (`Die Wertung nutzt gewichtete Durchschnitte. Die Ergebnisse gibt es pro Kategorie und insgesamt.`)
 };
 
 const fr_jams_how_4_text = /** @type {(inputs: Jams_How_4_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Les scores sont des moyennes bayésiennes. Les badges vont à toute l'équipe.`)
+	return /** @type {LocalizedString} */ (`Les scores sont des moyennes pondérées. Les résultats sont affichés par catégorie et au classement général.`)
 };
 
 const it_jams_how_4_text = /** @type {(inputs: Jams_How_4_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`I punteggi sono medie bayesiane. I badge vanno a tutto il team.`)
+	return /** @type {LocalizedString} */ (`I punteggi sono medie ponderate. I risultati sono mostrati per categoria e in generale.`)
 };
 
 const nl_jams_how_4_text = /** @type {(inputs: Jams_How_4_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Scores zijn bayesiaanse gemiddelden. Badges gaan naar het hele team.`)
+	return /** @type {LocalizedString} */ (`Scores zijn gewogen gemiddelden. De resultaten worden per categorie en algemeen getoond.`)
 };
 
 const pl_jams_how_4_text = /** @type {(inputs: Jams_How_4_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Wyniki to średnie bayesowskie. Odznaki trafiają do całego zespołu.`)
+	return /** @type {LocalizedString} */ (`Wyniki to średnie ważone. Wyniki pokazujemy dla każdej kategorii i ogółem.`)
 };
 
 const pt_jams_how_4_text = /** @type {(inputs: Jams_How_4_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`As notas são médias bayesianas. As insígnias vão para toda a equipe.`)
+	return /** @type {LocalizedString} */ (`As notas são médias ponderadas. Os resultados aparecem por categoria e no geral.`)
 };
 
 const ru_jams_how_4_text = /** @type {(inputs: Jams_How_4_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Результаты считаются по байесовскому среднему. Значки получает вся команда.`)
+	return /** @type {LocalizedString} */ (`Результаты считаются по взвешенному среднему. Итоги показываются по каждой категории и в целом.`)
 };
 
 const sv_jams_how_4_text = /** @type {(inputs: Jams_How_4_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Poängen är bayesianska medelvärden. Märkena går till hela laget.`)
+	return /** @type {LocalizedString} */ (`Poängen är viktade medelvärden. Resultaten visas per kategori och totalt.`)
 };
 
 const tr_jams_how_4_text = /** @type {(inputs: Jams_How_4_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Puanlar Bayesçi ortalamalardır. Rozetler tüm ekibe gider.`)
+	return /** @type {LocalizedString} */ (`Puanlar ağırlıklı ortalamalardır. Sonuçlar her kategori için ve genel olarak gösterilir.`)
 };
 
 const zh_jams_how_4_text = /** @type {(inputs: Jams_How_4_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`评分采用贝叶斯平均，徽章授予整个团队。`)
+	return /** @type {LocalizedString} */ (`评分采用加权平均。结果按类别和总体分别显示。`)
 };
 
 const ja_jams_how_4_text = /** @type {(inputs: Jams_How_4_TextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`スコアはベイズ平均で計算され、バッジはチーム全員に贈られます。`)
+	return /** @type {LocalizedString} */ (`スコアは加重平均で計算されます。結果はカテゴリーごとと総合で表示されます。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Scores are Bayesian averages. Badges go to the whole team." |
+* | "Scores are weighted averages. Results are shown for each category and overall." |
 *
 * @param {Jams_How_4_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

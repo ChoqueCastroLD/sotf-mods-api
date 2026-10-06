@@ -180,5 +180,6 @@
   "ui_domain_reaction_laugh": "Смех",
   "ui_domain_reaction_party": "Праздник",
   "ui_domain_reaction_pray": "Спасибо",
-  "ui_domain_reaction_fire": "Огонь"
+  "ui_domain_reaction_fire": "Огонь",
+  "ui_domain_trusted": "Проверенный"
 }

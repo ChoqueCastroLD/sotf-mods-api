@@ -55,14 +55,6 @@ export const CreatorWeeklyMod = z.object({
   reviews: z.number().int().nonnegative(),
 });
 
-export const CreatorWeeklyHighlight = z.object({
-  kind: z.enum(['milestone', 'award', 'badge']),
-  modName: z.string().max(200).nullable(),
-  threshold: z.number().int().positive().nullable(),
-  awardKind: z.string().max(40).nullable(),
-  badgeKey: z.string().max(80).nullable(),
-});
-
 /** Payload schema of every notification template (the outbox `template` column). */
 export const NOTIFICATION_EMAIL_PAYLOADS = {
   /** Instant batch, daily or weekly digest of signals. */
@@ -88,7 +80,6 @@ export const NOTIFICATION_EMAIL_PAYLOADS = {
       reviews: z.number().int().nonnegative(),
     }),
     mods: z.array(CreatorWeeklyMod).max(10),
-    highlights: z.array(CreatorWeeklyHighlight).max(20),
     basecampUrl: Url,
     unsubscribe: Unsubscribe,
   }),

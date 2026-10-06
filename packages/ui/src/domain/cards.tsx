@@ -2,12 +2,11 @@
  * BuildCard, KitCard and CreatorCard (research/03 §5.2). Same card rules as `ModCard`: the
  * title link covers the card, other controls sit above it, hover lifts 2 px.
  *
- * - `BuildCard`: blueprint frame (grid texture + corner marks) with a dimension line («cota»)
- *   giving the number of pieces, and the BuildShare version.
+ * - `BuildCard`: the build's picture with the number of pieces and the BuildShare version as plain text.
  * - `KitCard`: «knolling» — up to 6 mod thumbnails laid out on a dashed mat with slight
  *   rotations — or the kit's own cover; name, curator, «12 mods · 48 MB» and compatibility.
- * - `CreatorCard`: the survivor's generative terrain banner, avatar, name + tier stamp, stats and
- *   a follow slot.
+ * - `CreatorCard`: the creator's generative banner, avatar, name (Trusted mark), stats and a
+ *   follow slot.
  */
 import { EyeOff, Link2, Lock } from 'lucide-react';
 import type { CSSProperties, ReactNode } from 'react';
@@ -20,7 +19,7 @@ import type { CompatStatus, CreatorCardDTO, KitCardDTO, ModCardDTO } from './con
 import { formatBytes, formatCompact, formatCount, SLOT, useDomainI18n, useProfileHref, withSlot } from './i18n.ts';
 import { displayName, OriginalName } from './mod-card.tsx';
 import { CardLink, Cover, cardClasses, cardControlClasses, generativeBannerUri, Placeholder } from './shared.tsx';
-import { TierStamp, TrustedMark } from './stamps.tsx';
+import { TrustedMark } from './stamps.tsx';
 
 type HeadingLevel = 2 | 3 | 4;
 
@@ -56,36 +55,6 @@ export interface BuildCardProps {
   className?: string;
 }
 
-/** Corner marks of the plan frame. */
-function CornerMarks() {
-  const corner = 'absolute size-3 border-blueprint';
-  return (
-    <span aria-hidden="true" className="pointer-events-none absolute inset-1.5">
-      <span className={cn(corner, 'start-0 top-0 border-s-2 border-t-2')} />
-      <span className={cn(corner, 'end-0 top-0 border-e-2 border-t-2')} />
-      <span className={cn(corner, 'start-0 bottom-0 border-s-2 border-b-2')} />
-      <span className={cn(corner, 'end-0 bottom-0 border-e-2 border-b-2')} />
-    </span>
-  );
-}
-
-/** Dimension line: |←— 1,248 pieces —→| in blueprint ink. */
-function DimensionLine({ children }: { children: ReactNode }) {
-  return (
-    <span className="flex items-center gap-2 font-mono text-2xs text-blueprint">
-      <span aria-hidden="true" className="flex flex-1 items-center">
-        <span className="h-2.5 w-px bg-current" />
-        <span className="h-px flex-1 bg-current" />
-      </span>
-      <span className="shrink-0 tabular-nums">{children}</span>
-      <span aria-hidden="true" className="flex flex-1 items-center">
-        <span className="h-px flex-1 bg-current" />
-        <span className="h-2.5 w-px bg-current" />
-      </span>
-    </span>
-  );
-}
-
 export function BuildCard({
   build,
   pieces,
@@ -105,52 +74,27 @@ export function BuildCard({
       data-mod-id={build.id}
       className={tight ? cn('@container/build', className) : className}
     >
-      <div
-        className={cn(
-          cardClasses,
-          'flex h-full flex-col gap-3 p-3',
-          tight && '@max-[260px]/build:gap-2 @max-[260px]/build:p-1.5',
-        )}
-      >
-        <div
-          className={cn(
-            'texture-blueprint relative rounded-md border border-blueprint/40 p-3',
-            tight && '@max-[260px]/build:p-1.5',
-          )}
-        >
-          {tight ? (
-            <span className="@max-[260px]/build:hidden">
-              <CornerMarks />
-            </span>
-          ) : (
-            <CornerMarks />
-          )}
-          <div className="aspect-cover overflow-hidden rounded-xs bg-raised">
-            <Cover
-              image={build.thumbnail}
-              seed={build.slug}
-              name={displayName(build)}
-              category={build.category}
-              sizes={
-                tight
-                  ? '(min-width: 80rem) 20rem, (min-width: 64rem) 16rem, (min-width: 40rem) 33vw, 50vw'
-                  : '(min-width: 80rem) 20rem, (min-width: 48rem) 33vw, 100vw'
-              }
-              priority={priority}
-              className="transition-transform duration-(--dur-slow) ease-out motion-safe:group-hover/card:scale-[1.03]"
-            />
-          </div>
-          {typeof pieces === 'number' ? (
-            <div className={cn('mt-2', tight && '@max-[260px]/build:hidden')}>
-              <DimensionLine>{t('ui_domain_build_pieces', { count: pieces })}</DimensionLine>
-            </div>
-          ) : null}
+      <div className={cn(cardClasses, 'flex h-full flex-col overflow-hidden', tight && '@max-[260px]/build:text-xs')}>
+        <div className="aspect-cover overflow-hidden bg-raised">
+          <Cover
+            image={build.thumbnail}
+            seed={build.slug}
+            name={displayName(build)}
+            category={build.category}
+            sizes={
+              tight
+                ? '(min-width: 80rem) 20rem, (min-width: 64rem) 16rem, (min-width: 40rem) 33vw, 50vw'
+                : '(min-width: 80rem) 20rem, (min-width: 48rem) 33vw, 100vw'
+            }
+            priority={priority}
+            className="transition-transform duration-(--dur-slow) ease-out motion-safe:group-hover/card:scale-[1.03]"
+          />
         </div>
-        {action ? <div className={cn('absolute z-10 end-5 top-5')}>{action}</div> : null}
+        {action ? <div className={cn('absolute z-10 end-2 top-2')}>{action}</div> : null}
         <div
           className={cn(
-            'flex min-w-0 flex-1 flex-col gap-1 px-1',
-            tight && '@max-[260px]/build:px-0.5 @max-[260px]/build:pb-1',
+            'flex min-w-0 flex-1 flex-col gap-1 p-3',
+            tight && '@max-[260px]/build:gap-0.5 @max-[260px]/build:p-2',
           )}
         >
           <Heading
@@ -181,15 +125,15 @@ export function BuildCard({
             <span className="tabular-nums" title={formatCount(locale, build.downloads)}>
               {t('ui_domain_downloads_count', { count: build.downloads, display })}
             </span>
-            {buildShareVersion ? (
-              <Badge variant="blueprint" size="sm">
-                {t('ui_domain_build_buildshare', { version: buildShareVersion })}
-              </Badge>
+            {typeof pieces === 'number' ? (
+              <span className={cn('tabular-nums', tight && '@max-[260px]/build:hidden')}>
+                {t('ui_domain_build_pieces', { count: pieces })}
+              </span>
             ) : null}
-            {build.isFeatured ? (
-              <Badge variant="featured" size="sm">
-                {t('ui_domain_badge_featured')}
-              </Badge>
+            {buildShareVersion ? (
+              <span className={cn('font-mono text-2xs', tight && '@max-[260px]/build:hidden')}>
+                {t('ui_domain_build_buildshare', { version: buildShareVersion })}
+              </span>
             ) : null}
           </div>
         </div>
@@ -324,7 +268,7 @@ export interface CreatorCardProps {
   /** Follow button slot (above the card link). */
   action?: ReactNode;
   headingLevel?: HeadingLevel;
-  /** Field-kit icon rendering of the tier stamp. */
+  /** Kept for callers written when cards showed a tier stamp; ignored. */
   iconMode?: 'sprite' | 'inline';
   className?: string;
 }
@@ -346,7 +290,7 @@ function Stat({ label, value }: { label: string; value: string }) {
  * Below 23 rem of its own width (a phone's single column) the card becomes a row: avatar, name,
  * handle and the three stats, with the follow slot at the end, and drops the banner and top mod.
  */
-export function CreatorCard({ creator, action, headingLevel = 3, iconMode, className }: CreatorCardProps) {
+export function CreatorCard({ creator, action, headingLevel = 3, className }: CreatorCardProps) {
   const { t, locale } = useDomainI18n();
   const profileHref = useProfileHref();
   const Heading = `h${headingLevel}` as const;
@@ -391,14 +335,6 @@ export function CreatorCard({ creator, action, headingLevel = 3, iconMode, class
               {user.verifiedCreator ? <TrustedMark size={16} className={cardControlClasses} /> : null}
             </div>
             <p className="truncate font-mono text-2xs text-fg-subtle">@{user.handle}</p>
-            {user.creatorTier ? (
-              <TierStamp
-                tier={user.creatorTier}
-                size="sm"
-                iconMode={iconMode}
-                className="self-start @max-[23rem]/creator:hidden"
-              />
-            ) : null}
           </div>
           <dl className="mt-auto grid grid-cols-3 gap-2 border-t border-border pt-3 @max-[23rem]/creator:col-span-2 @max-[23rem]/creator:col-start-2 @max-[23rem]/creator:row-start-2 @max-[23rem]/creator:mt-0 @max-[23rem]/creator:border-t-0 @max-[23rem]/creator:pt-0">
             <Stat

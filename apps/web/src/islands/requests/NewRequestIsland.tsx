@@ -20,7 +20,7 @@ export interface NewRequestIslandProps {
 export function NewRequestIsland({ session, verifyHref, listHref }: NewRequestIslandProps) {
   if (!session.emailVerified) {
     return (
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-border bg-surface p-4">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-y border-border py-4">
         <p className="text-sm text-fg">{t('requests_verify_hint')}</p>
         <ButtonLink href={verifyHref} variant="secondary">
           {t('social_verify_action')}

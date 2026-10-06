@@ -23,23 +23,23 @@ const locale = Astro.locals.locale;
 <section
   data-nsfw-gate
   aria-labelledby="nsfw-gate-title"
-  class="mx-auto my-10 grid max-w-xl justify-items-center gap-4 rounded-xl border border-border-strong bg-surface p-8 text-center"
+  class="mx-auto my-10 grid max-w-xl justify-items-center gap-4 border-y border-border py-10 text-center"
 >
   <span class="flex size-14 items-center justify-center rounded-full bg-warning-soft text-warning">
     <Icon icon={ShieldAlert} size={28} />
   </span>
-  <h2 id="nsfw-gate-title" class="font-display-caps text-display-xs text-fg">{m.mod_nsfw_title()}</h2>
+  <h2 id="nsfw-gate-title" class="text-2xl font-bold text-fg">{m.mod_nsfw_title()}</h2>
   <p class="text-fg-muted">{m.mod_nsfw_text()}</p>
   <div class="flex flex-wrap justify-center gap-2">
     <a
       href={revealHref}
       rel="nofollow"
       data-nsfw-reveal
-      class="inline-flex h-11 items-center rounded-md bg-primary px-4 font-semibold text-primary-fg hover:bg-primary-hover"
+      class="inline-flex h-11 items-center rounded-md bg-primary px-4 font-medium text-primary-fg hover:bg-primary-hover"
     >
       {m.mod_nsfw_confirm()}
     </a>
-    <a href={href('/mods', locale)} class="inline-flex h-11 items-center rounded-md border border-border-strong px-4 font-semibold hover:bg-fg/6">
+    <a href={href('/mods', locale)} class="inline-flex h-11 items-center rounded-md border border-border-strong px-4 font-medium hover:bg-fg/6">
       {m.mod_nsfw_leave()}
     </a>
   </div>

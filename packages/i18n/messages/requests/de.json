@@ -1,6 +1,6 @@
 {
   "requests_list_title": "Mod-Wünsche",
-  "requests_list_title_page": "{title} — Seite {page, number}",
+  "requests_list_title_page": "{title}, Seite {page, number}",
   "requests_list_description": "Wünsche dir den Mod, der in Sons of the Forest fehlt, stimme für die, die du willst, und folge den Creators, die sie übernehmen.",
   "requests_list_readout": "Wunschliste",
   "requests_action_new": "Mod wünschen",
@@ -29,7 +29,7 @@
   "requests_by": "von {name}",
   "requests_adopted_by": "{name} arbeitet daran",
   "requests_fulfilled_by": "Erfüllt mit {mod}",
-  "requests_detail_title": "{title} — Mod-Wunsch",
+  "requests_detail_title": "{title} (Mod-Wunsch)",
   "requests_detail_description": "Mod-Wunsch von {author}: {title}",
   "requests_back": "Alle Wünsche",
   "requests_view_mod": "Mod ansehen",
@@ -89,5 +89,6 @@
   "requests_badge_adopter": "Arbeitet daran",
   "requests_badge_author": "Wünschende:r",
   "requests_comment_delete_title": "Diesen Kommentar löschen?",
-  "requests_comment_delete_text": "Das lässt sich nicht rückgängig machen."
+  "requests_comment_delete_text": "Das lässt sich nicht rückgängig machen.",
+  "requests_votes_short": "Stimmen"
 }

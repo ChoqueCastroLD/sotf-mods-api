@@ -11,8 +11,6 @@
  * with a cache-busting parameter, so the edge cache never serves the old version back.
  */
 import { Button } from '@sotf/ui/button';
-import { Icon } from '@sotf/ui/icons';
-import { ChevronUp } from 'lucide-react';
 import { useState } from 'react';
 import { api, type Failure } from '../comments/lib/api.ts';
 import { formatNumber } from '../comments/lib/i18n.tsx';
@@ -124,11 +122,8 @@ export function RequestIsland({
   return (
     <>
       <div className="flex flex-col gap-6">
-        <div className="flex flex-wrap items-center gap-3 rounded-lg border border-border bg-surface p-3">
-          <span className="inline-flex items-center gap-1 rounded-md bg-raised px-3 py-2 font-mono font-semibold text-fg tabular-nums">
-            <Icon icon={ChevronUp} size={18} className="text-signal" />
-            {formatNumber(request.voteCount)}
-          </span>
+        <div className="flex flex-wrap items-center gap-3 border-y border-border py-3">
+          <span className="text-lg font-bold text-fg tabular-nums">{formatNumber(request.voteCount)}</span>
           <span className="text-sm text-fg-muted">{t('requests_votes', { count: request.voteCount })}</span>
 
           {active && !isAuthor && verified ? (

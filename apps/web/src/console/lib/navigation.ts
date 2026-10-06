@@ -3,13 +3,12 @@
  * so they are evaluated in the current locale at render time.
  *
  * Links point at the routes of the area work packages (WP-80 Basecamp, WP-81 Signals/Settings/Me,
- * WP-82 Ranger, WP-83 Admin, WP-74 publishing, WP-75 kits); until a route exists, the console
+ * WP-82 Ranger, WP-83 Admin, WP-74 publishing); until a route exists, the console
  * shows its empty state (`components/AreaOutlet.tsx`) or «not on the map».
  */
 
 import {
   Activity,
-  Award,
   Backpack,
   BellRing,
   Binoculars,
@@ -24,7 +23,6 @@ import {
   Hammer,
   Inbox,
   KeyRound,
-  Layers,
   LayoutDashboard,
   type LucideIcon,
   Megaphone,
@@ -100,7 +98,6 @@ export const CONSOLE_AREAS: readonly ConsoleArea[] = [
           { to: '/basecamp/new/build', label: () => t('console_nav_new_build'), icon: DraftingCompass, phone: false },
           { to: '/basecamp/drafts', label: () => t('console_nav_drafts'), icon: NotebookPen },
           { to: '/basecamp/analytics', label: () => t('console_nav_analytics'), icon: ChartLine },
-          { to: '/basecamp/badges', label: () => t('console_nav_badges'), icon: Award },
           { to: '/basecamp/jams', label: () => t('console_nav_jams'), icon: Trophy },
         ],
       },
@@ -117,7 +114,6 @@ export const CONSOLE_AREAS: readonly ConsoleArea[] = [
         items: [
           { to: '/me/backpack', label: () => t('common_term_backpack'), icon: Backpack },
           { to: '/me/downloads', label: () => t('console_nav_downloads'), icon: Download },
-          { to: '/me/kits', label: () => t('common_term_kits'), icon: Layers },
         ],
       },
     ],
@@ -177,7 +173,6 @@ export const CONSOLE_AREAS: readonly ConsoleArea[] = [
           { to: '/ranger/admin/ecosystem', label: () => t('console_nav_ecosystem'), icon: Network },
           { to: '/ranger/admin/taxonomy', label: () => t('console_nav_taxonomy'), icon: Tags },
           { to: '/ranger/admin/recategorize', label: () => t('console_nav_recategorize'), icon: Shuffle },
-          { to: '/ranger/admin/awards', label: () => t('console_nav_awards'), icon: Trophy },
           { to: '/ranger/admin/announcements', label: () => t('console_nav_announcements'), icon: Megaphone },
           { to: '/ranger/admin/settings', label: () => t('console_nav_site_settings'), icon: Settings2 },
           { to: '/ranger/admin/integrations', label: () => t('console_nav_integrations'), icon: Plug },
@@ -261,7 +256,6 @@ const PUSHED = [
   /^\/basecamp\/new(\/|$)/,
   /^\/basecamp\/drafts\/[^/]+/,
   /^\/basecamp\/mods\/[^/]+/,
-  /^\/me\/kits\/[^/]+/,
   /^\/ranger\/users\/[^/]+/,
   /^\/ranger\/jams\/[^/]+/,
   /^\/ranger\/admin\/[^/]+/,
@@ -282,7 +276,6 @@ export function parentPath(pathname: string): string {
   if (/^\/ranger\/admin\/[^/]+/.test(path)) return '/ranger/admin';
   if (/^\/ranger\/users\/[^/]+/.test(path)) return '/ranger/users';
   if (/^\/ranger\/jams\/[^/]+/.test(path)) return '/ranger/jams';
-  if (/^\/me\/kits\/[^/]+/.test(path)) return '/me/kits';
   if (/^\/settings\/[^/]+/.test(path)) return '/settings';
   return '/basecamp';
 }

@@ -1,7 +1,7 @@
 /**
  * Vanilla behaviour of the build page (PLAN §2.5: public pages ship no framework runtime).
  *
- * - Follow ♥ (Backpack): the cached HTML is the guest version; with the `sotf_li` hint the state
+ * - Follow: the cached HTML is the guest version; with the `sotf_li` hint the state
  *   is read from `/api/v2/me/follows/lookup`. Toggling is optimistic, reverts on failure and offers
  *   «Undo» for a few seconds; guests (or an expired session) go to the sign-in page with `?next=`.
  * - Copy link / GUID / folder path with a spoken confirmation (`role="status"` region).
@@ -16,27 +16,10 @@ import {
   builds_followed,
   builds_link_copied,
   builds_unfollowed,
-  common_action_close,
   common_action_follow,
   common_action_following,
-  common_action_undo,
   common_downloads_compact,
   common_followers_count,
-  common_state_offline,
-  kits_add_already,
-  kits_add_button,
-  kits_add_done,
-  kits_add_failed,
-  kits_add_in_kit,
-  kits_add_new_kit,
-  kits_add_title,
-  kits_add_to_named,
-  kits_items_limit,
-  kits_undo_failed,
-  mod_toast_error,
-  mod_toast_rate_limited,
-  mod_toast_sign_in,
-  mod_toast_verify_email,
 } from '@sotf/i18n/messages';
 import { initSocialIslands } from '../../islands/comments/social.ts';
 import { hasSignedInHint } from '../../scripts/account-hint.ts';
@@ -45,12 +28,10 @@ import { initCarousels } from '../../scripts/mod/carousel.ts';
 import { DIALOG_OPEN_EVENT, type DialogOpenDetail, initDialogs } from '../../scripts/mod/dialogs.ts';
 import { initFolds } from '../../scripts/mod/fold.ts';
 import { initGallery as initLightboxGallery } from '../../scripts/mod/gallery.ts';
-import { openKitAdd } from '../../scripts/mod/kit-add.ts';
 import { compactFormat, startLiveCounters } from '../../scripts/mod/live.ts';
 import { initSectionNav } from '../../scripts/mod/section-nav.ts';
 import { whenSession } from '../../scripts/mod/session.ts';
 import { initSheetSections } from '../../scripts/mod/sheets.ts';
-import type { ModPageData } from '../../scripts/mod/types.ts';
 import { initVersions } from '../../scripts/mod/versions.ts';
 
 const TOAST_MS = 6000;
@@ -216,7 +197,7 @@ function initFollow(toast: Toast): void {
 }
 
 // -----------------------------------------------------------------------------------------------
-// Live counters and «+ Kit»
+// Live counters
 // -----------------------------------------------------------------------------------------------
 
 function initLive(modId: number): void {
@@ -240,46 +221,6 @@ function initLive(modId: number): void {
       count.dataset.followers = String(live.followers);
     }
   });
-}
-
-/** The build's messages in the shape the shared «+ Kit» popover (mod page) expects. */
-function kitAddData(modId: number, name: string, loginHref: string): ModPageData {
-  const messages = {
-    undo: common_action_undo(),
-    error: mod_toast_error(),
-    offline: common_state_offline(),
-    rateLimited: mod_toast_rate_limited(),
-    signInRequired: mod_toast_sign_in(),
-    verifyEmail: mod_toast_verify_email(),
-    close: common_action_close(),
-    kitAddTitle: kits_add_title({ name: '{name}' }),
-    kitAddNew: kits_add_new_kit(),
-    kitAddButton: kits_add_button(),
-    kitAddInKit: kits_add_in_kit(),
-    kitAddTo: kits_add_to_named({ kit: '{kit}' }),
-    kitAddAlready: kits_add_already({ name: '{name}', kit: '{kit}' }),
-    kitAddDone: kits_add_done({ name: '{name}', kit: '{kit}' }),
-    kitAddFailed: kits_add_failed({ name: '{name}' }),
-    kitLimit: kits_items_limit({ max: '{max}' }),
-    kitUndoFailed: kits_undo_failed(),
-  };
-  return { modId, name, loginHref, messages } as unknown as ModPageData;
-}
-
-/** «+ Kit»: signed-in visitors get the popover with their kits; the link stays for everyone else. */
-function initKitAdd(modId: number): void {
-  const links = document.querySelectorAll<HTMLAnchorElement>('a[data-kit-add]');
-  if (links.length === 0) return;
-  const name = document.querySelector('h1')?.textContent?.trim() ?? '';
-  const loginHref = document.querySelector<HTMLElement>('[data-follow]')?.dataset.login ?? '/login';
-  // The header link and the sheet's row (phones) behave the same.
-  for (const link of links) {
-    link.addEventListener('click', (event) => {
-      if (!hasSignedInHint() || event.metaKey || event.ctrlKey || event.shiftKey || event.button !== 0) return;
-      event.preventDefault();
-      void openKitAdd(link, kitAddData(modId, name, loginHref));
-    });
-  }
 }
 
 // -----------------------------------------------------------------------------------------------
@@ -381,7 +322,6 @@ export function initBuildPage(): void {
   if (Number.isInteger(modId) && modId > 0) {
     initDownloads(modId);
     initLive(modId);
-    initKitAdd(modId);
   }
   initGallery();
   initReport();

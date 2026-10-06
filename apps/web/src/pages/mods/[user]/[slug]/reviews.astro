@@ -84,7 +84,7 @@ const loginHref = loginHrefFor(href('/login', locale), href(Astro.locals.pagePat
     <h2 id="reviews-title" class={SECTION_TITLE_CLASSES}>{m.mod_reviews_title({ count: summary.count })}</h2>
     {summary.count > 0 && <RatingHistogram summary={summary} />}
 
-    <div id="write-review" data-island="reviews-write" data-mod-id={mod.id} data-mod-author-id={mod.userId} data-mod-author-name={creatorName} class="grid gap-2 rounded-lg border border-dashed border-border p-4">
+    <div id="write-review" data-island="reviews-write" data-mod-id={mod.id} data-mod-author-id={mod.userId} data-mod-author-name={creatorName} class="grid gap-2 border-y border-border py-4">
       <p class="font-semibold">{m.mod_reviews_write()}</p>
       <p class="text-sm text-fg-muted">{m.mod_reviews_rules()}</p>
       <a href={loginHref} class="inline-flex min-h-11 items-center self-start font-semibold text-link underline underline-offset-3" data-review-guest-hint>
@@ -110,7 +110,7 @@ const loginHref = loginHrefFor(href('/login', locale), href(Astro.locals.pagePat
 
     {
       reviews.length > 0 ? (
-        <ul class="grid gap-3" data-review-list data-sort={sort}>
+        <ul class="grid gap-6" data-review-list data-sort={sort}>
           {reviews.map((review) => (
             <li>
               <ReviewCard review={review} creatorName={creatorName} headingLevel={3} />
@@ -125,14 +125,14 @@ const loginHref = loginHrefFor(href('/login', locale), href(Astro.locals.pagePat
     <div class="flex flex-wrap gap-3">
       {
         cursor && (
-          <a href={sortHref(sort)} class="inline-flex min-h-11 items-center rounded-md border border-border-strong px-4 font-semibold hover:bg-fg/6">
+          <a href={sortHref(sort)} class="inline-flex min-h-11 items-center rounded-md border border-border-strong px-4 font-medium hover:bg-fg/6">
             {m.mod_reviews_first_page()}
           </a>
         )
       }
       {
         nextHref && (
-          <a href={nextHref} rel="next" class="inline-flex min-h-11 items-center gap-2 rounded-md border border-border-strong px-4 font-semibold hover:bg-fg/6">
+          <a href={nextHref} rel="next" class="inline-flex min-h-11 items-center gap-2 rounded-md border border-border-strong px-4 font-medium hover:bg-fg/6">
             {m.mod_reviews_next_page()}
             <Icon icon={ArrowRight} size={16} className="rtl:rotate-180" />
           </a>

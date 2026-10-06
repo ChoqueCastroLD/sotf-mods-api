@@ -286,8 +286,7 @@ describe('context and env helpers', () => {
   it('queue config applies overrides', () => {
     expect(queueConfig('backfill.run')).toMatchObject({ policy: 'singleton', retryLimit: 0 });
     expect(queueConfig('stats.rollup').retryBackoff).toBe(true);
-    expect(queueConfig('awards.mod-of-week').policy).toBe('singleton');
-    expect(queueConfig('milestones.check').policy).toBe('singleton');
+    expect(queueConfig('security.rescan').policy).toBe('singleton');
   });
 });
 

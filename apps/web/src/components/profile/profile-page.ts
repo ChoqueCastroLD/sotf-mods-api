@@ -1,5 +1,5 @@
 /**
- * Vanilla behaviour of the profile and the creators directory (PLAN §2.5: public pages ship no
+ * Vanilla behaviour of the profile (PLAN §2.5: public pages ship no
  * framework runtime).
  *
  * - Follow a creator (T0-16): the cached HTML is the guest version (a GET form to the sign-in page
@@ -7,15 +7,14 @@
  *   page are read once (`/api/v2/me/follows/lookup?user=…`); toggling is optimistic, reverts on
  *   failure and offers «Undo». Your own profile hides «Follow» and reveals «Edit profile».
  * - Share: the native share sheet where available, the clipboard otherwise.
- * - Activity heatmap: starts scrolled at the most recent weeks on narrow screens.
  */
 import {
   common_action_follow,
   common_action_following,
+  profile_follow_done,
   profile_follow_error,
   profile_follow_own,
   profile_follow_verify_email,
-  profile_followed,
   profile_link_copy_failed,
   profile_unfollowed,
 } from '@sotf/i18n/messages';
@@ -191,7 +190,7 @@ async function toggle(target: FollowTarget, next: boolean, toast: Toast, withUnd
   if (Number.isFinite(result.followers)) paintFollowers(target, result.followers);
   if (next) track('follow', { entityType: 'user', entityId: target.id, props: { target: 'user' } });
   if (withUndo) {
-    toast.show(next ? profile_followed() : profile_unfollowed(), () => void toggle(target, !next, toast, false));
+    toast.show(next ? profile_follow_done() : profile_unfollowed(), () => void toggle(target, !next, toast, false));
   }
 }
 
@@ -268,21 +267,10 @@ function initShare(toast: Toast): void {
 }
 
 // -----------------------------------------------------------------------------------------------
-// Heatmap
-// -----------------------------------------------------------------------------------------------
-
-function initHeatmap(): void {
-  for (const scroller of document.querySelectorAll<HTMLElement>('[data-heatmap-scroll]')) {
-    if (scroller.scrollWidth > scroller.clientWidth) scroller.scrollLeft = scroller.scrollWidth;
-  }
-}
-
-// -----------------------------------------------------------------------------------------------
 
 export function initProfilePage(): void {
   const toastRoot = document.querySelector<HTMLElement>('[data-profile-toast]');
   const toast = toastRoot ? createToast(toastRoot) : { show: () => {} };
   void initFollow(toast);
   initShare(toast);
-  initHeatmap();
 }

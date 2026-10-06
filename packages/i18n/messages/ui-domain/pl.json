@@ -180,5 +180,6 @@
   "ui_domain_reaction_laugh": "Śmiech",
   "ui_domain_reaction_party": "Impreza",
   "ui_domain_reaction_pray": "Dzięki",
-  "ui_domain_reaction_fire": "Ogień"
+  "ui_domain_reaction_fire": "Ogień",
+  "ui_domain_trusted": "Zaufany"
 }

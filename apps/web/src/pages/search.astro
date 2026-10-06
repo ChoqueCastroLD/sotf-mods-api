@@ -1,8 +1,8 @@
 ---
 /**
  * `/search?q=` (PLAN §4.2, §7.9; T0-07 «Ver todos»): full-text + fuzzy results across mods,
- * builds, kits, creators and pages, grouped by type, with a type filter (`type=`), highlighted
- * matches and a link to Explore with the same text filter. The legacy `/mods?search=` lands here.
+ * builds and users, grouped by type, with a type filter (`type=`), highlighted matches and a link
+ * to the catalogue with the same text filter. The legacy `/mods?search=` lands here.
  *
  * `noindex` (and out of the hreflang cluster), E(60) with no entity tags; the API failing →
  * error state, 503, not cached.
@@ -22,7 +22,7 @@ import { pageCache } from '../lib/cache/policy.ts';
 import { href } from '../lib/i18n.ts';
 
 const SEARCH_LIMIT = 50;
-const TYPES = ['mod', 'build', 'kit', 'user', 'page'] as const;
+const TYPES = ['mod', 'build', 'user'] as const;
 type SearchType = (typeof TYPES)[number];
 
 const locale = Astro.locals.locale;
@@ -38,7 +38,7 @@ let failed = false;
 if (q) {
   try {
     const result = await serverApi().search.search(
-      { query: { q, limit: SEARCH_LIMIT, locale, ...(type ? { types: [type] } : {}) } },
+      { query: { q, limit: SEARCH_LIMIT, locale, types: type ? [type] : [...TYPES] } },
       { signal: AbortSignal.timeout(5000) },
     );
     hits = result.hits;
@@ -53,9 +53,7 @@ if (q) {
 const typeLabels: Record<SearchType, string> = {
   mod: m.common_term_mods(),
   build: m.common_term_builds(),
-  kit: m.common_term_kits(),
-  user: m.common_nav_creators(),
-  page: m.explore_search_type_pages(),
+  user: m.profile_search_type_users(),
 };
 const groups: SearchGroup[] = TYPES.map((key) => ({
   key,
@@ -95,8 +93,7 @@ const title = q ? m.meta_search_title({ query: q }) : m.meta_search_title_empty(
     data-search-base={href('/search', locale)}
   >
     <header class="flex flex-col gap-2">
-      <p class="readout text-signal">{m.common_search_label()}</p>
-      <h1 class="font-display-caps text-display-sm text-fg">
+      <h1 class="text-3xl font-bold text-fg md:text-4xl">
         {q ? m.explore_search_heading_query({ query: q }) : m.explore_search_heading()}
       </h1>
     </header>
@@ -121,7 +118,7 @@ const title = q ? m.meta_search_title({ query: q }) : m.meta_search_title_empty(
               autocapitalize="off"
               spellcheck="false"
               placeholder={m.common_search_placeholder()}
-              class="h-12 w-full rounded-full border border-border-strong bg-sunken ps-11 pe-11 text-base text-fg placeholder:text-fg-subtle focus-visible:border-primary focus-visible:outline-2 focus-visible:outline-focus md:rounded-md"
+              class="h-12 w-full rounded-md border border-border-strong bg-sunken ps-11 pe-11 text-base text-fg placeholder:text-fg-subtle focus-visible:border-primary focus-visible:outline-2 focus-visible:outline-focus"
             />
             <button
               type="button"
@@ -135,7 +132,7 @@ const title = q ? m.meta_search_title({ query: q }) : m.meta_search_title_empty(
           </div>
           <button
             type="submit"
-            class="inline-flex h-12 items-center rounded-full bg-primary px-5 font-semibold text-primary-fg shadow-glow max-md:hidden md:rounded-md"
+            class="inline-flex h-12 items-center rounded-md bg-primary px-5 font-semibold text-primary-fg max-md:hidden"
           >
             {m.common_search_label()}
           </button>
@@ -169,7 +166,7 @@ const title = q ? m.meta_search_title({ query: q }) : m.meta_search_title_empty(
 
     {
       q && !failed && (
-        <p class="font-mono text-sm text-fg-muted tabular-nums" aria-live="polite">
+        <p class="text-sm text-fg-muted tabular-nums" aria-live="polite">
           {m.explore_search_count({ count: total, query: q })}
         </p>
       )
@@ -179,7 +176,7 @@ const title = q ? m.meta_search_title({ query: q }) : m.meta_search_title_empty(
       !q && (
         <section hidden data-search-recents="" aria-labelledby="search-recent-title" class="flex flex-col gap-1">
           <div class="flex items-center justify-between gap-3">
-            <h2 id="search-recent-title" class="readout">{m.explore_search_recent_title()}</h2>
+            <h2 id="search-recent-title" class="text-sm font-bold text-fg">{m.explore_search_recent_title()}</h2>
             <button
               type="button"
               data-search-recents-clear=""
@@ -188,7 +185,7 @@ const title = q ? m.meta_search_title({ query: q }) : m.meta_search_title_empty(
               {m.explore_search_recent_clear()}
             </button>
           </div>
-          <ul data-search-recents-list="" data-remove-label={m.explore_search_recent_remove({ query: '{query}' })} class="divide-y divide-border rounded-xl border border-border bg-surface" />
+          <ul data-search-recents-list="" data-remove-label={m.explore_search_recent_remove({ query: '{query}' })} class="divide-y divide-border border-y border-border" />
         </section>
       )
     }
@@ -196,13 +193,13 @@ const title = q ? m.meta_search_title({ query: q }) : m.meta_search_title_empty(
     {
       !q && browseCategories.length > 0 && (
         <section aria-labelledby="search-browse-title" class="flex flex-col gap-3">
-          <h2 id="search-browse-title" class="readout">{m.explore_search_browse()}</h2>
+          <h2 id="search-browse-title" class="text-sm font-bold text-fg">{m.explore_search_browse()}</h2>
           <ul class="flex flex-wrap gap-2">
             {browseCategories.map((category) => (
               <li>
                 <a
                   href={href(`/categories/${category.slug}`, locale)}
-                  class="inline-flex h-11 items-center gap-2 rounded-full border border-border-strong bg-surface px-4 text-sm font-medium text-fg active:bg-raised"
+                  class="inline-flex h-11 items-center gap-2 rounded-full border border-border-strong px-4 text-sm font-medium text-fg hover:bg-fg/6"
                 >
                   {category.names[locale] ?? category.name}
                 </a>

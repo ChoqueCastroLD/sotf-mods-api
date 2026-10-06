@@ -15,13 +15,13 @@ import { localizeHtml } from '@sotf/markdown/labels';
 import { buttonClasses } from '@sotf/ui/button';
 import { PROSE_LOCATOR_CLASSES } from '@sotf/ui/domain';
 import { Icon } from '@sotf/ui/icons';
-import { ArrowLeft, ChevronUp, Package } from 'lucide-react';
-import { KitsError } from '../../components/kits/KitStates.tsx';
+import { ArrowLeft, Package } from 'lucide-react';
 import { loginHrefFor } from '../../components/mod/format.ts';
 import { configureModDomainI18n, markdownLabels } from '../../components/mod/i18n.ts';
 import { respondNotFound } from '../../components/mod/responses.ts';
 import { loadRequestPage } from '../../components/requests/data.ts';
 import { STATUS_CLASSES, statusLabel } from '../../components/requests/status.ts';
+import PageState from '../../components/state/PageState.astro';
 import PageLayout from '../../layouts/PageLayout.astro';
 import { setPageCache } from '../../lib/cache/page.ts';
 import { pageCache } from '../../lib/cache/policy.ts';
@@ -68,7 +68,8 @@ const description = request
 >
   {
     request === null ? (
-      <KitsError
+      <PageState
+        kind="error"
         title={m.requests_error_title()}
         text={m.requests_error_text()}
         retryHref={href(path, locale)}
@@ -85,7 +86,7 @@ const description = request
         </a>
         <header class="flex flex-col gap-3">
           <div class="flex flex-wrap items-center gap-2">
-            <span class={`inline-flex items-center rounded-sm px-2 py-0.5 text-xs font-semibold ${STATUS_CLASSES[request.status]}`}>
+            <span class={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold ${STATUS_CLASSES[request.status]}`}>
               {statusLabel(request.status)}
             </span>
             {request.adopter && request.status === 'adopted' && (
@@ -94,7 +95,7 @@ const description = request
               </a>
             )}
           </div>
-          <h1 id="request-title" class="font-display-caps text-display-sm text-balance text-fg">{request.title}</h1>
+          <h1 id="request-title" class="text-3xl font-bold text-balance text-fg md:text-4xl">{request.title}</h1>
           <p class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-fg-muted">
             {
               author ? (
@@ -118,7 +119,7 @@ const description = request
 
         {
           request.status === 'fulfilled' && request.mod && (
-            <div class="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-success/40 bg-success/10 p-4">
+            <div class="flex flex-wrap items-center justify-between gap-3 border-y border-border py-4">
               <p class="flex items-center gap-2 text-sm text-fg">
                 <Icon icon={Package} size={18} className="text-success" />
                 {m.requests_fulfilled_banner()} <strong>{request.mod.name}</strong>
@@ -131,7 +132,7 @@ const description = request
         }
         {
           request.status === 'closed' && (
-            <p class="rounded-lg border border-border bg-surface p-3 text-sm text-fg-muted">{m.requests_closed_banner()}</p>
+            <p class="border-y border-border py-3 text-sm text-fg-muted">{m.requests_closed_banner()}</p>
           )
         }
 
@@ -142,11 +143,8 @@ const description = request
           data-request-status={request.status}
           class="flex flex-col gap-6"
         >
-          <div class="flex flex-wrap items-center gap-3 rounded-lg border border-border bg-surface p-3">
-            <span class="inline-flex items-center gap-1 rounded-md bg-raised px-3 py-2 font-mono font-semibold text-fg tabular-nums">
-              <Icon icon={ChevronUp} size={18} className="text-signal" />
-              {request.voteCount}
-            </span>
+          <div class="flex flex-wrap items-center gap-3 border-y border-border py-3">
+            <span class="text-lg font-bold text-fg tabular-nums">{request.voteCount}</span>
             <span class="text-sm text-fg-muted">{m.requests_votes({ count: request.voteCount })}</span>
             <p class="text-sm text-fg-muted" data-request-guest-hint>
               {m.requests_guest_hint()}
@@ -157,17 +155,17 @@ const description = request
           </div>
 
           <section aria-labelledby="request-comments-title" class="flex flex-col gap-4">
-            <h2 id="request-comments-title" class="text-lg font-semibold text-fg">
+            <h2 id="request-comments-title" class="text-xl font-bold text-fg">
               {m.requests_comments_title()}
-              <span class="ms-1 font-mono text-sm font-normal text-fg-muted">{request.commentCount}</span>
+              <span class="ms-1 text-sm font-normal text-fg-muted tabular-nums">{request.commentCount}</span>
             </h2>
             {
               comments.length === 0 ? (
                 <p class="text-sm text-fg-muted">{m.requests_comments_empty()}</p>
               ) : (
-                <ol class="flex flex-col gap-3">
+                <ol class="flex flex-col border-t border-border">
                   {comments.map((comment) => (
-                    <li id={`c-${comment.id}`} class="flex flex-col gap-2 rounded-lg border border-border bg-surface p-4">
+                    <li id={`c-${comment.id}`} class="flex flex-col gap-2 border-b border-border py-4">
                       <p class="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm">
                         {comment.author ? (
                           <a href={href(profilePath(comment.author.handle), locale)} class="font-semibold text-fg hover:underline">

@@ -8,7 +8,7 @@ import type { EntryItem, EntryType } from './types.ts';
 export const RECENTS_KEY = 'sotf-cmdk-recent';
 export const MAX_RECENTS = 8;
 
-const TYPES: ReadonlySet<string> = new Set<EntryType>(['mod', 'build', 'kit', 'user', 'category', 'page']);
+const TYPES: ReadonlySet<string> = new Set<EntryType>(['mod', 'build', 'user', 'category', 'page']);
 
 function storage(): Storage | null {
   try {
@@ -56,25 +56,10 @@ function write(entries: readonly EntryItem[]): void {
 
 /** Moves (or adds) an entry to the top. Returns the new list. */
 export function rememberRecent(item: EntryItem): EntryItem[] {
-  const {
-    key,
-    type,
-    id,
-    title,
-    subtitle,
-    path,
-    thumb,
-    kind,
-    compat,
-    downloads,
-    count,
-    categorySlug,
-    manifestId,
-    handle,
-  } = item;
+  const { key, type, id, title, subtitle, path, thumb, kind, downloads, count, categorySlug, manifestId, handle } =
+    item;
   const slim: EntryItem = { key, type, id, title, subtitle, path, thumb };
   if (kind) slim.kind = kind;
-  if (compat) slim.compat = compat;
   if (downloads !== undefined) slim.downloads = downloads;
   if (count !== undefined) slim.count = count;
   if (categorySlug !== undefined) slim.categorySlug = categorySlug;

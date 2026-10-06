@@ -3,7 +3,7 @@ export type Jams_Results_Tabs_LabelInputs = {};
 /**
 * | output |
 * | --- |
-* | "Podium category" |
+* | "Results category" |
 *
 * @param {Jams_Results_Tabs_LabelInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

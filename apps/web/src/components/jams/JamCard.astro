@@ -1,87 +1,68 @@
 ---
 /**
- * A jam in the hub (everything except the featured one): its painting with the phase and the
- * title, then the theme (or the sealed-theme teaser), the next milestone and, for finished jams,
- * the winner. The whole card is one link (the title); the rest is text.
+ * A jam in the hub (everything except the featured one) as one row: title, phase, theme (or the
+ * sealed-theme line), tagline, entries, the next milestone and, for finished jams, the winner.
+ * The whole row is one link (the title).
  */
 import { formatDate } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
-import { Icon } from '@sotf/ui/icons';
-import { ArrowUpRight, CalendarClock, Users } from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
 import Countdown from './Countdown.astro';
 import type { JamResultsDTO, JamSummaryDTO } from './data.ts';
-import JamArt from './JamArt.astro';
 import MysteryTheme from './MysteryTheme.astro';
 import PhaseBadge from './PhaseBadge.astro';
-import { accentHex, jamArtName, nextDeadline } from './phase.ts';
+import { nextDeadline } from './phase.ts';
 import WinnerSpotlight from './WinnerSpotlight.astro';
 
 interface Props {
   jam: JamSummaryDTO;
   winner?: JamResultsDTO['overall'][number] | null;
   headingLevel?: 2 | 3;
-  /** Art beside the text from `md` up (a lone jam in its section). */
-  wide?: boolean;
 }
 
-const { jam, winner = null, headingLevel = 3, wide = false } = Astro.props;
+const { jam, winner = null, headingLevel = 3 } = Astro.props;
 const locale = Astro.locals.locale;
 const Heading = `h${headingLevel}` as 'h2' | 'h3';
-const accent = accentHex(jam.accent);
 const deadline = nextDeadline(jam);
 const finished = jam.phase === 'results' || jam.phase === 'archived';
 ---
 
-<article
-  class:list={['group relative flex h-full flex-col overflow-hidden rounded-xl border border-border bg-surface transition-[border-color,box-shadow,translate] duration-(--dur-base) hover:-translate-y-0.5 hover:border-border-strong hover:shadow-md focus-within:border-border-strong motion-reduce:hover:translate-y-0', wide && 'md:flex-row']}
->
-  <div class:list={['relative aspect-[16/8] w-full overflow-hidden bg-night-975', wide && 'md:aspect-auto md:min-h-72 md:w-[46%] md:shrink-0']} aria-hidden="true">
-    <JamArt
-      name={jamArtName(jam)}
-      sizes="(min-width: 1280px) 30vw, (min-width: 768px) 46vw, 92vw"
-      class="transition-transform duration-(--dur-slower) ease-out group-hover:scale-[1.04] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
-    />
-    <div class="absolute inset-0" style={`background: linear-gradient(to top, #090F0C 0%, rgb(9 15 12 / 0.35) 55%, transparent 100%), radial-gradient(70% 90% at 0% 100%, ${accent}30, transparent 70%);`}></div>
-    <PhaseBadge phase={jam.phase} onArt={true} class="absolute start-3 top-3" />
-  </div>
-  <div class:list={['flex flex-1 flex-col gap-3 p-4 pt-3', wide && 'md:justify-center md:gap-4 md:p-8']}>
-    <Heading class:list={['font-display-caps text-3xl leading-none text-fg', wide && 'md:text-5xl']}>
-      <a
-        href={href(`/jams/${jam.slug}`, locale)}
-        class="inline-flex items-start gap-1.5 outline-none after:absolute after:inset-0 after:content-[''] focus-visible:after:ring-2 focus-visible:after:ring-focus"
-      >
-        {jam.title}
-        <Icon icon={ArrowUpRight} size={18} className="mt-1 text-fg-subtle transition-colors group-hover:text-primary" />
-      </a>
-    </Heading>
+<article class="relative grid gap-1.5 border-b border-border py-5 hover:bg-fg/3 md:grid-cols-[minmax(0,1fr)_auto] md:items-start md:gap-x-8">
+  <div class="flex min-w-0 flex-col gap-1.5">
+    <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+      <Heading class="text-xl font-bold text-fg">
+        <a
+          href={href(`/jams/${jam.slug}`, locale)}
+          class="outline-none after:absolute after:inset-0 after:content-[''] focus-visible:after:ring-2 focus-visible:after:ring-focus"
+        >
+          {jam.title}
+        </a>
+      </Heading>
+      <PhaseBadge phase={jam.phase} />
+    </div>
     {
       jam.theme ? (
         <p class="flex flex-wrap items-baseline gap-x-2 text-sm">
-          <span class="readout text-primary">{m.jams_theme_heading()}</span>
+          <span class="text-fg-muted">{m.jams_theme_heading()}</span>
           <span class="font-semibold text-fg">{jam.theme}</span>
         </p>
       ) : jam.themeHidden ? (
         <MysteryTheme revealAt={jam.submissionsOpenAt} />
       ) : null
     }
-    {jam.tagline && <p class="line-clamp-2 text-sm text-fg-muted">{jam.tagline}</p>}
-    {winner && <WinnerSpotlight placement={winner} link={false} class="rounded-lg border border-border bg-sunken/50 p-2.5" />}
-    <div class="mt-auto flex flex-wrap items-center justify-between gap-x-4 gap-y-2 border-t border-border pt-3 text-xs text-fg-muted">
-      <span class="inline-flex items-center gap-1.5 font-mono tabular-nums">
-        <Icon icon={Users} size={14} />
-        {m.jams_entries_count({ count: jam.entryCount })}
-      </span>
-      {
-        deadline ? (
-          <Countdown deadline={deadline} compact={true} />
-        ) : finished && jam.resultsPublishedAt ? (
-          <span class="inline-flex items-center gap-1.5 font-mono tabular-nums">
-            <Icon icon={CalendarClock} size={14} />
-            <time datetime={jam.resultsPublishedAt}>{formatDate(locale, jam.resultsPublishedAt, 'medium')}</time>
-          </span>
-        ) : null
-      }
-    </div>
+    {jam.tagline && <p class="line-clamp-2 max-w-(--container-prose) text-sm text-fg-muted">{jam.tagline}</p>}
+    {winner && <WinnerSpotlight placement={winner} link={false} />}
+  </div>
+  <div class="flex flex-col gap-1 text-sm text-fg-muted md:items-end md:text-end">
+    <span class="tabular-nums">{m.jams_entries_count({ count: jam.entryCount })}</span>
+    {
+      deadline ? (
+        <Countdown deadline={deadline} compact={true} />
+      ) : finished && jam.resultsPublishedAt ? (
+        <time datetime={jam.resultsPublishedAt} class="tabular-nums">
+          {formatDate(locale, jam.resultsPublishedAt, 'medium')}
+        </time>
+      ) : null
+    }
   </div>
 </article>

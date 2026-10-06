@@ -1,10 +1,9 @@
 ---
 /**
- * `/jams` — the Mod Jams hub: the jam that is happening (or the next one) featured as a cinematic
- * hero with its countdown and stage trail, the jams coming up (a sealed theme gets a teaser), the
- * jams with results and their winners, the archive, and how a jam works. With no jam at all it is
- * the page of the first one («on its way»). All plain links, no JavaScript needed except the
- * ticking countdown.
+ * `/jams` — the Mod Jams hub: the jam that is happening (or the next one) featured with its
+ * countdown and stages, the jams coming up (a sealed theme shows its reveal date), the jams with
+ * results and their winners, the archive, and how a jam works. With no jam at all it says the
+ * first one is on its way. All plain links, no JavaScript needed except the ticking countdown.
  *
  * - Cache: E(300) `list:jams` (purged by every phase change); the API failing gives 503 with an
  *   error state, never cached.
@@ -16,8 +15,8 @@ import HowItWorks from '../../components/jams/HowItWorks.astro';
 import JamCard from '../../components/jams/JamCard.astro';
 import JamHero from '../../components/jams/JamHero.astro';
 import { pickFeatured } from '../../components/jams/phase.ts';
-import { KitsError } from '../../components/kits/KitStates.tsx';
 import { configureModDomainI18n } from '../../components/mod/i18n.ts';
+import PageState from '../../components/state/PageState.astro';
 import PageLayout from '../../layouts/PageLayout.astro';
 import { setPageCache } from '../../lib/cache/page.ts';
 import { pageCache } from '../../lib/cache/policy.ts';
@@ -55,16 +54,16 @@ const sections = [
   seo={{ title: m.jams_hub_title(), description: m.jams_hub_description(), path: '/jams' }}
   breadcrumbs={[{ label: m.common_nav_home(), path: '/' }, { label: m.jams_nav() }]}
 >
-  <div class="flex flex-col gap-10 md:gap-14">
+  <div class="flex flex-col gap-10 md:gap-12">
     <header class="flex flex-col gap-2">
-      <p class="readout text-signal">{m.jams_hub_readout()}</p>
-      <h1 class="font-display-caps text-display-sm text-fg">{m.jams_hub_title()}</h1>
+      <h1 class="text-3xl font-bold text-fg md:text-4xl">{m.jams_hub_title()}</h1>
       <p class="max-w-(--container-prose) text-base text-fg-muted">{m.jams_hub_intro()}</p>
     </header>
 
     {
       items === null ? (
-        <KitsError
+        <PageState
+          kind="error"
           title={m.jams_error_title()}
           text={m.jams_error_text()}
           retryHref={href(Astro.url.pathname, locale)}
@@ -79,21 +78,15 @@ const sections = [
         <>
           <JamHero jam={featured} mode="hub" results={results.get(featured.slug) ?? null} />
           {sections.map((section) => (
-            <section aria-labelledby={`jams-${section.id}`} class="flex flex-col gap-4">
-              <h2 id={`jams-${section.id}`} class="font-display-caps text-3xl text-fg">
+            <section aria-labelledby={`jams-${section.id}`} class="flex flex-col gap-1">
+              <h2 id={`jams-${section.id}`} class="text-xl font-bold text-fg md:text-2xl">
                 {section.title}
-                <span class="ms-2 font-mono text-sm font-normal text-fg-muted">{section.jams.length}</span>
+                <span class="ms-2 text-sm font-normal text-fg-muted tabular-nums">{section.jams.length}</span>
               </h2>
-              <ul
-                class:list={[
-                  'grid grid-cols-1 gap-5',
-                  section.jams.length === 2 && 'md:grid-cols-2',
-                  section.jams.length >= 3 && 'md:grid-cols-2 xl:grid-cols-3',
-                ]}
-              >
+              <ul class="border-t border-border">
                 {section.jams.map((jam) => (
                   <li class="min-w-0">
-                    <JamCard jam={jam} wide={section.jams.length === 1} winner={section.finished ? winnerOf(results.get(jam.slug)) : null} />
+                    <JamCard jam={jam} winner={section.finished ? winnerOf(results.get(jam.slug)) : null} />
                   </li>
                 ))}
               </ul>

@@ -3,7 +3,7 @@ export type Auth_Field_Display_Name_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "How other survivors see you. You can change it later." |
+* | "The name other users see. You can change it later." |
 *
 * @param {Auth_Field_Display_Name_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

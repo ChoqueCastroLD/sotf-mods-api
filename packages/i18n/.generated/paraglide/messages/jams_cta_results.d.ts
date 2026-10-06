@@ -3,7 +3,7 @@ export type Jams_Cta_ResultsInputs = {};
 /**
 * | output |
 * | --- |
-* | "See the podium" |
+* | "See the results" |
 *
 * @param {Jams_Cta_ResultsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

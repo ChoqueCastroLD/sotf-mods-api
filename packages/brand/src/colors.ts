@@ -2,75 +2,79 @@
  * Brand colours used by the logo and the generative artwork, plus WCAG helpers.
  *
  * The full design-token set (semantic colours, `light-dark()` pairs, chart slots) lives
- * in `@sotf/ui/tokens.css` (PLAN §3.3). This module only holds the literal values the
+ * in `@sotf/ui/tokens.css`. This module only holds the literal values the
  * brand assets are drawn with, so assets never depend on CSS being present.
  */
 
 export const palette = {
+  /** Neutral scale: DaisyUI dark neutrals (page `950`, surface `900`, border `800`) and light grays. */
   night: {
-    25: '#FCFAF4',
-    50: '#F5F4EC',
-    100: '#E7E7DE',
-    200: '#D2D4CA',
-    300: '#B4B7AE',
-    400: '#90968D',
-    500: '#656D65',
-    600: '#4D554E',
-    700: '#38413B',
-    800: '#252C27',
-    900: '#171E1A',
-    950: '#0F1612',
-    975: '#090F0C',
+    25: '#FFFFFF',
+    50: '#F6F7F8',
+    100: '#E5E7EB',
+    200: '#D1D5DB',
+    300: '#B4BAC3',
+    400: '#9CA3AF',
+    500: '#6B7280',
+    600: '#4B5563',
+    700: '#3D4651',
+    800: '#2A323C',
+    900: '#1D232A',
+    950: '#15191E',
+    975: '#111418',
   },
+  /** The one accent: the red of the SOTF-MODS logo. `500` is the primary, `600` its hover. */
   flare: {
-    50: '#FEF4F1',
-    100: '#FEE7DF',
-    200: '#FECDBA',
-    300: '#FFA37F',
-    400: '#FF7335',
-    500: '#E75803',
-    600: '#BD4600',
-    700: '#963601',
-    800: '#712701',
-    900: '#4D1700',
-    950: '#2F0B00',
+    50: '#FEF2F2',
+    100: '#FEE2E2',
+    200: '#FECACA',
+    300: '#FCA5A5',
+    400: '#F87171',
+    500: '#E11D1D',
+    600: '#C81414',
+    700: '#A31010',
+    800: '#7F0D0D',
+    900: '#5A0A0A',
+    950: '#330505',
   },
-  signal: { 300: '#6BCFE0', 700: '#026572' },
+  /** Former cyan "signal": now neutral. */
+  signal: { 300: '#B4BAC3', 700: '#4B5563' },
   lichen: { 300: '#87D48A', 700: '#136C21' },
   solafite: { 200: '#F5D49A', 300: '#E4B65C', 700: '#745301' },
   blood: { 400: '#FF6E68', 600: '#C92F33' },
-  blueprint: { 300: '#96C0FE', 600: '#3270C8', 700: '#2257A4' },
+  /** Former blue "blueprint": now neutral. */
+  blueprint: { 300: '#B4BAC3', 600: '#6B7280', 700: '#4B5563' },
 } as const;
 
 export type BrandTheme = 'night' | 'day';
 
-/** Logo colours per theme (PLAN §3.2). The pin is exempt from text contrast rules but kept ≥ 3:1. */
+/** Logo colours per theme: the logo is always the old red. */
 export const logoColors: Readonly<
   Record<BrandTheme, { readonly background: string; readonly foreground: string; readonly flare: string }>
 > = {
-  night: { background: palette.night[975], foreground: palette.night[50], flare: palette.flare[400] },
-  day: { background: palette.night[50], foreground: palette.night[950], flare: palette.flare[500] },
+  night: { background: palette.night[950], foreground: palette.night[100], flare: '#FE0E0F' },
+  day: { background: palette.night[50], foreground: palette.night[950], flare: '#FE0E0F' },
 };
 
-/** Page surfaces the logo may sit on, per theme (research/03 §4.1). */
+/** Page surfaces the logo may sit on, per theme. */
 export const themeSurfaces: Readonly<Record<BrandTheme, readonly string[]>> = {
   night: [palette.night[975], palette.night[950], palette.night[900]],
   day: [palette.night[50], palette.night[25], '#FFFFFF'],
 };
 
-/** `<meta name="theme-color">` values. */
+/** `<meta name="theme-color">` values: the page background of each theme. */
 export const themeColor: Readonly<Record<BrandTheme, string>> = {
-  night: palette.night[975],
+  night: palette.night[950],
   day: palette.night[50],
 };
 
 /**
- * Chart slots in their validated, fixed order (PLAN §3.3). Also used to colour default
- * avatars so they stay inside the brand palette.
+ * Chart slots in their fixed order. Slot 1 is the red accent; the others are muted so a chart
+ * stays calm. Also used to tint default avatars.
  */
 export const chartSlots: Readonly<Record<BrandTheme, readonly string[]>> = {
-  night: ['#E75803', '#498BEB', '#05A388', '#B38309', '#D15D9A', '#40A449', '#9575E2', '#ED4A49'],
-  day: ['#E75803', '#3270C8', '#05A388', '#B38309', '#D15D9A', '#136C21', '#7A5BC0', '#C92F33'],
+  night: ['#E11D1D', '#7C8DA6', '#5E9C86', '#B8935A', '#A77A99', '#6FA06B', '#8A82B8', '#C46A6A'],
+  day: ['#C81414', '#5B6B85', '#3F7D68', '#8F6B2E', '#8A5A7C', '#4C7F48', '#6A62A0', '#A84848'],
 };
 
 export interface Rgb {

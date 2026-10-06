@@ -1,8 +1,7 @@
 /**
  * `/me/backpack` (PLAN §4.3 «Me», §6.8 «Favoritos → Backpack», T0-16): the mods I follow with
- * their update and compatibility state. Filters: all · updates available · broken on the current
- * build. Per mod: download the latest version, turn update signals on/off and unfollow (optimistic,
- * with «Undo»). The «Day 1 on the island» checklist leads the page while it is pending.
+ * their update state. Filters: all · updates available. Per mod: download the latest version, turn
+ * update notifications on/off and unfollow (optimistic, with «Undo»).
  */
 import { m } from '@sotf/i18n/messages';
 import { Badge } from '@sotf/ui/badge';
@@ -19,10 +18,9 @@ import { useDocumentTitle } from '../../hooks/use-document-title.ts';
 import { notify } from '../../lib/notify.ts';
 import { failureDescription } from '../settings/errors.ts';
 import { type Backpack, type BackpackItem, backpackQuery, meApi, meKeys } from './api.ts';
-import { OnboardingChecklist } from './OnboardingChecklist.tsx';
-import { CompatLine, isBrokenNow, localDate, ModThumb, publicHref } from './shared.tsx';
+import { localDate, ModThumb, publicHref } from './shared.tsx';
 
-type Filter = 'all' | 'updates' | 'broken';
+type Filter = 'all' | 'updates';
 
 function downloadHref(item: BackpackItem): string | null {
   const version = item.mod.latestVersion;
@@ -36,12 +34,8 @@ export function BackpackScreen() {
   const [busy, setBusy] = useState<ReadonlySet<number>>(new Set());
   useDocumentTitle(m.me_backpack_title());
 
-  const brokenCount = useMemo(() => data.items.filter((item) => isBrokenNow(item.compat)).length, [data.items]);
   const visible = useMemo(
-    () =>
-      data.items.filter((item) =>
-        filter === 'updates' ? item.hasUpdate : filter === 'broken' ? isBrokenNow(item.compat) : true,
-      ),
+    () => data.items.filter((item) => (filter === 'updates' ? item.hasUpdate : true)),
     [data.items, filter],
   );
 
@@ -123,14 +117,12 @@ export function BackpackScreen() {
   const filters: { value: Filter; label: string; count: number }[] = [
     { value: 'all', label: m.me_filter_all(), count: data.items.length },
     { value: 'updates', label: m.me_filter_updates(), count: data.updatesAvailable },
-    { value: 'broken', label: m.me_filter_broken(), count: brokenCount },
   ];
 
   return (
     <DomainI18nBridge>
       <div className="grid gap-6">
         <header className="grid gap-1">
-          <p className="readout text-signal">{m.me_backpack_readout()}</p>
           <h1 className="font-display-caps text-display-xs text-fg">{m.me_backpack_title()}</h1>
           <p className="max-w-prose text-sm text-fg-muted">
             {data.items.length > 0
@@ -138,8 +130,6 @@ export function BackpackScreen() {
               : m.me_backpack_description()}
           </p>
         </header>
-
-        <OnboardingChecklist />
 
         {data.items.length === 0 ? (
           <EmptyState
@@ -183,8 +173,8 @@ export function BackpackScreen() {
               <EmptyState
                 headingLevel={2}
                 icon={<Icon icon={BackpackIcon} size={28} />}
-                title={filter === 'updates' ? m.me_backpack_no_updates_title() : m.me_backpack_no_broken_title()}
-                description={filter === 'updates' ? m.me_backpack_no_updates_text() : m.me_backpack_no_broken_text()}
+                title={m.me_backpack_no_updates_title()}
+                description={m.me_backpack_no_updates_text()}
               />
             ) : (
               <ul className="grid gap-2" aria-label={m.me_backpack_list_label()}>
@@ -224,7 +214,6 @@ export function BackpackScreen() {
                                 {m.me_latest_version({ version: item.mod.latestVersion })}
                               </span>
                             ) : null}
-                            <CompatLine compat={item.compat} />
                           </div>
                         </div>
                       </div>

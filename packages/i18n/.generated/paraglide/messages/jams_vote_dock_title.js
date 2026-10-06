@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Jams_Vote_Dock_TitleInputs */
 
 const en_jams_vote_dock_title = /** @type {(inputs: Jams_Vote_Dock_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Your ballot`)
+	return /** @type {LocalizedString} */ (`Voting`)
 };
 
 const es_jams_vote_dock_title = /** @type {(inputs: Jams_Vote_Dock_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tu papeleta`)
+	return /** @type {LocalizedString} */ (`Votación`)
 };
 
 const de_jams_vote_dock_title = /** @type {(inputs: Jams_Vote_Dock_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dein Stimmzettel`)
+	return /** @type {LocalizedString} */ (`Abstimmung`)
 };
 
 const fr_jams_vote_dock_title = /** @type {(inputs: Jams_Vote_Dock_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Votre bulletin`)
+	return /** @type {LocalizedString} */ (`Vote`)
 };
 
 const it_jams_vote_dock_title = /** @type {(inputs: Jams_Vote_Dock_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`La tua scheda`)
+	return /** @type {LocalizedString} */ (`Votazione`)
 };
 
 const nl_jams_vote_dock_title = /** @type {(inputs: Jams_Vote_Dock_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Jouw stembiljet`)
+	return /** @type {LocalizedString} */ (`Stemmen`)
 };
 
 const pl_jams_vote_dock_title = /** @type {(inputs: Jams_Vote_Dock_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Twoja karta do głosowania`)
+	return /** @type {LocalizedString} */ (`Głosowanie`)
 };
 
 const pt_jams_vote_dock_title = /** @type {(inputs: Jams_Vote_Dock_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sua cédula`)
+	return /** @type {LocalizedString} */ (`Votação`)
 };
 
 const ru_jams_vote_dock_title = /** @type {(inputs: Jams_Vote_Dock_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ваш бюллетень`)
+	return /** @type {LocalizedString} */ (`Голосование`)
 };
 
 const sv_jams_vote_dock_title = /** @type {(inputs: Jams_Vote_Dock_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Din röstsedel`)
+	return /** @type {LocalizedString} */ (`Röstning`)
 };
 
 const tr_jams_vote_dock_title = /** @type {(inputs: Jams_Vote_Dock_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Oy pusulan`)
+	return /** @type {LocalizedString} */ (`Oylama`)
 };
 
 const zh_jams_vote_dock_title = /** @type {(inputs: Jams_Vote_Dock_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`你的选票`)
+	return /** @type {LocalizedString} */ (`投票`)
 };
 
 const ja_jams_vote_dock_title = /** @type {(inputs: Jams_Vote_Dock_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`あなたの投票`)
+	return /** @type {LocalizedString} */ (`投票`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Your ballot" |
+* | "Voting" |
 *
 * @param {Jams_Vote_Dock_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

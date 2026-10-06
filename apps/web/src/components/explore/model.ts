@@ -364,7 +364,8 @@ export function buildExploreModel(input: {
   for (const slug of state.excludeTag) hidden.push(['excludeTag', slug]);
   if (state.author) hidden.push(['author', state.author]);
   if (state.nsfw) hidden.push(['nsfw', '1']);
-  if (state.sort !== 'trending' && state.sort !== 'relevance') hidden.push(['sort', state.sort]);
+  if (state.unapproved) hidden.push(['unapproved', '1']);
+  if (state.sort !== 'new' && state.sort !== 'relevance') hidden.push(['sort', state.sort]);
   if (state.order !== 'desc') hidden.push(['order', state.order]);
   if (state.view !== 'grid') hidden.push(['view', state.view]);
 
@@ -490,7 +491,8 @@ export function buildExploreModel(input: {
     verified: false,
     author: null,
     q: '',
-    sort: 'trending',
+    sort: 'new',
+    order: 'desc',
   });
 
   return {

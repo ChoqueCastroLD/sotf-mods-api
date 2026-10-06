@@ -1,12 +1,12 @@
 ---
 /**
  * One row of the request board: votes, title, status, author, adopter and counts. The whole row is
- * a link to the detail page (the title link stretches over the card).
+ * a link to the detail page (the title link stretches over the row).
  */
 import { formatDate } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import { Icon } from '@sotf/ui/icons';
-import { ChevronUp, MessageSquare } from 'lucide-react';
+import { MessageSquare } from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
 import type { RequestDTO } from './data.ts';
 import { requestPath } from './data.ts';
@@ -23,17 +23,17 @@ const Heading = `h${headingLevel}` as 'h2' | 'h3';
 const authorName = request.author?.displayName || request.author?.handle || null;
 ---
 
-<article class="relative flex gap-3 rounded-xl border border-border bg-surface p-3.5 transition-colors hover:border-border-strong active:bg-raised md:gap-4 md:rounded-lg md:p-4">
-  <div class="flex w-12 shrink-0 flex-col items-center justify-center self-start rounded-lg bg-raised py-2 text-fg md:w-14 md:self-stretch" aria-hidden="true">
-    <Icon icon={ChevronUp} size={18} className="text-signal" />
-    <span class="font-mono text-base font-semibold tabular-nums">{request.voteCount}</span>
+<article class="relative flex gap-4 border-b border-border py-4 hover:bg-fg/3">
+  <div class="flex w-12 shrink-0 flex-col items-center justify-center self-start text-fg" aria-hidden="true">
+    <span class="text-xl font-bold tabular-nums">{request.voteCount}</span>
+    <span class="text-xs text-fg-muted">{m.requests_votes_short()}</span>
   </div>
   <div class="flex min-w-0 flex-1 flex-col gap-1.5">
     <Heading class="line-clamp-2 min-w-0 text-base font-semibold text-balance text-fg">
       <a href={href(requestPath(request.id), locale)} class="after:absolute after:inset-0 hover:underline">{request.title}</a>
     </Heading>
     <p class="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-sm text-fg-muted">
-      <span class={`inline-flex items-center rounded-sm px-2 py-0.5 text-xs font-semibold ${STATUS_CLASSES[request.status]}`}>
+      <span class={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-semibold ${STATUS_CLASSES[request.status]}`}>
         {statusLabel(request.status)}
       </span>
       {authorName && <span class="min-w-0 truncate">{m.requests_by({ name: authorName })}</span>}

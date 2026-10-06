@@ -1,7 +1,7 @@
 ---
 /**
- * 404 «You wandered off the trail» (research/03 §5.10, §6.14) — also the 410 page for removed
- * legacy content (`locals.errorKind = 'gone'`, set by the middleware). Real status codes (the
+ * 404 page, also the 410 page for removed content (`locals.errorKind = 'gone'`, set by the
+ * middleware). Plain: a heading, one sentence, search and two links. Real status codes (the
  * legacy site answered 200), `noindex`, edge TTL 60 s with tag `html` so a freshly published mod is
  * never hidden for long (PLAN §4.2). Popular mods come from the API with an 800 ms budget; the
  * page renders without them when the API is slow or down.
@@ -10,7 +10,6 @@ import { formatCompactNumber } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import { Icon } from '@sotf/ui/icons';
 import { ArrowRight, BookOpen, Download, Search } from 'lucide-react';
-import ArtPicture from '../components/layout/ArtPicture.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { optional, serverApi } from '../lib/api.ts';
 import { setPageCache } from '../lib/cache/page.ts';
@@ -28,9 +27,8 @@ const popular = gone
       serverApi().catalog.listMods({ query: { sort: 'downloads', pageSize: 6, type: 'all' } }, { signal }),
     );
 const mods = popular?.items.slice(0, 6) ?? [];
-const title = gone ? m.errors_gone_title() : m.errors_not_found_title();
-const text = gone ? m.errors_gone_text() : m.errors_not_found_text();
-const readout = gone ? m.errors_gone_readout() : m.errors_not_found_readout();
+const title = gone ? m.shell_410_title() : m.shell_404_title();
+const text = gone ? m.shell_410_text() : m.shell_404_text();
 ---
 
 <BaseLayout
@@ -42,89 +40,67 @@ const readout = gone ? m.errors_gone_readout() : m.errors_not_found_readout();
     canonical: false,
   }}
 >
-  <section class="relative overflow-hidden">
-    <div class="texture-topo pointer-events-none absolute inset-0 opacity-50 max-md:hidden" aria-hidden="true"></div>
-    <div
-      class="relative mx-auto grid w-full max-w-(--container-content) items-center md:grid-cols-[1fr_1.05fr] md:gap-12 md:px-6 md:py-16"
-    >
-      <figure
-        class="relative order-1 m-0 md:order-2 md:overflow-hidden md:rounded-2xl md:border md:border-border md:shadow-lg"
-        aria-hidden="true"
-      >
-        <ArtPicture
-          name="not-found"
-          widths={[480, 800, 1200]}
-          width={1376}
-          height={768}
-          sizes="(min-width: 48rem) 40rem, 100vw"
-          priority
-          class="block aspect-[16/10] w-full bg-raised object-cover max-md:mask-[linear-gradient(to_bottom,black_60%,transparent)] md:aspect-[4/3]"
-        />
-      </figure>
-      <div class="order-2 grid gap-5 px-4 pb-10 max-md:-mt-16 md:order-1 md:px-0 md:pb-0">
-        <p class="readout relative text-signal">{readout}</p>
-        <p class="font-display-caps relative text-display-xl text-fg" aria-hidden="true">{gone ? '410' : '404'}</p>
-        <h1 class="font-display-caps text-display-sm text-fg">{title}</h1>
-        <p class="max-w-(--container-prose) text-lg text-fg-muted">{text}</p>
+  <section class="mx-auto grid w-full max-w-(--container-prose) gap-5 px-4 py-14 md:px-6 md:py-20">
+    <p class="text-sm font-semibold text-primary tabular-nums">{gone ? '410' : '404'}</p>
+    <h1 class="text-3xl font-bold text-fg md:text-4xl">{title}</h1>
+    <p class="text-lg text-fg-muted">{text}</p>
 
-        <search class="max-w-lg">
-          <form method="get" action={href('/search', locale)} class="flex gap-2">
-            <label for="lost-search" class="sr-only">{m.common_search_label()}</label>
-            <div class="relative min-w-0 flex-1">
-              <span class="pointer-events-none absolute inset-y-0 start-3 flex items-center text-fg-subtle">
-                <Icon icon={Search} size={18} />
-              </span>
-              <input
-                id="lost-search"
-                name="q"
-                type="search"
-                maxlength="100"
-                enterkeyhint="search"
-                placeholder={m.common_search_placeholder()}
-                class="h-12 w-full rounded-md border border-border-strong bg-surface ps-10 pe-3 text-base text-fg placeholder:text-fg-subtle focus-visible:border-focus"
-              />
-            </div>
-            <button
-              type="submit"
-              class="inline-flex h-12 shrink-0 items-center gap-2 rounded-md bg-primary px-4 font-semibold text-primary-fg shadow-glow transition-[filter] hover:brightness-110 motion-reduce:transition-none"
-            >
-              {m.common_search_label()}
-            </button>
-          </form>
-        </search>
-
-        <div class="grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
-          <a
-            href={href('/', locale)}
-            class="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-border-strong px-3 py-2 text-center leading-tight font-semibold text-fg hover:bg-fg/8 sm:min-h-11 sm:px-4"
-          >
-            {m.errors_not_found_home()}
-            <Icon icon={ArrowRight} size={18} className="rtl:rotate-180" />
-          </a>
-          <a
-            href={href('/install', locale)}
-            class="inline-flex min-h-12 items-center justify-center gap-2 rounded-md border border-border px-3 py-2 text-center leading-tight font-semibold text-fg-muted hover:bg-fg/8 hover:text-fg sm:min-h-11 sm:border-0 sm:px-4"
-          >
-            <Icon icon={BookOpen} size={18} />
-            {m.errors_not_found_install()}
-          </a>
+    <search class="max-w-lg">
+      <form method="get" action={href('/search', locale)} class="flex gap-2">
+        <label for="lost-search" class="sr-only">{m.common_search_label()}</label>
+        <div class="relative min-w-0 flex-1">
+          <span class="pointer-events-none absolute inset-y-0 start-3 flex items-center text-fg-subtle">
+            <Icon icon={Search} size={18} />
+          </span>
+          <input
+            id="lost-search"
+            name="q"
+            type="search"
+            maxlength="100"
+            enterkeyhint="search"
+            placeholder={m.shell_search_placeholder()}
+            class="h-11 w-full rounded-md border border-border-strong bg-sunken ps-10 pe-3 text-base text-fg placeholder:text-fg-subtle focus-visible:border-focus"
+          />
         </div>
-      </div>
+        <button
+          type="submit"
+          class="inline-flex h-11 shrink-0 items-center rounded-md bg-primary px-4 font-semibold text-primary-fg hover:bg-primary-hover"
+        >
+          {m.common_search_label()}
+        </button>
+      </form>
+    </search>
+
+    <div class="flex flex-wrap gap-3">
+      <a
+        href={href('/', locale)}
+        class="inline-flex min-h-11 items-center gap-2 rounded-md border border-border-strong px-4 font-semibold text-fg hover:bg-fg/8"
+      >
+        {m.shell_404_home()}
+        <Icon icon={ArrowRight} size={18} className="rtl:rotate-180" />
+      </a>
+      <a
+        href={href('/install', locale)}
+        class="inline-flex min-h-11 items-center gap-2 rounded-md px-3 font-semibold text-fg-muted hover:bg-fg/8 hover:text-fg"
+      >
+        <Icon icon={BookOpen} size={18} />
+        {m.shell_more_install_guide()}
+      </a>
     </div>
   </section>
 
   {
     mods.length > 0 && (
-      <section class="mx-auto w-full max-w-(--container-content) px-4 pb-16 md:px-6" aria-labelledby="popular-title">
-        <h2 id="popular-title" class="font-display-caps mb-4 text-display-xs text-fg">
+      <section class="mx-auto w-full max-w-(--container-prose) px-4 pb-16 md:px-6" aria-labelledby="popular-title">
+        <h2 id="popular-title" class="mb-2 text-lg font-bold text-fg">
           {m.errors_not_found_popular()}
         </h2>
-        <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <ul class="divide-y divide-border border-y border-border">
           {mods.map((mod) => (
             <li>
               <a
                 href={href(mod.canonicalPath, locale)}
-                class="flex min-h-16 items-center justify-between gap-3 rounded-lg border border-border bg-surface p-4 hover:border-border-strong hover:bg-raised"
+                class="flex min-h-14 items-center justify-between gap-3 py-2 hover:text-primary"
               >
                 <span class="grid min-w-0 gap-0.5">
                   <span class="truncate font-semibold text-fg">{mod.name}</span>

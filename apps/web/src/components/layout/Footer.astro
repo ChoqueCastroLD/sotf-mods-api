@@ -1,99 +1,99 @@
 ---
 /**
- * Site footer (PLAN §3.1, research/03 §5.4 and §6.1): link columns, the mandatory fan-community
- * disclaimer, tonight's moon phase (computed on the client by `scripts/moon.ts`, so cached HTML
- * never shows a stale phase for long), the 13 languages, the theme toggle, the December snow
- * toggle, Discord and GitHub.
+ * Site footer, like the old one: three link columns (SOTF-MODS, Partners, Related sites), a row with
+ * the site pages (About, install guide, logs, developers, legal) and the language switcher, and the
+ * grayscale logo with «Providing quality mods since March 2023» and the fan-community disclaimer.
  */
-
-import { moonPhase } from '@sotf/brand/moon';
 import { m } from '@sotf/i18n/messages';
-import { Icon } from '@sotf/ui/icons';
 import { LanguageSwitcher } from '@sotf/ui/language-switcher';
-import { ThemeToggle } from '@sotf/ui/theme-toggle';
-import { CodeXml, MessagesSquare, Snowflake } from 'lucide-react';
 import { href, languageLinks } from '../../lib/i18n.ts';
-import { SOCIAL_LINKS } from '../../lib/site.ts';
+import { PATHS } from './nav-items.ts';
+import SiteLogo from './SiteLogo.astro';
 
 const locale = Astro.locals.locale;
 const languages = languageLinks(Astro.locals.pagePath);
 
-const columns = [
+interface FooterLink {
+  label: string;
+  url: string;
+  description?: string;
+}
+
+const columns: { title: string; links: FooterLink[] }[] = [
   {
-    title: m.common_footer_explore(),
+    title: 'SOTF-MODS',
     links: [
-      { path: '/mods', label: m.common_term_mods() },
-      { path: '/builds', label: m.common_term_builds() },
-      { path: '/kits', label: m.common_term_kits() },
-      { path: '/requests', label: m.common_term_requests() },
-      { path: '/jams', label: m.jams_nav() },
-      { path: '/creators', label: m.common_nav_creators() },
-      { path: '/patch-radar', label: m.common_term_patch_radar() },
-      { path: '/compare', label: m.explore_compare_crumb() },
+      { label: 'YouTube Shoko', url: 'https://www.youtube.com/@ShokoCC' },
+      {
+        label: 'GitHub Backend',
+        url: 'https://github.com/ChoqueCastroLD/sotf-mods-api',
+        description: m.shell_footer_github_backend(),
+      },
+      {
+        label: 'GitHub Frontend',
+        url: 'https://github.com/ChoqueCastroLD/sotf-mods-frontend',
+        description: m.shell_footer_github_frontend(),
+      },
     ],
   },
   {
-    title: m.common_footer_community(),
+    title: m.shell_footer_partners(),
     links: [
-      { path: '/news', label: m.common_nav_news() },
-      { path: '/achievements', label: m.common_nav_achievements() },
-      { path: '/about', label: m.common_footer_about() },
-      { path: '/brand', label: m.common_footer_brand() },
+      { label: 'Discord Sons of | The forest', url: 'https://discord.gg/sotf' },
+      { label: 'YouTube Toni Macaroni', url: 'https://www.youtube.com/@tonimacaroni8746' },
     ],
   },
   {
-    title: m.common_footer_resources(),
+    title: m.shell_footer_related(),
     links: [
-      { path: '/install', label: m.common_nav_install() },
-      { path: '/logs', label: m.logs_nav_link() },
-      { path: '/developers', label: m.common_footer_developers() },
-      { path: '/api/docs', label: m.common_footer_api_docs() },
-    ],
-  },
-  {
-    title: m.common_footer_legal(),
-    links: [
-      { path: '/privacy', label: m.common_footer_privacy() },
-      { path: '/terms', label: m.common_footer_terms() },
-      { path: '/content-policy', label: m.common_footer_content_policy() },
-      { path: '/dmca', label: m.common_footer_dmca() },
-      { path: '/cookies', label: m.common_footer_cookies() },
+      { label: 'Tonihub', url: 'https://tonihub.com/', description: m.shell_footer_tonihub() },
+      {
+        label: 'RedLoader Wiki',
+        url: 'https://tonimacaroni.github.io/RedLoader/',
+        description: m.shell_footer_redloader(),
+      },
+      {
+        label: 'SOTF Mods Tutorials',
+        url: 'https://imaxel0.github.io/sotf-mods-tutorials/',
+        description: m.shell_footer_tutorials(),
+      },
     ],
   },
 ];
 
-const moonNames = [
-  m.common_moon_new(),
-  m.common_moon_waxing_crescent(),
-  m.common_moon_first_quarter(),
-  m.common_moon_waxing_gibbous(),
-  m.common_moon_full(),
-  m.common_moon_waning_gibbous(),
-  m.common_moon_last_quarter(),
-  m.common_moon_waning_crescent(),
+const pages = [
+  { path: PATHS.about, label: m.common_footer_about() },
+  { path: PATHS.install, label: m.shell_more_install_guide() },
+  { path: PATHS.logs, label: m.logs_nav_link() },
+  { path: PATHS.developers, label: m.shell_footer_developers() },
+  { path: PATHS.terms, label: m.common_footer_terms() },
+  { path: PATHS.privacy, label: m.common_footer_privacy() },
+  { path: PATHS.cookies, label: m.common_footer_cookies() },
+  { path: PATHS.contentPolicy, label: m.common_footer_content_policy() },
+  { path: PATHS.dmca, label: m.common_footer_dmca() },
 ];
-// Rendered for the server's date; `scripts/moon.ts` recomputes it on the client (cached HTML may
-// be up to a day old). The template keeps a `{phase}` placeholder, so no i18n code ships.
-const moonTemplate = m.common_moon_label({ phase: '{phase}' });
-const tonight = moonPhase();
-const moonLabel = moonTemplate.replace('{phase}', moonNames[tonight.index] ?? '');
 ---
 
 <footer class="mt-auto border-t border-border bg-surface pb-[calc(var(--bottom-chrome)+1.5rem)] md:pb-0">
-  <div class="mx-auto grid w-full max-w-(--container-wide) gap-10 py-12 ps-[max(1rem,var(--safe-left))] pe-[max(1rem,var(--safe-right))] md:px-6">
-    <div class="grid grid-cols-2 gap-8 md:grid-cols-4">
+  <div
+    class="mx-auto grid w-full max-w-(--container-wide) gap-10 py-10 ps-[max(1rem,var(--safe-left))] pe-[max(1rem,var(--safe-right))] md:px-6"
+  >
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
       {
         columns.map((column) => (
           <nav aria-label={column.title}>
-            <h2 class="readout mb-3 text-fg-subtle">{column.title}</h2>
-            <ul class="grid gap-0 md:gap-1">
+            <h2 class="mb-3 text-sm font-semibold tracking-wide text-fg">{column.title}</h2>
+            <ul class="grid gap-3">
               {column.links.map((link) => (
                 <li>
                   <a
-                    href={href(link.path, locale)}
-                    class="inline-flex min-h-11 items-center text-sm text-fg-muted underline-offset-4 hover:text-fg hover:underline md:min-h-8"
+                    href={link.url}
+                    target="_blank"
+                    rel="noopener"
+                    class="group grid gap-0.5 text-sm text-fg-muted hover:text-fg"
                   >
-                    {link.label}
+                    <span class="text-fg underline-offset-4 group-hover:underline">{link.label}</span>
+                    {link.description && <span>{link.description}</span>}
                   </a>
                 </li>
               ))}
@@ -103,55 +103,34 @@ const moonLabel = moonTemplate.replace('{phase}', moonNames[tonight.index] ?? ''
       }
     </div>
 
-    <div class="flex flex-wrap items-center gap-3 border-t border-border pt-6">
-      <a
-        href={SOCIAL_LINKS.discord}
-        rel="noopener"
-        class="press inline-flex h-11 items-center gap-2 rounded-md border border-border-strong px-3 text-sm text-fg hover:bg-fg/8 md:h-10"
-      >
-        <Icon icon={MessagesSquare} size={18} />
-        Discord
-      </a>
-      <a
-        href={SOCIAL_LINKS.github}
-        rel="noopener"
-        class="press inline-flex h-11 items-center gap-2 rounded-md border border-border-strong px-3 text-sm text-fg hover:bg-fg/8 md:h-10"
-      >
-        <Icon icon={CodeXml} size={18} />
-        GitHub
-      </a>
-      <div class="ms-auto flex flex-wrap items-center gap-2">
-        <button
-          type="button"
-          data-snow-toggle
-          hidden
-          aria-pressed="true"
-          class="press inline-flex h-11 items-center gap-2 rounded-md border border-border-strong px-3 text-sm text-fg hover:bg-fg/8 md:h-10 aria-pressed:bg-blueprint-surface"
-        >
-          <Icon icon={Snowflake} size={18} />
-          {m.common_snow_toggle()}
-        </button>
-        <ThemeToggle />
-        <LanguageSwitcher languages={languages} current={locale} placement="top" />
-      </div>
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-1 border-t border-border pt-5">
+      <nav aria-label={m.common_footer_resources()} class="w-full min-w-0 md:w-auto md:flex-1">
+        <ul class="flex flex-wrap gap-x-5">
+          {
+            pages.map((page) => (
+              <li>
+                <a
+                  href={href(page.path, locale)}
+                  class="inline-flex min-h-11 items-center text-sm text-fg-muted underline-offset-4 hover:text-fg hover:underline md:min-h-9"
+                >
+                  {page.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <LanguageSwitcher languages={languages} current={locale} placement="top" />
     </div>
 
-    <div class="grid gap-3 text-sm text-fg-muted md:flex md:items-start md:justify-between md:gap-8">
-      <p class="max-w-(--container-prose)">{m.common_disclaimer()}</p>
-      <div class="grid shrink-0 gap-1 md:justify-items-end">
-        <p
-          class="flex items-center gap-2"
-          data-moon
-          data-moon-names={JSON.stringify(moonNames)}
-          data-moon-template={moonTemplate}
-        >
-          <svg class="size-5 text-featured" aria-hidden="true" focusable="false">
-            <use data-moon-icon href={`/brand/field-kit.svg#fk-moon-phase-${tonight.index}`}></use>
-          </svg>
-          <span data-moon-label>{moonLabel}</span>
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-border pt-6 text-sm text-fg-muted">
+      <div class="flex items-center gap-4">
+        <SiteLogo variant="footer" height={64} />
+        <p>
+          Sons of the Forest Mods<br />{m.shell_footer_since()}
         </p>
-        <p class="readout text-fg-subtle">{m.common_footer_since()}</p>
       </div>
+      <p class="max-w-(--container-prose) text-xs text-fg-subtle md:ms-auto">{m.common_disclaimer()}</p>
     </div>
   </div>
 </footer>

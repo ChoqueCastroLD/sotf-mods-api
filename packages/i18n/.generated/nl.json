@@ -795,11 +795,11 @@
   "auth_error_terms": "Ga akkoord met de voorwaarden om je account aan te maken.",
   "auth_error_turnstile_failed": "De beveiligingscheck is niet afgerond. Controleer je verbinding of sta challenges.cloudflare.com toe in je blocker en probeer het opnieuw.",
   "auth_field_display_name": "Weergavenaam",
-  "auth_field_display_name_hint": "Zo zien andere overlevenden je. Je kunt dit later wijzigen.",
+  "auth_field_display_name_hint": "De naam die andere gebruikers zien. Je kunt dit later wijzigen.",
   "auth_field_email": "E-mailadres",
   "auth_field_email_hint": "Om in te loggen en voor belangrijke accountmails. Nooit openbaar zichtbaar.",
   "auth_field_handle": "Handle",
-  "auth_field_handle_hint": "Je adres op het eiland: {url}. Dit kan later niet meer worden gewijzigd.",
+  "auth_field_handle_hint": "Het adres van je profiel: {url}. Dit kan later niet meer worden gewijzigd.",
   "auth_field_handle_placeholder": "jouw-handle",
   "auth_field_identifier": "E-mailadres of handle",
   "auth_field_new_password": "Wachtwoord",
@@ -824,7 +824,7 @@
   "auth_login_create_account": "Maak een account aan",
   "auth_login_forgot": "Wachtwoord vergeten?",
   "auth_login_heading": "Inloggen",
-  "auth_login_intro": "Welkom terug, overlevende.",
+  "auth_login_intro": "Log in op je account.",
   "auth_login_legacy_note": "Had je al een account vóór de vernieuwing? Je wachtwoord werkt nog steeds.",
   "auth_login_new_here": "Nieuw hier?",
   "auth_login_passkey": "Inloggen met een passkey",
@@ -843,7 +843,7 @@
   "auth_meta_login_title": "Inloggen",
   "auth_meta_logout_description": "Log uit bij SOTF Mods op dit apparaat.",
   "auth_meta_logout_title": "Uitloggen",
-  "auth_meta_register_description": "Doe mee met SOTF Mods: berg mods op in je rugzak, krijg een seintje bij updates en deel je eigen creaties.",
+  "auth_meta_register_description": "Doe mee met SOTF Mods: volg mods, krijg een melding bij updates en deel je eigen creaties.",
   "auth_meta_register_title": "Maak je account aan",
   "auth_meta_reset_description": "Kies een nieuw wachtwoord voor je SOTF Mods-account.",
   "auth_meta_reset_title": "Kies een nieuw wachtwoord",
@@ -3655,6 +3655,100 @@
       }
     }
   ],
+  "explore_catalog_all_categories": "Alle categorieën",
+  "explore_catalog_category_label": "Categorie",
+  "explore_catalog_category_link": "Categorie: {name}",
+  "explore_catalog_comments": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} reactie",
+        "count__plural=*": "{count__number} reacties"
+      }
+    }
+  ],
+  "explore_catalog_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod",
+        "count__plural=*": "{count__number} mods"
+      }
+    }
+  ],
+  "explore_catalog_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} download",
+        "count__plural=*": "{count__number} downloads"
+      }
+    }
+  ],
+  "explore_catalog_empty_clear": "Filters wissen",
+  "explore_catalog_empty_text": "Geen mods komen overeen met deze filters. Pas de zoekopdracht aan of wis de filters.",
+  "explore_catalog_empty_title": "Geen mods gevonden",
+  "explore_catalog_empty_unapproved": "Er zijn nu geen niet goedgekeurde mods.",
+  "explore_catalog_error_text": "Probeer het zo opnieuw.",
+  "explore_catalog_error_title": "De mods konden niet worden geladen",
+  "explore_catalog_filters": "Filters",
+  "explore_catalog_followers": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} volger",
+        "count__plural=*": "{count__number} volgers"
+      }
+    }
+  ],
+  "explore_catalog_nsfw": "NSFW",
+  "explore_catalog_pending_approval": "Wacht op goedkeuring",
+  "explore_catalog_retry": "Opnieuw proberen",
+  "explore_catalog_search_button": "Zoeken",
+  "explore_catalog_search_label": "Mods zoeken",
+  "explore_catalog_search_placeholder": "Mods zoeken",
+  "explore_catalog_sort_downloads": "Meest gedownload",
+  "explore_catalog_sort_label": "Sorteren op",
+  "explore_catalog_sort_oldest": "Oudste",
+  "explore_catalog_sort_trending": "Trending deze week",
+  "explore_catalog_trusted": "Vertrouwd",
+  "explore_catalog_type_all": "Alle typen",
+  "explore_catalog_type_label": "Type",
+  "explore_catalog_unapproved": "Niet goedgekeurd",
+  "explore_catalog_unapproved_back": "Terug naar alle mods",
+  "explore_catalog_unapproved_description": "Mods die de automatische controles hebben doorstaan en op goedkeuring wachten.",
+  "explore_catalog_unapproved_heading": "Niet goedgekeurde mods",
+  "explore_catalog_unapproved_notice": "Deze mods hebben de automatische controles doorstaan en wachten op goedkeuring door een moderator. Ze maken geen deel uit van de hoofdlijst.",
+  "explore_catalog_unapproved_title": "Niet goedgekeurde mods",
+  "explore_catalog_updated": "Bijgewerkt {when}",
   "explore_categories_browse": "Bekijken",
   "explore_categories_builds_heading": "Buildcategorieën",
   "explore_categories_description": "Alle categorieën van Sons of the Forest-mods en -builds op SOTF Mods, met wat elke categorie omvat en hoeveel items erin zitten.",
@@ -4163,7 +4257,7 @@
   "jams_countdown_voting_close": "Stemmen sluit over",
   "jams_countdown_voting_open": "Stemmen opent over",
   "jams_cta_join": "Doe mee aan de jam",
-  "jams_cta_results": "Bekijk het podium",
+  "jams_cta_results": "Bekijk de resultaten",
   "jams_cta_view": "Bekijk de jam",
   "jams_cta_vote": "Stem nu",
   "jams_detail_description_fallback": "{title}: een Sons of the Forest Mod Jam. Bekijk het thema, de inzendingen en de resultaten.",
@@ -4287,29 +4381,29 @@
   "jams_error_text": "Probeer het zo opnieuw.",
   "jams_error_title": "De jams konden niet worden geladen",
   "jams_first_discord": "Join de Discord",
-  "jams_first_hint": "Open je signaalinstellingen om jamnieuws in de app of per e-mail te ontvangen en volg de jam zodra die wordt aangekondigd.",
+  "jams_first_hint": "Zet meldingen aan om jamnieuws in de app of per e-mail te ontvangen en volg de jam zodra die wordt aangekondigd.",
   "jams_first_judged": "Inzendingen worden beoordeeld op",
   "jams_first_kicker": "Seizoen één · Datum eerst hier bekendgemaakt",
   "jams_first_notify": "Op de hoogte blijven",
-  "jams_first_prize": "Elke inzending krijgt een deelnemersbadge; podiumplekken en de algehele winst leveren meer op.",
+  "jams_first_prize": "Alle inzendingen staan op de pagina van de jam. De beste inzendingen per categorie worden met de resultaten bekendgemaakt.",
   "jams_first_text": "Een thematische bouwwedstrijd voor de hele community: een thema, een paar dagen om iets nieuws te maken en daarna stemt iedereen. De datum maken we eerst hier bekend.",
   "jams_first_title": "De eerste Mod Jam is onderweg",
   "jams_follow": "Jam volgen",
   "jams_follow_done": "Je krijgt updates over deze jam.",
   "jams_following": "Volgend",
   "jams_guest_hint": "Log in om in te zenden, deze jam te volgen en te stemmen.",
-  "jams_how_1_text": "Elke jam heeft een naam, een planning en een thema, soms verzegeld tot de eerste dag.",
-  "jams_how_1_title": "Het thema valt",
+  "jams_how_1_text": "Elke jam heeft een naam, een planning en een thema, soms geheim tot de eerste dag.",
+  "jams_how_1_title": "Het thema wordt bekendgemaakt",
   "jams_how_2_text": "Maak in een paar dagen een nieuwe mod of build, alleen of met co-auteurs.",
   "jams_how_2_title": "Bouw",
   "jams_how_3_text": "Geverifieerde leden beoordelen elke inzending met 1 tot 5 sterren per categorie.",
   "jams_how_3_title": "Stem",
-  "jams_how_4_text": "Scores zijn bayesiaanse gemiddelden. Badges gaan naar het hele team.",
-  "jams_how_4_title": "Podium",
+  "jams_how_4_text": "Scores zijn gewogen gemiddelden. De resultaten worden per categorie en algemeen getoond.",
+  "jams_how_4_title": "Resultaten",
   "jams_how_title": "Hoe een jam werkt",
   "jams_hub_archive": "Archief",
   "jams_hub_description": "Thematische wedstrijden met een tijdslimiet waarin de community nieuwe Sons of the Forest-mods bouwt en op de beste stemt.",
-  "jams_hub_intro": "Bouw in dagen, stem binnen een week, verdien badges. Elke jam heeft een thema, een deadline en vier stemcategorieën.",
+  "jams_hub_intro": "Maak in een paar dagen een mod en stem daarna op de beste. Elke jam heeft een thema, een deadline en vier stemcategorieën.",
   "jams_hub_readout": "MOD JAMS",
   "jams_hub_results": "Resultaten",
   "jams_hub_running": "Nu bezig",
@@ -4329,7 +4423,7 @@
   "jams_mine_title": "Mod Jams",
   "jams_my_entries": "Je inzendingen",
   "jams_mystery_reveal": "Onthuld op {date}",
-  "jams_mystery_title": "Thema verzegeld",
+  "jams_mystery_title": "Geheim thema",
   "jams_nav": "Jams",
   "jams_phase_announced": "Aangekondigd",
   "jams_phase_archived": "Gearchiveerd",
@@ -4363,7 +4457,7 @@
       }
     }
   ],
-  "jams_results_tabs_label": "Podiumcategorie",
+  "jams_results_tabs_label": "Resultatencategorie",
   "jams_results_title": "Resultaten",
   "jams_rules_title": "Regels",
   "jams_schedule_tba": "Nog te melden",
@@ -4379,7 +4473,7 @@
   "jams_submit_action": "Inzending indienen",
   "jams_submit_choose": "Kies…",
   "jams_submit_confirm": "Inzending indienen",
-  "jams_submit_done": "Inzending ingediend. Succes!",
+  "jams_submit_done": "Inzending ingediend.",
   "jams_submit_intro": "Kies een van je gepubliceerde mods of builds. Je kunt hem intrekken tot de inzendingen sluiten.",
   "jams_submit_mod": "Mod of build",
   "jams_submit_none": "Je hebt nog geen gepubliceerde mods of builds die aan deze jam kunnen meedoen.",
@@ -4403,12 +4497,12 @@
   "jams_unit_seconds": "Sec",
   "jams_verify_to_submit": "Verifieer je e-mail om in te zenden",
   "jams_vote_action": "Beoordeel",
-  "jams_vote_blocked_activity": "Doe wat meer mee in de community om het stemmen te ontgrendelen.",
+  "jams_vote_blocked_activity": "Je account heeft nog niet genoeg activiteit om te stemmen.",
   "jams_vote_blocked_email": "Verifieer je e-mailadres om te stemmen.",
   "jams_vote_blocked_new": "Je account is te nieuw om in deze jam te stemmen.",
   "jams_vote_blocked_phase": "Stemmen is op dit moment niet open.",
   "jams_vote_continue": "Verder stemmen",
-  "jams_vote_dock_title": "Jouw stembiljet",
+  "jams_vote_dock_title": "Stemmen",
   "jams_vote_intro": "Geef in elke categorie 1 tot 5 sterren. Je kunt je stemmen wijzigen tot het stemmen sluit.",
   "jams_vote_nothing": "Er is nog niets om te beoordelen.",
   "jams_vote_own": "Jouw inzending",
@@ -5119,6 +5213,10 @@
   "landing_faq_hint": "Korte antwoorden, gecontroleerd met de catalogus.",
   "landing_faq_more": "Lees meer",
   "landing_faq_title": "Vragen van overlevenden",
+  "landing_featured_label": "Uitgelichte mods van de week",
+  "landing_featured_next": "Volgende mods",
+  "landing_featured_prev": "Vorige mods",
+  "landing_h1": "Sons of the Forest-mods",
   "landing_hall_hint": "De meest gedownloade mods aller tijden",
   "landing_hall_show_all": [
     {
@@ -5186,6 +5284,23 @@
   ],
   "landing_map_legend_label": "Kaartlegenda",
   "landing_map_title": "Eilandkaart",
+  "landing_meta_description": [
+    {
+      "declarations": [
+        "input count",
+        "input mods",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Download {mods} Sons of the Forest-mod en builds voor RedLoader. Gratis directe downloads, met beoordelingen en reacties van de community.",
+        "count__plural=*": "Download {mods} Sons of the Forest-mods en builds voor RedLoader. Gratis directe downloads, met beoordelingen en reacties van de community."
+      }
+    }
+  ],
+  "landing_meta_title": "Sons of the Forest-mods | SOTF Mods",
   "landing_motw_period": "Week van {start}",
   "landing_motw_title": "Mod van de week",
   "landing_notes_all": "Alle recente updates",
@@ -5269,11 +5384,49 @@
   "landing_stat_downloads": "Downloads",
   "landing_stat_mods": "Mods",
   "landing_stat_survivors": "Overlevenden",
+  "landing_stats_aria": "Statistieken van de site",
+  "landing_stats_downloads": "Downloads",
   "landing_stats_label": "Het eiland in cijfers",
+  "landing_stats_mods": "Gepubliceerde mods",
+  "landing_stats_users": "Gebruikers",
   "landing_trending_all": "Alle mods",
   "landing_trending_empty": "Een rustige week op het eiland. Mods verschijnen hier zodra overlevenden ze downloaden.",
   "landing_trending_hint": "Op basis van downloads in de laatste 7 dagen",
   "landing_trending_title": "Populair deze week",
+  "landing_weekly_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "input display",
+        "local count__plural = count: plural"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{display} download deze week",
+        "count__plural=*": "{display} downloads deze week"
+      }
+    }
+  ],
+  "landing_weekly_empty": "Er zijn deze week nog geen downloads geregistreerd.",
+  "landing_weekly_hint": "Gerangschikt op downloads van de afgelopen 7 dagen",
+  "landing_weekly_less": "Minder tonen",
+  "landing_weekly_more": "Meer tonen",
+  "landing_weekly_rank": [
+    {
+      "declarations": [
+        "input rank",
+        "local rank__number = rank: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Plaats {rank__number}"
+      }
+    }
+  ],
+  "landing_weekly_this_week": "deze week",
+  "landing_weekly_title": "Mods van de week",
   "langprompt_hint": "Je opgeslagen taal is {language}.",
   "langprompt_original": "Origineel bekijken ({language})",
   "langprompt_remember": "Onthoud mijn keuze",
@@ -5320,7 +5473,7 @@
   "logs_err_file_type": "Gebruik een .log- of .txt-bestand, of een .gz of .zip waar er een in zit.",
   "logs_err_generic": "Er ging iets mis. Probeer het opnieuw.",
   "logs_err_network": "De server is niet bereikbaar. Controleer je verbinding en probeer het opnieuw.",
-  "logs_err_rate": "Te veel verzoeken — probeer het over {seconds} s opnieuw",
+  "logs_err_rate": "Te veel verzoeken. Probeer het over {seconds} s opnieuw",
   "logs_err_too_large": "Die log is groter dan {max}. Stuur alleen het deel rond het probleem.",
   "logs_err_turnstile": "De menselijke controle is mislukt. Probeer het opnieuw.",
   "logs_expired_now": "Verlopen",
@@ -5647,6 +5800,7 @@
   "meta_title_template": "{title} | SOTF Mods",
   "mod_action_add_to_kit": "Kit",
   "mod_action_install": "Installeren",
+  "mod_action_install_manager": "Installeren met RedManager",
   "mod_action_more": "Meer acties",
   "mod_action_report": "Rapporteren",
   "mod_action_report_mod": "Deze mod melden",
@@ -5743,11 +5897,15 @@
   "mod_deps_sheet_text": "{name} werkt niet zonder deze mods. Download ze ook, of ga verder als je ze al hebt.",
   "mod_deps_sheet_title": "Je hebt ook {names} nodig",
   "mod_description_empty": "De maker heeft nog geen beschrijving geschreven.",
+  "mod_detail_game": "Spelversie",
+  "mod_detail_loader": "RedLoader",
+  "mod_details_title": "Details",
   "mod_download_done_label": "Gedownload ✓",
   "mod_download_unavailable": "Er is nu geen downloadbaar bestand.",
   "mod_fact_game_version": "Opgegeven gameversie",
   "mod_fact_license": "Licentie",
   "mod_fact_loader_version": "Opgegeven RedLoader",
+  "mod_fact_multiplayer": "Multiplayer",
   "mod_fact_platform": "Platform",
   "mod_fact_published": "Gepubliceerd",
   "mod_fact_size": "Bestandsgrootte",
@@ -6192,6 +6350,7 @@
   "mod_stats_title": "Downloads in de tijd",
   "mod_support_title": "Steun de maker",
   "mod_tab_comments": "Reacties",
+  "mod_tab_description": "Beschrijving",
   "mod_tab_overview": "Overzicht",
   "mod_tab_reviews": "Reviews",
   "mod_tab_versions": "Versies",
@@ -6252,6 +6411,7 @@
       }
     }
   ],
+  "mod_versions_section_title": "Versies en wijzigingslog",
   "mod_versions_title": [
     {
       "declarations": [
@@ -6621,6 +6781,7 @@
   "profile_builds_title": "Builds van {name}",
   "profile_cards_empty_action": "Mods ontdekken",
   "profile_cards_empty_description": "{name} heeft hier nog niets gepubliceerd. Ontdek wat de rest van het eiland heeft gemaakt.",
+  "profile_cards_empty_text": "{name} heeft hier nog niets gepubliceerd.",
   "profile_creator_top_mod": "Topmod: {mod}",
   "profile_creators_count": [
     {
@@ -6653,6 +6814,7 @@
   "profile_creators_title": "Makers",
   "profile_day_on_island": "Dag {day} op het eiland",
   "profile_feed_title": "Nieuwe releases van {name}",
+  "profile_follow_done": "Je volgt nu. Je krijgt een melding als er iets nieuws uitkomt.",
   "profile_follow_error": "Volgen kon niet worden bijgewerkt. Controleer je verbinding en probeer het opnieuw.",
   "profile_follow_name": "{name} volgen",
   "profile_follow_own": "Je kunt jezelf niet volgen.",
@@ -6668,6 +6830,7 @@
   "profile_link_copy_failed": "De link kon niet worden gekopieerd. Kopieer hem uit de adresbalk.",
   "profile_link_website": "Website",
   "profile_links_label": "Links",
+  "profile_member_since": "Lid sinds {date}",
   "profile_meta_description_creator": [
     {
       "declarations": [
@@ -6722,9 +6885,27 @@
       }
     }
   ],
+  "profile_meta_description_user": [
+    {
+      "declarations": [
+        "input name",
+        "input reviews",
+        "local reviews__plural = reviews: plural",
+        "local reviews__number = reviews: number"
+      ],
+      "selectors": [
+        "reviews__plural"
+      ],
+      "match": {
+        "reviews__plural=one": "{name} op SOTF Mods, de moddingcommunity van Sons of the Forest: {reviews__number} review.",
+        "reviews__plural=*": "{name} op SOTF Mods, de moddingcommunity van Sons of the Forest: {reviews__number} reviews."
+      }
+    }
+  ],
   "profile_meta_title_creator": "{name} (@{handle}) — maker van Sons of the Forest-mods",
   "profile_meta_title_member": "{name} (@{handle}) — Sons of the Forest-moddingcommunity",
   "profile_meta_title_tab": "{tab} · {name} (@{handle})",
+  "profile_meta_title_user": "{name} (@{handle})",
   "profile_mods_empty_title": "Nog geen mods",
   "profile_mods_title": "Mods van {name}",
   "profile_pinned_title": "Vastgezet",
@@ -6747,6 +6928,9 @@
   "profile_reviews_older": "Oudere reviews",
   "profile_reviews_pagination": "Meer reviews",
   "profile_reviews_title": "Reviews van {name}",
+  "profile_role_admin": "Beheerder",
+  "profile_role_moderator": "Moderator",
+  "profile_search_type_users": "Gebruikers",
   "profile_sort_downloads": "Meest gedownload",
   "profile_sort_label": "Sorteren",
   "profile_sort_new": "Nieuwste",
@@ -6793,8 +6977,10 @@
       }
     }
   ],
+  "profile_stat_published_label": "Gepubliceerde mods",
   "profile_stat_rating_label": "Gem. beoordeling",
   "profile_stat_rating_title": "Gemiddeld {rating} van 5",
+  "profile_stat_reviews_label": "Reviews",
   "profile_stats_label": "Statistieken",
   "profile_tab_activity": "Activiteit",
   "profile_tab_badges": "Badges",
@@ -6812,6 +6998,7 @@
   "profile_tier_landmark": "Monument",
   "profile_tier_lean_to": "Afdak",
   "profile_tier_treehouse": "Boomhut",
+  "profile_trusted": "Vertrouwd",
   "profile_unfollowed": "Niet meer gevolgd.",
   "profile_verified_creator": "Geverifieerde maker",
   "profile_xp_bug_report_resolved": "Bugmelding door de maker als opgelost gemarkeerd",
@@ -7444,7 +7631,7 @@
   "requests_delete_title": "Dit verzoek verwijderen?",
   "requests_deleted_done": "Verzoek verwijderd.",
   "requests_detail_description": "Modverzoek van {author}: {title}",
-  "requests_detail_title": "{title} — Modverzoek",
+  "requests_detail_title": "{title} (modverzoek)",
   "requests_edit": "Verzoek bewerken",
   "requests_edited": "bewerkt",
   "requests_empty_filtered_text": "Probeer een andere status of toon alle verzoeken.",
@@ -7522,7 +7709,7 @@
       ],
       "selectors": [],
       "match": {
-        "": "{title} — pagina {page__number}"
+        "": "{title}, pagina {page__number}"
       }
     }
   ],
@@ -7584,6 +7771,7 @@
       }
     }
   ],
+  "requests_votes_short": "stemmen",
   "search_page_about": "Over SOTF Mods",
   "search_page_achievements": "Prestaties",
   "search_page_brand": "Merkmateriaal",
@@ -8236,6 +8424,37 @@
   "settings_verify_title": "Bevestig je e-mailadres",
   "settings_visibility_text": "Zet uit wat je liever voor jezelf houdt.",
   "settings_visibility_title": "Op je profiel",
+  "shell_404_home": "Terug naar home",
+  "shell_404_text": "Deze pagina bestaat niet of is verplaatst. Controleer het adres of zoek wat je nodig hebt.",
+  "shell_404_title": "Pagina niet gevonden",
+  "shell_410_text": "Deze inhoud is niet meer beschikbaar. Bekijk in plaats daarvan andere mods.",
+  "shell_410_title": "Deze pagina is verwijderd",
+  "shell_500_text": "De server had een probleem. Laad de pagina over een minuut opnieuw of ga terug naar de homepage.",
+  "shell_500_title": "Er ging iets mis",
+  "shell_cmdk_empty_hint": "Probeer minder woorden, of verfijn met mods:, builds:, @gebruiker, > voor opdrachten of by:/cat:/sort:.",
+  "shell_cmdk_go_dashboard": "Dashboard",
+  "shell_cmdk_go_login": "Inloggen",
+  "shell_cmdk_go_moderation": "Moderatie",
+  "shell_cmdk_go_mods": "Mods",
+  "shell_cmdk_go_notifications": "Meldingen",
+  "shell_cmdk_go_upload": "Een mod uploaden",
+  "shell_cmdk_go_upload_build": "Een build uploaden",
+  "shell_cmdk_group_users": "Gebruikers",
+  "shell_cmdk_input_label": "Zoek mods, builds, gebruikers en pagina’s",
+  "shell_cmdk_kind_user": "Gebruiker",
+  "shell_cmdk_loading": "Zoeken wordt geladen…",
+  "shell_cmdk_no_results": "Geen resultaten voor “{query}”.",
+  "shell_cmdk_placeholder": "Zoek mods, builds, gebruikers…",
+  "shell_cmdk_searching": "Zoeken…",
+  "shell_footer_developers": "Ontwikkelaars en API",
+  "shell_footer_github_backend": "Bijdragen aan de backend van het project",
+  "shell_footer_github_frontend": "Bijdragen aan de frontend van het project",
+  "shell_footer_partners": "Partners",
+  "shell_footer_redloader": "Officiële wiki over hoe RedLoader te gebruiken",
+  "shell_footer_related": "Gerelateerde sites",
+  "shell_footer_since": "Kwaliteitsmods sinds maart 2023",
+  "shell_footer_tonihub": "Actuele gegevensdumps voor Sons of the Forest",
+  "shell_footer_tutorials": "Een startgids over het maken van mods met behulp van RedLoader",
   "shell_install_app": "App installeren",
   "shell_install_app_hint": "Zet SOTF Mods op je beginscherm",
   "shell_install_ios_hint": "Om te installeren op iPhone of iPad tik je op Deel en dan op ‘Zet op beginscherm’.",
@@ -8243,20 +8462,34 @@
   "shell_more_help": "Hulp",
   "shell_more_install_guide": "Installatiegids",
   "shell_more_label": "Meer",
+  "shell_nav_account": "Account",
+  "shell_nav_dashboard": "Dashboard",
+  "shell_nav_login": "Inloggen",
+  "shell_nav_logout": "Uitloggen",
+  "shell_nav_menu": "Menu",
+  "shell_nav_moderation": "Moderatie",
+  "shell_nav_notifications": "Meldingen",
+  "shell_nav_profile": "Profiel",
+  "shell_nav_register": "Registreren",
+  "shell_nav_search": "Zoeken",
+  "shell_nav_settings": "Instellingen",
+  "shell_nav_upload": "Uploaden",
   "shell_offline_available": "Werkt offline",
   "shell_offline_back_online": "Je bent weer online. Opnieuw laden…",
-  "shell_offline_body": "We kunnen het eiland nu niet bereiken. Controleer je verbinding en probeer het opnieuw.",
-  "shell_offline_checking": "Zoeken naar signaal…",
-  "shell_offline_eyebrow": "Geen signaal",
-  "shell_offline_meta_description": "Op dit moment geen verbinding. Probeer het opnieuw zodra je weer bereik hebt.",
+  "shell_offline_body": "SOTF Mods is nu niet bereikbaar. Controleer je verbinding en probeer het opnieuw.",
+  "shell_offline_checking": "Verbinding controleren…",
+  "shell_offline_eyebrow": "Offline",
+  "shell_offline_meta_description": "Op dit moment geen verbinding. Probeer het opnieuw zodra je weer online bent.",
   "shell_offline_meta_title": "Offline",
   "shell_offline_retry": "Opnieuw proberen",
   "shell_offline_saved": "Opgeslagen op dit apparaat",
-  "shell_offline_still": "Nog steeds geen signaal. Probeer het zo opnieuw.",
-  "shell_offline_title": "Je bent buiten bereik",
+  "shell_offline_still": "Nog steeds offline. Probeer het zo meteen opnieuw.",
+  "shell_offline_title": "Je bent offline",
   "shell_ptr_loading": "Vernieuwen…",
   "shell_ptr_pull": "Trek om te vernieuwen",
   "shell_ptr_release": "Laat los om te vernieuwen",
+  "shell_relogin_banner": "We hebben SOTF Mods opnieuw opgebouwd. Log opnieuw in met hetzelfde wachtwoord.",
+  "shell_search_placeholder": "Zoek mods, builds, gebruikers",
   "signals_action_download": "Downloaden",
   "signals_announcement": "Nieuwe mededeling van de rangers",
   "signals_announcement_titled": "Mededeling: {title}",
@@ -9372,6 +9605,7 @@
   "ui_domain_tier_landmark": "Monument",
   "ui_domain_tier_lean_to": "Afdak",
   "ui_domain_tier_treehouse": "Boomhut",
+  "ui_domain_trusted": "Vertrouwd",
   "ui_domain_trusted_creator": "Vertrouwde maker",
   "ui_domain_value_not_declared": "Niet opgegeven",
   "ui_domain_value_unknown": "Onbekend",

@@ -732,11 +732,11 @@
   "auth_error_terms": "请接受条款以创建账号。",
   "auth_error_turnstile_failed": "安全验证未完成。请检查网络连接，或在拦截插件中允许 challenges.cloudflare.com，然后重试。",
   "auth_field_display_name": "显示名称",
-  "auth_field_display_name_hint": "其他幸存者看到的名字，之后可以修改。",
+  "auth_field_display_name_hint": "其他用户看到的名字，之后可以修改。",
   "auth_field_email": "邮箱",
   "auth_field_email_hint": "用于登录和接收重要的账号邮件，绝不会公开显示。",
   "auth_field_handle": "用户名",
-  "auth_field_handle_hint": "你在岛上的地址：{url}。之后无法更改。",
+  "auth_field_handle_hint": "你的个人主页地址：{url}。之后无法更改。",
   "auth_field_handle_placeholder": "your-name",
   "auth_field_identifier": "邮箱或用户名",
   "auth_field_new_password": "密码",
@@ -761,7 +761,7 @@
   "auth_login_create_account": "创建账号",
   "auth_login_forgot": "忘记密码？",
   "auth_login_heading": "登录",
-  "auth_login_intro": "欢迎回来，幸存者。",
+  "auth_login_intro": "登录你的账号。",
   "auth_login_legacy_note": "在改版前就有账号？你的密码依然有效。",
   "auth_login_new_here": "第一次来？",
   "auth_login_passkey": "使用通行密钥登录",
@@ -780,7 +780,7 @@
   "auth_meta_login_title": "登录",
   "auth_meta_logout_description": "在此设备上退出 SOTF Mods。",
   "auth_meta_logout_title": "退出登录",
-  "auth_meta_register_description": "加入 SOTF Mods：把模组收进背包，在更新时收到提醒，并分享你的作品。",
+  "auth_meta_register_description": "加入 SOTF Mods：关注模组，在更新时收到提醒，并分享你的作品。",
   "auth_meta_register_title": "创建账号",
   "auth_meta_reset_description": "为你的 SOTF Mods 账号设置新密码。",
   "auth_meta_reset_title": "设置新密码",
@@ -3357,6 +3357,84 @@
       }
     }
   ],
+  "explore_catalog_all_categories": "所有分类",
+  "explore_catalog_category_label": "分类",
+  "explore_catalog_category_link": "分类：{name}",
+  "explore_catalog_comments": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 条评论"
+      }
+    }
+  ],
+  "explore_catalog_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 个模组"
+      }
+    }
+  ],
+  "explore_catalog_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 次下载"
+      }
+    }
+  ],
+  "explore_catalog_empty_clear": "清除筛选",
+  "explore_catalog_empty_text": "没有符合这些筛选条件的模组。请更改搜索或清除筛选。",
+  "explore_catalog_empty_title": "未找到模组",
+  "explore_catalog_empty_unapproved": "目前没有未批准的模组。",
+  "explore_catalog_error_text": "请稍后再试。",
+  "explore_catalog_error_title": "无法加载模组",
+  "explore_catalog_filters": "筛选",
+  "explore_catalog_followers": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 位关注者"
+      }
+    }
+  ],
+  "explore_catalog_nsfw": "NSFW",
+  "explore_catalog_pending_approval": "待批准",
+  "explore_catalog_retry": "重试",
+  "explore_catalog_search_button": "搜索",
+  "explore_catalog_search_label": "搜索模组",
+  "explore_catalog_search_placeholder": "搜索模组",
+  "explore_catalog_sort_downloads": "下载最多",
+  "explore_catalog_sort_label": "排序方式",
+  "explore_catalog_sort_oldest": "最早",
+  "explore_catalog_sort_trending": "本周热门",
+  "explore_catalog_trusted": "受信任",
+  "explore_catalog_type_all": "所有类型",
+  "explore_catalog_type_label": "类型",
+  "explore_catalog_unapproved": "未批准",
+  "explore_catalog_unapproved_back": "返回所有模组",
+  "explore_catalog_unapproved_description": "已通过自动检查、等待批准的模组。",
+  "explore_catalog_unapproved_heading": "未批准的模组",
+  "explore_catalog_unapproved_notice": "这些模组已通过自动检查，正在等待管理员批准。它们不属于主列表。",
+  "explore_catalog_unapproved_title": "未批准的模组",
+  "explore_catalog_updated": "更新于{when}",
   "explore_categories_browse": "浏览",
   "explore_categories_builds_heading": "建筑分类",
   "explore_categories_description": "SOTF Mods 上所有 Sons of the Forest 模组与建筑分类，包括各分类的内容和收录数量。",
@@ -3822,7 +3900,7 @@
   "jams_countdown_voting_close": "距离投票截止",
   "jams_countdown_voting_open": "距离开始投票",
   "jams_cta_join": "参加 Jam",
-  "jams_cta_results": "查看领奖台",
+  "jams_cta_results": "查看结果",
   "jams_cta_view": "查看 Jam",
   "jams_cta_vote": "立即投票",
   "jams_detail_description_fallback": "{title}：《Sons of the Forest》Mod Jam。查看主题、参赛作品和结果。",
@@ -3942,11 +4020,11 @@
   "jams_error_text": "请稍后再试。",
   "jams_error_title": "无法加载 Jam",
   "jams_first_discord": "加入 Discord",
-  "jams_first_hint": "打开信号设置，让 Jam 动态通过应用内或邮件送达你；Jam 一公布就关注它。",
+  "jams_first_hint": "开启通知，让 Jam 动态通过应用内或邮件送达你；Jam 一公布就关注它。",
   "jams_first_judged": "作品将按以下维度评分",
   "jams_first_kicker": "第一季 · 日期将在此率先公布",
   "jams_first_notify": "接收通知",
-  "jams_first_prize": "每件作品都能获得参与徽章；登上领奖台和获得总冠军还有更多奖励。",
+  "jams_first_prize": "所有作品都会显示在 Jam 页面上。各类别的最佳作品会随结果一起公布。",
   "jams_first_text": "面向整个社区的主题创作赛：一个主题，几天时间做出新作品，然后由大家投票。日期将首先在这里公布。",
   "jams_first_title": "首届 Mod Jam 正在路上",
   "jams_follow": "关注 Jam",
@@ -3959,12 +4037,12 @@
   "jams_how_2_title": "制作",
   "jams_how_3_text": "已验证的成员在每个类别中为每件作品打 1 到 5 星。",
   "jams_how_3_title": "投票",
-  "jams_how_4_text": "评分采用贝叶斯平均，徽章授予整个团队。",
-  "jams_how_4_title": "领奖台",
+  "jams_how_4_text": "评分采用加权平均。结果按类别和总体分别显示。",
+  "jams_how_4_title": "结果",
   "jams_how_title": "Jam 如何进行",
   "jams_hub_archive": "存档",
   "jams_hub_description": "限时主题比赛：社区制作新的《Sons of the Forest》模组，并为最佳作品投票。",
-  "jams_hub_intro": "几天内制作，一周内投票，赢取徽章。每场 Jam 都有主题、截止日期和四个投票类别。",
+  "jams_hub_intro": "几天内做出一个模组，然后为最好的作品投票。每场 Jam 都有主题、截止日期和四个投票类别。",
   "jams_hub_readout": "模组 JAM",
   "jams_hub_results": "结果",
   "jams_hub_running": "进行中",
@@ -3984,7 +4062,7 @@
   "jams_mine_title": "模组 Jam",
   "jams_my_entries": "你的作品",
   "jams_mystery_reveal": "{date} 揭晓",
-  "jams_mystery_title": "主题已封存",
+  "jams_mystery_title": "主题保密",
   "jams_nav": "模组 Jam",
   "jams_phase_announced": "已公布",
   "jams_phase_archived": "已存档",
@@ -3995,7 +4073,7 @@
   "jams_phase_voting": "投票中",
   "jams_prizes_title": "奖励",
   "jams_rank": "第{rank}名",
-  "jams_results_method": "分数为贝叶斯平均值。作品至少需要 {min} 票才能参与排名。",
+  "jams_results_method": "评分采用贝叶斯平均。作品至少需要 {min} 票才会进入排名。",
   "jams_results_summary": [
     {
       "declarations": [
@@ -4010,7 +4088,7 @@
       }
     }
   ],
-  "jams_results_tabs_label": "领奖台类别",
+  "jams_results_tabs_label": "结果类别",
   "jams_results_title": "结果",
   "jams_rules_title": "规则",
   "jams_schedule_tba": "待公布",
@@ -4026,7 +4104,7 @@
   "jams_submit_action": "提交作品",
   "jams_submit_choose": "选择…",
   "jams_submit_confirm": "提交",
-  "jams_submit_done": "作品已提交，祝你好运！",
+  "jams_submit_done": "作品已提交。",
   "jams_submit_intro": "选择你已发布的模组或构建。投稿截止前可以撤回。",
   "jams_submit_mod": "模组或构建",
   "jams_submit_none": "你还没有可参加本场 Jam 的已发布模组或构建。",
@@ -4050,12 +4128,12 @@
   "jams_unit_seconds": "秒",
   "jams_verify_to_submit": "验证邮箱后方可投稿",
   "jams_vote_action": "评分",
-  "jams_vote_blocked_activity": "再多参与一些社区活动即可解锁投票。",
+  "jams_vote_blocked_activity": "你的账号活动还不够，暂时不能投票。",
   "jams_vote_blocked_email": "请先验证邮箱后再投票。",
   "jams_vote_blocked_new": "你的账号注册时间太短，暂时无法在本场 Jam 投票。",
   "jams_vote_blocked_phase": "目前未开放投票。",
   "jams_vote_continue": "继续投票",
-  "jams_vote_dock_title": "你的选票",
+  "jams_vote_dock_title": "投票",
   "jams_vote_intro": "每个类别打 1 到 5 星。投票截止前可以修改。",
   "jams_vote_nothing": "暂时没有可评分的作品。",
   "jams_vote_own": "你的作品",
@@ -4662,6 +4740,10 @@
   "landing_faq_hint": "简短的回答，已与目录核对。",
   "landing_faq_more": "了解更多",
   "landing_faq_title": "幸存者常问的问题",
+  "landing_featured_label": "本周精选模组",
+  "landing_featured_next": "下一组模组",
+  "landing_featured_prev": "上一组模组",
+  "landing_h1": "《森林之子》模组",
   "landing_hall_hint": "有史以来下载量最高的模组",
   "landing_hall_show_all": [
     {
@@ -4717,6 +4799,19 @@
   ],
   "landing_map_legend_label": "地图图例",
   "landing_map_title": "岛屿地图",
+  "landing_meta_description": [
+    {
+      "declarations": [
+        "input count",
+        "input mods"
+      ],
+      "selectors": [],
+      "match": {
+        "": "下载 {mods} 个适用于 RedLoader 的《森林之子》模组和建筑。免费直接下载，附有社区的评分和评论。"
+      }
+    }
+  ],
+  "landing_meta_title": "《森林之子》模组 | SOTF Mods",
   "landing_motw_period": "{start} 当周",
   "landing_motw_title": "本周模组",
   "landing_notes_all": "全部近期更新",
@@ -4800,11 +4895,45 @@
   "landing_stat_downloads": "下载",
   "landing_stat_mods": "模组",
   "landing_stat_survivors": "幸存者",
+  "landing_stats_aria": "网站统计",
+  "landing_stats_downloads": "下载",
   "landing_stats_label": "岛上数据",
+  "landing_stats_mods": "已发布模组",
+  "landing_stats_users": "用户",
   "landing_trending_all": "全部模组",
   "landing_trending_empty": "岛上这周很安静。幸存者下载模组后，它们会出现在这里。",
   "landing_trending_hint": "按最近 7 天的下载量",
   "landing_trending_title": "本周热门",
+  "landing_weekly_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "input display"
+      ],
+      "selectors": [],
+      "match": {
+        "": "本周 {display} 次下载"
+      }
+    }
+  ],
+  "landing_weekly_empty": "本周还没有下载记录。",
+  "landing_weekly_hint": "按最近 7 天的下载量排序",
+  "landing_weekly_less": "收起",
+  "landing_weekly_more": "显示更多",
+  "landing_weekly_rank": [
+    {
+      "declarations": [
+        "input rank",
+        "local rank__number = rank: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "第 {rank__number} 名"
+      }
+    }
+  ],
+  "landing_weekly_this_week": "本周",
+  "landing_weekly_title": "本周模组",
   "langprompt_hint": "你保存的语言是{language}。",
   "langprompt_original": "查看原文（{language}）",
   "langprompt_remember": "记住我的选择",
@@ -4851,7 +4980,7 @@
   "logs_err_file_type": "请使用 .log 或 .txt 文件，或包含它的 .gz 或 .zip。",
   "logs_err_generic": "出了点问题。请重试。",
   "logs_err_network": "无法连接服务器。请检查网络后重试。",
-  "logs_err_rate": "请求过多 — 请在 {seconds} 秒后重试",
+  "logs_err_rate": "请求过多。请在 {seconds} 秒后重试",
   "logs_err_too_large": "该日志超过 {max}。请只发送问题前后的部分。",
   "logs_err_turnstile": "人机验证失败。请重试。",
   "logs_expired_now": "已过期",
@@ -5150,6 +5279,7 @@
   "meta_title_template": "{title} | SOTF Mods",
   "mod_action_add_to_kit": "加入套装",
   "mod_action_install": "安装",
+  "mod_action_install_manager": "使用 RedManager 安装",
   "mod_action_more": "更多操作",
   "mod_action_report": "举报",
   "mod_action_report_mod": "举报此模组",
@@ -5239,11 +5369,15 @@
   "mod_deps_sheet_text": "没有这些模组，{name} 无法运行。一起下载，或者如果你已经有了就继续。",
   "mod_deps_sheet_title": "你还需要 {names}",
   "mod_description_empty": "作者还没有写简介。",
+  "mod_detail_game": "游戏版本",
+  "mod_detail_loader": "RedLoader",
+  "mod_details_title": "详情",
   "mod_download_done_label": "已下载 ✓",
   "mod_download_unavailable": "目前没有可下载的文件。",
   "mod_fact_game_version": "声明的游戏版本",
   "mod_fact_license": "许可证",
   "mod_fact_loader_version": "声明的 RedLoader 版本",
+  "mod_fact_multiplayer": "多人游戏",
   "mod_fact_platform": "平台",
   "mod_fact_published": "发布于",
   "mod_fact_size": "文件大小",
@@ -5661,6 +5795,7 @@
   "mod_stats_title": "下载量趋势",
   "mod_support_title": "支持作者",
   "mod_tab_comments": "评论",
+  "mod_tab_description": "描述",
   "mod_tab_overview": "概览",
   "mod_tab_reviews": "评价",
   "mod_tab_versions": "版本",
@@ -5713,6 +5848,7 @@
       }
     }
   ],
+  "mod_versions_section_title": "版本与更新日志",
   "mod_versions_title": [
     {
       "declarations": [
@@ -6036,6 +6172,7 @@
   "profile_builds_title": "{name} 的建筑",
   "profile_cards_empty_action": "浏览模组",
   "profile_cards_empty_description": "{name} 还没有在这里发布内容。去看看岛上其他人的作品吧。",
+  "profile_cards_empty_text": "{name} 还没有在这里发布内容。",
   "profile_creator_top_mod": "代表作：{mod}",
   "profile_creators_count": [
     {
@@ -6064,6 +6201,7 @@
   "profile_creators_title": "创作者",
   "profile_day_on_island": "登岛第 {day} 天",
   "profile_feed_title": "{name} 的新发布",
+  "profile_follow_done": "已关注。有新发布时你会收到通知。",
   "profile_follow_error": "无法更新关注状态。请检查网络连接后重试。",
   "profile_follow_name": "关注 {name}",
   "profile_follow_own": "你不能关注自己。",
@@ -6079,6 +6217,7 @@
   "profile_link_copy_failed": "无法复制链接，请从地址栏复制。",
   "profile_link_website": "网站",
   "profile_links_label": "链接",
+  "profile_member_since": "注册于 {date}",
   "profile_meta_description_creator": [
     {
       "declarations": [
@@ -6111,9 +6250,23 @@
       }
     }
   ],
+  "profile_meta_description_user": [
+    {
+      "declarations": [
+        "input name",
+        "input reviews",
+        "local reviews__number = reviews: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{name} 在 SOTF Mods（Sons of the Forest 模组社区）：{reviews__number} 条评价。"
+      }
+    }
+  ],
   "profile_meta_title_creator": "{name}（@{handle}）— Sons of the Forest 模组创作者",
   "profile_meta_title_member": "{name}（@{handle}）— Sons of the Forest 模组社区",
   "profile_meta_title_tab": "{tab} · {name}（@{handle}）",
+  "profile_meta_title_user": "{name} (@{handle})",
   "profile_mods_empty_title": "暂无模组",
   "profile_mods_title": "{name} 的模组",
   "profile_pinned_title": "置顶",
@@ -6136,6 +6289,9 @@
   "profile_reviews_older": "更早的评价",
   "profile_reviews_pagination": "更多评价",
   "profile_reviews_title": "{name} 的评价",
+  "profile_role_admin": "管理员",
+  "profile_role_moderator": "版主",
+  "profile_search_type_users": "用户",
   "profile_sort_downloads": "下载最多",
   "profile_sort_label": "排序",
   "profile_sort_new": "最新",
@@ -6170,8 +6326,10 @@
       }
     }
   ],
+  "profile_stat_published_label": "已发布模组",
   "profile_stat_rating_label": "平均评分",
   "profile_stat_rating_title": "平均 {rating} 分（满分 5 分）",
+  "profile_stat_reviews_label": "评价",
   "profile_stats_label": "统计",
   "profile_tab_activity": "动态",
   "profile_tab_badges": "徽章",
@@ -6189,6 +6347,7 @@
   "profile_tier_landmark": "地标",
   "profile_tier_lean_to": "窝棚",
   "profile_tier_treehouse": "树屋",
+  "profile_trusted": "可信",
   "profile_unfollowed": "已取消关注。",
   "profile_verified_creator": "认证创作者",
   "profile_xp_bug_report_resolved": "漏洞报告被创作者标记为已解决",
@@ -6774,7 +6933,7 @@
   "requests_delete_title": "删除此请求？",
   "requests_deleted_done": "请求已删除。",
   "requests_detail_description": "{author} 提出的模组请求：{title}",
-  "requests_detail_title": "{title} — 模组请求",
+  "requests_detail_title": "{title}（模组请求）",
   "requests_edit": "编辑请求",
   "requests_edited": "已编辑",
   "requests_empty_filtered_text": "试试其他状态，或显示全部请求。",
@@ -6848,7 +7007,7 @@
       ],
       "selectors": [],
       "match": {
-        "": "{title} — 第 {page__number} 页"
+        "": "{title}，第 {page__number} 页"
       }
     }
   ],
@@ -6906,6 +7065,7 @@
       }
     }
   ],
+  "requests_votes_short": "票",
   "search_page_about": "关于 SOTF Mods",
   "search_page_achievements": "成就",
   "search_page_brand": "品牌资源",
@@ -7542,6 +7702,37 @@
   "settings_verify_title": "验证你的邮箱地址",
   "settings_visibility_text": "关闭你不想公开的内容。",
   "settings_visibility_title": "你的个人资料",
+  "shell_404_home": "返回首页",
+  "shell_404_text": "此页面不存在或已移动。请检查地址，或搜索你需要的内容。",
+  "shell_404_title": "页面未找到",
+  "shell_410_text": "此内容已不可用。你可以浏览其他模组。",
+  "shell_410_title": "此页面已被删除",
+  "shell_500_text": "服务器出现问题。请一分钟后刷新页面，或返回首页。",
+  "shell_500_title": "出了点问题",
+  "shell_cmdk_empty_hint": "请尝试更少的词，或使用 mods:、builds:、@用户、> (命令) 或 by:/cat:/sort: 缩小范围。",
+  "shell_cmdk_go_dashboard": "控制台",
+  "shell_cmdk_go_login": "登录",
+  "shell_cmdk_go_moderation": "审核",
+  "shell_cmdk_go_mods": "模组",
+  "shell_cmdk_go_notifications": "通知",
+  "shell_cmdk_go_upload": "上传模组",
+  "shell_cmdk_go_upload_build": "上传建筑",
+  "shell_cmdk_group_users": "用户",
+  "shell_cmdk_input_label": "搜索模组、建筑、用户和页面",
+  "shell_cmdk_kind_user": "用户",
+  "shell_cmdk_loading": "正在加载搜索…",
+  "shell_cmdk_no_results": "没有找到“{query}”的结果。",
+  "shell_cmdk_placeholder": "搜索模组、建筑、用户…",
+  "shell_cmdk_searching": "正在搜索…",
+  "shell_footer_developers": "开发者与 API",
+  "shell_footer_github_backend": "贡献至项目的后端",
+  "shell_footer_github_frontend": "贡献至项目的前端",
+  "shell_footer_partners": "合作伙伴",
+  "shell_footer_redloader": "官方 Wiki 关于如何使用 RedLoader",
+  "shell_footer_related": "相关网站",
+  "shell_footer_since": "自 2023 年 3 月起提供优质模组",
+  "shell_footer_tonihub": "提供最新数据转储供《森林之子》使用",
+  "shell_footer_tutorials": "关于如何使用 RedLoader 制作模组的入门指南",
   "shell_install_app": "安装应用",
   "shell_install_app_hint": "将 SOTF Mods 添加到主屏幕",
   "shell_install_ios_hint": "在 iPhone 或 iPad 上安装：点按“分享”，再选择“添加到主屏幕”。",
@@ -7549,20 +7740,34 @@
   "shell_more_help": "帮助",
   "shell_more_install_guide": "安装指南",
   "shell_more_label": "更多",
+  "shell_nav_account": "账户",
+  "shell_nav_dashboard": "控制台",
+  "shell_nav_login": "登录",
+  "shell_nav_logout": "退出登录",
+  "shell_nav_menu": "菜单",
+  "shell_nav_moderation": "审核",
+  "shell_nav_notifications": "通知",
+  "shell_nav_profile": "个人资料",
+  "shell_nav_register": "注册",
+  "shell_nav_search": "搜索",
+  "shell_nav_settings": "设置",
+  "shell_nav_upload": "上传",
   "shell_offline_available": "离线可用",
-  "shell_offline_back_online": "已恢复连接，正在重新加载…",
-  "shell_offline_body": "暂时无法连接到小岛。请检查网络后重试。",
-  "shell_offline_checking": "正在搜索信号…",
-  "shell_offline_eyebrow": "无信号",
-  "shell_offline_meta_description": "当前没有网络连接。恢复信号后请重试。",
+  "shell_offline_back_online": "已恢复在线。正在重新加载…",
+  "shell_offline_body": "目前无法访问 SOTF Mods。请检查网络连接后重试。",
+  "shell_offline_checking": "正在检查连接…",
+  "shell_offline_eyebrow": "离线",
+  "shell_offline_meta_description": "目前没有网络连接。恢复在线后请重试。",
   "shell_offline_meta_title": "离线",
   "shell_offline_retry": "重试",
   "shell_offline_saved": "已保存在此设备上",
-  "shell_offline_still": "仍然没有信号，请稍后再试。",
-  "shell_offline_title": "你已失去信号",
+  "shell_offline_still": "仍处于离线状态。请稍后再试。",
+  "shell_offline_title": "你已离线",
   "shell_ptr_loading": "正在刷新…",
   "shell_ptr_pull": "下拉刷新",
   "shell_ptr_release": "松开刷新",
+  "shell_relogin_banner": "SOTF Mods 已重建。请使用相同的密码重新登录。",
+  "shell_search_placeholder": "搜索模组、建筑、用户",
   "signals_action_download": "下载",
   "signals_announcement": "护林员发布了新公告",
   "signals_announcement_titled": "公告：{title}",
@@ -8569,6 +8774,7 @@
   "ui_domain_tier_landmark": "地标",
   "ui_domain_tier_lean_to": "窝棚",
   "ui_domain_tier_treehouse": "树屋",
+  "ui_domain_trusted": "受信任",
   "ui_domain_trusted_creator": "可信创作者",
   "ui_domain_value_not_declared": "未声明",
   "ui_domain_value_unknown": "未知",

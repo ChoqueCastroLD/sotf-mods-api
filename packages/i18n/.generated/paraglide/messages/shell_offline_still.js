@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Shell_Offline_StillInputs */
 
 const en_shell_offline_still = /** @type {(inputs: Shell_Offline_StillInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Still no signal. Try again in a moment.`)
+	return /** @type {LocalizedString} */ (`Still offline. Try again in a moment.`)
 };
 
 const es_shell_offline_still = /** @type {(inputs: Shell_Offline_StillInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sigue sin señal. Inténtalo de nuevo en un momento.`)
+	return /** @type {LocalizedString} */ (`Sigues sin conexión. Inténtalo de nuevo en un momento.`)
 };
 
 const de_shell_offline_still = /** @type {(inputs: Shell_Offline_StillInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Weiterhin kein Signal. Versuche es gleich noch einmal.`)
+	return /** @type {LocalizedString} */ (`Weiterhin offline. Versuche es gleich noch einmal.`)
 };
 
 const fr_shell_offline_still = /** @type {(inputs: Shell_Offline_StillInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Toujours pas de signal. Réessayez dans un instant.`)
+	return /** @type {LocalizedString} */ (`Toujours hors ligne. Réessayez dans un instant.`)
 };
 
 const it_shell_offline_still = /** @type {(inputs: Shell_Offline_StillInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ancora nessun segnale. Riprova tra poco.`)
+	return /** @type {LocalizedString} */ (`Ancora offline. Riprova tra poco.`)
 };
 
 const nl_shell_offline_still = /** @type {(inputs: Shell_Offline_StillInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nog steeds geen signaal. Probeer het zo opnieuw.`)
+	return /** @type {LocalizedString} */ (`Nog steeds offline. Probeer het zo meteen opnieuw.`)
 };
 
 const pl_shell_offline_still = /** @type {(inputs: Shell_Offline_StillInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nadal brak sygnału. Spróbuj za chwilę.`)
+	return /** @type {LocalizedString} */ (`Nadal offline. Spróbuj ponownie za chwilę.`)
 };
 
 const pt_shell_offline_still = /** @type {(inputs: Shell_Offline_StillInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ainda sem sinal. Tente novamente daqui a pouco.`)
+	return /** @type {LocalizedString} */ (`Ainda offline. Tente novamente em instantes.`)
 };
 
 const ru_shell_offline_still = /** @type {(inputs: Shell_Offline_StillInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Сигнала по-прежнему нет. Повторите чуть позже.`)
+	return /** @type {LocalizedString} */ (`Подключения всё ещё нет. Повторите через минуту.`)
 };
 
 const sv_shell_offline_still = /** @type {(inputs: Shell_Offline_StillInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Fortfarande ingen signal. Försök igen om en stund.`)
+	return /** @type {LocalizedString} */ (`Fortfarande offline. Försök igen om en stund.`)
 };
 
 const tr_shell_offline_still = /** @type {(inputs: Shell_Offline_StillInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Hâlâ sinyal yok. Biraz sonra tekrar dene.`)
+	return /** @type {LocalizedString} */ (`Hâlâ çevrimdışı. Birazdan tekrar deneyin.`)
 };
 
 const zh_shell_offline_still = /** @type {(inputs: Shell_Offline_StillInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`仍然没有信号，请稍后再试。`)
+	return /** @type {LocalizedString} */ (`仍处于离线状态。请稍后再试。`)
 };
 
 const ja_shell_offline_still = /** @type {(inputs: Shell_Offline_StillInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`まだ電波がありません。しばらくしてからもう一度お試しください。`)
+	return /** @type {LocalizedString} */ (`まだオフラインです。しばらくしてからもう一度お試しください。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Still no signal. Try again in a moment." |
+* | "Still offline. Try again in a moment." |
 *
 * @param {Shell_Offline_StillInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

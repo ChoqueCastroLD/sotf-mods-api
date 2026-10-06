@@ -1,7 +1,8 @@
 ---
 /**
- * Creator card of the sidebar (research/03 §6.3): avatar, name, trusted mark, follow the creator
- * (a toggle for signed-in visitors, `scripts/mod/follow.ts`) and the mod's support links.
+ * Creator block of the sidebar: avatar, name, Trusted tag, follow the creator (a toggle for
+ * signed-in visitors, `scripts/mod/follow.ts`), co-authors and the mod's support links. Plain, no
+ * card.
  */
 
 import type { CoAuthorDTO } from '@sotf/contracts/mod-knowledge';
@@ -10,11 +11,11 @@ import { m } from '@sotf/i18n/messages';
 import { Avatar } from '@sotf/ui/avatar';
 import { TrustedMark } from '@sotf/ui/domain';
 import { Icon } from '@sotf/ui/icons';
-import { ExternalLink, UserPlus } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
 import type { ModDetailDTO } from './data.ts';
 import { linkLabel } from './i18n.ts';
-import { ACTION_CLASSES, PANEL_CLASSES, READOUT_CLASSES } from './styles.ts';
+import { ACTION_CLASSES, SIDE_BLOCK_CLASSES, SIDE_TITLE_CLASSES } from './styles.ts';
 
 interface Props {
   mod: ModDetailDTO;
@@ -29,25 +30,24 @@ const name = author.displayName || author.handle;
 const profileHref = href(profilePath(author.handle), locale);
 ---
 
-<section aria-labelledby="creator-title" class:list={[PANEL_CLASSES, 'grid gap-3']}>
-  <h2 id="creator-title" class={READOUT_CLASSES}>{m.mod_creator_title()}</h2>
-  <a href={profileHref} class="flex items-center gap-3 rounded-md hover:bg-fg/4">
-    <Avatar name={name} id={author.id} src={author.avatarUrl} size={48} />
+<section aria-labelledby="creator-title" class={SIDE_BLOCK_CLASSES}>
+  <h2 id="creator-title" class={SIDE_TITLE_CLASSES}>{m.mod_creator_title()}</h2>
+  <div class="flex items-center gap-3">
+    <Avatar name={name} id={author.id} src={author.avatarUrl} size={40} />
     <span class="grid min-w-0 gap-0.5">
-      <span class="flex items-center gap-1.5 truncate font-semibold text-fg">
-        {name}
-        {author.verifiedCreator && <TrustedMark size={16} />}
+      <span class="flex flex-wrap items-center gap-x-2 gap-y-1">
+        <a href={profileHref} class="truncate font-semibold text-fg hover:underline underline-offset-3">{name}</a>
+        {author.verifiedCreator && <TrustedMark />}
       </span>
       <span class="truncate text-sm text-fg-muted">@{author.handle}</span>
     </span>
-  </a>
+  </div>
   <a
     href={loginHref}
     data-follow-user={author.handle}
     data-follow-user-id={author.id}
-    class={ACTION_CLASSES}
+    class={`${ACTION_CLASSES} justify-self-start`}
   >
-    <Icon icon={UserPlus} size={18} />
     <span data-follow-label>{m.mod_creator_follow()}</span>
     <span class="sr-only">{name}</span>
   </a>
@@ -64,7 +64,7 @@ const profileHref = href(profilePath(author.handle), locale);
               >
                 <Avatar name={user.displayName || user.handle} id={user.id} src={user.avatarUrl} size={32} />
                 <span class="truncate text-sm text-fg">{user.displayName || user.handle}</span>
-                {user.verifiedCreator && <TrustedMark size={14} />}
+                {user.verifiedCreator && <TrustedMark />}
               </a>
             </li>
           ))}

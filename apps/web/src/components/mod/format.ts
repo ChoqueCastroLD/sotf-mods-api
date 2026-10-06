@@ -1,7 +1,7 @@
 /**
  * Labels and small derivations shared by the mod page components (WP-62).
  */
-import type { CompatStatus, MultiplayerRole, Platform } from '@sotf/contracts/common';
+import type { MultiplayerRole, Platform } from '@sotf/contracts/common';
 import { downloadPath, encodePathSegment } from '@sotf/contracts/seo';
 import { type Locale, toHtmlLang } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
@@ -31,18 +31,6 @@ export function multiplayerLabel(role: MultiplayerRole): string | null {
     default:
       return null;
   }
-}
-
-/** One sentence about the compatibility on the current build (header, mobile bar). */
-export function compatSentence(mod: ModDetailDTO): string {
-  const compat = mod.compatCurrent;
-  const build = compat.gameBuild?.label ?? mod.latestVersion?.gameVersionDeclared ?? null;
-  const status: CompatStatus = compat.status;
-  if (status === 'works' && build) return m.common_compat_works({ count: compat.works, build });
-  if (status === 'broken' && build) return m.common_compat_broken({ build });
-  if (status === 'mixed' && build)
-    return m.mod_compat_mixed({ build, works: compat.works, broken: compat.broken + compat.partial });
-  return m.common_compat_unverified();
 }
 
 /** Download route of a dependency's latest version (always under `/mods`). */
@@ -96,4 +84,9 @@ export function pluralTemplates(locale: Locale, message: (count: number) => stri
     templates[category] = at >= 0 ? `${text.slice(0, at)}{n}${text.slice(at + formatted.length)}` : text;
   }
   return templates;
+}
+
+/** Some uploads carry a GUID instead of a version number: those are not printed next to titles. */
+export function isShortVersion(version: string): boolean {
+  return version.length <= 18;
 }

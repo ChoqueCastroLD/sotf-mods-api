@@ -243,5 +243,12 @@
   "mod_graph_required_by": "Требуется для",
   "mod_compat_report_cta": "Сообщить, работает ли",
   "mod_action_more": "Другие действия",
-  "mod_action_report_mod": "Пожаловаться на мод"
+  "mod_action_report_mod": "Пожаловаться на мод",
+  "mod_tab_description": "Описание",
+  "mod_action_install_manager": "Установить через RedManager",
+  "mod_versions_section_title": "Версии и список изменений",
+  "mod_details_title": "Сведения",
+  "mod_detail_game": "Версия игры",
+  "mod_detail_loader": "RedLoader",
+  "mod_fact_multiplayer": "Мультиплеер"
 }

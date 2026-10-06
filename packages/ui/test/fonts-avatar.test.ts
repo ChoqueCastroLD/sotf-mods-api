@@ -18,7 +18,7 @@ describe('font fallbacks', () => {
   it('defines the fallback families referenced by the font stacks', async () => {
     const css = await renderFallbacks();
     const tokens = readFileSync(fileURLToPath(new URL('../src/tokens.css', import.meta.url).href), 'utf8');
-    for (const family of ['Onest Fallback', 'Big Shoulders Fallback']) {
+    for (const family of ['Onest Fallback']) {
       expect(css).toContain(`font-family: "${family}"`);
       expect(tokens).toContain(`"${family}"`);
     }

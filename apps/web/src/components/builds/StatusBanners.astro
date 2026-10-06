@@ -1,12 +1,12 @@
 ---
 /**
- * Status banners of a build (catalog rules, PLAN §5.2): under review, unlisted, archived (with the
- * successor), reported broken on the current game build and possibly outdated. Icon + title +
- * text: the status never relies on colour. NSFW is handled by the gallery.
+ * Status banners of a build: pending approval, unlisted, archived (with a link to the successor).
+ * Each banner pairs an icon with text (status is never colour alone). Compatibility banners are
+ * gone with the compatibility reports.
  */
 import { m } from '@sotf/i18n/messages';
 import { Icon } from '@sotf/ui/icons';
-import { Archive, CircleAlert, EyeOff, Hourglass, TriangleAlert } from 'lucide-react';
+import { Archive, EyeOff, Hourglass } from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
 import type { ModDetailDTO } from './data.ts';
 
@@ -17,7 +17,7 @@ interface Props {
 const { build } = Astro.props;
 const locale = Astro.locals.locale;
 
-type Tone = 'info' | 'warning' | 'danger';
+type Tone = 'info' | 'warning';
 interface Item {
   id: string;
   tone: Tone;
@@ -33,7 +33,7 @@ for (const banner of build.banners) {
     case 'pending_review':
       items.push({
         id: banner,
-        tone: 'info',
+        tone: 'warning',
         icon: Hourglass,
         title: m.builds_banner_pending_title(),
         text: m.builds_banner_pending_text(),
@@ -65,33 +65,14 @@ for (const banner of build.banners) {
           : {}),
       });
       break;
-    case 'broken_on_current':
-      items.push({
-        id: banner,
-        tone: 'danger',
-        icon: CircleAlert,
-        title: m.builds_banner_broken_title(),
-        text: m.builds_banner_broken_text(),
-      });
-      break;
-    case 'possibly_outdated':
-      items.push({
-        id: banner,
-        tone: 'warning',
-        icon: TriangleAlert,
-        title: m.builds_banner_outdated_title(),
-        text: m.builds_banner_outdated_text(),
-      });
-      break;
     default:
       break;
   }
 }
 
 const toneClasses: Record<Tone, { box: string; icon: string }> = {
-  info: { box: 'border-blueprint/40 bg-blueprint-surface', icon: 'text-blueprint' },
+  info: { box: 'border-border bg-surface', icon: 'text-fg-muted' },
   warning: { box: 'border-warning/40 bg-warning-soft', icon: 'text-warning' },
-  danger: { box: 'border-danger/40 bg-danger-soft', icon: 'text-danger' },
 };
 ---
 
@@ -100,22 +81,20 @@ const toneClasses: Record<Tone, { box: string; icon: string }> = {
     <div class="grid gap-2" data-build-banners>
       {items.map((item) => (
         <div
-          role={item.tone === 'danger' ? 'alert' : 'status'}
+          role="status"
           data-banner={item.id}
-          class:list={['flex items-start gap-3 rounded-lg border p-3 text-sm text-fg', toneClasses[item.tone].box]}
+          class:list={['flex items-start gap-3 rounded-md border px-3 py-2.5 text-sm text-fg', toneClasses[item.tone].box]}
         >
           <Icon icon={item.icon} size={18} className={`mt-0.5 shrink-0 ${toneClasses[item.tone].icon}`} />
-          <div class="grid min-w-0 flex-1 gap-1">
-            <p class="font-semibold">{item.title}</p>
-            <p class="text-fg-muted">{item.text}</p>
+          <p class="min-w-0 flex-1">
+            <strong class="me-1.5 font-semibold">{item.title}</strong>
+            <span class="text-fg-muted">{item.text}</span>
             {item.action && (
-              <p>
-                <a href={item.action.href} class="inline-flex min-h-6 items-center font-semibold text-link underline underline-offset-3">
-                  {item.action.label}
-                </a>
-              </p>
+              <a href={item.action.href} class="ms-2 inline-flex font-medium text-link underline underline-offset-3">
+                {item.action.label}
+              </a>
             )}
-          </div>
+          </p>
         </div>
       ))}
     </div>

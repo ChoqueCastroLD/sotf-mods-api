@@ -1,24 +1,23 @@
 ---
 /**
- * Header of a build (research/03 §6.6): kind readout, name (`h1`), uploader, «Author in the
- * blueprint» when it differs, original author, stats, size class and the actions:
+ * Header of a build, built like the mod header: title, author with the Trusted tag, a plain stats
+ * row (downloads, followers, rating, pieces, size) and the actions: Download (latest version, the
+ * other versions in its menu), then a small group with Follow, Copy link, How to import and Report.
  *
- * - Download: a real link to the counted download route (302 to R2), the other versions in a
- *   `<details>` menu (works without JavaScript); `rel="nofollow"`.
- * - Follow ♥ (Backpack): a toggle button enhanced by `build-page.ts` (optimistic with undo); it
- *   sits in a GET form to the sign-in page (`?next=`), so guests and no-JS visitors sign in first.
- * - Copy link and «How to import» (anchor to the steps).
- * - «+ Kit»: a link to `/me/kits?add=<id>` (the console «Add to a kit» screen of WP-71).
+ * - Download: a real link to the counted download route (302 to R2); `rel="nofollow"`.
+ * - Follow: a toggle button enhanced by `build-page.ts` (optimistic with undo); it sits in a GET
+ *   form to the sign-in page (`?next=`), so guests and no-JS visitors sign in first.
  */
 import { profilePath } from '@sotf/contracts/seo';
-import { formatBytes, formatCompactNumber, formatNumber } from '@sotf/i18n';
+import { formatCompactNumber, formatNumber } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
-import { buttonClasses } from '@sotf/ui/button';
-import { displayName } from '@sotf/ui/domain';
+import { Avatar } from '@sotf/ui/avatar';
+import { DownloadSplitButton, displayName, downloadOptionOf, StarRating, TrustedMark } from '@sotf/ui/domain';
 import { Icon } from '@sotf/ui/icons';
-import { BadgeCheck, ChevronDown, Download, Flag, Heart, Link2, ListOrdered, Plus, Star } from 'lucide-react';
+import { Flag, Heart, Link2, ListOrdered } from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
 import { loadModTranslation } from '../../lib/mod-translation.ts';
+import { isShortVersion } from '../mod/format.ts';
 import TranslatedText from '../mod/TranslatedText.astro';
 import type { BuildSpec, ModDetailDTO, VersionDTO } from './data.ts';
 import { blueprintAuthorDiffers } from './data.ts';
@@ -37,110 +36,101 @@ const loginHref = loginHrefFor(href('/login', locale), href(Astro.locals.pagePat
 const latest = build.latestVersion;
 const others = (versions ?? []).filter((version) => version.id !== latest?.id && version.status === 'active');
 const authorName = build.userDisplayName || build.userHandle;
-const byParts = m.builds_by_author({ author: '\u0000' }).split('\u0000');
 const showBlueprintAuthor = blueprintAuthorDiffers(spec, build);
 const summary = build.reviewsSummary;
 const rating = summary.showStars && summary.average !== null ? summary.average : null;
-const downloadLabel = latest
-  ? typeof latest.fileSize === 'number'
-    ? m.common_download_version({ version: latest.version, size: formatBytes(locale, latest.fileSize) })
-    : m.common_download_version_short({ version: latest.version })
-  : null;
 const shownName = displayName(build);
 const translation = locale !== 'en' && build.shortDescription ? await loadModTranslation(build, locale) : null;
-const statClass = 'inline-flex items-center gap-1.5 tabular-nums';
+const stat = 'inline-flex items-center gap-1.5 tabular-nums';
+const LINK =
+  'inline-flex h-9 items-center gap-1.5 rounded-md px-2.5 text-sm font-medium text-fg-muted hover:bg-fg/6 hover:text-fg aria-pressed:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus';
 ---
 
-<header class="grid grid-cols-1 content-start gap-5" data-build-header>
+<header class="grid grid-cols-1 content-start gap-4" data-build-header>
   <div class="grid grid-cols-1 gap-2">
-    <p class="readout text-blueprint">{m.builds_kind_label()}</p>
     <h1
       id="build-title"
-      class="font-display-caps text-display-sm text-balance break-words text-fg [hyphens:auto]"
+      class="text-balance break-words text-3xl font-bold leading-tight text-fg [hyphens:auto] md:text-4xl"
       lang={shownName !== build.name ? locale : undefined}
     >
       {shownName}
+      {latest && isShortVersion(latest.version) && (
+        <span class="ms-2 whitespace-nowrap align-baseline font-mono text-base font-normal text-fg-muted">v{latest.version}</span>
+      )}
     </h1>
     {
       shownName !== build.name && (
         <p class="flex items-baseline gap-2 text-sm text-fg-subtle" data-original-name>
-          <span class="readout shrink-0 text-2xs text-fg-subtle">{m.entity_original_label()}</span>
+          <span class="shrink-0">{m.entity_original_label()}</span>
           <span class="min-w-0 break-words text-base text-fg-muted" lang={build.contentLang ?? 'en'} translate="no">{build.name}</span>
         </p>
       )
     }
-    <p class="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-fg-muted">
-      <span>
-        {byParts[0]}<a
-          href={href(profilePath(build.userHandle), locale)}
-          class="font-semibold text-fg underline-offset-3 hover:underline">{authorName}</a
-        >{byParts[1]}
-      </span>
-      {
-        build.verifiedCreator && (
-          <span class="inline-flex items-center text-signal" title={m.builds_verified_creator()}>
-            <Icon icon={BadgeCheck} size={16} label={m.builds_verified_creator()} />
-          </span>
-        )
-      }
-    </p>
     {
-      showBlueprintAuthor && spec.blueprintAuthor && (
-        <p class="font-mono text-xs text-blueprint" data-blueprint-author>
-          {m.builds_blueprint_author({ author: spec.blueprintAuthor })}
-        </p>
-      )
-    }
-    {
-      build.originalAuthor && (
-        <p class="text-sm text-fg-muted" data-original-author>
-          {build.originalAuthor.url ? (
-            <a
-              href={build.originalAuthor.url}
-              rel="nofollow ugc noopener"
-              target="_blank"
-              class="underline underline-offset-3 hover:text-fg"
-            >
-              {m.builds_original_author({ author: build.originalAuthor.name })}
-              <span class="sr-only">{m.common_new_tab()}</span>
-            </a>
-          ) : (
-            m.builds_original_author({ author: build.originalAuthor.name })
-          )}
-        </p>
+      build.shortDescription && translation?.shortDescription ? (
+        <TranslatedText
+          translated={translation.shortDescription}
+          original={build.shortDescription}
+          locale={locale}
+          sourceLang={build.contentLang}
+          source={translation.sources?.shortDescription ?? 'machine'}
+          class="text-base text-pretty text-fg-muted md:text-lg"
+        />
+      ) : (
+        build.shortDescription && <p class="text-base text-pretty text-fg-muted md:text-lg">{build.shortDescription}</p>
       )
     }
   </div>
 
+  <p class="flex flex-wrap items-center gap-x-3 gap-y-2 border-t border-border pt-4 text-sm text-fg-muted">
+    <a
+      href={href(profilePath(build.userHandle), locale)}
+      class="inline-flex min-h-6 items-center gap-2 font-semibold text-fg underline-offset-3 hover:underline"
+    >
+      <Avatar name={authorName} id={build.userId} src={build.userAvatarUrl} size={24} />
+      <span>{authorName}</span>
+    </a>
+    {build.verifiedCreator && <TrustedMark />}
+  </p>
   {
-    build.shortDescription && translation?.shortDescription ? (
-      <TranslatedText
-        translated={translation.shortDescription}
-        original={build.shortDescription}
-        locale={locale}
-        sourceLang={build.contentLang}
-        source={translation.sources?.shortDescription ?? 'machine'}
-        class="text-base text-pretty text-fg md:text-lg"
-      />
-    ) : (
-      build.shortDescription && <p class="text-base text-pretty text-fg md:text-lg">{build.shortDescription}</p>
+    showBlueprintAuthor && spec.blueprintAuthor && (
+      <p class="text-sm text-fg-muted" data-blueprint-author>
+        {m.builds_blueprint_author({ author: spec.blueprintAuthor })}
+      </p>
+    )
+  }
+  {
+    build.originalAuthor && (
+      <p class="text-sm text-fg-muted" data-original-author>
+        {build.originalAuthor.url ? (
+          <a
+            href={build.originalAuthor.url}
+            rel="nofollow ugc noopener"
+            target="_blank"
+            class="text-link underline underline-offset-3"
+          >
+            {m.builds_original_author({ author: build.originalAuthor.name })}
+            <span class="sr-only">{m.common_new_tab()}</span>
+          </a>
+        ) : (
+          m.builds_original_author({ author: build.originalAuthor.name })
+        )}
+      </p>
     )
   }
 
-  <ul class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-fg-muted" aria-label={m.builds_stats_label()}>
-    <li class={statClass} title={formatNumber(locale, build.downloads)} data-live-downloads>
-      <Icon icon={Download} size={16} />
-      <span data-live="downloads-stat">{m.common_downloads_compact({ count: build.downloads, display: formatCompactNumber(locale, build.downloads) })}</span>
+  <ul class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-fg-muted" aria-label={m.builds_stats_label()}>
+    <li class={stat} title={formatNumber(locale, build.downloads)} data-live-downloads>
+      <span data-live="downloads-stat" class="text-fg">{m.common_downloads_compact({ count: build.downloads, display: formatCompactNumber(locale, build.downloads) })}</span>
     </li>
-    <li class={statClass}>
-      <Icon icon={Heart} size={16} />
-      <span data-follow-count data-followers={build.followers}>{m.common_followers_count({ count: build.followers })}</span>
+    <li class={stat}>
+      <span data-follow-count data-followers={build.followers} class="text-fg">{m.common_followers_count({ count: build.followers })}</span>
     </li>
     {
       rating !== null && (
-        <li class={statClass}>
-          <Icon icon={Star} size={16} className="text-warning" />
-          <a href="#reviews" class="hover:text-fg hover:underline">
+        <li class={stat}>
+          <a href="#reviews" class="inline-flex items-center gap-1.5 underline-offset-3 hover:text-fg hover:underline">
+            <StarRating value={rating} size={14} />
             {m.builds_stat_rating({
               rating: formatNumber(locale, rating, { minimumFractionDigits: 1, maximumFractionDigits: 1 }),
               count: summary.count,
@@ -151,91 +141,43 @@ const statClass = 'inline-flex items-center gap-1.5 tabular-nums';
     }
     {
       spec.elements !== null && (
-        <li class={`${statClass} font-mono text-xs text-blueprint`}>
+        <li class={stat}>
           {m.builds_stat_pieces({ count: spec.elements, display: formatNumber(locale, spec.elements) })}
         </li>
       )
     }
     {
       spec.sizeClass && (
-        <li>
-          <span
-            class="inline-flex h-6 items-center gap-1 rounded-xs border border-blueprint px-2 font-mono text-xs font-semibold text-blueprint"
-            title={`${m.builds_size_name({ size: spec.sizeClass })} · ${sizeRangeLabel(spec.sizeClass, locale)}`}
-          >
-            {m.builds_size_badge({ size: spec.sizeClass })}
-            <span class="sr-only">
-              ({m.builds_size_name({ size: spec.sizeClass })}, {sizeRangeLabel(spec.sizeClass, locale)})
-            </span>
+        <li
+          class={stat}
+          title={`${m.builds_size_name({ size: spec.sizeClass })} · ${sizeRangeLabel(spec.sizeClass, locale)}`}
+        >
+          {m.builds_size_badge({ size: spec.sizeClass })}
+          <span class="sr-only">
+            ({m.builds_size_name({ size: spec.sizeClass })}, {sizeRangeLabel(spec.sizeClass, locale)})
           </span>
         </li>
       )
     }
-    {build.kitsCount > 0 && <li class={statClass}>{m.builds_in_kits({ count: build.kitsCount })}</li>}
   </ul>
 
   <div class="grid gap-3" id="download">
     {
-      latest && latest.status === 'active' && downloadLabel ? (
-        <div class="flex items-stretch max-md:hidden">
-          <a
-            href={latest.downloadPath}
-            rel="nofollow"
-            data-download={latest.version}
-            class={buttonClasses({
-              variant: 'primary',
-              size: 'lg',
-              glow: true,
-              className: `min-w-0 flex-1 ${others.length > 0 ? 'rounded-e-none' : ''}`,
-            })}
-          >
-            <Icon icon={Download} size={18} />
-            <span class="truncate">{downloadLabel}</span>
-          </a>
-          {others.length > 0 && (
-            <details class="relative flex" data-disclosure>
-              <summary
-                class={buttonClasses({
-                  variant: 'primary',
-                  size: 'lg',
-                  className: 'h-full list-none rounded-s-none border-s border-primary-fg/25 px-3 [&::-webkit-details-marker]:hidden',
-                })}
-              >
-                <Icon icon={ChevronDown} size={18} />
-                <span class="sr-only">{m.builds_action_other_versions()}</span>
-              </summary>
-              <div class="absolute end-0 top-full z-(--z-dropdown) mt-1 w-72 max-w-[calc(100vw-2rem)] rounded-lg border border-border bg-overlay p-1 shadow-lg">
-                <p class="readout px-2.5 pt-1.5 pb-1">{m.builds_action_other_versions()}</p>
-                <ul>
-                  {others.map((version) => (
-                    <li>
-                      <a
-                        href={version.downloadPath}
-                        rel="nofollow"
-                        data-download={version.version}
-                        class="flex min-h-11 items-center gap-2 rounded-sm px-2.5 py-1.5 text-sm text-fg hover:bg-fg/8"
-                      >
-                        <Icon icon={Download} size={16} className="text-fg-subtle" />
-                        <span class="flex-1 font-mono">v{version.version}</span>
-                        {typeof version.fileSize === 'number' && (
-                          <span class="text-xs text-fg-muted">{formatBytes(locale, version.fileSize)}</span>
-                        )}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </details>
-          )}
+      latest && latest.status === 'active' ? (
+        <div class="max-md:hidden" data-download-area>
+          <DownloadSplitButton
+            primary={downloadOptionOf(latest)}
+            others={others.map(downloadOptionOf)}
+            size="md"
+            className="items-start"
+          />
         </div>
       ) : (
-        <p class="rounded-md border border-dashed border-border-strong p-3 text-sm text-fg-muted max-md:hidden">
-          {m.builds_action_download_unavailable()}
-        </p>
+        <p class="text-sm text-fg-muted max-md:hidden">{m.builds_action_download_unavailable()}</p>
       )
     }
 
-    <div class="flex flex-wrap gap-2 max-md:hidden">
+    <div class="-ms-2.5 flex flex-wrap items-center gap-1 max-md:hidden">
       <form method="get" action={href('/login', locale)} class="contents" data-follow-form>
         <input type="hidden" name="next" value={href(Astro.locals.pagePath, locale)} />
         <button
@@ -245,45 +187,22 @@ const statClass = 'inline-flex items-center gap-1.5 tabular-nums';
           data-mod-id={build.id}
           data-login={loginHref}
           title={m.builds_follow_hint()}
-          class={buttonClasses({ variant: 'secondary', size: 'md', className: 'group/follow' })}
+          class={LINK}
         >
-          <Icon
-            icon={Heart}
-            size={18}
-            className="group-aria-pressed/follow:fill-current group-aria-pressed/follow:text-primary"
-          />
+          <Icon icon={Heart} size={16} className="[[aria-pressed=true]_&]:fill-current" />
           <span data-follow-label>{m.common_action_follow()}</span>
         </button>
       </form>
-      <button
-        type="button"
-        data-copy-link
-        data-copied={m.builds_link_copied()}
-        class={buttonClasses({ variant: 'secondary', size: 'md' })}
-      >
-        <Icon icon={Link2} size={18} />
+      <button type="button" data-copy-link data-copied={m.builds_link_copied()} class={LINK}>
+        <Icon icon={Link2} size={16} />
         {m.common_action_copy_link()}
       </button>
-      <a href="#import" class={buttonClasses({ variant: 'ghost', size: 'md' })}>
-        <Icon icon={ListOrdered} size={18} />
+      <a href="#import" class={LINK}>
+        <Icon icon={ListOrdered} size={16} />
         {m.builds_action_how_to_import()}
       </a>
-      <a
-        href={`${href('/me/kits', locale)}?add=${build.id}`}
-        data-kit-add={build.id}
-        class={buttonClasses({ variant: 'secondary', size: 'md' })}
-      >
-        <Icon icon={Plus} size={18} />
-        {m.builds_action_add_to_kit()}
-      </a>
-      <button
-        type="button"
-        hidden
-        data-js-only
-        data-dialog-open="report-dialog"
-        class={buttonClasses({ variant: 'ghost', size: 'md', className: 'text-fg-muted' })}
-      >
-        <Icon icon={Flag} size={18} />
+      <button type="button" hidden data-js-only data-dialog-open="report-dialog" class={LINK}>
+        <Icon icon={Flag} size={16} />
         {m.mod_action_report()}
       </button>
     </div>

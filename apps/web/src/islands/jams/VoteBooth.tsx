@@ -8,7 +8,7 @@
 import type { JamVoteResultDTO } from '@sotf/contracts/jams';
 import { Button } from '@sotf/ui/button';
 import { Icon } from '@sotf/ui/icons';
-import { ArrowLeft, ArrowRight, Check, ExternalLink, PartyPopper, Star, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, ExternalLink, Star, X } from 'lucide-react';
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
 import { api, type Failure } from '../comments/lib/api.ts';
 import { t } from '../comments/lib/messages.ts';
@@ -165,13 +165,13 @@ export function VoteBooth({ store, entries, voterId, jamTitle }: VoteBoothProps)
         event.preventDefault();
         close();
       }}
-      className="fixed inset-0 m-0 h-dvh max-h-none w-screen max-w-none border-0 bg-bg p-0 text-fg backdrop:bg-night-975/90"
+      className="fixed inset-0 m-0 h-dvh max-h-none w-screen max-w-none border-0 bg-bg p-0 text-fg backdrop:bg-black/80"
     >
       {open ? (
         <div className="mx-auto flex h-dvh max-w-6xl flex-col">
           <header className="flex items-center gap-3 border-b border-border px-4 py-3 md:px-6">
             <div className="min-w-0 flex-1">
-              <p id={titleId} className="readout truncate text-primary">
+              <p id={titleId} className="truncate text-sm font-semibold text-fg-muted">
                 {t('jams_booth_title')} · {jamTitle}
               </p>
               <div className="mt-1.5 flex items-center gap-3">
@@ -188,7 +188,7 @@ export function VoteBooth({ store, entries, voterId, jamTitle }: VoteBoothProps)
                     style={{ width: `${total === 0 ? 0 : (complete / total) * 100}%` }}
                   />
                 </div>
-                <p className="shrink-0 font-mono text-xs text-fg-muted tabular-nums">
+                <p className="shrink-0 text-xs text-fg-muted tabular-nums">
                   {t('jams_vote_progress', { done: complete, total })}
                 </p>
               </div>
@@ -224,16 +224,16 @@ export function VoteBooth({ store, entries, voterId, jamTitle }: VoteBoothProps)
                         className="size-full animate-rise object-cover"
                       />
                     ) : (
-                      <div className="texture-topo grid size-full place-items-center text-fg-subtle">
+                      <div className="grid size-full place-items-center text-fg-subtle">
                         <Icon icon={Star} size={48} />
                       </div>
                     )}
-                    <span className="absolute start-3 top-3 rounded-md bg-night-975/80 px-2.5 py-1 font-mono text-xs text-night-50 backdrop-blur-sm tabular-nums">
+                    <span className="absolute start-3 top-3 rounded-md bg-bg/85 px-2.5 py-1 text-xs text-fg backdrop-blur-sm tabular-nums">
                       {t('jams_booth_entry_of', { current: index + 1, total })}
                     </span>
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <h2 className="font-display-caps text-3xl leading-none text-fg sm:text-4xl md:text-5xl">
+                    <h2 className="text-2xl font-bold text-fg sm:text-3xl md:text-4xl">
                       {entry.name}
                     </h2>
                     {entry.authors.length > 0 ? (
@@ -270,8 +270,8 @@ export function VoteBooth({ store, entries, voterId, jamTitle }: VoteBoothProps)
                       >
                         <legend className="sr-only">{category.label}</legend>
                         <div className="mb-2 flex items-baseline justify-between gap-3" aria-hidden="true">
-                          <span className="font-display-caps text-2xl leading-none text-fg">{category.label}</span>
-                          <span className="font-mono text-sm text-fg-muted tabular-nums">
+                          <span className="text-lg font-bold text-fg">{category.label}</span>
+                          <span className="text-sm text-fg-muted tabular-nums">
                             {value > 0 ? `${value}/5` : '–/5'}
                           </span>
                         </div>
@@ -294,7 +294,7 @@ export function VoteBooth({ store, entries, voterId, jamTitle }: VoteBoothProps)
                                 size={34}
                                 strokeWidth={1.5}
                                 className={`transition-[transform,color,fill] duration-(--dur-base) ease-(--ease-spring) ${
-                                  star <= value ? 'scale-110 fill-featured text-featured' : 'text-border-strong'
+                                  star <= value ? 'scale-110 fill-current text-fg' : 'text-border-strong'
                                 } ${star === value ? 'drop-shadow-[0_0_8px_rgb(245_212_154/0.6)]' : ''}`}
                               />
                               <span className="sr-only">
@@ -353,7 +353,7 @@ export function VoteBooth({ store, entries, voterId, jamTitle }: VoteBoothProps)
                             ? t('jams_booth_state_partial')
                             : t('jams_booth_state_todo')
                       })`}
-                      className={`relative grid size-8 shrink-0 place-items-center rounded-full font-mono text-xs tabular-nums transition-colors md:size-9 ${
+                      className={`relative grid size-8 shrink-0 place-items-center rounded-full text-xs tabular-nums transition-colors md:size-9 ${
                         progress === 'done'
                           ? 'bg-primary text-primary-fg'
                           : progress === 'partial'
@@ -394,18 +394,7 @@ function Finished({
 }) {
   return (
     <div className="mx-auto flex max-w-xl flex-col items-center gap-5 px-6 py-12 text-center md:py-20">
-      <picture>
-        <source type="image/avif" srcSet="/art/jams/trophy-400.avif" />
-        <img
-          src="/art/jams/trophy-400.webp"
-          alt=""
-          width={400}
-          height={400}
-          className="size-44 rounded-full object-cover shadow-glow [mask-image:radial-gradient(circle,#000_55%,transparent_72%)]"
-        />
-      </picture>
-      <h2 className="flex items-center gap-2 font-display-caps text-5xl leading-none text-fg">
-        <Icon icon={done ? PartyPopper : Star} size={32} className="text-featured" />
+      <h2 className="text-3xl font-bold text-fg">
         {done ? t('jams_booth_done_title') : t('jams_booth_left_title', { count: left })}
       </h2>
       <p className="text-fg-muted">{t('jams_booth_done_text')}</p>

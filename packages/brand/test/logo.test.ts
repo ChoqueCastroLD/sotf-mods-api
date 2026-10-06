@@ -1,73 +1,55 @@
+import { existsSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { WORDMARK } from '../src/generated/brand-data.gen.ts';
-import { lockupGeometry, lockupSvg } from '../src/logo.ts';
-import { rasterise, sha256 } from './helpers.ts';
+import { LOGO_FILES, LOGO_PATHS, lockupSvg, logoPicture } from '../src/logo.ts';
 
-describe('lockups (PLAN §3.2)', () => {
-  it('are deterministic (snapshot)', () => {
-    for (const layout of ['horizontal', 'stacked', 'wordmark'] as const) {
-      for (const theme of ['night', 'day', 'adaptive'] as const) {
-        expect(sha256(lockupSvg({ layout, theme }))).toMatchSnapshot(`${layout}-${theme}`);
+const publicFile = (path: string): boolean => existsSync(new URL(`../assets/public${path}`, import.meta.url));
+
+describe('logo (the old red SOTF-MODS logo)', () => {
+  it('renders a sized picture: WebP with a PNG fallback', () => {
+    const html = lockupSvg({ height: 34 });
+    expect(html).toContain('<picture><source type="image/webp"');
+    expect(html).toContain('src="/brand/logo-sm.png"');
+    expect(html).toContain('height="34"');
+    // 419 x 110 at 34 px tall.
+    expect(html).toContain('width="130"');
+    expect(html).toContain('/brand/logo-sm-140.webp 140w, /brand/logo-sm-280.webp 280w, /brand/logo-sm.webp 419w');
+    expect(logoPicture).toBe(lockupSvg);
+  });
+
+  it('uses the stacked logo for the stacked layout', () => {
+    const html = lockupSvg({ layout: 'stacked', height: 90 });
+    expect(html).toContain('src="/brand/logo.png"');
+    expect(html).toContain('width="160"');
+    expect(html).toContain('loading="lazy"');
+  });
+
+  it('serves the same logo for every layout name and theme', () => {
+    expect(lockupSvg({ layout: 'horizontal', theme: 'night' })).toBe(lockupSvg({ layout: 'wordmark', theme: 'day' }));
+  });
+
+  it('is eager for the header wordmark and can be decorative', () => {
+    expect(lockupSvg()).toContain('loading="eager"');
+    expect(lockupSvg()).toContain('alt="SOTF Mods"');
+    expect(lockupSvg({ title: '' })).toContain('alt=""');
+  });
+
+  it('escapes the name and the class', () => {
+    const html = lockupSvg({ title: '"><script>', className: '"x' });
+    expect(html).not.toContain('<script>');
+    expect(html).toContain('class="&quot;x"');
+  });
+
+  it('points to files that exist in assets/public', () => {
+    for (const file of Object.values(LOGO_FILES)) {
+      for (const extension of ['png', 'webp']) {
+        expect(publicFile(`${file.base}.${extension}`), `${file.base}.${extension}`).toBe(true);
+        for (const width of file.widths) {
+          expect(publicFile(`${file.base}-${width}.${extension}`), `${file.base}-${width}.${extension}`).toBe(true);
+        }
       }
     }
-  });
-
-  it('draw the wordmark from outlines, never from a font', () => {
-    const svg = lockupSvg();
-    expect(svg).not.toMatch(/<text|font-family/);
-    expect(svg).toContain(WORDMARK.sotf.d);
-    expect(svg).toContain(WORDMARK.mods.d);
-  });
-
-  it('colour «SOTF» with the foreground and «MODS» with Flare', () => {
-    const night = lockupSvg({ theme: 'night' });
-    expect(night).toContain(`fill="#F5F4EC" d="${WORDMARK.sotf.d}"`);
-    expect(night).toContain(`fill="#FF7335" d="${WORDMARK.mods.d}"`);
-    const day = lockupSvg({ theme: 'day' });
-    expect(day).toContain(`fill="#0F1612" d="${WORDMARK.sotf.d}"`);
-    expect(day).toContain(`fill="#E75803" d="${WORDMARK.mods.d}"`);
-  });
-
-  it('offer an adaptive variant driven by currentColor and a class hook', () => {
-    const svg = lockupSvg({ theme: 'adaptive' });
-    expect(svg).toContain('fill="currentColor"');
-    expect(svg.match(/class="brand-flare"/g)).toHaveLength(2);
-    // Safe default without theme CSS: the Day flare passes 3:1 in both themes.
-    const flareParts = svg.match(/<path [^>]*class="brand-flare"[^>]*>/g) ?? [];
-    expect(flareParts).toHaveLength(2);
-    for (const part of flareParts) {
-      expect(part).toContain('fill="#E75803"');
+    for (const path of Object.values(LOGO_PATHS)) {
+      expect(publicFile(path), path).toBe(true);
     }
-    expect(svg).not.toContain('#FF7335');
-  });
-
-  it('apply +1 u tracking and align caps with the pin head in the horizontal lockup', () => {
-    expect(WORDMARK.tracking).toBeCloseTo(100 / 46, 2);
-    const geometry = lockupGeometry('horizontal');
-    expect(geometry.sotf.scale).toBeCloseTo(0.46, 5);
-    // Baseline at the bottom of the pin head (49.5 in mark units, 3.5 cropped away).
-    expect(geometry.sotf.y).toBeCloseTo(46, 5);
-    expect(geometry.bounds.height).toBeCloseTo(57.5, 5);
-    expect(geometry.mods.x).toBeGreaterThan(geometry.sotf.x);
-  });
-
-  it('stack SOTF over MODS under the mark', () => {
-    const geometry = lockupGeometry('stacked');
-    expect(geometry.mark).not.toBeNull();
-    expect(geometry.mods.y).toBeGreaterThan(geometry.sotf.y);
-    expect(geometry.bounds.height).toBeGreaterThan(geometry.bounds.width);
-  });
-
-  it('are titled «SOTF Mods» by default and can be decorative', () => {
-    expect(lockupSvg()).toContain('<title>SOTF Mods</title>');
-    expect(lockupSvg({ title: '' })).toContain('aria-hidden="true"');
-  });
-
-  it('render at the requested height with padding and background', async () => {
-    const svg = lockupSvg({ background: true, padding: 16, height: 80 });
-    expect(svg).toContain('height="80"');
-    expect(svg).toContain('fill="#090F0C"');
-    const { height } = await rasterise(svg, 400);
-    expect(height).toBeGreaterThan(0);
   });
 });

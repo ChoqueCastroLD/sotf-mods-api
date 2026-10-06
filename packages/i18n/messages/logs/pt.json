@@ -25,7 +25,7 @@
   "logs_err_archive": "Não foi possível ler esse arquivo.",
   "logs_err_network": "Não foi possível contactar o servidor. Verifique a ligação e tente de novo.",
   "logs_err_turnstile": "A verificação humana falhou. Tente de novo.",
-  "logs_err_rate": "Muitos pedidos — tente de novo em {seconds} s",
+  "logs_err_rate": "Muitos pedidos. Tente de novo em {seconds} s",
   "logs_err_busy": "A partilha de logs está sobrecarregada neste momento. Tente de novo dentro de alguns minutos.",
   "logs_err_generic": "Algo correu mal. Tente de novo.",
   "logs_done_title": "O seu log está pronto",

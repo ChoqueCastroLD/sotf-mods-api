@@ -7,11 +7,10 @@
  * read by id. The HTML is shared by every visitor (edge-cached with `mod:{id}` and `user:{id}`),
  * so nothing here uses cookies.
  *
- * Secondary blocks (dependents, related, first reviews and comments, per-build compatibility) are
+ * Secondary blocks (dependents, related, first reviews and comments, author knowledge) are
  * optional: each has an 800 ms budget and the page renders without it when the API is slow.
  */
 
-import type { ModBundleDTO } from '@sotf/contracts/bundles';
 import type { ModCardDTO, ModDetailDTO } from '@sotf/contracts/catalog';
 import { type ApiClient, isApiError } from '@sotf/contracts/client';
 import type { ModKnowledgeDTO } from '@sotf/contracts/mod-knowledge';
@@ -24,7 +23,6 @@ import { loadModTranslation } from '../../lib/mod-translation.ts';
 type Awaited2<T> = T extends Promise<infer U> ? U : T;
 export type ReviewPage = Awaited2<ReturnType<ApiClient['reviews']['list']>>;
 export type CommentPage = Awaited2<ReturnType<ApiClient['comments']['list']>>;
-export type ModCompat = Awaited2<ReturnType<ApiClient['compat']['modCompat']>>;
 export type ModPublicStats = Awaited2<ReturnType<ApiClient['stats']['modPublicStats']>>;
 export type { ModCardDTO, ModDetailDTO, ModKnowledgeDTO, VersionDTO };
 
@@ -126,56 +124,41 @@ export interface OverviewExtras {
   versions: VersionDTO[] | null;
   dependents: ModCardDTO[];
   related: ModCardDTO[];
-  /** Nightly recommendations (T1-15); both empty when the API is slow. */
-  recommendations: { alsoDownloaded: ModCardDTO[]; similar: ModCardDTO[] };
   reviews: ReviewPage | null;
   comments: CommentPage | null;
-  compat: ModCompat | null;
   /** Public download series of the last 30 days (sparkline); null when the API is slow. */
   stats: ModPublicStats | null;
-  /** Known issues, author FAQ and co-authors; null when the API is slow. */
+  /** Author FAQ and co-authors; null when the API is slow. */
   knowledge: ModKnowledgeDTO | null;
-  /** Official bundles (kits as one zip) that are ready to download (T1-04). */
-  bundles: ModBundleDTO[];
 }
 
 /** The optional blocks of the overview, fetched in parallel. */
 export async function loadOverviewExtras(mod: ModDetailDTO): Promise<OverviewExtras> {
   const api = serverApi();
   const id = mod.id;
-  const [versions, dependents, related, recommendations, reviews, comments, compat, stats, knowledge, bundles] =
-    await Promise.all([
-      loadVersionsOptional(id),
-      mod.dependentsCount > 0
-        ? optional((signal) => api.catalog.dependents({ params: { id } }, { signal }))
-        : Promise.resolve(null),
-      optional((signal) => api.catalog.related({ params: { id } }, { signal })),
-      optional((signal) => api.discovery.recommendations({ params: { id } }, { signal })),
-      mod.reviewsSummary.count > 0
-        ? optional((signal) => api.reviews.list({ params: { id }, query: { sort: 'helpful', limit: 3 } }, { signal }))
-        : Promise.resolve(null),
-      mod.commentsCount > 0
-        ? optional((signal) => api.comments.list({ params: { id }, query: { sort: 'top', limit: 10 } }, { signal }))
-        : Promise.resolve(null),
-      optional((signal) => api.compat.modCompat({ params: { id } }, { signal })),
-      optional((signal) => api.stats.modPublicStats({ params: { id }, query: { range: '30d' } }, { signal })),
-      optional((signal) => api.modKnowledge.knowledge({ params: { id } }, { signal })),
-      optional((signal) => api.bundles.forMod({ params: { id } }, { signal })),
-    ]);
+  const [versions, dependents, related, reviews, comments, stats, knowledge] = await Promise.all([
+    loadVersionsOptional(id),
+    mod.dependentsCount > 0
+      ? optional((signal) => api.catalog.dependents({ params: { id } }, { signal }))
+      : Promise.resolve(null),
+    optional((signal) => api.catalog.related({ params: { id } }, { signal })),
+    mod.reviewsSummary.count > 0
+      ? optional((signal) => api.reviews.list({ params: { id }, query: { sort: 'helpful', limit: 3 } }, { signal }))
+      : Promise.resolve(null),
+    mod.commentsCount > 0
+      ? optional((signal) => api.comments.list({ params: { id }, query: { sort: 'top', limit: 10 } }, { signal }))
+      : Promise.resolve(null),
+    optional((signal) => api.stats.modPublicStats({ params: { id }, query: { range: '30d' } }, { signal })),
+    optional((signal) => api.modKnowledge.knowledge({ params: { id } }, { signal })),
+  ]);
   return {
     versions,
     dependents: dependents?.items ?? [],
-    related: (related?.items ?? []).filter((card) => card.id !== id).slice(0, 4),
-    recommendations: {
-      alsoDownloaded: (recommendations?.alsoDownloaded ?? []).filter((card) => card.id !== id),
-      similar: (recommendations?.similar ?? []).filter((card) => card.id !== id),
-    },
+    related: (related?.items ?? []).filter((card) => card.id !== id).slice(0, 5),
     reviews,
     comments,
-    compat,
     stats,
     knowledge,
-    bundles: bundles?.items ?? [],
   };
 }
 
@@ -187,11 +170,6 @@ export async function loadVersion(modId: number, version: string): Promise<Versi
     if (statusOf(error) === 404) return null;
     throw error;
   }
-}
-
-/** Per-build compatibility of every version (optional). */
-export async function loadCompatOptional(modId: number): Promise<ModCompat | null> {
-  return optional((signal) => serverApi().compat.modCompat({ params: { id: modId } }, { signal }));
 }
 
 /** A cursor page of reviews (the reviews page; required). */

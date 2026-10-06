@@ -1,14 +1,13 @@
 ---
 /**
- * «Downloads over time» (WP-62, T1): the public 30-day series as a server-rendered SVG sparkline
- * (no JavaScript, no layout shift), plus the Recharts `ChartFigure` (30 days / 1 year / all time,
- * with the mandatory «View as table») that `islands/stats/boot.ts` loads on demand when the
- * visitor asks for it. The series comes from `GET /mods/:id/stats/public` (edge 900 s).
+ * «Downloads over time»: the public 30-day series as a server-rendered SVG sparkline (no
+ * JavaScript, no layout shift), plus the `ChartFigure` (30 days / 1 year / all time, with «View as
+ * table») that `islands/stats/boot.ts` loads on demand when the visitor asks for it. The series comes from `GET /mods/:id/stats/public` (edge 900 s).
  */
 import { formatCompactNumber, formatNumber } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import type { ModDetailDTO, ModPublicStats } from './data.ts';
-import { PANEL_CLASSES, READOUT_CLASSES } from './styles.ts';
+import { SIDE_BLOCK_CLASSES, SIDE_TITLE_CLASSES } from './styles.ts';
 
 interface Props {
   mod: ModDetailDTO;
@@ -50,9 +49,9 @@ const labels = {
       data-island="mod-stats"
       data-mod-id={mod.id}
       data-labels={JSON.stringify(labels)}
-      class:list={[PANEL_CLASSES, 'grid gap-3']}
+      class={SIDE_BLOCK_CLASSES}
     >
-      <h2 id="mod-stats-title" class={READOUT_CLASSES}>{m.mod_stats_title()}</h2>
+      <h2 id="mod-stats-title" class={SIDE_TITLE_CLASSES}>{m.mod_stats_title()}</h2>
       {
         total > 0 ? (
           <>
@@ -63,7 +62,7 @@ const labels = {
               viewBox={`0 0 ${W} ${H}`}
               role="img"
               aria-label={`${m.mod_stats_sparkline_label()}: ${formatNumber(locale, total)}`}
-              class="h-12 w-full overflow-visible text-(--color-chart-1)"
+              class="h-12 w-full overflow-visible text-primary"
               preserveAspectRatio="none"
             >
               {area && <polygon points={area} fill="currentColor" fill-opacity="0.1" />}

@@ -1,6 +1,6 @@
 {
   "requests_list_title": "MOD リクエスト",
-  "requests_list_title_page": "{title} — {page, number} ページ",
+  "requests_list_title_page": "{title}、{page, number} ページ",
   "requests_list_description": "Sons of the Forest にほしい MOD をリクエストし、ほしいものに投票して、引き受けたクリエイターをフォローしましょう。",
   "requests_list_readout": "リクエストボード",
   "requests_action_new": "MOD をリクエスト",
@@ -29,7 +29,7 @@
   "requests_by": "投稿者: {name}",
   "requests_adopted_by": "{name} が対応中",
   "requests_fulfilled_by": "{mod} で達成",
-  "requests_detail_title": "{title} — MOD リクエスト",
+  "requests_detail_title": "{title}（MOD リクエスト）",
   "requests_detail_description": "{author} による MOD リクエスト: {title}",
   "requests_back": "すべてのリクエスト",
   "requests_view_mod": "MOD を見る",
@@ -89,5 +89,6 @@
   "requests_badge_adopter": "対応中",
   "requests_badge_author": "リクエスト投稿者",
   "requests_comment_delete_title": "このコメントを削除しますか？",
-  "requests_comment_delete_text": "元に戻せません。"
+  "requests_comment_delete_text": "元に戻せません。",
+  "requests_votes_short": "票"
 }

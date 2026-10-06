@@ -1,0 +1,41 @@
+---
+/**
+ * Plain list of mods for the sidebar («Related mods», «Required by»): small thumbnail, name,
+ * downloads. No cards: rows separated by spacing, the whole row is the link.
+ */
+import { formatCompactNumber } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { displayName } from '@sotf/ui/domain';
+import { href } from '../../lib/i18n.ts';
+import Picture from '../layout/Picture.astro';
+import type { ModCardDTO } from './data.ts';
+
+interface Props {
+  mods: readonly ModCardDTO[];
+}
+
+const { mods } = Astro.props;
+const locale = Astro.locals.locale;
+---
+
+<ul class="grid gap-3">
+  {
+    mods.map((card) => (
+      <li>
+        <a href={href(card.canonicalPath, locale)} class="group flex items-center gap-3">
+          <span class="block aspect-video w-16 shrink-0 overflow-hidden rounded-sm bg-raised">
+            {card.thumbnail && !card.nsfw && (
+              <Picture image={card.thumbnail} sizes="64px" alt="" class="size-full object-cover" />
+            )}
+          </span>
+          <span class="grid min-w-0 gap-0.5">
+            <span class="truncate text-sm font-medium text-fg group-hover:underline underline-offset-3">{displayName(card)}</span>
+            <span class="truncate text-xs text-fg-muted tabular-nums">
+              {m.common_downloads_compact({ count: card.downloads, display: formatCompactNumber(locale, card.downloads) })}
+            </span>
+          </span>
+        </a>
+      </li>
+    ))
+  }
+</ul>

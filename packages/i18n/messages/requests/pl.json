@@ -1,6 +1,6 @@
 {
   "requests_list_title": "Prośby o mody",
-  "requests_list_title_page": "{title} — strona {page, number}",
+  "requests_list_title_page": "{title}, strona {page, number}",
   "requests_list_description": "Poproś o moda, którego brakuje w Sons of the Forest, głosuj na te, które chcesz, i obserwuj twórców, którzy się ich podejmują.",
   "requests_list_readout": "Tablica próśb",
   "requests_action_new": "Poproś o moda",
@@ -29,7 +29,7 @@
   "requests_by": "od {name}",
   "requests_adopted_by": "{name} nad tym pracuje",
   "requests_fulfilled_by": "Zrealizowane przez {mod}",
-  "requests_detail_title": "{title} — Prośba o moda",
+  "requests_detail_title": "{title} (prośba o moda)",
   "requests_detail_description": "Prośba o moda od {author}: {title}",
   "requests_back": "Wszystkie prośby",
   "requests_view_mod": "Zobacz moda",
@@ -89,5 +89,6 @@
   "requests_badge_adopter": "Pracuje nad tym",
   "requests_badge_author": "Autor prośby",
   "requests_comment_delete_title": "Usunąć ten komentarz?",
-  "requests_comment_delete_text": "Nie można tego cofnąć."
+  "requests_comment_delete_text": "Nie można tego cofnąć.",
+  "requests_votes_short": "głosów"
 }

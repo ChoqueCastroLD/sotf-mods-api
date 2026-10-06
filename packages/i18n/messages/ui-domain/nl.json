@@ -180,5 +180,6 @@
   "ui_domain_reaction_laugh": "Lach",
   "ui_domain_reaction_party": "Feest",
   "ui_domain_reaction_pray": "Bedankt",
-  "ui_domain_reaction_fire": "Vuur"
+  "ui_domain_reaction_fire": "Vuur",
+  "ui_domain_trusted": "Vertrouwd"
 }

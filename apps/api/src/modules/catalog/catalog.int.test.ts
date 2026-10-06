@@ -103,6 +103,31 @@ describe('GET /mods', () => {
     expect(all.every((m) => m.nsfw === false)).toBe(true);
   });
 
+  it('unapproved=1 lists the pending mods whose checks passed, never mixed with the default listing', async () => {
+    const res = await get('/api/v2/mods?type=all&unapproved=1&pageSize=100&sort=downloads');
+    expect(res.status).toBe(200);
+    const items = res.body.items as Array<Record<string, any>>;
+    expect(res.body.totalPages).toBe(1);
+    expect(items.length).toBe(res.body.total);
+    expect(new Set(items.map((m) => m.status))).toEqual(new Set(['pending']));
+    expect(items.every((m) => m.nsfw === false)).toBe(true);
+    const ids = items.map((m) => m.id);
+    expect(ids).toContain(LITF_IMPROVED_KELVIN);
+    expect(ids).not.toContain(ALTERNATE_OUTFITS);
+    // Same rule as the mod page: everything listed is reachable by URL, the rest is a 404.
+    for (const id of ids) expect((await get(`/api/v2/mods/${id}`)).status).toBe(200);
+    // The default listing never contains them.
+    const published = await get('/api/v2/mods?type=all&pageSize=100&sort=downloads');
+    expect(published.body.items.map((m: any) => m.id)).not.toContain(LITF_IMPROVED_KELVIN);
+  });
+
+  it('sort=week orders by the downloads of the last 7 days', async () => {
+    const res = await get('/api/v2/mods?sort=week&pageSize=20');
+    expect(res.status).toBe(200);
+    const week = res.body.items.map((m: any) => m.downloads7d);
+    expect(week).toEqual([...week].sort((a: number, b: number) => b - a));
+  });
+
   it('SonsAxLib is in type=library and type=all, not in type=mod', async () => {
     const lib = await get('/api/v2/mods?type=library&pageSize=100');
     expect(lib.body.items.map((m: any) => m.name)).toContain('SonsAxLib');

@@ -1,9 +1,8 @@
 ---
 /**
- * Field notes (changelogs) as a vertical timeline (research/03 §5.x «Changelog / Field notes»):
- * one entry per version with channel badge, absolute date, file facts and the sanitised changelog.
- * Each entry carries `data-published-at` so the «What's new since your last download» island
- * (`scripts/mod/whats-new.ts`, signed-in visitors) can highlight the newer ones.
+ * Changelogs as a plain list separated by hairlines: one entry per version with channel badge,
+ * absolute date, file size and the sanitised changelog. Phones use `VersionRows` instead and the
+ * changelog sheet clones the `[data-changelog]` of the entry.
  */
 import { formatBytes, formatDate } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
@@ -30,23 +29,16 @@ const labels = markdownLabels();
 const Heading = headingLevel === 3 ? 'h3' : 'h4';
 ---
 
-<ol class="relative grid gap-6 border-s border-border ps-6 max-md:hidden" data-version-timeline>
+<ol class="grid divide-y divide-border max-md:hidden" data-version-timeline>
   {
     versions.map((version) => (
       <li
         id={`v-${version.version}`}
-        class="relative grid gap-2"
+        class="grid gap-2 py-4 first:pt-0 last:pb-0"
         data-version={version.version}
         data-published-at={version.publishedAt}
       >
-        <span
-          aria-hidden="true"
-          class:list={[
-            'absolute -start-[1.95rem] top-1 size-3 rounded-full border-2 border-bg',
-            version.isLatest ? 'bg-primary' : 'bg-border-strong',
-          ]}
-        ></span>
-        <div class="flex flex-wrap items-center gap-2">
+        <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
           <Heading class="font-mono text-base font-semibold text-fg">
             {linkTitles ? (
               <a href={href(versionPagePath(mod, version.version), locale)} class="hover:underline underline-offset-3">
@@ -56,17 +48,14 @@ const Heading = headingLevel === 3 ? 'h3' : 'h4';
               `v${version.version}`
             )}
           </Heading>
-          {version.isLatest && <Badge variant="signal" size="sm">{m.mod_version_latest()}</Badge>}
+          {version.isLatest && <Badge variant="neutral" size="sm">{m.mod_version_latest()}</Badge>}
           {version.channel === 'beta' && <Badge variant="warning" size="sm">{m.mod_version_beta()}</Badge>}
           {version.status === 'yanked' && <Badge variant="danger" size="sm">{m.mod_version_yanked()}</Badge>}
-          <span hidden data-whats-new-badge>
-            <Badge variant="signal" size="sm">{m.mod_whats_new_badge()}</Badge>
-          </span>
           <time datetime={version.publishedAt} class="text-sm text-fg-muted">
             {formatDate(locale, version.publishedAt)}
           </time>
           {typeof version.fileSize === 'number' && (
-            <span class="text-sm text-fg-muted tabular-nums">· {formatBytes(locale, version.fileSize)}</span>
+            <span class="text-sm text-fg-muted tabular-nums">{formatBytes(locale, version.fileSize)}</span>
           )}
         </div>
         {version.status === 'yanked' && version.statusReason && (

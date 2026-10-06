@@ -1,23 +1,22 @@
 /**
- * The OG card layout (PLAN §8.6 «OG por entidad»): 1200 × 630, Night background with a seeded
- * topography, the isotype, a kicker, the display title, the author and a readout line
- * («↓ 48.2K · ★ 4.8 · Works on 1.0.x»), plus the `logColor` edge on the left.
+ * The OG card layout: 1200 x 630, the page background (dark neutral), the red SOTF-MODS logo, a
+ * kicker, the title, the author and a line of stats. No artwork.
  *
  * Two layers, composited by `render.ts`:
- * - `backgroundSvg(card)`: pure SVG from `@sotf/brand` (terrain, edge, waypoint);
+ * - `backgroundSvg(card)`: a flat background;
  * - `foregroundTree(card)`: a satori element tree (text is converted to paths by satori, so the
  *   rasterizer needs no fonts).
  *
  * Deterministic: the same card input always yields the same image (the hash of the input names
  * the stored object).
  */
-import { markPathData, normalizeHex, OG_HEIGHT, OG_WIDTH, palette, topoGroup, topoLines } from '@sotf/brand';
-import { DISPLAY_FAMILY, drawableText, MONO_FAMILY } from './fonts.ts';
+import { LOGO_WORDMARK_DATA_URI, LOGO_WORDMARK_SIZE, OG_HEIGHT, OG_WIDTH, palette } from '@sotf/brand';
+import { drawableText, SANS_FAMILY } from './fonts.ts';
 
 export { OG_HEIGHT, OG_WIDTH };
 
 /** Bump when the layout changes: every card gets a new hash (and a new object) on its next render. */
-export const OG_TEMPLATE_VERSION = 1;
+export const OG_TEMPLATE_VERSION = 2;
 
 export type OgStatTone = 'plain' | 'good' | 'bad';
 
@@ -31,9 +30,9 @@ export interface OgStat {
 export interface OgCard {
   /** `mod`, `build`, … (also seeds the terrain with `seed`). */
   type: string;
-  /** Terrain seed (stable per entity). */
+  /** Stable per entity (kept for the card hash). */
   seed: string;
-  /** Upper-case kicker: «MOD · QUALITY OF LIFE». */
+  /** Short label above the title: «Mod · Quality of life». Shown as written. */
   kicker: string;
   title: string;
   /** Fallback title when nothing of `title` is drawable (e.g. a CJK name → the slug). */
@@ -41,7 +40,7 @@ export interface OgCard {
   /** «by ImAxel» / «@imaxel». */
   byline: string | null;
   stats: OgStat[];
-  /** Edge colour (`logColor` of the mod), `#RRGGBB`. */
+  /** Former edge colour (`logColor` of the mod), `#RRGGBB`. No longer drawn; kept for the card hash. */
   accent: string | null;
   /**
    * Public media URLs laid out as a knolling collage on the right (kits, PLAN §7.8: the custom
@@ -95,55 +94,24 @@ export function collageSlots(count: number): OgRect[] {
   return slots;
 }
 
-const NIGHT_BG = palette.night[975];
-const INK = palette.night[25];
-const MUTED = palette.night[300];
+const BACKGROUND = palette.night[950];
+const INK = palette.night[100];
+const MUTED = palette.night[400];
 const FAINT = palette.night[500];
-const FLARE = palette.flare[400];
+const RED = palette.flare[500];
 const TONE_COLOR: Readonly<Record<OgStatTone, string>> = {
   plain: palette.night[100],
   good: palette.lichen[300],
   bad: palette.blood[400],
 };
 
-const EDGE_WIDTH = 14;
-const CYRILLIC = /[\u0400-\u052F\u2DE0-\u2DFF\uA640-\uA69F]/u;
-const PAD_X = 88;
+const PAD_X = 80;
 
-export function accentOf(card: OgCard): string {
-  return normalizeHex(card.accent) ?? FLARE;
-}
-
-/**
- * Background layer: Night, seeded terrain, waypoint on the summit and the accent edge. With a
- * collage the waypoint (which sits in the right column) is left out: the tiles cover it.
- */
-export function backgroundSvg(card: OgCard, options: { collage?: boolean } = {}): string {
-  const lines = topoLines(`og:${card.seed}`, {
-    width: OG_WIDTH,
-    height: OG_HEIGHT,
-    levels: 14,
-    peaks: 3,
-    roughness: 0.45,
-    step: OG_HEIGHT / 40,
-    precision: 1,
-    summitRegion: [0.62, 0.2, 0.9, 0.62],
-  });
-  const accent = accentOf(card);
-  const { x, y } = lines.summit;
+/** Background layer: the flat page background (the collage tiles and the foreground go on top). */
+export function backgroundSvg(_card: OgCard, _options: { collage?: boolean } = {}): string {
   return (
     `<svg xmlns="http://www.w3.org/2000/svg" width="${OG_WIDTH}" height="${OG_HEIGHT}" viewBox="0 0 ${OG_WIDTH} ${OG_HEIGHT}">` +
-    `<rect width="${OG_WIDTH}" height="${OG_HEIGHT}" fill="${NIGHT_BG}"/>` +
-    topoGroup(lines, { color: palette.night[800], strokeWidth: 1.5, indexStrokeWidth: 2.5 }) +
-    (options.collage
-      ? ''
-      : `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="40" fill="none" stroke="${accent}" stroke-width="2" opacity=".2"/>` +
-        `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="22" fill="none" stroke="${accent}" stroke-width="2.5" opacity=".45"/>` +
-        `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="8" fill="${accent}"/>`) +
-    // Left-to-right shade so the text column stays readable over the terrain.
-    `<defs><linearGradient id="shade" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="${NIGHT_BG}" stop-opacity=".92"/><stop offset=".62" stop-color="${NIGHT_BG}" stop-opacity=".55"/><stop offset="1" stop-color="${NIGHT_BG}" stop-opacity="0"/></linearGradient></defs>` +
-    `<rect width="${OG_WIDTH}" height="${OG_HEIGHT}" fill="url(#shade)"/>` +
-    `<rect width="${EDGE_WIDTH}" height="${OG_HEIGHT}" fill="${accent}"/>` +
+    `<rect width="${OG_WIDTH}" height="${OG_HEIGHT}" fill="${BACKGROUND}"/>` +
     '</svg>'
   );
 }
@@ -218,11 +186,11 @@ function iconOf(name: NonNullable<OgStat['icon']>, color: string): OgNode {
 /** Title size by length: long names step down so two lines always fit. */
 export function titleSize(title: string): number {
   const length = [...title].length;
-  if (length <= 16) return 112;
-  if (length <= 26) return 96;
-  if (length <= 40) return 80;
-  if (length <= 60) return 66;
-  return 56;
+  if (length <= 16) return 84;
+  if (length <= 26) return 72;
+  if (length <= 40) return 60;
+  if (length <= 60) return 50;
+  return 42;
 }
 
 /** Shortens to `max` graphemes on a word boundary, with an ellipsis. */
@@ -242,15 +210,12 @@ export function foregroundTree(card: OgCard, tiles: readonly OgRect[] = []): OgN
   const collage = tiles.length > 0;
   const drawn = drawableText(card.title);
   const title = clip(drawn.length >= 2 ? drawn : drawableText(card.fallbackTitle) || 'SOTF Mods', 80);
-  const kicker = clip(drawableText(card.kicker).toUpperCase(), 48);
+  const kicker = clip(drawableText(card.kicker), 48);
   const byline = card.byline ? clip(drawableText(card.byline), 48) : '';
-  const accent = accentOf(card);
-  // Big Shoulders has no Cyrillic: such titles use Martian Mono (smaller, it is wider).
-  const titleFont = CYRILLIC.test(title) ? MONO_FAMILY : DISPLAY_FAMILY;
 
   const stats: OgNode[] = [];
   card.stats.forEach((stat, index) => {
-    if (index > 0) stats.push(el('div', { color: FAINT, margin: '0 22px', display: 'flex' }, '·'));
+    if (index > 0) stats.push(el('div', { color: FAINT, margin: '0 20px', display: 'flex' }, '·'));
     const color = TONE_COLOR[stat.tone ?? 'plain'];
     const children: OgNode[] = [];
     if (stat.icon) children.push(iconOf(stat.icon, color));
@@ -258,7 +223,7 @@ export function foregroundTree(card: OgCard, tiles: readonly OgRect[] = []): OgN
     stats.push(el('div', { display: 'flex', alignItems: 'center', color }, children));
   });
 
-  const baseTitleSize = titleSize(title) * (collage ? 0.72 : 1);
+  const titleFontSize = Math.round(titleSize(title) * (collage ? 0.72 : 1));
   const frames: OgNode[] = tiles.map((tile) =>
     el('div', {
       position: 'absolute',
@@ -272,6 +237,7 @@ export function foregroundTree(card: OgCard, tiles: readonly OgRect[] = []): OgN
     }),
   );
 
+  const logoHeight = 48;
   return el(
     'div',
     {
@@ -281,40 +247,36 @@ export function foregroundTree(card: OgCard, tiles: readonly OgRect[] = []): OgN
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-between',
-      padding: `64px ${PAD_X}px 60px ${PAD_X + EDGE_WIDTH}px`,
-      fontFamily: MONO_FAMILY,
+      padding: `60px ${PAD_X}px 60px ${PAD_X}px`,
+      fontFamily: SANS_FAMILY,
       color: INK,
     },
     [
-      // Header: isotype + wordmark readout.
+      // Header: the logo.
       el('div', { display: 'flex', alignItems: 'center' }, [
         {
-          type: 'svg',
+          type: 'img',
           props: {
-            width: 46,
-            height: 46,
-            viewBox: '0 0 64 64',
-            style: { marginRight: 16 },
-            children: [markSvgNode(accent)],
+            src: LOGO_WORDMARK_DATA_URI,
+            width: Math.round((LOGO_WORDMARK_SIZE.width / LOGO_WORDMARK_SIZE.height) * logoHeight),
+            height: logoHeight,
           },
         },
-        el('div', { display: 'flex', fontSize: 22, fontWeight: 700, letterSpacing: 4, color: MUTED }, 'SOTF MODS'),
       ]),
-      // Body: kicker, title, byline.
-      el('div', { display: 'flex', flexDirection: 'column', maxWidth: collage ? 520 : 940 }, [
-        el(
-          'div',
-          { display: 'flex', fontSize: 24, fontWeight: 700, letterSpacing: 3, color: accent, marginBottom: 14 },
-          kicker,
-        ),
+      // Body: red rule, kicker, title, byline.
+      el('div', { display: 'flex', flexDirection: 'column', maxWidth: collage ? 520 : 960 }, [
+        el('div', { display: 'flex', width: 56, height: 4, backgroundColor: RED, marginBottom: 24 }),
+        ...(kicker
+          ? [el('div', { display: 'flex', fontSize: 26, fontWeight: 400, color: MUTED, marginBottom: 14 }, kicker)]
+          : []),
         el(
           'div',
           {
             display: 'block',
-            fontFamily: titleFont,
-            fontWeight: titleFont === DISPLAY_FAMILY ? 800 : 700,
-            fontSize: Math.round(titleFont === DISPLAY_FAMILY ? baseTitleSize : baseTitleSize * 0.62),
-            lineHeight: titleFont === DISPLAY_FAMILY ? 0.95 : 1.15,
+            fontWeight: 700,
+            fontSize: titleFontSize,
+            lineHeight: 1.12,
+            letterSpacing: -1,
             color: INK,
             lineClamp: 2,
           },
@@ -322,17 +284,12 @@ export function foregroundTree(card: OgCard, tiles: readonly OgRect[] = []): OgN
         ),
         ...(byline ? [el('div', { display: 'flex', fontSize: 28, color: MUTED, marginTop: 22 }, byline)] : []),
       ]),
-      // Footer: readouts + domain.
+      // Footer: stats and domain.
       el('div', { display: 'flex', alignItems: 'center', justifyContent: 'space-between' }, [
         el('div', { display: 'flex', alignItems: 'center', fontSize: 28, fontWeight: 700 }, stats),
-        el('div', { display: 'flex', fontSize: 18, letterSpacing: 3, color: FAINT }, 'SOTF-MODS.COM'),
+        el('div', { display: 'flex', fontSize: 22, color: FAINT }, 'sotf-mods.com'),
       ]),
       ...frames,
     ],
   );
-}
-
-/** The isotype as a satori `<path>` node (geometry of `@sotf/brand`). */
-function markSvgNode(color: string): OgNode {
-  return { type: 'path', props: { d: markPathData('full'), fill: color, 'fill-rule': 'evenodd' } };
 }

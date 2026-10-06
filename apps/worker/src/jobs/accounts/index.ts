@@ -5,8 +5,7 @@
  *   presigned link (24 h). Idempotent; the last attempt marks the export failed.
  * - `account.delete`: daily sweep (or one user) of deletions past their 14-day grace period →
  *   anonymization (see @sotf/core accounts/deletion.ts).
- * - `accounts.trust-level`: nightly trust level recomputation, (the compatibility
- *   reconciliation follows as its own queue, `compat.reconcile`, at 03:20).
+ * - `accounts.trust-level`: nightly trust level recomputation.
  * - `cleanup.sessions`: retention of sessions, one-time tokens, the security log, final outbox rows,
  *   expired exports, OAuth link tickets and dead personal access tokens.
  */

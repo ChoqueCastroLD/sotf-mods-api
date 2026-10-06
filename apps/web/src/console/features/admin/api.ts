@@ -12,12 +12,10 @@
  *   ['admin', 'active-categories']      the public list (active only: tells retired ones apart)
  *   ['admin', 'tags']                   every tag
  *   ['admin', 'recategorize']           keyword-rule suggestions
- *   ['admin', 'awards']                 awards, newest first
  *   ['admin', 'announcements']          announcements
  *   ['admin', 'setting', key]           one `SiteSetting`
  *   ['admin', 'rum', range]             RUM p75 per template × country
  *   ['admin', 'operations']             job queues, dead letters, downloads, CDN purges
- *   ['admin', 'search', types, q]       mod/build picker of the awards form
  */
 import { type QueryClient, queryOptions } from '@tanstack/react-query';
 import { api } from '../../lib/api.ts';
@@ -33,13 +31,11 @@ export type EcosystemEntry = Ecosystem['entries'][number];
 export type Category = Out<typeof api.admin.listCategories>['items'][number];
 export type Tag = Out<typeof api.admin.listTags>['items'][number];
 export type Suggestion = Out<typeof api.admin.recategorize>['suggestions'][number];
-export type Award = Out<typeof api.admin.listAwards>['items'][number];
 export type Announcement = Out<typeof api.admin.listAnnouncements>['items'][number];
 export type SiteSetting = Out<typeof api.admin.getSetting>;
 export type Rum = Out<typeof api.admin.rum>;
 export type RumRow = Rum['rows'][number];
 export type Operations = Out<typeof api.admin.operations>;
-export type SearchHit = Out<typeof api.search.search>['hits'][number];
 
 export type CreateGameBuildInput = In<typeof api.admin.createGameBuild>['body'];
 export type UpdateGameBuildInput = In<typeof api.admin.updateGameBuild>['body'];
@@ -48,7 +44,6 @@ export type EcosystemInput = In<typeof api.admin.putEcosystem>['body'];
 export type CategoryInput = In<typeof api.admin.createCategory>['body'];
 export type TagInput = In<typeof api.admin.createTag>['body'];
 export type RecategorizeChange = NonNullable<NonNullable<In<typeof api.admin.recategorize>['body']>['changes']>[number];
-export type AwardInput = In<typeof api.admin.createAward>['body'];
 export type AnnouncementInput = In<typeof api.admin.createAnnouncement>['body'];
 export type RumRange = NonNullable<NonNullable<In<typeof api.admin.rum>['query']>['range']>;
 
@@ -60,13 +55,10 @@ export const adminKeys = {
   categories: ['admin', 'categories'] as const,
   tags: ['admin', 'tags'] as const,
   recategorize: ['admin', 'recategorize'] as const,
-  awards: ['admin', 'awards'] as const,
   announcements: ['admin', 'announcements'] as const,
   setting: (key: SiteSettingKey) => ['admin', 'setting', key] as const,
   rum: (range: RumRange) => ['admin', 'rum', range] as const,
   operations: ['admin', 'operations'] as const,
-  search: (types: string, q: string) => ['admin', 'search', types, q] as const,
-  kitPicks: (page: number, onlyPicks: boolean) => ['admin', 'kit-picks', page, onlyPicks] as const,
 } as const;
 
 export const gameBuildsQuery = queryOptions({
@@ -100,11 +92,6 @@ export const suggestionsQuery = queryOptions({
   staleTime: 5 * 60_000,
 });
 
-export const awardsQuery = queryOptions({
-  queryKey: adminKeys.awards,
-  queryFn: async ({ signal }) => (await api.admin.listAwards({}, { signal })).items,
-});
-
 export const announcementsQuery = queryOptions({
   queryKey: adminKeys.announcements,
   queryFn: async ({ signal }) => (await api.admin.listAnnouncements({}, { signal })).items,
@@ -132,17 +119,6 @@ export const operationsQuery = queryOptions({
   staleTime: 30_000,
 });
 
-/** Mods or builds matching `q` (awards form). */
-export const pickerSearchQuery = (types: 'mod' | 'build', q: string) =>
-  queryOptions({
-    queryKey: adminKeys.search(types, q),
-    queryFn: async ({ signal }) =>
-      (await api.search.search({ query: { q, types: [types], limit: 8 } }, { signal })).hits.filter(
-        (hit) => hit.type === types && typeof hit.id === 'number',
-      ),
-    staleTime: 60_000,
-  });
-
 /** Current tags of a mod (the recategorize table merges them with the chosen ones). */
 export async function currentTagsOf(modId: number): Promise<string[] | null> {
   try {
@@ -166,29 +142,11 @@ export const adminApi = {
   updateTag: (id: number, body: TagInput) => api.admin.updateTag({ params: { id }, body }),
   deleteTag: (id: number) => api.admin.deleteTag({ params: { id } }),
   applyRecategorize: (changes: RecategorizeChange[]) => api.admin.recategorize({ body: { dryRun: false, changes } }),
-  createAward: (body: AwardInput) => api.admin.createAward({ body }),
-  deleteAward: (id: number) => api.admin.deleteAward({ params: { id } }),
   createAnnouncement: (body: AnnouncementInput) => api.admin.createAnnouncement({ body }),
   updateAnnouncement: (id: number, body: AnnouncementInput) => api.admin.updateAnnouncement({ params: { id }, body }),
   deleteAnnouncement: (id: number) => api.admin.deleteAnnouncement({ params: { id } }),
   putSetting: (key: SiteSettingKey, value: unknown) => api.admin.putSetting({ params: { key }, body: { value } }),
-  setKitStaffPick: (kitId: number, isStaffPick: boolean) =>
-    api.admin.setKitStaffPick({ params: { id: kitId }, body: { isStaffPick } }),
 };
-
-export type KitCard = Out<typeof api.kits.list>['items'][number];
-export const KIT_PICKS_PAGE_SIZE = 20;
-
-/** Public kits (most followed first) or only the current staff picks, one page at a time. */
-export const kitPicksQuery = (page: number, onlyPicks: boolean) =>
-  queryOptions({
-    queryKey: adminKeys.kitPicks(page, onlyPicks),
-    queryFn: ({ signal }) =>
-      api.kits.list(
-        { query: { page, pageSize: KIT_PICKS_PAGE_SIZE, sort: 'popular', ...(onlyPicks ? { staffPick: true } : {}) } },
-        { signal },
-      ),
-  });
 
 /** Stores a setting write response and returns it. */
 export function storeSetting(queryClient: QueryClient, setting: SiteSetting): SiteSetting {

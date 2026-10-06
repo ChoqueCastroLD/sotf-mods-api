@@ -159,6 +159,12 @@ export function bindCmdkTrigger(doc: Document = document): () => void {
     openPalette(doc, 'landing-hero', () => query, field);
   };
 
+  // The header field shows «Ctrl K»; Apple platforms get «⌘ K».
+  const platform = win.navigator.platform ?? '';
+  if (/mac|iphone|ipad|ipod/i.test(platform)) {
+    for (const key of doc.querySelectorAll('[data-kbd-mod]')) key.textContent = '⌘';
+  }
+
   // With JavaScript the header field, the header search icon and the «Search» tab open a dialog:
   // announce it (without JavaScript they stay a plain form and links, so nothing is set in HTML).
   const announced: Element[] = [];

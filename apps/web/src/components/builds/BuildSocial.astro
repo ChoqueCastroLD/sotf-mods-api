@@ -43,52 +43,8 @@ const shownComments = commentItems.reduce((sum, comment) => sum + 1 + comment.re
 const moreComments = comments?.nextCursor ? Math.max(0, build.commentsCount - shownComments) : 0;
 const creatorName = build.userDisplayName || build.userHandle;
 const moreRepliesLabel = (count: number) => m.builds_comments_more_replies({ count });
-const titleClass = 'font-display-caps text-display-xs text-fg';
+const titleClass = 'text-xl font-bold text-fg';
 ---
-
-<section id="reviews" data-sheet-section="reviews-sheet" aria-labelledby="reviews-title" class="grid scroll-mt-32 gap-4 md:scroll-mt-24">
-  <div class="flex flex-wrap items-baseline justify-between gap-2">
-    <h2 id="reviews-title" class={titleClass}>{m.builds_reviews_title()}</h2>
-    {reviewCount > 0 && <p class="text-sm text-fg-muted">{m.common_reviews_count({ count: reviewCount })}</p>}
-  </div>
-  <div data-sheet-preview hidden class="grid gap-3">
-    <ul data-sheet-preview-list class="grid gap-3 [&_.prose-sm]:line-clamp-3"></ul>
-    <button
-      type="button"
-      data-dialog-open="reviews-sheet"
-      class="flex min-h-12 w-full items-center gap-3 rounded-lg border border-blueprint/40 bg-raised px-3 text-start font-semibold text-fg active:bg-fg/8"
-    >
-      <Icon icon={Star} size={18} className="text-blueprint" />
-      <span class="min-w-0 flex-1">{m.entity_reviews_see_all({ count: reviewCount })}</span>
-      <Icon icon={ChevronRight} size={18} className="text-fg-subtle rtl:rotate-180" />
-    </button>
-  </div>
-  <div data-sheet-body class="grid min-w-0 gap-4">
-  {
-    reviewItems.length > 0 ? (
-      <BuildReviewList lang={lang} summary={build.reviewsSummary} reviews={reviewItems} creatorName={creatorName} />
-    ) : (
-      <p class="text-fg-muted">{reviewCount > 0 ? m.builds_reviews_unavailable() : m.builds_reviews_empty()}</p>
-    )
-  }
-  {moreReviews > 0 && <p class="text-sm text-fg-muted">{m.builds_reviews_more({ count: moreReviews })}</p>}
-  <div
-    data-island="reviews"
-    data-mod-id={build.id}
-    data-mod-author-id={build.userId}
-    data-mod-author-name={creatorName}
-    data-next-cursor={reviews?.nextCursor ?? undefined}
-    data-total={reviewCount}
-    class="grid gap-2"
-  >
-    <p class="text-sm" data-review-guest-hint>
-      <a href={loginHref} class="inline-flex min-h-6 items-center font-semibold text-link underline underline-offset-3">
-        {m.builds_reviews_sign_in()}
-      </a>
-    </p>
-  </div>
-  </div>
-</section>
 
 <section id="comments" data-sheet-section="comments-sheet" aria-labelledby="comments-title" class="grid scroll-mt-32 gap-4 md:scroll-mt-24">
   <div class="flex flex-wrap items-baseline justify-between gap-2">
@@ -100,9 +56,9 @@ const titleClass = 'font-display-caps text-display-xs text-fg';
     <button
       type="button"
       data-dialog-open="comments-sheet"
-      class="flex min-h-12 w-full items-center gap-3 rounded-lg border border-blueprint/40 bg-raised px-3 text-start font-semibold text-fg active:bg-fg/8"
+      class="flex min-h-12 w-full items-center gap-3 rounded-md border border-border px-3 text-start font-medium text-fg active:bg-fg/8"
     >
-      <Icon icon={MessageSquareText} size={18} className="text-blueprint" />
+      <Icon icon={MessageSquareText} size={18} className="text-fg-muted" />
       <span class="min-w-0 flex-1">{m.entity_comments_see_all({ count: build.commentsCount })}</span>
       <Icon icon={ChevronRight} size={18} className="text-fg-subtle rtl:rotate-180" />
     </button>
@@ -110,7 +66,7 @@ const titleClass = 'font-display-caps text-display-xs text-fg';
       type="button"
       data-dialog-open="comments-sheet"
       data-compose
-      class="flex min-h-12 w-full items-center rounded-full border border-border-strong bg-sunken px-4 text-start text-fg-muted active:bg-fg/8"
+      class="flex min-h-12 w-full items-center rounded-md border border-border-strong bg-sunken px-4 text-start text-fg-muted active:bg-fg/8"
     >
       {m.entity_comments_write()}
     </button>
@@ -134,8 +90,52 @@ const titleClass = 'font-display-caps text-display-xs text-fg';
     class="grid gap-2"
   >
     <p class="text-sm" data-comment-guest-hint>
-      <a href={loginHref} class="inline-flex min-h-6 items-center font-semibold text-link underline underline-offset-3">
+      <a href={loginHref} class="inline-flex min-h-6 items-center font-medium text-link underline underline-offset-3">
         {m.builds_comments_sign_in()}
+      </a>
+    </p>
+  </div>
+  </div>
+</section>
+
+<section id="reviews" data-sheet-section="reviews-sheet" aria-labelledby="reviews-title" class="grid scroll-mt-32 gap-4 md:scroll-mt-24">
+  <div class="flex flex-wrap items-baseline justify-between gap-2">
+    <h2 id="reviews-title" class={titleClass}>{m.builds_reviews_title()}</h2>
+    {reviewCount > 0 && <p class="text-sm text-fg-muted">{m.common_reviews_count({ count: reviewCount })}</p>}
+  </div>
+  <div data-sheet-preview hidden class="grid gap-3">
+    <ul data-sheet-preview-list class="grid gap-3 [&_.prose-sm]:line-clamp-3"></ul>
+    <button
+      type="button"
+      data-dialog-open="reviews-sheet"
+      class="flex min-h-12 w-full items-center gap-3 rounded-md border border-border px-3 text-start font-medium text-fg active:bg-fg/8"
+    >
+      <Icon icon={Star} size={18} className="text-fg-muted" />
+      <span class="min-w-0 flex-1">{m.entity_reviews_see_all({ count: reviewCount })}</span>
+      <Icon icon={ChevronRight} size={18} className="text-fg-subtle rtl:rotate-180" />
+    </button>
+  </div>
+  <div data-sheet-body class="grid min-w-0 gap-4">
+  {
+    reviewItems.length > 0 ? (
+      <BuildReviewList lang={lang} summary={build.reviewsSummary} reviews={reviewItems} creatorName={creatorName} />
+    ) : (
+      <p class="text-fg-muted">{reviewCount > 0 ? m.builds_reviews_unavailable() : m.builds_reviews_empty()}</p>
+    )
+  }
+  {moreReviews > 0 && <p class="text-sm text-fg-muted">{m.builds_reviews_more({ count: moreReviews })}</p>}
+  <div
+    data-island="reviews"
+    data-mod-id={build.id}
+    data-mod-author-id={build.userId}
+    data-mod-author-name={creatorName}
+    data-next-cursor={reviews?.nextCursor ?? undefined}
+    data-total={reviewCount}
+    class="grid gap-2"
+  >
+    <p class="text-sm" data-review-guest-hint>
+      <a href={loginHref} class="inline-flex min-h-6 items-center font-medium text-link underline underline-offset-3">
+        {m.builds_reviews_sign_in()}
       </a>
     </p>
   </div>

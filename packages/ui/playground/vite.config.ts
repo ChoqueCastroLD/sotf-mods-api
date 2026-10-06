@@ -11,7 +11,7 @@ export const PLAYGROUND_PORT = 47350;
 
 export default defineConfig({
   root: fileURLToPath(new URL('.', import.meta.url).href),
-  // /brand/topo.svg (texture-topo) and /brand/field-kit.svg, as apps/web serves them.
+  // /brand/* (logos, icons, the Field kit sprite), as apps/web serves them.
   publicDir: fileURLToPath(new URL('../../brand/assets/public', import.meta.url).href),
   plugins: [react(), tailwindcss()],
   server: { host: '127.0.0.1', port: PLAYGROUND_PORT, strictPort: true },

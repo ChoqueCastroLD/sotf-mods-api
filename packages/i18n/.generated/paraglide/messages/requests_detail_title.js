@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ title: NonNullable<unknown> }} Requests_Detail_TitleInputs */
 
 const en_requests_detail_title = /** @type {(inputs: Requests_Detail_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.title} — Mod request`)
+	return /** @type {LocalizedString} */ (`${i?.title} (mod request)`)
 };
 
 const es_requests_detail_title = /** @type {(inputs: Requests_Detail_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.title} — Petición de mod`)
+	return /** @type {LocalizedString} */ (`${i?.title} (petición de mod)`)
 };
 
 const de_requests_detail_title = /** @type {(inputs: Requests_Detail_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.title} — Mod-Wunsch`)
+	return /** @type {LocalizedString} */ (`${i?.title} (Mod-Wunsch)`)
 };
 
 const fr_requests_detail_title = /** @type {(inputs: Requests_Detail_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.title} — Demande de mod`)
+	return /** @type {LocalizedString} */ (`${i?.title} (demande de mod)`)
 };
 
 const it_requests_detail_title = /** @type {(inputs: Requests_Detail_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.title} — Richiesta di mod`)
+	return /** @type {LocalizedString} */ (`${i?.title} (richiesta di mod)`)
 };
 
 const nl_requests_detail_title = /** @type {(inputs: Requests_Detail_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.title} — Modverzoek`)
+	return /** @type {LocalizedString} */ (`${i?.title} (modverzoek)`)
 };
 
 const pl_requests_detail_title = /** @type {(inputs: Requests_Detail_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.title} — Prośba o moda`)
+	return /** @type {LocalizedString} */ (`${i?.title} (prośba o moda)`)
 };
 
 const pt_requests_detail_title = /** @type {(inputs: Requests_Detail_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.title} — Pedido de mod`)
+	return /** @type {LocalizedString} */ (`${i?.title} (pedido de mod)`)
 };
 
 const ru_requests_detail_title = /** @type {(inputs: Requests_Detail_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.title} — запрос мода`)
+	return /** @type {LocalizedString} */ (`${i?.title} (запрос мода)`)
 };
 
 const sv_requests_detail_title = /** @type {(inputs: Requests_Detail_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.title} — Modönskemål`)
+	return /** @type {LocalizedString} */ (`${i?.title} (modönskemål)`)
 };
 
 const tr_requests_detail_title = /** @type {(inputs: Requests_Detail_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.title} — Mod isteği`)
+	return /** @type {LocalizedString} */ (`${i?.title} (mod isteği)`)
 };
 
 const zh_requests_detail_title = /** @type {(inputs: Requests_Detail_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.title} — 模组请求`)
+	return /** @type {LocalizedString} */ (`${i?.title}（模组请求）`)
 };
 
 const ja_requests_detail_title = /** @type {(inputs: Requests_Detail_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.title} — MOD リクエスト`)
+	return /** @type {LocalizedString} */ (`${i?.title}（MOD リクエスト）`)
 };
 
 /**
 * | output |
 * | --- |
-* | "{title} — Mod request" |
+* | "{title} (mod request)" |
 *
 * @param {Requests_Detail_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

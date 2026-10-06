@@ -13,7 +13,6 @@ import discordJobs from './discord/index.ts';
 import discoveryJobs from './discovery/index.ts';
 import downloadsJobs from './downloads/index.ts';
 import emailJobs from './email/index.ts';
-import gamificationJobs from './gamification/index.ts';
 import indexnowJobs from './indexnow/index.ts';
 import inspectionJobs from './inspection/index.ts';
 import jamsJobs from './jams/index.ts';
@@ -45,7 +44,6 @@ export const jobGroups = [
   discoveryJobs,
   downloadsJobs,
   emailJobs,
-  gamificationJobs,
   indexnowJobs,
   inspectionJobs,
   jamsJobs,

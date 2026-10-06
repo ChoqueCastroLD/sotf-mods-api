@@ -243,5 +243,12 @@
   "mod_graph_required_by": "必要とするMod",
   "mod_compat_report_cta": "動作するか報告する",
   "mod_action_more": "その他の操作",
-  "mod_action_report_mod": "このMODを報告"
+  "mod_action_report_mod": "このMODを報告",
+  "mod_tab_description": "説明",
+  "mod_action_install_manager": "RedManagerでインストール",
+  "mod_versions_section_title": "バージョンと更新履歴",
+  "mod_details_title": "詳細",
+  "mod_detail_game": "ゲームバージョン",
+  "mod_detail_loader": "RedLoader",
+  "mod_fact_multiplayer": "マルチプレイ"
 }

@@ -19,7 +19,7 @@ export const LIST_TYPES = ['mod', 'library', 'build', 'all'] as const;
 export type ListType = (typeof LIST_TYPES)[number];
 
 /** Sorts offered in the UI (`relevance` only while a text filter is active). */
-export const EXPLORE_SORTS = ['trending', 'downloads', 'updated', 'new', 'rating', 'follows', 'comments'] as const;
+export const EXPLORE_SORTS = ['new', 'downloads', 'trending', 'updated', 'rating', 'follows', 'comments'] as const;
 export const ALL_SORTS = [...EXPLORE_SORTS, 'relevance'] as const satisfies readonly ModSort[];
 
 export const COMPAT_VALUES = ['any', 'works', 'untested'] as const;
@@ -59,6 +59,8 @@ export interface ExploreState {
   verified: boolean;
   author: string | null;
   nsfw: boolean;
+  /** «Unapproved»: pending mods whose automated checks passed (never mixed with the default list). */
+  unapproved: boolean;
   q: string;
   sort: ModSort;
   order: 'asc' | 'desc';
@@ -113,8 +115,9 @@ export function defaultState(scope: ExploreScope): ExploreState {
     verified: false,
     author: null,
     nsfw: false,
+    unapproved: false,
     q: '',
-    sort: 'trending',
+    sort: 'new',
     order: 'desc',
     page: 1,
     view: 'grid',
@@ -190,18 +193,22 @@ export function parseExploreState(params: ParamsLike, scope: ExploreScope): Expl
   const author = params.get('author')?.trim() ?? '';
   state.author = HANDLE.test(author) ? author : null;
   state.nsfw = params.get('nsfw') === '1';
+  state.unapproved = flag(params.get('unapproved'));
   state.q = (params.get('q') ?? '').replace(/\s+/g, ' ').trim().slice(0, MAX_QUERY);
-  const sort = oneOf(ALL_SORTS, params.get('sort'));
-  state.sort = sort === 'relevance' && !state.q ? 'trending' : (sort ?? (state.q ? 'relevance' : 'trending'));
-  state.order = params.get('order') === 'asc' ? 'asc' : 'desc';
+  const rawSort = params.get('sort');
+  // `sort=oldest` is the sort menu's way to say `sort=new&order=asc` from a plain GET form.
+  const oldest = rawSort === 'oldest';
+  const sort = oldest ? 'new' : oneOf(ALL_SORTS, rawSort);
+  state.sort = sort === 'relevance' && !state.q ? 'new' : (sort ?? (state.q ? 'relevance' : 'new'));
+  state.order = oldest || params.get('order') === 'asc' ? 'asc' : 'desc';
   state.page = pageOf(params.get('page'));
   state.view = oneOf(VIEW_VALUES, params.get('view')) ?? 'grid';
   return state;
 }
 
-/** Default sort of a state (`relevance` while searching). */
+/** Default sort of a state: newest first, like the original catalogue (`relevance` while searching). */
 export function defaultSortOf(state: Pick<ExploreState, 'q'>): ModSort {
-  return state.q ? 'relevance' : 'trending';
+  return state.q ? 'relevance' : 'new';
 }
 
 /** Categories/tags beyond the ones implied by the path. */
@@ -220,7 +227,8 @@ export function isFiltered(state: ExploreState, scope: ExploreScope): boolean {
     state.sort !== defaultSortOf(state) ||
     state.order !== 'desc' ||
     state.view !== 'grid' ||
-    state.nsfw
+    state.nsfw ||
+    state.unapproved
   );
 }
 
@@ -263,6 +271,7 @@ export function queryPairsOf(state: ExploreState, scope: ExploreScope): [string,
   if (state.verified) pairs.push(['verified', '1']);
   if (state.author) pairs.push(['author', state.author]);
   if (state.nsfw) pairs.push(['nsfw', '1']);
+  if (state.unapproved) pairs.push(['unapproved', '1']);
   if (state.sort !== defaultSortOf(state)) pairs.push(['sort', state.sort]);
   if (state.order !== 'desc') pairs.push(['order', state.order]);
   if (state.view !== 'grid') pairs.push(['view', state.view]);
@@ -340,6 +349,7 @@ export function apiQueryOf(state: ExploreState, options: { facets?: boolean } = 
   if (state.verified) query.verified = true;
   if (state.author) query.author = state.author;
   if (state.nsfw) query.nsfw = true;
+  if (state.unapproved) query.unapproved = true;
   if (state.q) query.q = state.q;
   if (options.facets) query.facets = true;
   return query;

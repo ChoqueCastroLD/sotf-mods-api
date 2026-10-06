@@ -5,7 +5,7 @@ export type Requests_Detail_TitleInputs = {
 /**
 * | output |
 * | --- |
-* | "{title} — Mod request" |
+* | "{title} (mod request)" |
 *
 * @param {Requests_Detail_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

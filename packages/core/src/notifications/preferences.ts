@@ -6,6 +6,7 @@
  *
  * Rules enforced here (not by the UI):
  * - types without an in-app channel (`creator.weekly_report`) are always `inApp: false`;
+ * - hidden types (`HIDDEN_NOTIFICATION_TYPES`) are not part of the matrix and ignore changes;
  * - `mod.status_changed` to `removed` is transactional and emailed even when the email is off
  *   (see `forcedEmail`).
  */
@@ -17,6 +18,7 @@ import {
 } from '@sotf/contracts/notifications';
 import { type Executor, notificationPreference } from '@sotf/db';
 import { and, eq, inArray, sql } from 'drizzle-orm';
+import { isHiddenNotificationType, VISIBLE_NOTIFICATION_TYPES } from './visibility.ts';
 
 export interface EffectivePreference {
   type: NotificationType;
@@ -52,7 +54,7 @@ function effective(type: NotificationType, row: { inApp: boolean; email: string 
   return { ...base, inApp: base.inAppAvailable && row.inApp, email, isDefault: false };
 }
 
-/** The full matrix of one user (defaults filled in), in `NOTIFICATION_TYPES` order. */
+/** The matrix of one user (defaults filled in) for the visible types, in `NOTIFICATION_TYPES` order. */
 export async function preferenceMatrix(db: Executor, userId: number): Promise<PreferenceMatrix> {
   const rows = await db
     .select({
@@ -63,7 +65,7 @@ export async function preferenceMatrix(db: Executor, userId: number): Promise<Pr
     .from(notificationPreference)
     .where(eq(notificationPreference.userId, userId));
   const byType = new Map(rows.map((r) => [r.type, r]));
-  return new Map(NOTIFICATION_TYPES.map((type) => [type, effective(type, byType.get(type))]));
+  return new Map(VISIBLE_NOTIFICATION_TYPES.map((type) => [type, effective(type, byType.get(type))]));
 }
 
 /** Preferences of several users for one type (one query; used by fan-out). */
@@ -104,7 +106,7 @@ export async function updatePreferenceMatrix(
   changes: readonly PreferenceChange[],
 ): Promise<PreferenceMatrix> {
   const last = new Map<NotificationType, PreferenceChange>();
-  for (const change of changes) last.set(change.type, change);
+  for (const change of changes) if (!isHiddenNotificationType(change.type)) last.set(change.type, change);
   for (const change of last.values()) {
     const d = NOTIFICATION_DEFAULTS[change.type];
     const inApp = d.inAppAvailable ? change.inApp : false;

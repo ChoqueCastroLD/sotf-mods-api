@@ -3,7 +3,7 @@ export type Shell_Offline_Back_OnlineInputs = {};
 /**
 * | output |
 * | --- |
-* | "You’re back online. Reloading…" |
+* | "You are back online. Reloading…" |
 *
 * @param {Shell_Offline_Back_OnlineInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

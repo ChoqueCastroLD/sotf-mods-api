@@ -1,8 +1,9 @@
 # Build page (WP-63)
 
-`/builds/:user/:slug` — the detail page of a BuildShare blueprint (T0-24, research/03 §6.6), with
-the **Blueprint** sub-aesthetic (`data-surface="blueprint"`: cyanotype grid, corner ticks,
-dimension lines). Page: `pages/builds/[user]/[slug]/index.astro`.
+`/builds/:user/:slug`: the detail page of a build (a BuildShare blueprint, T0-24), laid out like the
+mod page (see `components/mod/README.md`): gallery and header on top, one column with About, Preview,
+How to import, Required mods, Versions, Comments and Reviews, and a plain details list beside it.
+Page: `pages/builds/[user]/[slug]/index.astro`.
 
 ## Request flow
 
@@ -21,23 +22,24 @@ Pieces, structures, BuildShare version, GUID, blueprint author and size class. S
 `buildMeta` on the detail DTO (when the API exposes it, see docs/backlog/WP-63.md), otherwise the
 legacy columns (`buildGuid`, `buildShareVersion`, `numberOfElements`) through the legacy
 `GET /api/mods/:mod_id`. The size class uses `buildSizeClass()` of `@sotf/contracts/manifest`
-(S < 500 ≤ M < 2 000 ≤ L < 8 000 ≤ XL). Unknown facts render «Not recorded».
+(S < 500 ≤ M < 2 000 ≤ L < 8 000 ≤ XL). Unknown facts are left out of the details list.
 
 ## Blocks
 
 | Component | What |
 |---|---|
-| `StatusBanners.astro` | under review, unlisted, archived (+ successor), reported broken, possibly outdated |
-| `BuildGallery.astro` | plan frame, scroll-snap strip + numbered ticks (no JS needed), dimension line; NSFW behind a disclosure |
-| `BuildHeader.astro` | readout, `h1`, uploader, «Author in the blueprint» (only when it differs), original author, stats, size badge, download split (`<details>` menu), follow ♥, copy link, «How to import» |
+| `StatusBanners.astro` | pending approval, unlisted, archived (+ successor) |
+| `BuildGallery.astro` | the mod page's `GalleryCarousel` + `GalleryStrip`; a quiet placeholder without pictures; NSFW behind a disclosure |
+| `BuildHeader.astro` | `h1` with the version (not printed when it is a GUID), uploader with the Trusted tag, original author, stats row, download split button, Follow, Copy link, How to import, Report |
+| `BuildViewer.astro` | top-down preview (static SVG) and «Explore in 3D»; only when the preview is ready |
 | `ImportSteps.astro` | «How to import (3 steps)»: RedLoader + BuildShare → `Sons Of The Forest/Mods/BuildShare/LocalBuildings` → Page Up in game |
-| `SpecSheet.astro` | monospace `<dl>` spec sheet with the S/M/L/XL scale and a copyable GUID (first on phones, sticky sidebar on desktop) |
+| `SpecSheet.astro` | hairline `<dl>` with pieces, size, BuildShare version, copyable GUID, authors, file, dates (first on phones, sidebar on desktop) |
 | `VersionsList.astro` | every version with date, size, changelog, download (withdrawn ones without link) |
-| `BuildSocial.astro` | first reviews (histogram + most helpful) and top comments in SSR + WP-70 mount points |
+| `BuildSocial.astro` | top comments and first reviews in SSR + mount points of the islands |
 | `Domain.tsx` | `@sotf/ui/domain` blocks inside a page-language `DomainI18nProvider` (reviews, comments, dependencies, related `BuildCard`s) |
 | `MobileDownloadBar.astro` | fixed download bar on phones, above the tab bar |
 | `seo.ts` | title ≤ 60, description ≤ 160, JSON-LD `CreativeWork` (`about: VideoGame`, `author`, `creator` = original/blueprint author, `size`, `identifier` = GUID, `encoding` = the `.json`, `interactionStatistic`, `aggregateRating` only with ≥ 3 reviews) + `BreadcrumbList` |
-| `build-page.ts` | follow toggle (lookup when the `sotf_li` hint is present, optimistic with undo, 401 → sign-in), copy link/GUID/path, `download_click` and `follow` events, gallery ticks |
+| `build-page.ts` | follow toggle (lookup when the `sotf_li` hint is present, optimistic with undo, 401 → sign-in), copy link/GUID/path, `download_click` and `follow` events, live counters |
 
 ## Island mount points
 
@@ -45,7 +47,6 @@ legacy columns (`buildGuid`, `buildShareVersion`, `numberOfElements`) through th
 |---|---|---|
 | `[data-island="reviews"]` | WP-70 | `data-mod-id`, `data-mod-author-id`, `data-next-cursor`, `data-total` |
 | `[data-island="comments"]` | WP-70 | `data-mod-id`, `data-mod-author-id`, `data-next-cursor`, `data-total` |
-| `[data-island="kit-add"]` (hidden) | WP-71 | `data-mod-id`, `data-label` |
 
 ## i18n
 
@@ -53,12 +54,12 @@ Namespace `builds` (`packages/i18n/messages/builds/*.json`, 13 locales); shared 
 `common`. The `ui_domain_*` texts of the domain components follow the Paraglide catalogue when that
 namespace is compiled in (English source otherwise).
 
-## Phones (m-entity)
+## Phones
 
-Same building blocks as the mod page (`components/mod/README.md`, «Phones»): the gallery is the build's
-scroll-snap strip with a dot pager and the shared lightbox, the sticky bar is Download · Follow · More
-(`MobileDownloadBar.astro`, `BuildMoreSheet.astro`: How to import, + Kit, Versions, Share, Copy link, Report),
-`SectionNav.astro` is a sticky pill nav with scroll-spy (Overview · Versions · Reviews · Comments · Spec sheet),
-the description is clamped, the spec sheet folds, versions are rows with a changelog sheet and reviews/comments
-live in sheets. `build-page.ts` wires it all (`initCarousels`, `initSheetSections`, `initVersions`, `initFolds`,
-`initSectionNav`) and keeps every `[data-follow]` / `a[data-kit-add]` in sync.
+Same building blocks as the mod page (`components/mod/README.md`, «Phones»): the gallery is the shared
+carousel and lightbox, the sticky bar is Download · Follow · More (`MobileDownloadBar.astro`,
+`BuildMoreSheet.astro`: How to import, Versions, Share, Copy link, Report), `SectionNav.astro` is a
+sticky tab strip with scroll-spy (Description · Versions · Comments · Reviews · Details), the
+description is clamped, the details fold, versions are rows with a changelog sheet and comments and
+reviews live in sheets. `build-page.ts` wires it all (`initCarousels`, `initSheetSections`,
+`initVersions`, `initFolds`, `initSectionNav`) and keeps every `[data-follow]` in sync.

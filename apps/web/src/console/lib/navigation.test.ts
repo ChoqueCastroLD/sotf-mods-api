@@ -35,7 +35,6 @@ describe('phone navigation', () => {
       '/settings/profile',
       '/ranger/admin/settings',
       '/ranger/users/9',
-      '/me/kits/KIT-1',
     ]) {
       expect(isPushedRoute(path), path).toBe(true);
     }

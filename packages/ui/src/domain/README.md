@@ -7,14 +7,15 @@ Domain components of the «Locator» design system (PLAN §3.9, research/03 §5.
 ```tsx
 import { CompatCapsule, compatCapsulePropsOf, ModCard, VersionTable } from '@sotf/ui/domain';
 
-<ModCard mod={card} currentBuild="1.0.4" action={<FavoriteToggle … />} />
+<ModCard mod={card} action={<FavoriteToggle … />} />
+<ModCard mod={card} variant="list" labels={labels} now={Date.now()} />
 <CompatCapsule {...compatCapsulePropsOf(mod)} />
 <VersionTable versions={versions.items} lastDownloadedAt={lastDownload} />
 ```
 
 | Group | Components |
 |---|---|
-| Cards | `ModCard` (`grid` · `row` · `compact` · `feature`), `BuildCard`, `KitCard`, `CreatorCard`, skeletons of each (`ModCardSkeleton`, `BuildCardSkeleton`, `KitCardSkeleton`, `CreatorCardSkeleton`), `CardLink`, `Cover`, `Placeholder` |
+| Cards | `ModCard` (`list` · `grid` · `row` · `compact` · `feature`; no compatibility, award or stamp on any of them), `BuildCard`, `KitCard`, `CreatorCard`, skeletons of each (`ModCardSkeleton`, `BuildCardSkeleton`, `KitCardSkeleton`, `CreatorCardSkeleton`), `CardLink`, `Cover`, `Placeholder` |
 | Data and status | `StatTile` (+ `Sparkline`), `CompatBadge`, `CompatCapsule`, `FieldReportMeter`, `VersionTable`, `ModChip`, `DependencyList` |
 | Identity | `RankStamp`, `TierStamp`, `BadgeStamp` (locked = dashed), `TrustedMark` |
 | Download and gallery | `DownloadSplitButton` (presentational), `GalleryStrip` |

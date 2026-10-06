@@ -12,7 +12,6 @@ which signs out and returns to the same screen after the new sign-in.
 | `ecosystem` | `EcosystemScreen`: loader releases × builds matrix (optimistic cells, notes), add release | `compat.ecosystem`, `admin.putEcosystem`, `admin.*LoaderRelease*` |
 | `taxonomy` | `TaxonomyScreen`: categories (create, edit, retire → 409 points at recategorize) and tags | `admin.*Categor*`, `admin.*Tag*` |
 | `recategorize?from=<slug>` | `RecategorizeScreen`: suggestions table, filters, per-row and batch edit, CSV import/export, apply in batches of 500 | `admin.recategorize` |
-| `awards` | `AwardsScreen`: Mod of the Week override, staff picks, monthly awards | `admin.*Award*` |
 | `announcements` | `AnnouncementsScreen`: global banner, 13 locales, window, preview | `admin.*Announcement*` |
 | `settings` | `SettingsScreen`: feature flags, rate-limit overrides, ads, moderation templates | `admin.get/putSetting` |
 | `integrations` | `IntegrationsScreen`: Discord webhooks (masked URLs, events, beta opt-out) | `admin.get/putSetting('discordWebhooks')` |

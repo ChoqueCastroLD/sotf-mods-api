@@ -52,8 +52,8 @@ export function VotePanel({ store, entryId }: VotePanelProps) {
             : t('jams_vote_action')}
       </span>
       {average !== null ? (
-        <span className="inline-flex items-center gap-1 font-mono text-xs tabular-nums">
-          <Icon icon={Star} size={13} className="fill-current text-featured" />
+        <span className="inline-flex items-center gap-1 text-xs tabular-nums">
+          <Icon icon={Star} size={13} className="fill-current" />
           {average.toFixed(1)}
         </span>
       ) : null}

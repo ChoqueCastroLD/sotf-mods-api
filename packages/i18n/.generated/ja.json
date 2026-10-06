@@ -732,11 +732,11 @@
   "auth_error_terms": "アカウントを作成するには規約に同意してください。",
   "auth_error_turnstile_failed": "セキュリティチェックが完了しませんでした。接続を確認するか、ブロッカーで challenges.cloudflare.com を許可してから、もう一度お試しください。",
   "auth_field_display_name": "表示名",
-  "auth_field_display_name_hint": "ほかのサバイバーに表示される名前です。あとから変更できます。",
+  "auth_field_display_name_hint": "ほかのユーザーに表示される名前です。あとから変更できます。",
   "auth_field_email": "メールアドレス",
   "auth_field_email_hint": "ログインと重要なアカウントメールに使います。公開されることはありません。",
   "auth_field_handle": "ハンドル",
-  "auth_field_handle_hint": "島でのあなたのアドレス：{url}。あとから変更できません。",
+  "auth_field_handle_hint": "プロフィールのアドレス：{url}。あとから変更できません。",
   "auth_field_handle_placeholder": "your-handle",
   "auth_field_identifier": "メールアドレスまたはハンドル",
   "auth_field_new_password": "パスワード",
@@ -761,7 +761,7 @@
   "auth_login_create_account": "アカウントを作成",
   "auth_login_forgot": "パスワードをお忘れですか？",
   "auth_login_heading": "ログイン",
-  "auth_login_intro": "おかえりなさい、サバイバー。",
+  "auth_login_intro": "アカウントにログインしてください。",
   "auth_login_legacy_note": "リニューアル前からアカウントをお持ちですか？パスワードはそのまま使えます。",
   "auth_login_new_here": "はじめての方は",
   "auth_login_passkey": "パスキーでログイン",
@@ -780,7 +780,7 @@
   "auth_meta_login_title": "ログイン",
   "auth_meta_logout_description": "このデバイスで SOTF Mods からログアウトします。",
   "auth_meta_logout_title": "ログアウト",
-  "auth_meta_register_description": "SOTF Mods に参加して、MOD をバックパックにしまい、更新の通知を受け取り、自分の作品を共有しましょう。",
+  "auth_meta_register_description": "SOTF Mods に参加して、MOD をフォローし、更新の通知を受け取り、自分の作品を共有しましょう。",
   "auth_meta_register_title": "アカウントを作成",
   "auth_meta_reset_description": "SOTF Mods アカウントの新しいパスワードを設定します。",
   "auth_meta_reset_title": "新しいパスワードを設定",
@@ -3357,6 +3357,84 @@
       }
     }
   ],
+  "explore_catalog_all_categories": "すべてのカテゴリ",
+  "explore_catalog_category_label": "カテゴリ",
+  "explore_catalog_category_link": "カテゴリ: {name}",
+  "explore_catalog_comments": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number}件のコメント"
+      }
+    }
+  ],
+  "explore_catalog_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 件のMOD"
+      }
+    }
+  ],
+  "explore_catalog_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number}回のダウンロード"
+      }
+    }
+  ],
+  "explore_catalog_empty_clear": "フィルターを解除",
+  "explore_catalog_empty_text": "条件に一致するMODはありません。検索を変更するか、フィルターを解除してください。",
+  "explore_catalog_empty_title": "MODが見つかりません",
+  "explore_catalog_empty_unapproved": "現在、未承認のMODはありません。",
+  "explore_catalog_error_text": "しばらくしてからもう一度お試しください。",
+  "explore_catalog_error_title": "MODを読み込めませんでした",
+  "explore_catalog_filters": "フィルター",
+  "explore_catalog_followers": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number}人のフォロワー"
+      }
+    }
+  ],
+  "explore_catalog_nsfw": "NSFW",
+  "explore_catalog_pending_approval": "承認待ち",
+  "explore_catalog_retry": "再試行",
+  "explore_catalog_search_button": "検索",
+  "explore_catalog_search_label": "MODを検索",
+  "explore_catalog_search_placeholder": "MODを検索",
+  "explore_catalog_sort_downloads": "ダウンロード数順",
+  "explore_catalog_sort_label": "並べ替え",
+  "explore_catalog_sort_oldest": "古い順",
+  "explore_catalog_sort_trending": "今週のトレンド",
+  "explore_catalog_trusted": "信頼済み",
+  "explore_catalog_type_all": "すべての種類",
+  "explore_catalog_type_label": "種類",
+  "explore_catalog_unapproved": "未承認",
+  "explore_catalog_unapproved_back": "すべてのMODに戻る",
+  "explore_catalog_unapproved_description": "自動チェックを通過し、承認待ちのMODです。",
+  "explore_catalog_unapproved_heading": "未承認のMOD",
+  "explore_catalog_unapproved_notice": "これらのMODは自動チェックを通過し、モデレーターの承認を待っています。メインのリストには含まれません。",
+  "explore_catalog_unapproved_title": "未承認のMOD",
+  "explore_catalog_updated": "{when}に更新",
   "explore_categories_browse": "見る",
   "explore_categories_builds_heading": "建築のカテゴリ",
   "explore_categories_description": "SOTF Mods にある Sons of the Forest の MOD と建築のカテゴリ一覧。それぞれの内容と件数を確認できます。",
@@ -3822,7 +3900,7 @@
   "jams_countdown_voting_close": "投票締め切りまで",
   "jams_countdown_voting_open": "投票開始まで",
   "jams_cta_join": "ジャムに参加する",
-  "jams_cta_results": "表彰台を見る",
+  "jams_cta_results": "結果を見る",
   "jams_cta_view": "ジャムを見る",
   "jams_cta_vote": "今すぐ投票",
   "jams_detail_description_fallback": "{title}：Sons of the Forest の Mod ジャム。テーマ、作品、結果をご覧ください。",
@@ -3942,11 +4020,11 @@
   "jams_error_text": "しばらくしてからもう一度お試しください。",
   "jams_error_title": "ジャムを読み込めませんでした",
   "jams_first_discord": "Discord に参加",
-  "jams_first_hint": "シグナル設定を開いて、ジャムの更新をアプリ内またはメールで受け取れるようにし、告知されたらすぐにフォローしましょう。",
+  "jams_first_hint": "通知をオンにすると、ジャムの更新をアプリ内またはメールで受け取れます。告知されたらすぐにフォローしましょう。",
   "jams_first_judged": "作品は次の観点で評価されます",
   "jams_first_kicker": "シーズン1 · 日程はここで最初に発表",
   "jams_first_notify": "通知を受け取る",
-  "jams_first_prize": "応募作品には参加バッジが贈られ、表彰台入りと総合優勝ではさらにバッジがもらえます。",
+  "jams_first_prize": "応募作品はすべてジャムのページに表示されます。各カテゴリーの上位作品は結果とともに発表されます。",
   "jams_first_text": "コミュニティ全員で楽しむテーマ制作イベントです。テーマが発表され、数日で新しい作品を作り、みんなで投票します。日程はまずここで発表します。",
   "jams_first_title": "最初の Mod Jam が近づいています",
   "jams_follow": "ジャムをフォロー",
@@ -3959,12 +4037,12 @@
   "jams_how_2_title": "制作",
   "jams_how_3_text": "認証済みメンバーが、各カテゴリーで作品を 1〜5 つ星で評価します。",
   "jams_how_3_title": "投票",
-  "jams_how_4_text": "スコアはベイズ平均で計算され、バッジはチーム全員に贈られます。",
-  "jams_how_4_title": "表彰台",
+  "jams_how_4_text": "スコアは加重平均で計算されます。結果はカテゴリーごとと総合で表示されます。",
+  "jams_how_4_title": "結果",
   "jams_how_title": "ジャムの流れ",
   "jams_hub_archive": "アーカイブ",
   "jams_hub_description": "テーマと期限のあるコンテスト。コミュニティが新しい Sons of the Forest の Mod を作り、ベストに投票します。",
-  "jams_hub_intro": "数日で作り、1週間で投票し、バッジを獲得。各ジャムにはテーマ、締め切り、4つの投票カテゴリがあります。",
+  "jams_hub_intro": "数日で MOD を作り、そのあとで気に入った作品に投票します。各ジャムにはテーマ、締め切り、4つの投票カテゴリがあります。",
   "jams_hub_readout": "MOD ジャム",
   "jams_hub_results": "結果",
   "jams_hub_running": "開催中",
@@ -3984,7 +4062,7 @@
   "jams_mine_title": "Mod ジャム",
   "jams_my_entries": "あなたの作品",
   "jams_mystery_reveal": "{date} に公開",
-  "jams_mystery_title": "テーマは封印中",
+  "jams_mystery_title": "テーマは非公開",
   "jams_nav": "ジャム",
   "jams_phase_announced": "告知済み",
   "jams_phase_archived": "アーカイブ済み",
@@ -3995,7 +4073,7 @@
   "jams_phase_voting": "投票中",
   "jams_prizes_title": "賞品",
   "jams_rank": "{rank}位",
-  "jams_results_method": "スコアはベイズ平均です。順位の対象になるには {min} 票以上が必要です。",
+  "jams_results_method": "スコアはベイズ平均で計算されます。順位が付くには少なくとも {min} 票が必要です。",
   "jams_results_summary": [
     {
       "declarations": [
@@ -4010,7 +4088,7 @@
       }
     }
   ],
-  "jams_results_tabs_label": "表彰台のカテゴリー",
+  "jams_results_tabs_label": "結果のカテゴリー",
   "jams_results_title": "結果",
   "jams_rules_title": "ルール",
   "jams_schedule_tba": "発表予定",
@@ -4026,7 +4104,7 @@
   "jams_submit_action": "作品を応募",
   "jams_submit_choose": "選択…",
   "jams_submit_confirm": "応募する",
-  "jams_submit_done": "応募しました。がんばってください！",
+  "jams_submit_done": "応募しました。",
   "jams_submit_intro": "公開済みの Mod またはビルドを選んでください。応募締め切りまで取り下げできます。",
   "jams_submit_mod": "Mod またはビルド",
   "jams_submit_none": "このジャムに応募できる公開済みの Mod やビルドがまだありません。",
@@ -4050,12 +4128,12 @@
   "jams_unit_seconds": "秒",
   "jams_verify_to_submit": "応募するにはメール認証が必要です",
   "jams_vote_action": "評価する",
-  "jams_vote_blocked_activity": "コミュニティでもう少し活動すると投票できるようになります。",
+  "jams_vote_blocked_activity": "アカウントの活動がまだ少ないため、投票できません。",
   "jams_vote_blocked_email": "投票するにはメールアドレスの認証が必要です。",
   "jams_vote_blocked_new": "アカウントが新しすぎるため、このジャムでは投票できません。",
   "jams_vote_blocked_phase": "現在は投票を受け付けていません。",
   "jams_vote_continue": "投票を続ける",
-  "jams_vote_dock_title": "あなたの投票",
+  "jams_vote_dock_title": "投票",
   "jams_vote_intro": "カテゴリごとに1〜5つ星で評価してください。投票締め切りまで変更できます。",
   "jams_vote_nothing": "まだ評価できる作品がありません。",
   "jams_vote_own": "あなたの作品",
@@ -4662,6 +4740,10 @@
   "landing_faq_hint": "カタログで確認した短い回答です。",
   "landing_faq_more": "詳しく見る",
   "landing_faq_title": "サバイバーからのよくある質問",
+  "landing_featured_label": "今週の注目MOD",
+  "landing_featured_next": "次のMOD",
+  "landing_featured_prev": "前のMOD",
+  "landing_h1": "Sons of the Forest MOD",
   "landing_hall_hint": "歴代ダウンロード数トップのMOD",
   "landing_hall_show_all": [
     {
@@ -4717,6 +4799,19 @@
   ],
   "landing_map_legend_label": "マップの凡例",
   "landing_map_title": "島マップ",
+  "landing_meta_description": [
+    {
+      "declarations": [
+        "input count",
+        "input mods"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest 向けMOD {mods} 件と RedLoader 用の建築を無料で直接ダウンロード。コミュニティの評価とコメント付きです。"
+      }
+    }
+  ],
+  "landing_meta_title": "Sons of the Forest MOD | SOTF Mods",
   "landing_motw_period": "{start} の週",
   "landing_motw_title": "今週のMOD",
   "landing_notes_all": "最近のアップデートをすべて見る",
@@ -4800,11 +4895,45 @@
   "landing_stat_downloads": "ダウンロード",
   "landing_stat_mods": "MOD",
   "landing_stat_survivors": "サバイバー",
+  "landing_stats_aria": "サイトの統計",
+  "landing_stats_downloads": "ダウンロード",
   "landing_stats_label": "数字で見る島",
+  "landing_stats_mods": "公開MOD",
+  "landing_stats_users": "ユーザー",
   "landing_trending_all": "すべてのMOD",
   "landing_trending_empty": "島は静かな一週間です。サバイバーがダウンロードすると、ここにMODが表示されます。",
   "landing_trending_hint": "直近7日間のダウンロード数順",
   "landing_trending_title": "今週の人気",
+  "landing_weekly_downloads": [
+    {
+      "declarations": [
+        "input count",
+        "input display"
+      ],
+      "selectors": [],
+      "match": {
+        "": "今週 {display} ダウンロード"
+      }
+    }
+  ],
+  "landing_weekly_empty": "今週のダウンロードはまだ記録されていません。",
+  "landing_weekly_hint": "過去7日間のダウンロード数順",
+  "landing_weekly_less": "表示を減らす",
+  "landing_weekly_more": "もっと見る",
+  "landing_weekly_rank": [
+    {
+      "declarations": [
+        "input rank",
+        "local rank__number = rank: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{rank__number}位"
+      }
+    }
+  ],
+  "landing_weekly_this_week": "今週",
+  "landing_weekly_title": "今週のMOD",
   "langprompt_hint": "保存している言語は{language}です。",
   "langprompt_original": "原文を見る（{language}）",
   "langprompt_remember": "選択を記憶する",
@@ -4851,7 +4980,7 @@
   "logs_err_file_type": ".log または .txt ファイル、あるいはそれを含む .gz または .zip を使用してください。",
   "logs_err_generic": "問題が発生しました。もう一度お試しください。",
   "logs_err_network": "サーバーに接続できません。接続を確認してもう一度お試しください。",
-  "logs_err_rate": "リクエストが多すぎます — {seconds} 秒後にもう一度お試しください",
+  "logs_err_rate": "リクエストが多すぎます。{seconds} 秒後にもう一度お試しください",
   "logs_err_too_large": "このログは {max} を超えています。問題の前後の部分だけを送ってください。",
   "logs_err_turnstile": "人間確認に失敗しました。もう一度お試しください。",
   "logs_expired_now": "期限切れ",
@@ -5150,6 +5279,7 @@
   "meta_title_template": "{title} | SOTF Mods",
   "mod_action_add_to_kit": "キットに追加",
   "mod_action_install": "導入方法",
+  "mod_action_install_manager": "RedManagerでインストール",
   "mod_action_more": "その他の操作",
   "mod_action_report": "通報",
   "mod_action_report_mod": "このMODを報告",
@@ -5239,11 +5369,15 @@
   "mod_deps_sheet_text": "{name} はこれらの MOD がないと動きません。一緒にダウンロードするか、すでに持っていればそのまま続けてください。",
   "mod_deps_sheet_title": "{names} も必要です",
   "mod_description_empty": "作者はまだ説明を書いていません。",
+  "mod_detail_game": "ゲームバージョン",
+  "mod_detail_loader": "RedLoader",
+  "mod_details_title": "詳細",
   "mod_download_done_label": "ダウンロード済み ✓",
   "mod_download_unavailable": "現在ダウンロードできるファイルはありません。",
   "mod_fact_game_version": "対応ゲームバージョン（申告）",
   "mod_fact_license": "ライセンス",
   "mod_fact_loader_version": "RedLoader（申告）",
+  "mod_fact_multiplayer": "マルチプレイ",
   "mod_fact_platform": "プラットフォーム",
   "mod_fact_published": "公開日",
   "mod_fact_size": "ファイルサイズ",
@@ -5661,6 +5795,7 @@
   "mod_stats_title": "ダウンロード数の推移",
   "mod_support_title": "作者を支援する",
   "mod_tab_comments": "コメント",
+  "mod_tab_description": "説明",
   "mod_tab_overview": "概要",
   "mod_tab_reviews": "レビュー",
   "mod_tab_versions": "バージョン",
@@ -5713,6 +5848,7 @@
       }
     }
   ],
+  "mod_versions_section_title": "バージョンと更新履歴",
   "mod_versions_title": [
     {
       "declarations": [
@@ -6036,6 +6172,7 @@
   "profile_builds_title": "{name} の建築",
   "profile_cards_empty_action": "MOD を探す",
   "profile_cards_empty_description": "{name} はまだここに何も公開していません。島のほかの人たちの作品を見てみましょう。",
+  "profile_cards_empty_text": "{name} はまだここに何も公開していません。",
   "profile_creator_top_mod": "代表作：{mod}",
   "profile_creators_count": [
     {
@@ -6064,6 +6201,7 @@
   "profile_creators_title": "クリエイター",
   "profile_day_on_island": "島での {day} 日目",
   "profile_feed_title": "{name} の新着リリース",
+  "profile_follow_done": "フォローしました。新しいリリースがあると通知が届きます。",
   "profile_follow_error": "フォローを更新できませんでした。接続を確認して、もう一度お試しください。",
   "profile_follow_name": "{name} をフォロー",
   "profile_follow_own": "自分自身はフォローできません。",
@@ -6079,6 +6217,7 @@
   "profile_link_copy_failed": "リンクをコピーできませんでした。アドレスバーからコピーしてください。",
   "profile_link_website": "ウェブサイト",
   "profile_links_label": "リンク",
+  "profile_member_since": "{date} から利用",
   "profile_meta_description_creator": [
     {
       "declarations": [
@@ -6111,9 +6250,23 @@
       }
     }
   ],
+  "profile_meta_description_user": [
+    {
+      "declarations": [
+        "input name",
+        "input reviews",
+        "local reviews__number = reviews: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Sons of the Forest の MOD コミュニティ SOTF Mods の {name}：レビュー {reviews__number} 件。"
+      }
+    }
+  ],
   "profile_meta_title_creator": "{name}（@{handle}）— Sons of the Forest の MOD クリエイター",
   "profile_meta_title_member": "{name}（@{handle}）— Sons of the Forest MOD コミュニティ",
   "profile_meta_title_tab": "{tab} · {name}（@{handle}）",
+  "profile_meta_title_user": "{name} (@{handle})",
   "profile_mods_empty_title": "まだ MOD はありません",
   "profile_mods_title": "{name} の MOD",
   "profile_pinned_title": "ピン留め",
@@ -6136,6 +6289,9 @@
   "profile_reviews_older": "以前のレビュー",
   "profile_reviews_pagination": "さらにレビューを表示",
   "profile_reviews_title": "{name} のレビュー",
+  "profile_role_admin": "管理者",
+  "profile_role_moderator": "モデレーター",
+  "profile_search_type_users": "ユーザー",
   "profile_sort_downloads": "ダウンロード数順",
   "profile_sort_label": "並べ替え",
   "profile_sort_new": "新着順",
@@ -6170,8 +6326,10 @@
       }
     }
   ],
+  "profile_stat_published_label": "公開した MOD",
   "profile_stat_rating_label": "平均評価",
   "profile_stat_rating_title": "平均 {rating}（5 点満点）",
+  "profile_stat_reviews_label": "レビュー",
   "profile_stats_label": "統計",
   "profile_tab_activity": "アクティビティ",
   "profile_tab_badges": "バッジ",
@@ -6189,6 +6347,7 @@
   "profile_tier_landmark": "ランドマーク",
   "profile_tier_lean_to": "差しかけ小屋",
   "profile_tier_treehouse": "ツリーハウス",
+  "profile_trusted": "信頼済み",
   "profile_unfollowed": "フォローを解除しました。",
   "profile_verified_creator": "認証済みクリエイター",
   "profile_xp_bug_report_resolved": "バグ報告がクリエイターに解決済みにされる",
@@ -6774,7 +6933,7 @@
   "requests_delete_title": "このリクエストを削除しますか？",
   "requests_deleted_done": "リクエストを削除しました。",
   "requests_detail_description": "{author} による MOD リクエスト: {title}",
-  "requests_detail_title": "{title} — MOD リクエスト",
+  "requests_detail_title": "{title}（MOD リクエスト）",
   "requests_edit": "リクエストを編集",
   "requests_edited": "編集済み",
   "requests_empty_filtered_text": "別のステータスを試すか、すべてのリクエストを表示してください。",
@@ -6848,7 +7007,7 @@
       ],
       "selectors": [],
       "match": {
-        "": "{title} — {page__number} ページ"
+        "": "{title}、{page__number} ページ"
       }
     }
   ],
@@ -6906,6 +7065,7 @@
       }
     }
   ],
+  "requests_votes_short": "票",
   "search_page_about": "SOTF Modsについて",
   "search_page_achievements": "実績",
   "search_page_brand": "ブランド素材",
@@ -7542,6 +7702,37 @@
   "settings_verify_title": "メールアドレスを確認してください",
   "settings_visibility_text": "公開したくないものはオフにしてください。",
   "settings_visibility_title": "プロフィールに表示",
+  "shell_404_home": "ホームに戻る",
+  "shell_404_text": "このページは存在しないか、移動されました。アドレスを確認するか、必要なものを検索してください。",
+  "shell_404_title": "ページが見つかりません",
+  "shell_410_text": "このコンテンツは利用できなくなりました。他のMODをご覧ください。",
+  "shell_410_title": "このページは削除されました",
+  "shell_500_text": "サーバーで問題が発生しました。1分ほどしてからページを再読み込みするか、ホームに戻ってください。",
+  "shell_500_title": "問題が発生しました",
+  "shell_cmdk_empty_hint": "語数を減らすか、mods:、builds:、@ユーザー、コマンド用の >、by:/cat:/sort: で絞り込んでください。",
+  "shell_cmdk_go_dashboard": "ダッシュボード",
+  "shell_cmdk_go_login": "ログイン",
+  "shell_cmdk_go_moderation": "モデレーション",
+  "shell_cmdk_go_mods": "MOD",
+  "shell_cmdk_go_notifications": "通知",
+  "shell_cmdk_go_upload": "MODをアップロード",
+  "shell_cmdk_go_upload_build": "建築をアップロード",
+  "shell_cmdk_group_users": "ユーザー",
+  "shell_cmdk_input_label": "MOD、建築、ユーザー、ページを検索",
+  "shell_cmdk_kind_user": "ユーザー",
+  "shell_cmdk_loading": "検索を読み込み中…",
+  "shell_cmdk_no_results": "「{query}」の結果はありません。",
+  "shell_cmdk_placeholder": "MOD、建築、ユーザーを検索…",
+  "shell_cmdk_searching": "検索中…",
+  "shell_footer_developers": "開発者とAPI",
+  "shell_footer_github_backend": "プロジェクトのバックエンドに貢献する",
+  "shell_footer_github_frontend": "プロジェクトのフロントエンドに貢献する",
+  "shell_footer_partners": "パートナー",
+  "shell_footer_redloader": "RedLoader の使い方に関する公式Wiki",
+  "shell_footer_related": "関連サイト",
+  "shell_footer_since": "2023年3月から高品質なMODを提供",
+  "shell_footer_tonihub": "Sons of the Forest の最新データダンプ",
+  "shell_footer_tutorials": "RedLoader を使った MOD 作成の入門ガイド",
   "shell_install_app": "アプリをインストール",
   "shell_install_app_hint": "SOTF Mods をホーム画面に追加",
   "shell_install_ios_hint": "iPhoneまたはiPadにインストールするには、共有をタップして「ホーム画面に追加」を選びます。",
@@ -7549,20 +7740,34 @@
   "shell_more_help": "ヘルプ",
   "shell_more_install_guide": "インストールガイド",
   "shell_more_label": "その他",
+  "shell_nav_account": "アカウント",
+  "shell_nav_dashboard": "ダッシュボード",
+  "shell_nav_login": "ログイン",
+  "shell_nav_logout": "ログアウト",
+  "shell_nav_menu": "メニュー",
+  "shell_nav_moderation": "モデレーション",
+  "shell_nav_notifications": "通知",
+  "shell_nav_profile": "プロフィール",
+  "shell_nav_register": "新規登録",
+  "shell_nav_search": "検索",
+  "shell_nav_settings": "設定",
+  "shell_nav_upload": "アップロード",
   "shell_offline_available": "オフラインで利用可能",
   "shell_offline_back_online": "オンラインに戻りました。再読み込みしています…",
-  "shell_offline_body": "いまは島に接続できません。通信状況を確認して、もう一度お試しください。",
-  "shell_offline_checking": "電波を探しています…",
-  "shell_offline_eyebrow": "圏外",
-  "shell_offline_meta_description": "現在接続できません。電波が戻ったらもう一度お試しください。",
+  "shell_offline_body": "現在 SOTF Mods に接続できません。通信状況を確認して、もう一度お試しください。",
+  "shell_offline_checking": "接続を確認しています…",
+  "shell_offline_eyebrow": "オフライン",
+  "shell_offline_meta_description": "現在接続できません。オンラインに戻ったらもう一度お試しください。",
   "shell_offline_meta_title": "オフライン",
   "shell_offline_retry": "再試行",
   "shell_offline_saved": "この端末に保存済み",
-  "shell_offline_still": "まだ電波がありません。しばらくしてからもう一度お試しください。",
-  "shell_offline_title": "電波の届かない場所です",
+  "shell_offline_still": "まだオフラインです。しばらくしてからもう一度お試しください。",
+  "shell_offline_title": "オフラインです",
   "shell_ptr_loading": "更新中…",
   "shell_ptr_pull": "引っ張って更新",
   "shell_ptr_release": "離して更新",
+  "shell_relogin_banner": "SOTF Mods を再構築しました。同じパスワードでもう一度ログインしてください。",
+  "shell_search_placeholder": "MOD、建築、ユーザーを検索",
   "signals_action_download": "ダウンロード",
   "signals_announcement": "レンジャーからの新しいお知らせ",
   "signals_announcement_titled": "お知らせ：{title}",
@@ -8569,6 +8774,7 @@
   "ui_domain_tier_landmark": "ランドマーク",
   "ui_domain_tier_lean_to": "差しかけ小屋",
   "ui_domain_tier_treehouse": "ツリーハウス",
+  "ui_domain_trusted": "信頼済み",
   "ui_domain_trusted_creator": "信頼できるクリエイター",
   "ui_domain_value_not_declared": "未申告",
   "ui_domain_value_unknown": "不明",

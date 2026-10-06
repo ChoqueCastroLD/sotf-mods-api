@@ -1,6 +1,6 @@
 {
   "requests_list_title": "Mod istekleri",
-  "requests_list_title_page": "{title} — sayfa {page, number}",
+  "requests_list_title_page": "{title}, sayfa {page, number}",
   "requests_list_description": "Sons of the Forest’ta eksik olan modu isteyin, istediklerinize oy verin ve onları üstlenen geliştiricileri takip edin.",
   "requests_list_readout": "İstek panosu",
   "requests_action_new": "Mod iste",
@@ -29,7 +29,7 @@
   "requests_by": "{name} tarafından",
   "requests_adopted_by": "{name} üzerinde çalışıyor",
   "requests_fulfilled_by": "{mod} ile tamamlandı",
-  "requests_detail_title": "{title} — Mod isteği",
+  "requests_detail_title": "{title} (mod isteği)",
   "requests_detail_description": "{author} tarafından mod isteği: {title}",
   "requests_back": "Tüm istekler",
   "requests_view_mod": "Moda git",
@@ -89,5 +89,6 @@
   "requests_badge_adopter": "Üzerinde çalışıyor",
   "requests_badge_author": "İstek sahibi",
   "requests_comment_delete_title": "Bu yorum silinsin mi?",
-  "requests_comment_delete_text": "Bu geri alınamaz."
+  "requests_comment_delete_text": "Bu geri alınamaz.",
+  "requests_votes_short": "oy"
 }

@@ -1,0 +1,30 @@
+---
+/**
+ * The catalogue page of `/` and `/mods` (see `catalog-page.ts` for the SEO and redirect rules):
+ * layout, head data and `CatalogView`. The pages load the data, set the cache and redirect.
+ */
+import PageLayout from '../../layouts/PageLayout.astro';
+import CatalogView from './CatalogView.astro';
+import type { CatalogPageData } from './catalog-page.ts';
+
+interface Props {
+  page: CatalogPageData;
+}
+
+const { page } = Astro.props;
+---
+
+<PageLayout
+  template={page.mode === 'home' ? 'home' : 'explore'}
+  width="wide"
+  seo={{
+    title: page.title,
+    rawTitle: page.rawTitle,
+    description: page.description,
+    path: page.path,
+    noindex: page.noindex,
+  }}
+  jsonLd={page.jsonLd}
+>
+  <CatalogView data={page.listing} heading={page.heading} aside={page.aside} showFeatured={page.showFeatured} />
+</PageLayout>

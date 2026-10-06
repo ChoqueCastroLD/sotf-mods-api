@@ -1,7 +1,7 @@
 /**
  * Actions of the highlighted row (the «⋯» menu and its shortcuts): open, new tab, download the
- * latest version, follow / unfollow and add to a kit (signed in), copy link / mod ID, compare,
- * changelog and versions, report. Shortcuts avoid the browser's own (no Ctrl+D, Ctrl+L, Ctrl+C):
+ * latest version, follow / unfollow (signed in), copy link / mod ID, changelog and versions,
+ * report. Shortcuts avoid the browser's own (no Ctrl+D, Ctrl+L, Ctrl+C):
  * `Enter`, `⌘/Ctrl+Enter`, `Shift+Enter`, `→` opens the menu and each action has a single-letter
  * mnemonic inside it.
  */
@@ -11,17 +11,7 @@ import type { Session } from './session.ts';
 import type { EntryItem, PaletteItem } from './types.ts';
 import { isEntry } from './types.ts';
 
-export type ItemActionId =
-  | 'open'
-  | 'new-tab'
-  | 'download'
-  | 'follow'
-  | 'kit'
-  | 'copy-link'
-  | 'copy-id'
-  | 'compare'
-  | 'versions'
-  | 'report';
+export type ItemActionId = 'open' | 'new-tab' | 'download' | 'follow' | 'copy-link' | 'copy-id' | 'versions' | 'report';
 
 export interface ItemAction {
   id: ItemActionId;
@@ -46,15 +36,9 @@ export function latestDownloadPath(item: EntryItem): string | null {
   return `/mods/${user}/${slug}/download/latest`;
 }
 
-/** Whether the compare page and the versions page apply (builds have neither). */
+/** Whether the versions page applies (builds have none). */
 export function isPlainMod(item: EntryItem): boolean {
   return item.type === 'mod' && item.path.startsWith('/mods/');
-}
-
-export function compareTarget(item: EntryItem): string | null {
-  if (!isPlainMod(item)) return null;
-  const [, , user, slug] = item.path.split('/');
-  return user && slug ? `/compare?mods=${encodeURIComponent(`${user}/${slug}`)}` : null;
 }
 
 export function itemActionsFor(item: PaletteItem, env: ItemActionEnv): ItemAction[] {
@@ -78,15 +62,11 @@ export function itemActionsFor(item: PaletteItem, env: ItemActionEnv): ItemActio
       shortcut: null,
     });
   }
-  if (isPlainMod(item) && env.session.signedIn) {
-    actions.push({ id: 'kit', label: t('cmdk_act_add_kit'), mnemonic: 'K', shortcut: null });
-  }
   if (item.type !== 'page')
     actions.push({ id: 'copy-link', label: t('cmdk_act_copy_link'), mnemonic: 'L', shortcut: null });
   if (isMod && item.manifestId) {
     actions.push({ id: 'copy-id', label: t('cmdk_act_copy_id'), mnemonic: 'I', shortcut: null });
   }
-  if (compareTarget(item)) actions.push({ id: 'compare', label: t('cmdk_act_compare'), mnemonic: 'C', shortcut: null });
   if (isPlainMod(item)) actions.push({ id: 'versions', label: t('cmdk_act_versions'), mnemonic: 'V', shortcut: null });
   if (isMod) actions.push({ id: 'report', label: t('cmdk_act_report'), mnemonic: 'R', shortcut: null });
   return actions;

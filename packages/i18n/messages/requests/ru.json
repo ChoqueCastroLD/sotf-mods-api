@@ -1,6 +1,6 @@
 {
   "requests_list_title": "Запросы модов",
-  "requests_list_title_page": "{title} — страница {page, number}",
+  "requests_list_title_page": "{title}, страница {page, number}",
   "requests_list_description": "Попросите мод, которого не хватает в Sons of the Forest, голосуйте за нужные и следите за авторами, которые берутся за работу.",
   "requests_list_readout": "Доска запросов",
   "requests_action_new": "Запросить мод",
@@ -29,7 +29,7 @@
   "requests_by": "от {name}",
   "requests_adopted_by": "В работе у {name}",
   "requests_fulfilled_by": "Выполнено модом {mod}",
-  "requests_detail_title": "{title} — запрос мода",
+  "requests_detail_title": "{title} (запрос мода)",
   "requests_detail_description": "Запрос мода от {author}: {title}",
   "requests_back": "Все запросы",
   "requests_view_mod": "Открыть мод",
@@ -89,5 +89,6 @@
   "requests_badge_adopter": "Работает над этим",
   "requests_badge_author": "Автор запроса",
   "requests_comment_delete_title": "Удалить этот комментарий?",
-  "requests_comment_delete_text": "Это нельзя отменить."
+  "requests_comment_delete_text": "Это нельзя отменить.",
+  "requests_votes_short": "голосов"
 }

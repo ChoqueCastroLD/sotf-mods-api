@@ -1,6 +1,6 @@
 {
   "requests_list_title": "Pedidos de mods",
-  "requests_list_title_page": "{title} — página {page, number}",
+  "requests_list_title_page": "{title}, página {page, number}",
   "requests_list_description": "Peça o mod que faz falta em Sons of the Forest, vote nos que você quer e siga os criadores que os assumem.",
   "requests_list_readout": "Quadro de pedidos",
   "requests_action_new": "Pedir um mod",
@@ -29,7 +29,7 @@
   "requests_by": "de {name}",
   "requests_adopted_by": "{name} está trabalhando nisso",
   "requests_fulfilled_by": "Atendido com {mod}",
-  "requests_detail_title": "{title} — Pedido de mod",
+  "requests_detail_title": "{title} (pedido de mod)",
   "requests_detail_description": "Pedido de mod de {author}: {title}",
   "requests_back": "Todos os pedidos",
   "requests_view_mod": "Ver o mod",
@@ -89,5 +89,6 @@
   "requests_badge_adopter": "Trabalhando nisso",
   "requests_badge_author": "Autor do pedido",
   "requests_comment_delete_title": "Excluir este comentário?",
-  "requests_comment_delete_text": "Isso não pode ser desfeito."
+  "requests_comment_delete_text": "Isso não pode ser desfeito.",
+  "requests_votes_short": "votos"
 }

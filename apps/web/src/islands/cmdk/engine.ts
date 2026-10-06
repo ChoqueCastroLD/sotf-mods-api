@@ -65,20 +65,17 @@ function createMiniSearch(): MiniSearch<Doc> {
 
 /** Which entry types a scope shows. */
 const SCOPE_TYPES: Record<Scope, ReadonlySet<EntryType>> = {
-  all: new Set(['mod', 'build', 'kit', 'user', 'category', 'page']),
+  all: new Set(['mod', 'build', 'user', 'category', 'page']),
   mods: new Set(['mod']),
   builds: new Set(['build']),
-  kits: new Set(['kit']),
-  creators: new Set(['user']),
+  users: new Set(['user']),
   actions: new Set(),
-  scout: new Set(),
 };
 
 const GROUP_OF: Record<EntryType, GroupId> = {
   mod: 'mods',
   build: 'builds',
-  kit: 'kits',
-  user: 'creators',
+  user: 'users',
   category: 'categories',
   page: 'pages',
 };
@@ -89,8 +86,7 @@ const GROUP_ORDER: readonly GroupId[] = [
   'trending',
   'mods',
   'builds',
-  'kits',
-  'creators',
+  'users',
   'categories',
   'pages',
   'go',
@@ -102,8 +98,7 @@ const GROUP_ORDER: readonly GroupId[] = [
 const ALL_LIMITS: Partial<Record<GroupId, number>> = {
   mods: 6,
   builds: 4,
-  kits: 3,
-  creators: 3,
+  users: 3,
   categories: 3,
   pages: 3,
   go: 4,
@@ -127,7 +122,7 @@ export class PaletteIndex {
     // The last four fields of a mod tuple were added after the first index version: read them
     // defensively so an edge-cached older index still works.
     for (const row of dto.mods) {
-      const [id, kind, name, handle, category, tagsCsv, manifestId, downloads, compat, thumb, path] = row;
+      const [id, kind, name, handle, category, tagsCsv, manifestId, downloads, , thumb, path] = row;
       const tail = row as unknown as ReadonlyArray<unknown>;
       const updatedDay = typeof tail[11] === 'number' ? tail[11] : undefined;
       const createdDay = typeof tail[12] === 'number' ? tail[12] : undefined;
@@ -146,7 +141,6 @@ export class PaletteIndex {
         path,
         thumb,
         kind,
-        compat,
         downloads,
         categorySlug: category,
         tags,
@@ -167,25 +161,6 @@ export class PaletteIndex {
         tags: tags.join(' '),
         category: category ? `${category} ${this.categoryNames.get(category) ?? ''}` : '',
       });
-    }
-
-    for (const row of dto.kits) {
-      const [id, name, owner, itemsCount, path] = row;
-      const kitThumb = (row as unknown as ReadonlyArray<unknown>)[5];
-      const item: EntryItem = {
-        key: `kit:${id}`,
-        type: 'kit',
-        id,
-        title: name,
-        subtitle: `@${owner}`,
-        path,
-        thumb: typeof kitThumb === 'string' ? kitThumb : null,
-        count: itemsCount,
-        handle: owner,
-      };
-      this.add(item, itemsCount * 50);
-      this.addExact(item.key, name);
-      docs.push({ key: item.key, title: name, alt: owner, manifestId: '', tags: '', category: '' });
     }
 
     for (const row of dto.users) {
@@ -271,10 +246,9 @@ export class PaletteIndex {
   /** Whether `item` passes the operators (and only entries that can carry them pass). */
   private passes(item: EntryItem, filters: Filters): boolean {
     if (!hasFilters(filters)) return true;
-    if (item.type !== 'mod' && item.type !== 'build' && item.type !== 'kit') return false;
+    if (item.type !== 'mod' && item.type !== 'build') return false;
     if (filters.type) {
-      const kind =
-        item.type === 'kit' ? 'kit' : item.type === 'build' ? 'build' : item.kind === 'library' ? 'library' : 'mod';
+      const kind = item.type === 'build' ? 'build' : item.kind === 'library' ? 'library' : 'mod';
       if (kind !== filters.type) return false;
     }
     if (filters.by) {
@@ -283,7 +257,7 @@ export class PaletteIndex {
       if (handle !== wanted && !handle.startsWith(wanted)) return false;
     }
     if (filters.cat) {
-      if (item.type === 'kit' || !item.categorySlug) return false;
+      if (!item.categorySlug) return false;
       const wanted = fold(filters.cat);
       const slug = fold(item.categorySlug);
       const name = fold(this.categoryNames.get(item.categorySlug) ?? '');
@@ -473,7 +447,6 @@ function isIndex(value: unknown): value is SearchIndexDTO {
   return (
     dto.v === 1 &&
     Array.isArray(dto.mods) &&
-    Array.isArray(dto.kits) &&
     Array.isArray(dto.users) &&
     Array.isArray(dto.categories) &&
     Array.isArray(dto.pages) &&
@@ -521,10 +494,8 @@ const SERVER_TYPES: Record<Scope, readonly string[]> = {
   all: [],
   mods: ['mod'],
   builds: ['build'],
-  kits: ['kit'],
-  creators: ['user'],
+  users: ['user'],
   actions: [],
-  scout: [],
 };
 
 /**
@@ -550,8 +521,8 @@ export async function serverSearch(
     if (!Array.isArray(body.hits)) return [];
     const out: ResultItem[] = [];
     for (const hit of body.hits) {
-      const type: EntryType =
-        hit.type === 'mod' ? (hit.kind === 'build' ? 'build' : 'mod') : hit.type === 'user' ? 'user' : hit.type;
+      if (hit.type === 'kit') continue;
+      const type: EntryType = hit.type === 'mod' ? (hit.kind === 'build' ? 'build' : 'mod') : hit.type;
       const key = `${type}:${hit.id}`;
       const known = index?.entries.get(key);
       const item: EntryItem = known ?? {
@@ -563,7 +534,6 @@ export async function serverSearch(
         path: hit.path,
         thumb: hit.thumbnailUrl,
         ...(hit.kind ? { kind: hit.kind } : {}),
-        ...(hit.compatStatus ? { compat: hit.compatStatus } : {}),
         ...(hit.downloads !== null ? { downloads: hit.downloads } : {}),
       };
       out.push({ item, terms: [], serverHighlight: hit.highlight });

@@ -6,35 +6,36 @@ import { coverSvg, DEFAULT_COVER_COLOR } from '../src/cover.ts';
 import { gzipSize, rasterise, sha256 } from './helpers.ts';
 
 describe('coverSvg', () => {
-  it('is deterministic per slug (snapshot)', () => {
+  it('is deterministic (snapshot)', () => {
     expect(coverSvg('auto-pickup', '#5EBB64', 'AP')).toMatchSnapshot();
     expect(sha256(coverSvg('stack-mod', '#498BEB', 'SM', { theme: 'day' }))).toMatchSnapshot();
   });
 
-  it('is 16:9, valid and light (≈ 1–2 KB gzip)', async () => {
+  it('is 16:9, valid and light (under 2.5 KB gzip)', async () => {
     const svg = coverSvg('auto-pickup', '#5EBB64', 'AP');
     expect(svg).toContain('viewBox="0 0 640 360"');
     expect(gzipSize(svg)).toBeLessThan(2.5 * 1024);
     expect(await rasterise(svg, 320)).toEqual({ width: 320, height: 180 });
   });
 
-  it('changes with the slug and the category colour', () => {
-    expect(coverSvg('a', '#5EBB64', 'A')).not.toBe(coverSvg('b', '#5EBB64', 'A'));
+  it('changes with the category colour and the initials, and has no artwork', () => {
     expect(coverSvg('a', '#5EBB64', 'A')).not.toBe(coverSvg('a', '#498BEB', 'A'));
+    expect(coverSvg('a', '#5EBB64', 'A')).not.toBe(coverSvg('a', '#5EBB64', 'B'));
+    expect(coverSvg('a', '#5EBB64', 'A')).not.toMatch(/stroke|<circle/);
   });
 
   it('never injects untrusted input', () => {
     const svg = coverSvg('x', '"/><script>alert(1)</script>', '<b>');
     expect(svg).not.toContain('<script');
     expect(svg).not.toContain('<b>');
-    expect(svg).toContain(DEFAULT_COVER_COLOR);
+    expect(svg).toBe(coverSvg('x', DEFAULT_COVER_COLOR, '<b>'));
   });
 
   it('uses outlines for Latin initials and a font fallback otherwise', () => {
     expect(coverSvg('x', '#5EBB64', 'AP')).not.toContain('<text');
     expect(coverSvg('x', '#5EBB64', 'Кот')).toContain('<text');
     expect(coverSvg('x', '#5EBB64', 'ABCDE')).toBe(coverSvg('x', '#5EBB64', 'ABC'));
-    expect(coverSvg('x', '#5EBB64', '')).not.toMatch(/<text|scale\(\.9/);
+    expect(coverSvg('x', '#5EBB64', '')).not.toMatch(/<text|<g /);
   });
 
   it('normalises initials to NFC and counts user-perceived characters', () => {
@@ -101,6 +102,6 @@ describe('avatarSvg', () => {
     const svg = avatarSvg('Anna', 7, { size: 40, theme: 'day', title: 'Anna' });
     expect(svg).toContain('width="40" height="40"');
     expect(svg).toContain('<title>Anna</title>');
-    expect(svg).toContain('fill="#FCFAF4"');
+    expect(svg).toContain('fill="#E5E7EB"');
   });
 });

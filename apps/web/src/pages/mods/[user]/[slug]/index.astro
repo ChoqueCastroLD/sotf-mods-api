@@ -1,29 +1,24 @@
 ---
 /**
- * Mod page `/mods/:user/:slug` (WP-62, T0-08, research/03 §6.3). SSR, edge-cached 900 s with
+ * Mod page `/mods/:user/:slug`, an evolution of the old page: gallery and header with the
+ * download, then Description, Dependencies, Versions, Comments and Reviews in one column and a
+ * plain sidebar (details, creator, downloads, required by, related). SSR, edge-cached 900 s with
  * `mod:{id}` + `user:{id}` (PLAN §4.2); the resolver answers 301/404/410 for old, mistyped or
- * removed URLs. Everything user-specific (follow state, «What's new since your last download»,
- * the «Did it work?» prompt) is fetched by the page script after load.
+ * removed URLs. Everything user-specific (follow state) is fetched by the page script after load.
  */
 import { tagPath } from '@sotf/contracts/seo';
 import { m } from '@sotf/i18n/messages';
 import { localizeHtml } from '@sotf/markdown/labels';
 import { DependencyList, ProseLocator } from '@sotf/ui/domain';
-import { Icon } from '@sotf/ui/icons';
-import { ArrowRight } from 'lucide-react';
-import AtAGlance from '../../../../components/mod/AtAGlance.astro';
-import BundlePanel from '../../../../components/mod/BundlePanel.astro';
 import Clamp from '../../../../components/mod/Clamp.astro';
 import CommentsPreview from '../../../../components/mod/CommentsPreview.astro';
 import CreatorCard from '../../../../components/mod/CreatorCard.astro';
-import DependencyGraph from '../../../../components/mod/DependencyGraph.astro';
 import { loadOverviewExtras, resolveModPage } from '../../../../components/mod/data.ts';
 import { loginHrefFor, versionsPagePath } from '../../../../components/mod/format.ts';
 import { markdownLabels, taxonomyName } from '../../../../components/mod/i18n.ts';
-import KnownIssues from '../../../../components/mod/KnownIssues.astro';
+import ModDetails from '../../../../components/mod/ModDetails.astro';
 import ModFaq from '../../../../components/mod/ModFaq.astro';
 import ModLayout from '../../../../components/mod/ModLayout.astro';
-import RecommendedMods from '../../../../components/mod/RecommendedMods.astro';
 import RelatedMods from '../../../../components/mod/RelatedMods.astro';
 import RequiredBy from '../../../../components/mod/RequiredBy.astro';
 import ReviewsPreview from '../../../../components/mod/ReviewsPreview.astro';
@@ -34,7 +29,6 @@ import { SECTION_TITLE_CLASSES } from '../../../../components/mod/styles.ts';
 import TranslatedText from '../../../../components/mod/TranslatedText.astro';
 import VersionRows from '../../../../components/mod/VersionRows.astro';
 import VersionTimeline from '../../../../components/mod/VersionTimeline.astro';
-import WhatsNew from '../../../../components/mod/WhatsNew.astro';
 import { setPageCache } from '../../../../lib/cache/page.ts';
 import { pageCache } from '../../../../lib/cache/policy.ts';
 import { loadEnv } from '../../../../lib/env.ts';
@@ -43,7 +37,6 @@ import { pictureSources } from '../../../../lib/images.ts';
 import { localizeCards } from '../../../../lib/localize.ts';
 import { loadModTranslation } from '../../../../lib/mod-translation.ts';
 import { ensureLocals } from '../../../../lib/request-context.ts';
-import { buildModFaq } from '../../../../lib/seo/faq.ts';
 
 export const prerender = false;
 
@@ -79,21 +72,16 @@ const preloadImage = hero
       }
     : { href: hero.url }
   : undefined;
-// `?milestone=10000` shares the milestone card (PLAN §7.2) when it was rendered.
-const milestoneParam = Number(Astro.url.searchParams.get('milestone'));
-const milestoneOg = Number.isSafeInteger(milestoneParam)
-  ? (mod.milestones.find((x) => x.threshold === milestoneParam)?.ogImageUrl ?? null)
-  : null;
-const sharedOg = milestoneOg ?? mod.ogImage?.url ?? null;
+const sharedOg = mod.ogImage?.url ?? null;
 const ogImage = mod.nsfw ? undefined : (sharedOg ?? mod.thumbnail?.url ?? mod.gallery[0]?.url);
 const ogSized = sharedOg !== null && ogImage === sharedOg;
 const tags = mod.tags;
-const authorFaq = (extras.knowledge?.faq ?? []).map((entry) => ({
+// Only what the author wrote: nothing generated.
+const faq = (extras.knowledge?.faq ?? []).map((entry) => ({
   id: `faq-author-${entry.id}`,
   question: entry.question,
   answer: entry.answer,
 }));
-const faq = [...authorFaq, ...buildModFaq(mod, locale)];
 const jsonLd = modJsonLd({ mod, locale, siteUrl: env.siteUrl, pageUrl });
 if (faq.length > 0) jsonLd.push(modFaqJsonLd(faq, pageUrl, locale));
 ---
@@ -117,8 +105,8 @@ if (faq.length > 0) jsonLd.push(modFaqJsonLd(faq, pageUrl, locale));
   jsonLd={jsonLd}
   preloadImage={preloadImage}
 >
-  <section aria-labelledby="overview-title" class="grid gap-4">
-    <h2 id="overview-title" class="sr-only">{m.mod_tab_overview()}</h2>
+  <section id="description" aria-labelledby="overview-title" class="grid scroll-mt-32 gap-4 md:scroll-mt-24">
+    <h2 id="overview-title" class="sr-only">{m.mod_tab_description()}</h2>
     <Clamp>
       {
         translatedHtml && translation ? (
@@ -165,51 +153,35 @@ if (faq.length > 0) jsonLd.push(modFaqJsonLd(faq, pageUrl, locale));
     )
   }
 
-  <DependencyGraph mod={mod} dependents={extras.dependents} />
-
-  <WhatsNew mod={mod} />
-
-  <section id="field-notes" aria-labelledby="field-notes-title" class="grid scroll-mt-32 gap-4 md:scroll-mt-24">
-    <div class="flex flex-wrap items-baseline justify-between gap-3">
-      <h2 id="field-notes-title" class={SECTION_TITLE_CLASSES}>{m.common_term_field_notes()}</h2>
-      <a href={href(versionsPagePath(mod), locale)} class="inline-flex min-h-11 items-center gap-1.5 font-semibold text-link">
+  <section id="versions" aria-labelledby="versions-title" class="grid scroll-mt-32 gap-5 md:scroll-mt-24">
+    <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+      <h2 id="versions-title" class={SECTION_TITLE_CLASSES}>{m.mod_versions_section_title()}</h2>
+      <a href={href(versionsPagePath(mod), locale)} class="inline-flex min-h-9 items-center font-medium text-link hover:underline underline-offset-3">
         {versionsCount === null ? m.mod_versions_all() : m.mod_versions_all_count({ count: versionsCount })}
-        <Icon icon={ArrowRight} size={16} className="rtl:rotate-180" />
       </a>
     </div>
     {
       recentVersions.length > 0 ? (
-        <VersionRows mod={mod} versions={recentVersions} />
-        <VersionTimeline mod={mod} versions={recentVersions} />
+        <>
+          <VersionRows mod={mod} versions={recentVersions} />
+          <VersionTimeline mod={mod} versions={recentVersions} />
+        </>
       ) : (
         <p class="text-fg-muted">{m.mod_versions_empty()}</p>
       )
     }
   </section>
 
-  <ReviewsPreview mod={mod} reviews={extras.reviews} loginHref={loginHref} />
   <CommentsPreview mod={mod} comments={extras.comments} loginHref={loginHref} />
+  <ReviewsPreview mod={mod} reviews={extras.reviews} loginHref={loginHref} />
 
-  <KnownIssues issues={extras.knowledge?.knownIssues ?? []} />
   <ModFaq items={faq} />
 
-  <AtAGlance slot="glance" mod={mod} compat={extras.compat} loginHref={loginHref} />
-
   <Fragment slot="sidebar">
+    <ModDetails mod={mod} />
     <CreatorCard mod={mod} loginHref={loginHref} coAuthors={extras.knowledge?.coAuthors ?? []} />
-    <BundlePanel bundles={extras.bundles} />
-    <RequiredBy mod={mod} dependents={extras.dependents} />
     <StatsPanel mod={mod} stats={extras.stats} />
-    {
-      extras.recommendations.alsoDownloaded.length + extras.recommendations.similar.length > 0 ? (
-        <RecommendedMods
-          mod={mod}
-          alsoDownloaded={extras.recommendations.alsoDownloaded}
-          similar={extras.recommendations.similar}
-        />
-      ) : (
-        <RelatedMods mod={mod} related={extras.related} />
-      )
-    }
+    <RequiredBy mod={mod} dependents={extras.dependents} />
+    <RelatedMods related={extras.related} />
   </Fragment>
 </ModLayout>

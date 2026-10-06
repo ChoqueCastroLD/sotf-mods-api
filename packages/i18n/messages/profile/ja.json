@@ -240,5 +240,16 @@
   "profile_badge_jam_podium_name": "ジャム表彰台",
   "profile_badge_jam_podium_hint": "Mod Jam のカテゴリで上位3位に入る。複数回獲得できます。",
   "profile_badge_jam_champion_name": "ジャムチャンピオン",
-  "profile_badge_jam_champion_hint": "Mod Jam の総合で優勝する。複数回獲得できます。"
+  "profile_badge_jam_champion_hint": "Mod Jam の総合で優勝する。複数回獲得できます。",
+  "profile_member_since": "{date} から利用",
+  "profile_trusted": "信頼済み",
+  "profile_role_moderator": "モデレーター",
+  "profile_role_admin": "管理者",
+  "profile_stat_published_label": "公開した MOD",
+  "profile_stat_reviews_label": "レビュー",
+  "profile_meta_title_user": "{name} (@{handle})",
+  "profile_meta_description_user": "Sons of the Forest の MOD コミュニティ SOTF Mods の {name}：{reviews, plural, other {レビュー # 件}}。",
+  "profile_cards_empty_text": "{name} はまだここに何も公開していません。",
+  "profile_follow_done": "フォローしました。新しいリリースがあると通知が届きます。",
+  "profile_search_type_users": "ユーザー"
 }

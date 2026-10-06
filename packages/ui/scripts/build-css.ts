@@ -15,7 +15,7 @@ import { build, createLogger, type Rolldown } from 'vite';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url).href);
 const OUT_DIR = 'dist/css';
-/** apps/web serves @sotf/brand's public assets (`/brand/topo.svg` is the texture-topo mask). */
+/** apps/web serves @sotf/brand's public assets (`/brand/*`). */
 const BRAND_PUBLIC = fileURLToPath(new URL('../../brand/assets/public', import.meta.url).href);
 
 /** research/03 §4.10: the non-critical stylesheet stays ≤ 25 KB gzip. */
@@ -76,7 +76,7 @@ async function main(): Promise<void> {
 
   // Sanity: the pieces every page relies on made it into the output.
   const text = source.toString('utf8');
-  const required = ['--color-primary', 'Onest Fallback', 'Big Shoulders Fallback', '.texture-topo', '.brand-flare'];
+  const required = ['--color-primary', 'Onest Fallback'];
   const missing = required.filter((needle) => !text.includes(needle));
   if (missing.length > 0) throw new Error(`the compiled CSS is missing: ${missing.join(', ')}`);
 

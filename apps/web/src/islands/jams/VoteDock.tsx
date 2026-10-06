@@ -6,7 +6,7 @@
  */
 import { Button } from '@sotf/ui/button';
 import { Icon } from '@sotf/ui/icons';
-import { ArrowRight, Check, Vote } from 'lucide-react';
+import { ArrowRight, Check } from 'lucide-react';
 import { t } from '../comments/lib/messages.ts';
 import { openBooth, progressOf } from './booth.ts';
 import { eligibilityText } from './JamActions.tsx';
@@ -28,10 +28,9 @@ export function VoteDock({ store, entryIds, verifyHref }: VoteDockProps) {
   const pct = votable.length === 0 ? 0 : (done / votable.length) * 100;
 
   return (
-    <div className="texture-topo flex min-h-24 flex-col gap-4 rounded-xl border border-border bg-surface p-4 md:flex-row md:items-center md:justify-between md:gap-8 md:p-5">
+    <div className="flex min-h-24 flex-col gap-4 border-y border-border py-4 md:flex-row md:items-center md:justify-between md:gap-8">
       <div className="flex min-w-0 flex-1 flex-col gap-2">
-        <p className="font-display-caps flex items-center gap-2 text-2xl leading-none text-fg">
-          <Icon icon={Vote} size={22} className="text-primary" />
+        <p className="text-lg font-bold text-fg">
           {t('jams_vote_dock_title')}
         </p>
         {state.eligibility.canVote ? (
@@ -50,7 +49,7 @@ export function VoteDock({ store, entryIds, verifyHref }: VoteDockProps) {
                   style={{ width: `${pct}%` }}
                 />
               </div>
-              <p className="shrink-0 font-mono text-sm text-fg tabular-nums">
+              <p className="shrink-0 text-sm text-fg tabular-nums">
                 {t('jams_vote_progress', { done, total: votable.length })}
               </p>
             </div>

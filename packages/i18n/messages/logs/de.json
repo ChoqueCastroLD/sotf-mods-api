@@ -25,7 +25,7 @@
   "logs_err_archive": "Dieses Archiv konnte nicht gelesen werden.",
   "logs_err_network": "Der Server ist nicht erreichbar. Prüfe deine Verbindung und versuche es erneut.",
   "logs_err_turnstile": "Die Menschenprüfung ist fehlgeschlagen. Versuche es erneut.",
-  "logs_err_rate": "Zu viele Anfragen — versuche es in {seconds} s erneut",
+  "logs_err_rate": "Zu viele Anfragen. Versuche es in {seconds} s erneut",
   "logs_err_busy": "Das Teilen von Logs ist gerade überlastet. Versuche es in ein paar Minuten erneut.",
   "logs_err_generic": "Etwas ist schiefgelaufen. Versuche es erneut.",
   "logs_done_title": "Dein Log ist bereit",

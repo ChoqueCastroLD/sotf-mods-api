@@ -3,7 +3,7 @@ export type Auth_Meta_Register_DescriptionInputs = {};
 /**
 * | output |
 * | --- |
-* | "Join SOTF Mods: stash mods in your backpack, get pinged when they update and share your own creations." |
+* | "Join SOTF Mods: follow mods, get notified when they update and share your own creations." |
 *
 * @param {Auth_Meta_Register_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

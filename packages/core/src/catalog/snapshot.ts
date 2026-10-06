@@ -588,6 +588,7 @@ export async function loadSnapshot(ctx: Ctx, config: CatalogConfig): Promise<Cat
       userId: m.userId,
       userHandle: author.ref.handle,
       userDisplayName: author.ref.displayName,
+      userAvatarUrl: author.ref.avatarUrl,
       verifiedCreator: author.ref.verifiedCreator,
       category: effective?.ref ?? null,
       shortDescription,
@@ -596,6 +597,7 @@ export async function loadSnapshot(ctx: Ctx, config: CatalogConfig): Promise<Cat
       downloads: num(m.downloads),
       downloads7d: num(m.downloads7d),
       followers: num(m.followers),
+      commentsCount: num(m.comments),
       ratingAvg,
       ratingCount,
       compatStatus,
@@ -686,6 +688,17 @@ export function getSnapshot(ctx: Ctx, config: CatalogConfig): Promise<CatalogSna
 export function compareCategories(a: CategoryInfo, b: CategoryInfo): number {
   if (a.kind !== b.kind) return a.kind === 'mod' ? -1 : 1;
   return a.sortOrder - b.sortOrder || a.id - b.id;
+}
+
+/**
+ * Entries of the «Unapproved» listing: `pending` mods whose latest automated checks passed (the
+ * same rule that makes a pending mod reachable by URL, see `assertReachable`), visible author,
+ * NSFW only when asked for. Never mixed into the regular listing.
+ */
+export function isUnapprovedListable(snapshot: CatalogSnapshot, entry: CatalogEntry, includeNsfw = false): boolean {
+  if (entry.status !== 'pending' || entry.latestChecks !== 'passed') return false;
+  if (entry.nsfw && !includeNsfw) return false;
+  return snapshot.authors.get(entry.userId)?.hidden !== true;
 }
 
 /** Entries shown in public listings: published, visible author, NSFW only when asked for. */

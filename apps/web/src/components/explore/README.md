@@ -1,18 +1,37 @@
-# Explore, listings, hubs and search (WP-54)
+# Catalogue, listings and search
 
-Public listing pages of PLAN §4.2 / T0-06 (research/03 §6.2). Everything is SSR, edge-cached and
-works without JavaScript; `scripts/explore/` only enhances it.
+`/` and `/mods` are one view, the catalogue (an evolution of the old site's mods page); category and
+tag pages render the same rows in one wide column; `/builds` keeps the grid view.
 
 | Route | Page | Cache | Indexable |
 |---|---|---|---|
-| `/mods` (`?type=library\|all`) | `pages/mods/index.astro` | E(300) `list:mods` | base + `?page=N` |
-| `/builds` | `pages/builds/index.astro` | E(300) `list:builds` | base + `?page=N` |
-| `/categories` · `/categories/:slug` | `pages/categories/` | E(900) `category:{slug}` | unless filtered/empty |
-| `/tags` · `/tags/:slug` | `pages/tags/` | E(900) `tag:{slug}` | ≥ 3 items, unfiltered |
-| `/best/:topic` | `pages/best/[topic].astro` + `content/best/` | E(3600) `list:mods` | yes |
+| `/` | `pages/index.astro` (default listing) | E(300) `home`, `list:mods` | yes, canonical of the default listing |
+| `/mods` | `pages/mods/index.astro` | E(300) `list:mods` | `?page=N`; every filter, sort, NSFW or Unapproved view is `noindex, follow` |
+| `/builds` | `pages/builds/index.astro` (`ExploreGridView`) | E(300) `list:builds` | base + `?page=N` |
+| `/categories/:slug` · `/tags/:slug` | `pages/categories`, `pages/tags` (`CatalogView`) | E(900) | unless filtered/empty |
 | `/search?q=` | `pages/search.astro` | E(60) | `noindex` |
 
-## Modules
+`/` redirects (301) any listing parameter to `/mods…`; legacy parameters (`category`, `search`,
+`orderby`, `order_by`, `showunapproved`, `show_unapproved`, `type=Mod|Build|Both|Library`, `nsfw=true`)
+keep redirecting (`legacy.ts`), and so do empty or default values a plain GET form writes.
+
+## Catalogue modules
+
+- `catalog-page.ts` + `CatalogPage.astro`: loader (listing and side blocks in parallel), titles,
+  canonical rule, JSON-LD (`WebSite` + `SearchAction`, `Organization`, `CollectionPage`).
+- `CatalogView.astro`: featured carousel (home, first page), title and count, the sticky toolbar
+  (a GET form: search, category, sort, type, NSFW, Unapproved; on phones the selects sit behind a
+  «Filters» switch), removable chips for filters without a control, the list, `Pagination`, and the
+  aside (site figures + «Mods of the week»).
+- `catalog.ts`: toolbar model and the texts of the `list` `ModCard`; `aside.ts`: stats and weekly
+  ranking (`sort=week`, falling back to trending while an older API answers); `CatalogAside.tsx`,
+  `CatalogList.tsx`: the server-rendered parts.
+- `scripts/explore/catalog.ts`: submits on change, trims empty/default parameters, carousel arrows.
+- Unapproved: `?unapproved=1` asks the API for `pending` mods whose automated checks passed (the rule
+  that makes a pending mod reachable by URL); rows say «Pending approval»; always `noindex`.
+
+## Listing state (shared)
+
 
 - `state.ts` — the URL is the state. `parseExploreState` (tolerant: unknown values ignored),
   `exploreHref` (canonical URL: defaults dropped, stable order, a single category → its hub),
@@ -25,7 +44,7 @@ works without JavaScript; `scripts/explore/` only enhances it.
   radios, sort, order, view, active filters, clear).
 - `load.ts` — loader shared by the listing pages; `seo.ts` — canonical/noindex rules and
   `CollectionPage` + `ItemList` JSON-LD; `copy.ts` — category intros (`explore` namespace).
-- `ExploreView.astro` + `Explore*.tsx` — the UI (React components are server-rendered only).
+- `ExploreView.astro` picks `CatalogView` (mods) or `ExploreGridView` (builds) + `Explore*.tsx` (grid UI).
 - `content/best/hubs.ts` — fixed queries of the GEO hubs; `content/best/<topic>/<locale>.md` —
   editorial intros in the 13 locales (English fallback marked with `lang`).
 
