@@ -6,7 +6,7 @@
  */
 export const emailColors = {
   /** Dark neutral header band (site background). */
-  header: '#15191E',
+  header: '#0E1114',
   page: '#F3F4F6',
   surface: '#FFFFFF',
   fg: '#111418',

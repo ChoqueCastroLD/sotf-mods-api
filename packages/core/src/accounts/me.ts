@@ -40,7 +40,7 @@ import { type PermissionSubject, permissionsOf } from '../permissions/can.ts';
 
 export const DEFAULT_SETTINGS: UserSettingsDTO = {
   locale: null,
-  theme: 'system',
+  theme: 'dark',
   density: 'comfortable',
   reducedMotion: null,
   nsfwOptIn: false,

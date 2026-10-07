@@ -60,7 +60,7 @@ describe('buildSeoHead (PLAN §4.5)', () => {
     const meta = (key: string) =>
       head.metas.filter((tag) => tag.name === key || tag.property === key).map((tag) => tag.content);
     expect(meta('robots')).toEqual(['noindex, follow']);
-    expect(meta('theme-color')).toEqual(['#15191E', '#F6F7F8']);
+    expect(meta('theme-color')).toEqual(['#0E1114', '#F6F7F8']);
     expect(meta('og:image')).toEqual(['https://sotf-mods.com/brand/og-default.png']);
     expect(meta('og:image:alt')).toEqual(['Menu']);
     expect(meta('og:locale')).toEqual(['en_US']);

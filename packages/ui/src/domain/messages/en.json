@@ -69,7 +69,7 @@
   "ui_domain_view_list": "List",
   "ui_domain_view_compact": "Compact",
   "ui_domain_ad_label": "Advertisement",
-  "ui_domain_ad_notice": "Ads keep downloads free. Log in to hide them.",
+  "ui_domain_ad_notice": "Ads keep downloads free.",
   "ui_domain_consent_label": "Cookie consent",
   "ui_domain_consent_text": "We use cookies for ads and anonymous stats. Downloads work either way.",
   "ui_domain_consent_policy": "Cookie policy",

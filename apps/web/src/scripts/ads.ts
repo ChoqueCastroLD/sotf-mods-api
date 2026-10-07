@@ -1,19 +1,20 @@
 /**
  * AdSense without breaking Core Web Vitals (PLAN §8.5):
  *
- * - guests only (no `sotf_li` hint; the HTML never varies), never while prerendering;
+ * - everyone (guests and members, owner decision 2026-10), every route incl. the console; never
+ *   while prerendering;
  * - never on adult content (`?nsfw=1` listings, NSFW mod pages): the server renders no slot there and
  *   this is the second guard;
- * - only on pages that render ad slots (`<ins class="adsbygoogle" data-ad-slot>` inside an
- *   `AdSlot` with reserved `min-height`, WP-25) — pages where ads are forbidden simply have none;
- * - after `load` + idle, after the CMP settles (`consent.ts`), and per slot only when it comes
- *   within 600 px of the viewport; one `adsbygoogle.js` loader, manual units, no Auto Ads.
+ * - never on screens without publisher content (AdSense policy: auth forms, errors, offline):
+ *   those pages carry `data-no-ads` on `<html>` or `<body>`;
+ * - the `adsbygoogle.js` loader is injected on every other page (so Auto ads, when enabled in the
+ *   AdSense dashboard, can place units); manual units (`<ins class="adsbygoogle" data-ad-slot>` in
+ *   an `AdSlot` with reserved `min-height`) are requested when they come within 600 px;
+ * - after `load` + idle and after the CMP settles (`consent.ts`).
  *
  * The publisher id comes from `<meta name="google-adsense-account">` (rendered only when
  * `PUBLIC_ADSENSE_CLIENT` is set), so development and staging never load ads.
  */
-import { hasSignedInHint } from './account-hint.ts';
-
 export const SLOT_SELECTOR = 'ins.adsbygoogle[data-ad-slot]';
 export const MAX_SLOTS_PER_PAGE = 2;
 export const LOAD_MARGIN = '600px 0px';
@@ -71,18 +72,25 @@ export function isAdultPage(doc: Document = document): boolean {
   }
 }
 
-/** Wires the ad slots of the page. Resolves with the number of slots observed. */
+/** Screens without publisher content (login, errors, offline): no ads there (AdSense policy). */
+export function isNoAdsPage(doc: Document = document): boolean {
+  return doc.querySelector('[data-no-ads]') !== null;
+}
+
+/** Wires AdSense on the page. Resolves with the number of manual slots observed. */
 export async function initAds(doc: Document = document): Promise<number> {
   const win = doc.defaultView;
   const client = adClient(doc);
-  if (!win || !client || hasSignedInHint(doc.cookie) || isAdultPage(doc)) return 0;
+  if (!win || !client || isAdultPage(doc) || isNoAdsPage(doc)) return 0;
   const slots = [...doc.querySelectorAll<HTMLElement>(SLOT_SELECTOR)].slice(0, MAX_SLOTS_PER_PAGE);
-  if (slots.length === 0) return 0;
 
   await whenActivated(doc);
   await whenLoadedAndIdle(win);
   const { ensureAdConsent } = await import('./consent.ts');
   if (!(await ensureAdConsent(client, doc))) return 0;
+  // Auto ads (if enabled for the site in AdSense) need only the loader.
+  injectLoader(doc, client);
+  if (slots.length === 0) return 0;
 
   const observer = new IntersectionObserver(
     (entries) => {

@@ -2,7 +2,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { isPaletteShortcut } from '../../islands/cmdk/Trigger.ts';
 import { hasSignedInHint, initAccountHint, initialsOf } from '../../scripts/account-hint.ts';
-import { adClient, initAds } from '../../scripts/ads.ts';
+import { adClient, initAds, isNoAdsPage } from '../../scripts/ads.ts';
 import { pageEntity, trackingAllowed } from '../../scripts/beacon.ts';
 import { consentSettled, publisherId } from '../../scripts/consent.ts';
 import { initLangSuggest, suggestedLocale } from '../../scripts/lang-suggest.ts';
@@ -136,13 +136,17 @@ describe('ads (PLAN §8.5)', () => {
     expect(publisherId('x')).toBeNull();
   });
 
-  it('does nothing for signed-in users, without slots or without a publisher', async () => {
+  it('does nothing without a publisher, on NSFW content or on screens without publisher content', async () => {
+    document.body.innerHTML = '<ins class="adsbygoogle" data-ad-slot="1"></ins>';
     expect(await initAds()).toBe(0);
     document.head.innerHTML = '<meta name="google-adsense-account" content="ca-pub-2799839819522052">';
+    document.body.innerHTML = '<div data-nsfw></div><ins class="adsbygoogle" data-ad-slot="1"></ins>';
     expect(await initAds()).toBe(0);
     document.body.innerHTML = '<ins class="adsbygoogle" data-ad-slot="1"></ins>';
-    setCookie('sotf_li=1; Path=/');
+    document.body.setAttribute('data-no-ads', '');
     expect(await initAds()).toBe(0);
+    document.body.removeAttribute('data-no-ads');
+    expect(isNoAdsPage()).toBe(false);
     expect(document.querySelector('script')).toBeNull();
   });
 

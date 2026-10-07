@@ -231,14 +231,6 @@ html[data-ptr-releasing] [data-ptr] {
   }
 }
 
-/* ---- Ads are for guests only (PLAN §8.5): the HTML is shared, so members hide the boxes once
-   the account hint resolves (`<html data-signed-in>`, scripts/account-hint.ts). Units are never
-   in the first viewport, so hiding them does not shift what the visitor sees. ---------------- */
-html[data-signed-in] [data-ad-slot-container],
-html[data-signed-in] [data-explore-ad] {
-  display: none;
-}
-
 /* ---- Horizontal scrollers (tab strips, chip rows, filter bars). No native scrollbar: Windows
    draws one with arrow buttons that looks broken under a tab bar. Instead the strip fades at the
    edge that has more content (driven by the scroll position, no JS, where the browser supports
@@ -522,5 +514,46 @@ html[data-signed-in] [data-account-slot]:not(:has([data-account-user]:not([hidde
 @media (min-width: 64rem) {
   [data-defer-footer] {
     --defer-h: 20.25rem;
+  }
+}
+
+/* ---- Cursors: everything clickable shows the hand, draggable things the grab hand, disabled
+   controls "not allowed" (owner request). Tailwind's preflight resets buttons to the default
+   arrow, so this restores the affordance in one place for the site and the console. ---------- */
+@layer base {
+  a[href],
+  button,
+  summary,
+  select,
+  label[for],
+  label:has(> input:is([type="checkbox"], [type="radio"], [type="file"])),
+  input:is([type="checkbox"], [type="radio"], [type="file"], [type="color"], [type="range"], [type="submit"], [type="button"], [type="reset"]),
+  [role="button"],
+  [role="link"],
+  [role="tab"],
+  [role="switch"],
+  [role="checkbox"],
+  [role="radio"],
+  [role="option"],
+  [role="menuitem"],
+  [role="menuitemradio"],
+  [role="menuitemcheckbox"],
+  [data-clickable] {
+    cursor: pointer;
+  }
+  [draggable="true"],
+  [data-draggable] {
+    cursor: grab;
+  }
+  [draggable="true"]:active,
+  [data-draggable]:active,
+  [data-dragging],
+  input[type="range"]:active {
+    cursor: grabbing;
+  }
+  :disabled,
+  [aria-disabled="true"],
+  [data-disabled] {
+    cursor: not-allowed;
   }
 }

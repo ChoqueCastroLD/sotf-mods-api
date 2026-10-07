@@ -18,10 +18,10 @@ export const palette = {
     500: '#6B7280',
     600: '#4B5563',
     700: '#3D4651',
-    800: '#2A323C',
-    900: '#1D232A',
-    950: '#15191E',
-    975: '#111418',
+    800: '#2B343E',
+    900: '#151A1F',
+    950: '#0E1114',
+    975: '#0A0C0F',
   },
   /** The one accent: the red of the SOTF-MODS logo. `500` is the primary, `600` its hover. */
   flare: {

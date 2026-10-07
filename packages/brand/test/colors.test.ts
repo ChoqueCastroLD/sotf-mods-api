@@ -24,7 +24,7 @@ describe('logo colours', () => {
   it('use the red of the old logo on both themes', () => {
     expect(logoColors.night.flare).toBe('#FE0E0F');
     expect(logoColors.day.flare).toBe('#FE0E0F');
-    expect(logoColors.night.background).toBe('#15191E');
+    expect(logoColors.night.background).toBe('#0E1114');
   });
 
   for (const theme of ['night', 'day'] as const) {
@@ -36,9 +36,9 @@ describe('logo colours', () => {
   }
 
   it('keeps the dark neutrals of the visual direction', () => {
-    expect(palette.night[950]).toBe('#15191E');
-    expect(palette.night[900]).toBe('#1D232A');
-    expect(palette.night[800]).toBe('#2A323C');
+    expect(palette.night[950]).toBe('#0E1114');
+    expect(palette.night[900]).toBe('#151A1F');
+    expect(palette.night[800]).toBe('#2B343E');
     expect(palette.flare[500]).toBe('#E11D1D');
     expect(palette.flare[600]).toBe('#C81414');
   });

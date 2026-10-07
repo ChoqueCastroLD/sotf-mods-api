@@ -60,6 +60,12 @@ interface Props {
 
 const { seo, jsonLd, template, preloadImage, chrome = true, boot = true, pullToRefresh, mainClass, entity } = Astro.props;
 const withRefresh = chrome && (pullToRefresh ?? PULL_TO_REFRESH_TEMPLATES.has(template));
+/** Screens without publisher content get no ads (AdSense policy; `scripts/ads.ts`). */
+const NO_ADS_TEMPLATES: ReadonlySet<string> = new Set([
+  'login', 'register', 'logout', 'forgot-password', 'reset-password', 'verify-email', 'oauth-link',
+  'unsubscribe', 'not-found', 'server-error', 'gone', 'offline',
+]);
+const noAds = NO_ADS_TEMPLATES.has(template);
 const env = loadEnv();
 const locale = ensureLocals(Astro).locale;
 ---
@@ -100,7 +106,7 @@ const locale = ensureLocals(Astro).locale;
     <script is:inline type="speculationrules" set:html={SPECULATION_RULES_JSON} />
     <slot name="head" />
   </head>
-  <body class="bg-bg text-fg">
+  <body class="bg-bg text-fg" data-no-ads={noAds ? '' : undefined}>
     <SkipLink />
     {chrome && <Header />}
     {chrome && <SiteBanners />}

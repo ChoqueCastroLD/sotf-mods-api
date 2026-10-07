@@ -20,7 +20,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SOURCES = join(ROOT, 'sources');
 
 /** Page background of the dark theme: the tile colour of Apple, maskable and OG images. */
-export const DARK_BACKGROUND = '#15191E';
+export const DARK_BACKGROUND = '#0E1114';
 
 /** Progress output for the CLI (stdout; errors go to stderr). */
 export function log(message: string): void {

@@ -228,6 +228,7 @@ export function ImageCropDialog({ file, purpose, onCancel, onCropped }: ImageCro
               aria-roledescription={m.settings_crop_roledescription()}
               aria-label={m.settings_crop_label()}
               onKeyDown={onKeyDown}
+              data-draggable=""
               onPointerDown={onPointerDown}
               onPointerMove={onPointerMove}
               onPointerUp={onPointerUp}

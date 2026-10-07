@@ -46,7 +46,7 @@ async function buildSplash() {
     const logoHeight = Math.round(Math.min(height * 0.2, (width * 0.5 * logoH) / logoW));
     const mark = await sharp(logo).resize({ height: logoHeight }).toBuffer();
     const file = join(web, 'public/pwa', `splash-${width}x${height}.jpg`);
-    const info = await sharp({ create: { width, height, channels: 3, background: '#15191E' } })
+    const info = await sharp({ create: { width, height, channels: 3, background: '#0E1114' } })
       .composite([{ input: mark, gravity: 'center' }])
       .jpeg({ quality: 84, mozjpeg: true, chromaSubsampling: '4:2:0' })
       .toFile(file);
