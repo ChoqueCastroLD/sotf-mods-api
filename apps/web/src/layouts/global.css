@@ -90,6 +90,24 @@ html[data-relogin] [data-relogin-banner] {
   }
 }
 
+/* ---- Bars pinned right under the site header on phones (mod/build section tabs): no gap under
+   the 52 px bar (+1 px border), and they slide up with it while scrolling down (transform only, so
+   no layout shift), staying flush with the top of the screen. ------------------------------------ */
+@media (max-width: 47.999rem) {
+  .sticky-under-header {
+    top: calc(var(--topbar-h) + 1px + var(--safe-top));
+    transition: transform var(--dur-slow) var(--ease-out);
+  }
+  html[data-scroll-dir="down"]:not(:has([data-site-header]:focus-within)) .sticky-under-header {
+    transform: translateY(calc(-1 * (var(--topbar-h) + 1px)));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .sticky-under-header {
+    transition: none;
+  }
+}
+
 /* Touch: the header's account controls (guest «Sign in», avatar) keep their look but get a 44 px hit area. */
 @media (pointer: coarse) {
   [data-account-guest],
