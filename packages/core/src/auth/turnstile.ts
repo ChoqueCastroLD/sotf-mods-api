@@ -24,8 +24,22 @@ export interface TurnstileOptions {
   log?: Logger;
 }
 
+/**
+ * Cloudflare's documented dummy secrets (always pass / always fail / token already spent). They
+ * validate nothing, so in production they leave registration, logins and password resets without
+ * the human check.
+ */
+export function isTurnstileTestSecret(secret: string | undefined): boolean {
+  return /^[123]x0{31}AA$/.test(secret ?? '');
+}
+
 export function createTurnstileVerifier(options: TurnstileOptions): TurnstileVerifier {
   const doFetch = options.fetch ?? fetch;
+  if (options.production && isTurnstileTestSecret(options.secret)) {
+    options.log?.error(
+      'TURNSTILE_SECRET_KEY is a Cloudflare test secret in production: the human check is not enforced',
+    );
+  }
   return {
     async verify(token, remoteIp) {
       if (!options.secret) {

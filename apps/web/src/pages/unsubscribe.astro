@@ -11,7 +11,7 @@
  * temporary failure with «Try again» and the reference. Every state links to
  * `/settings/notifications`, where each kind of email can be changed.
  *
- * The URL carries a secret: never cached, no `Referer`, `noindex`, no ads.
+ * The URL carries a secret: never cached, no `Referer` to other sites, `noindex`, no ads.
  */
 import { isApiError } from '@sotf/contracts/client';
 import { m } from '@sotf/i18n/messages';
@@ -28,7 +28,10 @@ export const prerender = false;
 type State = 'confirm' | 'done' | 'invalid' | 'rate-limited' | 'failed';
 
 setPageCache(Astro, false);
-Astro.response.headers.set('referrer-policy', 'no-referrer');
+// `same-origin`, not `no-referrer`: with `no-referrer` browsers send `Origin: null` on the confirmation
+// form's POST and Astro's origin check answers «Cross-site POST form submissions are forbidden».
+// Other sites still never see the token URL.
+Astro.response.headers.set('referrer-policy', 'same-origin');
 Astro.response.headers.set('cache-control', 'private, no-store');
 const locals = ensureLocals(Astro);
 const locale = locals.locale;

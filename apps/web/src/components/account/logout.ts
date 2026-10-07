@@ -2,10 +2,10 @@
  * Server side of `/logout` (PLAN §4.2, §4.6: legacy `/logout` → sign out → 303 `/`).
  *
  * - `POST` (the account menu's form; Astro's `checkOrigin` rejects cross-site posts) and `GET`
- *   when the browser says the navigation is same-origin or typed by the user (`Sec-Fetch-Site:
- *   same-origin | none`, or no Fetch Metadata at all) sign out right away.
- * - A cross-site `GET` (a link on another site, an `<img>`) must not sign anyone out (logout CSRF):
- *   the page asks for confirmation with a button that posts the form instead.
+ *   when the browser says it is the user's own navigation (`Sec-Fetch-Site: same-origin | none` on a
+ *   `navigate` to a `document`, or no Fetch Metadata at all) sign out right away.
+ * - Any other `GET` (a link on another site, an `<img>` or frame, a prefetch) must not sign anyone
+ *   out (logout CSRF): the page asks for confirmation with a button that posts the form instead.
  *
  * Signing out = revoke the session through the API (the web forwards the session cookie on the
  * private network; requests without Fetch Metadata or Origin pass the API's CSRF rule because
@@ -21,12 +21,22 @@ export const LOGOUT_TIMEOUT_MS = 3000;
 
 export type LogoutDecision = 'sign-out' | 'confirm';
 
-/** Whether a request may sign out immediately (see the module comment). */
+/**
+ * Whether a request may sign out immediately (see the module comment): a `POST`, or a `GET` that is
+ * the user's own top-level navigation. A same-origin `<img src="/logout">` (user content may carry
+ * one), a script, a frame, a `fetch()` or a speculative prefetch/prerender is not the user asking to
+ * sign out, so it gets the confirmation page instead.
+ */
 export function logoutDecision(method: string, headers: Headers): LogoutDecision {
   if (method === 'POST') return 'sign-out';
+  if (headers.has('sec-purpose')) return 'confirm';
   const site = headers.get('sec-fetch-site')?.trim().toLowerCase();
-  if (site === undefined || site === 'same-origin' || site === 'none') return 'sign-out';
-  return 'confirm';
+  if (site === undefined) return 'sign-out';
+  if (site !== 'same-origin' && site !== 'none') return 'confirm';
+  const mode = headers.get('sec-fetch-mode')?.trim().toLowerCase();
+  const dest = headers.get('sec-fetch-dest')?.trim().toLowerCase();
+  if ((mode !== undefined && mode !== 'navigate') || (dest !== undefined && dest !== 'document')) return 'confirm';
+  return 'sign-out';
 }
 
 /** Value of one cookie of a `Cookie` header (null when absent). */
@@ -53,6 +63,8 @@ export interface RevokeOptions {
   apiUrl: string;
   cookieHeader: string | null;
   clientIp?: string | null;
+  /** Address of the connection as this server saw it (Cloudflare's edge); see `forwardedHeaders`. */
+  clientAddress?: string | null;
   userAgent?: string | null;
   fetchImpl?: typeof fetch;
   timeoutMs?: number;
@@ -74,6 +86,8 @@ export async function revokeSession(options: RevokeOptions): Promise<boolean> {
     'user-agent': options.userAgent || 'sotf-web-ssr',
   };
   if (options.clientIp) headers['cf-connecting-ip'] = options.clientIp;
+  // The API believes `CF-Connecting-IP` only when the connection is Cloudflare's (read from here).
+  if (options.clientAddress) headers['x-forwarded-for'] = options.clientAddress;
   try {
     const response = await doFetch(`${options.apiUrl}/api/v2/auth/logout`, {
       method: 'POST',

@@ -8,7 +8,7 @@ import { cache, defineEndpoint } from '@sotf/contracts';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { z } from 'zod';
 import { defineModule } from '../src/lib/define-module.ts';
-import { API_HSTS, API_PERMISSIONS_POLICY, CSP_REPORT_PATH } from '../src/plugins/security/index.ts';
+import { API_HSTS, API_PERMISSIONS_POLICY, CSP_REPORT_PATH, SITE_HSTS } from '../src/plugins/security/index.ts';
 import { buildTestApp, TEST_SITE_URL, type TestApp } from '../src/testing.ts';
 
 const endpoints = {
@@ -84,9 +84,18 @@ afterAll(async () => {
 describe('security headers', () => {
   it('sends HSTS (6 months, no preload), Permissions-Policy and X-Robots-Tag on every response', async () => {
     const res = await t.app.inject({ method: 'GET', url: '/healthz' });
-    expect(res.headers['strict-transport-security']).toBe(API_HSTS);
+    expect(res.headers['strict-transport-security']).toBe(SITE_HSTS);
     expect(res.headers['permissions-policy']).toBe(API_PERMISSIONS_POLICY);
     expect(res.headers['x-robots-tag']).toContain('noindex');
+  });
+
+  it('puts includeSubDomains on the api. host only, never on sotf-mods.com/api (HSTS is per host)', async () => {
+    const viaPath = await t.app.inject({ method: 'GET', url: '/healthz', headers: { host: 'sotf-mods.com' } });
+    expect(viaPath.headers['strict-transport-security']).toBe(SITE_HSTS);
+    expect(SITE_HSTS).not.toContain('includeSubDomains');
+    const viaApiHost = await t.app.inject({ method: 'GET', url: '/healthz', headers: { host: 'api.sotf-mods.com' } });
+    expect(viaApiHost.headers['strict-transport-security']).toBe(API_HSTS);
+    expect(API_HSTS).toContain('includeSubDomains');
   });
 
   it('makes every cookie-setting response private', async () => {

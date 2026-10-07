@@ -43,18 +43,32 @@ const PLACEHOLDER = {
 const SAFE_PROFILE_NAMES = new Set(['public', 'default', 'all users', 'default user', '<user>', 'shared']);
 
 /** `C:\Users\Name\`, `C:/Users/Name/`, `Z:\home\name\`, `/home/name/`, `/Users/name/`. */
-const USER_PATH = /((?:[A-Za-z]:)?[\\/]+(?:Users|home)[\\/]+)([^\\/\r\n<>:*?"|]+)(?=[\\/])/g;
+const USER_PATH = /((?:[A-Za-z]:)?[\\/]{1,4}(?:Users|home)[\\/]{1,4})([^\\/\r\n<>:*?"|]{1,64})(?=[\\/])/g;
 /** A user folder written with a doubled backslash inside escaped strings (`C:\\Users\\Name\\`). */
 const USER_PATH_ESCAPED = /([A-Za-z]:\\\\Users\\\\)([^\\/\r\n<>:*?"|]+)(?=\\\\)/g;
+
+/**
+ * The same folders when nothing follows the account name (`USERPROFILE=C:\\Users\\bob`, `cwd: /home/bob`,
+ * `"C:\\Users\\Bob Smith"`): the name ends at a quote, a pipe or the end of the line (spaces allowed), or,
+ * unquoted, at the first space or separator. Never starts inside a URL path or a longer word.
+ */
+const USER_PATH_END_QUOTED =
+  /(?<![\w.%~-])((?:[A-Za-z]:)?[\\/]{1,4}(?:Users|home)[\\/]{1,4})([^\\/\s<>:*?"'|,;()[\]][^\\/\r\n<>:*?"'|,;()[\]]{0,63}?)(?=["'|]|\s*$)/g;
+const USER_PATH_END_BARE =
+  /(?<![\w.%~-])((?:[A-Za-z]:)?[\\/]{1,4}(?:Users|home)[\\/]{1,4})([^\\/\s<>:*?"'|,;()[\]]{1,64})/g;
+const USER_PATH_ESCAPED_END = /(?<![\w.%~-])([A-Za-z]:\\\\Users\\\\)([^\\/\s<>:*?"'|,;()[\]]{1,64})/g;
 
 const STEAM_ID64 = /(?<![\w.])7656119\d{10}(?![\w])/g;
 const STEAM_ID_LEGACY = /\bSTEAM_[0-5]:[01]:\d{3,12}\b/g;
 const STEAM_ID3 = /\[U:[0-5]:\d{3,12}(?::\d+)?\]/g;
 
 const IPV4 = /(?<![\w.:-])((?:25[0-5]|2[0-4]\d|1?\d?\d)(?:\.(?:25[0-5]|2[0-4]\d|1?\d?\d)){3})(?![\w.]*\d)(?!\.\d)/g;
-const IPV6_FULL = /(?<![\w:])(?:[0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4}(?![\w:])/g;
+/** IPv4 as .NET and Node print it for dual-stack sockets: `::ffff:84.12.201.7`. */
+const IPV4_MAPPED =
+  /(?<![\w:])::ffff:((?:25[0-5]|2[0-4]\d|1?\d?\d)(?:\.(?:25[0-5]|2[0-4]\d|1?\d?\d)){3})(?![\w.]*\d)/gi;
+const IPV6_FULL = /(?<![\w:])(?:[0-9A-Fa-f]{1,4}:){7}[0-9A-Fa-f]{1,4}(?![\w:])(?!\.\d)/g;
 const IPV6_COMPRESSED =
-  /(?<![\w:])(?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4}){0,6})?::(?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4}){0,6})?(?![\w:])/g;
+  /(?<![\w:])(?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4}){0,6})?::(?:[0-9A-Fa-f]{1,4}(?::[0-9A-Fa-f]{1,4}){0,6})?(?![\w:])(?!\.\d)/g;
 
 const EMAIL = /[A-Za-z0-9._%+-]{1,64}@[A-Za-z0-9-]{1,63}(?:\.[A-Za-z0-9-]{1,63}){1,6}/g;
 
@@ -140,12 +154,15 @@ function redactLine(line: string, counts: LogRedactionCounts): string {
   });
 
   const pathFix = (whole: string, prefix: string, name: string): string => {
-    if (SAFE_PROFILE_NAMES.has(name.toLowerCase())) return whole;
+    if (SAFE_PROFILE_NAMES.has(name.trim().toLowerCase())) return whole;
     bump('paths');
-    return `${prefix}${PLACEHOLDER.user}`;
+    return `${prefix}${PLACEHOLDER.user}${/\s*$/.exec(name)?.[0] ?? ''}`;
   };
   out = out.replace(USER_PATH_ESCAPED, pathFix);
   out = out.replace(USER_PATH, pathFix);
+  out = out.replace(USER_PATH_ESCAPED_END, pathFix);
+  out = out.replace(USER_PATH_END_QUOTED, pathFix);
+  out = out.replace(USER_PATH_END_BARE, pathFix);
 
   out = out.replace(STEAM_ID64, () => {
     bump('steamIds');
@@ -160,6 +177,11 @@ function redactLine(line: string, counts: LogRedactionCounts): string {
     return PLACEHOLDER.steam;
   });
 
+  out = out.replace(IPV4_MAPPED, (whole: string, ip: string) => {
+    if (isHarmlessIpv4(ip, '', '')) return whole;
+    bump('ips');
+    return PLACEHOLDER.ip;
+  });
   out = out.replace(IPV4, (whole: string, ip: string, offset: number, source: string) => {
     if (
       isHarmlessIpv4(

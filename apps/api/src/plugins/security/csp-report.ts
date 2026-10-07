@@ -20,6 +20,7 @@
  *
  * Always answers `204` (browsers ignore the response; errors would only generate retries).
  */
+import { cleanPath } from '@sotf/core/analytics/ingest';
 import type { FastifyBaseLogger, FastifyInstance, FastifyRequest } from 'fastify';
 
 export const CSP_REPORT_PATH = '/api/v2/security/csp-report';
@@ -100,7 +101,8 @@ function fromFields(fields: Record<string, unknown>, legacy: boolean): CspViolat
   const sourceFile = scrubUrl(text(pick('sourceFile', 'source-file'), 2048));
   const disposition = text(pick('disposition', 'disposition'), 16) === 'report' ? 'report' : 'enforce';
   return {
-    documentPath: document.pathname.slice(0, 300),
+    // Secrets that live in a path (a shared log's id) never reach the logs.
+    documentPath: document.pathname === '' ? '' : cleanPath(document.pathname).slice(0, 300),
     documentOrigin: document.origin,
     blocked,
     directive: directiveName(

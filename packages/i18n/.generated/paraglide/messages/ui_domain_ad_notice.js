@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ui_Domain_Ad_NoticeInputs */
 
 const en_ui_domain_ad_notice = /** @type {(inputs: Ui_Domain_Ad_NoticeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ads keep downloads free. Log in to hide them.`)
+	return /** @type {LocalizedString} */ (`Ads keep downloads free.`)
 };
 
 const es_ui_domain_ad_notice = /** @type {(inputs: Ui_Domain_Ad_NoticeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Los anuncios mantienen gratis las descargas. Inicia sesión para ocultarlos.`)
+	return /** @type {LocalizedString} */ (`Los anuncios mantienen las descargas gratis.`)
 };
 
 const de_ui_domain_ad_notice = /** @type {(inputs: Ui_Domain_Ad_NoticeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Werbung hält die Downloads kostenlos. Melde dich an, um sie auszublenden.`)
+	return /** @type {LocalizedString} */ (`Werbung hält die Downloads kostenlos.`)
 };
 
 const fr_ui_domain_ad_notice = /** @type {(inputs: Ui_Domain_Ad_NoticeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Les publicités gardent les téléchargements gratuits. Connectez-vous pour les masquer.`)
+	return /** @type {LocalizedString} */ (`La publicité garde les téléchargements gratuits.`)
 };
 
 const it_ui_domain_ad_notice = /** @type {(inputs: Ui_Domain_Ad_NoticeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`La pubblicità mantiene gratuiti i download. Accedi per nasconderla.`)
+	return /** @type {LocalizedString} */ (`Gli annunci mantengono gratuiti i download.`)
 };
 
 const nl_ui_domain_ad_notice = /** @type {(inputs: Ui_Domain_Ad_NoticeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Advertenties houden downloads gratis. Log in om ze te verbergen.`)
+	return /** @type {LocalizedString} */ (`Advertenties houden downloads gratis.`)
 };
 
 const pl_ui_domain_ad_notice = /** @type {(inputs: Ui_Domain_Ad_NoticeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Reklamy utrzymują darmowe pobieranie. Zaloguj się, aby je ukryć.`)
+	return /** @type {LocalizedString} */ (`Reklamy pozwalają utrzymać darmowe pobieranie.`)
 };
 
 const pt_ui_domain_ad_notice = /** @type {(inputs: Ui_Domain_Ad_NoticeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Os anúncios mantêm os downloads grátis. Entre para escondê-los.`)
+	return /** @type {LocalizedString} */ (`Os anúncios mantêm os downloads gratuitos.`)
 };
 
 const ru_ui_domain_ad_notice = /** @type {(inputs: Ui_Domain_Ad_NoticeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Реклама помогает сохранять скачивание бесплатным. Войдите, чтобы скрыть её.`)
+	return /** @type {LocalizedString} */ (`Реклама помогает сохранять загрузки бесплатными.`)
 };
 
 const sv_ui_domain_ad_notice = /** @type {(inputs: Ui_Domain_Ad_NoticeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Annonser håller nedladdningarna gratis. Logga in för att dölja dem.`)
+	return /** @type {LocalizedString} */ (`Annonser håller nedladdningarna gratis.`)
 };
 
 const tr_ui_domain_ad_notice = /** @type {(inputs: Ui_Domain_Ad_NoticeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Reklamlar indirmeleri ücretsiz tutar. Gizlemek için giriş yap.`)
+	return /** @type {LocalizedString} */ (`Reklamlar indirmeleri ücretsiz tutar.`)
 };
 
 const zh_ui_domain_ad_notice = /** @type {(inputs: Ui_Domain_Ad_NoticeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`广告让下载保持免费。登录即可隐藏广告。`)
+	return /** @type {LocalizedString} */ (`广告让下载保持免费。`)
 };
 
 const ja_ui_domain_ad_notice = /** @type {(inputs: Ui_Domain_Ad_NoticeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`広告のおかげでダウンロードは無料です。ログインすると非表示になります。`)
+	return /** @type {LocalizedString} */ (`広告によってダウンロードは無料で提供されています。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Ads keep downloads free. Log in to hide them." |
+* | "Ads keep downloads free." |
 *
 * @param {Ui_Domain_Ad_NoticeInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

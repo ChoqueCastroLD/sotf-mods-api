@@ -9,6 +9,7 @@
   "oauth_error_banned": "Mit diesem Konto ist keine Anmeldung möglich.",
   "oauth_error_already_linked": "Dieses Discord-Konto ist bereits mit einem anderen Benutzer verknüpft.",
   "oauth_error_unavailable": "Die Anmeldung mit Discord ist derzeit nicht verfügbar.",
+  "oauth_error_two_factor": "Dieses Konto nutzt die Zwei-Faktor-Authentifizierung. Melde dich mit Passwort und Code an und verknüpfe Discord dann in den Einstellungen.",
   "oauth_link_meta_title": "Discord mit deinem Konto verknüpfen",
   "oauth_link_meta_description": "Bestätige dein Passwort, um Discord mit deinem bestehenden Konto zu verknüpfen.",
   "oauth_link_heading": "Verknüpfe dein Discord-Konto",

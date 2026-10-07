@@ -24,8 +24,9 @@ import { and, eq, sql } from 'drizzle-orm';
 import type { z } from 'zod';
 import { buildMetaOf, inspectBlueprint } from '../builds/blueprint.ts';
 import type { Ctx } from '../kernel/context.ts';
+import { DomainError } from '../kernel/errors.ts';
 import type { ObjectStorage } from '../storage/client.ts';
-import { quarantineUpload } from '../uploads/service.ts';
+import { objectChanged, quarantineUpload } from '../uploads/service.ts';
 import { checkAgainstMod, inspectionStatus } from './checks.ts';
 import { presignedRangeSource, type RandomAccessSource } from './reader.ts';
 import { inspectZip } from './zip.ts';
@@ -46,6 +47,8 @@ export interface InspectionDetail {
 }
 
 interface UploadRef {
+  /** ETag recorded when the upload was completed (see `UploadResultRef.etag`). */
+  etag?: unknown;
   inspection?: unknown;
   inspectionEntries?: unknown;
   [key: string]: unknown;
@@ -55,8 +58,8 @@ function refOf(row: Pick<Upload, 'resultRef'>): UploadRef {
   return (row.resultRef ?? {}) as UploadRef;
 }
 
-async function sha256Of(storage: ObjectStorage, bucket: string, key: string): Promise<string> {
-  const { body } = await storage.get(bucket, key);
+async function sha256Of(storage: ObjectStorage, bucket: string, key: string, ifMatch?: string): Promise<string> {
+  const { body } = await storage.get(bucket, key, ifMatch ? { ifMatch } : {});
   const hash = createHash('sha256');
   for await (const chunk of body as AsyncIterable<Buffer>) hash.update(chunk);
   return hash.digest('hex');
@@ -68,8 +71,9 @@ async function readSmall(
   bucket: string,
   key: string,
   maxBytes: number,
+  ifMatch?: string,
 ): Promise<Buffer | null> {
-  const { body } = await storage.get(bucket, key);
+  const { body } = await storage.get(bucket, key, ifMatch ? { ifMatch } : {});
   const chunks: Buffer[] = [];
   let total = 0;
   for await (const chunk of body as AsyncIterable<Buffer>) {
@@ -235,6 +239,26 @@ export async function saveVersionInspection(
     .onConflictDoUpdate({ target: versionInspection.modVersionId, set: { ...values } });
 }
 
+/**
+ * The object was replaced after the upload was completed (the presigned PUT lives 15 minutes): what
+ * was checked is no longer what is stored, so the upload is rejected and the object deleted.
+ */
+async function rejectChangedObject(
+  ctx: Ctx,
+  storage: ObjectStorage,
+  row: Upload,
+): Promise<Extract<InspectionOutcome, { status: 'skipped' }>> {
+  await ctx.db
+    .update(upload)
+    .set({ status: 'rejected', error: 'object_changed', completedAt: ctx.clock.now() })
+    .where(and(eq(upload.id, row.id), sql`NOT (coalesce(${upload.resultRef}, '{}'::jsonb) ? 'inspection')`));
+  await storage.delete(row.bucket, row.key).catch((error: unknown) => {
+    ctx.log.warn({ err: error, uploadId: row.id }, 'could not delete a replaced upload (lifecycle rule will)');
+  });
+  ctx.log.warn({ uploadId: row.id }, 'upload object changed after it was completed: rejected');
+  return { status: 'skipped', reason: 'object_changed' };
+}
+
 /** Runs the inspection of an upload (the `inspection.run` job). */
 export async function runInspection(
   ctx: Ctx,
@@ -250,23 +274,37 @@ export async function runInspection(
     return { status: 'skipped', reason: `status_${row.status}` };
   }
 
+  const before = await storage.head(row.bucket, row.key);
+  if (!before) return { status: 'skipped', reason: 'object_missing' };
+  if (objectChanged(ref, before)) return rejectChangedObject(ctx, storage, row);
+  // Every read below is conditional on this ETag: a presigned PUT that swaps the object meanwhile
+  // fails them instead of letting the checks mix two files.
+  const pin = typeof ref.etag === 'string' ? ref.etag : (before.etag ?? undefined);
+
   let detail: InspectionDetail;
-  if (row.purpose === 'mod_file') {
-    const maxBytes = (await verifiedCreator(ctx, row.userId))
-      ? FILE_CHECKS.maxModBytesVerified
-      : FILE_CHECKS.maxModBytes;
-    const head = await storage.head(row.bucket, row.key);
-    if (!head) return { status: 'skipped', reason: 'object_missing' };
-    const [sha256, source] = await Promise.all([
-      sha256Of(storage, row.bucket, row.key),
-      presignedRangeSource(storage, row.bucket, row.key, head.size),
-    ]);
-    detail = await inspectModArchive(source, { sha256, maxBytes });
-    ctx.log.debug({ uploadId: row.id, rangeRequests: source.requests }, 'zip inspected with range reads');
-  } else {
-    const buffer = await readSmall(storage, row.bucket, row.key, FILE_CHECKS.maxBuildBytes);
-    detail = buffer === null ? tooLargeBuild(row.declaredBytes) : inspectBuildFile(buffer);
+  try {
+    if (row.purpose === 'mod_file') {
+      const maxBytes = (await verifiedCreator(ctx, row.userId))
+        ? FILE_CHECKS.maxModBytesVerified
+        : FILE_CHECKS.maxModBytes;
+      const [sha256, source] = await Promise.all([
+        sha256Of(storage, row.bucket, row.key, pin),
+        presignedRangeSource(storage, row.bucket, row.key, before.size, pin ? { ifMatch: pin } : {}),
+      ]);
+      detail = await inspectModArchive(source, { sha256, maxBytes });
+      ctx.log.debug({ uploadId: row.id, rangeRequests: source.requests }, 'zip inspected with range reads');
+    } else {
+      const buffer = await readSmall(storage, row.bucket, row.key, FILE_CHECKS.maxBuildBytes, pin);
+      detail = buffer === null ? tooLargeBuild(row.declaredBytes) : inspectBuildFile(buffer);
+    }
+  } catch (error) {
+    if (error instanceof DomainError && error.code === 'CONFLICT') return rejectChangedObject(ctx, storage, row);
+    throw error;
   }
+  // Still the object that was completed? (it is read in several requests, and a presigned PUT can swap it)
+  const after = await storage.head(row.bucket, row.key);
+  if (!after) return { status: 'skipped', reason: 'object_missing' };
+  if (after.etag !== before.etag || objectChanged(ref, after)) return rejectChangedObject(ctx, storage, row);
   const dto = withModChecks(detail.dto, await targetOf(ctx, row.id, input.modVersionId));
 
   const now = ctx.clock.now();
@@ -302,7 +340,16 @@ export async function runInspection(
       ctx.log.warn({ err: error, uploadId: row.id }, 'could not delete a failed upload (lifecycle rule will)');
     });
   } else if (dto.status === 'flagged') {
-    await quarantineUpload(ctx, storage, row.id);
+    try {
+      await quarantineUpload(ctx, storage, row.id);
+    } catch (error) {
+      if (!(error instanceof DomainError) || error.code !== 'CONFLICT') throw error;
+      // Replaced between the check and the copy: nothing that was inspected is kept.
+      await ctx.db.update(upload).set({ status: 'rejected', error: 'object_changed' }).where(eq(upload.id, row.id));
+      await storage.delete(row.bucket, row.key).catch(() => undefined);
+      ctx.log.warn({ uploadId: row.id }, 'upload object changed while it was quarantined: rejected');
+      return { status: 'skipped', reason: 'object_changed' };
+    }
   }
   ctx.log.info({ uploadId: row.id, status: dto.status, flags: dto.flags.length }, 'upload inspected');
   return { status: dto.status === 'pending' ? 'flagged' : dto.status, inspection: dto };

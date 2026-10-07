@@ -53,6 +53,7 @@ const OAUTH_ERRORS = {
   banned: 'oauth_error_banned',
   already_linked: 'oauth_error_already_linked',
   unavailable: 'oauth_error_unavailable',
+  two_factor: 'oauth_error_two_factor',
 } as const;
 
 function oauthErrorKey(code: string): (typeof OAUTH_ERRORS)[keyof typeof OAUTH_ERRORS] {

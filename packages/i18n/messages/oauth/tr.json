@@ -9,6 +9,7 @@
   "oauth_error_banned": "Bu hesap oturum açamaz.",
   "oauth_error_already_linked": "Bu Discord hesabı zaten başka bir kullanıcıya bağlı.",
   "oauth_error_unavailable": "Discord ile giriş şu anda kullanılamıyor.",
+  "oauth_error_two_factor": "Bu hesap iki adımlı doğrulama kullanıyor. Parolan ve kodunla giriş yap, ardından Discord’u ayarlardan bağla.",
   "oauth_link_meta_title": "Discord’u hesabına bağla",
   "oauth_link_meta_description": "Mevcut hesabına Discord’u bağlamak için parolanı doğrula.",
   "oauth_link_heading": "Discord hesabını bağla",

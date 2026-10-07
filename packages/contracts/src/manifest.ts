@@ -73,6 +73,29 @@ function normaliseKeys(value: unknown, canonical: readonly string[]): unknown {
   return out;
 }
 
+/**
+ * Text that PostgreSQL `jsonb` can store: U+0000 and lone surrogates (both legal in a JSON string, so
+ * a manifest can carry them) make the whole insert fail, and with it the inspection job.
+ */
+export function wellFormedText(text: string): string {
+  // No `String.prototype.toWellFormed` (Safari < 16.4 runs the upload wizard, which shares this module)
+  // and no lookbehind: a surrogate pair is kept, a lone surrogate and U+0000 become U+FFFD.
+  return text.replace(
+    // biome-ignore lint/suspicious/noControlCharactersInRegex: U+0000 is what is being replaced
+    /[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDFFF]|\u0000/g,
+    (match) => (match.length === 2 ? match : '\uFFFD'),
+  );
+}
+
+function cleanStrings(value: unknown): unknown {
+  if (typeof value === 'string') return wellFormedText(value);
+  if (Array.isArray(value)) return value.map(cleanStrings);
+  if (value !== null && typeof value === 'object') {
+    return Object.fromEntries(Object.entries(value).map(([key, v]) => [wellFormedText(key), cleanStrings(v)]));
+  }
+  return value;
+}
+
 function stripBom(text: string): string {
   return text.charCodeAt(0) === 0xfeff ? text.slice(1) : text;
 }
@@ -273,7 +296,7 @@ export function parseRedLoaderManifest(input: unknown): ParseResult<RedLoaderMan
       warnings.push({ code: 'invalid_field', severity: 'warning', field, message: `${field} is missing` });
     }
   }
-  return { ok: true, value: parsed.data, warnings };
+  return { ok: true, value: cleanStrings(parsed.data) as RedLoaderManifest, warnings };
 }
 
 /** Same as `parseRedLoaderManifest` from the raw file text (handles a UTF-8 BOM). */
@@ -412,12 +435,12 @@ export function parseBuildShareBlueprint(input: unknown): ParseResult<BlueprintS
     ok: true,
     warnings,
     value: {
-      guid: bp.Guid,
-      name: bp.Name,
-      description: bp.Description,
-      author: bp.Author && bp.Author.length > 0 ? bp.Author : null,
+      guid: wellFormedText(bp.Guid),
+      name: wellFormedText(bp.Name),
+      description: wellFormedText(bp.Description),
+      author: bp.Author && bp.Author.length > 0 ? wellFormedText(bp.Author) : null,
       numberOfElements: bp.NumberOfElements,
-      buildShareVersion: bp.Data.Version,
+      buildShareVersion: wellFormedText(bp.Data.Version),
       structuresCount: bp.Data.Structures ? bp.Data.Structures.length : null,
       sizeClass: buildSizeClass(bp.NumberOfElements),
       thumbnailBase64: thumbnail,

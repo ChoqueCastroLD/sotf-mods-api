@@ -88,8 +88,25 @@ async function call<T>(endpoint: ShellEndpoint, signal?: AbortSignal): Promise<T
 
 export type Me = z.output<typeof MeDTO>;
 
+/** How a sign-out ended: the API revoked the session, or there was no live session left to revoke. */
+export type SignOutResult = 'signed-out' | 'already-signed-out';
+
+/**
+ * Signs out. A 401 means the session had already ended (another tab, expiry): the goal is reached,
+ * but the API cleared no cookies, so the caller leaves through `/logout`, which clears them.
+ */
+async function signOut(): Promise<SignOutResult> {
+  try {
+    await call<void>(SHELL_ENDPOINTS.logout);
+    return 'signed-out';
+  } catch (error) {
+    if (error instanceof ApiError && error.status === 401) return 'already-signed-out';
+    throw error;
+  }
+}
+
 export const shellApi = {
   me: (signal?: AbortSignal) => call<Me>(SHELL_ENDPOINTS.me, signal),
-  logout: () => call<void>(SHELL_ENDPOINTS.logout),
+  logout: signOut,
   unreadCount: () => call<{ count: number }>(SHELL_ENDPOINTS.unreadCount),
 };

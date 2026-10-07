@@ -73,12 +73,34 @@ export function downloadProxyEnv(source: Readonly<Record<string, string | undefi
   return { internalApiUrl: internalApiUrl.replace(/\/+$/, ''), internalSecret };
 }
 
+/**
+ * The address the connection reached this server from (Cloudflare's edge, as written by Traefik).
+ * Astro's `clientAddress` is the *first* `X-Forwarded-For` entry once the host is trusted
+ * (`security.allowedDomains`), and the first entry is whatever the client sent; the last one is the
+ * one our proxy wrote. Falls back to `clientAddress` (no proxy, local dev).
+ */
+export function peerAddress(request: Request, clientAddress: string | null | undefined): string | null {
+  const forwarded = request.headers.get('x-forwarded-for');
+  const last = forwarded
+    ?.split(',')
+    .map((entry) => entry.trim())
+    .filter((entry) => entry !== '')
+    .at(-1);
+  return last || clientAddress || null;
+}
+
 /** Headers sent to the internal resolve endpoint. */
 export function forwardedHeaders(request: Request, clientAddress: string | null | undefined, secret: string): Headers {
   const incoming = request.headers;
   const headers = new Headers({ accept: 'application/json', [INTERNAL_AUTH_HEADER]: secret });
-  const ip = incoming.get('cf-connecting-ip') ?? clientAddress ?? null;
+  const peer = peerAddress(request, clientAddress);
+  const ip = incoming.get('cf-connecting-ip') ?? peer;
   if (ip) headers.set('cf-connecting-ip', ip);
+  // The address this server saw the connection come from.
+  // The API believes `CF-Connecting-IP` only when the connection is Cloudflare's: it reads that
+  // from `X-Forwarded-For`. Without it the API would see this (private) server as the peer and
+  // believe a `CF-Connecting-IP` that a client sent straight to the origin.
+  if (peer) headers.set('x-forwarded-for', peer);
   // Always explicit: without it fetch would add its own UA and an empty UA must reach the API as such.
   headers.set('user-agent', incoming.get('user-agent') ?? '');
   for (const name of ['cf-ipcountry', 'range', 'sec-purpose', 'purpose', 'cf-ray', 'x-request-id', 'cookie']) {

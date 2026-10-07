@@ -20,6 +20,7 @@ import { and, eq, isNull, lt, or, sql } from 'drizzle-orm';
 import type { Ctx } from '../kernel/context.ts';
 import { DomainError, errors } from '../kernel/errors.ts';
 import { newId } from '../kernel/ids.ts';
+import { secondFactorMethods } from './challenges.ts';
 import { type AuthOutcome, type AuthService, siteLink } from './service.ts';
 import { type CreatedSession, createSession } from './sessions.ts';
 import { hashToken, newSecretToken } from './tokens.ts';
@@ -245,6 +246,9 @@ export class OAuthService {
     const owner = await findUserByEmail(ctx.db, profile.email);
     if (owner) {
       if (owner.bannedAt) return { kind: 'error', error: 'banned' };
+      // The password alone would open the session (`confirmLink`): an account with a second factor
+      // links Discord from Settings → Security after a normal sign-in instead.
+      if ((await secondFactorMethods(ctx.db, owner.id)).length > 0) return { kind: 'error', error: 'two_factor' };
       const ticket = newSecretToken();
       await ctx.db
         .update(oauthLinkTicket)
@@ -351,6 +355,8 @@ export class OAuthService {
     });
     const owner = await findUserById(ctx.db, ticket.userId);
     if (!owner || owner.deletedAt || owner.bannedAt) throw errors.notFound('Link');
+    // Two-factor may have been turned on after the ticket was issued: never skip it with the password.
+    if ((await secondFactorMethods(ctx.db, owner.id)).length > 0) throw errors.notFound('Link');
     const result = await this.deps.auth.deps.hasher.verify(owner.password, input.password);
     if (!result.ok) {
       await this.deps.auth.recordEvent(ctx.db, ctx, 'oauth_link', false, owner.id);

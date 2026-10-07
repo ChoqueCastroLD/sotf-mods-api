@@ -97,7 +97,11 @@ export function allowedNext(raw: unknown, locale: Locale, options: SafeNextOptio
     return null;
   }
   if (url.origin !== PARSE_BASE) return null;
+  // `/mods/..//evil.test` normalizes to `//evil.test`, and `/es//evil.test` becomes it once the locale
+  // prefix is gone: protocol-relative, never a destination (the i18n helpers refuse it with a TypeError).
+  if (url.pathname.startsWith('//')) return null;
   const { locale: pathLocale, path, prefixed } = stripLocale(url.pathname);
+  if (path.startsWith('//')) return null;
   const section = (path.split('/', 2)[1] ?? '').toLowerCase();
   const isConsole = CONSOLE_SECTIONS.has(section);
   if (!PUBLIC_SECTIONS.has(section) && !isConsole) return null;

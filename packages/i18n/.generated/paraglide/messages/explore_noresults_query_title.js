@@ -18,7 +18,7 @@ const de_explore_noresults_query_title = /** @type {(inputs: Explore_Noresults_Q
 };
 
 const fr_explore_noresults_query_title = /** @type {(inputs: Explore_Noresults_Query_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Aucun résultat pour « ${i?.query} »`)
+	return /** @type {LocalizedString} */ (`Aucun résultat pour « ${i?.query} »`)
 };
 
 const it_explore_noresults_query_title = /** @type {(inputs: Explore_Noresults_Query_TitleInputs) => LocalizedString} */ (i) => {

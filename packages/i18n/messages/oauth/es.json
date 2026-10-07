@@ -9,6 +9,7 @@
   "oauth_error_banned": "Esta cuenta no puede iniciar sesión.",
   "oauth_error_already_linked": "Esa cuenta de Discord ya está vinculada a otro usuario.",
   "oauth_error_unavailable": "El inicio de sesión con Discord no está disponible ahora.",
+  "oauth_error_two_factor": "Esta cuenta usa verificación en dos pasos. Inicia sesión con tu contraseña y tu código, y luego vincula Discord en Ajustes.",
   "oauth_link_meta_title": "Vincula Discord a tu cuenta",
   "oauth_link_meta_description": "Confirma tu contraseña para vincular Discord a tu cuenta existente.",
   "oauth_link_heading": "Vincula tu cuenta de Discord",

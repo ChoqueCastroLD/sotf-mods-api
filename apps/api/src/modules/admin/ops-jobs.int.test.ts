@@ -112,7 +112,7 @@ describe('ops.alerts', () => {
         .rows;
     const sent = await outbox();
     expect(sent.filter((r: any) => r.toEmail === 'ops-admin@example.test')).toHaveLength(4);
-    expect(sent[0].payload.opsUrl).toBe('https://sotf-mods.test/ranger/admin');
+    expect(sent[0].payload.opsUrl).toBe('https://sotf-mods.test/moderation/admin');
 
     // Same window: no second email.
     await runOpsAlerts(ctx, alertDeps());

@@ -36,6 +36,12 @@ import { baseContentType, mediaPurposeOf, partSize, UPLOAD_QUOTA, UPLOAD_TTL_MS,
 
 export interface UploadResultRef {
   multipart?: { uploadId: string; partBytes: number; parts: number };
+  /**
+   * ETag of the object when the upload was completed. The presigned PUT stays valid for 15 minutes
+   * after that, so the object could be replaced once it was checked: inspection and publication
+   * only accept the object that still has this ETag.
+   */
+  etag?: string;
   mediaId?: string;
   inspection?: unknown;
   final?: { bucket: string; key: string; size: number; at: string };
@@ -50,6 +56,16 @@ function toJson(ref: UploadResultRef): JsonObject {
 
 function refOf(row: Pick<Upload, 'resultRef'>): UploadResultRef {
   return (row.resultRef ?? {}) as UploadResultRef;
+}
+
+/** True when the object is no longer the one that was completed (uploads of before the pin carry no ETag). */
+export function objectChanged(ref: { etag?: unknown }, head: { etag: string | null }): boolean {
+  return typeof ref.etag === 'string' && head.etag !== null && head.etag !== ref.etag;
+}
+
+/** `ifMatch` of a copy of the incoming object (nothing for uploads completed before the ETag was recorded). */
+function pinnedSource(row: Pick<Upload, 'bucket' | 'key'>, ref: UploadResultRef) {
+  return { bucket: row.bucket, key: row.key, ...(ref.etag ? { ifMatch: ref.etag } : {}) };
 }
 
 /** Public DTO of an upload row (`previewUrl` is resolved by `getUpload`). */
@@ -303,6 +319,7 @@ export async function completeUpload(
   const updated = await ctx.db.transaction(async (tx) => {
     const mediaPurpose = mediaPurposeOf(row.purpose);
     const nextRef: UploadResultRef = { ...ref };
+    if (head.etag) nextRef.etag = head.etag;
     if (mediaPurpose) nextRef.mediaId = newId();
     const [claimed] = await tx
       .update(upload)
@@ -376,16 +393,13 @@ export async function finalizeUpload(
   if (row.status === 'pending' || row.status === 'rejected' || row.status === 'expired') {
     throw errors.conflict(`An upload in state "${row.status}" cannot be published`);
   }
-  const copy = await storage.copy(
-    { bucket: row.bucket, key: row.key },
-    {
-      bucket,
-      key: input.key,
-      contentType: input.contentType ?? row.contentType,
-      cacheControl: IMMUTABLE_CACHE_CONTROL,
-      ...(input.downloadName ? { contentDisposition: attachmentDisposition(input.downloadName) } : {}),
-    },
-  );
+  const copy = await storage.copy(pinnedSource(row, ref), {
+    bucket,
+    key: input.key,
+    contentType: input.contentType ?? row.contentType,
+    cacheControl: IMMUTABLE_CACHE_CONTROL,
+    ...(input.downloadName ? { contentDisposition: attachmentDisposition(input.downloadName) } : {}),
+  });
   const head = await storage.head(bucket, input.key);
   if (!head || head.size !== row.declaredBytes) {
     throw errors.unavailable('The published copy does not match the upload; try again');
@@ -412,7 +426,7 @@ export async function quarantineUpload(
   const ref = refOf(row);
   if (ref.quarantine) return ref.quarantine.key;
   const key = quarantineKey(row.id);
-  await storage.copy({ bucket: row.bucket, key: row.key }, { bucket: row.bucket, key, contentType: row.contentType });
+  await storage.copy(pinnedSource(row, ref), { bucket: row.bucket, key, contentType: row.contentType });
   await ctx.db
     .update(upload)
     .set({ resultRef: toJson({ ...ref, quarantine: { key, at: ctx.clock.now().toISOString() } }) })
@@ -439,12 +453,16 @@ export async function expireUploads(
 ): Promise<ExpireReport> {
   const report: ExpireReport = { expired: 0, objectsDeleted: 0, failures: 0 };
   const batchSize = options.batchSize ?? 200;
+  // Uploads whose object could not be deleted stay as they are (the next run retries them): marking
+  // them `expired` would forget the object for good.
+  const failed: string[] = [];
   for (let round = 0; round < (options.maxBatches ?? 50); round += 1) {
     const now = ctx.clock.now();
     const due = await ctx.db.execute<Row>(sql`
       SELECT "id" FROM "Upload"
        WHERE "status" IN ('pending', 'uploaded', 'processing', 'ready') AND "expiresAt" <= ${now}
          AND ("resultRef" IS NULL OR NOT ("resultRef" ? 'final'))
+         AND NOT ("id" = ANY(${sql.param(failed)}::uuid[]))
        ORDER BY "expiresAt"
        LIMIT ${batchSize}`);
     if (due.rows.length === 0) break;
@@ -461,7 +479,9 @@ export async function expireUploads(
           report.objectsDeleted += 1;
         } catch (error) {
           report.failures += 1;
+          failed.push(row.id);
           ctx.log.warn({ err: error, uploadId: row.id }, 'could not delete an expired upload object');
+          continue;
         }
       }
       const res = await ctx.db
@@ -474,5 +494,58 @@ export async function expireUploads(
     if (due.rows.length < batchSize) break;
   }
   if (report.expired > 0) ctx.log.info(report, 'expired uploads cleaned up');
+  return report;
+}
+
+export interface SweepReport {
+  scanned: number;
+  deleted: number;
+  failures: number;
+}
+
+/** `incoming/` objects this old (three times an upload's lifetime) with no live row are strays. */
+export const ORPHAN_AGE_MS = 3 * UPLOAD_TTL_MS;
+
+/**
+ * Deletes the objects under `incoming/` that no live row points at (`cleanup.uploads` runs it after
+ * `expireUploads`). They appear when a presigned PUT is replayed after its upload was finalised or
+ * rejected (the URL lives 15 minutes), when a media job dies after storing its source, and whenever
+ * the bucket's lifecycle rule is missing: in production the private role is the public bucket, where
+ * nothing else would ever remove them. Objects younger than {@link ORPHAN_AGE_MS}, and those that an
+ * open upload or a pending media still names, are left alone.
+ */
+export async function sweepIncoming(
+  ctx: Ctx,
+  storage: ObjectStorage | null,
+  options: { maxKeys?: number; olderThanMs?: number } = {},
+): Promise<SweepReport> {
+  const report: SweepReport = { scanned: 0, deleted: 0, failures: 0 };
+  if (!storage) return report;
+  const bucket = storage.config.privateBucket;
+  const cutoff = ctx.clock.now().getTime() - (options.olderThanMs ?? ORPHAN_AGE_MS);
+  const listed = await storage.list(bucket, 'incoming/', { maxKeys: options.maxKeys ?? 2_000 });
+  report.scanned = listed.length;
+  const old = listed.filter((object) => object.lastModified.getTime() < cutoff).map((object) => object.key);
+  if (old.length === 0) return report;
+  const live = await ctx.db.execute<Row>(sql`
+    SELECT "key" FROM "Upload"
+     WHERE "bucket" = ${bucket} AND "key" = ANY(${sql.param(old)}::text[])
+       AND "status" IN ('pending', 'uploaded', 'processing', 'ready')
+       AND ("resultRef" IS NULL OR NOT ("resultRef" ?| array['final', 'quarantine']))
+    UNION
+    SELECT "sourceKey" AS "key" FROM "Media"
+     WHERE "sourceBucket" = ${bucket} AND "sourceKey" = ANY(${sql.param(old)}::text[]) AND "status" = 'pending'`);
+  const keep = new Set(live.rows.map((row) => String(row.key)));
+  for (const key of old) {
+    if (keep.has(key)) continue;
+    try {
+      await storage.delete(bucket, key);
+      report.deleted += 1;
+    } catch (error) {
+      report.failures += 1;
+      ctx.log.warn({ err: error, key }, 'could not delete an orphan incoming object');
+    }
+  }
+  if (report.deleted > 0) ctx.log.info(report, 'orphan incoming objects deleted');
   return report;
 }

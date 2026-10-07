@@ -41,6 +41,17 @@ describe('Unicode and emoji', () => {
     expect(body.querySelector('.md-spoiler')?.textContent).toBe('скрыто');
   });
 
+  it('drops bidirectional overrides and isolates so link text cannot be reordered', () => {
+    expect(normalizeInput('a\u202Eb\u202Ac\u2066d\u2069e')).toBe('abcde');
+    // Plain direction marks (needed by RTL text) stay.
+    expect(normalizeInput('a\u200Fb\u200Ec')).toBe('a\u200Fb\u200Ec');
+    for (const profile of PROFILES) {
+      const { html } = renderMarkdown('[\u202Egnp.exe](https://evil.example/x.exe)', { profile });
+      expect(html).not.toMatch(/[\u202a-\u202e\u2066-\u2069]/);
+      expect(html).toContain('>gnp.exe</a>');
+    }
+  });
+
   it('normalizeInput removes the BOM, CR and control characters but keeps tabs and newlines', () => {
     expect(normalizeInput('\uFEFFa\r\nb\rc\u0000d\u0007e\tf\u007fg')).toBe('a\nb\ncde\tfg');
   });

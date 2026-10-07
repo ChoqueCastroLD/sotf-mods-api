@@ -15,7 +15,7 @@ import type { Ctx } from '../kernel/context.ts';
 import { loadItems, resolveVersions } from '../kits/read.ts';
 import type { ObjectStorage } from '../storage/client.ts';
 import { safeName, storageKeyFromPublicUrl } from '../storage/keys.ts';
-import { bundleReadme, mergeFiles, type PlannedFile, planItemFiles } from './plan.ts';
+import { BundleTooLargeError, bundleReadme, mergeFiles, type PlannedFile, planItemFiles } from './plan.ts';
 import { bundleFingerprint } from './service.ts';
 
 export type BundleOutcome =
@@ -108,12 +108,16 @@ export async function buildBundle(
     }
     let files: PlannedFile[];
     try {
-      files = planItemFiles({
-        filename: version.filename ?? key?.split('/').pop() ?? 'file',
-        isBuild: version.modType === 'Build',
-        data,
-      });
-    } catch {
+      files = planItemFiles(
+        {
+          filename: version.filename ?? key?.split('/').pop() ?? 'file',
+          isBuild: version.modType === 'Build',
+          data,
+        },
+        { maxBytes: BUNDLE_LIMITS.maxBytes - total },
+      );
+    } catch (error) {
+      if (error instanceof BundleTooLargeError) return fail(ctx, bundle.id, 'too_large', fingerprint);
       files = [];
     }
     total += files.reduce((sum, f) => sum + f.data.length, 0);

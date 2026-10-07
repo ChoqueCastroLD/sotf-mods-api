@@ -17,6 +17,7 @@ import {
   encodeModLiveFrame,
   PG_EVENTS_CHANNEL,
   SSE_MOD_LIVE_MAX_SECONDS,
+  SSE_USER_STREAM_MAX_SECONDS,
   type SseModLiveEvent,
   SseModLivePushData,
 } from '@sotf/contracts/events';
@@ -196,7 +197,12 @@ export function channelsFor(actor: { userId: number; role: 'user' | 'moderator' 
   return channels;
 }
 
-export async function setupSse(app: FastifyInstance, hub: SseHub): Promise<void> {
+export async function setupSse(
+  app: FastifyInstance,
+  hub: SseHub,
+  options: { maxLifetimeMs?: number } = {},
+): Promise<void> {
+  const maxLifetimeMs = options.maxLifetimeMs ?? SSE_USER_STREAM_MAX_SECONDS * 1000;
   // The package's default export (module.exports) is the fastify-plugin wrapped version, whose
   // onRoute hook must reach the root instance; its named `fastifySSE` export is not wrapped.
   const plugin = (sseModule as unknown as { default: typeof sseModule.fastifySSE }).default;
@@ -227,13 +233,18 @@ export async function setupSse(app: FastifyInstance, hub: SseHub): Promise<void>
       const close = () => {
         if (!open) return;
         open = false;
+        clearTimeout(recycle);
         unsubscribe();
         context.close();
         raw.end();
       };
       const unsubscribe = hub.add(actor.userId, channels, { write, close });
+      // The session was checked once, on connect: recycle the stream so it is checked again.
+      const recycle = setTimeout(close, maxLifetimeMs);
+      recycle.unref();
       context.onClose(() => {
         open = false;
+        clearTimeout(recycle);
         unsubscribe();
       });
       // Reconnect after 5 s by default; the first comment flushes the headers through proxies.

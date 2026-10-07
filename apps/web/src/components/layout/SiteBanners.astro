@@ -5,11 +5,15 @@
  * - «sign in again» after the legacy-token cleanup (hidden until the inline script sets
  *   `html[data-relogin]`);
  * - the language suggestion, a floating notice filled by `scripts/lang-suggest.ts` in the
- *   *suggested* locale (never a redirect, PLAN §4.1; out of the flow, so no layout shift).
+ *   *suggested* locale (never a redirect, PLAN §4.1; out of the flow, so no layout shift);
+ * - the admin's announcements (`lib/announcements.ts`): in the HTML, so they cost the visitor no
+ *   request and no layout shift; every write on the API purges the cached pages. Dismissals are
+ *   per id in the visitor's browser (`data-banner-id`, hidden before paint by the head script).
  */
 import { m } from '@sotf/i18n/messages';
 import { Icon } from '@sotf/ui/icons';
-import { FlaskConical, KeyRound, Languages, X } from 'lucide-react';
+import { FlaskConical, Info, KeyRound, Languages, Megaphone, TriangleAlert, X } from 'lucide-react';
+import { activeAnnouncements, announcementBannerId, announcementHref } from '../../lib/announcements.ts';
 import { loadEnv } from '../../lib/env.ts';
 import { href } from '../../lib/i18n.ts';
 
@@ -24,6 +28,12 @@ const envNotice =
         ? m.common_env_development()
         : null;
 const loginHref = href('/login', locale);
+const announcements = await activeAnnouncements(locale);
+const TONES = {
+  info: { classes: 'border-border bg-raised', icon: Info, iconClass: 'text-signal' },
+  warning: { classes: 'border-warning/40 bg-warning-soft', icon: TriangleAlert, iconClass: 'text-warning' },
+  patch: { classes: 'border-signal/40 bg-signal-soft', icon: Megaphone, iconClass: 'text-signal' },
+} as const;
 ---
 
 {
@@ -35,6 +45,45 @@ const loginHref = href('/login', locale);
       </p>
     </div>
   )
+}
+
+{
+  announcements.map((announcement) => {
+    const tone = TONES[announcement.level];
+    const target = announcementHref(announcement.href);
+    const link = target ? (target.kind === 'path' ? href(target.value, locale) : target.value) : null;
+    return (
+      <div
+        data-banner-id={announcementBannerId(announcement.id)}
+        data-announcement
+        role={announcement.level === 'warning' ? 'alert' : 'note'}
+        class:list={['border-b text-fg', tone.classes]}
+      >
+        <div class="mx-auto flex max-w-(--container-wide) items-center gap-3 px-4 py-2 text-sm md:px-6">
+          <Icon icon={tone.icon} size={18} className={tone.iconClass} />
+          <p class="min-w-0 flex-1">
+            {link ? (
+              <a href={link} class="font-semibold underline underline-offset-4">
+                {announcement.message}
+              </a>
+            ) : (
+              announcement.message
+            )}
+          </p>
+          {announcement.dismissible && (
+            <button
+              type="button"
+              data-banner-dismiss
+              class="flex size-11 shrink-0 items-center justify-center rounded-md text-fg-muted hover:bg-fg/8 hover:text-fg"
+              aria-label={m.common_action_dismiss()}
+            >
+              <Icon icon={X} size={18} />
+            </button>
+          )}
+        </div>
+      </div>
+    );
+  })
 }
 
 <div data-relogin-banner class="border-b border-border bg-raised text-fg" role="status">

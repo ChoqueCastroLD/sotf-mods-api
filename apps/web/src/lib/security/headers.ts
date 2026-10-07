@@ -28,6 +28,12 @@ export interface SecurityHeaderOptions {
   cspMode?: CspMode;
   /** Origin of a non-R2 S3 endpoint for presigned uploads (`R2_ENDPOINT`); read from the environment when omitted. */
   storageUploadOrigin?: string;
+  /**
+   * Response status. A `304` revalidating a cached document has no `Content-Type` (the cache
+   * strips it), yet browsers merge its headers into the stored response, so it must carry the same
+   * finalized policy as the `200`.
+   */
+  status?: number;
 }
 
 /** 6 months (PLAN §9.1). */
@@ -72,6 +78,13 @@ export function isEmbeddablePath(pathname: string): boolean {
 
 function isHtml(headers: Headers): boolean {
   return (headers.get('content-type') ?? '').toLowerCase().includes('text/html');
+}
+
+/** True when the headers carry the policy Astro rendered for an HTML document. */
+function hasRenderedDocumentPolicy(headers: Headers): boolean {
+  return [headers.get('content-security-policy'), headers.get('content-security-policy-report-only')].some(
+    (value) => value !== null && /(?:^|;)\s*script-src\b/.test(value),
+  );
 }
 
 function originOf(url: string | undefined): string | undefined {
@@ -176,7 +189,7 @@ export function applySecurityHeaders(headers: Headers, options: SecurityHeaderOp
   headers.set('x-permitted-cross-domain-policies', 'none');
   if (resolved.https) headers.set('strict-transport-security', HSTS_VALUE);
 
-  if (isHtml(headers)) {
+  if (isHtml(headers) || (options.status === 304 && hasRenderedDocumentPolicy(headers))) {
     applyDocumentCsp(headers, resolved, embeddable);
   } else if (!headers.has('content-security-policy')) {
     headers.set('content-security-policy', embeddable ? "default-src 'none'; frame-ancestors *" : NON_DOCUMENT_CSP);

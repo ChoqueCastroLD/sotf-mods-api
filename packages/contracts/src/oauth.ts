@@ -27,6 +27,7 @@ export const OAUTH_ERRORS = [
   'banned',
   'already_linked',
   'unavailable',
+  'two_factor',
 ] as const;
 export type OAuthError = (typeof OAUTH_ERRORS)[number];
 

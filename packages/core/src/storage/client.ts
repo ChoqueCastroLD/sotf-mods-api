@@ -18,6 +18,7 @@ import {
   DeleteObjectCommand,
   GetObjectCommand,
   HeadObjectCommand,
+  ListObjectsV2Command,
   PutObjectCommand,
   S3Client,
   UploadPartCommand,
@@ -82,6 +83,17 @@ export function storageConfigFromEnv(env: StorageEnv): StorageConfig | null {
   };
 }
 
+/**
+ * A warning when the private and the public role share one bucket (`R2_PRIVATE_BUCKET` equal to
+ * `R2_BUCKET`): `incoming/` (unreviewed uploads), `quarantine/` (files flagged by the checks) and
+ * `exports/` (personal data exports) then sit in the bucket that `R2_PUBLIC_BASE_URL` serves, so
+ * anyone who knows an object's key can download it. Null when the buckets differ.
+ */
+export function sharedBucketWarning(config: Pick<StorageConfig, 'publicBucket' | 'privateBucket'>): string | null {
+  if (config.publicBucket !== config.privateBucket) return null;
+  return `R2_PRIVATE_BUCKET is the public bucket "${config.publicBucket}": incoming/, quarantine/ and exports/ objects are publicly readable by key; use a separate private bucket`;
+}
+
 export interface PresignedPut {
   url: string;
   /** Headers that are part of the signature: send them exactly. */
@@ -96,6 +108,13 @@ export interface ObjectHead {
   contentDisposition: string | null;
   cacheControl: string | null;
   metadata: Record<string, string>;
+}
+
+/** One object of a listing. */
+export interface ListedObject {
+  key: string;
+  size: number;
+  lastModified: Date;
 }
 
 export interface CopyTarget {
@@ -133,11 +152,18 @@ export interface ObjectStorage {
   }): Promise<void>;
   abortMultipart(input: { bucket: string; key: string; uploadId: string }): Promise<void>;
   head(bucket: string, key: string): Promise<ObjectHead | null>;
-  get(bucket: string, key: string): Promise<{ body: Readable; head: ObjectHead }>;
+  get(bucket: string, key: string, options?: { ifMatch?: string }): Promise<{ body: Readable; head: ObjectHead }>;
   put(input: CopyTarget & { body: Buffer | Uint8Array | string | Readable; contentLength?: number }): Promise<void>;
-  /** Server-side copy (or streaming fallback) with the target's metadata replaced. Returns the mode used. */
-  copy(source: { bucket: string; key: string }, target: CopyTarget): Promise<'server' | 'stream'>;
+  /**
+   * Server-side copy (or streaming fallback) with the target's metadata replaced. Returns the mode used.
+   * With `source.ifMatch` (an ETag as returned by `head`) the copy only happens when the source still
+   * has that ETag, else it fails with a CONFLICT: a presigned PUT stays valid for 15 minutes and
+   * could otherwise swap an object after it was checked.
+   */
+  copy(source: { bucket: string; key: string; ifMatch?: string }, target: CopyTarget): Promise<'server' | 'stream'>;
   delete(bucket: string, key: string): Promise<void>;
+  /** Objects under `prefix` in key order, at most `maxKeys` (default 1 000). */
+  list(bucket: string, prefix: string, options?: { maxKeys?: number }): Promise<ListedObject[]>;
   /** Presigned GET (exports, private previews). */
   presignGet(bucket: string, key: string, expiresInSeconds: number, downloadName?: string): Promise<string>;
   destroy(): void;
@@ -158,6 +184,11 @@ function isNotFound(error: unknown): boolean {
   return statusOf(error) === 404 || e?.name === 'NotFound' || e?.name === 'NoSuchKey' || e?.Code === 'NoSuchKey';
 }
 
+function isPreconditionFailed(error: unknown): boolean {
+  const e = error as SdkError | null;
+  return statusOf(error) === 412 || e?.name === 'PreconditionFailed' || e?.Code === 'PreconditionFailed';
+}
+
 function isNoSuchUpload(error: unknown): boolean {
   const e = error as SdkError | null;
   return e?.name === 'NoSuchUpload' || e?.Code === 'NoSuchUpload';
@@ -175,6 +206,8 @@ function copyUnsupported(error: unknown): boolean {
     ((e?.name === 'AccessDenied' || e?.Code === 'AccessDenied') && status === 403)
   );
 }
+
+const CHANGED_AFTER_CHECK = 'The file changed after it was checked';
 
 function storageFailure(what: string, error: unknown): DomainError {
   return errors.unavailable(`Storage ${what} failed (${(error as SdkError)?.name ?? 'error'})`);
@@ -333,13 +366,20 @@ export class S3Storage implements ObjectStorage {
     }
   }
 
-  async get(bucket: string, key: string): Promise<{ body: Readable; head: ObjectHead }> {
+  async get(
+    bucket: string,
+    key: string,
+    options: { ifMatch?: string } = {},
+  ): Promise<{ body: Readable; head: ObjectHead }> {
     try {
-      const out = await this.#client.send(new GetObjectCommand({ Bucket: bucket, Key: key }));
+      const out = await this.#client.send(
+        new GetObjectCommand({ Bucket: bucket, Key: key, ...(options.ifMatch ? { IfMatch: options.ifMatch } : {}) }),
+      );
       if (!out.Body) throw new Error('empty body');
       return { body: out.Body as Readable, head: headOf(out) };
     } catch (error) {
       if (isNotFound(error)) throw errors.notFound('Object');
+      if (isPreconditionFailed(error)) throw errors.conflict(CHANGED_AFTER_CHECK);
       throw storageFailure('GET', error);
     }
   }
@@ -364,7 +404,10 @@ export class S3Storage implements ObjectStorage {
     }
   }
 
-  async copy(source: { bucket: string; key: string }, target: CopyTarget): Promise<'server' | 'stream'> {
+  async copy(
+    source: { bucket: string; key: string; ifMatch?: string },
+    target: CopyTarget,
+  ): Promise<'server' | 'stream'> {
     const mode = this.config.copyMode ?? 'auto';
     if (mode !== 'stream') {
       try {
@@ -373,6 +416,7 @@ export class S3Storage implements ObjectStorage {
             Bucket: target.bucket,
             Key: target.key,
             CopySource: `${source.bucket}/${encodeStorageKey(source.key)}`,
+            ...(source.ifMatch ? { CopySourceIfMatch: source.ifMatch } : {}),
             MetadataDirective: 'REPLACE',
             ContentType: target.contentType,
             ...(target.contentDisposition ? { ContentDisposition: target.contentDisposition } : {}),
@@ -382,10 +426,11 @@ export class S3Storage implements ObjectStorage {
         return 'server';
       } catch (error) {
         if (isNotFound(error)) throw errors.notFound('Source object');
+        if (isPreconditionFailed(error)) throw errors.conflict(CHANGED_AFTER_CHECK);
         if (mode === 'server' || !copyUnsupported(error)) throw storageFailure('copy', error);
       }
     }
-    const { body, head } = await this.get(source.bucket, source.key);
+    const { body, head } = await this.get(source.bucket, source.key, source.ifMatch ? { ifMatch: source.ifMatch } : {});
     await this.put({ ...target, body, contentLength: head.size });
     return 'stream';
   }
@@ -397,6 +442,33 @@ export class S3Storage implements ObjectStorage {
       if (isNotFound(error)) return;
       throw storageFailure('DELETE', error);
     }
+  }
+
+  async list(bucket: string, prefix: string, options: { maxKeys?: number } = {}): Promise<ListedObject[]> {
+    const maxKeys = options.maxKeys ?? 1_000;
+    const found: ListedObject[] = [];
+    let token: string | undefined;
+    try {
+      do {
+        const out = await this.#client.send(
+          new ListObjectsV2Command({
+            Bucket: bucket,
+            Prefix: prefix,
+            MaxKeys: Math.min(1_000, maxKeys - found.length),
+            ...(token ? { ContinuationToken: token } : {}),
+          }),
+        );
+        for (const item of out.Contents ?? []) {
+          if (item.Key !== undefined && item.LastModified !== undefined) {
+            found.push({ key: item.Key, size: Number(item.Size ?? 0), lastModified: item.LastModified });
+          }
+        }
+        token = out.IsTruncated ? out.NextContinuationToken : undefined;
+      } while (token && found.length < maxKeys);
+    } catch (error) {
+      throw storageFailure('LIST', error);
+    }
+    return found;
   }
 
   async presignGet(bucket: string, key: string, expiresInSeconds: number, downloadName?: string): Promise<string> {

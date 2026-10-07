@@ -21,6 +21,12 @@ import { NotificationType } from './notifications.ts';
 // -----------------------------------------------------------------------------------------------
 
 export const SSE_HEARTBEAT_SECONDS = 25;
+/**
+ * The signed-in stream (`GET /stream`) is closed after this long and the browser's EventSource
+ * reconnects with its cookie: a revoked session, a ban or a demoted ranger stops receiving signals
+ * within this window instead of whenever the tab is closed.
+ */
+export const SSE_USER_STREAM_MAX_SECONDS = 900;
 /** Polling interval of `unread-count` when SSE fails (seconds). */
 export const SSE_FALLBACK_POLL_SECONDS = 60;
 /** Postgres NOTIFY channel shared by API and worker. */

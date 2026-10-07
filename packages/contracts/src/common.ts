@@ -201,10 +201,19 @@ export const HandleInput = z
   // Anonymised accounts take `deleted-<id>` (account deletion keeps the row, PLAN §9.3).
   .refine((value) => !value.startsWith('deleted-'), 'this handle is reserved');
 
-/** Display name: any Unicode (NFC), 2–32 characters after trimming. */
+// Control characters (NUL breaks PostgreSQL, line breaks break layouts and e-mail subjects) and the
+// bidirectional overrides/isolates that reorder the text around a name become spaces; zero-width
+// characters (invisible look-alike names) are dropped.
+// biome-ignore lint/suspicious/noControlCharactersInRegex: stripping control characters is the point.
+const NAME_SEPARATORS = /[\u0000-\u001f\u007f-\u009f\u2028\u2029\u202a-\u202e\u2066-\u2069]+/gu;
+const NAME_INVISIBLES = /[\u200b\u2060\ufeff]/gu;
+
+/** Display name: any Unicode (NFC) without control or direction-override characters, 2–32 characters after trimming. */
 export const DisplayName = z
   .string()
-  .transform((value) => value.normalize('NFC').trim())
+  .transform((value) =>
+    value.normalize('NFC').replace(NAME_INVISIBLES, '').replace(NAME_SEPARATORS, ' ').replace(/ {2,}/g, ' ').trim(),
+  )
   .pipe(z.string().min(2).max(32));
 
 /** Email as typed by the user (normalised server-side with `lower(trim())`). */

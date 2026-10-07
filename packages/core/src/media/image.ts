@@ -31,6 +31,8 @@ export type ImageFormat = 'png' | 'jpeg' | 'webp' | 'avif' | 'gif';
 
 const FORMATS: Readonly<Record<string, { format: ImageFormat; ext: string; contentType: string }>> = {
   'image/png': { format: 'png', ext: 'png', contentType: 'image/png' },
+  // An animated PNG is a PNG that file-type names apart: its first frame is kept, like animated WebP.
+  'image/apng': { format: 'png', ext: 'png', contentType: 'image/png' },
   'image/jpeg': { format: 'jpeg', ext: 'jpg', contentType: 'image/jpeg' },
   'image/webp': { format: 'webp', ext: 'webp', contentType: 'image/webp' },
   'image/avif': { format: 'avif', ext: 'avif', contentType: 'image/avif' },

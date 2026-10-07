@@ -27,7 +27,7 @@ import { query, queryOne } from '../follows/sql.ts';
 import type { Ctx } from '../kernel/context.ts';
 import { errors } from '../kernel/errors.ts';
 import { publishCacheInvalidation } from '../kernel/notify.ts';
-import { assertStaff } from '../moderation/guard.ts';
+import { assertNotOwnContent, assertStaff } from '../moderation/guard.ts';
 import { publishLaneCounts } from '../moderation/lanes.ts';
 import { kindOfType, utcTimestamp } from '../moderation/shared.ts';
 import { writeNotificationDrafts } from '../notifications/service.ts';
@@ -438,6 +438,7 @@ export async function overrideScan(
             FROM "ModVersion" v JOIN "Mod" m ON m."id" = v."modId" WHERE v."id" = ${scan.modVersionId} FOR UPDATE OF v`,
     );
     if (!version) throw errors.notFound('Version');
+    await assertNotOwnContent(tx, actor, version.modId);
     await tx.execute(
       sql`UPDATE "SecurityScan" SET "verdict" = ${input.verdict}, "overrideById" = ${actor.userId},
                  "overrideNote" = ${input.note}, "scannedAt" = coalesce("scannedAt", ${now.toISOString()}::timestamptz)

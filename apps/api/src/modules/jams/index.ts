@@ -5,6 +5,7 @@
  */
 import { jamsEndpoints } from '@sotf/contracts/jams';
 import {
+  assertJamStaff,
   castVotes,
   createJam,
   deleteJam,
@@ -62,7 +63,7 @@ export default defineModule({
     m.implement(jamsEndpoints.vote, async ({ params, body, ctx }) => castVotes(ctx, params.slug, params.entryId, body));
 
     m.implement(jamsEndpoints.adminList, async ({ ctx }) => {
-      await getAdminGuard(ctx);
+      await assertJamStaff(ctx);
       return listAdminJams(ctx.db, config);
     });
     m.implement(jamsEndpoints.adminGet, async ({ params, ctx }) => getAdminJam(ctx, config, params.id));
@@ -82,10 +83,3 @@ export default defineModule({
     m.implement(jamsEndpoints.adminPublishResults, async ({ params, ctx }) => publishResults(ctx, config, params.id));
   },
 });
-
-async function getAdminGuard(ctx: { actor: { role: string } | null }): Promise<void> {
-  // `auth: 'moderator'` already guards the route; this keeps the handler safe if it is reused.
-  if (!ctx.actor || (ctx.actor.role !== 'moderator' && ctx.actor.role !== 'admin')) {
-    throw new Error('unreachable: moderator endpoint without staff actor');
-  }
-}

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { createStorage, storageConfigFromEnv } from './client.ts';
+import { createStorage, sharedBucketWarning, storageConfigFromEnv } from './client.ts';
 import {
   asciiFilename,
   attachmentDisposition,
@@ -162,5 +162,14 @@ describe('storageConfigFromEnv', () => {
     } finally {
       storage.destroy();
     }
+  });
+});
+
+describe('sharedBucketWarning', () => {
+  it('warns when the private bucket is the public one (incoming/, quarantine/ and exports/ would be public)', () => {
+    expect(sharedBucketWarning({ publicBucket: 'sotf-mods', privateBucket: 'sotf-mods' })).toMatch(
+      /incoming\/, quarantine\/ and exports\//,
+    );
+    expect(sharedBucketWarning({ publicBucket: 'sotf-mods', privateBucket: 'sotf-mods-private' })).toBeNull();
   });
 });

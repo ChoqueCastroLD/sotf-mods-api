@@ -33,15 +33,19 @@ const adUnit = optionalString.pipe(
     .optional(),
 );
 
+/** Development defaults (the local stack); never used outside `SITE_ENV=development`. */
+const DEFAULT_SITE_URL = 'http://127.0.0.1:47321';
+const DEFAULT_INTERNAL_API_URL = 'http://127.0.0.1:47301';
+
 const EnvSchema = z
   .object({
     NODE_ENV: z.enum(['development', 'production', 'test']).default('development'),
     SITE_ENV: z.enum(SITE_ENVS).default('development'),
     LOG_LEVEL: z.enum(['fatal', 'error', 'warn', 'info', 'debug', 'trace', 'silent']).default('info'),
     /** Public origin (`https://sotf-mods.com`): canonical URLs, hreflang, OG. */
-    PUBLIC_SITE_URL: origin.default('http://127.0.0.1:47321'),
+    PUBLIC_SITE_URL: origin.optional(),
     /** API origin on the private network (`http://<api-container>:3001`). */
-    INTERNAL_API_URL: origin.default('http://127.0.0.1:47301'),
+    INTERNAL_API_URL: origin.optional(),
     /** Shared secret of the `X-Internal-Auth` header (web ↔ api ↔ worker). */
     INTERNAL_SECRET: optionalString.pipe(z.string().min(32, 'use at least 32 characters').optional()),
     /** AdSense publisher (`ca-pub-…`). Empty keeps ads off (development, staging). */
@@ -90,7 +94,16 @@ const EnvSchema = z
         message: `required when SITE_ENV=${env.SITE_ENV}`,
       });
     }
-    if (env.SITE_ENV === 'production' && !env.PUBLIC_SITE_URL.startsWith('https://')) {
+    // Outside development nothing may fall back to the localhost defaults: a container without
+    // INTERNAL_API_URL would pass its health check and answer 503 on every page, and one without
+    // PUBLIC_SITE_URL would publish `http://127.0.0.1` canonicals, sitemaps and emails.
+    if (env.SITE_ENV !== 'development' && !env.INTERNAL_API_URL) {
+      ctx.addIssue({ code: 'custom', path: ['INTERNAL_API_URL'], message: `required when SITE_ENV=${env.SITE_ENV}` });
+    }
+    if (env.SITE_ENV !== 'development' && env.SITE_ENV !== 'production' && !env.PUBLIC_SITE_URL) {
+      ctx.addIssue({ code: 'custom', path: ['PUBLIC_SITE_URL'], message: `required when SITE_ENV=${env.SITE_ENV}` });
+    }
+    if (env.SITE_ENV === 'production' && !(env.PUBLIC_SITE_URL ?? DEFAULT_SITE_URL).startsWith('https://')) {
       ctx.addIssue({ code: 'custom', path: ['PUBLIC_SITE_URL'], message: 'must be https in production' });
     }
   });
@@ -143,8 +156,8 @@ export function parseEnv(source: Readonly<Record<string, string | undefined>>): 
     nodeEnv: env.NODE_ENV,
     siteEnv: env.SITE_ENV,
     logLevel: env.LOG_LEVEL,
-    siteUrl: env.PUBLIC_SITE_URL,
-    internalApiUrl: env.INTERNAL_API_URL,
+    siteUrl: env.PUBLIC_SITE_URL ?? DEFAULT_SITE_URL,
+    internalApiUrl: env.INTERNAL_API_URL ?? DEFAULT_INTERNAL_API_URL,
     internalSecret: env.INTERNAL_SECRET,
     adsenseClient: env.PUBLIC_ADSENSE_CLIENT,
     r2PublicBaseUrl: env.R2_PUBLIC_BASE_URL,

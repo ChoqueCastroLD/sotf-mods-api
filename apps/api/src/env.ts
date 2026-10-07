@@ -3,6 +3,7 @@
  * only file of the API that reads `process.env`; everything else receives the parsed `ApiEnv`.
  */
 import { existsSync } from 'node:fs';
+import { isIP } from 'node:net';
 import { fileURLToPath } from 'node:url';
 import {
   commonServerEnv,
@@ -60,6 +61,33 @@ export const apiEnvSchema = z.object({
         }
       }
       return origins;
+    }),
+  /**
+   * Extra CIDRs (comma separated) whose `CF-Connecting-IP`/`CF-IPCountry` headers are believed, on
+   * top of Cloudflare's published ranges and the private networks (`lib/client-ip.ts`). Only needed
+   * when Cloudflare adds an edge range before the built-in list does. Production leaves it empty.
+   */
+  TRUSTED_EDGE_CIDRS: z
+    .string()
+    .trim()
+    .optional()
+    .transform((value, ctx) => {
+      if (!value) return [] as string[];
+      const cidrs: string[] = [];
+      for (const item of value
+        .split(',')
+        .map((s) => s.trim())
+        .filter(Boolean)) {
+        const [network, prefix] = item.split('/');
+        const family = network ? isIP(network) : 0;
+        const max = family === 6 ? 128 : 32;
+        if (family === 0 || !/^\d{1,3}$/.test(prefix ?? '') || Number(prefix) > max) {
+          ctx.addIssue({ code: 'custom', message: `invalid CIDR "${item}"` });
+          continue;
+        }
+        cidrs.push(item);
+      }
+      return cidrs;
     }),
   // R2 (used by the storage domain, WP-31; validated here so the process fails fast).
   R2_ACCOUNT_ID: envOptional,

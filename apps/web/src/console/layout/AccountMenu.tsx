@@ -35,9 +35,10 @@ export function AccountMenu({ me, onShowShortcuts }: AccountMenuProps) {
   const signOut = async () => {
     setSigningOut(true);
     try {
-      await shellApi.logout();
+      const result = await shellApi.logout();
       queryClient.clear();
-      window.location.assign('/');
+      // `/logout` (same-origin GET) also clears the cookies of a session that was already gone.
+      window.location.assign(result === 'signed-out' ? '/' : '/logout');
     } catch {
       setSigningOut(false);
       notify.error(t('console_sign_out_failed'));

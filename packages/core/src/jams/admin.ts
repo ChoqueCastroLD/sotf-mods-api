@@ -19,15 +19,22 @@ import { type CommunityConfig, firstRow, loadMember } from '../comments/shared.t
 import type { Ctx } from '../kernel/context.ts';
 import { errors } from '../kernel/errors.ts';
 import { renderUserText } from '../mentions/index.ts';
+import { assertCan } from '../permissions/index.ts';
 import { changePhase } from './advance.ts';
 import { adminEntryDto, adminJamDto, type JamRow, listAdminEntriesPage, loadJamById } from './queries.ts';
 import { computeJamResults } from './results.ts';
 import { type JamSchedule, PHASE_INDEX, scheduleProblem } from './rules.ts';
 
+/** Moderators and admins that are not suspended (`can()` is the one place that knows the rule). */
 async function staff(ctx: Ctx) {
   const member = await loadMember(ctx);
-  if (member.role !== 'moderator' && member.role !== 'admin') throw errors.forbidden('Staff only');
+  assertCan(member.subject, 'moderation.decide', undefined, ctx.clock.now());
   return member;
+}
+
+/** Guard of the staff console reads that have no other check (`GET /ranger/jams`). */
+export async function assertJamStaff(ctx: Ctx): Promise<void> {
+  await staff(ctx);
 }
 
 async function lock(tx: Transaction, id: number): Promise<JamRow> {

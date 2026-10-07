@@ -9,6 +9,7 @@
   "oauth_error_banned": "Det här kontot kan inte logga in.",
   "oauth_error_already_linked": "Det Discord-kontot är redan kopplat till en annan användare.",
   "oauth_error_unavailable": "Inloggning med Discord är inte tillgänglig just nu.",
+  "oauth_error_two_factor": "Det här kontot använder tvåfaktorsautentisering. Logga in med lösenord och kod och koppla sedan Discord i inställningarna.",
   "oauth_link_meta_title": "Koppla Discord till ditt konto",
   "oauth_link_meta_description": "Bekräfta ditt lösenord för att koppla Discord till ditt befintliga konto.",
   "oauth_link_heading": "Koppla ditt Discord-konto",

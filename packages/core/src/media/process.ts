@@ -158,7 +158,12 @@ async function fail(ctx: Ctx, storage: ObjectStorage, row: Media, reason: string
     .update(media)
     .set({ status: 'failed', error: reason.slice(0, 300), processedAt: ctx.clock.now() })
     .where(eq(media.id, row.id));
-  if (row.purpose !== 'legacy' && row.sourceBucket !== storage.config.publicBucket) {
+  // Public objects are never deleted (legacy originals), except the private `incoming/` source when the
+  // private and the public role share one bucket (R2_PRIVATE_BUCKET = R2_BUCKET, as in production).
+  if (
+    row.purpose !== 'legacy' &&
+    (row.sourceBucket !== storage.config.publicBucket || row.sourceKey.startsWith('incoming/'))
+  ) {
     await storage.delete(row.sourceBucket, row.sourceKey).catch(() => undefined);
   }
   await markUpload(ctx, row.id, 'rejected', `invalid_image: ${reason}`.slice(0, 300));

@@ -44,6 +44,11 @@ function place(path: string): string {
   return (GAME_FOLDERS as readonly string[]).includes(first) ? path : `Mods/${path}`;
 }
 
+/** The files of an item would exceed the bytes left in the bundle (checked before anything is inflated). */
+export class BundleTooLargeError extends Error {
+  override readonly name = 'BundleTooLargeError';
+}
+
 export interface ItemFile {
   /** Stored file name of the version (`MyMod-1.2.0.zip`). */
   filename: string;
@@ -51,15 +56,27 @@ export interface ItemFile {
   data: Uint8Array;
 }
 
-/** Files a version contributes to the bundle. */
-export function planItemFiles(item: ItemFile): PlannedFile[] {
+/**
+ * Files a version contributes to the bundle. `maxBytes` is what the bundle may still take: the
+ * sizes declared by the zip (which also size the buffers fflate allocates) are summed before any
+ * entry is inflated, so a zip that passed the inspection with a ratio of 100 cannot expand to
+ * gigabytes in the worker. Throws `BundleTooLargeError`.
+ */
+export function planItemFiles(item: ItemFile, options: { maxBytes?: number } = {}): PlannedFile[] {
   const lower = item.filename.toLowerCase();
   if (item.isBuild || lower.endsWith('.json')) {
     const name = safeEntryPath(fileName(item.filename)) ?? 'build.json';
     return [{ path: `${BUILD_FOLDER}/${name}`, data: item.data }];
   }
   if (lower.endsWith('.zip')) {
-    const entries = unzipSync(item.data);
+    let budget = options.maxBytes ?? Number.POSITIVE_INFINITY;
+    const entries = unzipSync(item.data, {
+      filter: (entry) => {
+        budget -= entry.originalSize;
+        if (budget < 0) throw new BundleTooLargeError('the files are larger than the bundle allows');
+        return true;
+      },
+    });
     const files: PlannedFile[] = [];
     for (const [name, data] of Object.entries(entries)) {
       if (name.endsWith('/')) continue;

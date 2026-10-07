@@ -16,12 +16,48 @@ describe('redactLog', () => {
     expect(counts.paths).toBe(2);
   });
 
+  it('hides the account name when nothing follows it', () => {
+    const lines = [
+      'USERPROFILE=C:\\Users\\bob',
+      'cwd: /home/bob',
+      'Path "C:\\Users\\Bob Smith" not found',
+      "open '/Users/bob' failed",
+      'dir C:\\Users\\Luis Choque',
+      '{"home":"C:\\\\Users\\\\bob"}',
+      'file:///home/bob',
+    ];
+    const { text, counts } = redactLog(lines.join('\n'));
+    expect(text.split('\n')).toEqual([
+      'USERPROFILE=C:\\Users\\<user>',
+      'cwd: /home/<user>',
+      'Path "C:\\Users\\<user>" not found',
+      "open '/Users/<user>' failed",
+      'dir C:\\Users\\<user>',
+      '{"home":"C:\\\\Users\\\\<user>"}',
+      'file:///home/<user>',
+    ]);
+    expect(counts.paths).toBe(lines.length);
+  });
+
+  it('keeps URLs, shared profiles and already hidden names', () => {
+    const line = 'GET https://example.com/home/index | C:\\Users\\Public | /home/<user>/x | C:\\Users\\<user>';
+    const { text, counts } = redactLog(line);
+    expect(text).toBe(line);
+    expect(counts.paths).toBe(0);
+  });
+
   it('hides Steam ids, IPs and emails', () => {
     const { text, counts } = redactLog(
       'steam 76561198012345678 STEAM_0:1:4242 from 84.12.201.7:27016 and 2001:db8::1 mail me@example.com, loopback 127.0.0.1',
     );
     expect(text).toBe('steam <steamid> <steamid> from <ip>:27016 and <ip> mail <email>, loopback 127.0.0.1');
     expect(counts).toMatchObject({ steamIds: 2, ips: 2, emails: 1 });
+  });
+
+  it('hides IPv4 addresses written as IPv6-mapped', () => {
+    const { text, counts } = redactLog('peer ::ffff:84.12.201.7:27016 and ::ffff:127.0.0.1 and ::ffff:10.1.2.3');
+    expect(text).toBe('peer <ip>:27016 and ::ffff:127.0.0.1 and <ip>');
+    expect(counts.ips).toBe(2);
   });
 
   it('keeps versions, clocks and assembly numbers', () => {
@@ -39,13 +75,26 @@ describe('redactLog', () => {
         'Authorization: Bearer abcdefghijklmnop123456',
         '"password": "hunter2hunter2"',
         'url https://user:pass@example.com/x',
-        'jwt eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.abcdefghijklmnop',
+        'jwt eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NTY3ODkwIn0.abcdefghijklmnop', // secrets-scan-allow: secret-jwt fake token for the redaction test
         'author: ImAxel, passed: true, tokens: 12',
       ].join('\n'),
     );
     expect(text).not.toMatch(/hunter2|ghp_|abcdefghijklmnop|user:pass/);
     expect(text).toContain('author: ImAxel, passed: true, tokens: 12');
     expect(counts.secrets).toBeGreaterThanOrEqual(5);
+  });
+
+  it('stays linear on hostile lines (long runs of separators and spaces)', () => {
+    const lines = [
+      '/'.repeat(8000),
+      '\\'.repeat(8000),
+      `/home/${' '.repeat(7990)}x`,
+      `C:\\Users\\${' '.repeat(7980)}"`,
+    ];
+    const started = performance.now();
+    for (let i = 0; i < 10; i += 1) redactLog(lines.join('\n'));
+    // Quadratic backtracking took ~0.5 s per long line; linear takes a few milliseconds.
+    expect(performance.now() - started).toBeLessThan(1500);
   });
 
   it('cuts absurdly long lines', () => {

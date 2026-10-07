@@ -55,10 +55,17 @@ export function visitorHash(secret: string, ip: string, userAgent: string, day: 
     .slice(0, 32);
 }
 
-/** Path without query string or fragment (≤ 512 chars, always starting with `/`). */
+/**
+ * A shared log's id is its only protection (144 random bits in the URL, 24 h to live). The page
+ * hides the link from referrers, so the analytics must not keep it for 90 days either.
+ */
+const SHARED_LOG_PATH = /(^|\/)logs\/[A-Za-z0-9_-]{24}(?=\/|$)/;
+
+/** Path without query string or fragment (≤ 512 chars, always starting with `/`), secrets removed. */
 export function cleanPath(path: string): string {
   const bare = path.split(/[?#]/, 1)[0] ?? '/';
-  return (bare.startsWith('/') ? bare : `/${bare}`).slice(0, 512);
+  const rooted = bare.startsWith('/') ? bare : `/${bare}`;
+  return rooted.replace(SHARED_LOG_PATH, '$1logs/:id').slice(0, 512);
 }
 
 function gate(ctx: Ctx, request: BeaconRequest): BeaconOutcome | null {

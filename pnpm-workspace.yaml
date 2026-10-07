@@ -61,6 +61,11 @@ overrides:
   # @lhci/cli (devDependency of apps/web, never shipped): tmp GHSA-52f5/ph9p, uuid < 11.1.1.
   'tmp@<0.2.7': 0.2.7
   'uuid@<11.1.1': 11.1.1
+  # Astro (http-cache-semantics, GHSA-ch52-4w7c-c8xp), Vite/PostCSS (source-map-js, GHSA-68fv-2mgg-jv7q)
+  # and @tailwindcss/typography (postcss-selector-parser, GHSA-rj75-hqrm-r3gf): patched same-major releases.
+  'http-cache-semantics@<4.3.0': 4.3.0
+  'source-map-js@<1.2.2': 1.2.2
+  'postcss-selector-parser@<7.1.6': 7.1.6
 
 # extract-zip <= 2.0.1 (GHSA-jmr9-qjv8-65gv, GHSA-7pqw-9j4j-h8q3) has no patched release. It is only
 # reachable through @lhci/cli > lighthouse > puppeteer-core (CI tooling that extracts browser

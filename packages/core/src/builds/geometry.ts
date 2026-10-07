@@ -37,6 +37,8 @@ export interface BlueprintGeometry {
 
 const MAX_DEPTH = 4;
 const MAX_RAW_PIECES = 500_000;
+/** Max nesting (arrays included) followed under `Structures`: a 20 KB file of `[[[[…` would overflow the stack. */
+const MAX_NESTING = 64;
 
 function num(value: unknown): number | null {
   if (typeof value === 'number') return Number.isFinite(value) ? value : null;
@@ -76,10 +78,10 @@ function profileOf(record: Record<string, unknown>): string | null {
 }
 
 /** Collects the raw pieces of a `Structures` array. */
-function collect(node: unknown, inherited: string | null, depth: number, out: RawPiece[]): void {
-  if (out.length >= MAX_RAW_PIECES || node === null || typeof node !== 'object') return;
+function collect(node: unknown, inherited: string | null, depth: number, out: RawPiece[], nesting = 0): void {
+  if (out.length >= MAX_RAW_PIECES || node === null || typeof node !== 'object' || nesting > MAX_NESTING) return;
   if (Array.isArray(node)) {
-    for (const child of node) collect(child, inherited, depth, out);
+    for (const child of node) collect(child, inherited, depth, out, nesting + 1);
     return;
   }
   const record = node as Record<string, unknown>;
@@ -106,10 +108,10 @@ function collect(node: unknown, inherited: string | null, depth: number, out: Ra
   }
   if (position && nested) {
     // A structure with its own elements: the elements are the pieces.
-    for (const [, value] of children) collect(value, profile, depth + 1, out);
+    for (const [, value] of children) collect(value, profile, depth + 1, out, nesting + 1);
     return;
   }
-  for (const [, value] of children) collect(value, profile, depth + 1, out);
+  for (const [, value] of children) collect(value, profile, depth + 1, out, nesting + 1);
 }
 
 interface RawPiece {

@@ -35,7 +35,7 @@ import Fastify, { type FastifyInstance, LogController } from 'fastify';
 import { serializerCompiler, validatorCompiler } from 'fastify-type-provider-zod';
 import type { PgBoss } from 'pg-boss';
 import type { ApiEnv } from './env.ts';
-import { requestIdFrom } from './lib/client-ip.ts';
+import { createTrustedEdge, requestIdFrom } from './lib/client-ip.ts';
 import { type ApiModule, moduleContext } from './lib/define-module.ts';
 import { createErrorReporter, type ErrorReporter } from './lib/sentry.ts';
 import { surfaceOf } from './lib/surface.ts';
@@ -49,6 +49,7 @@ import { setupCors } from './plugins/cors.ts';
 import { setupCsrf } from './plugins/csrf.ts';
 import { setupDocs } from './plugins/docs.ts';
 import { setupErrors } from './plugins/errors.ts';
+import { setupNulGuard } from './plugins/nul-guard.ts';
 import { type RateLimitOverrides, setupRateLimit } from './plugins/rate-limit.ts';
 import { HSTS_MAX_AGE_SECONDS, setupSecurity } from './plugins/security/index.ts';
 import { SseHub, setupKitLiveStream, setupModLiveStream, setupSse } from './plugins/sse.ts';
@@ -74,7 +75,7 @@ export interface BuildAppOptions {
   /** Logger (default: pino JSON at LOG_LEVEL). */
   logger?: Logger;
   rateLimits?: RateLimitOverrides;
-  sse?: { pingMs?: number };
+  sse?: { pingMs?: number; userMaxLifetimeMs?: number };
   /** How dependencies start: in the background with retries (server) or awaited (tests). */
   startDependencies?: 'background' | 'await' | 'manual';
   /**
@@ -90,6 +91,9 @@ export interface BuildAppOptions {
    */
   statusCounters?: { flushMs?: number } | false;
 }
+
+/** Keep-alive of the HTTP server: above Traefik's 90 s idle timeout towards its backends. */
+export const UPSTREAM_KEEP_ALIVE_MS = 120_000;
 
 const anonymous: SessionResolver = async () => null;
 
@@ -146,6 +150,14 @@ export async function buildApp(options: BuildAppOptions): Promise<FastifyInstanc
     routerOptions: { maxParamLength: 300 },
     return503OnClosing: true,
     forceCloseConnections: 'idle',
+    // Traefik keeps idle upstream connections for 90 s and reuses them. A shorter keep-alive here
+    // (Fastify's default is 72 s) closes a socket just as the proxy writes a request on it, which
+    // the client sees as a sporadic 502 (POSTs are not retried). Node wants headersTimeout above it.
+    keepAliveTimeout: UPSTREAM_KEEP_ALIVE_MS,
+    http: { headersTimeout: UPSTREAM_KEEP_ALIVE_MS + 5_000 },
+    // Request bodies are small (1 MB limit, uploads go straight to R2): do not let a client hold a
+    // socket open while trickling one (Fastify disables Node's requestTimeout by default).
+    requestTimeout: 60_000,
     // Coolify's path routing (`https://sotf-mods.com/api`) strips the `/api` prefix before the
     // request reaches us; every route lives under `/api`, so put it back. Probes stay at the root.
     rewriteUrl: (req) => {
@@ -199,7 +211,8 @@ export async function buildApp(options: BuildAppOptions): Promise<FastifyInstanc
 
   const errorReporter = options.errorReporter ?? createErrorReporter(env);
   setupErrors(app, errorReporter);
-  setupRequestBasics(app);
+  const edge = createTrustedEdge(env.TRUSTED_EDGE_CIDRS);
+  setupRequestBasics(app, { edge });
   await app.register(helmet, {
     // JSON API: nothing to render, nothing to frame. /api/docs overrides the CSP.
     contentSecurityPolicy: {
@@ -207,7 +220,7 @@ export async function buildApp(options: BuildAppOptions): Promise<FastifyInstanc
       directives: { defaultSrc: ["'none'"], frameAncestors: ["'none'"], baseUri: ["'none'"], formAction: ["'none'"] },
     },
     crossOriginResourcePolicy: { policy: 'cross-origin' },
-    // Same value as plugins/security (HSTS 6 months, PLAN §9.1), which sets the final header.
+    // plugins/security (HSTS 6 months, PLAN §9.1; includeSubDomains only on `api.`) sets the final header.
     strictTransportSecurity: { maxAge: HSTS_MAX_AGE_SECONDS, includeSubDomains: true, preload: false },
     referrerPolicy: { policy: 'no-referrer' },
   });
@@ -224,11 +237,13 @@ export async function buildApp(options: BuildAppOptions): Promise<FastifyInstanc
       },
     });
   await setupCors(app);
+  setupNulGuard(app);
   setupCsrf(app, { trustedOrigins: [new URL(env.PUBLIC_SITE_URL).origin, ...env.CSRF_TRUSTED_ORIGINS] });
   setupContext(app, {
     deps: { db, jobs, clock, log, caches, appSecret: env.APP_SECRET },
     internalSecret: env.INTERNAL_SECRET,
     sessionResolver: () => sessionResolver,
+    edge,
   });
   platform.rateLimiter = await setupRateLimit(app, options.rateLimits, env.INTERNAL_SECRET);
   await setupCacheHeaders(app);
@@ -254,7 +269,9 @@ export async function buildApp(options: BuildAppOptions): Promise<FastifyInstanc
 
   registerHealth(app);
   await setupDocs(app, { version: env.GIT_SHA, siteUrl: env.PUBLIC_SITE_URL });
-  await setupSse(app, hub);
+  await setupSse(app, hub, {
+    ...(options.sse?.userMaxLifetimeMs ? { maxLifetimeMs: options.sse.userMaxLifetimeMs } : {}),
+  });
   await setupModLiveStream(app, hub);
   await setupKitLiveStream(app, hub);
 

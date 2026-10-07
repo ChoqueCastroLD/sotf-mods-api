@@ -30,6 +30,8 @@ const RELOAD_KEY = 'sotf-preload-reload';
 
 interface ViewTransitionLike {
   finished: Promise<unknown>;
+  ready?: Promise<unknown>;
+  updateCallbackDone?: Promise<unknown>;
   /** Transition types (Chromium 125+, Safari 18.2+): `:active-view-transition-type(back)` in CSS. */
   types?: Set<string>;
 }
@@ -65,10 +67,27 @@ function cssPath(url: string, base: string): string | null {
   }
 }
 
-function clearAfter(transition: ViewTransitionLike, element: HTMLElement): void {
-  void transition.finished.finally(() => {
+/**
+ * A skipped or aborted transition (a fast second navigation, a form post, reduced motion turned on
+ * mid-way) rejects its promises; nobody awaits them here, so Chromium would report each as an
+ * «Uncaught (in promise)» page error.
+ */
+export function ignoreTransitionRejections(transition: ViewTransitionLike): void {
+  for (const promise of [transition.ready, transition.updateCallbackDone, transition.finished]) {
+    promise?.catch(() => {});
+  }
+}
+
+/**
+ * Clears the name once the transition ends. `finished` rejects (`AbortError: Transition was
+ * skipped`) when another navigation interrupts it (fast back/forward): that is not an error, and
+ * `.finally()` alone would re-throw it as an unhandled rejection.
+ */
+export function clearAfter(transition: ViewTransitionLike, element: HTMLElement): void {
+  const clear = () => {
     element.style.viewTransitionName = '';
-  });
+  };
+  transition.finished.then(clear, clear);
 }
 
 export function initViewTransitions(win: Window = window): void {
@@ -76,6 +95,7 @@ export function initViewTransitions(win: Window = window): void {
 
   win.addEventListener('pageswap', (event) => {
     const swap = event as PageSwapEvent;
+    if (swap.viewTransition) ignoreTransitionRejections(swap.viewTransition);
     if (!swap.viewTransition || !swap.activation?.entry) return;
     const path = cssPath(swap.activation.entry.url, doc.baseURI);
     if (!path) return;
@@ -96,6 +116,7 @@ export function initViewTransitions(win: Window = window): void {
   win.addEventListener('pagereveal', (event) => {
     const reveal = event as PageRevealEvent;
     if (!reveal.viewTransition) return;
+    ignoreTransitionRejections(reveal.viewTransition);
     const navigation = (win as Window & { navigation?: { activation?: NavigationActivationLike | null } }).navigation;
     if (isBackNavigation(navigation?.activation)) reveal.viewTransition.types?.add('back');
     const target = doc.querySelector<HTMLElement>('[data-vt-cover-target]');

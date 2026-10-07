@@ -18,7 +18,7 @@ const de_requests_empty_search_title = /** @type {(inputs: Requests_Empty_Search
 };
 
 const fr_requests_empty_search_title = /** @type {(inputs: Requests_Empty_Search_TitleInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Aucune demande pour « ${i?.query} »`)
+	return /** @type {LocalizedString} */ (`Aucune demande pour « ${i?.query} »`)
 };
 
 const it_requests_empty_search_title = /** @type {(inputs: Requests_Empty_Search_TitleInputs) => LocalizedString} */ (i) => {

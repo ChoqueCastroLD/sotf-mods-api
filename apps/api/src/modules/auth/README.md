@@ -23,5 +23,16 @@ with `createAccountModules({ hibp, turnstile, storage })`. Acceptance:
   set (`GET /auth/providers` tells the web; start/callback answer 404 otherwise). Authorization code
   flow with PKCE; the round trip state is a signed cookie (`state.ts`). The redirect URI to register
   in the Discord app is `${PUBLIC_SITE_URL}/api/v2/auth/oauth/discord/callback`. A verified email
-  matching an existing account needs the account password (`/oauth/link`) before linking.
+  matching an existing account needs the account password (`/oauth/link`) before linking; an account
+  with two-factor authentication gets `?oauth_error=two_factor` instead (a password alone must never
+  open its session): it signs in normally and links Discord from Settings → Security.
 - The worker's `cleanup.sessions` job purges old link tickets and dead tokens.
+
+## Client address and rate limits
+
+Per-IP limits (register 3/day, login 5/min, reset 3/h…) use `request.clientIp`
+(`lib/client-ip.ts`): `CF-Connecting-IP`, but only when the connection comes from Cloudflare's
+published ranges or the private network (Traefik, the web container); otherwise the peer's own
+address. The same rule governs `CF-IPCountry`. `TRUSTED_EDGE_CIDRS` adds ranges (see
+`ops/cloudflare/README.md` §13). Tests: `apps/api/test/platform.test.ts`,
+`second-factor.int.test.ts`.

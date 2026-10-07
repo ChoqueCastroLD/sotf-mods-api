@@ -53,4 +53,11 @@ export async function setupSecurity(app: FastifyInstance, options: SecurityOptio
 }
 
 export { CSP_REPORT_PATH, CspReportSink, isNoise, parseCspReports, scrubUrl } from './csp-report.ts';
-export { API_HSTS, API_PERMISSIONS_POLICY, HSTS_MAX_AGE_SECONDS, privatizeCookieResponse } from './headers.ts';
+export {
+  API_HSTS,
+  API_PERMISSIONS_POLICY,
+  HSTS_MAX_AGE_SECONDS,
+  hstsFor,
+  privatizeCookieResponse,
+  SITE_HSTS,
+} from './headers.ts';

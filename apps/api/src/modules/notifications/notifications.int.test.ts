@@ -3,9 +3,13 @@
  * unread counter, mark-as-read, the preference matrix and the one-click unsubscribe edge cases.
  * The end-to-end flow (worker, Mailpit, SSE timing) lives in the worker's notifications test.
  */
-import { NOTIFICATION_TYPES } from '@sotf/contracts/notifications';
 import { systemClock } from '@sotf/core';
-import { createNotifications, createUnsubscribeToken, type NotificationDraft } from '@sotf/core/notifications/index';
+import {
+  createNotifications,
+  createUnsubscribeToken,
+  type NotificationDraft,
+  VISIBLE_NOTIFICATION_TYPES,
+} from '@sotf/core/notifications/index';
 import { notificationPreference, user } from '@sotf/db';
 import { createFactories, type Factories } from '@sotf/db/testing';
 import { eq } from 'drizzle-orm';
@@ -126,7 +130,8 @@ describe('preferences', () => {
     const headers = { ...t.sameOrigin(), ...t.as({ userId: me.id }) };
     const initial = await t.app.inject({ method: 'GET', url: '/api/v2/notification-preferences', headers });
     const items = initial.json().items as Array<{ type: string; email: string; inApp: boolean; isDefault: boolean }>;
-    expect(items).toHaveLength(NOTIFICATION_TYPES.length);
+    // Types hidden from the settings (retired features) are not listed.
+    expect(items.map((i) => i.type).sort()).toEqual([...VISIBLE_NOTIFICATION_TYPES].sort());
     expect(items.find((i) => i.type === 'mod.version_published')).toMatchObject({ email: 'daily', isDefault: true });
     expect(items.find((i) => i.type === 'creator.weekly_report')).toMatchObject({
       inApp: false,

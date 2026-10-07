@@ -6,7 +6,9 @@
  *    `{ type: 'guide-page', url }` and it is refreshed on every visit), else with the branded
  *    offline page in the visitor's language (`{ type: 'offline-page', url }`). Both are stored
  *    together with the CSS, scripts, fonts and art they need.
- *  - Fingerprinted assets (`/_astro/`), brand, art and PWA images are cache-first.
+ *  - Fingerprinted assets (`/_astro/`) are cache-first. Brand, art and PWA images keep stable names,
+ *    so they are answered from the cache and refreshed in the background (stale-while-revalidate):
+ *    a changed logo or splash reaches visitors without waiting for a new worker version.
  *  - Everything else (API, uploads, downloads, other origins, non-GET) is not touched.
  *
  * Rules that keep it correct:
@@ -26,6 +28,8 @@ const GUIDE = /^\/(?:[a-z]{2}\/)?install\/?$/;
 const OFFLINE = /^\/(?:[a-z]{2}\/)?offline\/?$/;
 const LOCALE_PREFIX = /^\/([a-z]{2})(?:\/|$)/;
 const STATIC = /^\/(?:_astro|brand|art|pwa)\//;
+/* Content-hashed file names: the cached copy can never go stale. */
+const FINGERPRINTED = /^\/_astro\//;
 /* Stylesheets, scripts, fonts and images the page itself uses (not the iOS splash screens). */
 const ASSET_IN_HTML = /(?:href|src)=["'](\/(?:_astro|brand|art)\/[^"'\s>]+)/g;
 const MAX_ASSETS = 220;
@@ -139,7 +143,17 @@ async function handleNavigation(event) {
 async function handleStatic(event) {
   const cache = await caches.open(ASSETS);
   const hit = await cache.match(event.request);
-  if (hit) return hit;
+  if (hit) {
+    if (!FINGERPRINTED.test(new URL(event.request.url).pathname)) {
+      // Stable name: the copy may be old. Refresh it for the next view; the page keeps the hit.
+      event.waitUntil(
+        fetch(event.request)
+          .then((fresh) => remember(ASSETS, event.request, fresh))
+          .catch(() => {}),
+      );
+    }
+    return hit;
+  }
   const response = await fetch(event.request);
   event.waitUntil(remember(ASSETS, event.request, response));
   return response;

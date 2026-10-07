@@ -16,6 +16,7 @@
  * Importing this module validates the environment (fails fast) and schedules the post-deploy
  * purge.
  */
+import http from 'node:http';
 import type { Fetchable } from 'astro';
 import { astro, FetchState } from 'astro/fetch';
 import { entryDecision } from '../../middleware/redirects.ts';
@@ -23,7 +24,10 @@ import { loadEnv } from '../env.ts';
 import { archivedAsset, syncAssetArchive } from './asset-archive.ts';
 import { schedulePostDeployPurge } from './deploy-purge.ts';
 import { finalizeResponse, prepareRequest, redirectResponse } from './entry-utils.ts';
+import { installHttpTuning } from './http-tuning.ts';
 
+// Before the adapter starts listening (it creates the server after this module is evaluated).
+installHttpTuning(http, { gracefulShutdown: process.env.NODE_ENV === 'production' });
 const env = loadEnv();
 schedulePostDeployPurge(env);
 void syncAssetArchive();

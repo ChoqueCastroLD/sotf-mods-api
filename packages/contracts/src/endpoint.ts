@@ -42,7 +42,12 @@ export type Requirement =
 export const RATE_LIMITS = {
   anonymousRead: { max: 300, window: '1 minute', key: 'ip' },
   legacyRead: { max: 600, window: '1 minute', key: 'ip' },
-  login: { max: 5, window: '1 minute', key: 'ip', extra: '10/hour per account; Turnstile after 3 failures' },
+  login: {
+    max: 5,
+    window: '1 minute',
+    key: 'ip',
+    extra: '10/hour per client and account, 100/hour per account; Turnstile after 3 failures',
+  },
   register: { max: 3, window: '1 day', key: 'ip' },
   passwordForgot: { max: 3, window: '1 hour', key: 'ip', extra: '3/hour per email' },
   emailResend: { max: 5, window: '1 hour', key: 'user' },

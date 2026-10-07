@@ -27,6 +27,7 @@ const ERROR_TEXT: Record<OAuthError, () => string> = {
   banned: () => m.oauth_error_banned(),
   already_linked: () => m.oauth_error_already_linked(),
   unavailable: () => m.oauth_error_unavailable(),
+  two_factor: () => m.oauth_error_two_factor(),
 };
 
 export function ConnectionsCard() {

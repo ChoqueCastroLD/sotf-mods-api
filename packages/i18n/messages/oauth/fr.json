@@ -9,6 +9,7 @@
   "oauth_error_banned": "Ce compte ne peut pas se connecter.",
   "oauth_error_already_linked": "Ce compte Discord est déjà lié à un autre utilisateur.",
   "oauth_error_unavailable": "La connexion avec Discord n’est pas disponible pour le moment.",
+  "oauth_error_two_factor": "Ce compte utilise l’authentification à deux facteurs. Connectez-vous avec votre mot de passe et votre code, puis liez Discord dans les paramètres.",
   "oauth_link_meta_title": "Lier Discord à votre compte",
   "oauth_link_meta_description": "Confirmez votre mot de passe pour lier Discord à votre compte existant.",
   "oauth_link_heading": "Liez votre compte Discord",

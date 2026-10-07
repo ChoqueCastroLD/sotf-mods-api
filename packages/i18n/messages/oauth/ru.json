@@ -9,6 +9,7 @@
   "oauth_error_banned": "Эта учётная запись не может войти.",
   "oauth_error_already_linked": "Этот аккаунт Discord уже привязан к другому пользователю.",
   "oauth_error_unavailable": "Вход через Discord сейчас недоступен.",
+  "oauth_error_two_factor": "Этот аккаунт защищён двухфакторной аутентификацией. Войдите с паролем и кодом, а затем привяжите Discord в настройках.",
   "oauth_link_meta_title": "Привязка Discord к аккаунту",
   "oauth_link_meta_description": "Подтвердите пароль, чтобы привязать Discord к существующему аккаунту.",
   "oauth_link_heading": "Привяжите аккаунт Discord",

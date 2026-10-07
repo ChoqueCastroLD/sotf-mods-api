@@ -5,7 +5,10 @@
  * `frame-ancestors 'none'`), `X-Content-Type-Options`, `X-Frame-Options`, COOP/CORP and
  * `Referrer-Policy`. This hook adds what helmet does not cover and aligns HSTS with the plan:
  *
- * - `Strict-Transport-Security`: 6 months, sub-domains of `api.` included, **no preload** yet;
+ * - `Strict-Transport-Security`: 6 months, **no preload** yet. `includeSubDomains` only on the `api.`
+ *   host: the API also answers on `sotf-mods.com/api` (path routing), and HSTS is per host, not per
+ *   path, so sending it there would silently put the whole site and every sub-domain under it
+ *   (the web deliberately sends none, `apps/web/src/lib/security/headers.ts`);
  * - a restrictive `Permissions-Policy` (the API never needs a browser feature);
  * - `X-Robots-Tag: noindex` (API bodies are not pages; `/api/docs` included);
  * - any response that sets a cookie is private: `Cache-Control: private, no-store` and no edge
@@ -15,7 +18,15 @@ import type { FastifyInstance, FastifyReply } from 'fastify';
 
 /** 6 months (PLAN §9.1: "HSTS: 6 meses, sin preload al principio"). */
 export const HSTS_MAX_AGE_SECONDS = 15_552_000;
+/** Policy of the dedicated `api.` host (sub-domains included). */
 export const API_HSTS = `max-age=${HSTS_MAX_AGE_SECONDS}; includeSubDomains`;
+/** Policy everywhere else, including `sotf-mods.com/api`: same as the web (no `includeSubDomains`). */
+export const SITE_HSTS = `max-age=${HSTS_MAX_AGE_SECONDS}`;
+
+/** The HSTS value for a request host (port already removed). */
+export function hstsFor(hostname: string | undefined): string {
+  return hostname?.toLowerCase().startsWith('api.') ? API_HSTS : SITE_HSTS;
+}
 
 export const API_PERMISSIONS_POLICY = [
   'accelerometer=()',
@@ -60,8 +71,8 @@ export function privatizeCookieResponse(reply: FastifyReply): boolean {
 }
 
 export function setupSecurityHeaders(app: FastifyInstance): void {
-  app.addHook('onSend', async (_request, reply, payload) => {
-    reply.header('strict-transport-security', API_HSTS);
+  app.addHook('onSend', async (request, reply, payload) => {
+    reply.header('strict-transport-security', hstsFor(request.hostname));
     reply.header('permissions-policy', API_PERMISSIONS_POLICY);
     if (!reply.hasHeader('x-robots-tag')) reply.header('x-robots-tag', 'noindex, nofollow');
     privatizeCookieResponse(reply);

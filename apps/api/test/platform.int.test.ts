@@ -8,6 +8,7 @@ import { cache, defineEndpoint, PROBLEM_CONTENT_TYPE } from '@sotf/contracts';
 import { publishRealtime } from '@sotf/core';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { z } from 'zod';
+import { UPSTREAM_KEEP_ALIVE_MS } from '../src/app.ts';
 import { defineModule } from '../src/lib/define-module.ts';
 import { buildTestApp, TEST_SITE_URL, type TestApp } from '../src/testing.ts';
 
@@ -300,6 +301,27 @@ describe('rate limits', () => {
     }
     expect(softFlags).toEqual([false, true, true]);
   });
+
+  it('keys per-IP buckets on CF-Connecting-IP only when the peer is Cloudflare or private', async () => {
+    const hit = async (remoteAddress: string, cfIp: string) => {
+      const res = await t.app.inject({
+        method: 'POST',
+        url: '/api/v2/_test/e',
+        remoteAddress,
+        headers: { 'content-type': 'text/plain', 'cf-connecting-ip': cfIp },
+        payload: '{"n":3}',
+      });
+      expect(res.statusCode).toBe(204);
+    };
+    // A client that reached the origin directly cannot dodge the limit by rotating the header.
+    softFlags = [];
+    for (const spoofed of ['198.51.100.1', '198.51.100.2', '198.51.100.3']) await hit('203.0.113.77', spoofed);
+    expect(softFlags).toEqual([false, true, true]);
+    // Through Cloudflare the header is the visitor: three visitors, three buckets.
+    softFlags = [];
+    for (const visitor of ['198.51.100.11', '198.51.100.12', '198.51.100.13']) await hit('173.245.48.9', visitor);
+    expect(softFlags).toEqual([false, false, false]);
+  });
 });
 
 describe('cache headers and CORS', () => {
@@ -397,6 +419,14 @@ describe('health', () => {
     const ready = await t.app.inject({ method: 'GET', url: '/readyz' });
     expect(ready.statusCode).toBe(200);
     expect(json(ready.body)).toMatchObject({ status: 'ok', checks: { db: true, pgboss: true, listen: true } });
+  });
+
+  it('keeps idle connections open longer than Traefik reuses them (90 s)', () => {
+    // A shorter keep-alive races with the proxy and shows up as a sporadic 502 on POSTs.
+    expect(UPSTREAM_KEEP_ALIVE_MS).toBeGreaterThan(90_000);
+    expect(t.app.server.keepAliveTimeout).toBe(UPSTREAM_KEEP_ALIVE_MS);
+    expect(t.app.server.headersTimeout).toBeGreaterThan(UPSTREAM_KEEP_ALIVE_MS);
+    expect(t.app.server.requestTimeout).toBeGreaterThan(0);
   });
 
   it('/readyz is 503 without pg-boss or LISTEN', async () => {

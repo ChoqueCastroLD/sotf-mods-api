@@ -8,7 +8,7 @@
  * `R2_ACCOUNT_ID`) the endpoints answer 503 UNAVAILABLE; everything else keeps working.
  */
 import { uploadsEndpoints } from '@sotf/contracts/uploads';
-import { createStorage, type ObjectStorage, storageConfigFromEnv } from '@sotf/core/storage/index';
+import { createStorage, type ObjectStorage, sharedBucketWarning, storageConfigFromEnv } from '@sotf/core/storage/index';
 import { completeUpload, createUpload, getUpload } from '@sotf/core/uploads/index';
 import { defineModule } from '../../lib/define-module.ts';
 import { catalogConfigOf } from '../catalog/index.ts';
@@ -19,6 +19,8 @@ export default defineModule({
     const config = storageConfigFromEnv(m.platform.env);
     const storage: ObjectStorage | null = config ? createStorage(config) : null;
     if (!storage) m.platform.log.warn('R2 is not configured: uploads answer 503');
+    const shared = config ? sharedBucketWarning(config) : null;
+    if (shared) m.platform.log.warn(shared);
     m.app.addHook('onClose', async () => storage?.destroy());
 
     m.implement(uploadsEndpoints.create, async ({ body, ctx, reply }) => {

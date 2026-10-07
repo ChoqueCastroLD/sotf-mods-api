@@ -49,6 +49,11 @@ export interface RangeSourceOptions {
   timeoutMs?: number;
   /** Injected fetch (tests). */
   fetch?: typeof fetch;
+  /**
+   * ETag the object must have: sent as `If-Match` on every read, so a presigned PUT that swaps the
+   * object while it is being inspected makes the reads fail (412) instead of mixing two files.
+   */
+  ifMatch?: string;
 }
 
 /** Validity of the presigned URL (the inspection of a 500 MB zip takes seconds; 15 min is ample). */
@@ -81,7 +86,10 @@ export function httpRangeSource(url: string, size: number, options: RangeSourceO
   async function fetchRange(start: number, endExclusive: number): Promise<Buffer> {
     requests += 1;
     const res = await doFetch(url, {
-      headers: { range: `bytes=${start}-${endExclusive - 1}` },
+      headers: {
+        range: `bytes=${start}-${endExclusive - 1}`,
+        ...(options.ifMatch ? { 'if-match': options.ifMatch } : {}),
+      },
       signal: AbortSignal.timeout(timeoutMs),
     });
     if (res.status !== 206 && !(res.status === 200 && start === 0 && endExclusive >= size)) {

@@ -21,17 +21,7 @@ import tailwindcss from '@tailwindcss/vite';
 import { tanstackRouter } from '@tanstack/router-plugin/vite';
 import { defineConfig } from 'astro/config';
 import { cspConfig } from './src/lib/security/csp.ts';
-
-/** Hosts whose X-Forwarded-* headers Astro may trust: the public site (and its www alias). */
-function trustedDomains() {
-  const site = new URL(process.env.PUBLIC_SITE_URL || 'https://sotf-mods.com');
-  const protocol = site.protocol.replace(':', '');
-  const host = site.hostname.replace(/^www\./, '');
-  return [
-    { hostname: host, protocol },
-    { hostname: `www.${host}`, protocol },
-  ];
-}
+import { trustedDomains } from './src/lib/security/trusted-domains.ts';
 import { CONSOLE_ROUTER_CONFIG } from './src/lib/tooling/router-config.ts';
 
 /** API origin for the dev proxy (same default as `src/lib/env.ts`). */
@@ -98,7 +88,7 @@ export default defineConfig({
     // Behind Cloudflare and Traefik the server sees http://; trusting X-Forwarded-Proto/Host for
     // the site's own host lets the origin check compare against https://<site> (without it every
     // same-site form POST, e.g. /logout, failed with "Cross-site POST form submissions are forbidden").
-    allowedDomains: trustedDomains(),
+    allowedDomains: trustedDomains(process.env.PUBLIC_SITE_URL),
     csp: cspConfig(),
   },
   vite: {

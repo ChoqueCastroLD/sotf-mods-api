@@ -3,7 +3,7 @@ import { DomainError } from '@sotf/core';
 import type { FastifyRequest } from 'fastify';
 import { describe, expect, it } from 'vitest';
 import { z } from 'zod';
-import { clientIpOf, countryOf, requestIdFrom } from '../src/lib/client-ip.ts';
+import { clientIpOf, countryOf, createTrustedEdge, requestIdFrom } from '../src/lib/client-ip.ts';
 import { pathOf, surfaceOf } from '../src/lib/surface.ts';
 import { secretsEqual } from '../src/plugins/context.ts';
 import { allowedContentTypes, checkCsrf, mediaTypeOf } from '../src/plugins/csrf.ts';
@@ -57,6 +57,34 @@ describe('client address and request id', () => {
     expect(clientIpOf(fakeRequest({ headers: { 'cf-connecting-ip': 'nonsense' } }))).toBe('10.0.0.1');
     expect(countryOf(fakeRequest({ headers: { 'cf-ipcountry': 'es' } }))).toBe('ES');
     expect(countryOf(fakeRequest({ headers: { 'cf-ipcountry': 'XX' } }))).toBeNull();
+  });
+
+  it('believes CF-Connecting-IP and CF-IPCountry only from Cloudflare or the private network', () => {
+    const spoof = { 'cf-connecting-ip': '198.51.100.7', 'cf-ipcountry': 'ES' };
+    // A client that reached the origin without Cloudflare: its own address wins, the headers are ignored.
+    const direct = fakeRequest({ ip: '203.0.113.50', headers: spoof });
+    expect(clientIpOf(direct)).toBe('203.0.113.50');
+    expect(countryOf(direct)).toBeNull();
+    // Through Cloudflare (Traefik saw an edge address) or from a container of ours.
+    for (const peer of ['173.245.48.9', '104.16.1.1', '172.70.1.2', '2606:4700::1', '::ffff:162.158.0.4']) {
+      const viaEdge = fakeRequest({ ip: peer, headers: spoof });
+      expect(clientIpOf(viaEdge)).toBe('198.51.100.7');
+      expect(countryOf(viaEdge)).toBe('ES');
+    }
+    for (const peer of ['127.0.0.1', '::1', '172.18.0.5', '::ffff:10.0.4.2', '192.168.1.3', 'fd12::5']) {
+      expect(clientIpOf(fakeRequest({ ip: peer, headers: spoof }))).toBe('198.51.100.7');
+    }
+    // Just outside Cloudflare's ranges and outside RFC 1918.
+    for (const peer of ['104.15.255.255', '172.32.0.1', '11.0.0.1', '2606:4701::1']) {
+      expect(clientIpOf(fakeRequest({ ip: peer, headers: spoof }))).toBe(peer);
+    }
+  });
+
+  it('accepts operator-listed edge ranges', () => {
+    const edge = createTrustedEdge(['203.0.113.0/24']);
+    const request = fakeRequest({ ip: '203.0.113.50', headers: { 'cf-connecting-ip': '198.51.100.7' } });
+    expect(clientIpOf(request, edge)).toBe('198.51.100.7');
+    expect(clientIpOf(request)).toBe('203.0.113.50');
   });
 
   it('uses cf-ray as request id when well-formed', () => {

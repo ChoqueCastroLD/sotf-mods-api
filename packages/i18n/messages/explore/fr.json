@@ -177,7 +177,7 @@
   "explore_downloads_min": "{count, number}+ téléchargements",
   "explore_page_size_label": "Par page",
   "explore_search_builds_label": "Rechercher des builds",
-  "explore_noresults_query_title": "Aucun résultat pour « {query} »",
+  "explore_noresults_query_title": "Aucun résultat pour « {query} »",
   "explore_suggest_popular": "Mods populaires",
   "explore_results_range": "{from, number}–{to, number} sur {total, number}"
 }

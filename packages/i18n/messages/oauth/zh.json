@@ -9,6 +9,7 @@
   "oauth_error_banned": "此账号无法登录。",
   "oauth_error_already_linked": "该 Discord 账号已关联到其他用户。",
   "oauth_error_unavailable": "Discord 登录目前不可用。",
+  "oauth_error_two_factor": "该账号已启用两步验证。请先用密码和验证码登录，然后在设置中关联 Discord。",
   "oauth_link_meta_title": "将 Discord 关联到你的账号",
   "oauth_link_meta_description": "确认密码，将 Discord 关联到你现有的账号。",
   "oauth_link_heading": "关联你的 Discord 账号",

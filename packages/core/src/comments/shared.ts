@@ -61,7 +61,9 @@ export async function loadMember(ctx: Ctx): Promise<Member> {
   );
   if (!row || row.deletedAt !== null) throw errors.unauthenticated();
   if (row.bannedAt !== null) throw new DomainError('SUSPENDED', undefined, 'Your account is banned');
-  const role = roleOf(row.role);
+  // The session actor is the ceiling: a personal access token acts as `user` whatever the owner's
+  // role ("a token never carries staff powers"), so the account row may only lower the role.
+  const role: Role = actor.role === 'user' ? 'user' : roleOf(row.role);
   const suspendedUntil = row.suspendedUntil === null ? (actor.suspendedUntil ?? null) : asDate(row.suspendedUntil);
   return {
     id: row.id,

@@ -9,6 +9,7 @@
   "oauth_error_banned": "This account can’t log in.",
   "oauth_error_already_linked": "That Discord account is already linked to another user.",
   "oauth_error_unavailable": "Logging in with Discord isn’t available right now.",
+  "oauth_error_two_factor": "This account uses two-factor authentication. Log in with your password and code, then link Discord in Settings.",
   "oauth_link_meta_title": "Link Discord to your account",
   "oauth_link_meta_description": "Confirm your password to link Discord to your existing account.",
   "oauth_link_heading": "Link your Discord account",

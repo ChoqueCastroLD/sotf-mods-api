@@ -100,7 +100,7 @@ type Processor = ReturnType<typeof createProcessor>;
 /**
  * Normalises author input: removes a BOM, unifies line endings, composes Unicode (NFC; fixes
  * decomposed umlauts), replaces lone surrogates and drops control characters other than tab and
- * newline.
+ * newline, and the bidirectional overrides and isolates (text spoofing).
  */
 export function normalizeInput(md: string): string {
   return (
@@ -111,6 +111,9 @@ export function normalizeInput(md: string): string {
       .normalize('NFC')
       // biome-ignore lint/suspicious/noControlCharactersInRegex: stripping control characters is the point.
       .replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g, '')
+      // Direction overrides, embeddings and isolates reorder the text around them: with one inside a
+      // link text `[\u202Egnp.exe](…)` reads as `exe.png`. Plain RTL text does not need them.
+      .replace(/[\u202a-\u202e\u2066-\u2069]/g, '')
   );
 }
 

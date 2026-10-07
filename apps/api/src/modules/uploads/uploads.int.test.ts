@@ -6,11 +6,14 @@
  */
 import { randomBytes } from 'node:crypto';
 import { type Ctx, silentLogger, systemCtx } from '@sotf/core';
+import { runInspection } from '@sotf/core/inspection/index';
+import { processMedia } from '@sotf/core/media/index';
 import { createStorage, incomingKey, modFileKey, type ObjectStorage } from '@sotf/core/storage/index';
 import { startTestS3, type TestS3 } from '@sotf/core/storage/testing';
-import { expireUploads, finalizeUpload } from '@sotf/core/uploads/index';
+import { expireUploads, finalizeUpload, sweepIncoming } from '@sotf/core/uploads/index';
 import { createFactories, type Factories } from '@sotf/db/testing';
 import { sql } from 'drizzle-orm';
+import { zipSync } from 'fflate';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { buildTestApp, type TestApp } from '../../testing.ts';
 import { waitUntilServing } from '../downloads/test-helpers.ts';
@@ -329,6 +332,138 @@ describe('multipart above 100 MB', () => {
   }, 120_000);
 });
 
+describe('a presigned PUT cannot swap an object after it was checked', () => {
+  const manifest = new TextEncoder().encode(
+    JSON.stringify({ id: 'SwapMod', name: 'Swap Mod', version: '1.0.0', type: 'Mod' }),
+  );
+  /** Two stored zips of exactly the same size: the signed Content-Length does not tell them apart. */
+  function twoZips() {
+    const make = (fill: string) =>
+      Buffer.from(
+        zipSync({ 'manifest.json': manifest, 'pad.txt': new TextEncoder().encode(fill.repeat(500)) }, { level: 0 }),
+      );
+    const good = make('a');
+    const swapped = make('b');
+    expect(swapped.length).toBe(good.length);
+    return { good, swapped };
+  }
+
+  async function uploaded(body: Buffer) {
+    const user = await f.user();
+    const presigned = await presign(user.id, {
+      purpose: 'mod_file',
+      filename: 'swap.zip',
+      size: body.length,
+      contentType: 'application/zip',
+    });
+    expect((await put(presigned.url as string, body, { 'content-type': 'application/zip' })).status).toBe(200);
+    expect((await complete(user.id, presigned.upload.id)).statusCode).toBe(202);
+    return { user, id: presigned.upload.id, url: presigned.url as string };
+  }
+
+  it('publication refuses an object replaced after its inspection passed', async () => {
+    const { good, swapped } = twoZips();
+    const { id, url } = await uploaded(good);
+    const outcome = await runInspection(ctx, storage, { uploadId: id, modVersionId: null });
+    expect(outcome.status).toBe('passed');
+
+    // The URL still works: the same signed Content-Type and Content-Length overwrite the object.
+    expect((await put(url, swapped, { 'content-type': 'application/zip' })).status).toBe(200);
+
+    const key = modFileKey(30, 501, 'Swap Mod', '1.0.0');
+    await expect(finalizeUpload(ctx, storage, { uploadId: id, key })).rejects.toMatchObject({ code: 'CONFLICT' });
+    expect(await storage.head(s3.config.publicBucket, key)).toBeNull();
+  });
+
+  it('inspection rejects an object replaced after the upload was completed', async () => {
+    const { good, swapped } = twoZips();
+    const { user, id, url } = await uploaded(good);
+    expect((await put(url, swapped, { 'content-type': 'application/zip' })).status).toBe(200);
+
+    const outcome = await runInspection(ctx, storage, { uploadId: id, modVersionId: null });
+    expect(outcome).toEqual({ status: 'skipped', reason: 'object_changed' });
+    const [row] = (await t.db.db.execute(sql`SELECT "status", "error" FROM "Upload" WHERE "id" = ${id}`)).rows;
+    expect(row).toMatchObject({ status: 'rejected', error: 'object_changed' });
+    expect(await storage.head(s3.config.privateBucket, incomingKey(user.id, id))).toBeNull();
+  });
+
+  it('inspection reads are conditional on the completed ETag: a swap right after its first HEAD is caught', async () => {
+    const { good, swapped } = twoZips();
+    const { id, url } = await uploaded(good);
+    let heads = 0;
+    const swapping = new Proxy(storage, {
+      get(target, property) {
+        if (property === 'head') {
+          return async (bucket: string, key: string) => {
+            const head = await target.head(bucket, key);
+            heads += 1;
+            // The attacker's second PUT lands between the HEAD and the reads of the inspection.
+            if (heads === 1) expect((await put(url, swapped, { 'content-type': 'application/zip' })).status).toBe(200);
+            return head;
+          };
+        }
+        const value = Reflect.get(target, property, target) as unknown;
+        return typeof value === 'function' ? value.bind(target) : value;
+      },
+    });
+    const outcome = await runInspection(ctx, swapping, { uploadId: id, modVersionId: null });
+    expect(outcome).toEqual({ status: 'skipped', reason: 'object_changed' });
+    const [row] = (await t.db.db.execute(sql`SELECT "status", "error" FROM "Upload" WHERE "id" = ${id}`)).rows;
+    expect(row).toMatchObject({ status: 'rejected', error: 'object_changed' });
+  });
+
+  it("a copy with ifMatch fails when the ETag is not the object's", async () => {
+    const { good } = twoZips();
+    const { user, id } = await uploaded(good);
+    const source = { bucket: s3.config.privateBucket, key: incomingKey(user.id, id) };
+    const head = await storage.head(source.bucket, source.key);
+    const target = { bucket: s3.config.publicBucket, key: `mods/9/${id}/x.zip`, contentType: 'application/zip' };
+    await expect(
+      storage.copy({ ...source, ifMatch: '"0123456789abcdef0123456789abcdef"' }, target),
+    ).rejects.toMatchObject({ code: 'CONFLICT' });
+    expect(await storage.head(target.bucket, target.key)).toBeNull();
+    expect(await storage.copy({ ...source, ifMatch: head?.etag as string }, target)).toBe('server');
+    const streamStorage = createStorage({ ...s3.config, copyMode: 'stream' });
+    try {
+      await expect(
+        streamStorage.copy(
+          { ...source, ifMatch: '"0123456789abcdef0123456789abcdef"' },
+          { ...target, key: `${target.key}2` },
+        ),
+      ).rejects.toMatchObject({ code: 'CONFLICT' });
+    } finally {
+      streamStorage.destroy();
+    }
+  });
+});
+
+describe('an image that fails processing when one bucket plays both roles (production)', () => {
+  it('deletes its incoming/ source instead of leaving it in the public bucket', async () => {
+    const user = await f.user();
+    const shared = createStorage({ ...s3.config, privateBucket: s3.config.publicBucket });
+    try {
+      const presigned = await presign(user.id, {
+        purpose: 'avatar',
+        filename: 'a.png',
+        size: 64,
+        contentType: 'image/png',
+      });
+      const key = incomingKey(user.id, presigned.upload.id);
+      // Not an image at all: the pipeline refuses it by its magic bytes.
+      await shared.put({ bucket: s3.config.publicBucket, key, body: Buffer.alloc(64, 7), contentType: 'image/png' });
+      const mediaId = '0192f3a5-1b2c-7d3e-8f40-5a6b7c8d9e0f';
+      await t.db.db.execute(sql`
+        INSERT INTO "Media" ("id", "ownerId", "purpose", "sourceBucket", "sourceKey", "bytes", "contentType", "status")
+        VALUES (${mediaId}::uuid, ${user.id}, 'avatar', ${s3.config.publicBucket}, ${key}, 64, 'image/png', 'pending')`);
+      const outcome = await processMedia(ctx, shared, mediaId);
+      expect(outcome.status).toBe('failed');
+      expect(await shared.head(s3.config.publicBucket, key)).toBeNull();
+    } finally {
+      shared.destroy();
+    }
+  });
+});
+
 describe('finalisation into the public bucket', () => {
   async function completedUpload(filename: string, body: Buffer) {
     const user = await f.user();
@@ -442,5 +577,90 @@ describe('expiry of abandoned uploads', () => {
     expect(gone.statusCode).toBe(410);
     // A second run finds nothing to do.
     expect((await expireUploads(ctx, storage)).expired).toBe(0);
+  });
+
+  it('keeps an upload whose object could not be deleted so the next run retries it', async () => {
+    const user = await f.user();
+    const presigned = await presign(user.id, {
+      purpose: 'mod_file',
+      filename: 'stuck.zip',
+      size: 100,
+      contentType: 'application/zip',
+    });
+    await t.db.db.execute(
+      sql`UPDATE "Upload" SET "expiresAt" = now() - interval '1 minute' WHERE "id" = ${presigned.upload.id}::uuid`,
+    );
+    const failing = {
+      ...storage,
+      delete: async () => {
+        throw new Error('store is down');
+      },
+    } as unknown as ObjectStorage;
+    const first = await expireUploads(ctx, failing);
+    expect(first).toMatchObject({ expired: 0, failures: 1 });
+    const [pending] = (
+      await t.db.db.execute(sql`SELECT "status" FROM "Upload" WHERE "id" = ${presigned.upload.id}::uuid`)
+    ).rows;
+    expect(pending).toMatchObject({ status: 'pending' });
+
+    const second = await expireUploads(ctx, storage);
+    expect(second.expired).toBe(1);
+    const [done] = (await t.db.db.execute(sql`SELECT "status" FROM "Upload" WHERE "id" = ${presigned.upload.id}::uuid`))
+      .rows;
+    expect(done).toMatchObject({ status: 'expired' });
+  });
+});
+
+describe('orphans under incoming/', () => {
+  it('deletes the strays that no live upload or pending media names, and nothing else', async () => {
+    const user = await f.user();
+    const bucket = s3.config.privateBucket;
+    const put1 = (key: string) => storage.put({ bucket, key, body: randomBytes(16), contentType: 'application/zip' });
+
+    // A presigned PUT replayed after its upload was finalised: the row says `final`, the object is a stray.
+    const replayed = await presign(user.id, {
+      purpose: 'mod_file',
+      filename: 'a.zip',
+      size: 16,
+      contentType: 'application/zip',
+    });
+    const replayedKey = incomingKey(user.id, replayed.upload.id);
+    await put1(replayedKey);
+    await t.db.db.execute(sql`
+      UPDATE "Upload" SET "status" = 'ready', "resultRef" = '{"final": {"key": "mods/1/1/a.zip"}}'::jsonb
+       WHERE "id" = ${replayed.upload.id}::uuid`);
+    // An open upload and a pending media keep their objects.
+    const open = await presign(user.id, {
+      purpose: 'mod_file',
+      filename: 'b.zip',
+      size: 16,
+      contentType: 'application/zip',
+    });
+    const openKey = incomingKey(user.id, open.upload.id);
+    await put1(openKey);
+    const mediaKey = `incoming/${user.id}/0192f3a5-1b2c-7d3e-8f40-5a6b7c8d9e01-thumbnail`;
+    await put1(mediaKey);
+    await t.db.db.execute(sql`
+      INSERT INTO "Media" ("id", "ownerId", "purpose", "sourceBucket", "sourceKey", "bytes", "contentType", "status")
+      VALUES ('0192f3a5-1b2c-7d3e-8f40-5a6b7c8d9e02'::uuid, ${user.id}, 'thumbnail', ${bucket}, ${mediaKey}, 16, 'image/png', 'pending')`);
+    // No row at all.
+    const strayKey = `incoming/${user.id}/0192f3a5-1b2c-7d3e-8f40-5a6b7c8d9e03`;
+    await put1(strayKey);
+
+    // Nothing is old enough yet.
+    const fresh = await sweepIncoming(ctx, storage);
+    expect(fresh.deleted).toBe(0);
+    expect(await storage.head(bucket, strayKey)).not.toBeNull();
+
+    const report = await sweepIncoming(ctx, storage, { olderThanMs: 0 });
+    expect(report.failures).toBe(0);
+    expect(await storage.head(bucket, strayKey)).toBeNull();
+    expect(await storage.head(bucket, replayedKey)).toBeNull();
+    expect(await storage.head(bucket, openKey)).not.toBeNull();
+    expect(await storage.head(bucket, mediaKey)).not.toBeNull();
+  });
+
+  it('does nothing without storage', async () => {
+    expect(await sweepIncoming(ctx, null)).toEqual({ scanned: 0, deleted: 0, failures: 0 });
   });
 });

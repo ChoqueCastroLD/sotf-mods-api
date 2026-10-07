@@ -101,6 +101,7 @@ export const LOGIN_KEYS = [
   'oauth_error_banned',
   'oauth_error_already_linked',
   'oauth_error_unavailable',
+  'oauth_error_two_factor',
 ] as const;
 
 export const REGISTER_KEYS = [

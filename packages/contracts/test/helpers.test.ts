@@ -310,6 +310,15 @@ describe('users', () => {
     expect(DisplayName.safeParse(' a ').success).toBe(false);
   });
 
+  it('removes control and direction-override characters from display names', () => {
+    expect(DisplayName.parse('a\u0000b')).toBe('a b');
+    expect(DisplayName.parse('line1\r\nline2')).toBe('line1 line2');
+    expect(DisplayName.parse('mod\u202eerator')).toBe('mod erator');
+    expect(DisplayName.parse('Ad\u200bmin\ufeff')).toBe('Admin');
+    expect(DisplayName.parse('👨\u200d👩')).toBe('👨\u200d👩');
+    expect(DisplayName.safeParse('\u0000\u202e').success).toBe(false);
+  });
+
   it('requires the adult confirmation to enable NSFW', () => {
     expect(UpdateSettingsBody.safeParse({ nsfwOptIn: true }).success).toBe(false);
     expect(UpdateSettingsBody.safeParse({ nsfwOptIn: true, confirmAdult: true }).success).toBe(true);

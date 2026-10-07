@@ -5,7 +5,8 @@
  *   (contract), unique email/handle, argon2id hash, verification email, session.
  * - Login: email **or** handle; one generic `INVALID_CREDENTIALS` for every failure, a decoy hash
  *   for unknown accounts and a minimum failure duration so timing does not reveal which part
- *   failed; Turnstile after 3 recent failures (per IP or per account); 10 attempts/hour per account;
+ *   failed; Turnstile after 3 recent failures (per IP or per account); 10 attempts/hour per client and
+ *   account, 100/hour per account;
  *   transparent rehash of bcrypt/weak hashes to argon2id; banned accounts → `SUSPENDED`.
  * - Forgot/reset: always 202; reset tokens are hashed, 1 h, single use; during the legacy window
  *   the plaintext legacy "PasswordResetToken" rows are accepted once (and deleted, as the legacy did).
@@ -82,6 +83,9 @@ export const AUTH_EVENT_KINDS = [
 ] as const;
 export type AuthEventKind = (typeof AUTH_EVENT_KINDS)[number];
 
+/** Login attempts per hour: from one address against one account, and against one account overall. */
+export const LOGIN_ATTEMPTS_PER_CLIENT = 10;
+export const LOGIN_ATTEMPTS_PER_ACCOUNT = 100;
 /** Failed logins within this window that trigger the Turnstile requirement. */
 export const TURNSTILE_AFTER_FAILURES = 3;
 export const FAILURE_WINDOW_MS = 15 * 60 * 1000;
@@ -318,9 +322,19 @@ export class AuthService {
     const started = performance.now();
     const found = await findUserByIdentifier(ctx.db, input.identifier);
 
-    // 10 attempts per hour per account (the identifier when the account does not exist).
+    // The account key is the identifier when the account does not exist (no enumeration). Guessing
+    // is capped per client (10 attempts/hour from one address against one account) and, higher,
+    // per account from anywhere: a single shared cap would let anyone lock a known handle out of
+    // its own account with ten bad passwords.
     const accountKey = found ? `user:${found.id}` : `ident:${input.identifier.trim().toLowerCase()}`;
-    await this.deps.limits?.consume('login-account', accountKey, { max: 10, window: '1 hour' });
+    await this.deps.limits?.consume('login-account', `${accountKey}|${ctx.ip}`, {
+      max: LOGIN_ATTEMPTS_PER_CLIENT,
+      window: '1 hour',
+    });
+    await this.deps.limits?.consume('login-account-any', accountKey, {
+      max: LOGIN_ATTEMPTS_PER_ACCOUNT,
+      window: '1 hour',
+    });
 
     if ((await this.recentFailures(ctx, found?.id ?? null)) >= TURNSTILE_AFTER_FAILURES) {
       if (!(await this.deps.turnstile.verify(input.turnstileToken, ctx.ip))) {

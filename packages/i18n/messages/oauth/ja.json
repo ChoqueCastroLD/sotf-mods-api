@@ -9,6 +9,7 @@
   "oauth_error_banned": "このアカウントではログインできません。",
   "oauth_error_already_linked": "その Discord アカウントは既に別のユーザーに連携されています。",
   "oauth_error_unavailable": "現在 Discord でのログインはご利用いただけません。",
+  "oauth_error_two_factor": "このアカウントは二段階認証を使用しています。パスワードと認証コードでログインし、設定から Discord を連携してください。",
   "oauth_link_meta_title": "Discord をアカウントに連携",
   "oauth_link_meta_description": "パスワードを確認して、Discord を既存のアカウントに連携します。",
   "oauth_link_heading": "Discord アカウントを連携",

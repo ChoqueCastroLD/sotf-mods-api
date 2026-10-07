@@ -7,7 +7,7 @@ Import from `@sotf/core/auth/index` and `@sotf/core/permissions/index`.
 | `passwords.ts` | `PasswordHasher`: verifies Bun's argon2id and `$2b$` bcrypt (incl. Bun's SHA-512 pre-hash for > 72 bytes), NFC retry, argon2id `m=65536,t=2,p=1` hashes, decoy verification; global semaphore (`ARGON2_CONCURRENCY`, wait ≤ 5 s → 503); `pwdFingerprint` |
 | `sessions.ts` | Opaque sessions (`sha256(token)` stored): 30 d sliding / 90 d absolute with "remember me", 24 h otherwise; resolver (banned/deleted never resolve; password changed elsewhere → invalid), revoke one/others, list |
 | `tokens-store.ts` | Single-use email tokens (verify 24 h, email change 24 h, reset 1 h), hashed, row-locked on use |
-| `service.ts` | `AuthService`: register, login (generic `INVALID_CREDENTIALS`, failure floor, Turnstile after 3 failures, 10/h per account, rehash), logout, forgot/reset (+ legacy `PasswordResetToken` within 24 h), verify/resend, change email/password; every step in `AuthEvent` |
+| `service.ts` | `AuthService`: register, login (generic `INVALID_CREDENTIALS`, failure floor, Turnstile after 3 failures, 10/h per client and account + 100/h per account, rehash), logout, forgot/reset (+ legacy `PasswordResetToken` within 24 h), verify/resend, change email/password; every step in `AuthEvent` |
 | `hibp.ts` · `turnstile.ts` · `disposable.ts` | Breached passwords (k-anonymity, padding, fail-open 2 s) · Turnstile siteverify · disposable email domains |
 | `users.ts` | Lookups by email/handle, `SelfUserDTO`, display name, locale, avatar URL |
 | `../permissions/can.ts` | `can(subject, action, resource?)`, `assertCan`, `permissionsOf` (for `/me`), staff re-authentication (`assertFreshSession`, 12 h) |

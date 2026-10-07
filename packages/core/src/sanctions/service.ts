@@ -230,7 +230,7 @@ export async function setVerifiedCreator(
   const actor = await assertStaff(ctx, 'moderation.verified_creator');
   await ctx.db.transaction(async (tx) => {
     const target = await lockUser(tx, userId, true);
-    if (target.id === actor.userId) throw errors.forbidden('You cannot change your own verified flag');
+    assertOutranks(actor, target);
     if (target.verifiedCreator === input.value) return;
     await tx.execute(sql`UPDATE "User" SET "verifiedCreator" = ${input.value} WHERE "id" = ${userId}`);
     await recordAudit(tx, ctx, {

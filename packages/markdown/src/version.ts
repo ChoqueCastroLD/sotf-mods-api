@@ -4,4 +4,4 @@
  * input changes (new allowlist, new enhancer, dependency upgrade that alters output), so the
  * re-render job can find stale rows with `WHERE "renderVersion" < RENDER_VERSION`.
  */
-export const RENDER_VERSION = 1;
+export const RENDER_VERSION = 2;

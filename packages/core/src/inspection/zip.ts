@@ -7,6 +7,8 @@
  *   the declared sizes are what yauzl enforces when an entry is decompressed, so the manifest read
  *   cannot inflate beyond them;
  * - no `..` segment, absolute path, drive letter or symlink (zip slip);
+ * - no central directory header past the entries the end record counts (entries other tools would
+ *   extract but this check never listed);
  * - extension allowlist: other extensions and the executables (`exe bat cmd ps1 vbs scr msi lnk`)
  *   are *flagged* for human review (`warning`);
  * - `manifest.json` (shallowest one, ≤ 256 KiB) parsed with the RedLoader schema of the contracts:
@@ -23,6 +25,7 @@ import {
   type ManifestIssue,
   parseRedLoaderManifestText,
   type RedLoaderManifest,
+  wellFormedText,
 } from '@sotf/contracts/manifest';
 import type yauzl from 'yauzl';
 import { entryName, nextEntry, openZip, type RandomAccessSource, readEntry } from './reader.ts';
@@ -53,6 +56,9 @@ const ENTRY_RATIO_MIN_BYTES = 1024 * 1024;
 /** Max flags of one kind kept (a zip with 4 000 `.pdb` files yields one line per file otherwise). */
 const MAX_FLAGS_PER_CODE = 20;
 
+/** Signature of a central directory file header (`PK\x01\x02`). */
+const CENTRAL_HEADER_SIGNATURE = 0x02014b50;
+
 const S_IFMT = 0o170000;
 const S_IFLNK = 0o120000;
 
@@ -62,7 +68,13 @@ function flag(
   path: string | null,
   detail: string | null,
 ): InspectionFlagDTO {
-  return { code, severity, path, detail };
+  // `detail` can quote the file (a JSON syntax error shows the text around it); it is stored in jsonb.
+  return {
+    code,
+    severity,
+    path: path === null ? null : wellFormedText(path),
+    detail: detail === null ? null : wellFormedText(detail),
+  };
 }
 
 class FlagList {
@@ -77,6 +89,14 @@ class FlagList {
       this.list.push({ ...item, path: null, detail: 'more entries omitted' });
     }
   }
+}
+
+/** True when a central directory header follows the last entry the end record counts. */
+async function hasHiddenEntries(zip: yauzl.ZipFile, source: RandomAccessSource): Promise<boolean> {
+  const cursor = (zip as unknown as { readEntryCursor?: number }).readEntryCursor;
+  if (typeof cursor !== 'number' || cursor < 0 || cursor + 4 > source.size) return false;
+  const next = await source.read(cursor, cursor + 4);
+  return next.length === 4 && next.readUInt32LE(0) === CENTRAL_HEADER_SIGNATURE;
 }
 
 function depth(path: string): number {
@@ -146,11 +166,13 @@ export async function inspectZip(source: RandomAccessSource): Promise<ZipInspect
         return result;
       }
       if (!entry) break;
-      const path = entryName(entry).replaceAll('\\', '/');
+      // Stored in jsonb (the upload's result): a name with U+0000 would make that insert fail.
+      const path = wellFormedText(entryName(entry).replaceAll('\\', '/'));
       result.entries.push({
         path,
-        size: entry.uncompressedSize,
-        compressed: entry.compressedSize,
+        // zip64 sizes reach 2^64: past 2^53 they are no longer integers (the DTO and jsonb would refuse them).
+        size: Math.min(entry.uncompressedSize, Number.MAX_SAFE_INTEGER),
+        compressed: Math.min(entry.compressedSize, Number.MAX_SAFE_INTEGER),
         crc32: entry.crc32 >>> 0,
       });
       uncompressed += entry.uncompressedSize;
@@ -162,6 +184,11 @@ export async function inspectZip(source: RandomAccessSource): Promise<ZipInspect
         flags.add(flag('zip_slip', 'error', path, 'path escapes the extraction folder'));
       } else if (isSymlink(entry)) {
         flags.add(flag('zip_slip', 'error', path, 'symbolic link'));
+      }
+      // biome-ignore lint/suspicious/noControlCharactersInRegex: that is what is being looked for
+      if (/[\u0000-\u001f\u007f]/.test(rawPath)) {
+        // A C-based extractor cuts the name at U+0000 (`evil.dll\0.txt` → `evil.dll`), past the extension checks.
+        flags.add(flag('zip_invalid', 'error', path, 'control characters in the entry name'));
       }
       if (entry.isEncrypted()) flags.add(flag('zip_invalid', 'error', path, 'encrypted entry'));
       if (
@@ -183,7 +210,17 @@ export async function inspectZip(source: RandomAccessSource): Promise<ZipInspect
       if (!path.endsWith('/') && isManifestPath(path)) manifests.push({ entry, path });
     }
 
-    result.uncompressedBytes = uncompressed;
+    // yauzl stops after the entry count of the end record. Tools that read the central directory to its
+    // end (Python, .NET, WinRAR) also extract any header past that count, which nothing above looked at.
+    if (await hasHiddenEntries(zip, source)) {
+      flags.add(
+        flag('zip_invalid', 'error', null, 'the central directory has entries that the end record does not count'),
+      );
+    }
+
+    // The sum of zip64 sizes can exceed what the database column (bigint) and JSON numbers hold; such an
+    // archive fails the ratio check below anyway.
+    result.uncompressedBytes = Math.min(uncompressed, Number.MAX_SAFE_INTEGER);
     result.ratio = source.size > 0 ? Math.round((uncompressed / source.size) * 100) / 100 : null;
     if (result.ratio !== null && result.ratio > FILE_CHECKS.maxCompressionRatio) {
       flags.add(flag('zip_bomb_ratio', 'error', null, `compression ratio ${result.ratio.toFixed(0)}`));

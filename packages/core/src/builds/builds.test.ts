@@ -1,6 +1,7 @@
 import { FILE_CHECKS } from '@sotf/contracts/manifest';
 import { describe, expect, it } from 'vitest';
 import { decodeThumbnail, inspectBlueprint, storedBuildMeta } from './blueprint.ts';
+import { geometryOfBlueprintText } from './geometry.ts';
 
 const PNG_1PX = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==';
 const blueprint = (over: Record<string, unknown> = {}) =>
@@ -46,6 +47,15 @@ describe('BuildShare blueprints (T0-24)', () => {
     expect(storedBuildMeta(null)).toBeNull();
   });
 
+  it('never returns U+0000 or lone surrogates (jsonb cannot store them)', () => {
+    const ok = inspectBlueprint(blueprint({ Name: 'Hut\u0000', Author: 'a\ud800b' }));
+    expect(ok.buildMeta?.blueprintAuthor).toBe('a\uFFFDb');
+    expect(ok.summary?.name).toBe('Hut\uFFFD');
+    const broken = inspectBlueprint(Buffer.from('{"Name":"x\u0000'));
+    expect(JSON.stringify(broken.flags)).not.toMatch(/\\u0000/);
+    expect(broken.flags[0]?.detail).not.toContain('\u0000');
+  });
+
   it('ignores thumbnails that are not PNG', () => {
     const gif = Buffer.from('GIF89a....').toString('base64');
     const result = inspectBlueprint(blueprint({ Thumbnail: gif }));
@@ -62,5 +72,30 @@ describe('BuildShare blueprints (T0-24)', () => {
     });
     const big = Buffer.alloc(FILE_CHECKS.maxBuildBytes + 1, 0x20);
     expect(inspectBlueprint(big).flags.map((f) => f.code)).toEqual(['file_too_large']);
+  });
+});
+
+describe('blueprint geometry of hostile structures', () => {
+  const text = (structures: string) =>
+    JSON.stringify({
+      Name: 'Deep',
+      Guid: 'g',
+      Description: '',
+      NumberOfElements: 1,
+      Data: `{"Version":"1","Structures":${structures}}`,
+    });
+
+  it('does not overflow the stack on deeply nested arrays (a 40 KB file used to kill build.geometry)', () => {
+    const depth = 20_000;
+    const nested = `${'['.repeat(depth)}${'{"Position":{"x":1,"y":2,"z":3}}'}${']'.repeat(depth)}`;
+    expect(() => geometryOfBlueprintText(text(nested))).not.toThrow();
+    expect(geometryOfBlueprintText(text(nested))).toBeNull();
+  });
+
+  it('still reads pieces nested a few levels deep', () => {
+    const pieces = '[[{"ProfileID":"Log","Position":{"x":1,"y":2,"z":3}}],{"ProfileID":"Wall","Position":[4,5,6]}]';
+    const geometry = geometryOfBlueprintText(text(pieces));
+    expect(geometry?.totalPieces).toBe(2);
+    expect(geometry?.profiles.sort()).toEqual(['Log', 'Wall']);
   });
 });

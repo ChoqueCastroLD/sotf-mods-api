@@ -14,7 +14,7 @@ import { createHash, timingSafeEqual } from 'node:crypto';
 import type { Endpoint } from '@sotf/contracts';
 import { type Actor, createCtx, createIpHasher, hasRole, type KernelDeps, type Logger } from '@sotf/core';
 import type { FastifyInstance, FastifyRequest } from 'fastify';
-import { clientIpOf, countryOf } from '../lib/client-ip.ts';
+import { clientIpOf, countryOf, createTrustedEdge, type TrustedEdge } from '../lib/client-ip.ts';
 import type { SessionResolver } from '../lib/types.ts';
 import { httpError } from './errors.ts';
 
@@ -67,10 +67,13 @@ export interface ContextOptions {
   deps: KernelDeps;
   internalSecret: string;
   sessionResolver: () => SessionResolver;
+  /** Which peers' `CF-*` headers are believed (default: Cloudflare and private networks). */
+  edge?: TrustedEdge;
 }
 
 /** First hook of every request: request id header, client IP and per-request state. */
-export function setupRequestBasics(app: FastifyInstance): void {
+export function setupRequestBasics(app: FastifyInstance, options: { edge?: TrustedEdge } = {}): void {
+  const edge = options.edge ?? createTrustedEdge();
   app.decorateRequest('ctx', null as never);
   app.decorateRequest('actor', null);
   app.decorateRequest('clientIp', '');
@@ -79,7 +82,7 @@ export function setupRequestBasics(app: FastifyInstance): void {
   app.decorateRequest('overSoftLimit', false);
   app.addHook('onRequest', async (request, reply) => {
     reply.header('x-request-id', request.id);
-    request.clientIp = clientIpOf(request);
+    request.clientIp = clientIpOf(request, edge);
     request.cacheValues = {};
     request.extraCacheTags = [];
     // A NUL byte (`%00`) in the path or query can never be valid and makes Postgres fail with a 500.
@@ -92,6 +95,7 @@ export function setupRequestBasics(app: FastifyInstance): void {
 /** Resolves the actor, builds `request.ctx` and enforces the endpoint's auth level. */
 export function setupContext(app: FastifyInstance, options: ContextOptions): void {
   const hashIp = createIpHasher(options.deps.appSecret, options.deps.clock);
+  const edge = options.edge ?? createTrustedEdge();
   app.addHook('onRequest', async (request) => {
     const endpoint = request.routeOptions.config?.endpoint;
     let actor: Actor | null = null;
@@ -103,7 +107,7 @@ export function setupContext(app: FastifyInstance, options: ContextOptions): voi
       ip: request.clientIp,
       ipHash: hashIp(request.clientIp),
       userAgent: (request.headers['user-agent'] as string | undefined) ?? null,
-      country: countryOf(request),
+      country: countryOf(request, edge),
       log: request.log as Logger,
     });
     if (endpoint) enforceAuth(endpoint, actor, request, options.internalSecret);

@@ -81,7 +81,7 @@ const creatorName = mod.author.displayName || mod.author.handle;
         )}
       </>
     ) : (
-      <EmptyArt>{m.mod_reviews_empty()}</EmptyArt>
+      <EmptyArt data-review-empty>{m.mod_reviews_empty()}</EmptyArt>
     )
   }
   <div data-island="reviews" data-mod-id={mod.id} data-mod-author-id={mod.userId} data-mod-author-name={creatorName} class="grid gap-2">

@@ -49,7 +49,7 @@ import {
   versionDownloadName,
 } from '../storage/disposition.ts';
 import { finalizeUpload } from '../uploads/service.ts';
-import { assertStaff } from './guard.ts';
+import { assertNotOwnContent, assertStaff } from './guard.ts';
 import { publishLaneCounts } from './lanes.ts';
 import { kindOfType, type ModerationDeps, utcTimestamp } from './shared.ts';
 
@@ -320,6 +320,7 @@ export async function decideMod(
   const actor = await assertStaff(ctx, 'moderation.decide');
   assertReason(body);
   if (body.action === 'restore') await assertStaff(ctx, 'mod.restore');
+  if (body.action === 'approve') await assertNotOwnContent(ctx.db, actor, modId);
   const templates = await loadModerationTemplates(ctx.db);
   const reason = resolveReason(templates, body.action, body.templateKey, body.note);
 
@@ -522,6 +523,7 @@ export async function decideVersion(
   );
   if (!found) throw errors.notFound('Version');
   if (found.modStatus === 'pending') throw errors.conflict('This mod is waiting for review: decide on the mod');
+  if (body.action === 'approve') await assertNotOwnContent(ctx.db, actor, found.modId);
   if (body.action === 'approve' && found.status === 'pending') {
     await releaseHeldFile(ctx, deps, found, found.modName, kindOfType(found.modType));
   }

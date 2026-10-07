@@ -9,6 +9,7 @@
   "oauth_error_banned": "Met dit account kan niet worden ingelogd.",
   "oauth_error_already_linked": "Dat Discord-account is al gekoppeld aan een andere gebruiker.",
   "oauth_error_unavailable": "Inloggen met Discord is momenteel niet beschikbaar.",
+  "oauth_error_two_factor": "Dit account gebruikt tweestapsverificatie. Log in met je wachtwoord en code en koppel Discord daarna in de instellingen.",
   "oauth_link_meta_title": "Koppel Discord aan je account",
   "oauth_link_meta_description": "Bevestig je wachtwoord om Discord aan je bestaande account te koppelen.",
   "oauth_link_heading": "Koppel je Discord-account",

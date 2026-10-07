@@ -137,18 +137,9 @@ export class DownloadCounter {
       if (this.#buffer.length === 0) return total;
       const batch = this.#buffer.splice(0, this.#maxBatch);
       this.#flushing = this.#write(batch);
+      let done: FlushResult & { report: FlushReport };
       try {
-        const done = await this.#flushing;
-        if (this.#onFlushed) {
-          try {
-            await this.#onFlushed(done.report);
-          } catch (error) {
-            this.#log.warn({ err: error }, 'download flush follow-up failed');
-          }
-        }
-        total.inserted += done.inserted;
-        total.unique += done.unique;
-        this.stats.flushed += done.inserted;
+        done = await this.#flushing;
       } catch (error) {
         // Put the batch back in front and give up for this round.
         this.#buffer.unshift(...batch);
@@ -156,8 +147,23 @@ export class DownloadCounter {
         this.#log.error({ err: error, events: batch.length }, 'download flush failed; will retry');
         throw error;
       } finally {
+        // Released as soon as the write settled, before the follow-up below: a concurrent caller
+        // (the periodic timer, the shutdown) waits in the branch above for this promise and
+        // `continue`s while it is still set. Keeping it set during the follow-up's database work made
+        // that caller spin on already-resolved promises, starving the event loop so the follow-up's
+        // I/O could never finish (the process sat at 100 % CPU, serving nothing).
         this.#flushing = null;
       }
+      if (this.#onFlushed) {
+        try {
+          await this.#onFlushed(done.report);
+        } catch (error) {
+          this.#log.warn({ err: error }, 'download flush follow-up failed');
+        }
+      }
+      total.inserted += done.inserted;
+      total.unique += done.unique;
+      this.stats.flushed += done.inserted;
     }
   }
 

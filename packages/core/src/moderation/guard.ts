@@ -9,6 +9,7 @@
  * The platform already rejects anonymous callers and callers below the contract's role; this is
  * the authoritative check (core never trusts the transport layer).
  */
+import type { Executor } from '@sotf/db';
 import { sql } from 'drizzle-orm';
 import { queryOne, toDate } from '../follows/sql.ts';
 import type { Ctx, Role } from '../kernel/context.ts';
@@ -83,4 +84,26 @@ export function assertOutranks(actor: Pick<StaffActor, 'userId' | 'role'>, targe
   if (roleRank(actor.role) <= roleRank(target.role)) {
     throw errors.forbidden('This account has the same or a higher role than yours');
   }
+}
+
+/**
+ * Independent review: a moderator cannot approve a mod (or release one of its versions, or clear one
+ * of its scans) that they own or co-author; another ranger decides. Admins are exempt, they are the
+ * last instance. Without this a compromised or careless moderator account could wave its own
+ * held, flagged or rejected uploads through.
+ */
+export async function assertNotOwnContent(
+  exec: Executor,
+  actor: Pick<StaffActor, 'userId' | 'role'>,
+  modId: number,
+): Promise<void> {
+  if (actor.role === 'admin') return;
+  const own = await queryOne<{ own: boolean }>(
+    exec,
+    sql`SELECT (m."userId" = ${actor.userId}
+                OR EXISTS (SELECT 1 FROM "ModCoAuthor" c
+                            WHERE c."modId" = m."id" AND c."userId" = ${actor.userId} AND c."status" = 'accepted')) AS "own"
+          FROM "Mod" m WHERE m."id" = ${modId}`,
+  );
+  if (own?.own === true) throw errors.forbidden('You cannot approve your own mod: ask another ranger');
 }

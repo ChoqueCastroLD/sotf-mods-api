@@ -23,6 +23,7 @@ import { t } from '../comments/lib/messages.ts';
 import type { MeSummary } from '../comments/lib/session.ts';
 import { deferWithUndo, LiveRegion, notify, notifyFailure, ReportDialog } from '../comments/lib/ui.tsx';
 import type { VersionOption } from '../comments/types.ts';
+import { syncServerEmptyState } from './empty-state.ts';
 import { ReviewForm } from './ReviewForm.tsx';
 import { ReviewItem } from './ReviewItem.tsx';
 import { starMeaning } from './StarInput.tsx';
@@ -110,6 +111,10 @@ export function ReviewsIsland(props: ReviewsIslandProps) {
     });
     return () => controller.abort();
   }, [listTarget, list.sort, list.cursor, list.limit, modId, onTakeOver]);
+
+  useEffect(() => {
+    if (items) syncServerEmptyState(listTarget, items.length > 0);
+  }, [listTarget, items]);
 
   useEffect(() => {
     if (isModOwner) {

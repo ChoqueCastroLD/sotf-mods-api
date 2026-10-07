@@ -9,7 +9,12 @@ const SECRET = 's'.repeat(40);
 
 function env(overrides: Partial<WebEnv> = {}): WebEnv {
   return {
-    ...parseEnv({ SITE_ENV: 'production', PUBLIC_SITE_URL: 'https://sotf-mods.com', INTERNAL_SECRET: SECRET }),
+    ...parseEnv({
+      SITE_ENV: 'production',
+      PUBLIC_SITE_URL: 'https://sotf-mods.com',
+      INTERNAL_API_URL: 'http://sotf-v2-api:3001',
+      INTERNAL_SECRET: SECRET,
+    }),
     ...overrides,
   };
 }
@@ -24,6 +29,24 @@ describe('environment (PLAN §11.4)', () => {
       indexable: false,
       adsenseClient: undefined,
     });
+  });
+
+  it('never falls back to the localhost defaults outside development', () => {
+    const base = { INTERNAL_SECRET: SECRET };
+    // A container without INTERNAL_API_URL would pass /healthz and answer 503 on every page.
+    expect(() => parseEnv({ ...base, SITE_ENV: 'production', PUBLIC_SITE_URL: 'https://sotf-mods.com' })).toThrow(
+      /INTERNAL_API_URL: required when SITE_ENV=production/,
+    );
+    expect(() => parseEnv({ ...base, SITE_ENV: 'staging', INTERNAL_API_URL: 'http://api:3001' })).toThrow(
+      /PUBLIC_SITE_URL: required when SITE_ENV=staging/,
+    );
+    const staging = parseEnv({
+      ...base,
+      SITE_ENV: 'staging',
+      PUBLIC_SITE_URL: 'https://beta.sotf-mods.com',
+      INTERNAL_API_URL: 'http://api:3001',
+    });
+    expect(staging).toMatchObject({ siteUrl: 'https://beta.sotf-mods.com', internalApiUrl: 'http://api:3001' });
   });
 
   it('requires INTERNAL_SECRET outside development and https in production', () => {

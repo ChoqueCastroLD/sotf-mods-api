@@ -11,6 +11,7 @@ import {
   type InspectionFlagDTO,
   type ManifestIssue,
   parseBuildShareBlueprintText,
+  wellFormedText,
 } from '@sotf/contracts/manifest';
 import type { BuildMeta } from '@sotf/db';
 
@@ -53,7 +54,8 @@ export function inspectBlueprint(buffer: Buffer): BlueprintInspection {
         code: 'blueprint_invalid',
         severity: 'error',
         path: null,
-        detail: `${issue.field || 'blueprint'}: ${issue.message}`,
+        // The message can quote the file (JSON syntax errors); it is stored in jsonb.
+        detail: wellFormedText(`${issue.field || 'blueprint'}: ${issue.message}`),
       });
     }
     return { summary: null, buildMeta: null, issues: parsed.issues, flags };

@@ -145,3 +145,20 @@ curl -sI "https://www.sotf-mods.com/mods?page=2" | grep -i '^location'   # https
 
 En D5: *Caching → Configuration → Purge Everything* y activar `r2-immutable`; después
 `SMOKE_EXPECT_IMMUTABLE=1 ops/runbooks/deploy/smoke-r2.sh https://sotf-mods.com`.
+
+## 13. IP del cliente y acceso directo al origen
+
+La api toma la IP del visitante de `CF-Connecting-IP` (límites por IP: registro 3/día, login
+5/min, reset 3/h…), pero **solo** cuando la conexión viene de Cloudflare o de la red privada
+(`apps/api/src/lib/client-ip.ts`: rangos publicados de Cloudflare + 10/8, 172.16/12, 192.168/16,
+loopback). Quien llegue al origen saltándose Cloudflare queda identificado por su propia IP y sus
+cabeceras `CF-*` se ignoran, así que no puede esquivar los límites rotando la cabecera.
+
+- Si Cloudflare añadiera un rango nuevo antes de que la lista del código lo incluya, las peticiones
+  de ese borde se limitarían por la IP del borde: añade el rango a `TRUSTED_EDGE_CIDRS` (api, lista
+  separada por comas) y despliega.
+- Comprobación con el origen real: `curl -s -H 'CF-Connecting-IP: 198.51.100.9' https://<ip-del-origen>/api/v2/me -k`
+  no debe cambiar los límites ni la IP registrada (`AuthEvent.ipHash`).
+- Recomendado (propietario): cerrar los puertos 80/443 del servidor a todo lo que no sea Cloudflare
+  (firewall del proveedor) o activar *Authenticated Origin Pulls*; así el origen solo atiende tráfico
+  que ya pasó por el WAF.

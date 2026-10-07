@@ -119,7 +119,7 @@ const loginHref = loginHrefFor(href('/login', locale), href(Astro.locals.pagePat
           ))}
         </ul>
       ) : (
-        <EmptyArt>{cursor ? m.mod_reviews_end() : m.mod_reviews_empty()}</EmptyArt>
+        <EmptyArt data-review-empty>{cursor ? m.mod_reviews_end() : m.mod_reviews_empty()}</EmptyArt>
       )
     }
 

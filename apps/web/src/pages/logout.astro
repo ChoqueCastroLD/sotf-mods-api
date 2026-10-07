@@ -11,6 +11,7 @@ import { afterLogout, logoutDecision, revokeSession, signedOutResponse } from '.
 import { setPageCache } from '../lib/cache/page.ts';
 import { loadEnv } from '../lib/env.ts';
 import { href } from '../lib/i18n.ts';
+import { peerAddress } from './mods/[user]/[slug]/download/_proxy.ts';
 
 setPageCache(Astro, false);
 const request = Astro.request;
@@ -26,11 +27,20 @@ if (request.method === 'POST') {
   return new Response(null, { status: 405, headers: { allow: 'GET, HEAD, POST' } });
 }
 
+let clientAddress: string | null = null;
+try {
+  // The last `X-Forwarded-For` entry (written by our proxy), not Astro's first one (client-controlled).
+  clientAddress = peerAddress(request, Astro.clientAddress);
+} catch {
+  // The adapter could not provide it (prerender, tests).
+}
+
 if (request.method !== 'HEAD' && logoutDecision(request.method, request.headers) === 'sign-out') {
   await revokeSession({
     apiUrl: loadEnv().internalApiUrl,
     cookieHeader: request.headers.get('cookie'),
     clientIp: request.headers.get('cf-connecting-ip'),
+    clientAddress,
     userAgent: request.headers.get('user-agent'),
   });
   return signedOutResponse(afterLogout(next, locale));

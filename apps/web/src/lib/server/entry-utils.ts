@@ -69,7 +69,9 @@ export function finalizeResponse(
   }
   applySecurityHeaders(
     out.headers,
-    options.cspMode === undefined ? { siteEnv } : { siteEnv, cspMode: options.cspMode },
+    options.cspMode === undefined
+      ? { siteEnv, status: out.status }
+      : { siteEnv, cspMode: options.cspMode, status: out.status },
     pathname,
   );
   return out;

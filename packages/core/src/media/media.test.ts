@@ -69,4 +69,36 @@ describe('image pipeline (PLAN §8.3)', { timeout: 120_000 }, () => {
     expect(await reason(wide)).toBe('too_large');
     expect(await detectImageFormat(png)).toEqual({ format: 'png', ext: 'png', contentType: 'image/png' });
   });
+
+  it('accepts an animated PNG as a PNG (file-type names it image/apng) and keeps its first frame', async () => {
+    const crc32 = (buf: Buffer) => {
+      let crc = 0xffffffff;
+      for (const byte of buf) {
+        crc ^= byte;
+        for (let k = 0; k < 8; k += 1) crc = crc & 1 ? 0xedb88320 ^ (crc >>> 1) : crc >>> 1;
+      }
+      return (crc ^ 0xffffffff) >>> 0;
+    };
+    const chunk = (type: string, data: Buffer) => {
+      const length = Buffer.alloc(4);
+      length.writeUInt32BE(data.length);
+      const body = Buffer.concat([Buffer.from(type), data]);
+      const crc = Buffer.alloc(4);
+      crc.writeUInt32BE(crc32(body));
+      return Buffer.concat([length, body, crc]);
+    };
+    const png = await sharp({ create: { width: 64, height: 64, channels: 3, background: '#f00' } })
+      .png()
+      .toBuffer();
+    const idat = png.indexOf('IDAT') - 4;
+    // `acTL` (animation control) before the first IDAT is what makes a PNG an APNG.
+    const apng = Buffer.concat([
+      png.subarray(0, idat),
+      chunk('acTL', Buffer.from([0, 0, 0, 1, 0, 0, 0, 0])),
+      png.subarray(idat),
+    ]);
+    expect(await detectImageFormat(apng)).toEqual({ format: 'png', ext: 'png', contentType: 'image/png' });
+    const out = await processImage(apng);
+    expect([out.format, out.width, out.height]).toEqual(['png', 64, 64]);
+  });
 });

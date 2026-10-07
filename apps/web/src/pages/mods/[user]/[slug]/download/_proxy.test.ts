@@ -1,5 +1,12 @@
 import { describe, expect, it, vi } from 'vitest';
-import { type DownloadProxyEnv, downloadProxyEnv, forwardedHeaders, proxyDownload, wantsHtml } from './_proxy.ts';
+import {
+  type DownloadProxyEnv,
+  downloadProxyEnv,
+  forwardedHeaders,
+  peerAddress,
+  proxyDownload,
+  wantsHtml,
+} from './_proxy.ts';
 import { downloadParams } from './[version].ts';
 
 const env: DownloadProxyEnv = { internalApiUrl: 'http://api.internal:3001', internalSecret: 'secret-for-tests' };
@@ -154,6 +161,31 @@ describe('helpers', () => {
   it('forwardedHeaders never forwards a missing IP', () => {
     const headers = forwardedHeaders(new Request('https://x'), null, 's');
     expect(headers.has('cf-connecting-ip')).toBe(false);
+  });
+
+  it('forwards the connection address as X-Forwarded-For so the API can tell Cloudflare from a direct client', () => {
+    const request = new Request('https://x', {
+      headers: { 'cf-connecting-ip': '1.2.3.4', 'x-forwarded-for': '9.9.9.9, 8.8.8.8' },
+    });
+    const headers = forwardedHeaders(request, '173.245.48.10', 's');
+    // The client-sent entries of X-Forwarded-For are never relayed: only the one our proxy wrote (the last).
+    expect(headers.get('x-forwarded-for')).toBe('8.8.8.8');
+    expect(headers.get('cf-connecting-ip')).toBe('1.2.3.4');
+    expect(forwardedHeaders(new Request('https://x'), null, 's').has('x-forwarded-for')).toBe(false);
+  });
+
+  it('does not take the client-sent first X-Forwarded-For entry as the connection address', () => {
+    // Astro 7 sets `clientAddress` to the first entry once `allowedDomains` trusts the host: a client
+    // sending `X-Forwarded-For: 10.0.0.1` through Cloudflare would otherwise look like a private caller.
+    const request = new Request('https://x', {
+      headers: { 'x-forwarded-for': '10.0.0.1, 203.0.113.50, 172.70.34.10' },
+    });
+    expect(peerAddress(request, '10.0.0.1')).toBe('172.70.34.10');
+    const headers = forwardedHeaders(request, '10.0.0.1', 's');
+    expect(headers.get('x-forwarded-for')).toBe('172.70.34.10');
+    // Without the header (dev, direct) the adapter's address is used.
+    expect(peerAddress(new Request('https://x'), '198.51.100.7')).toBe('198.51.100.7');
+    expect(peerAddress(new Request('https://x', { headers: { 'x-forwarded-for': ' , ' } }), null)).toBeNull();
   });
 
   it('downloadParams decodes the raw path once', () => {

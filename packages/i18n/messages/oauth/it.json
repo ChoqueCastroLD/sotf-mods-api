@@ -9,6 +9,7 @@
   "oauth_error_banned": "Questo account non può accedere.",
   "oauth_error_already_linked": "Quell’account Discord è già collegato a un altro utente.",
   "oauth_error_unavailable": "L’accesso con Discord non è al momento disponibile.",
+  "oauth_error_two_factor": "Questo account usa l’autenticazione a due fattori. Accedi con password e codice, poi collega Discord nelle impostazioni.",
   "oauth_link_meta_title": "Collega Discord al tuo account",
   "oauth_link_meta_description": "Conferma la password per collegare Discord al tuo account esistente.",
   "oauth_link_heading": "Collega il tuo account Discord",

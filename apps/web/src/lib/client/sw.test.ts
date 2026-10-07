@@ -132,4 +132,29 @@ describe('service worker', () => {
     expect(await second.response?.text()).toBe('body{}');
     expect(network).toHaveBeenCalledTimes(1);
   });
+
+  it('refreshes assets with a stable name in the background, never fingerprinted ones', async () => {
+    let version = 1;
+    const network = vi.fn(async () => new Response(`logo v${version}`, { status: 200 }));
+    const worker = makeWorker(network);
+    const logo = 'https://sotf-mods.com/brand/logo-320.png';
+    const hashed = 'https://sotf-mods.com/_astro/a.css';
+    await (await worker.dispatch({ request: new Request(logo) })).settled;
+    await (await worker.dispatch({ request: new Request(hashed) })).settled;
+    expect(network).toHaveBeenCalledTimes(2);
+
+    version = 2;
+    const second = await worker.dispatch({ request: new Request(logo) });
+    // The page gets the cached copy at once...
+    expect(await second.response?.text()).toBe('logo v1');
+    await second.settled;
+    // ...and the next view the refreshed one.
+    const third = await worker.dispatch({ request: new Request(logo) });
+    expect(await third.response?.text()).toBe('logo v2');
+    await third.settled;
+
+    const callsBefore = network.mock.calls.length;
+    await (await worker.dispatch({ request: new Request(hashed) })).settled;
+    expect(network).toHaveBeenCalledTimes(callsBefore);
+  });
 });
