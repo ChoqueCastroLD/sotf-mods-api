@@ -10,20 +10,9 @@
 import { type LogLine, parseLog } from '@sotf/contracts/log-parser';
 import { Button, ButtonLink } from '@sotf/ui/button';
 import { Icon } from '@sotf/ui/icons';
-import {
-  Check,
-  ChevronRight,
-  Copy,
-  Download,
-  Flag,
-  Link2,
-  Search,
-  Trash2,
-  TriangleAlert,
-  WrapText,
-  X,
-} from 'lucide-react';
+import { ChevronRight, Copy, Download, Flag, Link2, Search, Trash2, TriangleAlert, WrapText, X } from 'lucide-react';
 import { useCallback, useDeferredValue, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { toast } from '../../lib/client/toast.ts';
 import { API_LOGS, fill, type LogLabels } from './labels.ts';
 import {
   buildRows,
@@ -168,7 +157,6 @@ export default function LogViewer({ id, labels, basePath, firstErrorLine, counts
   const [scrollTop, setScrollTop] = useState(0);
   const [size, setSize] = useState({ width: 0, height: 560 });
   const [charWidth, setCharWidth] = useState(7.8);
-  const [toast, setToast] = useState<string | null>(null);
   const [pendingJump, setPendingJump] = useState<number | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const [isOwner, setIsOwner] = useState(false);
@@ -179,16 +167,14 @@ export default function LogViewer({ id, labels, basePath, firstErrorLine, counts
   const [panelMessage, setPanelMessage] = useState<string | null>(null);
   const scroller = useRef<HTMLDivElement | null>(null);
   const probe = useRef<HTMLSpanElement | null>(null);
-  const toastTimer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const jumpAttempts = useRef(0);
 
   const deferredQuery = useDeferredValue(query);
   const needle = deferredQuery.trim().toLowerCase();
 
-  const flash = useCallback((message: string) => {
-    setToast(message);
-    clearTimeout(toastTimer.current);
-    toastTimer.current = setTimeout(() => setToast(null), 2200);
+  const flash = useCallback((message: string, ok = true) => {
+    if (ok) toast.success(message);
+    else toast.error(message);
   }, []);
 
   // Initial state: URL filters, wrap default by viewport, delete token, raw text.
@@ -500,7 +486,7 @@ export default function LogViewer({ id, labels, basePath, firstErrorLine, counts
               placeholder={labels.search_placeholder}
               spellCheck={false}
               autoComplete="off"
-              className="h-11 w-full rounded-md border border-border-strong bg-raised ps-9 pe-3 text-base text-fg placeholder:text-fg-subtle md:h-10 md:text-sm"
+              className="h-11 w-full rounded-md border border-border-strong bg-sunken shadow-[inset_0_1px_2px_rgb(0_0_0/0.18)] transition-[border-color,box-shadow] duration-(--dur-fast) hover:border-fg-subtle focus-visible:border-focus focus-visible:shadow-[0_0_0_3px_var(--focus-halo)] focus-visible:outline-none ps-9 pe-3 text-base text-fg placeholder:text-fg-subtle md:h-10 md:text-sm"
             />
           </label>
           <div className="grid min-w-0 gap-2 md:flex md:flex-wrap md:items-center">
@@ -576,7 +562,9 @@ export default function LogViewer({ id, labels, basePath, firstErrorLine, counts
             variant="secondary"
             size="sm"
             icon={<Icon icon={Copy} size={14} />}
-            onClick={async () => flash((await copy(activeLine.text)) ? labels.copied : labels.err_generic)}
+            onClick={async () =>
+              (await copy(activeLine.text)) ? flash(labels.copied) : flash(labels.err_generic, false)
+            }
           >
             {labels.copy_line}
           </Button>
@@ -585,7 +573,9 @@ export default function LogViewer({ id, labels, basePath, firstErrorLine, counts
             variant="secondary"
             size="sm"
             icon={<Icon icon={Link2} size={14} />}
-            onClick={async () => flash((await copy(lineLink(activeLine.n))) ? labels.copied : labels.err_generic)}
+            onClick={async () =>
+              (await copy(lineLink(activeLine.n))) ? flash(labels.copied) : flash(labels.err_generic, false)
+            }
           >
             {labels.copy_line_link}
           </Button>
@@ -660,7 +650,9 @@ export default function LogViewer({ id, labels, basePath, firstErrorLine, counts
           icon={<Icon icon={Link2} size={16} />}
           className="max-md:min-h-11"
           onClick={async () =>
-            flash((await copy(`${location.origin}${basePath}/${id}`)) ? labels.copied : labels.err_generic)
+            (await copy(`${location.origin}${basePath}/${id}`))
+              ? flash(labels.copied)
+              : flash(labels.err_generic, false)
           }
         >
           {labels.copy_link}
@@ -705,7 +697,7 @@ export default function LogViewer({ id, labels, basePath, firstErrorLine, counts
             <select
               value={reason}
               onChange={(event) => setReason(event.target.value)}
-              className="h-11 rounded-md border border-border-strong bg-raised px-2 text-base text-fg md:h-10 md:text-sm"
+              className="h-11 rounded-md border border-border-strong bg-sunken shadow-[inset_0_1px_2px_rgb(0_0_0/0.18)] transition-[border-color,box-shadow] duration-(--dur-fast) hover:border-fg-subtle focus-visible:border-focus focus-visible:shadow-[0_0_0_3px_var(--focus-halo)] focus-visible:outline-none px-2 text-base text-fg md:h-10 md:text-sm"
             >
               <option value="personal_data">{labels.report_reason_personal_data}</option>
               <option value="abuse">{labels.report_reason_abuse}</option>
@@ -719,7 +711,7 @@ export default function LogViewer({ id, labels, basePath, firstErrorLine, counts
               value={note}
               maxLength={500}
               onChange={(event) => setNote(event.target.value)}
-              className="h-11 rounded-md border border-border-strong bg-raised px-3 text-base text-fg md:h-10 md:text-sm"
+              className="h-11 rounded-md border border-border-strong bg-sunken shadow-[inset_0_1px_2px_rgb(0_0_0/0.18)] transition-[border-color,box-shadow] duration-(--dur-fast) hover:border-fg-subtle focus-visible:border-focus focus-visible:shadow-[0_0_0_3px_var(--focus-halo)] focus-visible:outline-none px-3 text-base text-fg md:h-10 md:text-sm"
             />
           </label>
           <div className="flex flex-wrap items-center gap-2">
@@ -760,19 +752,6 @@ export default function LogViewer({ id, labels, basePath, firstErrorLine, counts
           ) : null}
         </div>
       ) : null}
-
-      <div
-        role="status"
-        aria-live="polite"
-        className="pointer-events-none fixed inset-x-0 bottom-[calc(9rem+env(safe-area-inset-bottom))] z-(--z-toast) flex justify-center px-4 md:bottom-6"
-      >
-        {toast ? (
-          <span className="inline-flex items-center gap-2 rounded-md border border-border-strong bg-raised px-3 py-2 text-sm text-fg shadow-lg">
-            <Icon icon={Check} size={16} className="text-success" />
-            {toast}
-          </span>
-        ) : null}
-      </div>
     </section>
   );
 }

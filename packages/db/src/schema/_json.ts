@@ -21,6 +21,7 @@ export interface UserSettings {
   nsfwConfirmedAt?: string;
   downloadHistory?: boolean;
   numberFormat?: string;
+  dismissedAttention?: string[];
 }
 
 export interface UserPrivacy {

@@ -19,6 +19,8 @@ import { MOD_LICENSES } from '@sotf/contracts/common';
 import { ONBOARDING_STEPS } from '@sotf/contracts/gamification';
 import type { KitCardDTO } from '@sotf/contracts/kits';
 import {
+  DISMISSED_ATTENTION_MAX,
+  DismissedAttentionKey,
   type MeDTO,
   type MeHomeDTO,
   type MeSummaryDTO,
@@ -86,7 +88,20 @@ export function settingsOf(stored: UserSettings | null | undefined): UserSetting
     keyboardShortcuts: bool(s.keyboardShortcuts, true),
     defaultLicense: pick<(typeof MOD_LICENSES)[number] | null>(s.defaultLicense, MOD_LICENSES, null),
     replyTemplates: replyTemplatesOf(s.replyTemplates),
+    dismissedAttention: dismissedAttentionOf(s.dismissedAttention),
   };
+}
+
+/** Stored dismissed «Needs attention» keys, invalid entries dropped. */
+export function dismissedAttentionOf(value: unknown): string[] {
+  if (!Array.isArray(value)) return [];
+  const out: string[] = [];
+  for (const item of value) {
+    const parsed = DismissedAttentionKey.safeParse(item);
+    if (parsed.success) out.push(parsed.data);
+    if (out.length >= DISMISSED_ATTENTION_MAX) break;
+  }
+  return out;
 }
 
 /** Stored canned replies, invalid entries dropped. */

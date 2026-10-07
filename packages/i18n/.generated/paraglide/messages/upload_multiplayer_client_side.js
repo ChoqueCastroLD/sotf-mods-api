@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Multiplayer_Client_SideInputs */
 
 const en_upload_multiplayer_client_side = /** @type {(inputs: Upload_Multiplayer_Client_SideInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Client-side`)
+	return /** @type {LocalizedString} */ (`Client side`)
 };
 
 const es_upload_multiplayer_client_side = /** @type {(inputs: Upload_Multiplayer_Client_SideInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_upload_multiplayer_client_side = /** @type {(inputs: Upload_Multiplayer
 /**
 * | output |
 * | --- |
-* | "Client-side" |
+* | "Client side" |
 *
 * @param {Upload_Multiplayer_Client_SideInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -171,5 +171,13 @@
   "explore_catalog_empty_clear": "Filter zurücksetzen",
   "explore_catalog_error_title": "Die Mods konnten nicht geladen werden",
   "explore_catalog_error_text": "Versuche es gleich noch einmal.",
-  "explore_catalog_retry": "Erneut versuchen"
+  "explore_catalog_retry": "Erneut versuchen",
+  "explore_sort_name": "Name A bis Z",
+  "explore_facet_downloads": "Downloads",
+  "explore_downloads_min": "Ab {count, number} Downloads",
+  "explore_page_size_label": "Pro Seite",
+  "explore_search_builds_label": "Builds suchen",
+  "explore_noresults_query_title": "Keine Ergebnisse für „{query}“",
+  "explore_suggest_popular": "Beliebte Mods",
+  "explore_results_range": "{from, number}–{to, number} von {total, number}"
 }

@@ -1,6 +1,6 @@
 /**
  * `/moderation/admin` layout (WP-83): admins only (moderators get «Rangers only»; the API re-checks
- * every call and also demands a session younger than 12 h). Screens live in `features/admin`.
+ * every call). Screens live in `features/admin`.
  */
 import { m } from '@sotf/i18n/messages';
 import { createFileRoute, Outlet } from '@tanstack/react-router';

@@ -11,7 +11,7 @@
  * - KelvinSeek usage and budget, RUM p75 per template and country, and the operations readout
  *   (job queues, dead letters, downloads per hour, CDN purges).
  *
- * Every endpoint is 👑 with a session younger than 12 h (checked in core); writes are audited.
+ * Every endpoint is admin only (checked in core); writes are audited.
  */
 import { adminEndpoints } from '@sotf/contracts/admin';
 import {

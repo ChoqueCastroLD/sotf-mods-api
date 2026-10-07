@@ -43,6 +43,8 @@ export function createNotificationsModule(): ApiModule {
           filter: query.filter,
           cursor: query.cursor,
           limit: query.limit,
+          unread: query.unread,
+          page: query.page,
         }),
       );
 

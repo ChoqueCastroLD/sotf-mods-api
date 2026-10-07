@@ -32,7 +32,6 @@ export type Requirement =
   | 'turnstile_after_failures'
   | 'account_age_24h'
   | 'password_confirmation'
-  | 'recent_auth_12h'
   | 'signed_token'
   | 'not_own_content';
 

@@ -67,6 +67,7 @@ export const LISTING_PARAMS = [
   'platform',
   'updatedWithin',
   'minRating',
+  'minDownloads',
   'hasSource',
   'verified',
   'author',
@@ -74,6 +75,7 @@ export const LISTING_PARAMS = [
   'unapproved',
   'sort',
   'order',
+  'pageSize',
   'view',
   'page',
 ] as const;

@@ -18,11 +18,12 @@ import {
   Locale,
   ModRefDTO,
 } from './common.ts';
-import { EcosystemEntryDTO, EcosystemStatusValue, GameBuildDTO, GameBuildListDTO, LoaderReleaseDTO } from './compat.ts';
-import { dto, exampleOf, examplesOf } from './dto.ts';
+import { EcosystemEntryDTO, EcosystemStatusValue, GameBuildDTO, LoaderReleaseDTO } from './compat.ts';
+import { dto, exampleOf, examplesOf, wireFlag, wireIntDefault } from './dto.ts';
 import { API_V2_PREFIX, defineEndpoint } from './endpoint.ts';
 import { AwardDTO } from './gamification.ts';
 import { ModerationAction } from './moderation.ts';
+import { pageOf } from './pagination.ts';
 
 // -----------------------------------------------------------------------------------------------
 // Game builds and ecosystem
@@ -67,6 +68,68 @@ export const UpdateGameBuildBody = dto(
   }),
   { description: 'Edit a game build.', examples: [{ isCurrent: true }] },
 );
+
+export const GAME_BUILD_SORTS = ['released', 'label', 'created'] as const;
+
+export const AdminGameBuildsQuery = z.object({
+  q: z.string().trim().max(60).optional().describe('Search in the label and the Steam build id'),
+  sort: z.enum(GAME_BUILD_SORTS).default('released').describe('`released` (date), `label` or `created` (registered)'),
+  dir: z.enum(['asc', 'desc']).default('desc'),
+  current: wireFlag('Only the current build (1) or only the others (0)'),
+  breaking: wireFlag('Only breaking builds (1) or only the others (0)'),
+  source: z.enum(['steam', 'manual']).optional().describe('`steam`: has a Steam build id'),
+  page: wireIntDefault(1, { min: 1, max: 10_000, description: '1-based page number' }),
+  pageSize: wireIntDefault(25, { min: 1, max: 100, description: 'Items per page' }),
+});
+export type AdminGameBuildsQuery = z.output<typeof AdminGameBuildsQuery>;
+
+export const AdminGameBuildListDTO = pageOf(
+  'AdminGameBuildListDTO',
+  GameBuildDTO,
+  'A page of game builds (search, filters and sort applied on the server).',
+);
+
+export const STEAM_SYNC_RESULTS = ['created', 'adopted', 'relabelled', 'switched', 'unchanged'] as const;
+
+export const SteamSyncStatusDTO = dto(
+  'SteamSyncStatusDTO',
+  z.object({
+    appId: z.number().int().describe('Steam app id (Sons of the Forest)'),
+    status: z.enum(['never', 'ok', 'failed']).describe('Outcome of the last check (`never`: no check yet)'),
+    lastAttemptAt: IsoDateTime.nullable(),
+    lastSuccessAt: IsoDateTime.nullable(),
+    lastError: z.string().nullable().describe('Why the last check failed'),
+    consecutiveFailures: Count,
+    nextAttemptAt: IsoDateTime.nullable().describe('Scheduled checks are skipped until then after failures'),
+    buildId: z.string().nullable().describe('Build id of the public branch at the last successful check'),
+    buildUpdatedAt: IsoDateTime.nullable().describe('When Steam last updated the public branch'),
+    lastResult: z.enum(STEAM_SYNC_RESULTS).nullable(),
+    gameBuild: z.object({ id: EntityId, label: z.string() }).nullable().describe('Build of the last check'),
+  }),
+  {
+    description: 'State of the automatic game build sync from Steam.',
+    examples: [
+      {
+        appId: 1326470,
+        status: 'ok',
+        lastAttemptAt: '2026-10-06T10:30:00.000Z',
+        lastSuccessAt: '2026-10-06T10:30:00.000Z',
+        lastError: null,
+        consecutiveFailures: 0,
+        nextAttemptAt: null,
+        buildId: '20228174',
+        buildUpdatedAt: '2026-10-03T18:44:52.000Z',
+        lastResult: 'unchanged',
+        gameBuild: { id: 7, label: 'Patch 58' },
+      },
+    ],
+  },
+);
+
+export const SteamSyncQueuedDTO = dto('SteamSyncQueuedDTO', z.object({ queued: z.boolean() }), {
+  description: '`queued` is false when a sync is already waiting or running.',
+  examples: [{ queued: true }],
+});
 
 export const CreateLoaderReleaseBody = dto(
   'CreateLoaderReleaseBody',
@@ -639,8 +702,8 @@ export const OpsDTO = dto(
 
 const admin = `${API_V2_PREFIX}/admin`;
 const IdParams = z.object({ id: IdParam });
-const adminWrite = { auth: 'admin', requires: ['recent_auth_12h'], cache: cache.noStore } as const;
-const adminRead = { auth: 'admin', requires: ['recent_auth_12h'], cache: cache.private } as const;
+const adminWrite = { auth: 'admin', cache: cache.noStore } as const;
+const adminRead = { auth: 'admin', cache: cache.private } as const;
 
 export const adminEndpoints = {
   activeAnnouncements: defineEndpoint({
@@ -662,8 +725,30 @@ export const adminEndpoints = {
     method: 'GET',
     path: `${admin}/game-builds`,
     summary: 'Game builds',
-    response: GameBuildListDTO,
-    errors: ['FORBIDDEN', 'REAUTH_REQUIRED'],
+    query: AdminGameBuildsQuery,
+    response: AdminGameBuildListDTO,
+    errors: ['FORBIDDEN'],
+  }),
+  steamSyncStatus: defineEndpoint({
+    ...adminRead,
+    id: 'admin.steamSyncStatus',
+    owner: 'WP-50',
+    method: 'GET',
+    path: `${admin}/game-builds/steam`,
+    summary: 'State of the Steam game build sync',
+    response: SteamSyncStatusDTO,
+    errors: ['FORBIDDEN'],
+  }),
+  steamSyncNow: defineEndpoint({
+    ...adminWrite,
+    id: 'admin.steamSyncNow',
+    owner: 'WP-50',
+    method: 'POST',
+    path: `${admin}/game-builds/steam/sync`,
+    summary: 'Check Steam for a new game build now',
+    status: 202,
+    response: SteamSyncQueuedDTO,
+    errors: ['FORBIDDEN'],
   }),
   createGameBuild: defineEndpoint({
     ...adminWrite,
@@ -675,7 +760,7 @@ export const adminEndpoints = {
     body: CreateGameBuildBody,
     status: 201,
     response: GameBuildDTO,
-    errors: ['FORBIDDEN', 'CONFLICT', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN', 'CONFLICT'],
   }),
   updateGameBuild: defineEndpoint({
     ...adminWrite,
@@ -687,7 +772,7 @@ export const adminEndpoints = {
     params: IdParams,
     body: UpdateGameBuildBody,
     response: GameBuildDTO,
-    errors: ['FORBIDDEN', 'NOT_FOUND', 'CONFLICT', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN', 'NOT_FOUND', 'CONFLICT'],
   }),
   deleteGameBuild: defineEndpoint({
     ...adminWrite,
@@ -698,7 +783,7 @@ export const adminEndpoints = {
     summary: 'Delete a game build without reports',
     params: IdParams,
     responseKind: 'empty',
-    errors: ['FORBIDDEN', 'NOT_FOUND', 'CONFLICT', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN', 'NOT_FOUND', 'CONFLICT'],
   }),
   listLoaderReleases: defineEndpoint({
     ...adminRead,
@@ -708,7 +793,7 @@ export const adminEndpoints = {
     path: `${admin}/loader-releases`,
     summary: 'Loader and manager releases',
     response: LoaderReleaseListDTO,
-    errors: ['FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN'],
   }),
   createLoaderRelease: defineEndpoint({
     ...adminWrite,
@@ -720,7 +805,7 @@ export const adminEndpoints = {
     body: CreateLoaderReleaseBody,
     status: 201,
     response: LoaderReleaseDTO,
-    errors: ['FORBIDDEN', 'CONFLICT', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN', 'CONFLICT'],
   }),
   putEcosystem: defineEndpoint({
     ...adminWrite,
@@ -731,7 +816,7 @@ export const adminEndpoints = {
     summary: 'Set the ecosystem status of a loader on a build',
     body: PutEcosystemBody,
     response: EcosystemEntryDTO,
-    errors: ['FORBIDDEN', 'NOT_FOUND', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN', 'NOT_FOUND'],
   }),
   listCategories: defineEndpoint({
     ...adminRead,
@@ -741,7 +826,7 @@ export const adminEndpoints = {
     path: `${admin}/categories`,
     summary: 'All categories, retired included',
     response: AdminCategoryListDTO,
-    errors: ['FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN'],
   }),
   createCategory: defineEndpoint({
     ...adminWrite,
@@ -753,7 +838,7 @@ export const adminEndpoints = {
     body: CategoryInputBody,
     status: 201,
     response: AdminCategoryDTO,
-    errors: ['FORBIDDEN', 'CONFLICT', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN', 'CONFLICT'],
   }),
   updateCategory: defineEndpoint({
     ...adminWrite,
@@ -765,7 +850,7 @@ export const adminEndpoints = {
     params: IdParams,
     body: CategoryInputBody,
     response: AdminCategoryDTO,
-    errors: ['FORBIDDEN', 'NOT_FOUND', 'CONFLICT', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN', 'NOT_FOUND', 'CONFLICT'],
   }),
   retireCategory: defineEndpoint({
     ...adminWrite,
@@ -776,7 +861,7 @@ export const adminEndpoints = {
     summary: 'Retire a category (soft; its mods must be recategorised first)',
     params: IdParams,
     responseKind: 'empty',
-    errors: ['FORBIDDEN', 'NOT_FOUND', 'CONFLICT', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN', 'NOT_FOUND', 'CONFLICT'],
   }),
   listTags: defineEndpoint({
     ...adminRead,
@@ -786,7 +871,7 @@ export const adminEndpoints = {
     path: `${admin}/tags`,
     summary: 'All tags',
     response: AdminTagListDTO,
-    errors: ['FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN'],
   }),
   createTag: defineEndpoint({
     ...adminWrite,
@@ -798,7 +883,7 @@ export const adminEndpoints = {
     body: TagInputBody,
     status: 201,
     response: AdminTagDTO,
-    errors: ['FORBIDDEN', 'CONFLICT', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN', 'CONFLICT'],
   }),
   updateTag: defineEndpoint({
     ...adminWrite,
@@ -810,7 +895,7 @@ export const adminEndpoints = {
     params: IdParams,
     body: TagInputBody,
     response: AdminTagDTO,
-    errors: ['FORBIDDEN', 'NOT_FOUND', 'CONFLICT', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN', 'NOT_FOUND', 'CONFLICT'],
   }),
   deleteTag: defineEndpoint({
     ...adminWrite,
@@ -821,7 +906,7 @@ export const adminEndpoints = {
     summary: 'Delete a tag (detaches it from mods)',
     params: IdParams,
     responseKind: 'empty',
-    errors: ['FORBIDDEN', 'NOT_FOUND', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN', 'NOT_FOUND'],
   }),
   recategorize: defineEndpoint({
     ...adminWrite,
@@ -832,7 +917,7 @@ export const adminEndpoints = {
     summary: 'Bulk recategorisation (suggestions + confirmed changes)',
     body: RecategorizeBody,
     response: RecategorizeResultDTO,
-    errors: ['FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN'],
   }),
   setKitStaffPick: defineEndpoint({
     ...adminWrite,
@@ -844,7 +929,7 @@ export const adminEndpoints = {
     params: IdParams,
     body: KitStaffPickBody,
     response: KitStaffPickDTO,
-    errors: ['FORBIDDEN', 'NOT_FOUND', 'CONFLICT', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN', 'NOT_FOUND', 'CONFLICT'],
   }),
   grantManualBadge: defineEndpoint({
     ...adminWrite,
@@ -855,7 +940,7 @@ export const adminEndpoints = {
     summary: 'Grant a manual badge (translator)',
     params: z.object({ id: IdParam, badgeKey: z.enum(MANUAL_BADGE_KEYS) }),
     response: ManualBadgeDTO,
-    errors: ['FORBIDDEN', 'NOT_FOUND', 'REAUTH_REQUIRED', 'GONE'],
+    errors: ['FORBIDDEN', 'NOT_FOUND', 'GONE'],
   }),
   revokeManualBadge: defineEndpoint({
     ...adminWrite,
@@ -866,7 +951,7 @@ export const adminEndpoints = {
     summary: 'Remove a manual badge (translator)',
     params: z.object({ id: IdParam, badgeKey: z.enum(MANUAL_BADGE_KEYS) }),
     response: ManualBadgeDTO,
-    errors: ['FORBIDDEN', 'NOT_FOUND', 'REAUTH_REQUIRED', 'GONE'],
+    errors: ['FORBIDDEN', 'NOT_FOUND', 'GONE'],
   }),
   listAwards: defineEndpoint({
     ...adminRead,
@@ -876,7 +961,7 @@ export const adminEndpoints = {
     path: `${admin}/awards`,
     summary: 'Awards',
     response: AwardListDTO,
-    errors: ['FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN'],
   }),
   createAward: defineEndpoint({
     ...adminWrite,
@@ -888,7 +973,7 @@ export const adminEndpoints = {
     body: AwardInputBody,
     status: 201,
     response: AwardDTO,
-    errors: ['FORBIDDEN', 'NOT_FOUND', 'CONFLICT', 'REAUTH_REQUIRED', 'GONE'],
+    errors: ['FORBIDDEN', 'NOT_FOUND', 'CONFLICT', 'GONE'],
   }),
   deleteAward: defineEndpoint({
     ...adminWrite,
@@ -899,7 +984,7 @@ export const adminEndpoints = {
     summary: 'Delete an award',
     params: IdParams,
     responseKind: 'empty',
-    errors: ['FORBIDDEN', 'NOT_FOUND', 'REAUTH_REQUIRED', 'GONE'],
+    errors: ['FORBIDDEN', 'NOT_FOUND', 'GONE'],
   }),
   listAnnouncements: defineEndpoint({
     ...adminRead,
@@ -909,7 +994,7 @@ export const adminEndpoints = {
     path: `${admin}/announcements`,
     summary: 'Announcements',
     response: AnnouncementListDTO,
-    errors: ['FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN'],
   }),
   createAnnouncement: defineEndpoint({
     ...adminWrite,
@@ -921,7 +1006,7 @@ export const adminEndpoints = {
     body: AnnouncementInputBody,
     status: 201,
     response: AnnouncementDTO,
-    errors: ['FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN'],
   }),
   updateAnnouncement: defineEndpoint({
     ...adminWrite,
@@ -933,7 +1018,7 @@ export const adminEndpoints = {
     params: IdParams,
     body: AnnouncementInputBody,
     response: AnnouncementDTO,
-    errors: ['FORBIDDEN', 'NOT_FOUND', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN', 'NOT_FOUND'],
   }),
   deleteAnnouncement: defineEndpoint({
     ...adminWrite,
@@ -944,7 +1029,7 @@ export const adminEndpoints = {
     summary: 'Delete an announcement',
     params: IdParams,
     responseKind: 'empty',
-    errors: ['FORBIDDEN', 'NOT_FOUND', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN', 'NOT_FOUND'],
   }),
   getSetting: defineEndpoint({
     ...adminRead,
@@ -955,7 +1040,7 @@ export const adminEndpoints = {
     summary: 'Read a site setting',
     params: z.object({ key: SiteSettingKey }),
     response: SiteSettingDTO,
-    errors: ['FORBIDDEN', 'NOT_FOUND', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN', 'NOT_FOUND'],
   }),
   putSetting: defineEndpoint({
     ...adminWrite,
@@ -967,7 +1052,7 @@ export const adminEndpoints = {
     params: z.object({ key: SiteSettingKey }),
     body: PutSiteSettingBody,
     response: SiteSettingDTO,
-    errors: ['FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN'],
   }),
   kelvinseekUsage: defineEndpoint({
     ...adminRead,
@@ -978,7 +1063,7 @@ export const adminEndpoints = {
     summary: 'KelvinSeek usage and budget',
     query: z.object({ days: z.enum(['7', '30', '90']).default('30') }),
     response: KelvinUsageDTO,
-    errors: ['FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN'],
   }),
   operations: defineEndpoint({
     ...adminRead,
@@ -988,7 +1073,7 @@ export const adminEndpoints = {
     path: `${admin}/ops`,
     summary: 'Job queues, dead letters, downloads per hour and CDN purges',
     response: OpsDTO,
-    errors: ['FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN'],
   }),
   rum: defineEndpoint({
     ...adminRead,
@@ -999,6 +1084,6 @@ export const adminEndpoints = {
     summary: 'Real-user Core Web Vitals p75',
     query: z.object({ range: z.enum(['7d', '28d']).default('28d') }),
     response: RumDTO,
-    errors: ['FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN'],
   }),
 } as const;

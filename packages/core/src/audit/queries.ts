@@ -1,5 +1,5 @@
 /**
- * `GET /ranger/audit?cursor=&actor=&action=&target=` (🛡, session < 12 h): the audit log, newest
+ * `GET /ranger/audit?cursor=&actor=&action=&target=` (moderators): the audit log, newest
  * first, filterable by actor handle, action (exact, or a prefix ending in `*`, e.g. `mod.*`) and
  * target (`<targetType>:<id>`). Cursor = `createdAt|id` of the last row (PLAN §5.1).
  */
@@ -23,6 +23,15 @@ export interface AuditQuery {
   actor?: string | undefined;
   action?: string | undefined;
   target?: string | undefined;
+  /** Page mode (adds totals). */
+  page?: number | undefined;
+  from?: string | undefined;
+  to?: string | undefined;
+  targetType?: string | undefined;
+  /** Text in the reason. */
+  q?: string | undefined;
+  /** Page mode only (the cursor always walks newest first). */
+  sort?: 'newest' | 'oldest' | undefined;
 }
 
 interface AuditRow {
@@ -51,7 +60,7 @@ export async function listAudit(ctx: Ctx, config: CatalogConfig, input: AuditQue
       ctx.db,
       sql`SELECT "id" FROM "User" WHERE lower("slug") = lower(${input.actor.trim()}) LIMIT 1`,
     );
-    if (!actor) return { items: [], nextCursor: null };
+    if (!actor) return { items: [], nextCursor: null, page: 1, pageSize: input.limit, total: 0, totalPages: 0 };
     where.push(sql`a."actorId" = ${actor.id}`);
   }
   if (input.action) {
@@ -66,7 +75,12 @@ export async function listAudit(ctx: Ctx, config: CatalogConfig, input: AuditQue
     const [type, id] = input.target.split(':');
     where.push(sql`a."targetType" = ${type ?? ''} AND a."targetId" = ${Number(id)}`);
   }
-  if (input.cursor) {
+  if (input.targetType) where.push(sql`a."targetType" = ${input.targetType}`);
+  if (input.from) where.push(sql`a."createdAt" >= ${input.from}::timestamptz`);
+  if (input.to) where.push(sql`a."createdAt" < ${input.to}::timestamptz`);
+  if (input.q?.trim()) where.push(sql`a."reason" ILIKE ${`%${likeEscape(input.q.trim())}%`}`);
+  const base = where.length > 0 ? sql.join(where, sql` AND `) : sql`TRUE`;
+  if (input.page === undefined && input.cursor) {
     const position = decodeCursor(input.cursor);
     if (!position || !/^\d+$/.test(position.id)) {
       throw errors.validation('Invalid cursor', [{ path: 'cursor', code: 'invalid', message: 'invalid cursor' }]);
@@ -74,21 +88,35 @@ export async function listAudit(ctx: Ctx, config: CatalogConfig, input: AuditQue
     where.push(sql`(a."createdAt", a."id") < (${position.createdAt}::timestamptz, ${Number(position.id)}::bigint)`);
   }
   const condition = where.length > 0 ? sql.join(where, sql` AND `) : sql`TRUE`;
+  let total: number | null = null;
+  let totalPages = 0;
+  let page = 1;
+  let offset = 0;
+  if (input.page !== undefined) {
+    const counted = await queryOne<{ n: number }>(
+      ctx.db,
+      sql`SELECT count(*)::int AS "n" FROM "AuditLog" a WHERE ${base}`,
+    );
+    total = counted?.n ?? 0;
+    totalPages = total === 0 ? 0 : Math.ceil(total / input.limit);
+    page = Math.max(1, Math.min(input.page, Math.max(1, totalPages)));
+    offset = (page - 1) * input.limit;
+  }
   const list = await query<AuditRow>(
     ctx.db,
     sql`SELECT a."id", a."actorId", a."action", a."targetType", a."targetId", a."before", a."after", a."reason", a."createdAt"
           FROM "AuditLog" a
          WHERE ${condition}
-         ORDER BY a."createdAt" DESC, a."id" DESC
-         LIMIT ${input.limit + 1}`,
+         ORDER BY ${input.page !== undefined && input.sort === 'oldest' ? sql`a."createdAt" ASC, a."id" ASC` : sql`a."createdAt" DESC, a."id" DESC`}
+         LIMIT ${input.limit + 1} OFFSET ${offset}`,
   );
-  const page = list.slice(0, input.limit);
+  const slice = list.slice(0, input.limit);
   const refs = await loadUserRefs(
     ctx.db,
     config,
-    page.map((r) => r.actorId).filter((id): id is number => id !== null),
+    slice.map((r) => r.actorId).filter((id): id is number => id !== null),
   );
-  const items: AuditEntry[] = page.map((r) => ({
+  const items: AuditEntry[] = slice.map((r) => ({
     id: Number(r.id),
     actor: r.actorId === null ? null : (refs.get(r.actorId) ?? null),
     action: r.action,
@@ -99,10 +127,10 @@ export async function listAudit(ctx: Ctx, config: CatalogConfig, input: AuditQue
     reason: r.reason,
     createdAt: (toDate(r.createdAt) ?? new Date(0)).toISOString(),
   }));
-  const last = page[page.length - 1];
+  const last = slice[slice.length - 1];
   const nextCursor =
     list.length > input.limit && last
       ? encodeCursor({ createdAt: (toDate(last.createdAt) ?? new Date(0)).toISOString(), id: Number(last.id) })
       : null;
-  return { items, nextCursor };
+  return { items, nextCursor, page, pageSize: input.limit, total, totalPages };
 }

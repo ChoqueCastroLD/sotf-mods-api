@@ -7,9 +7,9 @@
 import { z } from 'zod';
 import { cache } from './cache.ts';
 import { Count, EntityId, IsoDateTime, SitePath, UserRefDTO } from './common.ts';
-import { dto, exampleOf } from './dto.ts';
+import { dto, exampleOf, wireFlag, wireInt } from './dto.ts';
 import { API_V2_PREFIX, defineEndpoint } from './endpoint.ts';
-import { CursorQuery, cursorPageOf } from './pagination.ts';
+import { Cursor, CursorQuery, MAX_CURSOR_LIMIT } from './pagination.ts';
 
 export const NOTIFICATION_TYPES = [
   'mod.version_published',
@@ -171,7 +171,23 @@ export const NotificationDTO = dto(
 );
 export type NotificationDTO = z.infer<typeof NotificationDTO>;
 
-export const NotificationPageDTO = cursorPageOf('NotificationPageDTO', NotificationDTO, 'Cursor page of signals.');
+export const NotificationPageDTO = dto(
+  'NotificationPageDTO',
+  z.object({
+    items: z.array(NotificationDTO),
+    nextCursor: Cursor.nullable(),
+    page: z.number().int().min(1).optional(),
+    pageSize: z.number().int().min(1).max(MAX_CURSOR_LIMIT).optional(),
+    total: z.number().int().nonnegative().optional().describe('Signals matching the filters (only with `page`)'),
+    totalPages: z.number().int().nonnegative().optional(),
+  }),
+  {
+    description: 'Page of signals: cursor based, or numbered when `page` is given.',
+    examples: [
+      { items: [exampleOf(NotificationDTO)], nextCursor: null, page: 1, pageSize: 20, total: 1, totalPages: 1 },
+    ],
+  },
+);
 
 export const UnreadCountDTO = dto('UnreadCountDTO', z.object({ count: Count }), {
   description: 'Unread signals.',
@@ -222,7 +238,11 @@ export const UpdateNotificationPreferencesBody = dto(
   },
 );
 
-export const NotificationListQuery = CursorQuery.extend({ filter: z.enum(NOTIFICATION_FILTERS).default('all') });
+export const NotificationListQuery = CursorQuery.extend({
+  filter: z.enum(NOTIFICATION_FILTERS).default('all'),
+  unread: wireFlag('Only unread signals'),
+  page: wireInt({ min: 1, max: 10_000, description: 'Numbered page (replaces the cursor)' }).optional(),
+});
 
 const base = API_V2_PREFIX;
 

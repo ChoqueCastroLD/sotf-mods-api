@@ -223,7 +223,7 @@ function SubmitModal({ store, onClose, onDone }: SubmitModalProps) {
               value={modId}
               onChange={(event) => setModId(event.target.value)}
               disabled={busy}
-              className="h-11 rounded-md border border-border-strong bg-surface px-3 text-sm text-fg md:h-10"
+              className="h-11 rounded-md border border-border-strong bg-sunken shadow-[inset_0_1px_2px_rgb(0_0_0/0.18)] transition-[border-color,box-shadow] duration-(--dur-fast) hover:border-fg-subtle focus-visible:border-focus focus-visible:shadow-[0_0_0_3px_var(--focus-halo)] focus-visible:outline-none px-3 text-sm text-fg md:h-10"
             >
               <option value="">{t('jams_submit_choose')}</option>
               {available.map((mod) => (

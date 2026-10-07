@@ -3,7 +3,7 @@ export type Admin_Builds_Table_LabelInputs = {};
 /**
 * | output |
 * | --- |
-* | "Game builds, newest first" |
+* | "Game builds" |
 *
 * @param {Admin_Builds_Table_LabelInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

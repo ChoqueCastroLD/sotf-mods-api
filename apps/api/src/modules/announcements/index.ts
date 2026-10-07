@@ -1,7 +1,7 @@
 /**
  * Announcements module (WP-51, PLAN T0-28): the public `GET /api/v2/announcements/active?locale=`
  * read of the global banner (edge-cached 5 min under `html`, purged by every admin write) and the
- * admin CRUD `/api/v2/admin/announcements*` (👑, session < 12 h, audited).
+ * admin CRUD `/api/v2/admin/announcements*` (admin only, audited).
  */
 import { adminEndpoints } from '@sotf/contracts/admin';
 import {

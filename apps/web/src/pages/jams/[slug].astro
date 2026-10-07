@@ -77,7 +77,15 @@ const timeline = jam
     ].flatMap((step) => (step.at === null ? [] : [{ key: step.key, label: step.label, at: step.at }]))
   : [];
 
-const description = jam ? jam.tagline || m.jams_detail_description_fallback({ title: jam.title }) : m.jams_hub_description();
+// A tagline of a few words reads as an empty meta description: complete it with the plain summary.
+const tagline = jam?.tagline?.trim() ?? '';
+const description = jam
+  ? tagline.length >= 40
+    ? tagline
+    : tagline
+      ? `${tagline} · ${m.jams_detail_description_fallback({ title: jam.title })}`
+      : m.jams_detail_description_fallback({ title: jam.title })
+  : m.jams_hub_description();
 const jsonLd = jam
   ? [
       jamEventJsonLd({
@@ -257,13 +265,6 @@ const title = jam?.title ?? m.jams_hub_title();
       </article>
     )
   }
-  <div
-    data-mod-toast
-    role="status"
-    aria-live="polite"
-    class="pointer-events-none fixed inset-x-0 bottom-[calc(9rem+env(safe-area-inset-bottom))] z-(--z-toast) flex justify-center px-4 md:bottom-6"
-  >
-  </div>
 </PageLayout>
 
 <script>

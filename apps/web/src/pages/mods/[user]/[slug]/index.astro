@@ -37,6 +37,7 @@ import { pictureSources } from '../../../../lib/images.ts';
 import { localizeCards } from '../../../../lib/localize.ts';
 import { loadModTranslation } from '../../../../lib/mod-translation.ts';
 import { ensureLocals } from '../../../../lib/request-context.ts';
+import { entityOg } from '../../../../lib/seo/og.ts';
 
 export const prerender = false;
 
@@ -72,9 +73,6 @@ const preloadImage = hero
       }
     : { href: hero.url }
   : undefined;
-const sharedOg = mod.ogImage?.url ?? null;
-const ogImage = mod.nsfw ? undefined : (sharedOg ?? mod.thumbnail?.url ?? mod.gallery[0]?.url);
-const ogSized = sharedOg !== null && ogImage === sharedOg;
 const tags = mod.tags;
 // Only what the author wrote: nothing generated.
 const faq = (extras.knowledge?.faq ?? []).map((entry) => ({
@@ -98,8 +96,7 @@ if (faq.length > 0) jsonLd.push(modFaqJsonLd(faq, pageUrl, locale));
     og: {
       imageAlt: m.mod_og_alt({ name: mod.name }),
       type: 'website',
-      ...(ogImage ? { image: ogImage } : {}),
-      ...(ogSized ? { imageWidth: 1200, imageHeight: 630 } : {}),
+      ...entityOg(mod),
     },
   }}
   jsonLd={jsonLd}

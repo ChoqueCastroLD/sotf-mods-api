@@ -32,9 +32,9 @@ async function copyText(text: string, doc: Document): Promise<boolean> {
 
 export function initShare(root: HTMLElement, data: ModPageData, doc: Document = document): void {
   const status = root.querySelector<HTMLElement>('[data-share-status]');
-  const announce = (message: string) => {
+  const announce = (message: string, ok = true) => {
     if (status?.closest('dialog')?.open) status.textContent = message;
-    else toast(message);
+    else toast(message, undefined, ok ? 'success' : 'error');
   };
 
   root.addEventListener('click', (event) => {
@@ -47,7 +47,7 @@ export function initShare(root: HTMLElement, data: ModPageData, doc: Document = 
       (source instanceof HTMLInputElement || source instanceof HTMLTextAreaElement ? source.value : '');
     if (!text) return;
     void copyText(text, doc).then((ok) => {
-      announce(ok ? data.messages.copied : data.messages.copyFailed);
+      announce(ok ? data.messages.copied : data.messages.copyFailed, ok);
       if (ok) {
         const label = button.lastChild;
         if (label && label.nodeType === Node.TEXT_NODE && !button.dataset.copyText) {

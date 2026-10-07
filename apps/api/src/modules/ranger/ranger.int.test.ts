@@ -89,13 +89,12 @@ afterAll(async () => {
 });
 
 describe('access', () => {
-  it('requires a moderator with a session younger than 12 h', async () => {
+  it('requires a signed-in moderator and does not ask for a recent sign-in', async () => {
     expect((await call('GET', '/api/v2/ranger/templates', null)).status).toBe(401);
     expect((await call('GET', '/api/v2/ranger/templates', reporter)).status).toBe(403);
     const stale = { ...ranger, sessionId: randomUUID() };
     const res = await call('GET', '/api/v2/ranger/templates', stale);
-    expect(res.status).toBe(403);
-    expect(res.body?.code).toBe('REAUTH_REQUIRED');
+    expect(res.status).toBe(200);
   });
 });
 

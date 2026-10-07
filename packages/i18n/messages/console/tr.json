@@ -68,5 +68,15 @@
   "console_nav_jams": "Mod Jam'leri",
   "console_tab_ranger": "Moderasyon",
   "console_pull_refreshing": "Yenileniyor…",
-  "console_tab_basecamp": "Panel"
+  "console_tab_basecamp": "Panel",
+  "console_language_failed": "Dil değiştirilemedi",
+  "console_pager_range": "{total} içinde {from}–{to}",
+  "console_pager_page_size": "Sayfa başına öğe",
+  "console_pager_per_page": "Sayfada {count}",
+  "console_pager_of": "Sayfa {page} / {pages}",
+  "console_nav_tokens": "Erişim anahtarları",
+  "console_nav_group_account": "Hesabınız",
+  "console_nav_group_app": "Uygulama",
+  "console_nav_group_creator": "Yapımcı ve veriler",
+  "console_area_you": "Sen"
 }

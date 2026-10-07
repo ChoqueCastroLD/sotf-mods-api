@@ -1,0 +1,169 @@
+/*
+ * Blueprint look of the builds pages (the builds list header, the build page header, the build
+ * pictures and their counts). Scoped on purpose: every rule hangs on a `bp-*` class that only the
+ * builds pages and `BuildCard` carry, so nothing else on the site changes. Calm on the dark
+ * theme: a faint blue grid paper, thin blue lines, small corner ticks, monospace measurements.
+ */
+
+:where(.bp-hero, .bp-paper, .bp-cover, .bp-card, .bp-mono, .bp-nums, .bp-dim, .bp-tick, .bp-plate) {
+  /* `light-dark()` follows the page theme (`color-scheme` is set on the root). */
+  --bp-ink: light-dark(#1d4a9a, #8db3f0);
+  --bp-ink-soft: light-dark(#3a64b0, #6f93cf);
+  --bp-line: light-dark(rgb(29 74 154 / 0.38), rgb(120 165 235 / 0.34));
+  --bp-line-soft: light-dark(rgb(29 74 154 / 0.2), rgb(120 165 235 / 0.16));
+  --bp-paper: light-dark(
+    color-mix(in oklab, #2457b5 9%, var(--color-bg, #f6f7f8)),
+    color-mix(in oklab, #2457b5 17%, var(--color-bg, #15191e))
+  );
+  --bp-grid-minor: light-dark(rgb(29 74 154 / 0.08), rgb(120 165 235 / 0.07));
+  --bp-grid-major: light-dark(rgb(29 74 154 / 0.15), rgb(120 165 235 / 0.13));
+}
+
+/* Grid paper: 16 px squares, a stronger line every 80 px. */
+.bp-paper {
+  background-color: var(--bp-paper);
+  background-image:
+    linear-gradient(var(--bp-grid-major) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bp-grid-major) 1px, transparent 1px),
+    linear-gradient(var(--bp-grid-minor) 1px, transparent 1px),
+    linear-gradient(90deg, var(--bp-grid-minor) 1px, transparent 1px);
+  background-size:
+    80px 80px,
+    80px 80px,
+    16px 16px,
+    16px 16px;
+  background-position: -1px -1px;
+}
+
+.bp-hero {
+  position: relative;
+  isolation: isolate;
+  padding: 1.25rem 1.25rem 1.5rem;
+  border: 1px solid var(--bp-line);
+  border-radius: 0.5rem;
+}
+@media (width >= 64rem) {
+  .bp-hero {
+    padding: 1.75rem 2rem 2rem;
+  }
+}
+
+/* Corner ticks of a frame: four L shapes drawn by one element per corner. */
+.bp-tick {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+  border: 0 solid var(--bp-ink);
+}
+.bp-tick-tl {
+  inset-block-start: 6px;
+  inset-inline-start: 6px;
+  border-block-start-width: 1.5px;
+  border-inline-start-width: 1.5px;
+}
+.bp-tick-tr {
+  inset-block-start: 6px;
+  inset-inline-end: 6px;
+  border-block-start-width: 1.5px;
+  border-inline-end-width: 1.5px;
+}
+.bp-tick-bl {
+  inset-block-end: 6px;
+  inset-inline-start: 6px;
+  border-block-end-width: 1.5px;
+  border-inline-start-width: 1.5px;
+}
+.bp-tick-br {
+  inset-block-end: 6px;
+  inset-inline-end: 6px;
+  border-block-end-width: 1.5px;
+  border-inline-end-width: 1.5px;
+}
+
+/* A picture with blueprint corner ticks (one pseudo element, four gradients). */
+.bp-cover {
+  position: relative;
+}
+.bp-cover::after {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0.85;
+  transition: opacity var(--dur-base, 200ms), inset var(--dur-base, 200ms);
+  background:
+    linear-gradient(#b4cdf8, #b4cdf8) top left / 14px 1.5px no-repeat,
+    linear-gradient(#b4cdf8, #b4cdf8) top left / 1.5px 14px no-repeat,
+    linear-gradient(#b4cdf8, #b4cdf8) top right / 14px 1.5px no-repeat,
+    linear-gradient(#b4cdf8, #b4cdf8) top right / 1.5px 14px no-repeat,
+    linear-gradient(#b4cdf8, #b4cdf8) bottom left / 14px 1.5px no-repeat,
+    linear-gradient(#b4cdf8, #b4cdf8) bottom left / 1.5px 14px no-repeat,
+    linear-gradient(#b4cdf8, #b4cdf8) bottom right / 14px 1.5px no-repeat,
+    linear-gradient(#b4cdf8, #b4cdf8) bottom right / 1.5px 14px no-repeat;
+  filter: drop-shadow(0 0 1px rgb(0 0 0 / 0.55));
+}
+.group\/card:hover .bp-cover::after,
+.bp-card:hover .bp-cover::after {
+  inset: 6px;
+  opacity: 1;
+}
+
+/* The card around a build: thin blueprint border instead of the neutral one. */
+.bp-card {
+  border-color: var(--bp-line-soft);
+  transition: border-color var(--dur-base, 200ms);
+}
+.bp-card:hover {
+  border-color: var(--bp-line);
+}
+
+/* Measurement style label: monospace, tabular, blueprint blue. */
+.bp-mono {
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.02em;
+  color: var(--bp-ink);
+}
+
+/* Counts and measurements in monospace, keeping the text colour. */
+.bp-nums {
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.9em;
+}
+
+/* Dimension line: ├──── label ────┤ */
+.bp-dim {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace);
+  font-size: 0.75rem;
+  color: var(--bp-ink);
+  font-variant-numeric: tabular-nums;
+}
+.bp-dim::before,
+.bp-dim::after {
+  content: '';
+  flex: 1 1 0;
+  height: 9px;
+  min-width: 1rem;
+  border-inline: 1px solid var(--bp-line);
+  background: linear-gradient(var(--bp-line), var(--bp-line)) center / 100% 1px no-repeat;
+}
+
+/* A plate with the blueprint border (spec sheet, version list). */
+.bp-plate {
+  border: 1px solid var(--bp-line-soft);
+  border-radius: 0.5rem;
+  background: color-mix(in oklab, #2457b5 6%, var(--color-surface, #1d232a));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bp-cover::after,
+  .bp-card {
+    transition: none;
+  }
+}

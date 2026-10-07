@@ -14,13 +14,12 @@ import { renderMarkdown } from '@sotf/markdown';
 import { sql } from 'drizzle-orm';
 import type { z } from 'zod';
 import { recordAudit } from '../audit/audit.ts';
-import { sessionCreatedAt } from '../auth/sessions.ts';
 import { type CatalogConfig, mediaUrlForWidth } from '../catalog/media.ts';
 import { rankOf, roleOf, tierOf } from '../catalog/snapshot.ts';
 import { intArray, query, toDate } from '../follows/sql.ts';
 import type { Actor, Ctx } from '../kernel/context.ts';
 import { errors } from '../kernel/errors.ts';
-import { assertCan, assertFreshSession, type PermissionSubject } from '../permissions/can.ts';
+import { assertCan, type PermissionSubject } from '../permissions/can.ts';
 
 export type LoaderReleaseDTO = z.infer<typeof LoaderReleaseSchema>;
 export type EcosystemEntryDTO = z.infer<typeof EcosystemEntrySchema>;
@@ -242,13 +241,11 @@ export async function subjectOf(ctx: Ctx): Promise<PermissionSubject> {
   };
 }
 
-/** 👑 admin with a session younger than 12 h (PLAN §7.4) for the game-build registry. */
+/** Admin guard of the game-build registry. */
 export async function assertRegistryAdmin(ctx: Ctx): Promise<Actor> {
   const subject = await subjectOf(ctx);
   const now = ctx.clock.now();
   assertCan(subject, 'admin.game_builds', undefined, now);
-  const createdAt = subject.sessionId ? await sessionCreatedAt(ctx.db, subject.sessionId) : null;
-  assertFreshSession(createdAt, now);
   return subject;
 }
 

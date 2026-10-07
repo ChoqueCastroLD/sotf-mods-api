@@ -7,6 +7,8 @@
  *   visitor said «I already have them» for this mod): «Download all» follows each dependency's
  *   download route one after the other (each counts) and then the mod's.
  */
+
+import { toast as bus } from '../../lib/client/toast.ts';
 import { pageEntity, track } from '../beacon.ts';
 import { fill } from './data.ts';
 import { closeDialog, openDialog } from './dialogs.ts';
@@ -34,18 +36,15 @@ function startDownload(href: string, doc: Document): void {
   link.remove();
 }
 
-function markDone(root: HTMLElement, data: ModPageData, doc: Document): void {
+function markDone(root: HTMLElement, data: ModPageData): void {
   const area = root.querySelector<HTMLElement>('[data-download-area]');
   const primary = area?.querySelector<HTMLAnchorElement>('a[data-download]');
   if (!area || !primary || area.dataset.done) return;
   area.dataset.done = '';
   const label = primary.querySelector('span.truncate');
   if (label) label.textContent = data.messages.downloadDone;
-  const hint = doc.createElement('p');
-  hint.setAttribute('role', 'status');
-  hint.className = 'mt-2 text-sm text-fg-muted';
-  hint.textContent = data.messages.downloadDoneHint;
-  area.append(hint);
+  // The install hint is a toast: appending a paragraph under the button would push the page down.
+  bus.success(data.messages.downloadDone, { description: data.messages.downloadDoneHint, duration: 10_000 });
 }
 
 function versionOf(link: HTMLAnchorElement): string {
@@ -63,7 +62,7 @@ export function initDownloads(root: HTMLElement, data: ModPageData, doc: Documen
   const completed = (link: HTMLAnchorElement) => {
     const version = versionOf(link);
     track('download_click', { ...pageEntity(), props: { version } });
-    markDone(root, data, doc);
+    markDone(root, data);
   };
 
   root.addEventListener('click', (event) => {

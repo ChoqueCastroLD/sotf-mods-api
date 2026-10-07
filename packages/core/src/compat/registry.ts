@@ -53,9 +53,16 @@ const UNIQUE_VIOLATION = '23505';
 // Public reads
 // -----------------------------------------------------------------------------------------------
 
-/** `GET /game-builds` (and the admin list): every build, newest first. */
-export async function listGameBuilds(ctx: Ctx): Promise<GameBuildList> {
-  return { items: (await loadGameBuilds(ctx.db)).map(gameBuildDto) };
+/**
+ * `GET /game-builds`: every build, newest first. `limit` keeps the newest N and `q` filters by
+ * label (the upload wizard shows the recent ones with a search box).
+ */
+export async function listGameBuilds(ctx: Ctx, options: { limit?: number; q?: string } = {}): Promise<GameBuildList> {
+  const q = options.q?.trim().toLowerCase();
+  let rows = await loadGameBuilds(ctx.db);
+  if (q) rows = rows.filter((row) => row.label.toLowerCase().includes(q));
+  if (options.limit !== undefined) rows = rows.slice(0, options.limit);
+  return { items: rows.map(gameBuildDto) };
 }
 
 /** The current build, or null when none is flagged. */
@@ -84,7 +91,7 @@ async function loadBuildForUpdate(tx: Executor, id: number): Promise<GameBuildRo
 }
 
 /** Serialises registry writes (the single-current invariant and the mod refresh). */
-async function lockRegistry(tx: Executor): Promise<void> {
+export async function lockRegistry(tx: Executor): Promise<void> {
   await tx.execute(sql`SELECT pg_advisory_xact_lock(hashtextextended('GameBuild:registry', 0))`);
 }
 
@@ -99,7 +106,7 @@ function auditShape(r: GameBuildRow) {
 }
 
 /** Recomputes every mod's status after a registry change and purges what shows it. */
-async function afterRegistryChange(ctx: Ctx, tx: Executor, reason: string): Promise<void> {
+export async function afterRegistryChange(ctx: Ctx, tx: Executor, reason: string): Promise<void> {
   const changed = await refreshModsCompat(tx, ctx.clock.now(), 'all');
   await purge(ctx.jobs, changed.length > 0 ? modTags(changed) : ['compat', 'home'], reason, { tx });
 }

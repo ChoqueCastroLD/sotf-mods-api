@@ -1,6 +1,7 @@
 /**
- * «My mods» (PLAN §7.5): status, version, downloads in 7 days, rating, open field reports and
- * actions. A table from `md` up; a list of cards on phones (research/03 §6.9).
+ * «My mods» (PLAN §7.5): name, category and version, status, last release, downloads in 7 days,
+ * rating, what waits for an answer, and the actions. A table from `md` up (the headings of the
+ * sortable columns are buttons when `onSort` is given); a list of cards on phones.
  */
 import { Badge } from '@sotf/ui/badge';
 import { buttonClasses } from '@sotf/ui/button';
@@ -8,11 +9,13 @@ import { cn } from '@sotf/ui/cn';
 import { Icon } from '@sotf/ui/icons';
 import { Menu } from '@sotf/ui/menu';
 import { Link, useNavigate, useRouter } from '@tanstack/react-router';
-import { ChartLine, ExternalLink, MoreHorizontal, Pencil, Plus, Star } from 'lucide-react';
+import { ArrowDown, ChartLine, ExternalLink, MoreHorizontal, Pencil, Plus, Star } from 'lucide-react';
+import type { ReactNode } from 'react';
 import { SwipeRow } from '../../components/SwipeRow.tsx';
 import type { ModRow } from './api.ts';
-import { compact, number, publicHref, rating } from './format.ts';
+import { compact, date, number, publicHref, rating } from './format.ts';
 import { bt } from './i18n.ts';
+import type { ModSort } from './mod-sorts.ts';
 import { ModThumb, StatusBadge } from './shared.tsx';
 
 /** Kinds that take new versions from the wizard (builds are republished as a whole). */
@@ -91,30 +94,70 @@ function RatingCell({ row }: { row: ModRow }) {
   );
 }
 
-function ReportsCell({ row }: { row: ModRow }) {
-  const open = row.openCompatReports;
+function ToAnswerCell({ row }: { row: ModRow }) {
   const unanswered = row.unansweredComments + row.unansweredReviews;
-  if (open === 0 && unanswered === 0) return <span className="text-fg-subtle">{bt('basecamp_mods_reports_none')}</span>;
+  if (unanswered === 0) return <span className="text-fg-subtle">{bt('basecamp_mods_reports_none')}</span>;
   return (
-    <span className="flex flex-wrap gap-1">
-      {open > 0 ? (
-        <Badge variant="danger" size="sm">
-          {bt('basecamp_mods_reports_open', { count: open })}
-        </Badge>
-      ) : null}
-      {unanswered > 0 ? (
-        <Badge variant="signal" size="sm">
-          {bt('basecamp_mods_unanswered', { count: unanswered })}
-        </Badge>
-      ) : null}
-    </span>
+    <Link
+      to="/dashboard/inbox"
+      search={{ mod: row.mod.id }}
+      className="inline-flex rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+    >
+      <Badge variant="signal" size="sm">
+        {bt('basecamp_mods_unanswered', { count: unanswered })}
+      </Badge>
+    </Link>
+  );
+}
+
+/** Column heading: a plain label, or a sort button (`aria-sort` on the cell) when the screen sorts. */
+function Heading({
+  children,
+  sort,
+  current,
+  onSort,
+  align = 'start',
+}: {
+  children: ReactNode;
+  sort?: ModSort;
+  current?: ModSort | undefined;
+  onSort?: ((sort: ModSort) => void) | undefined;
+  align?: 'start' | 'end';
+}) {
+  const active = sort !== undefined && sort === current;
+  const ariaSort = !sort || !onSort ? undefined : active ? (sort === 'name' ? 'ascending' : 'descending') : 'none';
+  return (
+    <th
+      scope="col"
+      {...(ariaSort ? { 'aria-sort': ariaSort } : {})}
+      className={cn(
+        'whitespace-nowrap px-3 py-2 text-xs font-medium text-fg-muted',
+        align === 'end' ? 'text-end' : 'text-start',
+      )}
+    >
+      {sort && onSort ? (
+        <button
+          type="button"
+          onClick={() => onSort(sort)}
+          className={cn(
+            '-mx-1.5 inline-flex items-center gap-1 rounded-sm px-1.5 py-0.5 transition-colors hover:text-fg focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus',
+            active && 'text-fg',
+          )}
+        >
+          {children}
+          <Icon icon={ArrowDown} size={12} className={cn('transition-opacity', active ? 'opacity-100' : 'opacity-0')} />
+        </button>
+      ) : (
+        children
+      )}
+    </th>
   );
 }
 
 function PrimaryActions({ row, compactLayout = false }: { row: ModRow; compactLayout?: boolean }) {
   const id = String(row.mod.id);
   return (
-    <span className="flex flex-wrap items-center justify-end gap-1">
+    <span className="flex flex-wrap items-center justify-end gap-1 md:flex-nowrap">
       <Link
         to="/dashboard/mods/$modId"
         params={{ modId: id }}
@@ -140,7 +183,25 @@ function PrimaryActions({ row, compactLayout = false }: { row: ModRow; compactLa
   );
 }
 
-export function ModsTable({ rows, caption }: { rows: readonly ModRow[]; caption: string }) {
+export function ModsTable({
+  rows,
+  caption,
+  sort,
+  onSort,
+  categoryName,
+}: {
+  rows: readonly ModRow[];
+  caption: string;
+  /** Current sort and its setter: the headings of the sortable columns become buttons. */
+  sort?: ModSort;
+  onSort?: (sort: ModSort) => void;
+  /** Localized category name (`nameKey`, English name). */
+  categoryName?: ((nameKey: string, fallback: string) => string) | undefined;
+}) {
+  const subtitle = (row: ModRow) =>
+    row.mod.category
+      ? (categoryName?.(row.mod.category.nameKey, row.mod.category.name) ?? row.mod.category.name)
+      : kindLabel(row.mod.kind);
   const navigate = useNavigate();
   return (
     <>
@@ -178,25 +239,26 @@ export function ModsTable({ rows, caption }: { rows: readonly ModRow[]; caption:
                     </Link>
                     <span className="flex flex-wrap items-center gap-2 text-xs text-fg-muted">
                       <StatusBadge status={row.mod.status} />
+                      <span>{subtitle(row)}</span>
                       {row.mod.latestVersion ? <span className="font-mono">v{row.mod.latestVersion}</span> : null}
                     </span>
                   </div>
                 </div>
                 <dl className="grid grid-cols-3 gap-2 text-xs">
                   <div className="grid gap-0.5">
-                    <dt className="readout">{bt('basecamp_mods_col_downloads')}</dt>
+                    <dt className="text-fg-muted">{bt('basecamp_mods_col_downloads')}</dt>
                     <dd className="tabular-nums text-fg">{compact(row.downloads7d)}</dd>
                   </div>
                   <div className="grid gap-0.5">
-                    <dt className="readout">{bt('basecamp_mods_col_rating')}</dt>
+                    <dt className="text-fg-muted">{bt('basecamp_mods_col_rating')}</dt>
                     <dd>
                       <RatingCell row={row} />
                     </dd>
                   </div>
                   <div className="grid gap-0.5">
-                    <dt className="readout">{bt('basecamp_mods_col_reports')}</dt>
+                    <dt className="text-fg-muted">{bt('basecamp_mods_col_reports')}</dt>
                     <dd>
-                      <ReportsCell row={row} />
+                      <ToAnswerCell row={row} />
                     </dd>
                   </div>
                 </dl>
@@ -213,37 +275,38 @@ export function ModsTable({ rows, caption }: { rows: readonly ModRow[]; caption:
       </ul>
 
       {/* Tablets and desktops: table. */}
-      <div className="hidden overflow-x-auto rounded-lg border border-border md:block">
+      <div className="relative hidden overflow-x-auto rounded-lg border border-border bg-surface md:block">
         <table className="w-full border-collapse text-sm">
           <caption className="sr-only">{caption}</caption>
-          <thead className="bg-sunken">
+          <thead className="border-b border-border bg-sunken">
             <tr>
-              <th scope="col" className="px-3 py-2 text-start readout">
+              <Heading sort="name" current={sort} onSort={onSort}>
                 {bt('basecamp_mods_col_mod')}
-              </th>
-              <th scope="col" className="px-3 py-2 text-start readout">
-                {bt('basecamp_mods_col_status')}
-              </th>
-              <th scope="col" className="px-3 py-2 text-start readout">
-                {bt('basecamp_mods_col_version')}
-              </th>
-              <th scope="col" className="px-3 py-2 text-end readout">
+              </Heading>
+              <Heading>{bt('basecamp_mods_col_status')}</Heading>
+              <Heading sort="updated" current={sort} onSort={onSort}>
+                {bt('basecamp_mods_col_updated')}
+              </Heading>
+              <Heading sort="downloads" current={sort} onSort={onSort} align="end">
                 {bt('basecamp_mods_col_downloads')}
-              </th>
-              <th scope="col" className="px-3 py-2 text-start readout">
+              </Heading>
+              <Heading sort="rating" current={sort} onSort={onSort}>
                 {bt('basecamp_mods_col_rating')}
-              </th>
-              <th scope="col" className="px-3 py-2 text-start readout">
+              </Heading>
+              <Heading sort="attention" current={sort} onSort={onSort}>
                 {bt('basecamp_mods_col_reports')}
-              </th>
-              <th scope="col" className="px-3 py-2 text-end readout">
+              </Heading>
+              <th scope="col" className="px-3 py-2 text-end">
                 <span className="sr-only">{bt('basecamp_mods_col_actions')}</span>
               </th>
             </tr>
           </thead>
           <tbody>
             {rows.map((row) => (
-              <tr key={row.mod.id} className="border-t border-border align-middle">
+              <tr
+                key={row.mod.id}
+                className="border-t border-border align-middle transition-colors first:border-t-0 hover:bg-fg/4"
+              >
                 <th scope="row" className="px-3 py-2 text-start font-normal">
                   <span className="flex min-w-0 items-center gap-3">
                     <ModThumb url={row.mod.thumbnail?.url} className="w-16" />
@@ -255,7 +318,10 @@ export function ModsTable({ rows, caption }: { rows: readonly ModRow[]; caption:
                       >
                         {row.mod.name}
                       </Link>
-                      <span className="text-xs text-fg-subtle">{kindLabel(row.mod.kind)}</span>
+                      <span className="block max-w-64 truncate text-xs text-fg-subtle">
+                        {subtitle(row)}
+                        {row.mod.latestVersion ? <span className="font-mono"> · v{row.mod.latestVersion}</span> : null}
+                      </span>
                     </span>
                   </span>
                 </th>
@@ -269,17 +335,15 @@ export function ModsTable({ rows, caption }: { rows: readonly ModRow[]; caption:
                     ) : null}
                   </span>
                 </td>
-                <td className="px-3 py-2 font-mono text-xs text-fg-muted">
-                  {row.mod.latestVersion ? `v${row.mod.latestVersion}` : '-'}
-                </td>
+                <td className="whitespace-nowrap px-3 py-2 text-xs text-fg-muted">{date(row.mod.lastReleasedAt)}</td>
                 <td className={cn('px-3 py-2 text-end tabular-nums', row.downloads7d === 0 && 'text-fg-subtle')}>
                   {number(row.downloads7d)}
                 </td>
-                <td className="px-3 py-2 text-xs">
+                <td className="whitespace-nowrap px-3 py-2 text-xs">
                   <RatingCell row={row} />
                 </td>
                 <td className="px-3 py-2">
-                  <ReportsCell row={row} />
+                  <ToAnswerCell row={row} />
                 </td>
                 <td className="px-3 py-2">
                   <span className="hidden lg:block">

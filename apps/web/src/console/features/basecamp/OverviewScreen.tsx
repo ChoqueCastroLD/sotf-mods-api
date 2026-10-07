@@ -1,41 +1,33 @@
 /**
- * `/dashboard` — the creator dashboard: greeting, KPIs with sparklines and deltas, the downloads
- * chart with release markers, «Needs attention», «Live» and «My mods». No milestones or tiers.
+ * `/dashboard`: the creator summary. Key figures (downloads today, 7 and 30 days, followers, what
+ * waits for an answer and for review), the downloads chart, «Needs attention» (grouped, sorted,
+ * paginated, dismissable), recent activity and the busiest mods. The chart range and the attention
+ * filters live in the URL.
  *
- * Phones: KPIs in two columns, «Needs attention» before the chart, the table as cards.
+ * Phones: the figures are a swipeable strip, «Needs attention» comes before the chart and the mods
+ * table is a list.
  */
 import { buttonClasses } from '@sotf/ui/button';
 import { Icon } from '@sotf/ui/icons';
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
-import { ChartLine, Inbox, PackagePlus, Plus } from 'lucide-react';
+import { ChartLine, PackagePlus, Plus } from 'lucide-react';
 import { useEffect } from 'react';
 import { ArtState } from '../../components/ArtState.tsx';
 import { DomainI18nBridge } from '../../components/DomainI18nBridge.tsx';
-import { useMe } from '../../hooks/use-me.ts';
+import { ActivityPanel } from './ActivityPanel.tsx';
+import { AttentionPanel, type AttentionState } from './AttentionPanel.tsx';
 import { type AnalyticsRange, analyticsQuery, overviewQuery } from './api.ts';
 import { SeriesFigure } from './charts/figures.tsx';
 import { prefetchCharts } from './charts/lazy.tsx';
-import { number, partOfDay } from './format.ts';
+import { number } from './format.ts';
 import { bt, useBasecampMessages } from './i18n.ts';
-import { KpiGrid } from './KpiGrid.tsx';
-import { LivePanel } from './LivePanel.tsx';
+import { KpiStrip } from './KpiStrip.tsx';
 import { ModsTable } from './ModsTable.tsx';
-import { NeedsAttention } from './NeedsAttention.tsx';
 import { Panel, PanelError, PanelSkeleton, RangeSwitch, ScreenHeader } from './shared.tsx';
 
-function greeting(name: string): string {
-  switch (partOfDay()) {
-    case 'morning':
-      return bt('basecamp_greeting_morning', { name });
-    case 'afternoon':
-      return bt('basecamp_greeting_afternoon', { name });
-    case 'evening':
-      return bt('basecamp_greeting_evening', { name });
-    case 'night':
-      return bt('basecamp_greeting_night', { name });
-  }
-}
+/** Mods listed on the dashboard (the rest is on «My mods»). */
+const TOP_MODS = 5;
 
 function DownloadsPanel({
   range,
@@ -53,7 +45,7 @@ function DownloadsPanel({
       {...(className ? { className } : {})}
       actions={
         <>
-          <RangeSwitch value={range} onChange={onRange} />
+          <RangeSwitch value={range} onChange={(next) => next !== 'custom' && onRange(next)} />
           <Link
             to="/dashboard/analytics"
             search={{ range }}
@@ -98,12 +90,15 @@ function DownloadsPanel({
 export function OverviewScreen({
   range,
   onRange,
+  attention,
+  onAttention,
 }: {
   range: AnalyticsRange;
   onRange: (range: AnalyticsRange) => void;
+  attention: AttentionState;
+  onAttention: (next: Partial<AttentionState>) => void;
 }) {
   useBasecampMessages();
-  const me = useMe();
   const { data } = useSuspenseQuery(overviewQuery);
 
   useEffect(() => {
@@ -112,29 +107,24 @@ export function OverviewScreen({
     idle(() => prefetchCharts());
   }, [data.mods.length]);
 
-  const name = me.user.displayName || me.user.handle;
-
   const header = (
     <ScreenHeader
-      title={greeting(name)}
+      title={bt('basecamp_overview_title')}
+      description={bt('basecamp_overview_intro')}
       actions={
         <>
-          <Link
-            to="/dashboard/new/mod"
-            className={`${buttonClasses({ variant: 'primary', size: 'sm' })} max-md:hidden`}
-          >
-            <Icon icon={Plus} size={16} />
-            {bt('basecamp_action_new_mod')}
-          </Link>
           {data.mods.length > 0 ? (
             <Link to="/dashboard/new" className={buttonClasses({ variant: 'secondary', size: 'sm' })}>
               <Icon icon={PackagePlus} size={16} />
               {bt('basecamp_action_new_version')}
             </Link>
           ) : null}
-          <Link to="/dashboard/inbox" className={buttonClasses({ variant: 'ghost', size: 'sm' })}>
-            <Icon icon={Inbox} size={16} />
-            {bt('basecamp_action_inbox')}
+          <Link
+            to="/dashboard/new/mod"
+            className={`${buttonClasses({ variant: 'primary', size: 'sm' })} max-md:hidden`}
+          >
+            <Icon icon={Plus} size={16} />
+            {bt('basecamp_action_new_mod')}
           </Link>
         </>
       }
@@ -160,21 +150,26 @@ export function OverviewScreen({
     );
   }
 
+  const top = [...data.mods]
+    .filter((row) => row.mod.status !== 'removed')
+    .sort((a, b) => b.downloads7d - a.downloads7d || b.mod.downloads - a.mod.downloads)
+    .slice(0, TOP_MODS);
+
   return (
     <DomainI18nBridge>
       <div className="flex flex-col gap-6">
         {header}
         <section aria-label={bt('basecamp_kpis_label')}>
-          <KpiGrid kpis={data.kpis} />
+          <KpiStrip overview={data} />
         </section>
 
-        {/* Phones put «Needs attention» before the chart; wider screens follow the wireframe. */}
-        <div className="order-2 grid gap-6 lg:order-3 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+        {/* Phones put «Needs attention» before the chart; wider screens put the chart first. */}
+        <div className="order-2 grid items-start gap-6 lg:order-3 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
           <Panel title={bt('basecamp_attention_title')}>
-            <NeedsAttention items={data.needsAttention} />
+            <AttentionPanel state={attention} onState={onAttention} />
           </Panel>
-          <Panel title={bt('basecamp_live_title')}>
-            <LivePanel mods={data.mods} />
+          <Panel title={bt('basecamp_activity_title')}>
+            <ActivityPanel />
           </Panel>
         </div>
 
@@ -182,14 +177,14 @@ export function OverviewScreen({
 
         <Panel
           className="order-4"
-          title={bt('basecamp_mods_title')}
+          title={bt('basecamp_mods_top_title')}
           actions={
             <Link to="/dashboard/mods" className="text-sm text-link hover:underline">
               {bt('basecamp_mods_all')}
             </Link>
           }
         >
-          <ModsTable rows={data.mods} caption={bt('basecamp_mods_title')} />
+          <ModsTable rows={top} caption={bt('basecamp_mods_top_title')} />
         </Panel>
       </div>
     </DomainI18nBridge>

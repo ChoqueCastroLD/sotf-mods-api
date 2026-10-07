@@ -52,5 +52,15 @@
   "me_downloads_times": "{count, plural, one {# Download} other {# Downloads}}",
   "me_downloads_remove": "Aus der Liste entfernen",
   "me_downloads_remove_label": "{mod} aus der Liste entfernen",
-  "me_downloads_removed": "{mod} aus der Liste entfernt"
+  "me_downloads_removed": "{mod} aus der Liste entfernt",
+  "me_search_label": "Nach Name suchen",
+  "me_search_placeholder": "Name des Mods",
+  "me_sort_label": "Sortieren nach",
+  "me_sort_recent": "Zuletzt",
+  "me_sort_name": "Name",
+  "me_sort_updates": "Updates zuerst",
+  "me_sort_times": "Am häufigsten geladen",
+  "me_no_match_title": "Kein Mod passt",
+  "me_no_match_text": "Versuche einen anderen Namen oder zeige alles an.",
+  "me_clear_filters": "Filter zurücksetzen"
 }

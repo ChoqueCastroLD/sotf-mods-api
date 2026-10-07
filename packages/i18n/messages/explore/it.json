@@ -171,5 +171,13 @@
   "explore_catalog_empty_clear": "Rimuovi i filtri",
   "explore_catalog_error_title": "Impossibile caricare i mod",
   "explore_catalog_error_text": "Riprova tra un momento.",
-  "explore_catalog_retry": "Riprova"
+  "explore_catalog_retry": "Riprova",
+  "explore_sort_name": "Nome dalla A alla Z",
+  "explore_facet_downloads": "Download",
+  "explore_downloads_min": "{count, number}+ download",
+  "explore_page_size_label": "Per pagina",
+  "explore_search_builds_label": "Cerca build",
+  "explore_noresults_query_title": "Nessun risultato per «{query}»",
+  "explore_suggest_popular": "Mod popolari",
+  "explore_results_range": "{from, number}–{to, number} di {total, number}"
 }

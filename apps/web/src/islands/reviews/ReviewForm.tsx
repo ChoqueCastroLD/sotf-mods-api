@@ -6,12 +6,13 @@
  */
 import { Button } from '@sotf/ui/button';
 import { type FormEvent, useEffect, useId, useRef, useState } from 'react';
+import { toast } from '../../lib/client/toast.ts';
 import { pageEntity, track } from '../../scripts/beacon.ts';
 import { Composer } from '../comments/Composer.tsx';
-import { api, type Failure } from '../comments/lib/api.ts';
+import { api } from '../comments/lib/api.ts';
 import { htmlToMarkdown } from '../comments/lib/markdown.ts';
 import { t } from '../comments/lib/messages.ts';
-import { FailureNote } from '../comments/lib/ui.tsx';
+import { notifyFailure } from '../comments/lib/ui.tsx';
 import type { VersionOption } from '../comments/types.ts';
 import { StarInput } from './StarInput.tsx';
 import { REVIEW_BODY_MAX, REVIEW_TITLE_MAX, type Review } from './types.ts';
@@ -76,7 +77,6 @@ export function ReviewForm({ modId, existing, loadVersions, onDone, onCancel, au
   const [versionId, setVersionId] = useState<number | null>(existing?.modVersion?.id ?? null);
   const [versions, setVersions] = useState<VersionOption[] | null>(null);
   const [errors, setErrors] = useState<Array<{ field: 'rating' | 'title' | 'body'; message: string }>>([]);
-  const [failure, setFailure] = useState<Failure | null>(null);
   const [busy, setBusy] = useState(false);
   const summary = useRef<HTMLDivElement | null>(null);
   const firstField = useRef<HTMLDivElement | null>(null);
@@ -118,7 +118,6 @@ export function ReviewForm({ modId, existing, loadVersions, onDone, onCancel, au
       window.setTimeout(() => summary.current?.focus(), 0);
       return;
     }
-    setFailure(null);
     setBusy(true);
     const text = body.normalize('NFC').trim();
     const cleanTitle = title.normalize('NFC').trim();
@@ -153,7 +152,10 @@ export function ReviewForm({ modId, existing, loadVersions, onDone, onCancel, au
           return;
         }
       }
-      setFailure(result);
+      if (result.kind === 'problem' && result.problem.code === 'FORBIDDEN') toast.warning(t('social_review_forbidden'));
+      else if (result.kind === 'problem' && result.problem.code === 'CONFLICT')
+        toast.warning(t('social_review_conflict'));
+      else notifyFailure(result, () => void submit());
       return;
     }
     writeDraft(modId, null);
@@ -162,8 +164,6 @@ export function ReviewForm({ modId, existing, loadVersions, onDone, onCancel, au
   };
 
   const errorOf = (field: 'rating' | 'title' | 'body') => errors.find((item) => item.field === field)?.message;
-  const forbidden = failure?.kind === 'problem' && failure.problem.code === 'FORBIDDEN';
-  const conflict = failure?.kind === 'problem' && failure.problem.code === 'CONFLICT';
 
   return (
     <form className="grid gap-4" onSubmit={(event) => void submit(event)} noValidate aria-busy={busy || undefined}>
@@ -218,7 +218,7 @@ export function ReviewForm({ modId, existing, loadVersions, onDone, onCancel, au
           aria-invalid={Boolean(errorOf('title')) || undefined}
           aria-describedby={errorOf('title') ? `${id}-title-error` : undefined}
           disabled={busy}
-          className="min-h-11 rounded-md border border-border-strong bg-sunken px-3 text-sm aria-invalid:border-danger"
+          className="min-h-11 rounded-md border border-border-strong bg-sunken shadow-[inset_0_1px_2px_rgb(0_0_0/0.18)] transition-[border-color,box-shadow] duration-(--dur-fast) hover:border-fg-subtle focus-visible:border-focus focus-visible:shadow-[0_0_0_3px_var(--focus-halo)] focus-visible:outline-none px-3 text-sm aria-invalid:border-danger"
         />
         {errorOf('title') ? (
           <p id={`${id}-title-error`} className="text-sm text-danger">
@@ -255,7 +255,7 @@ export function ReviewForm({ modId, existing, loadVersions, onDone, onCancel, au
           value={versionId ?? ''}
           onChange={(event) => setVersionId(event.target.value ? Number(event.target.value) : null)}
           disabled={busy}
-          className="min-h-11 max-w-72 rounded-md border border-border-strong bg-sunken px-2 text-sm"
+          className="min-h-11 max-w-72 rounded-md border border-border-strong bg-sunken shadow-[inset_0_1px_2px_rgb(0_0_0/0.18)] transition-[border-color,box-shadow] duration-(--dur-fast) hover:border-fg-subtle focus-visible:border-focus focus-visible:shadow-[0_0_0_3px_var(--focus-halo)] focus-visible:outline-none px-2 text-sm"
         >
           <option value="">{t('social_review_version_auto')}</option>
           {versions?.map((version) => (
@@ -265,18 +265,6 @@ export function ReviewForm({ modId, existing, loadVersions, onDone, onCancel, au
           ))}
         </select>
       </div>
-
-      {forbidden ? (
-        <p role="alert" className="rounded-md border border-warning/50 bg-warning-soft p-3 text-sm">
-          {t('social_review_forbidden')}
-        </p>
-      ) : conflict ? (
-        <p role="alert" className="rounded-md border border-warning/50 bg-warning-soft p-3 text-sm">
-          {t('social_review_conflict')}
-        </p>
-      ) : failure ? (
-        <FailureNote failure={failure} onRetry={() => void submit()} />
-      ) : null}
 
       <p className="text-xs text-fg-muted">{t('social_review_rules')}</p>
       <div className="flex flex-wrap justify-end gap-2">

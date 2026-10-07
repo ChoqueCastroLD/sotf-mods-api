@@ -3,7 +3,7 @@
  * evidence and actions. Open reports are resolved (optionally hiding the content: mod/kit
  * unlisted, version held, comment/review/field report hidden) or dismissed; the reporters are
  * notified. Content auto-hidden by ≥ 3 trusted reporters is restored when the report is
- * dismissed. Filter by status; newest first, cursor pages.
+ * dismissed. Filter by status, reason, target type and text; sort by age; paged on the server.
  */
 import { m } from '@sotf/i18n/messages';
 import { Badge } from '@sotf/ui/badge';
@@ -12,22 +12,42 @@ import { cn } from '@sotf/ui/cn';
 import { EmptyState } from '@sotf/ui/empty-state';
 import { Icon } from '@sotf/ui/icons';
 import { Skeleton, SkeletonGroup } from '@sotf/ui/skeleton';
-import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
-import { Check, ExternalLink, EyeOff, Flag, Gavel, X } from 'lucide-react';
+import { Check, ExternalLink, EyeOff, Flag, Gavel, SearchX, X } from 'lucide-react';
 import { useState } from 'react';
 import { SwipeRow } from '../../components/SwipeRow.tsx';
 import { notify } from '../../lib/notify.ts';
-import { REPORT_STATUSES, type Report, type ReportFilter, rangerApi, refreshModeration, reportsQuery } from './api.ts';
+import {
+  REPORT_STATUSES,
+  REPORTS_PAGE_SIZE,
+  type Report,
+  type ReportsView,
+  rangerApi,
+  refreshModeration,
+  reportsQuery,
+} from './api.ts';
+import { FilterBar, FilterSelect, PageNav, SearchField, SortSelect, useListSearch } from './controls.tsx';
 import { reportReasonLabel, reportStatusLabel, reportTargetLabel } from './labels.ts';
 import { ReportDialog, type ReportResolution } from './ReportDialog.tsx';
+import { REPORT_REASONS, REPORT_SORTS, REPORT_TARGETS } from './search.ts';
 import { dateTime, PanelError, publicHref, relative, reportFailure, ScreenHeader, UserChip } from './shared.tsx';
 
-export function ReportsScreen({ status }: { status: ReportFilter }) {
+/** Kits are gone from the site: their old reports stay in the data but are not a filter. */
+const FILTER_TARGETS = REPORT_TARGETS.filter((type) => type !== 'kit');
+
+export function ReportsScreen({ view }: { view: ReportsView }) {
   const queryClient = useQueryClient();
-  const query = useInfiniteQuery(reportsQuery(status));
-  const reports = query.data?.pages.flatMap((page) => page.items) ?? [];
+  const patch = useListSearch('/moderation/reports');
+  const query = useQuery(reportsQuery(view));
+  const data = query.data;
+  const reports = data?.items ?? [];
+  const status = view.status;
   const [dialog, setDialog] = useState<{ report: Report; resolution: ReportResolution; hide: boolean } | null>(null);
+  const filters = [view.reason, view.targetType, view.q].filter(Boolean).length;
+  const defaultSort = status === 'open' ? 'oldest' : 'newest';
+  const sort = view.sort ?? defaultSort;
+  const fetching = query.isFetching && query.isPlaceholderData;
 
   const close = async (report: Report, input: { action: ReportResolution; hideTarget: boolean; note?: string }) => {
     try {
@@ -42,11 +62,7 @@ export function ReportsScreen({ status }: { status: ReportFilter }) {
 
   return (
     <div className="grid gap-5">
-      <ScreenHeader
-        readout={m.ranger_readout()}
-        title={m.ranger_reports_title()}
-        description={m.ranger_reports_description()}
-      />
+      <ScreenHeader title={m.ranger_reports_title()} description={m.ranger_reports_description()} />
 
       <nav aria-label={m.ranger_reports_filter()}>
         <ul className="flex flex-wrap gap-2">
@@ -70,6 +86,43 @@ export function ReportsScreen({ status }: { status: ReportFilter }) {
         </ul>
       </nav>
 
+      <FilterBar
+        search={
+          <SearchField
+            label={m.ranger_reports_search()}
+            value={view.q ?? ''}
+            onCommit={(value) => patch({ q: value || undefined })}
+          />
+        }
+        sort={
+          <SortSelect
+            value={sort}
+            onChange={(value) => patch({ sort: value === defaultSort ? undefined : value })}
+            options={REPORT_SORTS.map((value) => ({
+              value,
+              label: value === 'oldest' ? m.ranger_sort_oldest() : m.ranger_sort_newest(),
+            }))}
+          />
+        }
+        activeCount={filters}
+        onClear={() => patch({ reason: undefined, targetType: undefined, q: undefined })}
+      >
+        <FilterSelect
+          label={m.ranger_reports_filter_reason()}
+          allLabel={m.ranger_reports_filter_reason_all()}
+          value={view.reason}
+          onChange={(value) => patch({ reason: value })}
+          options={REPORT_REASONS.map((value) => ({ value, label: reportReasonLabel(value) }))}
+        />
+        <FilterSelect
+          label={m.ranger_reports_filter_target()}
+          allLabel={m.ranger_reports_filter_target_all()}
+          value={view.targetType}
+          onChange={(value) => patch({ targetType: value })}
+          options={FILTER_TARGETS.map((value) => ({ value, label: reportTargetLabel(value) }))}
+        />
+      </FilterBar>
+
       {query.isPending ? (
         <SkeletonGroup label={m.ranger_loading()} className="grid gap-3">
           {Array.from({ length: 4 }, (_, index) => (
@@ -79,30 +132,47 @@ export function ReportsScreen({ status }: { status: ReportFilter }) {
       ) : query.isError ? (
         <PanelError error={query.error} onRetry={() => void query.refetch()} />
       ) : reports.length === 0 ? (
-        <EmptyState
-          icon={<Icon icon={Flag} size={32} />}
-          title={status === 'open' ? m.ranger_reports_empty_open_title() : m.ranger_reports_empty_title()}
-          description={status === 'open' ? m.ranger_reports_empty_open_text() : m.ranger_reports_empty_text()}
-        />
+        filters > 0 ? (
+          <EmptyState
+            icon={<Icon icon={SearchX} size={32} />}
+            title={m.ranger_reports_filtered_empty_title()}
+            description={m.ranger_reports_filtered_empty_text()}
+            action={
+              <Button
+                variant="secondary"
+                onClick={() => patch({ reason: undefined, targetType: undefined, q: undefined })}
+              >
+                {m.ranger_filters_clear()}
+              </Button>
+            }
+          />
+        ) : (
+          <EmptyState
+            icon={<Icon icon={Flag} size={32} />}
+            title={status === 'open' ? m.ranger_reports_empty_open_title() : m.ranger_reports_empty_title()}
+            description={status === 'open' ? m.ranger_reports_empty_open_text() : m.ranger_reports_empty_text()}
+          />
+        )
       ) : (
-        <ul className="grid gap-3">
-          {reports.map((report) => (
-            <ReportCard
-              key={report.id}
-              report={report}
-              onAction={(resolution, hide) => setDialog({ report, resolution, hide })}
-            />
-          ))}
-        </ul>
-      )}
-
-      {query.hasNextPage ? (
-        <div className="flex justify-center">
-          <Button variant="secondary" loading={query.isFetchingNextPage} onClick={() => void query.fetchNextPage()}>
-            {m.ranger_load_more()}
-          </Button>
+        <div className={cn('grid gap-4 transition-opacity duration-(--dur-fast)', fetching && 'opacity-60')}>
+          <ul className="grid gap-3">
+            {reports.map((report) => (
+              <ReportCard
+                key={report.id}
+                report={report}
+                onAction={(resolution, hide) => setDialog({ report, resolution, hide })}
+              />
+            ))}
+          </ul>
+          <PageNav
+            page={view.page ?? 1}
+            totalPages={data?.totalPages ?? 0}
+            total={data?.total ?? 0}
+            pageSize={REPORTS_PAGE_SIZE}
+            onPage={(page) => patch({ page: page > 1 ? page : undefined })}
+          />
         </div>
-      ) : null}
+      )}
 
       {dialog ? (
         <ReportDialog

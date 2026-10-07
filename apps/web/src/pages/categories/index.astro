@@ -5,8 +5,6 @@
  * Cache: E(900) `list:mods` + `list:builds`.
  */
 import { m } from '@sotf/i18n/messages';
-import { Icon } from '@sotf/ui/icons';
-import { ArrowRight } from 'lucide-react';
 import type { ItemList, WithContext } from 'schema-dts';
 import { categoryIntro } from '../../components/explore/copy.ts';
 import { ListingError } from '../../components/explore/ExploreStates.tsx';
@@ -32,6 +30,7 @@ const groups = [
     ...group,
     items: taxonomy.categories
       .filter((category) => category.kind === group.key)
+      .toSorted((a, b) => b.count - a.count)
       .map((category) => {
         const name = taxonomy.categoryName(category.slug, category.name);
         return {
@@ -85,26 +84,22 @@ const jsonLd: WithContext<ItemList>[] = taxonomy.available
           <h2 id={`categories-${group.key}`} class="font-display-caps mb-4 text-display-xs text-fg">
             {group.title}
           </h2>
-          <ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <ul class="grid gap-x-8 border-t border-border sm:grid-cols-2 lg:grid-cols-3">
             {group.items.map((item) => (
-              <li>
+              <li class="border-b border-border">
                 <a
                   href={item.href}
-                  class="group flex h-full flex-col gap-2 rounded-lg border border-border bg-surface p-4 hover:border-border-strong hover:bg-raised"
+                  class="group row-hover -mx-2 flex h-full flex-col gap-1 rounded-md px-2 py-3"
                 >
-                  <span class="flex items-center justify-between gap-3">
-                    <span class="font-semibold text-fg group-hover:text-primary">{item.name}</span>
+                  <span class="flex items-baseline justify-between gap-3">
+                    <span class="font-semibold text-fg group-hover:text-link">{item.name}</span>
                     <span class="text-xs text-fg-subtle tabular-nums">
                       {group.key === 'build'
                         ? m.common_builds_count({ count: item.count })
                         : m.common_mods_count({ count: item.count })}
                     </span>
                   </span>
-                  <span class="line-clamp-3 text-sm text-fg-muted">{item.intro}</span>
-                  <span class="mt-auto inline-flex items-center gap-1 text-sm font-medium text-link" aria-hidden="true">
-                    {m.explore_categories_browse()}
-                    <Icon icon={ArrowRight} size={14} className="rtl:rotate-180" />
-                  </span>
+                  {group.key === 'mod' && <span class="line-clamp-2 text-sm text-fg-muted">{item.intro}</span>}
                 </a>
               </li>
             ))}

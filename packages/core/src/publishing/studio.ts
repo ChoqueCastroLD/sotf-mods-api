@@ -136,12 +136,113 @@ async function rowStats(exec: Executor, modIds: readonly number[]): Promise<Map<
 }
 
 /** `GET /studio/mods`: my mods and builds (any status), most recently released first. */
-export async function listStudioMods(ctx: Ctx, deps: PublishingDeps): Promise<{ items: StudioModRowDTO[] }> {
+/** Filters of «My mods» (`StudioModsQuery`). Without `page` / `pageSize` the whole list is returned. */
+export interface StudioModsFilter {
+  q?: string | undefined;
+  status?: ModStatus | undefined;
+  category?: string | undefined;
+  sort?: 'downloads' | 'updated' | 'name' | 'rating' | 'attention' | undefined;
+  page?: number | undefined;
+  pageSize?: number | undefined;
+}
+
+type StudioModList = {
+  items: StudioModRowDTO[];
+  page?: number;
+  pageSize?: number;
+  total?: number;
+  totalPages?: number;
+  facets?: {
+    status: Partial<Record<ModStatus, number>>;
+    categories: Array<{ slug: string; nameKey: string; name: string; count: number }>;
+  };
+};
+
+function attentionScore(row: StudioModRowDTO): number {
+  return (
+    row.openCompatReports * 3 +
+    row.unansweredComments +
+    row.unansweredReviews +
+    (row.mod.status === 'rejected' ? 100 : 0)
+  );
+}
+
+const nameCollator = new Intl.Collator('en', { sensitivity: 'base', numeric: true });
+
+/** Filters, sorts and (when asked) paginates the rows of «My mods». Exported for tests. */
+export function refineStudioMods(all: StudioModRowDTO[], filter: StudioModsFilter): StudioModList {
+  const paged = filter.page !== undefined || filter.pageSize !== undefined;
+  const q = filter.q?.trim().toLowerCase() ?? '';
+  const statusFacets: Partial<Record<ModStatus, number>> = {};
+  const categoryFacets = new Map<string, { slug: string; nameKey: string; name: string; count: number }>();
+  for (const row of all) {
+    statusFacets[row.mod.status] = (statusFacets[row.mod.status] ?? 0) + 1;
+    const category = row.mod.category;
+    if (category) {
+      const entry = categoryFacets.get(category.slug);
+      if (entry) entry.count += 1;
+      else
+        categoryFacets.set(category.slug, {
+          slug: category.slug,
+          nameKey: category.nameKey,
+          name: category.name,
+          count: 1,
+        });
+    }
+  }
+  let rows = all.filter(
+    (row) =>
+      (!q || row.mod.name.toLowerCase().includes(q)) &&
+      (!filter.status || row.mod.status === filter.status) &&
+      (!filter.category || row.mod.category?.slug === filter.category),
+  );
+  switch (filter.sort) {
+    case 'downloads':
+      rows = [...rows].sort((a, b) => b.downloads7d - a.downloads7d || b.mod.downloads - a.mod.downloads);
+      break;
+    case 'name':
+      rows = [...rows].sort((a, b) => nameCollator.compare(a.mod.name, b.mod.name));
+      break;
+    case 'rating':
+      rows = [...rows].sort(
+        (a, b) => (b.mod.ratingAvg ?? 0) - (a.mod.ratingAvg ?? 0) || b.mod.ratingCount - a.mod.ratingCount,
+      );
+      break;
+    case 'attention':
+      rows = [...rows].sort((a, b) => attentionScore(b) - attentionScore(a));
+      break;
+    default:
+      // `updated` and the unspecified order keep the database order (latest release first).
+      break;
+  }
+  if (!paged) return { items: rows };
+  const pageSize = filter.pageSize ?? 20;
+  const total = rows.length;
+  const totalPages = total === 0 ? 0 : Math.ceil(total / pageSize);
+  const page = Math.min(filter.page ?? 1, Math.max(1, totalPages));
+  return {
+    items: rows.slice((page - 1) * pageSize, page * pageSize),
+    page,
+    pageSize,
+    total,
+    totalPages,
+    facets: {
+      status: statusFacets,
+      categories: [...categoryFacets.values()].sort((a, b) => nameCollator.compare(a.name, b.name)),
+    },
+  };
+}
+
+export async function listStudioMods(
+  ctx: Ctx,
+  deps: PublishingDeps,
+  filter: StudioModsFilter = {},
+): Promise<StudioModList> {
   const actor = actorOf(ctx);
   const own = await ctx.db.execute<{ id: number; statusReason: string | null; qualityScore: number | null }>(sql`
     SELECT "id", "statusReason", "qualityScore" FROM "Mod" WHERE "userId" = ${actor.userId}
      ORDER BY "lastReleasedAt" DESC, "id" DESC`);
-  if (own.rows.length === 0) return { items: [] };
+  if (own.rows.length === 0) return refineStudioMods([], filter);
   let snapshot = await getSnapshot(ctx, deps.config);
   if (own.rows.some((r) => !snapshot.byId.has(Number(r.id)))) {
     evictLocal(ctx, ['list:mods', 'list:builds']);
@@ -166,7 +267,7 @@ export async function listStudioMods(ctx: Ctx, deps: PublishingDeps): Promise<{ 
       qualityScore: Math.max(0, Math.min(100, Number(r.qualityScore ?? 0))),
     });
   }
-  return { items };
+  return refineStudioMods(items, filter);
 }
 
 /** Owner view (`GET /studio/mods/:id` and the response of every studio write). */
@@ -291,7 +392,16 @@ export async function updateStudioMod(
       ? { ...fields, descriptionMd: current.descriptionMd ?? current.description }
       : fields;
   const now = ctx.clock.now();
-  const listing = await resolveListing(ctx.db, input, { kind, legacy, now });
+  const listing = await resolveListing(ctx.db, input, {
+    kind,
+    legacy,
+    now,
+    current: {
+      platform: current.platform,
+      multiplayerRole: current.multiplayerRole,
+      dedicatedServer: current.dedicatedServer,
+    },
+  });
   if (listing.fields.length > 0) {
     await ctx.db.transaction(async (tx) => {
       await lockOwnedMod(ctx, tx, current.id);

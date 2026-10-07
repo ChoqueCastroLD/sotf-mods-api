@@ -68,5 +68,15 @@
   "console_nav_jams": "Mod Jams",
   "console_tab_ranger": "Moderering",
   "console_pull_refreshing": "Uppdaterar …",
-  "console_tab_basecamp": "Översikt"
+  "console_tab_basecamp": "Översikt",
+  "console_language_failed": "Det gick inte att byta språk",
+  "console_pager_range": "{from}–{to} av {total}",
+  "console_pager_page_size": "Poster per sida",
+  "console_pager_per_page": "{count} per sida",
+  "console_pager_of": "Sida {page} av {pages}",
+  "console_nav_tokens": "Åtkomsttokens",
+  "console_nav_group_account": "Ditt konto",
+  "console_nav_group_app": "App",
+  "console_nav_group_creator": "Skapare och data",
+  "console_area_you": "Du"
 }

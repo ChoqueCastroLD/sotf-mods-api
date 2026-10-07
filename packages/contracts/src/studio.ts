@@ -34,10 +34,10 @@ import {
   VersionChannel,
   VersionString,
 } from './common.ts';
-import { dto, exampleOf, wireInt, wireList } from './dto.ts';
+import { dto, exampleOf, wireFlag, wireInt, wireIntDefault, wireList } from './dto.ts';
 import { API_V2_PREFIX, defineEndpoint } from './endpoint.ts';
 import { InspectionFlagDTO } from './manifest.ts';
-import { CursorQuery, cursorPageOf } from './pagination.ts';
+import { Cursor, CursorQuery, MAX_CURSOR_LIMIT } from './pagination.ts';
 import { VersionDTO } from './versions.ts';
 
 export const STUDIO_LIMITS = {
@@ -269,10 +269,43 @@ export const StudioModRowDTO = dto(
 );
 export type StudioModRowDTO = z.infer<typeof StudioModRowDTO>;
 
-export const StudioModListDTO = dto('StudioModListDTO', z.object({ items: z.array(StudioModRowDTO) }), {
-  description: 'Mods and builds of the signed-in creator (any status).',
-  examples: [{ items: [exampleOf(StudioModRowDTO)] }],
+export const STUDIO_MOD_SORTS = ['downloads', 'updated', 'name', 'rating', 'attention'] as const;
+
+/**
+ * Filters of «My mods». Everything is optional: without `page` and `pageSize` the response lists every
+ * mod (the original behaviour, used by pickers); with them it is a page of the filtered, sorted list.
+ */
+export const StudioModsQuery = z.object({
+  q: z.string().trim().max(80).optional().describe('Case-insensitive match on the name'),
+  status: ModStatus.optional(),
+  category: CategorySlug.optional(),
+  sort: z.enum(STUDIO_MOD_SORTS).optional().describe('Default `updated` (most recent release first)'),
+  page: wireInt({ min: 1, max: 10_000, description: '1-based page number' }).optional(),
+  pageSize: wireInt({ min: 1, max: 100, description: 'Items per page' }).optional(),
 });
+
+export const StudioModListDTO = dto(
+  'StudioModListDTO',
+  z.object({
+    items: z.array(StudioModRowDTO),
+    page: z.number().int().min(1).optional(),
+    pageSize: z.number().int().min(1).max(100).optional(),
+    total: z.number().int().nonnegative().optional().describe('Items matching the filters'),
+    totalPages: z.number().int().nonnegative().optional(),
+    facets: z
+      .object({
+        status: z.partialRecord(ModStatus, Count).describe('My mods per status (ignores the filters)'),
+        categories: z
+          .array(z.object({ slug: CategorySlug, nameKey: z.string(), name: z.string(), count: Count }))
+          .describe('My mods per category (ignores the filters)'),
+      })
+      .optional(),
+  }),
+  {
+    description: 'Mods and builds of the signed-in creator (any status).',
+    examples: [{ items: [exampleOf(StudioModRowDTO)] }],
+  },
+);
 
 export const OwnerVersionDTO = dto(
   'OwnerVersionDTO',
@@ -488,10 +521,26 @@ export const KpiDTO = dto(
   },
 );
 
+export const ATTENTION_KINDS = [
+  'rejected',
+  'broken_on_current',
+  'unanswered_questions',
+  'unanswered_reviews',
+  'missing_source',
+  'missing_gallery',
+] as const;
+
+const AttentionItem = z.object({
+  kind: z.enum(ATTENTION_KINDS),
+  mod: ModRefDTO,
+  count: Count,
+});
+
 export const StudioOverviewDTO = dto(
   'StudioOverviewDTO',
   z.object({
     kpis: z.object({
+      downloads1d: KpiDTO.optional().describe('Downloads of the current UTC day; previous = yesterday (whole day)'),
       downloads7d: KpiDTO,
       downloads30d: KpiDTO,
       followers: KpiDTO,
@@ -499,20 +548,15 @@ export const StudioOverviewDTO = dto(
       compatWorksShare: KpiDTO,
       views7d: KpiDTO,
     }),
-    needsAttention: z.array(
-      z.object({
-        kind: z.enum([
-          'broken_on_current',
-          'unanswered_questions',
-          'missing_gallery',
-          'missing_source',
-          'unanswered_reviews',
-          'rejected',
-        ]),
-        mod: ModRefDTO,
-        count: Count,
-      }),
-    ),
+    needsAttention: z.array(AttentionItem),
+    queues: z
+      .object({
+        versionsPending: Count.describe('Versions of my mods waiting for review'),
+        modsPending: Count.describe('Mods waiting for review'),
+        commentsToAnswer: Count,
+        reviewsToAnswer: Count,
+      })
+      .optional(),
     mods: z.array(StudioModRowDTO),
     nextMilestone: z.object({ mod: ModRefDTO, threshold: z.number().int().positive(), current: Count }).nullable(),
     nextTier: z.object({ key: z.string(), downloadsNeeded: Count }).nullable(),
@@ -522,6 +566,7 @@ export const StudioOverviewDTO = dto(
     examples: [
       {
         kpis: {
+          downloads1d: { value: 212, previous: 480, sparkline: [] },
           downloads7d: exampleOf(KpiDTO),
           downloads30d: { value: 8001, previous: 7400, sparkline: [] },
           followers: { value: 58, previous: 51, sparkline: [] },
@@ -530,9 +575,48 @@ export const StudioOverviewDTO = dto(
           views7d: { value: 9120, previous: 8800, sparkline: [] },
         },
         needsAttention: [{ kind: 'unanswered_questions', mod: exampleOf(ModRefDTO), count: 2 }],
+        queues: { versionsPending: 1, modsPending: 0, commentsToAnswer: 2, reviewsToAnswer: 0 },
         mods: [exampleOf(StudioModRowDTO)],
         nextMilestone: { mod: exampleOf(ModRefDTO), threshold: 250_000, current: 117_719 },
         nextTier: { key: 'landmark', downloadsNeeded: 625_136 },
+      },
+    ],
+  },
+);
+
+export const ATTENTION_SORTS = ['urgency', 'count', 'name'] as const;
+
+export const AttentionQuery = z.object({
+  kind: z.enum(ATTENTION_KINDS).optional(),
+  modId: wireInt({ min: 1, description: 'Only one of my mods' }).optional(),
+  sort: z.enum(ATTENTION_SORTS).default('urgency'),
+  dismissed: wireFlag('List the rows I dismissed instead of the open ones'),
+  page: wireIntDefault(1, { min: 1, max: 10_000, description: '1-based page number' }),
+  pageSize: wireIntDefault(10, { min: 1, max: 50, description: 'Items per page' }),
+});
+
+export const StudioAttentionDTO = dto(
+  'StudioAttentionDTO',
+  z.object({
+    items: z.array(AttentionItem),
+    page: z.number().int().min(1),
+    pageSize: z.number().int().min(1).max(50),
+    total: z.number().int().nonnegative().describe('Items matching the filters'),
+    totalPages: z.number().int().nonnegative(),
+    counts: z.partialRecord(z.enum(ATTENTION_KINDS), Count).describe('Items per kind (ignores the `kind` filter)'),
+    dismissedCount: Count.describe('Rows hidden because the creator dismissed them'),
+  }),
+  {
+    description: 'Things that need the creator, grouped by kind, sorted and paginated.',
+    examples: [
+      {
+        items: [{ kind: 'unanswered_questions', mod: exampleOf(ModRefDTO), count: 2 }],
+        page: 1,
+        pageSize: 10,
+        total: 1,
+        totalPages: 1,
+        counts: { unanswered_questions: 1 },
+        dismissedCount: 0,
       },
     ],
   },
@@ -543,6 +627,8 @@ export const AnalyticsQuery = z.object({
   modId: wireInt({ min: 1, description: 'Omit for all my mods' }).optional(),
   range: z.enum(ANALYTICS_RANGES).default('30d'),
   granularity: z.enum(['day', 'week', 'month']).default('day'),
+  from: IsoDate.optional().describe('Start of a custom range (UTC day). With `to`, replaces `range`'),
+  to: IsoDate.optional().describe('End of a custom range (UTC day, not after today)'),
 });
 
 export const DOWNLOAD_CHANNELS = ['web', 'redmanager', 'client', 'api', 'unknown'] as const;
@@ -550,7 +636,7 @@ export const DOWNLOAD_CHANNELS = ['web', 'redmanager', 'client', 'api', 'unknown
 export const AnalyticsDTO = dto(
   'AnalyticsDTO',
   z.object({
-    range: z.enum(ANALYTICS_RANGES),
+    range: z.enum([...ANALYTICS_RANGES, 'custom']),
     granularity: z.enum(['day', 'week', 'month']),
     from: IsoDate,
     to: IsoDate,
@@ -643,12 +729,42 @@ export const InboxItemDTO = dto(
     ],
   },
 );
-export const InboxPageDTO = cursorPageOf('InboxPageDTO', InboxItemDTO, 'Cursor page of the creator inbox.');
+export const InboxPageDTO = dto(
+  'InboxPageDTO',
+  z.object({
+    items: z.array(InboxItemDTO),
+    nextCursor: Cursor.nullable(),
+    page: z.number().int().min(1).optional(),
+    pageSize: z.number().int().min(1).max(MAX_CURSOR_LIMIT).optional(),
+    total: z.number().int().nonnegative().optional().describe('Items matching the filters (only with `page`)'),
+    totalPages: z.number().int().nonnegative().optional(),
+    typeCounts: z
+      .partialRecord(z.enum(INBOX_TYPES), Count)
+      .optional()
+      .describe('Items per type under the `state` and `modId` filters (only with `page`)'),
+  }),
+  {
+    description: 'Page of the creator inbox: cursor based, or numbered when `page` is given.',
+    examples: [
+      {
+        items: [exampleOf(InboxItemDTO)],
+        nextCursor: null,
+        page: 1,
+        pageSize: 25,
+        total: 1,
+        totalPages: 1,
+        typeCounts: { bug: 1 },
+      },
+    ],
+  },
+);
 
 export const InboxQuery = CursorQuery.extend({
   type: wireList(z.enum(INBOX_TYPES), { max: 4 }),
   state: z.enum(['open', 'all']).default('open'),
   modId: IdParam.optional().describe('Only items of one of my mods'),
+  page: wireInt({ min: 1, max: 10_000, description: 'Numbered page (replaces the cursor)' }).optional(),
+  sort: z.enum(['newest', 'oldest']).optional().describe('Default `newest`'),
 });
 
 // -----------------------------------------------------------------------------------------------
@@ -746,6 +862,7 @@ export const studioEndpoints = {
     path: `${studio}/mods`,
     summary: 'My mods with status and KPIs',
     auth: 'session',
+    query: StudioModsQuery,
     response: StudioModListDTO,
     errors: ['UNAUTHENTICATED'],
     cache: cache.private,
@@ -911,6 +1028,18 @@ export const studioEndpoints = {
     query: AnalyticsQuery,
     responseKind: 'csv',
     errors: ['UNAUTHENTICATED', 'NOT_FOUND', 'FORBIDDEN'],
+    cache: cache.private,
+  }),
+  attention: defineEndpoint({
+    id: 'studio.attention',
+    owner: 'WP-52',
+    method: 'GET',
+    path: `${studio}/attention`,
+    summary: 'What needs my attention, grouped, sorted and paginated',
+    auth: 'session',
+    query: AttentionQuery,
+    response: StudioAttentionDTO,
+    errors: ['UNAUTHENTICATED'],
     cache: cache.private,
   }),
   inbox: defineEndpoint({

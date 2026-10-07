@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Basecamp_Compat_WhereInputs */
 
 const en_basecamp_compat_where = /** @type {(inputs: Basecamp_Compat_WhereInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Where it runs`)
+	return /** @type {LocalizedString} */ (`Where it works`)
 };
 
 const es_basecamp_compat_where = /** @type {(inputs: Basecamp_Compat_WhereInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_basecamp_compat_where = /** @type {(inputs: Basecamp_Compat_WhereInputs
 /**
 * | output |
 * | --- |
-* | "Where it runs" |
+* | "Where it works" |
 *
 * @param {Basecamp_Compat_WhereInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

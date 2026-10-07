@@ -9,6 +9,7 @@ export const PRODUCTION_ORIGIN = 'https://sotf-mods.com';
 /** Entity identity used by JSON-LD (`Organization.sameAs`) and the footer. */
 export const SOCIAL_LINKS = {
   discord: 'https://discord.gg/sotf',
+  youtube: 'https://www.youtube.com/@ShokoCC',
   github: 'https://github.com/ChoqueCastroLD/sotf-mods-api',
 } as const;
 
@@ -19,8 +20,11 @@ export const STEAM_APP_URL = 'https://store.steampowered.com/app/1326470/Sons_Of
 export const OG_DEFAULT_PATH = '/brand/og-default.png';
 export const OG_DEFAULT_SIZE = { width: 1200, height: 630 } as const;
 
-/** Logo used by `Organization.logo`. */
+/** Square mark used by the RSS channel image. */
 export const LOGO_PATH = '/brand/logo-mark.png';
+
+/** Red SOTF-MODS logo used by `Organization.logo` (640 x 360). */
+export const ORG_LOGO_PATH = '/brand/logo.png';
 
 /**
  * `/ads.txt` (PLAN §4.4): byte-for-byte what the legacy site serves (58 bytes, no trailing

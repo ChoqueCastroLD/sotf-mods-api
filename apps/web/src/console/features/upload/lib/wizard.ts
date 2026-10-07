@@ -91,3 +91,39 @@ export const SLUG_PATTERN = /^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/;
 export function listingPath(kind: 'mod' | 'build', handle: string, slug: string): string {
   return `/${kind === 'build' ? 'builds' : 'mods'}/${handle}/${slug}`;
 }
+
+/** A required answer a step still lacks: the field and the element to focus. */
+export interface StepProblem {
+  field: 'file' | 'name' | 'slug' | 'shortDescription' | 'categorySlug' | 'sourceUrl' | 'loaderMin';
+  anchor: string;
+}
+
+/**
+ * What blocks «Next» on `step`: the same required answers the preflight checks (file, name, slug,
+ * short description, category) plus values that are present but malformed. The steps show these
+ * inline once the creator tried to continue; nothing else blocks, so there is no dead end.
+ */
+export function stepProblems(
+  step: StepId,
+  mode: WizardMode,
+  data: DraftData,
+  checks: { isHttpUrl: (value: string) => boolean; isLoaderVersion: (value: string) => boolean },
+): StepProblem[] {
+  const problems: StepProblem[] = [];
+  if (step === 'file' && !data.fileUploadId) problems.push({ field: 'file', anchor: 'upload-file' });
+  if (step === 'details' && mode !== 'version') {
+    if ((data.name ?? '').trim().length < 2) problems.push({ field: 'name', anchor: 'upload-name' });
+    const slug = data.slug ?? slugify(data.name ?? '');
+    if (slug.length < 2 || !SLUG_PATTERN.test(slug)) problems.push({ field: 'slug', anchor: 'upload-slug' });
+    if (!(data.shortDescription ?? '').trim()) {
+      problems.push({ field: 'shortDescription', anchor: 'upload-short-description' });
+    }
+    if (!data.categorySlug) problems.push({ field: 'categorySlug', anchor: 'upload-category' });
+    if (data.sourceUrl && !checks.isHttpUrl(data.sourceUrl))
+      problems.push({ field: 'sourceUrl', anchor: 'upload-source' });
+  }
+  if (step === 'compat' && data.loaderMin && !checks.isLoaderVersion(data.loaderMin)) {
+    problems.push({ field: 'loaderMin', anchor: 'upload-loader' });
+  }
+  return problems;
+}

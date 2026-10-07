@@ -1,12 +1,11 @@
 /**
- * Generates the optimized raster assets of the app shell (committed; run when art changes):
+ * Generates the iOS launch screens of the app shell (committed; run when the logo or the page
+ * colour changes):
  *
- *   node apps/web/scripts/build-pwa-art.mjs            # art derivatives + iOS splash screens
- *   node apps/web/scripts/build-pwa-art.mjs --splash-only   # only the splash screens
- *   ART_SRC=/path/to/art-src node apps/web/scripts/build-pwa-art.mjs
+ *   node apps/web/scripts/build-pwa-art.mjs
  *
- * - `public/art/<name>-<width>.{avif,webp}`: responsive derivatives of the concept art in
- *   `ART_SRC` (default `/root/sotf-mods/art-src`, 1.5 MB originals stay out of the repo);
+ * There is no picture art in the app (the decorative pattern is the programmatic `Motif`).
+ *
  * - `public/pwa/splash-<w>x<h>.jpg`: iOS launch screens (the dark page background and the stacked
  *   red logo of the old site), one per device class of `src/lib/pwa.ts`.
  *
@@ -20,28 +19,6 @@ import { fileURLToPath } from 'node:url';
 const here = dirname(fileURLToPath(import.meta.url));
 const web = join(here, '..');
 const sharp = createRequire(join(web, '../../packages/brand/package.json'))('sharp');
-const ART_SRC = process.env.ART_SRC ?? '/root/sotf-mods/art-src';
-
-/** name → source file, output widths (px) and per-format quality. */
-const ART = [{ name: 'offline', src: 'offline.png', widths: [640, 896], avif: 52, webp: 74 }];
-
-async function buildArt() {
-  await mkdir(join(web, 'public/art'), { recursive: true });
-  for (const art of ART) {
-    for (const width of art.widths) {
-      const base = sharp(join(ART_SRC, art.src), { limitInputPixels: false }).resize({
-        width,
-        withoutEnlargement: true,
-      });
-      const out = join(web, 'public/art', `${art.name}-${width}`);
-      const avif = await base.clone().avif({ quality: art.avif, effort: 6 }).toFile(`${out}.avif`);
-      const webp = await base.clone().webp({ quality: art.webp, effort: 6 }).toFile(`${out}.webp`);
-      process.stdout.write(
-        `art ${art.name}-${width}: avif ${(avif.size / 1024).toFixed(0)} KB, webp ${(webp.size / 1024).toFixed(0)} KB`,
-      );
-    }
-  }
-}
 
 const SPLASH = [
   [440, 956, 3],
@@ -77,5 +54,4 @@ async function buildSplash() {
   }
 }
 
-if (!process.argv.includes('--splash-only')) await buildArt();
 await buildSplash();

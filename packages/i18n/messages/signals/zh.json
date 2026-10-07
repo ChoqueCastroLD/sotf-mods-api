@@ -87,5 +87,10 @@
   "signals_request_comment_grouped": "{count, plural, other {请求“{request}”有 # 条新评论}}",
   "signals_request_adopted": "{actor} 正在处理你的请求“{request}”",
   "signals_request_fulfilled": "{mod} 已发布，满足了请求“{request}”",
-  "signals_jam_phase": "{phase, select, announced {Mod Jam 已公布：{jam}} submissions {{jam} 已开放投稿} voting {{jam} 已开放投票} results {{jam} 的结果已公布} other {{jam} 有新动态}}"
+  "signals_jam_phase": "{phase, select, announced {Mod Jam 已公布：{jam}} submissions {{jam} 已开放投稿} voting {{jam} 已开放投票} results {{jam} 的结果已公布} other {{jam} 有新动态}}",
+  "signals_state_label": "显示",
+  "signals_state_all": "全部",
+  "signals_state_unread": "未读",
+  "signals_empty_unread_title": "没有未读通知",
+  "signals_empty_unread_text": "符合此筛选条件的通知都已读。"
 }

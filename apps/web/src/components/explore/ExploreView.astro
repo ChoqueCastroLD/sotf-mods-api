@@ -1,10 +1,10 @@
 ---
 /**
- * The listing UI of `/builds`, `/categories/:slug` and `/tags/:slug`. Mod listings render the
- * catalogue (`CatalogView`: the same rows and toolbar as `/` and `/mods`, in one wide column);
- * build listings keep the grid with its filter rail (`ExploreGridView`).
+ * The listing UI of `/mods`, `/builds`, `/categories/:slug` and `/tags/:slug`. The mods search page
+ * and the build listings use the grid with its filter rail (`ExploreGridView`); mod category and
+ * tag hubs render the catalogue rows (`CatalogView`: the same rows and toolbar as `/`).
  */
-
+import type { ModCardDTO } from '@sotf/contracts/catalog';
 import CatalogView from './CatalogView.astro';
 import ExploreGridView from './ExploreGridView.astro';
 import type { ListingData } from './load.ts';
@@ -14,20 +14,25 @@ interface Props {
   data: ListingData;
   heading: string;
   /** Short intro under the heading (plain text). */
-  intro?: string;
+  intro?: string | undefined;
   /** Tabs to offer by the grid view; the catalogue has a type select instead. */
   tabs?: readonly ListType[];
   /** Empty state copy when nothing matches without any filter (e.g. a new category). */
   emptyTitle?: string;
   emptyText?: string;
+  /** Suggestions of the «no results» state (mods search). */
+  popular?: readonly ModCardDTO[];
+  categoryLinks?: readonly { label: string; href: string }[];
 }
 
 const props = Astro.props;
-const catalogue = props.data.state.type !== 'build';
+const grid = props.data.state.type === 'build' || props.data.scope.kind === 'mods';
 ---
 
 {
-  catalogue ? (
+  grid ? (
+    <ExploreGridView {...props} />
+  ) : (
     <CatalogView
       data={props.data}
       heading={props.heading}
@@ -35,7 +40,5 @@ const catalogue = props.data.state.type !== 'build';
       emptyTitle={props.emptyTitle}
       emptyText={props.emptyText}
     />
-  ) : (
-    <ExploreGridView {...props} />
   )
 }

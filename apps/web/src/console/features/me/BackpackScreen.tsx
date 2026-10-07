@@ -6,38 +6,60 @@
 import { m } from '@sotf/i18n/messages';
 import { Badge } from '@sotf/ui/badge';
 import { Button } from '@sotf/ui/button';
-import { cn } from '@sotf/ui/cn';
 import { EmptyState } from '@sotf/ui/empty-state';
 import { Icon } from '@sotf/ui/icons';
 import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
-import { ArrowUpCircle, Backpack as BackpackIcon, Bell, BellOff, Download, HeartOff, Search } from 'lucide-react';
+import { ArrowUpCircle, Bell, BellOff, Download, Heart, HeartOff, Search } from 'lucide-react';
 import { useMemo, useState } from 'react';
 import { track } from '../../../scripts/beacon.ts';
 import { DomainI18nBridge } from '../../components/DomainI18nBridge.tsx';
+import { ListPager } from '../../components/ListPager.tsx';
 import { useDocumentTitle } from '../../hooks/use-document-title.ts';
 import { notify } from '../../lib/notify.ts';
 import { failureDescription } from '../settings/errors.ts';
 import { type Backpack, type BackpackItem, backpackQuery, meApi, meKeys } from './api.ts';
+import { MeToolbar } from './list-controls.tsx';
+import { ME_PAGE_SIZES, type MeListState, paginate } from './search.ts';
 import { localDate, ModThumb, publicHref } from './shared.tsx';
-
-type Filter = 'all' | 'updates';
 
 function downloadHref(item: BackpackItem): string | null {
   const version = item.mod.latestVersion;
   return version ? `${item.mod.canonicalPath}/download/${encodeURIComponent(version)}` : null;
 }
 
-export function BackpackScreen() {
+const BACKPACK_SORTS = ['recent', 'name', 'updates'] as const;
+
+export function BackpackScreen({
+  state,
+  onChange,
+}: {
+  state: MeListState;
+  onChange: (next: Partial<MeListState>) => void;
+}) {
   const queryClient = useQueryClient();
   const { data } = useSuspenseQuery(backpackQuery);
-  const [filter, setFilter] = useState<Filter>('all');
   const [busy, setBusy] = useState<ReadonlySet<number>>(new Set());
   useDocumentTitle(m.me_backpack_title());
 
-  const visible = useMemo(
-    () => data.items.filter((item) => (filter === 'updates' ? item.hasUpdate : true)),
-    [data.items, filter],
-  );
+  const matching = useMemo(() => {
+    const q = state.q.trim().toLocaleLowerCase();
+    const rows = data.items.filter(
+      (item) =>
+        (state.filter === 'updates' ? item.hasUpdate : true) && (!q || item.mod.name.toLocaleLowerCase().includes(q)),
+    );
+    const collator = new Intl.Collator(undefined, { sensitivity: 'base', numeric: true });
+    switch (state.sort) {
+      case 'name':
+        return rows.sort((a, b) => collator.compare(a.mod.name, b.mod.name));
+      case 'updates':
+        return rows.sort(
+          (a, b) => Number(b.hasUpdate) - Number(a.hasUpdate) || b.followedAt.localeCompare(a.followedAt),
+        );
+      default:
+        return rows.sort((a, b) => b.followedAt.localeCompare(a.followedAt));
+    }
+  }, [data.items, state.q, state.filter, state.sort]);
+  const { rows: visible, page, pages } = paginate(matching, state.page, state.size);
 
   const setItems = (update: (items: BackpackItem[]) => BackpackItem[]) =>
     queryClient.setQueryData<Backpack>(meKeys.backpack, (current) => {
@@ -114,11 +136,6 @@ export function BackpackScreen() {
       }
     });
 
-  const filters: { value: Filter; label: string; count: number }[] = [
-    { value: 'all', label: m.me_filter_all(), count: data.items.length },
-    { value: 'updates', label: m.me_filter_updates(), count: data.updatesAvailable },
-  ];
-
   return (
     <DomainI18nBridge>
       <div className="grid gap-6">
@@ -133,7 +150,7 @@ export function BackpackScreen() {
 
         {data.items.length === 0 ? (
           <EmptyState
-            icon={<Icon icon={BackpackIcon} size={32} />}
+            icon={<Icon icon={Heart} size={32} />}
             title={m.me_backpack_empty_title()}
             description={m.me_backpack_empty_text()}
             action={
@@ -148,34 +165,34 @@ export function BackpackScreen() {
           />
         ) : (
           <>
-            <fieldset className="flex flex-wrap gap-2">
-              <legend className="sr-only">{m.me_filter_label()}</legend>
-              {filters.map((option) => (
-                <button
-                  key={option.value}
-                  type="button"
-                  aria-pressed={filter === option.value}
-                  onClick={() => setFilter(option.value)}
-                  className={cn(
-                    'inline-flex h-10 items-center gap-2 rounded-full border px-4 text-sm font-semibold transition-colors md:h-9',
-                    filter === option.value
-                      ? 'border-primary bg-primary text-primary-fg'
-                      : 'border-border-strong text-fg-muted hover:bg-fg/8 hover:text-fg',
-                  )}
-                >
-                  {option.label}
-                  <span className="tabular-nums opacity-80">{option.count}</span>
-                </button>
-              ))}
-            </fieldset>
+            <MeToolbar
+              state={state}
+              onChange={onChange}
+              sorts={BACKPACK_SORTS}
+              counts={{ all: data.items.length, updates: data.updatesAvailable }}
+            />
 
             {visible.length === 0 ? (
-              <EmptyState
-                headingLevel={2}
-                icon={<Icon icon={BackpackIcon} size={28} />}
-                title={m.me_backpack_no_updates_title()}
-                description={m.me_backpack_no_updates_text()}
-              />
+              state.q.trim() ? (
+                <EmptyState
+                  headingLevel={2}
+                  icon={<Icon icon={Search} size={28} />}
+                  title={m.me_no_match_title()}
+                  description={m.me_no_match_text()}
+                  action={
+                    <Button variant="secondary" onClick={() => onChange({ q: '', filter: 'all', page: 1 })}>
+                      {m.me_clear_filters()}
+                    </Button>
+                  }
+                />
+              ) : (
+                <EmptyState
+                  headingLevel={2}
+                  icon={<Icon icon={Heart} size={28} />}
+                  title={m.me_backpack_no_updates_title()}
+                  description={m.me_backpack_no_updates_text()}
+                />
+              )
             ) : (
               <ul className="grid gap-2" aria-label={m.me_backpack_list_label()}>
                 {visible.map((item) => {
@@ -263,6 +280,15 @@ export function BackpackScreen() {
                 })}
               </ul>
             )}
+            <ListPager
+              page={page}
+              totalPages={pages}
+              total={matching.length}
+              pageSize={state.size}
+              onPage={(next) => onChange({ page: next })}
+              pageSizes={ME_PAGE_SIZES}
+              onPageSize={(size) => onChange({ size, page: 1 })}
+            />
           </>
         )}
       </div>

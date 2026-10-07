@@ -85,5 +85,10 @@
   "requests_badge_author": "İstek sahibi",
   "requests_comment_delete_title": "Bu yorum silinsin mi?",
   "requests_comment_delete_text": "Bu geri alınamaz.",
-  "requests_votes_short": "oy"
+  "requests_votes_short": "oy",
+  "requests_sort_old": "En eski",
+  "requests_sort_comments": "En çok tartışılan",
+  "requests_search_label": "İstek ara",
+  "requests_empty_search_title": "“{query}” için istek yok",
+  "requests_empty_search_text": "Yazımı kontrol et, daha az kelime kullan veya tüm durumlarda ara. Henüz kimse istemediyse sen isteyebilirsin."
 }

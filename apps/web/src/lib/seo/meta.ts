@@ -22,7 +22,7 @@ export const DESCRIPTION_MAX = 160;
 export interface SeoInput {
   /** Page title without the site suffix (or the full title with `rawTitle`). */
   title: string;
-  /** Use `title` as is (landing: «SOTF Mods — Sons of the Forest mods, builds & kits»). */
+  /** Use `title` as is (the landing page). */
   rawTitle?: boolean;
   /** `{title} | SOTF Mods` template of the locale (from the `meta` namespace). */
   titleTemplate: (title: string) => string;
@@ -109,7 +109,12 @@ export function buildSeoHead(input: SeoInput): SeoHeadData {
   const og = input.og;
   const metas: MetaTag[] = [
     { name: 'description', content: description },
-    { name: 'robots', content: input.noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large' },
+    {
+      name: 'robots',
+      content: input.noindex
+        ? 'noindex, follow'
+        : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
+    },
     { name: 'theme-color', content: themeColor.night, media: '(prefers-color-scheme: dark)' },
     { name: 'theme-color', content: themeColor.day, media: '(prefers-color-scheme: light)' },
     { property: 'og:site_name', content: 'SOTF Mods' },
@@ -128,11 +133,19 @@ export function buildSeoHead(input: SeoInput): SeoHeadData {
     metas.push({ name: 'rating', content: 'adult' });
   } else {
     const image = og?.image ?? OG_DEFAULT_PATH;
+    // The default card is known to be 1200 x 630; a custom image without sizes states none
+    // (a wrong size makes scrapers crop or reject the card).
+    const width = og?.imageWidth ?? (og?.image ? undefined : OG_DEFAULT_SIZE.width);
+    const height = og?.imageHeight ?? (og?.image ? undefined : OG_DEFAULT_SIZE.height);
     metas.push(
       { property: 'og:image', content: absolute(siteUrl, image) },
       { property: 'og:image:alt', content: og?.imageAlt ?? '' },
-      { property: 'og:image:width', content: String(og?.imageWidth ?? OG_DEFAULT_SIZE.width) },
-      { property: 'og:image:height', content: String(og?.imageHeight ?? OG_DEFAULT_SIZE.height) },
+      ...(width && height
+        ? [
+            { property: 'og:image:width', content: String(width) },
+            { property: 'og:image:height', content: String(height) },
+          ]
+        : []),
       { name: 'twitter:image', content: absolute(siteUrl, image) },
       { name: 'twitter:image:alt', content: og?.imageAlt ?? '' },
     );

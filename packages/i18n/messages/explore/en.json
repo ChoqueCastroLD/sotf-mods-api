@@ -171,5 +171,13 @@
   "explore_catalog_empty_clear": "Clear filters",
   "explore_catalog_error_title": "The mods could not be loaded",
   "explore_catalog_error_text": "Try again in a moment.",
-  "explore_catalog_retry": "Try again"
+  "explore_catalog_retry": "Try again",
+  "explore_sort_name": "Name A to Z",
+  "explore_facet_downloads": "Downloads",
+  "explore_downloads_min": "{count, number}+ downloads",
+  "explore_page_size_label": "Per page",
+  "explore_search_builds_label": "Search builds",
+  "explore_noresults_query_title": "No results for “{query}”",
+  "explore_suggest_popular": "Popular mods",
+  "explore_results_range": "Showing {from, number}–{to, number} of {total, number}"
 }

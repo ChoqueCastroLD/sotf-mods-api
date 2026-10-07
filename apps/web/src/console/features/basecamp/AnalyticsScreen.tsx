@@ -10,15 +10,25 @@ import { buttonClasses } from '@sotf/ui/button';
 import { StatTile } from '@sotf/ui/domain';
 import { EmptyState } from '@sotf/ui/empty-state';
 import { Icon } from '@sotf/ui/icons';
+import { Input } from '@sotf/ui/input';
 import { Select } from '@sotf/ui/select';
 import { useQuery, useSuspenseQuery } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
 import { ChartLine, Download, Pencil } from 'lucide-react';
-import { useEffect } from 'react';
+import { useEffect, useId } from 'react';
 import { DomainI18nBridge } from '../../components/DomainI18nBridge.tsx';
 import { activeLocale } from '../../lib/messages.ts';
-import { type Analytics, type AnalyticsRange, analyticsCsvHref, analyticsQuery, CHANNELS, modsQuery } from './api.ts';
-import { CategoryFigure, RatingsFigure, SeriesFigure, VersionSeriesFigure } from './charts/figures.tsx';
+import {
+  type Analytics,
+  type AnalyticsRange,
+  analyticsCsvHref,
+  analyticsQuery,
+  CHANNELS,
+  type CustomRange,
+  modsQuery,
+  spanDays,
+} from './api.ts';
+import { CategoryFigure, RatingsFigure, SeriesFigure, VersionSeriesFigure, versionLabel } from './charts/figures.tsx';
 import { prefetchCharts } from './charts/lazy.tsx';
 import { number, percent } from './format.ts';
 import { bt, useBasecampMessages } from './i18n.ts';
@@ -46,7 +56,7 @@ export function referrerRows(analytics: Analytics): Array<{ label: string; value
 
 function versionRows(analytics: Analytics): Array<{ label: string; value: number }> {
   return analytics.byVersion.map((entry) => ({
-    label: entry.version === 'other' ? bt('basecamp_analytics_other_versions') : `v${entry.version}`,
+    label: versionLabel(entry.version, bt('basecamp_analytics_other_versions')),
     value: entry.downloads,
   }));
 }
@@ -146,18 +156,84 @@ function Referrers({ analytics }: { analytics: Analytics }) {
   );
 }
 
+/** Today as a UTC day (`YYYY-MM-DD`), the last day the statistics cover. */
+function today(): string {
+  return new Date().toISOString().slice(0, 10);
+}
+
+function addDays(day: string, days: number): string {
+  return new Date(Date.parse(`${day}T00:00:00Z`) + days * 86_400_000).toISOString().slice(0, 10);
+}
+
+/** Start and end dates of a custom range. Invalid pairs are not sent to the server. */
+function CustomRangeFields({ value, onChange }: { value: CustomRange; onChange: (next: CustomRange) => void }) {
+  const fromId = useId();
+  const toId = useId();
+  const max = today();
+  const valid = value.from <= value.to && value.to <= max && spanDays(value) <= 1100;
+  return (
+    <div className="flex flex-wrap items-end gap-3">
+      <div className="grid gap-1">
+        <label htmlFor={fromId} className="text-sm font-medium text-fg">
+          {bt('basecamp_range_from')}
+        </label>
+        <Input
+          id={fromId}
+          type="date"
+          value={value.from}
+          max={value.to}
+          onChange={(event) => event.currentTarget.value && onChange({ ...value, from: event.currentTarget.value })}
+          className="w-44"
+        />
+      </div>
+      <div className="grid gap-1">
+        <label htmlFor={toId} className="text-sm font-medium text-fg">
+          {bt('basecamp_range_to')}
+        </label>
+        <Input
+          id={toId}
+          type="date"
+          value={value.to}
+          min={value.from}
+          max={max}
+          onChange={(event) => event.currentTarget.value && onChange({ ...value, to: event.currentTarget.value })}
+          className="w-44"
+        />
+      </div>
+      {valid ? null : (
+        <p role="alert" className="pb-2 text-sm text-danger">
+          {bt('basecamp_range_invalid')}
+        </p>
+      )}
+    </div>
+  );
+}
+
 export function AnalyticsScreen({
   modId,
   range,
+  custom,
   onChange,
 }: {
   modId: number | null;
-  range: AnalyticsRange;
-  onChange: (next: { modId?: number | null; range?: AnalyticsRange }) => void;
+  range: AnalyticsRange | 'custom';
+  /** Start and end of the custom range (always set; used when `range` is «custom»). */
+  custom: CustomRange;
+  onChange: (next: { modId?: number | null; range?: AnalyticsRange | 'custom'; custom?: CustomRange }) => void;
 }) {
   useBasecampMessages();
   const { data: mods } = useSuspenseQuery(modsQuery);
-  const analytics = useQuery(analyticsQuery(modId, range));
+  const isCustom = range === 'custom';
+  const validCustom = custom.from <= custom.to && custom.to <= today() && spanDays(custom) <= 1100;
+  // An invalid pair keeps showing the last valid data instead of querying the server with it.
+  const activeCustom = isCustom && validCustom ? custom : null;
+  const apiRange: AnalyticsRange = isCustom ? '30d' : range;
+  const analytics = useQuery({
+    ...analyticsQuery(modId, apiRange, activeCustom),
+    enabled: !isCustom || validCustom,
+  });
+  // Labels of the charts: a long custom range shows years like «All».
+  const chartRange: AnalyticsRange = isCustom ? (spanDays(custom) > 300 ? 'all' : '30d') : range;
   const selected = modId ? (mods.items.find((row) => row.mod.id === modId) ?? null) : null;
 
   useEffect(() => {
@@ -171,12 +247,11 @@ export function AnalyticsScreen({
 
   const header = (
     <ScreenHeader
-      readout={bt('basecamp_readout')}
       title={bt('basecamp_analytics_title')}
       description={bt('basecamp_analytics_intro')}
       actions={
         <a
-          href={analyticsCsvHref(modId, range)}
+          href={analyticsCsvHref(modId, apiRange, activeCustom)}
           download
           className={buttonClasses({ variant: 'secondary', size: 'sm' })}
         >
@@ -212,7 +287,17 @@ export function AnalyticsScreen({
             onValueChange={(value) => onChange({ modId: value && value !== 'all' ? Number(value) : null })}
             className="md:min-w-56"
           />
-          <RangeSwitch value={range} onChange={(next) => onChange({ range: next })} />
+          <RangeSwitch
+            value={range}
+            allowCustom
+            onChange={(next) =>
+              onChange(
+                next === 'custom'
+                  ? { range: next, custom: { from: addDays(today(), -29), to: today() } }
+                  : { range: next },
+              )
+            }
+          />
           {selected ? (
             <Link
               to="/dashboard/mods/$modId"
@@ -224,6 +309,7 @@ export function AnalyticsScreen({
             </Link>
           ) : null}
         </div>
+        {isCustom ? <CustomRangeFields value={custom} onChange={(next) => onChange({ custom: next })} /> : null}
         {range === 'all' ? <p className="text-xs text-fg-muted">{bt('basecamp_analytics_legacy_note')}</p> : null}
 
         {analytics.isPending ? (
@@ -240,7 +326,7 @@ export function AnalyticsScreen({
               <SeriesFigure
                 title={bt('basecamp_analytics_downloads_chart')}
                 analytics={analytics.data}
-                range={range}
+                range={chartRange}
                 series={[
                   { key: 'downloads', label: bt('basecamp_series_downloads') },
                   { key: 'uniqueDownloads', label: bt('basecamp_series_unique') },
@@ -251,12 +337,12 @@ export function AnalyticsScreen({
               />
             </Panel>
 
-            <div className="grid gap-6 xl:grid-cols-2">
+            <div className="grid items-start gap-6 xl:grid-cols-2">
               <Panel title={bt('basecamp_analytics_views_title')}>
                 <SeriesFigure
                   title={bt('basecamp_analytics_views_chart')}
                   analytics={analytics.data}
-                  range={range}
+                  range={chartRange}
                   series={[{ key: 'views', label: bt('basecamp_series_views') }]}
                   kind="area"
                 />
@@ -265,17 +351,17 @@ export function AnalyticsScreen({
                 <SeriesFigure
                   title={bt('basecamp_analytics_follows_chart')}
                   analytics={analytics.data}
-                  range={range}
+                  range={chartRange}
                   series={[{ key: 'follows', label: bt('basecamp_series_follows') }]}
                   kind="bar"
                 />
               </Panel>
             </div>
 
-            <div className="grid gap-6 xl:grid-cols-2">
+            <div className="grid items-start gap-6 xl:grid-cols-2">
               <Panel title={bt('basecamp_analytics_versions_title')}>
                 <div className="grid gap-6">
-                  <VersionSeriesFigure analytics={analytics.data} range={range} />
+                  <VersionSeriesFigure analytics={analytics.data} range={chartRange} />
                   <CategoryFigure
                     title={bt('basecamp_analytics_versions_chart')}
                     rowHeader={bt('basecamp_analytics_version')}
@@ -295,7 +381,7 @@ export function AnalyticsScreen({
               </Panel>
             </div>
 
-            <div className="grid gap-6 xl:grid-cols-2">
+            <div className="grid items-start gap-6 xl:grid-cols-2">
               <Panel title={bt('basecamp_analytics_referrers_title')}>
                 <Referrers analytics={analytics.data} />
               </Panel>
@@ -321,7 +407,7 @@ export function AnalyticsScreen({
             </Panel>
 
             <Panel title={bt('basecamp_analytics_ratings_title')}>
-              <RatingsFigure analytics={analytics.data} range={range} />
+              <RatingsFigure analytics={analytics.data} range={chartRange} />
             </Panel>
           </div>
         )}

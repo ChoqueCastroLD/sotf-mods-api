@@ -9,6 +9,7 @@
 import { isApiError } from '@sotf/contracts/client';
 import type { StudioModDTO, SubmitResultDTO } from '@sotf/contracts/studio';
 import { maxUploadBytes, UPLOAD_LIMITS } from '@sotf/contracts/uploads';
+import { changeWhere, normalizeWhere } from '@sotf/contracts/where';
 import { buttonClasses } from '@sotf/ui/button';
 import { Skeleton } from '@sotf/ui/skeleton';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
@@ -29,7 +30,7 @@ import { draftQuery, uploadKeys } from './lib/queries.ts';
 import { checkNextVersion } from './lib/semver.ts';
 import { useAutosave } from './lib/use-autosave.ts';
 import { type BlockReason, useFileUpload } from './lib/use-file-upload.ts';
-import { isLoaderVersion } from './lib/validate.ts';
+import { isHttpUrl, isLoaderVersion } from './lib/validate.ts';
 import {
   fieldTarget,
   listingPath,
@@ -38,6 +39,7 @@ import {
   type StepId,
   slugify,
   stepFromNumber,
+  stepProblems,
   type WizardMode,
 } from './lib/wizard.ts';
 import { FileStep, useAdoptUpload } from './steps/FileStep.tsx';
@@ -82,6 +84,8 @@ export interface PublishWizardProps {
   target?: StudioModDTO | null;
   /** The draft was created (the route puts its id in the URL). */
   onDraftCreated?: (id: string) => void;
+  /** The draft was submitted. */
+  onSubmitted?: () => void;
 }
 
 const FOCUSABLE =
@@ -98,6 +102,29 @@ function focusAnchor(anchor: string): void {
   target.focus({ preventScroll: true });
 }
 
+function whereOf(data: DraftData) {
+  return {
+    platform: data.platform ?? null,
+    multiplayerRole: data.multiplayerRole ?? null,
+    dedicatedServer: data.dedicatedServer ?? null,
+    safeToRemove: data.safeToRemove ?? null,
+  };
+}
+
+/** A resumed draft may hold answers that contradict each other (older saves): make them coherent. */
+function coherent(data: DraftData): DraftData {
+  if (data.platform === undefined && data.multiplayerRole === undefined && data.dedicatedServer === undefined) {
+    return data;
+  }
+  const where = normalizeWhere(whereOf(data));
+  return {
+    ...data,
+    platform: where.platform,
+    multiplayerRole: where.multiplayerRole,
+    dedicatedServer: where.dedicatedServer,
+  };
+}
+
 /** Fields prefilled from the file when the creator has not typed them yet. */
 function prefill(data: DraftData, report: LocalReport | null, mode: WizardMode): DraftData {
   if (!report || mode === 'version') return data;
@@ -108,7 +135,9 @@ function prefill(data: DraftData, report: LocalReport | null, mode: WizardMode):
     if (!next.shortDescription && manifest.description) {
       next.shortDescription = manifest.description.replace(/\s+/g, ' ').trim().slice(0, 200);
     }
-    if (!next.platform && manifest.platform) next.platform = manifest.platform;
+    if (!next.platform && manifest.platform) {
+      Object.assign(next, changeWhere(whereOf(next), { platform: manifest.platform }).answers);
+    }
     if (!next.loaderMin && manifest.loaderVersion && isLoaderVersion(manifest.loaderVersion)) {
       next.loaderMin = manifest.loaderVersion.trim();
     }
@@ -124,20 +153,22 @@ function prefill(data: DraftData, report: LocalReport | null, mode: WizardMode):
   return next;
 }
 
-export function PublishWizard({ mode, initial, target = null, onDraftCreated }: PublishWizardProps) {
+export function PublishWizard({ mode, initial, target = null, onDraftCreated, onSubmitted }: PublishWizardProps) {
   const me = useMe();
   const queryClient = useQueryClient();
   const isBuild = mode === 'build' || (mode === 'version' && target?.mod.kind === 'build');
   const listingKind = isBuild ? 'build' : 'mod';
   const steps = STEPS[mode];
 
-  const [data, setData] = useState<DraftData>(() => initial?.data ?? { step: 1 });
+  const [data, setData] = useState<DraftData>(() => (initial ? coherent(initial.data) : { step: 1 }));
   const step = stepFromNumber(mode, data.step);
   const [visited, setVisited] = useState<ReadonlySet<StepId>>(() => new Set([step]));
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<{ text: string; reference: string | null } | null>(null);
   const [result, setResult] = useState<SubmitResultDTO | null>(null);
   const pendingFocus = useRef<string | null>(null);
+  // Steps where the creator pressed «Next» with required answers missing: their errors show inline.
+  const [attempted, setAttempted] = useState<ReadonlySet<StepId>>(new Set());
 
   useEffect(() => {
     const prefetch = () => {
@@ -165,7 +196,7 @@ export function PublishWizard({ mode, initial, target = null, onDraftCreated }: 
   const [polling, setPolling] = useState(false);
   const live = useQuery({
     ...draftQuery(autosave.draftId ?? 'none'),
-    enabled: autosave.draftId !== null,
+    enabled: autosave.draftId !== null && result === null,
     refetchInterval: polling ? 3_000 : false,
   });
   const server = live.data ?? autosave.draft;
@@ -290,15 +321,33 @@ export function PublishWizard({ mode, initial, target = null, onDraftCreated }: 
   const previous = index > 0 ? steps[index - 1] : null;
   const next = index < steps.length - 1 ? steps[index + 1] : null;
 
+  const problems = useMemo(() => stepProblems(step, mode, data, { isHttpUrl, isLoaderVersion }), [step, mode, data]);
+  const failedFields = useMemo(
+    () => (attempted.has(step) ? new Set<string>(problems.map((problem) => problem.field)) : new Set<string>()),
+    [attempted, step, problems],
+  );
+  const tryNext = () => {
+    const first = problems[0];
+    if (!next) return;
+    if (!first) {
+      goTo(next);
+      return;
+    }
+    setAttempted((set) => new Set(set).add(step));
+    // The errors render on the next frame; then move to the first one.
+    requestAnimationFrame(() => requestAnimationFrame(() => focusAnchor(first.anchor)));
+  };
+
   const attention = useMemo(() => {
     const set = new Set<StepId>();
     for (const row of server?.preflight ?? []) {
       if (row.severity !== 'error') continue;
       const where = fieldTarget(mode, row.field);
-      if (where) set.add(where.step);
+      // A step the creator has not opened yet is not «needing attention», it is just next.
+      if (where && where.step !== step && visited.has(where.step)) set.add(where.step);
     }
     return set;
-  }, [server, mode]);
+  }, [server, mode, step, visited]);
 
   // ----- Submit ------------------------------------------------------------------------------
   const busy =
@@ -318,6 +367,7 @@ export function PublishWizard({ mode, initial, target = null, onDraftCreated }: 
       void queryClient.invalidateQueries({ queryKey: uploadKeys.drafts, exact: true });
       void queryClient.invalidateQueries({ queryKey: queryKeys.studioMods });
       setResult(done);
+      onSubmitted?.();
       notify.success(done.status === 'published' ? ut('upload_success_live_title') : ut('upload_success_queued_title'));
       window.scrollTo({ top: 0 });
     } catch (error) {
@@ -352,7 +402,7 @@ export function PublishWizard({ mode, initial, target = null, onDraftCreated }: 
   const canPublish = hasPermission(me, 'mod.publish');
   const slug = data.slug ?? slugify(data.name ?? '');
   const summary = (
-    <dl className="grid grid-cols-1 gap-3 rounded-lg border border-border bg-raised p-4 sm:grid-cols-3">
+    <dl className="grid grid-cols-1 gap-3 sm:grid-cols-3">
       <div className="flex min-w-0 flex-col gap-0.5">
         <dt className="text-xs text-fg-muted">{ut('upload_summary_name')}</dt>
         <dd className="truncate text-sm font-medium text-fg">
@@ -386,7 +436,7 @@ export function PublishWizard({ mode, initial, target = null, onDraftCreated }: 
             {ut('upload_my_drafts')}
           </Link>
         </div>
-        <WizardSteps steps={steps} current={step} attention={attention} onSelect={(s) => goTo(s)} />
+        <WizardSteps steps={steps} current={step} attention={attention} isBuild={isBuild} onSelect={(s) => goTo(s)} />
       </header>
 
       {me.flags.mustVerifyEmail ? (
@@ -432,6 +482,7 @@ export function PublishWizard({ mode, initial, target = null, onDraftCreated }: 
                         : null
                     }
                     headingId={headingId(id)}
+                    missing={failedFields.has('file') && !data.fileUploadId}
                   />
                 ) : null}
                 {id === 'details' ? (
@@ -441,6 +492,7 @@ export function PublishWizard({ mode, initial, target = null, onDraftCreated }: 
                     update={update}
                     preflight={server?.preflight ?? []}
                     handle={handle}
+                    failed={failedFields}
                     headingId={headingId(id)}
                   />
                 ) : null}
@@ -450,6 +502,7 @@ export function PublishWizard({ mode, initial, target = null, onDraftCreated }: 
                     update={update}
                     manifestId={manifestId}
                     manifestDependencies={manifest?.dependencies ?? []}
+                    failed={failedFields}
                     headingId={headingId(id)}
                   />
                 ) : null}
@@ -512,7 +565,7 @@ export function PublishWizard({ mode, initial, target = null, onDraftCreated }: 
             .catch(() => notify.error(ut('upload_autosave_error')));
         }}
         onBack={previous ? () => goTo(previous) : null}
-        onNext={next ? () => goTo(next) : null}
+        onNext={next ? tryNext : null}
       />
     </div>
   );

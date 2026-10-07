@@ -293,12 +293,75 @@ export async function adminEntryDto(db: Executor, config: CommunityConfig, entry
   return first;
 }
 
+export interface AdminEntryListOptions {
+  status?: JamAdminEntryDTO['status'] | undefined;
+  /** Text in the mod name or an author handle. */
+  q?: string | undefined;
+  sort?: 'newest' | 'oldest' | 'votes' | 'name' | undefined;
+  limit?: number | undefined;
+  offset?: number | undefined;
+}
+
+const likeEscape = (value: string) => value.replace(/[\\%_]/g, (c) => `\\${c}`);
+
+/** Where clause and order of the entries list (filters of the staff screen). */
+function adminEntryFilters(jamId: number, options: AdminEntryListOptions) {
+  const parts = [sql`e."jamId" = ${jamId}`];
+  if (options.status) parts.push(sql`e."status" = ${options.status}`);
+  const text = options.q?.trim();
+  if (text) {
+    const pattern = `%${likeEscape(text.toLowerCase())}%`;
+    parts.push(
+      sql`(lower(m."name") LIKE ${pattern} OR EXISTS (
+            SELECT 1 FROM "JamEntryAuthor" ja JOIN "User" au ON au."id" = ja."userId"
+             WHERE ja."entryId" = e."id" AND (lower(au."slug") LIKE ${pattern} OR lower(coalesce(au."displayName", '')) LIKE ${pattern})))`,
+    );
+  }
+  const order =
+    options.sort === 'oldest'
+      ? sql`e."id" ASC`
+      : options.sort === 'votes'
+        ? sql`"votes" DESC, e."id" DESC`
+        : options.sort === 'name'
+          ? sql`lower(m."name") ASC, e."id" ASC`
+          : sql`e."id" DESC`;
+  return { where: sql.join(parts, sql` AND `), order };
+}
+
+/** A page of the entries of a jam for staff, with the filtered total and the count per status. */
+export async function listAdminEntriesPage(
+  db: Executor,
+  config: CommunityConfig,
+  jamId: number,
+  options: AdminEntryListOptions & { limit: number; offset: number },
+) {
+  const { where } = adminEntryFilters(jamId, options);
+  const [totalRow, perStatus] = await Promise.all([
+    firstRow<{ n: number }>(
+      db,
+      sql`SELECT count(*)::int AS "n" FROM "JamEntry" e JOIN "Mod" m ON m."id" = e."modId" WHERE ${where}`,
+    ),
+    rows<{ status: JamAdminEntryDTO['status']; n: number }>(
+      db,
+      sql`SELECT "status", count(*)::int AS "n" FROM "JamEntry" WHERE "jamId" = ${jamId} GROUP BY "status"`,
+    ),
+  ]);
+  const counts = { active: 0, withdrawn: 0, hidden: 0, disqualified: 0 };
+  for (const row of perStatus) counts[row.status] = row.n;
+  const items = await listAdminEntryDtos(db, config, { jamId }, options);
+  return { items, total: totalRow?.n ?? 0, counts };
+}
+
 export async function listAdminEntryDtos(
   db: Executor,
   config: CommunityConfig,
   filter: { jamId: number } | { entryId: number },
+  options: AdminEntryListOptions = {},
 ): Promise<JamAdminEntryDTO[]> {
-  const where = 'jamId' in filter ? sql`e."jamId" = ${filter.jamId}` : sql`e."id" = ${filter.entryId}`;
+  const scoped = 'jamId' in filter ? adminEntryFilters(filter.jamId, options) : null;
+  const where = scoped ? scoped.where : sql`e."id" = ${'entryId' in filter ? filter.entryId : 0}`;
+  const order = scoped ? scoped.order : sql`e."id"`;
+  const paging = options.limit === undefined ? sql`` : sql`LIMIT ${options.limit} OFFSET ${options.offset ?? 0}`;
   const found = await rows<{
     id: number;
     modId: number;
@@ -319,7 +382,7 @@ export async function listAdminEntryDtos(
                (SELECT count(*) FROM "JamVote" v WHERE v."entryId" = e."id" AND v."excludedReason" IS NULL)::int AS "votes",
                (SELECT count(*) FROM "JamVote" v WHERE v."entryId" = e."id" AND v."excludedReason" IS NOT NULL)::int AS "excluded"
           FROM "JamEntry" e JOIN "Mod" m ON m."id" = e."modId" LEFT JOIN "User" u ON u."id" = m."userId"
-         WHERE ${where} ORDER BY e."id"`,
+         WHERE ${where} ORDER BY ${order} ${paging}`,
   );
   const authors = await rows<{ entryId: number; userId: number }>(
     db,

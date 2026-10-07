@@ -12,7 +12,7 @@ export function StepHeader({ id, title, description }: { id: string; title: stri
   );
 }
 
-/** A titled group of fields inside a step. */
+/** A titled group of fields inside a step: a heading over a rule, no box around the fields. */
 export function FieldGroup({
   title,
   description,
@@ -27,7 +27,7 @@ export function FieldGroup({
   return (
     <section
       aria-labelledby={id ? `${id}-title` : undefined}
-      className="flex flex-col gap-4 rounded-lg border border-border bg-surface p-4 sm:p-5"
+      className="flex flex-col gap-4 border-t border-border pt-5"
     >
       <div className="flex flex-col gap-1">
         <h3 id={id ? `${id}-title` : undefined} className="text-base font-semibold text-fg">

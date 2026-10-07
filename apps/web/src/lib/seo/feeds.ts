@@ -11,6 +11,7 @@ import { absoluteUrl, versionsPath } from '@sotf/contracts/seo';
 import type { VersionDTO } from '@sotf/contracts/versions';
 import { LOGO_PATH } from '../site.ts';
 import { htmlToMarkdown } from './html-to-md.ts';
+import { readableVersion } from './markdown.ts';
 import { type RssChannel, type RssItem, rss } from './xml.ts';
 
 /** Items per feed. */
@@ -25,7 +26,8 @@ export interface FeedDocument {
 
 function cardItem(card: ModCardDTO, siteUrl: string): RssItem {
   const link = absoluteUrl(card.canonicalPath, siteUrl);
-  const version = card.latestVersion ? ` ${card.latestVersion}` : '';
+  const readable = readableVersion(card.latestVersion);
+  const version = readable ? ` ${readable}` : '';
   const description = [
     card.shortDescription.trim(),
     `${card.kind === 'build' ? 'Build' : card.kind === 'library' ? 'Library' : 'Mod'} by ${card.userDisplayName}.`,

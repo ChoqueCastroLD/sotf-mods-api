@@ -21,9 +21,11 @@ export interface WizardStepsProps {
   /** Steps with a blocking problem (preflight errors). */
   attention: ReadonlySet<StepId>;
   onSelect: (step: StepId) => void;
+  /** Build flow: the file step names a .json instead of a .zip. */
+  isBuild?: boolean;
 }
 
-export function WizardSteps({ steps, current, attention, onSelect }: WizardStepsProps) {
+export function WizardSteps({ steps, current, attention, onSelect, isBuild = false }: WizardStepsProps) {
   const index = steps.indexOf(current);
   return (
     <nav aria-label={ut('upload_steps_label')}>
@@ -103,7 +105,9 @@ export function WizardSteps({ steps, current, attention, onSelect }: WizardSteps
                 </span>
                 <span className="flex min-w-0 flex-col max-md:sr-only">
                   <span className="truncate text-sm font-medium">{STEP_LABELS[step]()}</span>
-                  <span className="truncate text-xs text-fg-muted max-lg:hidden">{STEP_HINTS[step]()}</span>
+                  <span className="line-clamp-2 text-xs text-fg-muted max-lg:hidden">
+                    {step === 'file' && isBuild ? ut('upload_step_file_hint_build') : STEP_HINTS[step]()}
+                  </span>
                 </span>
                 {flagged ? <span className="sr-only">({ut('upload_step_needs_attention')})</span> : null}
                 {state === 'complete' && !flagged ? <span className="sr-only">({ut('upload_step_done')})</span> : null}

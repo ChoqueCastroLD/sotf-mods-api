@@ -85,5 +85,10 @@
   "requests_badge_author": "Önskare",
   "requests_comment_delete_title": "Ta bort den här kommentaren?",
   "requests_comment_delete_text": "Det går inte att ångra.",
-  "requests_votes_short": "röster"
+  "requests_votes_short": "röster",
+  "requests_sort_old": "Äldsta",
+  "requests_sort_comments": "Mest diskuterade",
+  "requests_search_label": "Sök önskemål",
+  "requests_empty_search_title": "Inga önskemål för ”{query}”",
+  "requests_empty_search_text": "Kontrollera stavningen, använd färre ord eller sök i alla statusar. Om ingen har önskat det ännu kan du göra det."
 }

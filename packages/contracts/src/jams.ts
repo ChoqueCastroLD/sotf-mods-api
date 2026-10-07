@@ -11,7 +11,7 @@ import { z } from 'zod';
 import { cache } from './cache.ts';
 import { ModCardDTO } from './catalog.ts';
 import { Count, EntityId, HttpUrl, IdParam, IsoDateTime, UserRefDTO } from './common.ts';
-import { dto, exampleOf } from './dto.ts';
+import { dto, exampleOf, wireIntDefault } from './dto.ts';
 import { API_V2_PREFIX, defineEndpoint } from './endpoint.ts';
 
 export const JAM_PHASES = [
@@ -525,9 +525,40 @@ export const JamAdminEntryDTO = dto(
     ],
   },
 );
-export const JamAdminEntriesDTO = dto('JamAdminEntriesDTO', z.object({ items: z.array(JamAdminEntryDTO) }), {
-  description: 'Every entry of a jam.',
-  examples: [{ items: [] }],
+export const JamAdminEntriesDTO = dto(
+  'JamAdminEntriesDTO',
+  z.object({
+    items: z.array(JamAdminEntryDTO),
+    page: z.number().int().min(1),
+    pageSize: z.number().int().min(1),
+    total: Count.describe('Entries that match the filters'),
+    totalPages: z.number().int().nonnegative(),
+    counts: z
+      .record(JamEntryStatus, Count)
+      .describe('Entries of the jam per status (ignores the filters), for the status tabs'),
+  }),
+  {
+    description: 'One page of the entries of a jam, with the totals of the filtered list and the counts per status.',
+    examples: [
+      {
+        items: [],
+        page: 1,
+        pageSize: 25,
+        total: 0,
+        totalPages: 0,
+        counts: { active: 0, withdrawn: 0, hidden: 0, disqualified: 0 },
+      },
+    ],
+  },
+);
+
+export const JAM_ENTRY_SORTS = ['newest', 'oldest', 'votes', 'name'] as const;
+export const JamAdminEntriesQuery = z.object({
+  page: wireIntDefault(1, { min: 1, max: 10_000, description: '1-based page' }),
+  pageSize: wireIntDefault(25, { min: 1, max: 100, description: 'Entries per page' }),
+  status: JamEntryStatus.optional(),
+  q: z.string().trim().max(100).optional().describe('Text in the mod name or an author handle'),
+  sort: z.enum(JAM_ENTRY_SORTS).optional().describe('Default: newest first'),
 });
 
 const SlugParams = z.object({ slug: z.string().min(1).max(JAM_RULES.slugMax) });
@@ -792,6 +823,7 @@ export const jamsEndpoints = {
     summary: 'Entries of a jam, any status',
     auth: 'moderator',
     params: IdParams,
+    query: JamAdminEntriesQuery,
     response: JamAdminEntriesDTO,
     errors: ['NOT_FOUND'],
     cache: cache.private,

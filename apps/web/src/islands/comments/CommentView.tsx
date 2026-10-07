@@ -15,14 +15,15 @@ import { CommentItem } from '@sotf/ui/domain';
 import { Icon } from '@sotf/ui/icons';
 import { CornerDownRight, Reply as ReplyIcon } from 'lucide-react';
 import { useEffect, useId, useRef, useState } from 'react';
+import { toast } from '../../lib/client/toast.ts';
 import { CommentForm, type CommentFormMode } from './CommentForm.tsx';
 import { useComments } from './context.ts';
-import { api, type Failure, failureText } from './lib/api.ts';
+import { api, type Failure } from './lib/api.ts';
 import { localized } from './lib/i18n.tsx';
 import { htmlToMarkdown } from './lib/markdown.ts';
 import { ActionMenu, type MenuItem } from './lib/menu.tsx';
 import { t } from './lib/messages.ts';
-import { deferWithUndo, FailureNote, Modal, notify } from './lib/ui.tsx';
+import { deferWithUndo, FailureNote, Modal, notifyFailure } from './lib/ui.tsx';
 import { Reactions } from './Reactions.tsx';
 import type { AnyComment, Comment, VersionOption } from './types.ts';
 
@@ -91,7 +92,7 @@ function ResolveDialog({ comment, onClose }: { comment: AnyComment | null; onClo
             value={versionId ?? ''}
             disabled={!versions}
             onChange={(event) => setVersionId(Number(event.target.value))}
-            className="min-h-11 rounded-md border border-border-strong bg-sunken px-2 text-sm"
+            className="min-h-11 rounded-md border border-border-strong bg-sunken shadow-[inset_0_1px_2px_rgb(0_0_0/0.18)] transition-[border-color,box-shadow] duration-(--dur-fast) hover:border-fg-subtle focus-visible:border-focus focus-visible:shadow-[0_0_0_3px_var(--focus-halo)] focus-visible:outline-none px-2 text-sm"
           >
             {!versions ? <option value="">{t('social_loading')}</option> : null}
             {versions?.map((version) => (
@@ -137,11 +138,11 @@ function CommentEntry({ comment, onReply, focused }: ItemProps) {
   const run = async (method: 'POST' | 'DELETE', path: string, done: string) => {
     const result = await api<Comment>(method, path);
     if (!result.ok) {
-      notify(
-        result.kind === 'problem' && result.problem.code === 'CONFLICT' && path.endsWith('/pin')
-          ? t('social_pin_limit')
-          : failureText(result),
-      );
+      if (result.kind === 'problem' && result.problem.code === 'CONFLICT' && path.endsWith('/pin')) {
+        toast.warning(t('social_pin_limit'));
+      } else {
+        notifyFailure(result);
+      }
       return;
     }
     ctx.patch(comment.id, result.data);
@@ -156,7 +157,7 @@ function CommentEntry({ comment, onReply, focused }: ItemProps) {
         void api('DELETE', `/api/v2/comments/${comment.id}`).then((result) => {
           if (!result.ok) {
             restore();
-            notify(failureText(result));
+            notifyFailure(result);
           }
         });
       },
@@ -280,7 +281,10 @@ export function Thread({ comment, focusId }: ThreadProps) {
     setExpanding(true);
     const ok = await ctx.expand(comment.id);
     setExpanding(false);
-    if (!ok) notify(t('social_replies_failed'));
+    if (!ok)
+      toast.error(t('social_replies_failed'), {
+        action: { label: t('social_action_retry'), onClick: () => void expand() },
+      });
   };
 
   return (

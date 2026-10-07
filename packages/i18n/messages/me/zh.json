@@ -52,5 +52,15 @@
   "me_downloads_times": "{count, plural, other {# 次下载}}",
   "me_downloads_remove": "从列表中移除",
   "me_downloads_remove_label": "将 {mod} 从列表中移除",
-  "me_downloads_removed": "已将 {mod} 从列表中移除"
+  "me_downloads_removed": "已将 {mod} 从列表中移除",
+  "me_search_label": "按名称搜索",
+  "me_search_placeholder": "模组名称",
+  "me_sort_label": "排序方式",
+  "me_sort_recent": "最近",
+  "me_sort_name": "名称",
+  "me_sort_updates": "优先显示有更新的",
+  "me_sort_times": "下载次数最多",
+  "me_no_match_title": "没有匹配的模组",
+  "me_no_match_text": "换个名称试试，或显示全部。",
+  "me_clear_filters": "清除筛选"
 }

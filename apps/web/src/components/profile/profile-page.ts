@@ -18,48 +18,14 @@ import {
   profile_link_copy_failed,
   profile_unfollowed,
 } from '@sotf/i18n/messages';
+import { pageToast, type PageToast as Toast } from '../../lib/client/toast.ts';
 import { hasSignedInHint } from '../../scripts/account-hint.ts';
 import { track } from '../../scripts/beacon.ts';
 import { whenSession } from '../../scripts/mod/session.ts';
 
-const TOAST_MS = 6000;
-
 // -----------------------------------------------------------------------------------------------
 // Status line (toast + undo)
 // -----------------------------------------------------------------------------------------------
-
-interface Toast {
-  show(message: string, undo?: () => void): void;
-}
-
-function createToast(root: HTMLElement): Toast {
-  const text = root.querySelector<HTMLElement>('[data-profile-toast-text]');
-  const undoButton = root.querySelector<HTMLButtonElement>('[data-profile-undo]');
-  let timer: number | undefined;
-  let undoAction: (() => void) | undefined;
-  const close = () => {
-    delete root.dataset.open;
-    if (text) text.textContent = '';
-    if (undoButton) undoButton.hidden = true;
-    undoAction = undefined;
-  };
-  undoButton?.addEventListener('click', () => {
-    const action = undoAction;
-    window.clearTimeout(timer);
-    close();
-    action?.();
-  });
-  return {
-    show(message, undo) {
-      window.clearTimeout(timer);
-      if (text) text.textContent = message;
-      root.dataset.open = '';
-      undoAction = undo;
-      if (undoButton) undoButton.hidden = !undo;
-      timer = window.setTimeout(close, undo ? 10_000 : TOAST_MS);
-    },
-  };
-}
 
 // -----------------------------------------------------------------------------------------------
 // Follow
@@ -182,6 +148,8 @@ async function toggle(target: FollowTarget, next: boolean, toast: Toast, withUnd
         : result.status === 403
           ? profile_follow_own()
           : profile_follow_error(),
+      undefined,
+      'error',
     );
     return;
   }
@@ -258,9 +226,9 @@ function initShare(toast: Toast): void {
       }
       try {
         await navigator.clipboard.writeText(url);
-        toast.show(button.dataset.copied ?? '');
+        toast.show(button.dataset.copied ?? '', undefined, 'success');
       } catch {
-        toast.show(profile_link_copy_failed());
+        toast.show(profile_link_copy_failed(), undefined, 'error');
       }
     });
   }
@@ -269,8 +237,7 @@ function initShare(toast: Toast): void {
 // -----------------------------------------------------------------------------------------------
 
 export function initProfilePage(): void {
-  const toastRoot = document.querySelector<HTMLElement>('[data-profile-toast]');
-  const toast = toastRoot ? createToast(toastRoot) : { show: () => {} };
+  const toast = pageToast();
   void initFollow(toast);
   initShare(toast);
 }

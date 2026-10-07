@@ -26,6 +26,8 @@ export interface WizardScreenProps {
   modId?: number;
   /** Puts the id of a newly created draft in the URL (replace). */
   onDraftCreated: (id: string) => void;
+  /** The draft was submitted (and deleted): take its id out of the URL. */
+  onDraftDone?: () => void;
 }
 
 function WizardSkeleton() {
@@ -42,12 +44,13 @@ function isNotFound(error: unknown): boolean {
   return isApiError(error) && (error.status === 404 || error.status === 410);
 }
 
-export function WizardScreen({ mode, draftId, modId, onDraftCreated }: WizardScreenProps) {
+export function WizardScreen({ mode, draftId, modId, onDraftCreated, onDraftDone }: WizardScreenProps) {
   useUploadMessages();
   const [boot, setBoot] = useState<{ id: string | undefined; key: number }>({ id: draftId, key: 0 });
   const created = useRef<string | null>(null);
+  const submitted = useRef(false);
   // The URL now names another draft than the one on screen (drafts list, back button): remount.
-  if (draftId !== boot.id && draftId !== created.current) {
+  if (!submitted.current && draftId !== boot.id && draftId !== created.current) {
     created.current = null;
     setBoot({ id: draftId, key: boot.key + 1 });
   }
@@ -180,6 +183,11 @@ export function WizardScreen({ mode, draftId, modId, onDraftCreated }: WizardScr
         onDraftCreated={(id) => {
           created.current = id;
           onDraftCreated(id);
+        }}
+        onSubmitted={() => {
+          // The success screen stays; the draft no longer exists, so its id leaves the URL.
+          submitted.current = true;
+          onDraftDone?.();
         }}
       />
     </div>

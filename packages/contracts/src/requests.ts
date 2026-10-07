@@ -35,7 +35,7 @@ export const REQUEST_LIST_STATUSES = ['all', ...REQUEST_STATUSES] as const;
 export const RequestListStatus = z.enum(REQUEST_LIST_STATUSES);
 export type RequestListStatus = z.infer<typeof RequestListStatus>;
 
-export const REQUEST_SORTS = ['top', 'new'] as const;
+export const REQUEST_SORTS = ['top', 'new', 'old', 'comments'] as const;
 export const RequestSort = z.enum(REQUEST_SORTS);
 export type RequestSort = z.infer<typeof RequestSort>;
 
@@ -183,6 +183,7 @@ export const RequestCommentBody = dto(
 export const RequestListQuery = z.object({
   status: RequestListStatus.default('open'),
   sort: RequestSort.default('top'),
+  q: z.string().trim().max(100).optional().describe('Text in the title'),
   page: wireIntDefault(1, { min: 1, max: 10_000, description: '1-based page number' }),
   pageSize: wireIntDefault(20, { min: 1, max: 50, description: 'Items per page' }),
 });
@@ -198,7 +199,7 @@ export const requestsEndpoints = {
     owner: 'WP-RR',
     method: 'GET',
     path: `${base}/requests`,
-    summary: 'Mod requests (top voted or newest)',
+    summary: 'Mod requests (top voted, newest, oldest or most discussed), optionally searched by title',
     auth: 'public',
     query: RequestListQuery,
     response: RequestPageDTO,

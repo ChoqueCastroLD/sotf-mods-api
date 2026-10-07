@@ -68,5 +68,15 @@
   "console_nav_jams": "Mod-Jams",
   "console_tab_ranger": "Moderation",
   "console_pull_refreshing": "Wird aktualisiert …",
-  "console_tab_basecamp": "Dashboard"
+  "console_tab_basecamp": "Dashboard",
+  "console_language_failed": "Die Sprache konnte nicht geändert werden",
+  "console_pager_range": "{from}–{to} von {total}",
+  "console_pager_page_size": "Einträge pro Seite",
+  "console_pager_per_page": "{count} pro Seite",
+  "console_pager_of": "Seite {page} von {pages}",
+  "console_nav_tokens": "Zugriffstoken",
+  "console_nav_group_account": "Dein Konto",
+  "console_nav_group_app": "App",
+  "console_nav_group_creator": "Ersteller und Daten",
+  "console_area_you": "Du"
 }

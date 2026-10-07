@@ -52,5 +52,15 @@
   "me_downloads_times": "{count, plural, other {# 回ダウンロード}}",
   "me_downloads_remove": "リストから削除",
   "me_downloads_remove_label": "{mod} をリストから削除",
-  "me_downloads_removed": "{mod} をリストから削除しました"
+  "me_downloads_removed": "{mod} をリストから削除しました",
+  "me_search_label": "名前で検索",
+  "me_search_placeholder": "MOD 名",
+  "me_sort_label": "並べ替え",
+  "me_sort_recent": "新しい順",
+  "me_sort_name": "名前順",
+  "me_sort_updates": "更新ありを先頭に",
+  "me_sort_times": "ダウンロード回数順",
+  "me_no_match_title": "一致する MOD はありません",
+  "me_no_match_text": "別の名前を試すか、すべて表示してください。",
+  "me_clear_filters": "絞り込みを解除"
 }

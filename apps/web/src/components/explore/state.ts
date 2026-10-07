@@ -19,7 +19,16 @@ export const LIST_TYPES = ['mod', 'library', 'build', 'all'] as const;
 export type ListType = (typeof LIST_TYPES)[number];
 
 /** Sorts offered in the UI (`relevance` only while a text filter is active). */
-export const EXPLORE_SORTS = ['new', 'downloads', 'trending', 'updated', 'rating', 'follows', 'comments'] as const;
+export const EXPLORE_SORTS = [
+  'new',
+  'downloads',
+  'trending',
+  'updated',
+  'rating',
+  'name',
+  'follows',
+  'comments',
+] as const;
 export const ALL_SORTS = [...EXPLORE_SORTS, 'relevance'] as const satisfies readonly ModSort[];
 
 export const MULTIPLAYER_VALUES = ['client_side', 'host_only', 'all_players', 'singleplayer_only'] as const;
@@ -29,11 +38,19 @@ export type PlatformFilter = (typeof PLATFORM_VALUES)[number];
 export const UPDATED_VALUES = ['30d', '90d', '1y'] as const;
 export type UpdatedFilter = (typeof UPDATED_VALUES)[number];
 export const RATING_VALUES = [4, 3] as const;
+/** «At least N downloads» steps of the search page. */
+export const DOWNLOADS_VALUES = [100, 1000, 10000] as const;
+/** Page sizes offered by the listing pages (`EXPLORE_PAGE_SIZE` is the default). */
+export const PAGE_SIZES = [12, 24, 48, 96] as const;
 export const VIEW_VALUES = ['grid', 'list', 'compact'] as const;
 export type ExploreView = (typeof VIEW_VALUES)[number];
 
 /** Page size of every listing (API default; SEO pages keep the same size forever). */
 export const EXPLORE_PAGE_SIZE = 24;
+/** Sorts whose natural direction is ascending (A to Z). */
+export function defaultOrderOf(sort: ModSort): 'asc' | 'desc' {
+  return sort === 'name' ? 'asc' : 'desc';
+}
 /** Highest page the API accepts. */
 export const MAX_PAGE = 10_000;
 /** Limits of the list parameters (contract `ModListQuery`). */
@@ -52,6 +69,7 @@ export interface ExploreState {
   platform: PlatformFilter | null;
   updatedWithin: UpdatedFilter | null;
   minRating: number | null;
+  minDownloads: number | null;
   hasSource: boolean;
   verified: boolean;
   author: string | null;
@@ -62,6 +80,8 @@ export interface ExploreState {
   sort: ModSort;
   order: 'asc' | 'desc';
   page: number;
+  /** Items per page (one of `PAGE_SIZES`). */
+  pageSize: number;
   view: ExploreView;
 }
 
@@ -107,6 +127,7 @@ export function defaultState(scope: ExploreScope): ExploreState {
     platform: null,
     updatedWithin: null,
     minRating: null,
+    minDownloads: null,
     hasSource: false,
     verified: false,
     author: null,
@@ -116,6 +137,7 @@ export function defaultState(scope: ExploreScope): ExploreState {
     sort: 'new',
     order: 'desc',
     page: 1,
+    pageSize: EXPLORE_PAGE_SIZE,
     view: 'grid',
   };
 }
@@ -183,6 +205,8 @@ export function parseExploreState(params: ParamsLike, scope: ExploreScope): Expl
   state.updatedWithin = oneOf(UPDATED_VALUES, params.get('updatedWithin'));
   const rating = Number(params.get('minRating'));
   state.minRating = Number.isInteger(rating) && rating >= 1 && rating <= 5 ? rating : null;
+  const downloads = Number(params.get('minDownloads'));
+  state.minDownloads = Number.isInteger(downloads) && downloads >= 1 && downloads <= 1_000_000 ? downloads : null;
   state.hasSource = flag(params.get('hasSource'));
   state.verified = flag(params.get('verified'));
   const author = params.get('author')?.trim() ?? '';
@@ -195,8 +219,11 @@ export function parseExploreState(params: ParamsLike, scope: ExploreScope): Expl
   const oldest = rawSort === 'oldest';
   const sort = oldest ? 'new' : oneOf(ALL_SORTS, rawSort);
   state.sort = sort === 'relevance' && !state.q ? 'new' : (sort ?? (state.q ? 'relevance' : 'new'));
-  state.order = oldest || params.get('order') === 'asc' ? 'asc' : 'desc';
+  const rawOrder = params.get('order');
+  state.order = oldest || rawOrder === 'asc' ? 'asc' : rawOrder === 'desc' ? 'desc' : defaultOrderOf(state.sort);
   state.page = pageOf(params.get('page'));
+  const size = Number(params.get('pageSize'));
+  state.pageSize = (PAGE_SIZES as readonly number[]).includes(size) ? size : EXPLORE_PAGE_SIZE;
   state.view = oneOf(VIEW_VALUES, params.get('view')) ?? 'grid';
   return state;
 }
@@ -220,14 +247,15 @@ export function isFiltered(state: ExploreState, scope: ExploreScope): boolean {
     activeFilterCount(state, scope) > 0 ||
     state.type !== scope.defaultType ||
     state.sort !== defaultSortOf(state) ||
-    state.order !== 'desc' ||
+    state.order !== defaultOrderOf(state.sort) ||
+    state.pageSize !== EXPLORE_PAGE_SIZE ||
     state.view !== 'grid' ||
     state.nsfw ||
     state.unapproved
   );
 }
 
-/** Number of active filters (the «Filters (3)» badge): type, sort, order and view excluded. */
+/** Number of active filters (the «Filters (3)» badge): type, sort, order, page size and view excluded. */
 export function activeFilterCount(state: ExploreState, scope: ExploreScope): number {
   return (
     extraCategories(state, scope).length +
@@ -239,9 +267,12 @@ export function activeFilterCount(state: ExploreState, scope: ExploreScope): num
     (state.platform ? 1 : 0) +
     (state.updatedWithin ? 1 : 0) +
     (state.minRating ? 1 : 0) +
+    (state.minDownloads ? 1 : 0) +
     (state.hasSource ? 1 : 0) +
     (state.verified ? 1 : 0) +
     (state.author ? 1 : 0) +
+    (state.nsfw ? 1 : 0) +
+    (state.unapproved ? 1 : 0) +
     (state.q ? 1 : 0)
   );
 }
@@ -260,13 +291,15 @@ export function queryPairsOf(state: ExploreState, scope: ExploreScope): [string,
   if (state.platform) pairs.push(['platform', state.platform]);
   if (state.updatedWithin) pairs.push(['updatedWithin', state.updatedWithin]);
   if (state.minRating) pairs.push(['minRating', String(state.minRating)]);
+  if (state.minDownloads) pairs.push(['minDownloads', String(state.minDownloads)]);
   if (state.hasSource) pairs.push(['hasSource', '1']);
   if (state.verified) pairs.push(['verified', '1']);
   if (state.author) pairs.push(['author', state.author]);
   if (state.nsfw) pairs.push(['nsfw', '1']);
   if (state.unapproved) pairs.push(['unapproved', '1']);
   if (state.sort !== defaultSortOf(state)) pairs.push(['sort', state.sort]);
-  if (state.order !== 'desc') pairs.push(['order', state.order]);
+  if (state.order !== defaultOrderOf(state.sort)) pairs.push(['order', state.order]);
+  if (state.pageSize !== EXPLORE_PAGE_SIZE) pairs.push(['pageSize', String(state.pageSize)]);
   if (state.view !== 'grid') pairs.push(['view', state.view]);
   if (state.page > 1) pairs.push(['page', String(state.page)]);
   return pairs;
@@ -328,7 +361,7 @@ export function apiQueryOf(state: ExploreState, options: { facets?: boolean } = 
     sort: state.sort,
     order: state.order,
     page: state.page,
-    pageSize: EXPLORE_PAGE_SIZE,
+    pageSize: state.pageSize,
   };
   if (state.category.length) query.category = [...state.category];
   if (state.excludeCategory.length) query.excludeCategory = [...state.excludeCategory];
@@ -339,6 +372,7 @@ export function apiQueryOf(state: ExploreState, options: { facets?: boolean } = 
   if (state.platform) query.platform = state.platform;
   if (state.updatedWithin) query.updatedWithin = state.updatedWithin;
   if (state.minRating) query.minRating = state.minRating;
+  if (state.minDownloads) query.minDownloads = state.minDownloads;
   if (state.hasSource) query.hasSource = true;
   if (state.verified) query.verified = true;
   if (state.author) query.author = state.author;

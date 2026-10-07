@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 import { describe, expect, it } from 'vitest';
-import { fieldTarget, hasContent, listingPath, SLUG_PATTERN, slugify, stepFromNumber } from './wizard.ts';
+import { fieldTarget, hasContent, listingPath, SLUG_PATTERN, slugify, stepFromNumber, stepProblems } from './wizard.ts';
 
 /** Source text of a top-level `export function <name>` (for parity checks with @sotf/core). */
 function functionSource(path: string, name: string): string {
@@ -74,5 +74,28 @@ describe('listingPath', () => {
   it('uses the public URL of the kind', () => {
     expect(listingPath('mod', 'ana', 'stack')).toBe('/mods/ana/stack');
     expect(listingPath('build', 'ana', 'fort')).toBe('/builds/ana/fort');
+  });
+});
+
+describe('stepProblems', () => {
+  const checks = { isHttpUrl: (v: string) => v.startsWith('https://'), isLoaderVersion: (v: string) => /^\d/.test(v) };
+
+  it('asks for the file first', () => {
+    expect(stepProblems('file', 'mod', {}, checks).map((p) => p.field)).toEqual(['file']);
+    expect(stepProblems('file', 'mod', { fileUploadId: 'x' as never }, checks)).toEqual([]);
+  });
+
+  it('requires name, address, short description and category on details', () => {
+    expect(stepProblems('details', 'mod', {}, checks).map((p) => p.field)).toEqual([
+      'name',
+      'slug',
+      'shortDescription',
+      'categorySlug',
+    ]);
+    const ok = { name: 'Stack Mod', shortDescription: 'Stacks.', categorySlug: 'building' };
+    expect(stepProblems('details', 'mod', ok, checks)).toEqual([]);
+    expect(stepProblems('details', 'mod', { ...ok, sourceUrl: 'nope' }, checks).map((p) => p.field)).toEqual([
+      'sourceUrl',
+    ]);
   });
 });

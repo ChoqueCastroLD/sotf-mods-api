@@ -9,23 +9,22 @@ import { cn } from '@sotf/ui/cn';
 import { Icon } from '@sotf/ui/icons';
 import { Skeleton } from '@sotf/ui/skeleton';
 import { Package } from 'lucide-react';
-import { type ReactNode, useId } from 'react';
+import { type ReactNode, useId, useState } from 'react';
 import { problemText } from '../../lib/messages.ts';
 import { notify } from '../../lib/notify.ts';
-import { type AnalyticsRange, type ModStatus, RANGES } from './api.ts';
+import { type AnalyticsRange, RANGES as BASE_RANGES, type ModStatus } from './api.ts';
 import { bt } from './i18n.ts';
 import { modStatusLabel, modStatusVariant, rangeLabel } from './labels.ts';
 
-/** Screen heading of the area (readout + h1 + description + actions). */
+/** Screen heading of the area (h1 + description + actions). */
 export function ScreenHeader({
-  readout,
   title,
   description,
   actions,
-  keepReadout = false,
 }: {
-  keepReadout?: boolean;
+  /** Kept for callers that still pass the old kicker line; it is no longer shown. */
   readout?: string;
+  keepReadout?: boolean;
   title: ReactNode;
   description?: ReactNode;
   actions?: ReactNode;
@@ -33,7 +32,6 @@ export function ScreenHeader({
   return (
     <header className="flex flex-wrap items-end justify-between gap-4">
       <div className="grid min-w-0 gap-1">
-        {readout ? <p className={cn('readout text-signal', !keepReadout && 'max-md:hidden')}>{readout}</p> : null}
         <h1 className="font-display-caps text-display-xs text-fg break-words">{title}</h1>
         {description ? <p className="max-w-prose text-sm text-fg-muted max-md:line-clamp-2">{description}</p> : null}
       </div>
@@ -64,7 +62,7 @@ export function Panel({
       className={cn('grid gap-3 rounded-lg border border-border bg-surface p-4', className)}
     >
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <h2 id={id} className="readout text-fg">
+        <h2 id={id} className="text-base font-semibold text-fg">
           {title}
         </h2>
         {actions ? <div className="flex flex-wrap items-center gap-2">{actions}</div> : null}
@@ -75,6 +73,9 @@ export function Panel({
 }
 
 export function ModThumb({ url, className }: { url: string | null | undefined; className?: string }) {
+  // A cover that does not load (deleted file, offline) falls back to the plain placeholder.
+  const [failed, setFailed] = useState<string | null>(null);
+  const shown = url && failed !== url ? url : null;
   return (
     <span
       className={cn(
@@ -82,8 +83,15 @@ export function ModThumb({ url, className }: { url: string | null | undefined; c
         className,
       )}
     >
-      {url ? (
-        <img src={url} alt="" loading="lazy" decoding="async" className="absolute inset-0 size-full object-cover" />
+      {shown ? (
+        <img
+          src={shown}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          onError={() => setFailed(shown)}
+          className="absolute inset-0 size-full object-cover"
+        />
       ) : (
         <Icon icon={Package} size={18} />
       )}
@@ -99,23 +107,30 @@ export function StatusBadge({ status }: { status: ModStatus }) {
   );
 }
 
-/** 7 d · 30 d · 90 d · All, as a radio group of buttons. */
+/** 7 d · 30 d · 90 d · All (· Custom), as a radio group of buttons. */
 export function RangeSwitch({
   value,
   onChange,
   label,
   className,
+  allowCustom = false,
 }: {
-  value: AnalyticsRange;
-  onChange: (range: AnalyticsRange) => void;
+  value: AnalyticsRange | 'custom';
+  onChange: (range: AnalyticsRange | 'custom') => void;
   label?: string;
   className?: string;
+  /** Adds «Custom» (a start and end date, chosen by the screen). */
+  allowCustom?: boolean;
 }) {
+  const RANGES: ReadonlyArray<AnalyticsRange | 'custom'> = allowCustom ? [...BASE_RANGES, 'custom'] : BASE_RANGES;
   return (
     <div
       role="radiogroup"
       aria-label={label ?? bt('basecamp_range_label')}
-      className={cn('flex rounded-lg border border-border bg-sunken p-0.5 md:inline-flex md:rounded-md', className)}
+      className={cn(
+        'flex w-full rounded-lg border border-border bg-sunken p-0.5 md:inline-flex md:w-auto md:rounded-md',
+        className,
+      )}
     >
       {RANGES.map((range) => {
         const checked = range === value;
@@ -129,7 +144,7 @@ export function RangeSwitch({
             onClick={() => onChange(range)}
             onKeyDown={(event) => {
               const index = RANGES.indexOf(range);
-              let next: AnalyticsRange | undefined;
+              let next: AnalyticsRange | 'custom' | undefined;
               if (event.key === 'ArrowRight' || event.key === 'ArrowDown') next = RANGES[(index + 1) % RANGES.length];
               if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
                 next = RANGES[(index - 1 + RANGES.length) % RANGES.length];
@@ -145,12 +160,12 @@ export function RangeSwitch({
             data-range={range}
             tabIndex={checked ? 0 : -1}
             className={cn(
-              'inline-flex h-10 min-w-11 flex-1 items-center justify-center rounded-md px-2.5 text-sm font-medium tabular-nums transition-colors md:h-8 md:flex-none md:rounded-sm md:text-xs',
+              'inline-flex h-10 min-w-11 flex-1 items-center justify-center whitespace-nowrap rounded-md px-2.5 text-sm font-medium tabular-nums transition-colors md:h-8 md:flex-none md:rounded-sm md:text-xs',
               'focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus',
               checked ? 'bg-surface text-fg shadow-sm' : 'text-fg-muted hover:text-fg',
             )}
           >
-            {rangeLabel(range)}
+            {range === 'custom' ? bt('basecamp_range_custom') : rangeLabel(range)}
           </button>
         );
       })}

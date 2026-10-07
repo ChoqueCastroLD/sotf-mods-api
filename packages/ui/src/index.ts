@@ -91,6 +91,8 @@ export {
   type MenuRadioEntry,
   type MenuSeparatorEntry,
 } from './menu.tsx';
+export { Motif, type MotifProps } from './motif.tsx';
+export { type MotifDensity, type MotifFade, type MotifOptions, type MotifTone, motifStyle, motifVars } from './motif-svg.ts';
 export { Pagination, type PaginationProps } from './pagination.tsx';
 export { type PageToken, paginationRange } from './pagination-range.ts';
 export { PasswordField, type PasswordFieldProps } from './password-field.tsx';

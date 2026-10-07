@@ -3,7 +3,7 @@ export type Upload_Game_Builds_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "Only tick the patches you actually played on." |
+* | "Pick the patches you actually played on. Newest first." |
 *
 * @param {Upload_Game_Builds_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

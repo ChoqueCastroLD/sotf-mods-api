@@ -3,7 +3,7 @@ export type Upload_Compat_WhereInputs = {};
 /**
 * | output |
 * | --- |
-* | "Where it runs" |
+* | "Where it works" |
 *
 * @param {Upload_Compat_WhereInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

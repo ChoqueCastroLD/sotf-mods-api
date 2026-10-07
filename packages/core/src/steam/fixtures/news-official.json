@@ -1,0 +1,738 @@
+{
+  "appnews": {
+    "appid": 1326470,
+    "newsitems": [
+      {
+        "gid": "1811772772517758",
+        "title": "Unity security update",
+        "date": 1759517232,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "[p]Hey everyone,  [/p][p][/p][p]Due to a Unity engine security issue outlined here: [url=\"https://unity.com/security/sept-2025-01/remediation\"]https://unity.com/security/sept-2025-01/remediation[/url] [/p][p]we’ve updated the UnityPlayer.dll file for the following titles:  [/p][list][*][p]Sons of the Forest [/p][/*][*][p]Sons of the Forest Dedicated Server [/p][/*][*][p]The Forest VR  [/p][/*][/li"
+      },
+      {
+        "gid": "1789039014504127",
+        "title": "Hotfix",
+        "date": 1737481646,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nHere is another small hotfix for last weeks raft patch.\n\n[list]\n[*] Fixed issue where Structures built at centerpoint of raft could prevent raft from moving correctly\n[/list]\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub."
+      },
+      {
+        "gid": "1789039014476715",
+        "title": "Hotfix",
+        "date": 1737409255,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\n\nHere is a small hotfix for last weeks raft patch.\n[list]\n\n[*] Fixed issue that could occur with overlapping structures being linked incorrectly causing them to be missing on clients or impossible to dismantle.\n[/list]\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub."
+      },
+      {
+        "gid": "1788945554762878",
+        "title": "Rafts, Defensive Wall Blueprints, Fixes, Improvements and more",
+        "date": 1736963096,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nThis patch adds 3 buildable rafts along with a mooring post. Additionally there are new buildable holders for the KnightV and the hang glider. We also added a procedural defensive wall placement system so you can now just draw out where you want the walls and let Kelvin finish them. There is also added Steam Game Recording support and a secret clothing item you can find.\n\nRanged wea"
+      },
+      {
+        "gid": "5759622039976950252",
+        "title": "Hotfix",
+        "date": 1718907075,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nHere are a few more fixes for some issues that have come up recently.\n\n[list]\n[*] Modified custom settings for health and stamina regeneration: there are now two options to control the base regeneration rate and regeneration rate when cold\n[*] Fix for clients cutscenes not syncing NPC states correctly\n[*] Fix for clients losing input control if host shuts down during end cutscene\n[*"
+      },
+      {
+        "gid": "5741605105608102653",
+        "title": "Hotfix",
+        "date": 1716490019,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nHere are a few more fixes for some issues that have come up recently.\n\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub\n\n\n[b]Fixes[/b]\n\n[list]\n[*] Fixed chainsaw revved audio stuck on for other clients after ground attack\n[*] Fixed priest outfit showing low resolution texture in inventory and grab-bag\n[*] Fix for bushes a"
+      },
+      {
+        "gid": "5747233970415479912",
+        "title": "Hotfix",
+        "date": 1715793206,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone, \n\nHere is another hotfix for an issue that came up in Monday’s patch release\n\n[list]\n[*] Fixed issue where log sled could get into a bad state when holding stones\n[/list]\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub"
+      },
+      {
+        "gid": "5768625435415076568",
+        "title": "Hotfix",
+        "date": 1715721621,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone, \n\nHere is a hotfix for some issues that came up in yesterday's patch release.\n\n[list]\n[*]  Fixed a case where player could get stuck for a few seconds when placing floor planks in a structure\n[*]  Fixed an issue where cutting windows with axe would briefly cause player to transition into idle animation\n[/list]\n\nAs always, please continue to post your bug reports and feedback in the D"
+      },
+      {
+        "gid": "5768625435411253499",
+        "title": "Small Patch",
+        "date": 1715631012,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone,\n\nHere’s a small patch focused mostly on bug fixing.\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub\n\n\n\n\n[b] Improvements[/b]\n\n[list]\n[*] Rabbits can now be electrocuted with the stun gun\n[*] Captured puffies now have an electrocuted reaction that keeps them in the captured/tied up pose\n[*] Rope bridges will now generate n"
+      },
+      {
+        "gid": "5762994032391940590",
+        "title": "Small Patch",
+        "date": 1713471457,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone, \n\nHere’s a small patch that adds a new skunk animal type, the ability to catch, hold and breed rabbits and some small fixes and improvements.\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub\n\n[b]Features[/b]\n[list]\n[*] Added Skunks\n[*] Added new rabbit breeding and holding structures\n[*] Small animal traps will now trap ra"
+      },
+      {
+        "gid": "5686429670869102800",
+        "title": "Small Patch",
+        "date": 1710366516,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone, \n\nThis patch gives Kelvin the ability to get into golf carts, allows players to create a new armor type, and adds improvements to the auto foundation snapping system.\n\nThere are also some additional fixes and improvements, listed below.\n\n\n[b]Features[/b]\n[list]\n[*] Added ability for Kelvin to get into golf carts\n[*] Added seat occupied indicators for golf carts\n[*] Added new Armor ty"
+      },
+      {
+        "gid": "5688680204386000717",
+        "title": "Hotfix",
+        "date": 1709588245,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone, \n\nHere is another hotfix, fixing some issues that have come up recently.\n\n[list]\n[*] Reduced volume of bat audio\n[*] Fix for locked inputs after quitting to main menu in golf cart\n[*] Re-enabled AddCharacter, AddPrefab and Goto commands\n[*] Fixes for some contexts where defensive walls and locked structures still allowed enemies to path inside while player sleeps\n[/list]\n\nAs always, "
+      },
+      {
+        "gid": "5688680204371730245",
+        "title": "Hotfix",
+        "date": 1709250002,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nHere is a small hotfix.\n\n[list]\n[*] Fixed a visual issue that would cause screen artifacts near the landed helicopter.\n[/list]\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub"
+      },
+      {
+        "gid": "5688680204367348768",
+        "title": "Hotfix",
+        "date": 1709146175,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nHere is a small hotfix fixing some issues that have come up recently.\n\n[list]\n[*] Fixed some new achievements not triggering correctly\n[*] Fixed some additional issues with head trophies visuals not matching for late joining clients\n[*] Fixed a bug with dismantling apex elements when it should be prevented\n[*] Fixed a bug that could cause some radios to duplicate\n[*] Fixed some obje"
+      },
+      {
+        "gid": "5728086065197891240",
+        "title": "Hotfix",
+        "date": 1708986229,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nHere is a small hotfix fixing some issues that have come up over the last few days.\n\n[list]\n[*] Fixed issue with rope interaction breaking after using a short rope.\n[*] Fixed bug with binding for new actions not working after update.\n[*] Added some additional credits\n[*] Fixed defensive wall sometimes snapping to wrong object when placing on locations with overlapping cliff and terr"
+      },
+      {
+        "gid": "5728086065190774695",
+        "title": "Hotfix",
+        "date": 1708817555,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nHere is another small hotfix.\n\n[list]\n[*] Fixed an issue where some GPU’s could get stuck on loading a new or saved game.\n[/list]\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub"
+      },
+      {
+        "gid": "5728086065187139810",
+        "title": "Hotfix",
+        "date": 1708731381,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nHere is a small hotfix for some issues that came up in yesterdays release.\n\n[list]\n[*] Fixed issue where you could get into a broken state pick up a log while entering water with specific timing\n[*] Fixed Artifact UI counts not being show in inventory\n[*] Fixed weather occlusion system not working for multiplayer clients after completing a ghost construction\n[*] Fixed oysters in the"
+      },
+      {
+        "gid": "5728086065182647154",
+        "title": "v1.0",
+        "date": 1708624918,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nToday is our 1.0 Release of Sons Of The Forest. \n\nWe are super excited for you guys to play all the new additions, changes and fixes. If you have an older save game it will still work, but we recommend starting a fresh save if you want to experience the story and all the new features fully.\n\nThe biggest features, improvements and balance changes are listed below, but beyond this lis"
+      },
+      {
+        "gid": "5395938616810110069",
+        "title": "Hotfix",
+        "date": 1702326151,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone,\n\nHere are a couple small fixes to some visual issues that have come up recently.\n\n[list]\n[*] Fixed weapons not getting bloody or if already bloody not getting cleaned off in rain/water\n[*] Fixed missing forest fluff particle visuals\n[/list]\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub."
+      },
+      {
+        "gid": "5395938616798928668",
+        "title": "Hotfix",
+        "date": 1702061075,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone,\n\nHere are some fixes for few issues that have come up recently.\n\n[list]\n[*] Rolled back unity to version in last weeks patch 15 release to fix various issues (should also fix mods not working)\n[*] Fixed light visuals breaking when too many are placed\n[*] Fixed various issues with enemy armor not behaving as expected or cannibals not wearing armor when they should be\n[/list]\n\nAs alway"
+      },
+      {
+        "gid": "5395938616792542219",
+        "title": "Hotfix",
+        "date": 1701909752,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone,\n\nHere’s another small fix for last weeks patch release.\n\n[list]\n[*] Fixed some tree types not correctly switching to current season\n[/list]\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub."
+      },
+      {
+        "gid": "5395938616791999996",
+        "title": "Hotfix",
+        "date": 1701896901,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone,\n\nHere is a small update with some balance tweaks and some fixes.\n\n[list]\n[*] Updated unity version\n[*] Rebalanced Hydration, fullness, and Health values for consumable items for regular and hard survival\n[*] Increased Armor health for all armor types\n[*] Adjusted some Cooking recipes and values\n[*] Fixed issues with Seasonal assets sometimes reverting to incorrect materials\n[*] Fixed"
+      },
+      {
+        "gid": "5395937983666589234",
+        "title": "Hotfix",
+        "date": 1701480869,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone, \n\nHere are some more small fixes to yesterdays patch release\n\n[list]\n[*] Fixed Virginia not correctly targeting enemies\n[*] Lowered volume of bird audio\n[*] Fixed issue with lakes not always freezing on load in winter\n[*] Fixed story pages listing incorrect number available\n[/list]\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Commun"
+      },
+      {
+        "gid": "5395937983665488747",
+        "title": "Hotfix",
+        "date": 1701454788,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone, \n\nHere are some small fixes to yesterdays patch release\n\n[list]\n[*] Fixed log sled contents not activating in some cases in multiplayer games\n[*] Fixed errors when holding decayed head in multiplayer\n[*] Fixed resolution on wave splashes\n[/list]\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub."
+      },
+      {
+        "gid": "5395937983662520952",
+        "title": "Patch 15 -Weapon holders, New cannibal type, Kelvin actions, New outfit and more",
+        "date": 1701384465,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nThis patch gives Kelvin 3 new commands; repair structures, sharpen defensive walls and maintain base. If you ask him to maintain your base he will fill all holders to capacity, complete any in progress structures, repair damage and sharpen placed defensive walls. \n\nThere’s also a new findable outfit and new findable blueprint added to the world. We added a new female cannibal type ‘"
+      },
+      {
+        "gid": "5395937983658210798",
+        "title": "Release Update",
+        "date": 1701282321,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nToday we are announcing that Sons Of The Forest v1.0 will release February 22, 2024 after 1 year in Early Access.\n\nWe are also excited to announce Shawn Ashmore has joined the cast and will be voicing Timmy as we expand his role in the game and story. In addition to story updates, new features and polish, v1.0 will also include the final ??? piece.\n\nAfter tomorrows patch, we will co"
+      },
+      {
+        "gid": "5302486388003191711",
+        "title": "Hotfix",
+        "date": 1699656601,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone,\n\nHere is a small hotfix for some issues that came up in yesterday’s patch\n\n[list]\n[*] Fixed issue with spear storage where you could add more spears than were visible\n[*] Fixed textures on held story item when held by another player in multiplayer\n[*] Increased range and brightness of spotlight\n[*] Improved texture streaming on story notes\n[*] Fixed story notes not being readable on "
+      },
+      {
+        "gid": "5302486387999813787",
+        "title": "Hotfix",
+        "date": 1699576560,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone,\n\nHere is a small fix for some issues that came up in today's patch\n[list]\n\n[*] Fixed story pages object in inventory not showing up in old saves\n[*] Fixed game switching to fullscreen for a moment when starting game if set to windowed\n[/list]\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub."
+      },
+      {
+        "gid": "5302486387999527997",
+        "title": "Patch 14 - Arrow upgrades, new blueprints, new cave and more",
+        "date": 1699569778,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone,\n\nThis patch adds a new small cave along with the second to last ??? findable item. We also added the ability to craft explosive, fire, shock and poison arrows. Along with this, there are 5 new findable blueprints in the world, and 2 new structures added to the book.\n\nWe also added some new story note pickups, and the ability to view previously collected notes via a stack kept in the "
+      },
+      {
+        "gid": "5218041989058526140",
+        "title": "Hotfix",
+        "date": 1698090331,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nHere is another small hotfix for some issues that came up in last weeks patch\n\n[list]\n[*] Fixed some unique items reappearing when already owned\n[*] Fixed some issues with planks in cave B not being disabled correctly\n[*] Fixed breaking some stumps spawning tarp pickups\n[*] Increased damage on multi-trap\n[*] Fixed Greg cannibal having a white face mask\n[*] Lowered speed of new canni"
+      },
+      {
+        "gid": "5218041989043959987",
+        "title": "Hotfix",
+        "date": 1697745012,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nHere is a small hotfix for some issues that came up in today's patch\n[list]\n[*]Fixed some issues with Z-fighting in book\n[*]Fixed placing convex corner tarp on beams directly on the ground not working\n[*]Improved visibility of light leading the way to cave b extension\n[*]Removed aipause, aighost and cavelight from release builds\n[/list]\nAs always, please continue to post your bug re"
+      },
+      {
+        "gid": "5218041989043543791",
+        "title": "Patch 13 - Tarp walls, Cave additions, new blueprints and more",
+        "date": 1697735148,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone,\n\nThis patch re-works Cave D (the gold armor/rifle cave) adding a bunch of cool additions and some big surprises. We also added a new extension to cave B (the rope gun cave) two new ??? items, and 3 new findable blueprints.\n\nAdditionally we added a new skinned enemy type who is very aggressive, gave twins the ability to burst out through the ground, and lots more. For the full list ch"
+      },
+      {
+        "gid": "5220292521177937381",
+        "title": "Hotfix",
+        "date": 1696447109,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone,\n\nHere are some small fixes for controllers\n\n[list]\n[*] Virtual keyboard will now be accessible via controller when setting server name or naming a save game (Steam Big Picture mode)\n[*] Fixed steam overlay not blocking game inputs when open (Steam Big Picture mode)\n[/list]\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub."
+      },
+      {
+        "gid": "5220291886491963379",
+        "title": "Hotfix",
+        "date": 1696022938,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nHere is a small hotfix for an issue that came up in today's patch\n\n[list]\n[*] Fixed issues with some storage holders not working for clients in multiplayer games\n[/list]\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub."
+      },
+      {
+        "gid": "5220291886491263176",
+        "title": "Patch 12 - New cave, Pick axe, solafite mining, new buildables and more",
+        "date": 1696006346,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone,\n\nThis patch adds a new cave that contains a pick axe. The pick axe can be used to mine the Solafite mineral found in caves. This material can be used with one of the new buildable structures we’ve added.\n\nWe also added the second ??? item, implemented some more A.I. improvements including allowing cannibals to call out for help, and added more reactions and emotes to Virginia and Kel"
+      },
+      {
+        "gid": "5220291886488170625",
+        "title": "Patch 12 update",
+        "date": 1695933036,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\n\nTodays planned patch will release early tomorrow instead of today due to some last minute issues.\n\n\n\nThe team at endnight"
+      },
+      {
+        "gid": "5480373588787470993",
+        "title": "Hotfix",
+        "date": 1694812808,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nHere are some small fixes for yesterdays patch release:\n\n[list]\n[*]  Fixed missing music in the gold room cutscene if you have high sentiment with Virginia\n[*]  Fixed some issues with distant cliff meshes\n[*]  Fixed new cannibal types not working with all trap types\n[*]  Fixed positioning of the overloaded indicator on the flat solar panels\n[*]  Fixed bad guys not being removed from"
+      },
+      {
+        "gid": "5480373588784079064",
+        "title": "Patch 11 - Spear cannibals, electricity improvements, new cutscene and more",
+        "date": 1694732435,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone,\n\nFor this patch we have revised the electricity system, adding a new battery pickup that is needed to keep things running at night and added a limit to the amount of items that can be powered from a single source before your lights will start dimming and eventually overload. Batteries can be found near the broken down golf carts in world and in some bunkers. \n\nWe also added a new cut"
+      },
+      {
+        "gid": "5141476355662069769",
+        "title": "Hotfix",
+        "date": 1693593292,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nHere is a small hotfix for some issues that came up in yesterdays patch\n\n[list]\n[*] Fixed stone audio and gold room music not being affected by volume sliders\n[*] Fixed dlss setting not working in Turkish language\n[*] Fixed some localization mistakes in subtitles\n[/list]\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub."
+      },
+      {
+        "gid": "5141476355659160997",
+        "title": "Hotfix",
+        "date": 1693524381,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nHere is a small hotfix for an issue that came up in today's patch\n\n[list]\n[*] Fixed bush and tree billboards not properly disabling after they are cut down.\n[/list]\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub."
+      },
+      {
+        "gid": "5141476355658765192",
+        "title": "Patch 10 - Building improvements, Holosprings video, gold room changes and more",
+        "date": 1693515003,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nThis patch adds a new introduction video for guests at Holosprings, which can be viewed in the screening room of entertainment bunker. We also re-worked the gold room cutscene adding effects, lighting, new audio and extra animations.\n\nFor building, we added a large log holder, a deer hide rug, the ability to build stone floors, corner ramps (or roof corners) and railings.\n\nWe’ve als"
+      },
+      {
+        "gid": "5127964289174027833",
+        "title": "Patch 09- Placeable radio, new trap, new cannibal type and lots of fixes",
+        "date": 1692304455,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nThis patch fixes a bunch of bugs, adds a new large female cannibal type, a returning end game creature and you can now place radios after picking them up. We also added a new alarm radio trap so you can be alerted when enemies are nearby and added the ability to explode all the creepy enemies.\n\nFinally we did a big pass on base performance, large bases should run much better with th"
+      },
+      {
+        "gid": "5124584686243131860",
+        "title": "Hotfix",
+        "date": 1690393806,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone,\n\nHere are some more small fixes for last weeks patch release\n\n[list]\n[*] Fixed some cases of Virginia stuck in swimming animation (when not in water)\n[*] Fixed first stick placed in stick holder by multiplayer client not visible\n[/list]\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub."
+      },
+      {
+        "gid": "5124584051988579317",
+        "title": "Hotfix",
+        "date": 1690304023,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone,\n\nHere are some small fixes for last weeks patch release.\n\n[list]\n[*] Fixed issue where trees would sometimes not fall when cut\n[*] Fixed memory leak when looking at shelves with grab bag open (could cause crashing)\n[*] Fixed stick visuals in stick holder not updating when last stick was taken\n[*] Fixed Kelvin sometimes not collecting sticks\n[*] Fixed window shutters not always toggli"
+      },
+      {
+        "gid": "5124584051974598136",
+        "title": "Hotfix",
+        "date": 1689972575,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone,\n\nHere are some more small fixes for some issues that came up in yesterday’s patch release.\n\n[list]\n[*] Fixed game freezing on end boss monster if playing in peaceful mode\n[*] Fixed an issue where player could end up in a stuck state when dropping small rocks\n[*] Fixed log sled full of rocks being difficult to move/causing player to be flung upward on grabbing it\n[/list]\n\nAs always, p"
+      },
+      {
+        "gid": "5124584051974152778",
+        "title": "Hotfix",
+        "date": 1689962020,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone,\n\nHere are some small fixes for issues that came up in yesterday’s patch release\n\n[list]\n[*] Fixed case where floors couldn’t be repaired\n[*] Fixed water in cave d not rendering correctly\n[*] Fixed issue with auto-updater not working on some dedicated servers\n[/list]\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub."
+      },
+      {
+        "gid": "5124584051971231138",
+        "title": "Hotfix",
+        "date": 1689892776,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone,\n\nHere are some small fixes for issues that came up in today’s patch release\n\n[list]\n[*] Fixed previously used golf carts in save games no longer usable\n[*] Fixed corpses sometimes visible in inventory\n[*] Fixed bug that could prevent wires powering lights and fences in some cases\n[/list]\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the "
+      },
+      {
+        "gid": "5124584051970861703",
+        "title": "Patch 08 - Electric fences, new large trap, balance changes and more",
+        "date": 1689884024,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nFor this patch we have added electric fences, improved the golf cart adding headlights and the ability to drive with up to 4 players in the cart, a new found footage tape, added a (returning) enemy to the end game, a new large trap and lots more. \n\nWe’ve also done a pass on optimization and brought down memory usage which should help cases of the game crashing.\n\nFinally, we made a c"
+      },
+      {
+        "gid": "5124581515273678813",
+        "title": "Hotfix",
+        "date": 1687888739,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone,\n\nHere are some small fixes for some issues that came up in last weeks patch release\n\n [list]\n[*] Fixed skulls not being collectable from burnt bodies and fixed colliders on burnt bones\n[*]  Stone Storage can now be dismantled\n[*]  Fix for side rack items disappearing in the log sled when pushed away from where it was spawned\n[*]  Fix for cooking pot on a fire teleporting to the playe"
+      },
+      {
+        "gid": "5124581515259579614",
+        "title": "Hotfix",
+        "date": 1687554309,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone,\n\nHere are some small fixes for some issues that came up in today’s patch release.\n\n[list]\n[*] Fixed time of day pop after boss fight\n[*] Fixed carrying rain collector or spring trap causing player to slide\n[*] Added tutorial for how to exit golf cart\n[*] Fixed case where cutscene queue could break in multiplayer\n[/list]\n\nAs always, please continue to post your bug reports and feedbac"
+      },
+      {
+        "gid": "5124581515258878943",
+        "title": "Patch 07-Rifle, head trophies, drivable carts, dedicated servers, frogs and more",
+        "date": 1687537696,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone,\n\nThis patch adds a new boss battle along with a new cutscene to the end of the game, as well as drivable golf carts, a rifle which can be found in one of the caves, frogs that sit on lily pads and chirp, the ability to chop heads off dead animals and use them as wall decorations,  a bunch of stone building improvements and lots more for the full list check below.\n\nWe’ve also added ou"
+      },
+      {
+        "gid": "5124581515256047067",
+        "title": "Patch 07 Update",
+        "date": 1687470585,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nPatch 7 is our biggest patch release yet including a new boss monster, dedicated server support, a new weapon, animal head trophies, more stone building and tons more (drivable golf carts!). We have some last-minute fixes we need to do so will be releasing early tomorrow instead of tonight.\n\nThe team at endnight"
+      },
+      {
+        "gid": "5151601211222920810",
+        "title": "Hotfix",
+        "date": 1685550370,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone,\n\nHere is another small fix for last weeks patch.\n\n[list]\n[*] Fixed standing fire interaction breaking player\n[/list]\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub."
+      },
+      {
+        "gid": "5151600576592818396",
+        "title": "Hotfix",
+        "date": 1685133327,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nHere is a small fix for some issues that came up in todays patch release\n\n[list]\n[*] Fixed an issue with it being difficult to add first item to storage holders\n[*] Possible Fix for crashing issues on some machines\n[*] Fixed some issues with player movement on some machines\n[/list]\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Commu"
+      },
+      {
+        "gid": "5151600576592237947",
+        "title": "Patch 06 - Hard survival mode, Stone building, Custom effigies and lots more",
+        "date": 1685119572,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone,\n\nThis patch adds new stone pickups and the ability to build stone structures. We also added custom effigies, a first pass of hard survival plus a bunch of cooking improvements and lots more. For the full list, check below.\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub.\n\n[b]Features[/b]\n\n[list]\n[*] Hard survival difficul"
+      },
+      {
+        "gid": "5151600576589487256",
+        "title": "Patch 6 update",
+        "date": 1685054364,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nDue to some last-minute issues with our new stone building system, tonight’s planned patch will release early tomorrow instead.\n\nThe team at endnight"
+      },
+      {
+        "gid": "5140340943302520551",
+        "title": "Hotfix",
+        "date": 1684351769,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nHere is a small fix for some issues that came up in last weeks patch.\n\n[list]\n[*] Fixed lock up/delay on sleeping if regrow trees was turned on and lots of trees and bushes had been cut down\n[*]Fixed some armor values being set incorrectly\n[/list]\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub."
+      },
+      {
+        "gid": "6557848386946052813",
+        "title": "Hotfix",
+        "date": 1683925084,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nHere is another small fix for an issue that came up in yesterday's patch.\n\n[list]\n[*] Fixes crash on some machine configurations\n[/list]\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub."
+      },
+      {
+        "gid": "6557848386945754815",
+        "title": "Hotfix",
+        "date": 1683918019,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nHere is a small hotfix for a couple of issues that came up in yesterday's patch.\n\n[list]\n[*] Fixed enemies spawning in peaceful mode in save games.\n[*] Fixed fires not extinguishing when fuel is depleted\n[*] Fixed issue where opening grab bag on standing fires could leave UI visible on screen\n[/list]\n\nAs always, please continue to post your bug reports and feedback in the Discussion"
+      },
+      {
+        "gid": "6557848386942465403",
+        "title": "Patch 05 - Log sleds, Re-growing trees, Advanced cooking and lots more",
+        "date": 1683840043,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nFor this patch we added 2 buildable log sleds, a new advanced way to cook, an option for tree regrowth, the ability to strum your guitar, a new cove area with some beached sailboats, a ton of world detail and environmental improvements and lots more\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub.\n\n\n\n[b]Features[/b]\n\n[li"
+      },
+      {
+        "gid": "5133583099799742425",
+        "title": "Hotfix",
+        "date": 1682098166,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone,\n\nHere is a small fix for some issues that came up in yesterdays patch.\n\n[list]\n[*] Fixed Virginia GPS Tracker not clearing when returned to player\n[*] Fixed Kelvin having two GPS trackers\n[/list]\n    \nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub."
+      },
+      {
+        "gid": "5133583099796540857",
+        "title": "Patch 04 - Action cam, A.I. improvements, bug fixes, GPS changes and lots more",
+        "date": 1682022272,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nThis patch adds a new system for finding bunker locations which are now not visible on your GPS tracker at the start. Along with this, we have made a bunch of A.I. improvements, tons of bug fixes, the ability to name your save games, and a new action camera that is used to view found footage videos, along with the first of these videos with more coming in the future.\n\nAlso, because "
+      },
+      {
+        "gid": "5121196841289313716",
+        "title": "Patch 03 - Knight V, Spring trap, Night Vision, Solar power and more",
+        "date": 1680807487,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nThis patch adds a new rideable EUC the Knight V (pronounced knight five), a pair of night vision goggles, a new spring trap that will launch enemies, and brings a first pass of solar power and light bulbs to the building system, along with a bunch more fixes and other improvements.\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Commu"
+      },
+      {
+        "gid": "5143713753732992379",
+        "title": "Hotfix",
+        "date": 1679680218,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone,\n\nHere are some small fixes that came up in our patch yesterday.\n\n[list]\n[*]Fixed issue where you could die when going down cave slides\n[*]Linked volume of boss monster intro sting to audio slider settings\n[*]Reverted change to storage saving, they will now functions as before. We will reimplement this fix once we have a better solution for replenishing items\n[/list]\n\nAs always, pleas"
+      },
+      {
+        "gid": "5125698536880382999",
+        "title": "Patch 02 - New cave system, Boss battle, Balance tweaks, Bug fixes and lots more",
+        "date": 1679600219,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone,\n\nThis patch adds a new cave to explore, and a new boss monster to the ending along with more lore and tons of fixes and improvements for the full list check below.\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub.\n\n\n\n[b]Features[/b]\n[list]\n[*]Added new demon boss to end of hell caves\n[*]Added dead cultists to map\n[*]New do"
+      },
+      {
+        "gid": "5070528810297127940",
+        "title": "Hotfix",
+        "date": 1678486069,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone,\n\nHere is another small hotfix, fixing more cases of Kelvin able to cut down tree houses (he may still do this on some old structures, but shouldn’t do it on any newly created ones), an issue where host’s held furniture pose could break in multiplayer and a fix for regular apex construction.\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of t"
+      },
+      {
+        "gid": "5070528810293299728",
+        "title": "Hotfix",
+        "date": 1678395330,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone,\n\nHere is a small hotfix, fixing an issue that came up in our patch release this morning with dlss causing strange visual artifacts at nighttime. We also added an extra guest keycard to the morgue of bunker residential in case anyone is stuck in there with a save game before our most recent changes.\n\nAs always, please continue to post your bug reports and feedback in the Discussions a"
+      },
+      {
+        "gid": "5070528810292851405",
+        "title": "Patch 01 - Hang gliders, Binoculars, Balance tweaks, Bug fixes and lots more",
+        "date": 1678384704,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "\n\nHey everyone,\n\nFor our first patch we have added a new mini-boss battle, new binoculars pickup, hang gliders, defensive wall gates and door locks as well as lots more, for the full list check below:\n\n\n\n[b]Features[/b]\n[list]\n[*]Added Binoculars\n[*]Added Hang Glider\n[*]Added Defensive Wall gate\n[*]Added mid game boss fight into food bunker\n[*]Added Settings Reset in the Options screen\n[*]Added mi"
+      },
+      {
+        "gid": "5070528176559463979",
+        "title": "Hotfix 3",
+        "date": 1677699410,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nHere is a small fix for some issues that came up yesterday.\n\n[list]\n\n[*]Fix for hotkeyed flask removing flask when used.\n\n[*]Arms and Legs will now be equiped instead of eaten when hotkeyed\n\n[*]Fix for hotkey button label not fitting in inventory view for some buttons\n\n[*]Fixed hotkey icon showing first hotkey for all unassigned items\n\n[*]Fixed Helldoor collider not blocking certain"
+      },
+      {
+        "gid": "5059268543376039982",
+        "title": "Hotfix 2",
+        "date": 1677612113,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nHere is a small hotfix for a few issues that have come up over the weekend.\n\n[list]\n\n[*]Added hotkey system for keyboard/mouse. Assign hotkeys in inventory by pressing numerical keys 0 through 9 on hovered items in inventory\n\n[*]Added hint for hotkeys to loading screen\n\n[*]Improved cutscene skip prompt; will now appear briefly at start or show when common skip keys are pressed (esc,"
+      },
+      {
+        "gid": "5059268543358709082",
+        "title": "Hotfix 1",
+        "date": 1677201219,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone,\n\nHere’s a small hotfix for some issues that came up today.\n\n[list]\n[*] Fix for removing the book from backpack locking up the game\n[*]Fixed an issue with input mapping\n[/list]\n\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub."
+      },
+      {
+        "gid": "5059268099251806086",
+        "title": "Sons Of The Forest Multiplayer Trailer",
+        "date": 1676918236,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nHere is our latest trailer focused on building and multiplayer gameplay.\n\n[previewyoutube=LpNDrrly3GI;full][/previewyoutube]\n\n"
+      },
+      {
+        "gid": "5035622743884420706",
+        "title": "Announcing Sons Of The Forest Early Access",
+        "date": 1675449379,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nIt’s been a long journey since we first started ‘Sons of The Forest’ development and it’s grown into the biggest most complex game we have ever made. There is still so much more we want to add; items, new mechanics, gameplay balance and more. We didn’t want to delay again so have instead decided to involve the community in the continued development of this project and keep our Febru"
+      }
+    ],
+    "count": 73
+  }
+}

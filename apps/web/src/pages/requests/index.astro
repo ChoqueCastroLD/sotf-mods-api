@@ -1,25 +1,40 @@
 ---
 /**
- * `/requests` — the mod request board: what players ask for, most voted first.
+ * `/requests`: the mod request board, what players ask for, most voted first.
  *
- * - Status and sort as plain links (work without JavaScript), page-based pagination with real URLs.
- * - Indexable: `/requests` and `/requests?page=N`; filtered or re-sorted views are `noindex, follow`
- *   and point their canonical to the base listing.
+ * - Search by title, status tabs, sort, page size and numbered pagination. It is a plain GET form
+ *   and plain links (they work without JavaScript); `scripts/explore/explore.ts` applies changes in
+ *   place (the search after a short pause) and keeps the URL in sync.
+ * - Indexable: `/requests` and `/requests?page=N`; searched, filtered, re-sorted or resized views
+ *   are `noindex, follow` and point their canonical to the base listing.
  * - Cache: E(300) `list:requests`; the API failing gives 503 with an error state, never cached.
  */
 import { REQUEST_LIST_STATUSES } from '@sotf/contracts/requests';
 import { m } from '@sotf/i18n/messages';
 import { buttonClasses } from '@sotf/ui/button';
+import { Icon } from '@sotf/ui/icons';
 import { Pagination } from '@sotf/ui/pagination';
+import { ChevronDown } from 'lucide-react';
+import ExploreSearchBar from '../../components/explore/ExploreSearchBar.astro';
 import { configureModDomainI18n } from '../../components/mod/i18n.ts';
-import { isFiltered, loadRequestList, requestListHref, requestListQuery } from '../../components/requests/data.ts';
+import {
+  isFiltered,
+  loadRequestList,
+  REQUEST_PAGE_SIZE,
+  REQUEST_PAGE_SIZES,
+  requestListHref,
+  requestListQuery,
+  requestPath,
+} from '../../components/requests/data.ts';
 import RequestCard from '../../components/requests/RequestCard.astro';
 import { statusLabel } from '../../components/requests/status.ts';
 import PageState from '../../components/state/PageState.astro';
 import PageLayout from '../../layouts/PageLayout.astro';
 import { setPageCache } from '../../lib/cache/page.ts';
 import { pageCache } from '../../lib/cache/policy.ts';
+import { loadEnv } from '../../lib/env.ts';
 import { href } from '../../lib/i18n.ts';
+import { itemListJsonLd } from '../../lib/seo/jsonld.ts';
 
 export const prerender = false;
 
@@ -45,22 +60,49 @@ const description = m.requests_list_description();
 const title = state.page > 1 ? m.requests_list_title_page({ title: heading, page: state.page }) : heading;
 const seoPath = filtered ? '/requests' : `/requests${requestListQuery({ ...state })}`;
 const pageHref = (page: number) => requestListHref(state, { page }, locale);
+const searchLabel = m.requests_search_label();
+const siteUrl = loadEnv().siteUrl;
+const jsonLd =
+  items.length > 0
+    ? [
+        itemListJsonLd({
+          url: `${siteUrl}${href(seoPath, locale)}`,
+          name: heading,
+          offset: (state.page - 1) * state.pageSize,
+          items: items.map((request) => ({
+            name: request.title,
+            url: `${siteUrl}${href(requestPath(request.id), locale)}`,
+          })),
+        }),
+      ]
+    : [];
 const sorts = [
   { key: 'top', label: m.requests_sort_top() },
   { key: 'new', label: m.requests_sort_new() },
+  { key: 'old', label: m.requests_sort_old() },
+  { key: 'comments', label: m.requests_sort_comments() },
 ] as const;
+const FORM_ID = 'requests-form';
+const offset = (state.page - 1) * state.pageSize;
+const rangeText =
+  total === null || items.length === 0
+    ? ''
+    : m.explore_results_range({ from: offset + 1, to: offset + items.length, total });
+const selectClass =
+  'h-10 appearance-none rounded-md border border-border-strong bg-sunken ps-3 pe-9 text-sm text-fg transition-colors hover:border-fg-subtle focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus';
 ---
 
 <PageLayout
   template="requests"
   width="wide"
   seo={{ title, description, path: seoPath, noindex: filtered }}
+  jsonLd={jsonLd}
   breadcrumbs={[{ label: m.common_nav_home(), path: '/' }, { label: m.common_term_requests() }]}
 >
-  <div class="flex flex-col gap-5 md:gap-6">
+  <div data-explore-root="" data-explore-kind="requests" class="flex flex-col gap-5 lg:gap-6">
     <header class="flex flex-wrap items-end justify-between gap-x-6 gap-y-3">
       <div class="flex flex-col gap-2">
-        <h1 class="text-3xl font-bold text-fg md:text-4xl">{heading}</h1>
+        <h1 class="text-3xl font-bold text-fg lg:text-4xl">{heading}</h1>
         <p class="max-w-(--container-prose) text-base text-fg-muted">{description}</p>
       </div>
       <a href={href('/requests/new', locale)} class={buttonClasses({ variant: 'primary' })} rel="nofollow">
@@ -68,18 +110,23 @@ const sorts = [
       </a>
     </header>
 
-    <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-2 border-b border-border">
+    <form id={FORM_ID} method="get" action={href('/requests', locale)} data-explore-form="" aria-label={searchLabel}>
+      <input type="hidden" name="status" value={state.status} data-default="open" />
+      <ExploreSearchBar form={FORM_ID} q={state.q} label={searchLabel} placeholder={searchLabel} clearHref={requestListHref(state, { q: '' }, locale)} />
+    </form>
+
+    <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-2 border-b border-border" data-explore-intercept="">
       <nav aria-label={m.requests_filter_status_label()}>
-        <ul class="flex gap-5 overflow-x-auto">
+        <ul class="flex flex-wrap gap-x-5">
           {
             REQUEST_LIST_STATUSES.map((status) => (
-              <li class="shrink-0">
+              <li>
                 <a
                   href={requestListHref(state, { status }, locale)}
                   rel="nofollow"
                   aria-current={state.status === status ? 'true' : undefined}
                   class:list={[
-                    '-mb-px inline-flex min-h-11 items-center border-b-2 px-0.5 text-sm font-semibold whitespace-nowrap',
+                    '-mb-px inline-flex min-h-11 items-center border-b-2 px-0.5 text-sm font-semibold whitespace-nowrap transition-colors',
                     state.status === status
                       ? 'border-primary text-fg'
                       : 'border-transparent text-fg-muted hover:border-border-strong hover:text-fg',
@@ -92,83 +139,104 @@ const sorts = [
           }
         </ul>
       </nav>
-      <nav aria-label={m.requests_sort_label()} class="flex items-center gap-x-4 pb-2 text-sm">
-        <span class="text-fg-muted max-md:sr-only">{m.requests_sort_label()}</span>
-        {
-          sorts.map((sort) => (
-            <a
-              href={requestListHref(state, { sort: sort.key }, locale)}
-              rel="nofollow"
-              aria-current={state.sort === sort.key ? 'true' : undefined}
-              class:list={[
-                'inline-flex min-h-9 items-center',
-                state.sort === sort.key
-                  ? 'font-semibold text-fg underline decoration-primary decoration-2 underline-offset-8'
-                  : 'text-fg-muted hover:text-fg',
-              ]}
-            >
-              {sort.label}
-            </a>
-          ))
-        }
-      </nav>
+      <label class="flex items-center gap-2 pb-2 text-sm text-fg-muted">
+        {m.requests_sort_label()}
+        <span class="relative block">
+          <select name="sort" form={FORM_ID} data-default="top" class={selectClass}>
+            {sorts.map((sort) => <option value={sort.key} selected={state.sort === sort.key}>{sort.label}</option>)}
+          </select>
+          <span class="pointer-events-none absolute inset-y-0 end-3 flex items-center text-fg-subtle"><Icon icon={ChevronDown} size={16} /></span>
+        </span>
+      </label>
     </div>
-    {total !== null && total > 0 && <p class="text-sm text-fg-muted tabular-nums">{m.requests_list_count({ count: total })}</p>}
+    <p class="-mt-2 text-sm text-fg-muted tabular-nums" data-explore-count="" aria-live="polite">
+      {total !== null && total > 0 ? m.requests_list_count({ count: total }) : ''}
+    </p>
 
-    <section aria-label={heading}>
-      {
-        list === null ? (
-          <PageState
-            kind="error"
-            title={m.requests_error_title()}
-            text={m.requests_error_text()}
-            retryHref={href(Astro.url.pathname + Astro.url.search, locale)}
-            reference={Astro.locals.requestId}
-          />
-        ) : pastEnd ? (
-          <PageState
-            kind="empty"
-            title={m.requests_past_end_title()}
-            text={m.requests_past_end_text()}
-            action={{ label: m.requests_back_to_first(), href: pageHref(1) }}
-          />
-        ) : items.length === 0 ? (
-          filtered ? (
+    <section id="explore-results" aria-label={heading} tabindex="-1" class="scroll-mt-(--sticky-top) outline-none">
+      <p class="sr-only" aria-live="polite" aria-atomic="true" data-explore-status=""></p>
+      <div data-explore-list="" data-explore-intercept="">
+        {
+          list === null ? (
+            <PageState
+              kind="error"
+              title={m.requests_error_title()}
+              text={m.requests_error_text()}
+              retryHref={href(Astro.url.pathname + Astro.url.search, locale)}
+              reference={Astro.locals.requestId}
+            />
+          ) : pastEnd ? (
             <PageState
               kind="empty"
-              title={m.requests_empty_filtered_title()}
-              text={m.requests_empty_filtered_text()}
-              action={{ label: m.requests_clear_filters(), href: href('/requests', locale), nofollow: true }}
+              title={m.requests_past_end_title()}
+              text={m.requests_past_end_text()}
+              action={{ label: m.requests_back_to_first(), href: pageHref(1) }}
             />
+          ) : items.length === 0 ? (
+            state.q ? (
+              <PageState
+                kind="empty"
+                title={m.requests_empty_search_title({ query: state.q })}
+                text={m.requests_empty_search_text()}
+                action={{ label: m.requests_clear_filters(), href: requestListHref({ ...state, status: 'all', sort: 'top' }, { q: '' }, locale), nofollow: true }}
+              />
+            ) : filtered ? (
+              <PageState
+                kind="empty"
+                title={m.requests_empty_filtered_title()}
+                text={m.requests_empty_filtered_text()}
+                action={{ label: m.requests_clear_filters(), href: href('/requests', locale), nofollow: true }}
+              />
+            ) : (
+              <PageState
+                kind="empty"
+                title={m.requests_empty_title()}
+                text={m.requests_empty_text()}
+                action={{ label: m.requests_action_new(), href: href('/requests/new', locale), nofollow: true }}
+              />
+            )
           ) : (
-            <PageState
-              kind="empty"
-              title={m.requests_empty_title()}
-              text={m.requests_empty_text()}
-              action={{ label: m.requests_action_new(), href: href('/requests/new', locale), nofollow: true }}
-            />
+            <ul class="flex flex-col border-t border-border">
+              {items.map((request) => (
+                <li class="min-w-0">
+                  <RequestCard request={request} />
+                </li>
+              ))}
+            </ul>
           )
-        ) : (
-          <ul class="flex flex-col">
-            {items.map((request) => (
-              <li class="min-w-0">
-                <RequestCard request={request} />
-              </li>
-            ))}
-          </ul>
-        )
-      }
+        }
+      </div>
     </section>
 
     {
       list !== null && items.length > 0 && (
-        <div class="mt-4 flex flex-col items-center gap-4">
-          <p class="text-xs text-fg-subtle tabular-nums">
-            {m.common_pagination_page_of({ page: state.page, total: Math.max(1, totalPages) })}
-          </p>
-          <Pagination page={state.page} totalPages={totalPages} hrefFor={pageHref} />
+        <div
+          class="mt-2 grid items-center gap-4 pt-1 lg:grid-cols-[1fr_auto_1fr] lg:gap-6"
+          data-explore-intercept=""
+          data-explore-pager=""
+        >
+          <p class="text-sm text-fg-muted tabular-nums max-lg:text-center lg:col-start-1 lg:row-start-1" data-explore-page-indicator="">{rangeText}</p>
+          <div class="lg:col-start-2 lg:row-start-1">
+            <Pagination page={state.page} totalPages={totalPages} hrefFor={pageHref} />
+          </div>
+          <label class="flex items-center justify-center gap-2 text-sm text-fg-muted lg:col-start-3 lg:row-start-1 lg:justify-self-end">
+            {m.explore_page_size_label()}
+            <span class="relative block">
+              <select name="pageSize" form={FORM_ID} data-default={String(REQUEST_PAGE_SIZE)} class={selectClass}>
+                {REQUEST_PAGE_SIZES.map((size) => <option value={size} selected={state.pageSize === size}>{size}</option>)}
+              </select>
+              <span class="pointer-events-none absolute inset-y-0 end-3 flex items-center text-fg-subtle"><Icon icon={ChevronDown} size={16} /></span>
+            </span>
+          </label>
         </div>
       )
     }
+    <div hidden data-explore-messages={JSON.stringify({ loading: m.explore_loading(), offline: m.explore_offline(), failed: m.explore_failed() })}></div>
   </div>
 </PageLayout>
+
+<script>
+  import { initExplore } from '../../scripts/explore/explore.ts';
+
+  initExplore();
+</script>

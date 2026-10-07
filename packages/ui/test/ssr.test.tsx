@@ -33,6 +33,7 @@ const {
   LanguageSwitcher,
   LiveDot,
   Menu,
+  Motif,
   OptionalHint,
   Pagination,
   PasswordField,
@@ -118,6 +119,7 @@ const cases: Record<string, () => ReactElement> = {
     <Menu trigger={<Button>Actions</Button>} items={[{ label: 'Copy', onSelect: () => {} }, { type: 'separator' }]} />
   ),
   OptionalHint: () => <OptionalHint />,
+  Motif: () => <Motif seed="ssr" fade="bottom" />,
   Pagination: () => <Pagination page={4} totalPages={20} hrefFor={(page) => `?page=${page}`} onLoadMore={() => {}} />,
   PasswordField: () => <PasswordField label="Password" meter defaultValue="correct horse" />,
   Popover: () => <Popover trigger={<Button>Share</Button>} title="Share" />,

@@ -21,8 +21,14 @@ import { Fragment } from 'react';
 import { type AdUnit, feedAdAfter } from '../../lib/ads.ts';
 import type { ExploreView } from './state.ts';
 
+/** Mods: 2 columns on phones, 3 on tablets, 4 and 5 on desktops. Builds are image-led: one fewer. */
+export const GRID_CLASSES = {
+  mods: 'grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5',
+  builds: 'grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 2xl:grid-cols-4',
+} as const;
+
 export const LIST_CLASSES: Record<ExploreView, string> = {
-  grid: 'grid grid-cols-2 gap-3 sm:gap-4 xl:grid-cols-3',
+  grid: GRID_CLASSES.mods,
   list: 'grid grid-cols-1 gap-3',
   compact: 'grid grid-cols-1 gap-2 sm:grid-cols-2 xl:grid-cols-3',
 };
@@ -34,7 +40,7 @@ export interface ExploreResultsProps {
   i18n: DomainI18n;
   /** Heading level of the card titles (2 on hubs without section headings, 3 otherwise). */
   headingLevel?: 2 | 3;
-  /** The first card is the LCP candidate (page 1 above the fold). */
+  /** The first two cards (the first row on phones) are the LCP candidates (page 1 above the fold). */
   priorityFirst?: boolean;
   /** Position offset of the first item (1-based positions for `ItemList`). */
   offset?: number;
@@ -44,6 +50,8 @@ export interface ExploreResultsProps {
    * and JSON-LD ignore it.
    */
   ad?: AdUnit | null;
+  /** Grid of builds (fewer, larger columns). */
+  builds?: boolean;
   className?: string;
 }
 
@@ -60,13 +68,13 @@ export function ExploreItems({
   priorityFirst = false,
   offset = 0,
   ad = null,
-}: Omit<ExploreResultsProps, 'i18n' | 'className'>) {
+}: Omit<ExploreResultsProps, 'i18n' | 'className' | 'builds'>) {
   const withAds = ad !== null && view === 'grid' && offset === 0;
   return (
     <>
       {items.map((mod, index) => {
         const card = localized(mod, locale);
-        const priority = priorityFirst && index === 0;
+        const priority = priorityFirst && index < 2;
         const adAfter = withAds && feedAdAfter(index + 1, items.length);
         return (
           <Fragment key={mod.id}>
@@ -98,10 +106,14 @@ export function ExploreItems({
 }
 
 export default function ExploreResults(props: ExploreResultsProps) {
-  const { i18n, view, className } = props;
+  const { i18n, view, className, builds = false } = props;
   return (
     <DomainI18nProvider value={i18n}>
-      <ul data-explore-items="" data-view={view} className={cn(LIST_CLASSES[view], className)}>
+      <ul
+        data-explore-items=""
+        data-view={view}
+        className={cn(view === 'grid' && builds ? GRID_CLASSES.builds : LIST_CLASSES[view], className)}
+      >
         <ExploreItems {...props} />
       </ul>
     </DomainI18nProvider>
@@ -119,7 +131,7 @@ export function ExploreSkeleton({
   count?: number;
 }) {
   return (
-    <ul aria-hidden="true" className={LIST_CLASSES[view]}>
+    <ul aria-hidden="true" className={view === 'grid' && builds ? GRID_CLASSES.builds : LIST_CLASSES[view]}>
       {Array.from({ length: count }, (_, index) => (
         <li key={index}>
           {view === 'grid' && builds ? (

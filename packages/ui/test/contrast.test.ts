@@ -15,7 +15,7 @@ function token(name: string): ThemedColor {
   return value;
 }
 
-const SURFACES = ['bg', 'surface', 'raised', 'sunken'] as const;
+const SURFACES = ['bg', 'surface', 'raised', 'overlay', 'sunken'] as const;
 const THEMES = ['night', 'day'] as const;
 
 /** Text colours: AA body text (4.5) except the primary, documented below. */
@@ -93,18 +93,48 @@ describe('contrast', () => {
     }
   });
 
-  it('keeps the dark neutrals and the red of the visual direction', () => {
-    expect(token('bg').night).toBe('#15191E');
-    expect(token('surface').night).toBe('#1D232A');
-    expect(token('raised').night).toBe('#232A32');
-    expect(token('sunken').night).toBe('#111418');
-    expect(token('border').night).toBe('#2A323C');
-    expect(token('border-strong').night).toBe('#3D4651');
-    expect(token('fg').night).toBe('#E5E7EB');
-    expect(token('fg-muted').night).toBe('#9CA3AF');
+  it('keeps the deep dark neutrals and the red of the visual direction', () => {
+    expect(token('bg').night).toBe('#0E1114');
+    expect(token('surface').night).toBe('#151A1F');
+    expect(token('raised').night).toBe('#1C2228');
+    expect(token('overlay').night).toBe('#20272E');
+    expect(token('sunken').night).toBe('#0A0C0F');
+    expect(token('border').night).toBe('#2B343E');
+    expect(token('border-strong').night).toBe('#4A5663');
+    expect(token('fg').night).toBe('#F3F4F6');
+    expect(token('fg-muted').night).toBe('#A8B0BC');
     expect(token('primary')).toEqual({ day: '#E11D1D', night: '#E11D1D' });
     expect(token('primary-hover').night).toBe('#C81414');
     expect(token('primary-fg').night).toBe('#FFFFFF');
+  });
+
+  it('steps the dark surfaces up in lightness (sunken < bg < surface < raised < overlay)', () => {
+    const order = ['sunken', 'bg', 'surface', 'raised', 'overlay'] as const;
+    for (let i = 1; i < order.length; i++) {
+      const lower = order[i - 1]!;
+      const upper = order[i]!;
+      expect(
+        contrastRatio(token(upper).night, token(lower).night),
+        `${upper} over ${lower}`,
+      ).toBeGreaterThan(1.03);
+    }
+  });
+
+  it('structure borders are visible on every dark surface (at least 1.2:1) without shouting', () => {
+    for (const surface of ['bg', 'surface', 'raised'] as const) {
+      const ratio = contrastRatio(token('border').night, token(surface).night);
+      expect(ratio, `border on ${surface}`).toBeGreaterThanOrEqual(1.2);
+      expect(ratio, `border on ${surface}`).toBeLessThan(2);
+    }
+  });
+
+  it('white on the red fill and on its hover is at least 4.5:1, and the red reads as a 3:1 graphic on bg', () => {
+    for (const fill of ['primary', 'primary-hover'] as const) {
+      expect(contrastRatio('#FFFFFF', token(fill).night)).toBeGreaterThanOrEqual(4.5);
+    }
+    expect(contrastRatio(token('primary').night, token('bg').night)).toBeGreaterThanOrEqual(3.5);
+    // Small red text uses the lighter `link` red (AA on every surface, checked above).
+    expect(contrastRatio(token('link').night, token('overlay').night)).toBeGreaterThanOrEqual(4.5);
   });
 
   it('keeps the former cyan and blue tokens neutral (low saturation) and the link red', () => {

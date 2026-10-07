@@ -7,7 +7,6 @@
 import { m } from '@sotf/i18n/messages';
 import { Button } from '@sotf/ui/button';
 import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
-import { useBlocker } from '@tanstack/react-router';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { notify } from '../../lib/notify.ts';
 import { adminApi, settingQuery, storeSetting } from './api.ts';
@@ -78,14 +77,6 @@ export function useSettingDraft<T>(
     save,
     reset: () => setDraftState(stored),
   };
-}
-
-/** Asks before leaving the screen (or the tab) with unsaved settings. */
-export function useUnsavedGuard(dirty: boolean): void {
-  useBlocker({
-    shouldBlockFn: () => (dirty ? !window.confirm(m.admin_unsaved_confirm()) : false),
-    enableBeforeUnload: () => dirty,
-  });
 }
 
 export function SettingFooter<T>({ state, disabled }: { state: SettingDraft<T>; disabled?: boolean }) {

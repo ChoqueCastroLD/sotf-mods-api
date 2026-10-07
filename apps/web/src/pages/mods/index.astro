@@ -1,32 +1,135 @@
 ---
 /**
- * `/mods`: the same catalogue view as `/` (see `components/explore/catalog-page.ts`): search,
- * category, type, sort, NSFW and Unapproved in the sticky toolbar, numbered pagination.
+ * `/mods`: the search page. A prominent search box, the filter panel (category, tags, type, side,
+ * multiplayer, updated, rating, downloads, NSFW, Unapproved), sorts, active filter chips and the
+ * mods as a grid with numbered pagination and a page size select (`ExploreGridView`). `/` keeps the
+ * landing catalogue (carousel, list and «Mods of the week»).
  *
  * - Legacy query parameters (`category`, `search`, `orderby`, `type=Mod|Build|Both|Library`,
  *   `nsfw`, `showunapproved`, `page=1`) → 301 (PLAN §4.6), resolved in the loader because
  *   categories need the catalogue.
- * - Canonical `/` for the default listing; `/mods?page=N` is indexable; any filter, sort or the
- *   Unapproved view → `noindex, follow`.
- * - Cache: E(300) `list:mods`; the API failing → 503, not cached.
+ * - Canonical `/mods`; `/mods?page=N` is indexable; any filter, search, sort, page size or the
+ *   Unapproved view → `noindex, follow` with the canonical on the base.
+ * - Cache: E(300) `list:mods`; the API failing → 503, not cached. No results → a few popular mods
+ *   and the categories as suggestions.
  */
-import CatalogPage from '../../components/explore/CatalogPage.astro';
-import { loadCatalogPage } from '../../components/explore/catalog-page.ts';
+import { m } from '@sotf/i18n/messages';
+import ExploreView from '../../components/explore/ExploreView.astro';
+import { loadListing } from '../../components/explore/load.ts';
+import { collectionJsonLd, latestRelease, listingSeo, pagedTitle } from '../../components/explore/seo.ts';
+import { MODS_SCOPE } from '../../components/explore/state.ts';
+import PageLayout from '../../layouts/PageLayout.astro';
+import { serverApi } from '../../lib/api.ts';
 import { setPageCache } from '../../lib/cache/page.ts';
 import { pageCache } from '../../lib/cache/policy.ts';
+import { loadEnv } from '../../lib/env.ts';
+import { href } from '../../lib/i18n.ts';
 import { localizeCards } from '../../lib/localize.ts';
 
 const locale = Astro.locals.locale;
 setPageCache(Astro, pageCache.listMods());
 
-const page = await loadCatalogPage({ url: Astro.url, locale, mode: 'mods' });
-if (page.kind === 'redirect') return Astro.redirect(page.location, 301);
-await localizeCards({ listing: page.listing.list, aside: page.aside }, locale);
+const data = await loadListing({ url: Astro.url, locale, scope: MODS_SCOPE });
+if (data.kind === 'redirect') return Astro.redirect(data.location, 301);
 
-if (page.listing.list === null) {
+const { state, list, taxonomy } = data;
+if (list === null) {
   setPageCache(Astro, false);
   Astro.response.status = 503;
 }
+
+// Suggestions for an empty result: popular mods and the categories.
+let popular: NonNullable<typeof list>['items'] = [];
+if (list !== null && list.total === 0) {
+  try {
+    const result = await serverApi().catalog.listMods(
+      {
+        query: {
+          type: state.type === 'all' ? 'mod' : state.type,
+          sort: 'downloads',
+          order: 'desc',
+          page: 1,
+          pageSize: 4,
+          compat: 'any',
+          ...(state.nsfw ? { nsfw: true } : {}),
+        },
+      },
+      { signal: AbortSignal.timeout(2500) },
+    );
+    popular = result.items;
+  } catch {
+    popular = [];
+  }
+}
+await localizeCards({ list: data.list, popular }, locale);
+const categoryLinks =
+  list !== null && list.total === 0
+    ? taxonomy.categories
+        .filter((category) => category.kind === 'mod')
+        .map((category) => ({
+          label: taxonomy.categoryName(category.slug, category.name),
+          href: href(`/categories/${category.slug}`, locale),
+        }))
+    : [];
+
+const count = list?.total ?? 0;
+const copy = state.unapproved
+  ? {
+      heading: m.explore_catalog_unapproved_heading(),
+      title: m.explore_catalog_unapproved_title(),
+      description: m.explore_catalog_unapproved_description(),
+      intro: m.explore_catalog_unapproved_notice(),
+    }
+  : state.type === 'library'
+    ? {
+        heading: m.explore_heading_libraries(),
+        title: m.explore_meta_libraries_title({ count }),
+        description: m.explore_meta_libraries_description({ count }),
+        intro: undefined,
+      }
+    : state.type === 'all'
+      ? {
+          heading: m.explore_heading_all(),
+          title: m.explore_meta_all_title({ count }),
+          description: m.explore_meta_all_description({ count }),
+          intro: undefined,
+        }
+      : {
+          heading: m.explore_heading_mods(),
+          title: m.explore_meta_mods_title({ count }),
+          description: m.explore_meta_mods_description({ count }),
+          intro: undefined,
+        };
+const seo = listingSeo(state, MODS_SCOPE, list);
+const title = pagedTitle(copy.title, state.page);
+const siteUrl = loadEnv().siteUrl;
+const jsonLd = list
+  ? [
+      collectionJsonLd({
+        siteUrl,
+        locale,
+        path: seo.path,
+        name: copy.heading,
+        description: copy.description,
+        items: list.items,
+        offset: (state.page - 1) * list.pageSize,
+        dateModified: latestRelease(list.items),
+      }),
+    ]
+  : [];
 ---
 
-<CatalogPage page={page} />
+<PageLayout
+  template="explore"
+  width="wide"
+  seo={{ title, description: copy.description, path: seo.path, noindex: seo.noindex }}
+  jsonLd={jsonLd}
+>
+  <ExploreView
+    data={data}
+    heading={copy.heading}
+    intro={copy.intro}
+    popular={popular}
+    categoryLinks={categoryLinks}
+  />
+</PageLayout>

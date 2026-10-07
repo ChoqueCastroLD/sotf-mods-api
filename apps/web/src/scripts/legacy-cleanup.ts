@@ -4,11 +4,15 @@
  * `localStorage.token` and the `token` cookie (`Max-Age=0; Path=/`) and flags `<html>` with
  * `data-relogin`, which reveals the «sign in again» banner rendered (hidden) by the layout. The
  * banner therefore appears once, on the first v2 page view of a browser that had a legacy session.
+ *
+ * The same script flags `<html data-signed-in>` when the `sotf_li` hint cookie is present
+ * (`scripts/account-hint.ts` does it again later and then fetches the summary): the header shows
+ * the signed-in controls on the very first paint instead of flashing «Log in» first.
  */
 
 /** Inline `<head>` script. Its CSP hash is derived from this exact string (`lib/security/csp.ts`). */
 export const LEGACY_CLEANUP_SCRIPT =
-  'try{var d=document,l=localStorage;if(l.token||/\\btoken=/.test(d.cookie))d.cookie="token=;Max-Age=0;Path=/",delete l.token,d.documentElement.dataset.relogin=1}catch(e){}';
+  'try{var d=document,l=localStorage;if(l.token||/\\btoken=/.test(d.cookie))d.cookie="token=;Max-Age=0;Path=/",delete l.token,d.documentElement.dataset.relogin=1;if(/(?:^|;\\s*)sotf_li=1(?:;|$)/.test(d.cookie))d.documentElement.dataset.signedIn=""}catch(e){}';
 
 export const RELOGIN_BANNER_ID = 'relogin';
 

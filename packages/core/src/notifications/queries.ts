@@ -8,7 +8,7 @@ import type { NotificationDTO, NotificationType } from '@sotf/contracts/notifica
 import { NOTIFICATION_FILTER_TYPES, type NOTIFICATION_FILTERS } from '@sotf/contracts/notifications';
 import { decodeCursor, encodeCursor } from '@sotf/contracts/pagination';
 import { type Database, type Executor, notification, user, withTx } from '@sotf/db';
-import { and, desc, eq, inArray, isNull, lt, or } from 'drizzle-orm';
+import { and, desc, eq, inArray, isNull, lt, or, sql } from 'drizzle-orm';
 import { avatarUrlOf, displayNameOf } from '../auth/users.ts';
 import { gamificationRefs } from '../gamification/queries.ts';
 import { errors } from '../kernel/errors.ts';
@@ -22,6 +22,10 @@ export interface ListNotificationsInput {
   filter: NotificationFilter;
   cursor?: string | undefined;
   limit: number;
+  /** Only unread signals. */
+  unread?: boolean | undefined;
+  /** Numbered page (1-based): replaces the cursor and adds the totals to the response. */
+  page?: number | undefined;
 }
 
 export interface NotificationReadDeps {
@@ -42,12 +46,21 @@ export async function listNotifications(
   deps: NotificationReadDeps,
   userId: number,
   input: ListNotificationsInput,
-): Promise<{ items: NotificationDTO[]; nextCursor: string | null }> {
+): Promise<{
+  items: NotificationDTO[];
+  nextCursor: string | null;
+  page?: number;
+  pageSize?: number;
+  total?: number;
+  totalPages?: number;
+}> {
   const conditions = [eq(notification.userId, userId), visibleNotification];
   if (input.filter !== 'all') {
     conditions.push(inArray(notification.type, visibleTypes(NOTIFICATION_FILTER_TYPES[input.filter])));
   }
-  if (input.cursor) {
+  if (input.unread) conditions.push(isNull(notification.readAt));
+  const numbered = input.page !== undefined;
+  if (input.cursor && !numbered) {
     const position = decodeCursor(input.cursor);
     const id = position ? Number(position.id) : Number.NaN;
     if (!position || !Number.isSafeInteger(id)) throw errors.validation('Invalid cursor');
@@ -79,7 +92,16 @@ export async function listNotifications(
     .leftJoin(user, eq(user.id, notification.actorId))
     .where(and(...conditions))
     .orderBy(desc(notification.createdAt), desc(notification.id))
-    .limit(input.limit + 1);
+    .limit(numbered ? input.limit : input.limit + 1)
+    .offset(numbered ? ((input.page ?? 1) - 1) * input.limit : 0);
+  const total = numbered
+    ? ((
+        await db
+          .select({ n: sql<number>`count(*)::int` })
+          .from(notification)
+          .where(and(...conditions))
+      )[0]?.n ?? 0)
+    : undefined;
   const page = rows.slice(0, input.limit);
   // Creator tier and survivor rank of the actors (the rank honours `privacy.hideRank`).
   const refs = await gamificationRefs(
@@ -129,8 +151,18 @@ export async function listNotifications(
   }
   const last = page.at(-1);
   const nextCursor =
-    rows.length > input.limit && last ? encodeCursor({ createdAt: last.createdAt.toISOString(), id: last.id }) : null;
-  return { items, nextCursor };
+    !numbered && rows.length > input.limit && last
+      ? encodeCursor({ createdAt: last.createdAt.toISOString(), id: last.id })
+      : null;
+  if (total === undefined) return { items, nextCursor };
+  return {
+    items,
+    nextCursor,
+    page: input.page ?? 1,
+    pageSize: input.limit,
+    total,
+    totalPages: total === 0 ? 0 : Math.ceil(total / input.limit),
+  };
 }
 
 export { unreadCount };

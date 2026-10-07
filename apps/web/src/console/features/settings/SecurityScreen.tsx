@@ -14,6 +14,7 @@ import { Icon } from '@sotf/ui/icons';
 import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
 import { LogOut, Monitor, Smartphone } from 'lucide-react';
 import { useState } from 'react';
+import { ListPager } from '../../components/ListPager.tsx';
 import { redirectToLogin } from '../../lib/auth.ts';
 import { activeLocale } from '../../lib/messages.ts';
 import { notify } from '../../lib/notify.ts';
@@ -36,15 +37,23 @@ function countryName(code: string | null): string | null {
   }
 }
 
+/** Sessions listed per page. */
+const SESSIONS_PER_PAGE = 5;
+
 export function SecurityScreen() {
   const queryClient = useQueryClient();
   const { data: sessions } = useSuspenseQuery(sessionsQuery);
   const { data: security } = useSuspenseQuery(securityQuery);
   const [confirm, setConfirm] = useState<Session | 'others' | null>(null);
+  const [page, setPage] = useState(1);
   const others = sessions.filter((session) => !session.current);
   const ordered = [...sessions].sort((a, b) =>
     a.current === b.current ? Date.parse(b.lastSeenAt) - Date.parse(a.lastSeenAt) : a.current ? -1 : 1,
   );
+
+  const pages = Math.max(1, Math.ceil(ordered.length / SESSIONS_PER_PAGE));
+  const current = Math.min(page, pages);
+  const visible = ordered.slice((current - 1) * SESSIONS_PER_PAGE, current * SESSIONS_PER_PAGE);
 
   const revoke = async (target: Session | 'others') => {
     try {
@@ -84,7 +93,7 @@ export function SecurityScreen() {
       <PasskeysCard overview={security} />
       <SettingsCard id="security-sessions" title={m.settings_sessions_title()} description={m.settings_sessions_text()}>
         <ul className="grid divide-y divide-border rounded-md border border-border">
-          {ordered.map((session) => {
+          {visible.map((session) => {
             const device = session.deviceLabel ?? m.settings_sessions_unknown_device();
             const country = countryName(session.country);
             return (
@@ -129,6 +138,14 @@ export function SecurityScreen() {
             );
           })}
         </ul>
+        <ListPager
+          page={current}
+          totalPages={pages}
+          total={ordered.length}
+          pageSize={SESSIONS_PER_PAGE}
+          onPage={setPage}
+          className="border-t-0 pt-0"
+        />
         <div className="flex flex-wrap items-center justify-between gap-3">
           <p className="text-sm text-fg-muted">{m.settings_sessions_count({ count: sessions.length })}</p>
           <Button

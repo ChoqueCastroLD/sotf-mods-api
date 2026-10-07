@@ -1,6 +1,6 @@
 /**
  * Test helper: accounts with a real `"Session"` row, so staff endpoints (which re-read the account
- * and require a session younger than 12 h) can be called through `t.as(...)`.
+ *) can be called through `t.as(...)`.
  */
 import { randomUUID } from 'node:crypto';
 import type { TestDb } from '@sotf/db/testing';

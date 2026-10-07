@@ -1,7 +1,6 @@
 /**
  * Pieces shared by the Ranger Station screens: formatting (waiting time, dates, sizes), the
- * user chip, risk and SLA badges, failure toasts (with «Sign in again» for the 12 h
- * re-authentication rule) and the route error of the area.
+ * user chip, risk and SLA badges, failure toasts and the route error of the area.
  */
 import { isApiError } from '@sotf/contracts/client';
 import { formatBytes, formatDateTime, formatNumber, formatRelativeTime, localizePath } from '@sotf/i18n';
@@ -10,14 +9,11 @@ import { Avatar } from '@sotf/ui/avatar';
 import { Badge } from '@sotf/ui/badge';
 import { Button } from '@sotf/ui/button';
 import { cn } from '@sotf/ui/cn';
-import { EmptyState } from '@sotf/ui/empty-state';
 import { Icon } from '@sotf/ui/icons';
 import { type ErrorComponentProps, Link } from '@tanstack/react-router';
-import { AlertOctagon, AlertTriangle, BadgeCheck, Clock, KeyRound, ShieldAlert } from 'lucide-react';
-import { type ReactNode, useState } from 'react';
+import { AlertOctagon, AlertTriangle, BadgeCheck, Clock, ShieldAlert } from 'lucide-react';
+import type { ReactNode } from 'react';
 import { RouteError } from '../../components/RouteError.tsx';
-import { currentPath, redirectToLogin } from '../../lib/auth.ts';
-import { shellApi } from '../../lib/http.ts';
 import { browserTimeZone } from '../../lib/i18n.ts';
 import { activeLocale, problemText } from '../../lib/messages.ts';
 import { notify } from '../../lib/notify.ts';
@@ -170,69 +166,20 @@ export function UserChip({
 // Failures
 // -----------------------------------------------------------------------------------------------
 
-export function isReauthRequired(error: unknown): boolean {
-  return isApiError(error) && error.code === 'REAUTH_REQUIRED';
-}
-
-/** Ends the (too old) session and returns to this screen after signing in again. */
-export async function signInAgain(): Promise<void> {
-  const next = currentPath();
-  try {
-    await shellApi.logout();
-  } catch {
-    // Signing out failing (already gone, offline) must not block the way back in.
-  }
-  redirectToLogin(next);
-}
-
-/** Toast for a failed ranger action; the 12 h rule offers «Sign in again». */
+/** Toast for a failed moderation action. */
 export function reportFailure(error: unknown, title: string): void {
-  if (isReauthRequired(error)) {
-    notify.warning(m.ranger_reauth_title(), {
-      id: 'ranger-reauth',
-      description: m.ranger_reauth_text(),
-      duration: Number.POSITIVE_INFINITY,
-      action: { label: m.ranger_reauth_action(), onClick: () => void signInAgain() },
-    });
-    return;
-  }
   const text = problemText(isApiError(error) ? error.code : null);
   const detail = isApiError(error) && error.status === 409 ? m.ranger_conflict_detail() : text.detail;
   notify.error(title, { description: detail });
 }
 
-/** «Confirm it's you» panel (a ranger session older than 12 h). */
-export function ReauthPanel() {
-  const [busy, setBusy] = useState(false);
-  return (
-    <EmptyState
-      icon={<Icon icon={KeyRound} size={32} />}
-      title={m.ranger_reauth_title()}
-      description={m.ranger_reauth_text()}
-      action={
-        <Button
-          loading={busy}
-          onClick={() => {
-            setBusy(true);
-            void signInAgain();
-          }}
-        >
-          {m.ranger_reauth_action()}
-        </Button>
-      }
-    />
-  );
-}
-
-/** Error component of every ranger route: the re-authentication panel, else the console's. */
+/** Error component of every moderation route. */
 export function RangerRouteError(props: ErrorComponentProps) {
-  if (isReauthRequired(props.error)) return <ReauthPanel />;
   return <RouteError {...props} />;
 }
 
 /** Inline error of a panel (not the whole screen) with retry. */
 export function PanelError({ error, onRetry }: { error: unknown; onRetry: () => void }) {
-  if (isReauthRequired(error)) return <ReauthPanel />;
   const reference = isApiError(error) ? error.problem.requestId : '';
   return (
     <div role="alert" className="grid justify-items-start gap-2 rounded-lg border border-danger/40 bg-surface p-4">
@@ -246,16 +193,12 @@ export function PanelError({ error, onRetry }: { error: unknown; onRetry: () => 
   );
 }
 
-/** Screen heading of the area (readout + h1 + description). */
+/** Screen heading of the area (h1 + description + actions). */
 export function ScreenHeader({
-  readout,
   title,
   description,
   actions,
-  keepReadout = false,
 }: {
-  keepReadout?: boolean;
-  readout: string;
   title: string;
   description?: string;
   actions?: ReactNode;
@@ -263,8 +206,7 @@ export function ScreenHeader({
   return (
     <header className="flex flex-wrap items-end justify-between gap-4">
       <div className="grid gap-1">
-        <p className={cn('readout text-signal', !keepReadout && 'max-md:hidden')}>{readout}</p>
-        <h1 className="font-display-caps text-display-xs text-fg">{title}</h1>
+        <h1 className="text-2xl font-bold text-fg">{title}</h1>
         {description ? <p className="max-w-prose text-sm text-fg-muted max-md:line-clamp-2">{description}</p> : null}
       </div>
       {actions ? <div className="flex flex-wrap items-center gap-2">{actions}</div> : null}

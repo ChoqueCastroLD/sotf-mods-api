@@ -13,6 +13,7 @@ import { Copy } from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
 import type { BuildSpec, ModDetailDTO } from './data.ts';
 import { sizeRangeLabel } from './i18n.ts';
+import './blueprint.css';
 
 interface Props {
   build: ModDetailDTO;
@@ -23,12 +24,12 @@ const { build, spec } = Astro.props;
 const locale = Astro.locals.locale;
 const latest = build.latestVersion;
 const shortGuid = spec.guid && spec.guid.length > 12 ? `${spec.guid.slice(0, 8)}…${spec.guid.slice(-4)}` : spec.guid;
-const row = 'flex items-baseline justify-between gap-4 border-b border-border py-2 last:border-b-0';
+const row = 'flex items-baseline justify-between gap-4 border-b border-(--bp-line-soft) py-2 last:border-b-0';
 const dt = 'shrink-0 text-fg-muted';
-const dd = 'min-w-0 text-end tabular-nums break-words';
+const dd = 'bp-nums min-w-0 text-end tabular-nums [overflow-wrap:anywhere]';
 ---
 
-<section id="spec" data-fold="closed" aria-labelledby="spec-title" class="grid scroll-mt-32 gap-3 md:scroll-mt-24" data-spec-sheet>
+<section id="spec" data-fold="closed" aria-labelledby="spec-title" class="bp-plate grid min-w-0 grid-cols-[minmax(0,1fr)] scroll-mt-32 gap-3 p-4 md:scroll-mt-24" data-spec-sheet>
   <h2 id="spec-title" class="text-sm font-semibold text-fg">{m.mod_details_title()}</h2>
   <dl class="-mt-1 flex flex-col text-sm">
     {

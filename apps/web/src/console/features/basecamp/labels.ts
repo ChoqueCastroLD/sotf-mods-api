@@ -114,6 +114,8 @@ export function scanVerdictVariant(verdict: ScanVerdict): BadgeVariant {
 
 export function kpiLabel(key: KpiKey): string {
   switch (key) {
+    case 'downloads1d':
+      return bt('basecamp_kpi_downloads_today');
     case 'downloads7d':
       return bt('basecamp_kpi_downloads_7d');
     case 'downloads30d':
@@ -174,6 +176,24 @@ export function attentionAction(kind: AttentionKind): string {
       return bt('basecamp_attention_reviews_action');
     case 'rejected':
       return bt('basecamp_attention_rejected_action');
+  }
+}
+
+/** Short name of an attention kind (the tabs of «Needs attention»). */
+export function attentionKindLabel(kind: AttentionKind): string {
+  switch (kind) {
+    case 'broken_on_current':
+      return bt('basecamp_attention_kind_reports');
+    case 'unanswered_questions':
+      return bt('basecamp_attention_kind_questions');
+    case 'missing_gallery':
+      return bt('basecamp_attention_kind_gallery');
+    case 'missing_source':
+      return bt('basecamp_attention_kind_source');
+    case 'unanswered_reviews':
+      return bt('basecamp_attention_kind_reviews');
+    case 'rejected':
+      return bt('basecamp_attention_kind_rejected');
   }
 }
 

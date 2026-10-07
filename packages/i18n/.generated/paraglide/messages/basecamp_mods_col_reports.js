@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Basecamp_Mods_Col_ReportsInputs */
 
 const en_basecamp_mods_col_reports = /** @type {(inputs: Basecamp_Mods_Col_ReportsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Reports`)
+	return /** @type {LocalizedString} */ (`To answer`)
 };
 
 const es_basecamp_mods_col_reports = /** @type {(inputs: Basecamp_Mods_Col_ReportsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Reportes`)
+	return /** @type {LocalizedString} */ (`Por responder`)
 };
 
 const de_basecamp_mods_col_reports = /** @type {(inputs: Basecamp_Mods_Col_ReportsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Berichte`)
+	return /** @type {LocalizedString} */ (`Zu beantworten`)
 };
 
 const fr_basecamp_mods_col_reports = /** @type {(inputs: Basecamp_Mods_Col_ReportsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rapports`)
+	return /** @type {LocalizedString} */ (`À traiter`)
 };
 
 const it_basecamp_mods_col_reports = /** @type {(inputs: Basecamp_Mods_Col_ReportsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rapporti`)
+	return /** @type {LocalizedString} */ (`Da rispondere`)
 };
 
 const nl_basecamp_mods_col_reports = /** @type {(inputs: Basecamp_Mods_Col_ReportsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rapporten`)
+	return /** @type {LocalizedString} */ (`Te beantwoorden`)
 };
 
 const pl_basecamp_mods_col_reports = /** @type {(inputs: Basecamp_Mods_Col_ReportsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Raporty`)
+	return /** @type {LocalizedString} */ (`Do odpowiedzi`)
 };
 
 const pt_basecamp_mods_col_reports = /** @type {(inputs: Basecamp_Mods_Col_ReportsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Relatórios`)
+	return /** @type {LocalizedString} */ (`Para responder`)
 };
 
 const ru_basecamp_mods_col_reports = /** @type {(inputs: Basecamp_Mods_Col_ReportsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Отчёты`)
+	return /** @type {LocalizedString} */ (`Ждут ответа`)
 };
 
 const sv_basecamp_mods_col_reports = /** @type {(inputs: Basecamp_Mods_Col_ReportsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rapporter`)
+	return /** @type {LocalizedString} */ (`Att besvara`)
 };
 
 const tr_basecamp_mods_col_reports = /** @type {(inputs: Basecamp_Mods_Col_ReportsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Raporlar`)
+	return /** @type {LocalizedString} */ (`Yanıt bekleyen`)
 };
 
 const zh_basecamp_mods_col_reports = /** @type {(inputs: Basecamp_Mods_Col_ReportsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`报告`)
+	return /** @type {LocalizedString} */ (`待回复`)
 };
 
 const ja_basecamp_mods_col_reports = /** @type {(inputs: Basecamp_Mods_Col_ReportsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`レポート`)
+	return /** @type {LocalizedString} */ (`返信待ち`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Reports" |
+* | "To answer" |
 *
 * @param {Basecamp_Mods_Col_ReportsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

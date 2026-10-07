@@ -29,9 +29,9 @@ import {
   rowId,
   SettingFooter,
   useSettingDraft,
-  useUnsavedGuard,
 } from './setting-draft.tsx';
 import { AdminHeader, compactTexts, formatCount, LocalizedFields, type LocalizedTexts, Panel } from './shared.tsx';
+import { UnsavedGuard } from './UnsavedGuard.tsx';
 
 type DirtyReporter = (key: string, dirty: boolean) => void;
 
@@ -41,9 +41,9 @@ export function SettingsScreen() {
     (key, value) => setDirty((previous) => (previous[key] === value ? previous : { ...previous, [key]: value })),
     [],
   );
-  useUnsavedGuard(Object.values(dirty).some(Boolean));
   return (
     <div className="grid gap-6">
+      <UnsavedGuard dirty={Object.values(dirty).some(Boolean)} />
       <AdminHeader title={m.admin_settings_title()} description={m.admin_settings_description()} />
       <FeatureFlagsPanel onDirty={report} />
       <LimitsPanel onDirty={report} />
@@ -545,7 +545,7 @@ function TemplatesPanel({ onDirty }: { onDirty: DirtyReporter }) {
     >
       <form
         noValidate
-        className="grid gap-4"
+        className="grid grid-cols-[minmax(0,1fr)] gap-4"
         onSubmit={(event: FormEvent) => {
           event.preventDefault();
           if (!invalid) void state.save();
@@ -572,7 +572,7 @@ function TemplatesPanel({ onDirty }: { onDirty: DirtyReporter }) {
         {visible.length === 0 ? (
           <EmptyState icon={<Icon icon={ScrollText} size={28} />} title={m.admin_tpl_empty()} />
         ) : (
-          <ul className="grid gap-2">
+          <ul className="grid grid-cols-[minmax(0,1fr)] gap-2">
             {visible.map((row) => {
               const error = rowError(row);
               return (

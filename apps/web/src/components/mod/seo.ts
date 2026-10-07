@@ -20,6 +20,8 @@ import { licenseHref } from './i18n.ts';
 
 export const TITLE_MAX = 60;
 export const DESCRIPTION_MAX = 160;
+/** A shorter author summary is completed with the facts (meta descriptions below ~40 characters read as empty). */
+const MIN_SHORT_DESCRIPTION = 40;
 export const STEAM_APP_URL = 'https://store.steampowered.com/app/1326470/Sons_Of_The_Forest/';
 
 /** Cuts at a word boundary and adds «…» (never in the middle of a surrogate pair). */
@@ -60,8 +62,8 @@ export function subpageTitle(label: string, mod: ModDetailDTO): string {
 
 /** Meta description: the short description, or the facts. */
 export function modDescription(mod: ModDetailDTO, locale: Locale): string {
-  const short = displayShortDescription(mod);
-  if (short.trim()) return truncate(short, DESCRIPTION_MAX);
+  const short = displayShortDescription(mod).trim();
+  if (short.length >= MIN_SHORT_DESCRIPTION) return truncate(short, DESCRIPTION_MAX);
   const facts = m.mod_meta_description_facts({
     name: displayName(mod),
     author: mod.userDisplayName || mod.userHandle,
@@ -69,7 +71,7 @@ export function modDescription(mod: ModDetailDTO, locale: Locale): string {
     downloads: formatCompactNumber(locale, mod.downloads),
     count: mod.downloads,
   });
-  return truncate(facts, DESCRIPTION_MAX);
+  return truncate(short ? `${short} · ${facts}` : facts, DESCRIPTION_MAX);
 }
 
 export interface ModJsonLdInput {

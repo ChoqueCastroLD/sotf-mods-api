@@ -21,6 +21,7 @@ import { setPageCache } from '../../../../../lib/cache/page.ts';
 import { pageCache } from '../../../../../lib/cache/policy.ts';
 import { href } from '../../../../../lib/i18n.ts';
 import { ensureLocals } from '../../../../../lib/request-context.ts';
+import { entityOg } from '../../../../../lib/seo/og.ts';
 
 export const prerender = false;
 
@@ -75,7 +76,7 @@ const deltaText = (value: number): string => `${value > 0 ? '+' : value < 0 ? 'â
     description: truncate(m.mod_knowledge_compare_meta({ name: mod.name }), 160),
     path: comparePath,
     noindex: true,
-    og: { imageAlt: m.mod_og_alt({ name: mod.name }), ...(mod.nsfw || !mod.thumbnail ? {} : { image: mod.thumbnail.url }) },
+    og: { imageAlt: m.mod_og_alt({ name: mod.name }), ...entityOg(mod) },
   }}
 >
   <section aria-labelledby="compare-title" class="grid gap-4">

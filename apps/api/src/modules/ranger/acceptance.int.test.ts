@@ -1,8 +1,8 @@
 // biome-ignore-all lint/suspicious/noExplicitAny: assertions walk JSON bodies
 /**
  * WP-51 acceptance (`pnpm --filter @sotf/api test:int -- ranger`): the permission matrix of Ranger
- * Station and the admin area (guest 401, member 403, moderator vs admin, sessions older than 12 h →
- * REAUTH_REQUIRED) and what a decision leaves behind: the status change, its domain event, the
+ * Station and the admin area (guest 401, member 403, moderator vs admin, sessions older than 12 h still work, no
+ * re-authentication rule) and what a decision leaves behind: the status change, its domain event, the
  * author's signal and the CDN purge its event drives (the worker's consumers, run here through the
  * same core functions: `planForEvent`, `tagsForEvent`) and the `AuditLog` row; reports resolved with the target
  * hidden and the reporter told; announcements. Runs on the small development seed.
@@ -102,11 +102,10 @@ describe('permission matrix', () => {
     expect(String(audit.rows[0].action)).toMatch(/role/);
   });
 
-  it('asks for a fresh sign-in when the staff session is older than 12 h', async () => {
+  it('does not ask for a fresh sign-in when the staff session is older than 12 h', async () => {
     for (const url of rangerReads) {
       const res = await call('GET', url, staleRanger);
-      expect(res.status, url).toBe(403);
-      expect(res.body?.code).toBe('REAUTH_REQUIRED');
+      expect(res.status, url).toBe(200);
     }
   });
 

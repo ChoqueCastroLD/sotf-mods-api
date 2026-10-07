@@ -3,7 +3,7 @@ export type Basecamp_Mods_Col_ReportsInputs = {};
 /**
 * | output |
 * | --- |
-* | "Reports" |
+* | "To answer" |
 *
 * @param {Basecamp_Mods_Col_ReportsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

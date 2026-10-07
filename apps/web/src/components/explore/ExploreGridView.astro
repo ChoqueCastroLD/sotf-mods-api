@@ -1,74 +1,116 @@
 ---
 /**
- * The grid listing UI (research/03 §6.2, PLAN T0-06) that is still used by the builds pages (the
- * mod listings use `CatalogView`; `ExploreView` picks one):
+ * The search and grid listing UI of `/mods` (search page) and `/builds` (and build category hubs):
  *
- *   header (h1, count, intro) · type tabs · filter rail (GET form; bottom sheet on
- *   mobile) · toolbar (sort, order, view) · active filters · results · «Load more» + pagination.
+ *   header · search box · type tabs · filter rail (GET form; bottom sheet below `lg`) · toolbar
+ *   (count, sort, order) · active filter chips · responsive grid · numbered pagination with a page
+ *   size select.
  *
- * Without JavaScript every control is a link or the GET form. `scripts/explore` enhances it:
- * instant filters, in-place swaps with View Transitions, «Load more», the mobile sheet.
+ * Without JavaScript every control is a link or the GET form (the search box and the page size
+ * select belong to the form through the `form` attribute). `scripts/explore` enhances it:
+ * instant filters, in-place swaps with View Transitions and the mobile sheets.
  */
 import { m } from '@sotf/i18n/messages';
-import { buttonClasses } from '@sotf/ui/button';
+import type { ModCardDTO } from '@sotf/contracts/catalog';
 import { Icon } from '@sotf/ui/icons';
 import { Pagination } from '@sotf/ui/pagination';
-import { ArrowUpDown, SlidersHorizontal, X } from 'lucide-react';
+import { ArrowUpDown, ChevronDown, SlidersHorizontal, X } from 'lucide-react';
 import { adUnitFor } from '../../lib/ads.ts';
+import '../builds/blueprint.css';
 import { loadEnv } from '../../lib/env.ts';
 import { href } from '../../lib/i18n.ts';
-import ExploreFilters from './ExploreFilters.tsx';
+import ExploreFilters, { FORM_ID } from './ExploreFilters.tsx';
 import ExploreResults, { ExploreSkeleton } from './ExploreResults.tsx';
+import ExploreSearchBar from './ExploreSearchBar.astro';
 import ExploreSortSheet from './ExploreSortSheet.tsx';
 import { ListingEmpty, ListingError } from './ExploreStates.tsx';
 import ExploreToolbar from './ExploreToolbar.tsx';
 import type { ListingData } from './load.ts';
-import type { ListType } from './state.ts';
+import NoResults from './NoResults.tsx';
+import { EXPLORE_PAGE_SIZE, type ListType } from './state.ts';
 
 interface Props {
   data: ListingData;
   heading: string;
   /** Short intro under the heading (plain text). */
   intro?: string;
-  /** Tabs to offer (default: all four; hubs of build categories pass none). */
+  /** Tabs to offer (default: mods, libraries, all; builds pass none). */
   tabs?: readonly ListType[];
   /** Empty state copy when nothing matches without any filter (e.g. a new category). */
   emptyTitle?: string;
   emptyText?: string;
+  /** Popular items and category links offered by the «no results» state of the mods search. */
+  popular?: readonly ModCardDTO[];
+  categoryLinks?: readonly { label: string; href: string }[];
 }
 
-const { data, heading, intro, tabs = ['mod', 'library', 'build', 'all'], emptyTitle, emptyText } = Astro.props;
+const {
+  data,
+  heading,
+  intro,
+  tabs = ['mod', 'library', 'all'],
+  emptyTitle,
+  emptyText,
+  popular = [],
+  categoryLinks = [],
+} = Astro.props;
 const { model, list, state, i18n } = data;
 const locale = Astro.locals.locale;
 const requestId = Astro.locals.requestId;
 const items = list?.items ?? [];
 const total = list?.total ?? null;
 const totalPages = list?.totalPages ?? 0;
+const pageSize = list?.pageSize ?? state.pageSize;
 const pastEnd = list !== null && list.total > 0 && state.page > list.totalPages;
-const nextHref = list !== null && state.page < list.totalPages ? model.pageHref(state.page + 1) : null;
-const offset = (state.page - 1) * (list?.pageSize ?? 24);
+const offset = (state.page - 1) * pageSize;
 const shownTabs = model.tabs.filter((tab) => tabs.includes(tab.key));
 const countText = total === null ? '' : m.explore_results_count({ count: total });
-const hasBuilds = state.type === 'build';
+const rangeText =
+  total === null || items.length === 0
+    ? ''
+    : m.explore_results_range({ from: offset + 1, to: offset + items.length, total });
+const builds = state.type === 'build';
 const filtered = model.activeCount > 0;
 // AdSense policy: no ads next to adult content, so none while the NSFW toggle is on.
 const feedAd = state.nsfw ? null : adUnitFor(loadEnv(), 'feed');
 const sortLabel = model.sortOptions.find((option) => option.value === model.sortValue)?.label ?? '';
-
+const searchLabel = builds ? m.explore_search_builds_label() : m.explore_catalog_search_label();
+const searchPlaceholder = searchLabel;
 ---
 
-<div data-explore-root="" data-explore-page={state.page} class="flex flex-col gap-4 md:gap-6">
-  <header class="grid gap-x-6 gap-y-1.5 [grid-template-areas:'title_count'_'intro_intro'] items-end">
-    <h1 id="explore-heading" class="font-display-caps text-display-sm text-fg [grid-area:title]">{heading}</h1>
-    <p class="justify-self-end text-sm text-fg-muted tabular-nums [grid-area:count]" data-explore-count="">{countText}</p>
-    {intro && <p class="line-clamp-2 max-w-(--container-prose) text-sm text-fg-muted [grid-area:intro] md:line-clamp-none md:text-base">{intro}</p>}
-    <div class="[grid-area:intro] empty:hidden"><slot name="intro" /></div>
-  </header>
+<div data-explore-root="" data-explore-page={state.page} data-explore-kind={builds ? 'builds' : 'mods'} class="flex flex-col gap-4 lg:gap-6">
+  {
+    builds ? (
+      <header class="bp-hero bp-paper flex flex-col gap-4">
+        <span class="bp-tick bp-tick-tl" aria-hidden="true"></span>
+        <span class="bp-tick bp-tick-tr" aria-hidden="true"></span>
+        <span class="bp-tick bp-tick-bl" aria-hidden="true"></span>
+        <span class="bp-tick bp-tick-br" aria-hidden="true"></span>
+        <div class="flex flex-wrap items-end justify-between gap-x-6 gap-y-1">
+          <h1 id="explore-heading" class="text-3xl font-bold text-fg lg:text-4xl">{heading}</h1>
+          <p class="bp-mono text-sm tabular-nums" data-explore-count="">{countText}</p>
+        </div>
+        {intro && <p class="max-w-(--container-prose) text-sm text-fg-muted lg:text-base">{intro}</p>}
+        <div class="[&:empty]:hidden"><slot name="intro" /></div>
+        <ExploreSearchBar form={FORM_ID} q={state.q} label={searchLabel} placeholder={searchPlaceholder} clearHref={model.hrefOf({ q: '' })} />
+      </header>
+    ) : (
+      <header class="flex flex-col gap-3 lg:gap-4">
+        <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+          <h1 id="explore-heading" class="text-3xl font-bold text-fg lg:text-4xl">{heading}</h1>
+          <p class="sr-only" data-explore-count="">{countText}</p>
+        </div>
+        {intro && <p class="max-w-(--container-prose) text-sm text-fg-muted lg:text-base">{intro}</p>}
+        <div class="[&:empty]:hidden"><slot name="intro" /></div>
+        <ExploreSearchBar form={FORM_ID} q={state.q} label={searchLabel} placeholder={searchPlaceholder} clearHref={model.hrefOf({ q: '' })} />
+      </header>
+    )
+  }
 
   {
     shownTabs.length > 1 && (
-      <nav aria-label={m.explore_tabs_label()} data-explore-intercept="" class="-mx-4 md:mx-0">
-        <ul class="explore-scroll flex min-w-0 gap-1 overflow-x-auto border-b border-border px-4 md:px-0">
+      <nav aria-label={m.explore_tabs_label()} data-explore-intercept="" class="-mx-4 lg:mx-0">
+        <ul class="explore-scroll flex min-w-0 gap-1 overflow-x-auto border-b border-border px-4 lg:px-0">
           {shownTabs.map((tab) => (
             <li class="shrink-0">
               <a
@@ -80,9 +122,7 @@ const sortLabel = model.sortOptions.find((option) => option.value === model.sort
                 ]}
               >
                 {tab.label}
-                {tab.count !== null && (
-                  <span class="text-2xs font-normal text-fg-subtle tabular-nums">{tab.count}</span>
-                )}
+                {tab.count !== null && <span class="text-xs font-normal text-fg-subtle tabular-nums">{tab.count}</span>}
               </a>
             </li>
           ))}
@@ -91,7 +131,7 @@ const sortLabel = model.sortOptions.find((option) => option.value === model.sort
     )
   }
 
-  <div class="grid gap-6 md:grid-cols-[14rem_minmax(0,1fr)] md:gap-6 lg:grid-cols-[17rem_minmax(0,1fr)] lg:gap-8">
+  <div class="grid gap-6 lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-8 xl:grid-cols-[17rem_minmax(0,1fr)]">
     <section
       id="explore-filters"
       data-explore-sheet="filters"
@@ -99,13 +139,13 @@ const sortLabel = model.sortOptions.find((option) => option.value === model.sort
       aria-labelledby="explore-filters-title"
       class="explore-sheet explore-rail"
     >
-      <div data-sheet-handle="" class="explore-sheet-handle md:hidden"><span></span></div>
-      <div data-sheet-drag="" class="mb-1 flex items-center justify-between gap-2 px-4 md:mb-4 md:px-0">
-        <h2 id="explore-filters-title" class="font-display-caps text-display-xs text-fg">{m.explore_filters_title()}</h2>
+      <div data-sheet-handle="" class="explore-sheet-handle lg:hidden"><span></span></div>
+      <div data-sheet-drag="" class="mb-1 flex items-center justify-between gap-2 px-4 lg:mb-4 lg:px-0">
+        <h2 id="explore-filters-title" class="text-lg font-bold text-fg">{m.explore_filters_title()}</h2>
         <a
           href="#explore-results"
           data-explore-sheet-close=""
-          class="inline-flex size-11 items-center justify-center rounded-md text-fg-muted hover:bg-fg/8 hover:text-fg md:hidden"
+          class="inline-flex size-11 items-center justify-center rounded-md text-fg-muted hover:bg-fg/8 hover:text-fg lg:hidden"
         >
           <Icon icon={X} size={20} />
           <span class="sr-only">{m.explore_filters_close()}</span>
@@ -115,7 +155,7 @@ const sortLabel = model.sortOptions.find((option) => option.value === model.sort
     </section>
     <ExploreSortSheet model={model} />
 
-    <section id="explore-results" aria-labelledby="explore-results-title" class="flex min-w-0 flex-col gap-3 md:gap-4" tabindex="-1">
+    <section id="explore-results" aria-labelledby="explore-results-title" class="flex min-w-0 flex-col gap-3 lg:gap-4" tabindex="-1">
       <h2 id="explore-results-title" class="sr-only">{m.explore_results_heading()}</h2>
 
       <div class="explore-toolbar" data-explore-intercept="" data-explore-toolbar="">
@@ -143,13 +183,14 @@ const sortLabel = model.sortOptions.find((option) => option.value === model.sort
           <span class="truncate">{sortLabel}</span>
           <span class="sr-only">{m.explore_sort_label()}</span>
         </a>
+        <p class="text-sm text-fg-muted tabular-nums max-lg:hidden" aria-hidden="true">{rangeText || countText}</p>
         <ExploreToolbar model={model} i18n={i18n} />
       </div>
 
       {
         model.active.length > 0 && (
           <div class="explore-chips" data-explore-intercept="">
-            <span class="readout sr-only md:not-sr-only md:me-1">{m.explore_active_label()}</span>
+            <span class="sr-only">{m.explore_active_label()}</span>
             <ul class="contents">
               {model.active.map((filter) => (
                 <li class="shrink-0">
@@ -157,7 +198,7 @@ const sortLabel = model.sortOptions.find((option) => option.value === model.sort
                     href={filter.removeHref}
                     rel="nofollow"
                     class:list={[
-                      'inline-flex h-9 items-center gap-1.5 rounded-full border ps-3.5 pe-2.5 text-sm whitespace-nowrap text-fg hover:bg-fg/6 md:h-8 md:pe-3',
+                      'inline-flex h-9 items-center gap-1.5 rounded-full border ps-3.5 pe-2.5 text-sm whitespace-nowrap text-fg transition-colors hover:bg-fg/6 lg:h-8 lg:pe-3',
                       filter.excluded ? 'border-danger bg-danger-soft' : 'border-primary bg-primary/12',
                     ]}
                   >
@@ -196,19 +237,22 @@ const sortLabel = model.sortOptions.find((option) => option.value === model.sort
             />
           ) : items.length === 0 ? (
             <div data-explore-intercept="">
-              <ListingEmpty
-                title={filtered ? m.explore_empty_title() : (emptyTitle ?? m.explore_empty_title())}
+              <NoResults
+                title={state.q ? m.explore_noresults_query_title({ query: state.q }) : filtered ? m.explore_empty_title() : (emptyTitle ?? m.explore_empty_title())}
                 text={filtered ? m.explore_empty_text() : (emptyText ?? m.explore_empty_unfiltered_text())}
-                filters={model.active}
-                tryRemovingLabel={m.explore_empty_try_removing()}
-                removeLabel={(label: string) => m.explore_active_remove({ label })}
-                action={filtered ? { label: m.explore_clear_all(), href: model.clearHref, nofollow: true } : null}
+                tip={filtered ? m.explore_search_empty_hint() : undefined}
+                clear={filtered ? { label: m.explore_clear_all(), href: model.clearHref } : null}
+                browse={categoryLinks.length > 0 ? { heading: m.explore_search_browse(), links: categoryLinks } : null}
+                popular={popular.length > 0 ? { heading: m.explore_suggest_popular(), items: popular } : null}
+                locale={locale}
+                i18n={i18n}
               />
             </div>
           ) : (
             <ExploreResults
               items={items}
-              view={state.view}
+              view="grid"
+              builds={builds}
               locale={locale}
               i18n={i18n}
               priorityFirst={state.page === 1}
@@ -221,27 +265,33 @@ const sortLabel = model.sortOptions.find((option) => option.value === model.sort
 
       {
         list !== null && items.length > 0 && (
-          <div class="mt-2 flex flex-col items-center gap-4 md:mt-4" data-explore-intercept="" data-explore-pager="">
-            {nextHref && (
-              <>
-                <span data-explore-sentinel="" aria-hidden="true" class="block h-px w-full"></span>
-                <button
-                  type="button"
-                  hidden
-                  data-explore-more=""
-                  data-next-href={nextHref}
-                  class={`${buttonClasses({ variant: 'secondary', size: 'lg' })} max-md:h-12 max-md:w-full`}
-                >
-                  {m.common_action_load_more()}
-                </button>
-              </>
-            )}
-            <p class="text-xs text-fg-subtle tabular-nums" data-explore-page-indicator="">
-              {m.common_pagination_page_of({ page: state.page, total: Math.max(1, totalPages) })}
+          <div
+            class="mt-4 grid items-center gap-4 border-t border-border pt-5 lg:grid-cols-[1fr_auto_1fr] lg:gap-6"
+            data-explore-intercept=""
+            data-explore-pager=""
+          >
+            <p class="text-sm text-fg-muted tabular-nums max-lg:text-center lg:col-start-1 lg:row-start-1" data-explore-page-indicator="">
+              {rangeText}
             </p>
-            <div class="explore-pagination w-full">
+            <div class="explore-pagination lg:col-start-2 lg:row-start-1">
               <Pagination page={state.page} totalPages={totalPages} hrefFor={(page: number) => model.pageHref(page)} />
             </div>
+            <label class="flex items-center justify-center gap-2 text-sm text-fg-muted lg:col-start-3 lg:row-start-1 lg:justify-self-end">
+              {m.explore_page_size_label()}
+              <span class="relative block">
+                <select
+                  name="pageSize"
+                  form={FORM_ID}
+                  data-default={String(EXPLORE_PAGE_SIZE)}
+                  class="h-10 appearance-none rounded-md border border-border-strong bg-sunken ps-3 pe-9 text-sm text-fg transition-colors hover:border-fg-subtle focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus"
+                >
+                  {model.pageSizes.map((option) => (
+                    <option value={option.value} selected={option.selected}>{option.label}</option>
+                  ))}
+                </select>
+                <span class="pointer-events-none absolute inset-y-0 end-3 flex items-center text-fg-subtle"><Icon icon={ChevronDown} size={16} /></span>
+              </span>
+            </label>
           </div>
         )
       }
@@ -249,7 +299,7 @@ const sortLabel = model.sortOptions.find((option) => option.value === model.sort
   </div>
 
   <template data-explore-skeleton="">
-    <ExploreSkeleton view={state.view} builds={hasBuilds} />
+    <ExploreSkeleton view="grid" builds={builds} />
   </template>
   <div hidden data-explore-messages={JSON.stringify({ loading: m.explore_loading(), offline: m.explore_offline(), failed: m.explore_failed() })}></div>
 </div>
@@ -261,7 +311,7 @@ const sortLabel = model.sortOptions.find((option) => option.value === model.sort
     align-items: center;
     gap: 0.5rem;
   }
-  @media (width < 48rem) {
+  @media (width < 64rem) {
     .explore-toolbar {
       position: sticky;
       top: var(--sticky-top, 4rem);
@@ -300,7 +350,7 @@ const sortLabel = model.sortOptions.find((option) => option.value === model.sort
     border-color: var(--color-primary);
     background: color-mix(in oklab, var(--color-primary) 12%, var(--color-surface));
   }
-  @media (width >= 48rem) {
+  @media (width >= 64rem) {
     .explore-pill[data-mobile-only] {
       display: none;
     }
@@ -326,7 +376,7 @@ const sortLabel = model.sortOptions.find((option) => option.value === model.sort
     gap: 0.5rem;
     flex-wrap: wrap;
   }
-  @media (width < 48rem) {
+  @media (width < 64rem) {
     .explore-chips {
       flex-wrap: nowrap;
       margin-inline: -1rem;
@@ -352,7 +402,7 @@ const sortLabel = model.sortOptions.find((option) => option.value === model.sort
   }
 
   /* ---- Filters rail (md+) and the two bottom sheets (below md) -------------------------- */
-  @media (width >= 48rem) {
+  @media (width >= 64rem) {
     .explore-rail {
       position: sticky;
       top: calc(var(--sticky-top, 4rem) + 1rem);
@@ -367,7 +417,7 @@ const sortLabel = model.sortOptions.find((option) => option.value === model.sort
       display: none;
     }
   }
-  @media (width < 48rem) {
+  @media (width < 64rem) {
     .explore-sheet {
       position: fixed;
       inset: auto 0 0 0;
@@ -417,7 +467,7 @@ const sortLabel = model.sortOptions.find((option) => option.value === model.sort
       padding-bottom: 0.5rem;
     }
   }
-  @media (width >= 48rem) {
+  @media (width >= 64rem) {
     .explore-sheet-handle {
       display: none;
     }
@@ -446,7 +496,7 @@ const sortLabel = model.sortOptions.find((option) => option.value === model.sort
   }
 
   /* Switch look of the checkbox toggles inside the mobile sheet. */
-  @media (width < 48rem) {
+  @media (width < 64rem) {
     .explore-toggle {
       appearance: none;
       position: relative;
@@ -478,18 +528,20 @@ const sortLabel = model.sortOptions.find((option) => option.value === model.sort
     [dir='rtl'] .explore-toggle:checked::after {
       translate: -1.125rem 0;
     }
-    /* Numbered pagination is the no-JS fallback; with JS the list loads as you scroll. */
-    html[data-explore-js] .explore-pagination {
+  }
+
+  /* With JavaScript every filter applies by itself: the rail's apply button is only the no-JS path. */
+  @media (width >= 64rem) {
+    html[data-explore-js] .explore-rail [data-explore-apply] {
       display: none;
     }
   }
-
-  /* Load more: the skeleton that follows the last card while the next page loads. */
-  [data-explore-items] > [data-explore-pending] {
-    pointer-events: none;
+  /* Loading: the results dim a little while the next page is fetched. */
+  #explore-results[aria-busy='true'] [data-explore-list] {
+    opacity: 0.6;
+    transition: opacity var(--dur-base, 200ms);
   }
 </style>
-
 <script>
   import { initExplore } from '../../scripts/explore/explore.ts';
 

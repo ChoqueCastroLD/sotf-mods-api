@@ -57,6 +57,8 @@ async function main(): Promise<void> {
       rollupOptions: {
         input: { ui: 'src/tokens.css' },
         output: { assetFileNames: '[name][extname]' },
+        // The plugin timing advisory fires on a busy machine (CI, shared dev boxes): it says nothing about the CSS.
+        checks: { pluginTimings: false },
       },
     },
   });

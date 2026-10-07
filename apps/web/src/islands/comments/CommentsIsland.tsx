@@ -346,22 +346,6 @@ export function CommentsIsland(props: CommentsIslandProps) {
               </ol>
             ) : sheet ? (
               <div className="grid justify-items-center gap-3 py-4 text-center">
-                <picture>
-                  <source
-                    type="image/avif"
-                    srcSet="/art/entity/empty-320.avif 320w, /art/entity/empty-640.avif 640w"
-                    sizes="160px"
-                  />
-                  <img
-                    src="/art/entity/empty-320.webp"
-                    alt=""
-                    width={160}
-                    height={160}
-                    loading="lazy"
-                    decoding="async"
-                    className="size-40 rounded-2xl border border-border object-cover"
-                  />
-                </picture>
                 <p className="text-fg-muted">{t('social_comments_empty')}</p>
               </div>
             ) : (

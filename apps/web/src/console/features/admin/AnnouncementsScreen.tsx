@@ -355,7 +355,7 @@ function AnnouncementForm({
   return (
     <form noValidate onSubmit={(event) => void submit(event)} className="grid gap-4">
       <div className="grid gap-2">
-        <p className="readout">{m.admin_ann_preview()}</p>
+        <p className="text-xs font-medium text-fg-muted">{m.admin_ann_preview()}</p>
         <Banner
           tone={LEVEL_TONE[values.level]}
           dismissible={values.dismissible}

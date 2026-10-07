@@ -3,7 +3,7 @@ export type Upload_Multiplayer_Client_SideInputs = {};
 /**
 * | output |
 * | --- |
-* | "Client-side" |
+* | "Client side" |
 *
 * @param {Upload_Multiplayer_Client_SideInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

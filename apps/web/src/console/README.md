@@ -7,7 +7,8 @@
 - `router.ts` — file routes in `routes/` (tree in `routeTree.gen.ts`, regenerate with `pnpm gen`), `defaultPreload: 'intent'`, `autoCodeSplitting`.
 - `routes/__root.tsx` — session guard (`lib/guard.ts`: no `sotf_li` hint or 401 → `/login?next=`), shell layout.
 - `routes/<area>.tsx` — area layouts; screens go in `routes/<area>/` and the area shows its EmptyState until one matches.
-- `layout/` — sidebar per area (icons on tablets), bottom tab bar and section strip on phones, top bar, live status, shortcuts dialog, route announcer.
+- `layout/` — sidebar per area (icons on tablets; its logo row and the top bar form one band like the public header), bottom tab bar and section strip on phones, top bar (the public site's links, language menu, notifications bell, account menu), shortcuts dialog, route announcer.
+- `components/ListPager.tsx` — numbered pager («1–10 of 32», optional page size) used by every paginated list; filters and the page live in the route's search params.
 - `hooks/` — `useMe`, `useStream` (SSE → cache updates/`invalidateQueries`, polling fallback, bfcache-safe), shortcuts, sidebar, online.
 - `lib/` — HTTP client and errors, query client (401 → login), chunk-error reload, toasts (`notify`), i18n catalogs, storage.
 
@@ -38,8 +39,8 @@ Phones — the native feel (< 768 px):
 - `components/native-list.tsx` — grouped lists with chevrons (Settings index, Admin index at
   `/moderation/admin` on phones; larger screens redirect to the first admin screen).
 - `components/PullToRefresh.tsx` — drag down at the top refetches the active queries.
-- `components/ArtState.tsx` — empty states and the Basecamp header backdrop with the concept art
-  (`public/art/console-*`, AVIF + WebP at 480/960 px, lazy, fixed dimensions, decorative).
+- `components/ArtState.tsx` — full-screen empty states over a faint `Motif` (programmatic pine pattern from
+  `@sotf/ui/motif`; no pictures).
 - The wizard shows a segmented progress bar and a sticky Back/Next bar; image pickers add
   «Take a photo» (`capture`) on touch screens; text fields that hold identifiers use
   `autoCapitalize="none"`, `autoComplete="off"` and proper `inputMode`s.

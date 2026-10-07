@@ -143,7 +143,7 @@ export function DraftsList() {
   const count = drafts.data?.items.length ?? 0;
 
   return (
-    <div className="mx-auto flex w-full max-w-4xl flex-col gap-5">
+    <div className="flex w-full max-w-4xl flex-col gap-5">
       <header className="flex flex-wrap items-end justify-between gap-3">
         <div className="flex flex-col gap-1">
           <h1 className="font-display-caps text-2xl text-fg sm:text-3xl">{ut('upload_drafts_title')}</h1>

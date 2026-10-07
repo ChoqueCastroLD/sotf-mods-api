@@ -171,5 +171,13 @@
   "explore_catalog_empty_clear": "Wyczyść filtry",
   "explore_catalog_error_title": "Nie udało się wczytać modów",
   "explore_catalog_error_text": "Spróbuj ponownie za chwilę.",
-  "explore_catalog_retry": "Spróbuj ponownie"
+  "explore_catalog_retry": "Spróbuj ponownie",
+  "explore_sort_name": "Nazwa od A do Z",
+  "explore_facet_downloads": "Pobrania",
+  "explore_downloads_min": "{count, number}+ pobrań",
+  "explore_page_size_label": "Na stronę",
+  "explore_search_builds_label": "Szukaj buildów",
+  "explore_noresults_query_title": "Brak wyników dla „{query}”",
+  "explore_suggest_popular": "Popularne mody",
+  "explore_results_range": "{from, number}–{to, number} z {total, number}"
 }

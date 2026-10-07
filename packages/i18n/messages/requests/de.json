@@ -85,5 +85,10 @@
   "requests_badge_author": "Wünschende:r",
   "requests_comment_delete_title": "Diesen Kommentar löschen?",
   "requests_comment_delete_text": "Das lässt sich nicht rückgängig machen.",
-  "requests_votes_short": "Stimmen"
+  "requests_votes_short": "Stimmen",
+  "requests_sort_old": "Älteste",
+  "requests_sort_comments": "Meistdiskutiert",
+  "requests_search_label": "Wünsche suchen",
+  "requests_empty_search_title": "Keine Wünsche für „{query}“",
+  "requests_empty_search_text": "Prüfe die Schreibweise, nutze weniger Wörter oder suche in allen Status. Wenn noch niemand danach gefragt hat, kannst du es tun."
 }

@@ -79,7 +79,7 @@ export interface ModCardProps {
   /**
    * Grid only: what the card becomes below 260 px of its own width. `row` (default) is the
    * 40 px thumbnail row of sidebars; `tile` keeps the cover (4:3) with a two-line title, the
-   * author and the downloads, for two-column mobile grids.
+   * author and the downloads, for two-column mobile grids (and the full card down to 220 px).
    */
   narrow?: 'row' | 'tile';
   /** `list` only: the texts of the row (the web page builds them from its message catalogue). */
@@ -223,8 +223,8 @@ function Byline({ mod, className, tile = false }: { mod: ModCardDTO; className?:
   const profileHref = useProfileHref();
   const category = mod.category ? (taxonomy?.(mod.category.nameKey, mod.category.name) ?? mod.category.name) : null;
   return (
-    <p className={cn('flex min-w-0 items-center gap-1 text-xs text-fg-muted', className)}>
-      <span className="truncate">
+    <p className={cn('flex min-w-0 flex-wrap items-center gap-x-1 gap-y-0.5 text-xs text-fg-muted', className)}>
+      <span className="min-w-0 max-w-full truncate">
         {withSlot(
           t('ui_domain_by_author', { author: SLOT }),
           <a
@@ -238,14 +238,10 @@ function Byline({ mod, className, tile = false }: { mod: ModCardDTO; className?:
       </span>
       {mod.verifiedCreator ? <TrustedMark size={14} className={cardControlClasses} /> : null}
       {category ? (
-        <>
-          <span aria-hidden="true" {...(tile ? { 'data-byline-extra': '' } : {})}>
-            ·
-          </span>
-          <span className="truncate" {...(tile ? { 'data-byline-extra': '' } : {})}>
-            {category}
-          </span>
-        </>
+        <span className="flex min-w-0 items-center gap-1" {...(tile ? { 'data-byline-extra': '' } : {})}>
+          <span aria-hidden="true">·</span>
+          <span className="truncate">{category}</span>
+        </span>
       ) : null}
     </p>
   );
@@ -265,13 +261,13 @@ const CQ = {
   footer: '@max-[260px]/card:pt-0',
 } as const;
 
-/** `narrow="tile"`: the same container query keeps the cover and tightens the text. */
+/** `narrow="tile"`: below 220 px (two-column phones) the cover stays and the text tightens. */
 const CQ_TILE = {
   card: '',
-  cover: '@max-[260px]/card:aspect-[4/3]',
-  body: '@max-[260px]/card:gap-1 @max-[260px]/card:p-2.5',
-  hide: '@max-[260px]/card:hidden',
-  footer: '@max-[260px]/card:pt-1',
+  cover: '@max-[220px]/card:aspect-[4/3]',
+  body: '@max-[220px]/card:gap-1 @max-[220px]/card:p-2.5',
+  hide: '@max-[220px]/card:hidden',
+  footer: '@max-[220px]/card:pt-1',
 } as const;
 
 function GridCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
@@ -315,7 +311,7 @@ function GridCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
               className={cn(
                 'pointer-events-none absolute start-2 top-2 flex max-w-[calc(100%-3.5rem)] gap-1',
                 tile
-                  ? '@max-[260px]/card:start-1.5 @max-[260px]/card:top-1.5 @max-[260px]/card:[&>*:nth-child(n+2)]:hidden'
+                  ? '@max-[220px]/card:start-1.5 @max-[220px]/card:top-1.5 @max-[220px]/card:[&>*:nth-child(n+2)]:hidden'
                   : CQ.hide,
               )}
             >
@@ -327,7 +323,7 @@ function GridCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
           <div
             className={cn(
               'absolute z-10 end-2 top-2',
-              tile ? '@max-[260px]/card:end-1 @max-[260px]/card:top-1' : CQ.hide,
+              tile ? '@max-[220px]/card:end-1 @max-[220px]/card:top-1' : CQ.hide,
             )}
           >
             {action}
@@ -338,25 +334,25 @@ function GridCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
             className={cn(
               'truncate text-base font-semibold',
               tile &&
-                '@max-[260px]/card:[&>a]:line-clamp-2 @max-[260px]/card:[&>a]:block @max-[260px]/card:[&>a]:min-h-6 @max-[260px]/card:text-sm @max-[260px]/card:leading-snug @max-[260px]/card:whitespace-normal @max-[260px]/card:text-pretty',
+                '@max-[220px]/card:[&>a]:line-clamp-2 @max-[220px]/card:[&>a]:block @max-[220px]/card:[&>a]:break-words @max-[220px]/card:[&>a]:min-h-6 @max-[220px]/card:text-sm @max-[220px]/card:leading-snug @max-[220px]/card:whitespace-normal @max-[220px]/card:text-pretty',
             )}
           >
             <CardLink href={mod.canonicalPath}>{displayName(mod)}</CardLink>
           </Heading>
-          <OriginalName card={mod} className={CQ.hide} />
+          <OriginalName card={mod} className={CQ_.hide} />
           <Byline
             tile={tile}
             mod={mod}
-            className={tile ? '@max-[260px]/card:text-2xs @max-[260px]/card:[&_[data-byline-extra]]:hidden' : CQ.hide}
+            className={tile ? '@max-[220px]/card:text-2xs @max-[220px]/card:[&_[data-byline-extra]]:hidden' : CQ.hide}
           />
-          <p className={cn('line-clamp-2 text-sm text-fg-muted', CQ.hide)}>{displayShortDescription(mod)}</p>
+          <p className={cn('line-clamp-2 text-sm text-fg-muted', CQ_.hide)}>{displayShortDescription(mod)}</p>
           <div
             className={cn('mt-auto flex flex-wrap items-center gap-x-3 gap-y-1 pt-2 text-xs text-fg-muted', CQ_.footer)}
           >
             <Downloads value={mod.downloads} />
             <Rating mod={mod} className={tile ? undefined : CQ.hide} />
             {mod.latestVersion ? (
-              <span className={cn('font-mono text-2xs', CQ.hide)}>
+              <span className={cn('font-mono text-2xs', CQ_.hide)}>
                 {t('ui_domain_version_label', { version: mod.latestVersion })}
               </span>
             ) : null}

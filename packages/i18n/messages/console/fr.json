@@ -68,5 +68,15 @@
   "console_nav_jams": "Mod Jams",
   "console_tab_ranger": "Modération",
   "console_pull_refreshing": "Actualisation…",
-  "console_tab_basecamp": "Tableau de bord"
+  "console_tab_basecamp": "Tableau de bord",
+  "console_language_failed": "Impossible de changer la langue",
+  "console_pager_range": "{from}–{to} sur {total}",
+  "console_pager_page_size": "Éléments par page",
+  "console_pager_per_page": "{count} par page",
+  "console_pager_of": "Page {page} sur {pages}",
+  "console_nav_tokens": "Jetons d'accès",
+  "console_nav_group_account": "Votre compte",
+  "console_nav_group_app": "Application",
+  "console_nav_group_creator": "Créateur et données",
+  "console_area_you": "Vous"
 }

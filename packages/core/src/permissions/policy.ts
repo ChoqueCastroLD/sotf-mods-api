@@ -8,7 +8,6 @@
  *   action without a reviewed row a compile error);
  * - every persona × ownership × action cell is evaluated by {@link reviewPermissionMatrix}; any
  *   difference between the spec and `can()` is a finding (a regression or an unreviewed change);
- * - moderator/admin actions must require a fresh session (`needsFreshSession`).
  *
  * Personas cover every branch of `can()`: guests, unverified email, suspension (for plain users
  * and for staff), the `verifiedCreator` flag and the three roles. Resource actions are evaluated
@@ -16,7 +15,7 @@
  * legacy rows whose author was deleted), which must behave like someone else's.
  */
 import type { Action, OwnedResource, PermissionSubject } from './can.ts';
-import { ALL_ACTIONS, can as defaultCan, needsFreshSession as defaultNeedsFresh, RESOURCE_ACTIONS } from './can.ts';
+import { ALL_ACTIONS, can as defaultCan, RESOURCE_ACTIONS } from './can.ts';
 
 export const PERSONAS = [
   'guest',
@@ -77,8 +76,6 @@ export function ownershipResource(ownership: Ownership): OwnedResource {
 export interface GlobalRule {
   kind: 'global';
   allow: readonly Persona[];
-  /** Requires a session younger than 12 h (moderator/admin actions). */
-  fresh: boolean;
   why: string;
 }
 
@@ -88,7 +85,6 @@ export interface ResourceRule {
   own: readonly Persona[];
   /** Also applies to orphaned resources (`ownerId: null`). */
   foreign: readonly Persona[];
-  fresh: boolean;
   why: string;
 }
 
@@ -101,16 +97,15 @@ const STAFF: readonly Persona[] = ['moderator', 'admin'];
 const ADMIN: readonly Persona[] = ['admin'];
 const NOT_SUSPENDED: readonly Persona[] = ['unverified', 'user', 'creator', 'moderator', 'admin'];
 
-const contribution = (why: string): GlobalRule => ({ kind: 'global', allow: WRITERS, fresh: false, why });
-const moderation = (why: string): GlobalRule => ({ kind: 'global', allow: STAFF, fresh: true, why });
-const administration = (why: string): GlobalRule => ({ kind: 'global', allow: ADMIN, fresh: true, why });
+const contribution = (why: string): GlobalRule => ({ kind: 'global', allow: WRITERS, why });
+const moderation = (why: string): GlobalRule => ({ kind: 'global', allow: STAFF, why });
+const administration = (why: string): GlobalRule => ({ kind: 'global', allow: ADMIN, why });
 
 export const PERMISSION_MATRIX = {
   'mod.publish': contribution('Publishing needs a verified email; suspended accounts cannot create content.'),
   'mod.publish_without_review': {
     kind: 'global',
     allow: ['creator', 'moderator', 'admin'],
-    fresh: false,
     why: 'Verified creators and staff skip the first-mod human review (PLAN §7.4); plain users do not.',
   },
   'comment.write': contribution('Comments need a verified email and no suspension.'),
@@ -136,84 +131,72 @@ export const PERMISSION_MATRIX = {
     kind: 'resource',
     own: SIGNED_IN,
     foreign: [],
-    fresh: false,
     why: 'Only the owner manages an account (export, delete, password), even while suspended or unverified.',
   },
   'mod.edit': {
     kind: 'resource',
     own: WRITERS,
     foreign: [],
-    fresh: false,
     why: 'Only the author edits a mod; staff moderate through status changes, never by editing content.',
   },
   'mod.change_status': {
     kind: 'resource',
     own: WRITERS,
     foreign: STAFF,
-    fresh: false,
-    why: 'Authors unlist/archive their own mods; staff change any status (the moderation endpoints also require moderation.decide, which is fresh).',
+    why: 'Authors unlist/archive their own mods; staff change any status (the moderation endpoints also require moderation.decide).',
   },
   'mod.restore': {
     kind: 'resource',
     own: ADMIN,
     foreign: ADMIN,
-    fresh: true,
     why: 'Restoring a removed mod is an admin action.',
   },
   'version.publish': {
     kind: 'resource',
     own: WRITERS,
     foreign: [],
-    fresh: false,
     why: 'Only the author publishes versions of a mod.',
   },
   'comment.edit': {
     kind: 'resource',
     own: WRITERS,
     foreign: [],
-    fresh: false,
     why: 'Only the author edits a comment, while allowed to write.',
   },
   'comment.delete': {
     kind: 'resource',
     own: SIGNED_IN,
     foreign: STAFF,
-    fresh: false,
     why: 'Authors may always delete their own comment (even suspended); staff delete any.',
   },
   'review.edit': {
     kind: 'resource',
     own: WRITERS,
     foreign: [],
-    fresh: false,
     why: 'Only the author edits a review, while allowed to write.',
   },
   'review.delete': {
     kind: 'resource',
     own: SIGNED_IN,
     foreign: STAFF,
-    fresh: false,
     why: 'Authors may always delete their own review (even suspended); staff delete any.',
   },
   'kit.edit': {
     kind: 'resource',
     own: NOT_SUSPENDED,
     foreign: [],
-    fresh: false,
     why: 'Owners edit their kits unless suspended (creating kits needs kit.write).',
   },
   'kit.delete': {
     kind: 'resource',
     own: NOT_SUSPENDED,
     foreign: [],
-    fresh: false,
     why: 'Owners delete their kits unless suspended; staff hide kits through moderation.',
   },
   'user.view_email': {
     kind: 'resource',
     own: SIGNED_IN,
     foreign: STAFF,
-    fresh: false,
     why: 'Own email always; staff only on the user card, and the caller writes an AuditLog row (PLAN §9.2).',
   },
 } as const satisfies Record<Action, PermissionRule>;
@@ -232,12 +215,11 @@ export interface PermissionFinding {
   ownership: Ownership | null;
   expected: boolean;
   actual: boolean;
-  kind: 'decision' | 'freshness' | 'unreviewed_action';
+  kind: 'decision' | 'unreviewed_action';
 }
 
 export interface PermissionReviewOptions {
   can?: (subject: PermissionSubject | null, action: Action, resource?: OwnedResource, now?: Date) => boolean;
-  needsFreshSession?: (action: Action) => boolean;
   actions?: readonly Action[];
 }
 
@@ -247,7 +229,6 @@ export interface PermissionReviewOptions {
  */
 export function reviewPermissionMatrix(options: PermissionReviewOptions = {}): PermissionFinding[] {
   const canFn = options.can ?? defaultCan;
-  const needsFresh = options.needsFreshSession ?? defaultNeedsFresh;
   const actions = options.actions ?? ALL_ACTIONS;
   const resourceActions = new Set<string>(RESOURCE_ACTIONS);
   const findings: PermissionFinding[] = [];
@@ -275,17 +256,6 @@ export function reviewPermissionMatrix(options: PermissionReviewOptions = {}): P
         kind: 'unreviewed_action',
       });
     }
-    const fresh = needsFresh(action);
-    if (fresh !== rule.fresh) {
-      findings.push({
-        action,
-        persona: 'admin',
-        ownership: null,
-        expected: rule.fresh,
-        actual: fresh,
-        kind: 'freshness',
-      });
-    }
     for (const persona of PERSONAS) {
       const subject = personaSubject(persona);
       if (rule.kind === 'global') {
@@ -311,8 +281,8 @@ export function reviewPermissionMatrix(options: PermissionReviewOptions = {}): P
 
 /** Markdown table of the reviewed matrix (for the security review document and `/developers`). */
 export function permissionMatrixMarkdown(): string {
-  const header = `| Action | Fresh session | ${PERSONAS.join(' | ')} |`;
-  const divider = `|---|---|${PERSONAS.map(() => '---').join('|')}|`;
+  const header = `| Action | ${PERSONAS.join(' | ')} |`;
+  const divider = `|---|${PERSONAS.map(() => '---').join('|')}|`;
   const rows = ALL_ACTIONS.map((action) => {
     const rule: PermissionRule = PERMISSION_MATRIX[action];
     const cells = PERSONAS.map((persona) => {
@@ -321,7 +291,7 @@ export function permissionMatrixMarkdown(): string {
       const foreign = rule.foreign.includes(persona);
       return own && foreign ? 'any' : own ? 'own' : foreign ? 'others' : '-';
     });
-    return `| \`${action}\` | ${rule.fresh ? 'yes' : 'no'} | ${cells.join(' | ')} |`;
+    return `| \`${action}\` | ${cells.join(' | ')} |`;
   });
   return [header, divider, ...rows].join('\n');
 }

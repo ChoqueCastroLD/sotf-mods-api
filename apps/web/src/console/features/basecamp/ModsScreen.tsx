@@ -1,33 +1,40 @@
 /**
- * `/dashboard/mods` — every mod and build of the creator in any status (PLAN §7.5 «Mis mods»), with
- * a status filter, a name search and the sort order, all kept in the URL.
+ * `/dashboard/mods`: every mod and build of the creator in any status. The server filters (search by
+ * name, status, category), sorts and paginates (`GET /studio/mods`); all of it is kept in the URL.
+ * The old rows stay on screen, dimmed, while the next page or filter loads (no layout shift).
  */
 import { BELOW_MD_QUERY, useMediaQuery } from '@sotf/ui';
 import { buttonClasses } from '@sotf/ui/button';
+import { cn } from '@sotf/ui/cn';
 import { EmptyState } from '@sotf/ui/empty-state';
 import { Icon } from '@sotf/ui/icons';
 import { Input } from '@sotf/ui/input';
 import { Select } from '@sotf/ui/select';
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
-import { NotebookPen, Plus, Search } from 'lucide-react';
-import { useDeferredValue, useId } from 'react';
+import { NotebookPen, Plus, Search, X } from 'lucide-react';
+import { useEffect, useId, useState } from 'react';
 import { ArtState } from '../../components/ArtState.tsx';
-import { activeLocale } from '../../lib/messages.ts';
-import { MOD_STATUS_VALUES, type ModRow, type ModStatus, modsQuery } from './api.ts';
+import { ListPager } from '../../components/ListPager.tsx';
+import { useConsoleLocale } from '../../hooks/use-console-locale.ts';
+import { taxonomyNamesQuery, taxonomyResolver } from '../../lib/taxonomy.ts';
+import { MOD_STATUS_VALUES, type ModStatus, modsPageQuery } from './api.ts';
 import { CoAuthoredPanel } from './CoAuthoredPanel.tsx';
 import { number } from './format.ts';
 import { bt, useBasecampMessages } from './i18n.ts';
 import { useKnowledgeMessages } from './knowledge-i18n.ts';
 import { modStatusLabel } from './labels.ts';
 import { ModsTable } from './ModsTable.tsx';
-import { MOD_SORTS, type ModSort } from './mod-sorts.ts';
-import { ScreenHeader } from './shared.tsx';
+import { MOD_PAGE_SIZES, MOD_SORTS, type ModSort } from './mod-sorts.ts';
+import { PanelError, PanelSkeleton, ScreenHeader } from './shared.tsx';
 
 export interface ModsFilters {
   status: ModStatus | 'all';
+  category: string;
   q: string;
   sort: ModSort;
+  page: number;
+  pageSize: number;
 }
 
 function sortLabel(sort: ModSort): string {
@@ -45,32 +52,17 @@ function sortLabel(sort: ModSort): string {
   }
 }
 
-function attentionScore(row: ModRow): number {
-  return (
-    row.openCompatReports * 3 +
-    row.unansweredComments +
-    row.unansweredReviews +
-    (row.mod.status === 'rejected' ? 100 : 0)
-  );
-}
-
-export function sortRows(rows: readonly ModRow[], sort: ModSort): ModRow[] {
-  const collator = new Intl.Collator(activeLocale(), { sensitivity: 'base', numeric: true });
-  const sorted = [...rows];
-  switch (sort) {
-    case 'downloads':
-      return sorted.sort((a, b) => b.downloads7d - a.downloads7d || b.mod.downloads - a.mod.downloads);
-    case 'updated':
-      return sorted.sort((a, b) => b.mod.lastReleasedAt.localeCompare(a.mod.lastReleasedAt));
-    case 'name':
-      return sorted.sort((a, b) => collator.compare(a.mod.name, b.mod.name));
-    case 'rating':
-      return sorted.sort(
-        (a, b) => (b.mod.ratingAvg ?? 0) - (a.mod.ratingAvg ?? 0) || b.mod.ratingCount - a.mod.ratingCount,
-      );
-    case 'attention':
-      return sorted.sort((a, b) => attentionScore(b) - attentionScore(a));
-  }
+/** The text of the search box, applied to the URL 300 ms after the last keystroke. */
+function useDebouncedField(value: string, apply: (next: string) => void): [string, (next: string) => void] {
+  const [text, setText] = useState(value);
+  // Follows the URL when it changes elsewhere (clear filters, back button).
+  useEffect(() => setText(value), [value]);
+  useEffect(() => {
+    if (text.trim() === value.trim()) return;
+    const timer = window.setTimeout(() => apply(text), 300);
+    return () => window.clearTimeout(timer);
+  }, [text, value, apply]);
+  return [text, setText];
 }
 
 export function ModsScreen({
@@ -84,47 +76,71 @@ export function ModsScreen({
   useKnowledgeMessages();
   const phone = useMediaQuery(BELOW_MD_QUERY);
   const searchId = useId();
-  const { data } = useSuspenseQuery(modsQuery);
-  const q = useDeferredValue(filters.q.trim().toLocaleLowerCase(activeLocale()));
+  const { locale } = useConsoleLocale();
+  const taxonomy = useQuery(taxonomyNamesQuery);
+  const categoryName = taxonomyResolver(taxonomy.data, locale);
 
-  const counts = new Map<ModStatus, number>();
-  for (const row of data.items) counts.set(row.mod.status, (counts.get(row.mod.status) ?? 0) + 1);
+  const params = {
+    sort: filters.sort,
+    page: filters.page,
+    pageSize: filters.pageSize,
+    ...(filters.q.trim() ? { q: filters.q.trim() } : {}),
+    ...(filters.status !== 'all' ? { status: filters.status } : {}),
+    ...(filters.category ? { category: filters.category } : {}),
+  };
+  const query = useQuery(modsPageQuery(params));
+  const { isFetching } = query;
+  const [text, setText] = useDebouncedField(filters.q, (next) => onFilters({ q: next, page: 1 }));
+  const data = query.data;
+  if (!data) {
+    return query.isError ? (
+      <PanelError error={query.error} onRetry={() => void query.refetch()} />
+    ) : (
+      <PanelSkeleton rows={6} className="[&>*]:h-16" />
+    );
+  }
 
-  const rows = sortRows(
-    data.items.filter(
-      (row) =>
-        (filters.status === 'all' || row.mod.status === filters.status) &&
-        (!q || row.mod.name.toLocaleLowerCase(activeLocale()).includes(q)),
-    ),
-    filters.sort,
-  );
+  const facets = data.facets;
+  const everything = facets ? Object.values(facets.status).reduce((sum, count) => sum + (count ?? 0), 0) : 0;
+  const filtered = filters.q.trim() !== '' || filters.status !== 'all' || filters.category !== '';
 
   const statusOptions = [
-    { value: 'all' as const, label: bt('basecamp_mods_filter_all', { count: number(data.items.length) }) },
-    ...MOD_STATUS_VALUES.filter((status) => counts.has(status)).map((status) => ({
+    { value: 'all' as const, label: bt('basecamp_mods_filter_all', { count: number(everything) }) },
+    ...MOD_STATUS_VALUES.filter((status) => (facets?.status[status] ?? 0) > 0).map((status) => ({
       value: status,
       label: bt('basecamp_mods_filter_status', {
         status: modStatusLabel(status),
-        count: number(counts.get(status) ?? 0),
+        count: number(facets?.status[status] ?? 0),
       }),
     })),
   ];
+  const categoryOptions = [
+    { value: 'all', label: bt('basecamp_mods_category_all') },
+    ...(facets?.categories ?? []).map((category) => ({
+      value: category.slug,
+      label: `${categoryName?.(category.nameKey, category.name) ?? category.name} (${number(category.count)})`,
+    })),
+  ];
+
+  const clear = () => {
+    setText('');
+    onFilters({ q: '', status: 'all', category: '', page: 1 });
+  };
 
   return (
     <div className="grid gap-6">
       <ScreenHeader
-        readout={bt('basecamp_readout')}
         title={bt('basecamp_mods_title')}
         description={bt('basecamp_mods_intro')}
         actions={
           <>
-            <Link to="/dashboard/new" className={`${buttonClasses({ variant: 'primary', size: 'sm' })} max-md:hidden`}>
-              <Icon icon={Plus} size={16} />
-              {bt('basecamp_action_publish_new')}
-            </Link>
             <Link to="/dashboard/drafts" className={buttonClasses({ variant: 'ghost', size: 'sm' })}>
               <Icon icon={NotebookPen} size={16} />
               {bt('basecamp_action_drafts')}
+            </Link>
+            <Link to="/dashboard/new" className={`${buttonClasses({ variant: 'primary', size: 'sm' })} max-md:hidden`}>
+              <Icon icon={Plus} size={16} />
+              {bt('basecamp_action_publish_new')}
             </Link>
           </>
         }
@@ -132,7 +148,7 @@ export function ModsScreen({
 
       <CoAuthoredPanel />
 
-      {data.items.length === 0 ? (
+      {everything === 0 && !filtered ? (
         <ArtState
           art="cabin"
           title={bt('basecamp_empty_title')}
@@ -160,12 +176,12 @@ export function ModsScreen({
                 <Input
                   id={searchId}
                   type="search"
-                  value={filters.q}
+                  value={text}
                   placeholder={bt('basecamp_mods_search_placeholder')}
                   className="ps-9 max-md:h-12"
                   enterKeyHint="search"
                   autoComplete="off"
-                  onChange={(event) => onFilters({ q: event.currentTarget.value })}
+                  onChange={(event) => setText(event.currentTarget.value)}
                 />
               </span>
             </div>
@@ -173,41 +189,79 @@ export function ModsScreen({
               label={bt('basecamp_mods_filter_label')}
               options={statusOptions}
               value={filters.status}
-              onValueChange={(value) => onFilters({ status: value ?? 'all' })}
+              onValueChange={(value) => onFilters({ status: value ?? 'all', page: 1 })}
               hideLabel={phone}
               size={phone ? 'lg' : 'md'}
-              className="min-w-0 md:min-w-48"
+              className="min-w-0 md:min-w-44"
+            />
+            <Select<string>
+              label={bt('basecamp_mods_category_label')}
+              options={categoryOptions}
+              value={filters.category || 'all'}
+              onValueChange={(value) => onFilters({ category: value && value !== 'all' ? value : '', page: 1 })}
+              hideLabel={phone}
+              size={phone ? 'lg' : 'md'}
+              className="min-w-0 md:min-w-44"
             />
             <Select<ModSort>
               label={bt('basecamp_mods_sort_label')}
               options={MOD_SORTS.map((sort) => ({ value: sort, label: sortLabel(sort) }))}
               value={filters.sort}
-              onValueChange={(value) => onFilters({ sort: value ?? 'downloads' })}
+              onValueChange={(value) => onFilters({ sort: value ?? 'updated', page: 1 })}
               hideLabel={phone}
               size={phone ? 'lg' : 'md'}
-              className="min-w-0 md:min-w-48"
+              className="col-span-2 min-w-0 md:col-span-1 md:min-w-44"
             />
+            {filtered ? (
+              <button
+                type="button"
+                onClick={clear}
+                className={cn(buttonClasses({ variant: 'ghost', size: 'md' }), 'col-span-2 md:col-span-1')}
+              >
+                <Icon icon={X} size={16} />
+                {bt('basecamp_mods_clear_filters')}
+              </button>
+            ) : null}
           </div>
           <p className="sr-only" aria-live="polite">
-            {bt('basecamp_mods_results', { count: rows.length })}
+            {bt('basecamp_mods_results', { count: data.total ?? data.items.length })}
           </p>
-          {rows.length === 0 ? (
+          {data.items.length === 0 ? (
             <EmptyState
               icon={<Icon icon={Search} size={28} />}
               title={bt('basecamp_mods_no_match_title')}
               description={bt('basecamp_mods_no_match_text')}
               action={
-                <button
-                  type="button"
-                  className={buttonClasses({ variant: 'secondary' })}
-                  onClick={() => onFilters({ q: '', status: 'all' })}
-                >
+                <button type="button" className={buttonClasses({ variant: 'secondary' })} onClick={clear}>
                   {bt('basecamp_mods_clear_filters')}
                 </button>
               }
             />
           ) : (
-            <ModsTable rows={rows} caption={bt('basecamp_mods_title')} />
+            <div className="grid gap-4">
+              <div
+                aria-busy={isFetching}
+                className={cn('transition-opacity duration-(--dur-fast)', isFetching && 'opacity-60')}
+              >
+                <ModsTable
+                  rows={data.items}
+                  caption={bt('basecamp_mods_title')}
+                  sort={filters.sort}
+                  onSort={(sort) => onFilters({ sort, page: 1 })}
+                  categoryName={categoryName}
+                />
+              </div>
+              <ListPager
+                page={data.page ?? 1}
+                totalPages={data.totalPages ?? 1}
+                total={data.total ?? data.items.length}
+                pageSize={data.pageSize ?? filters.pageSize}
+                onPage={(page) => onFilters({ page })}
+                pageSizes={MOD_PAGE_SIZES}
+                onPageSize={(pageSize) => onFilters({ pageSize, page: 1 })}
+                busy={isFetching}
+              />
+            </div>
           )}
         </>
       )}

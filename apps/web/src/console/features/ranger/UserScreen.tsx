@@ -17,7 +17,7 @@ import { Switch } from '@sotf/ui/switch';
 import { Textarea } from '@sotf/ui/textarea';
 import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
-import { ExternalLink, Gavel, LogOut, ScrollText, ShieldOff } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Gavel, LogOut, ScrollText, ShieldOff } from 'lucide-react';
 import { type FormEvent, useId, useState } from 'react';
 import { useDocumentTitle } from '../../hooks/use-document-title.ts';
 import { useMe } from '../../hooks/use-me.ts';
@@ -58,8 +58,14 @@ export function UserScreen({ userId }: { userId: number }) {
 
   return (
     <div className="grid gap-6">
+      <Link
+        to="/moderation/users"
+        className="inline-flex items-center gap-1 justify-self-start text-sm text-fg-muted hover:text-link"
+      >
+        <Icon icon={ArrowLeft} size={16} className="rtl:rotate-180" />
+        {m.ranger_users_title()}
+      </Link>
       <ScreenHeader
-        readout={m.ranger_users_title()}
         title={name}
         actions={
           <>

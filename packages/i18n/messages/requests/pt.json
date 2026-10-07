@@ -85,5 +85,10 @@
   "requests_badge_author": "Autor do pedido",
   "requests_comment_delete_title": "Excluir este comentário?",
   "requests_comment_delete_text": "Isso não pode ser desfeito.",
-  "requests_votes_short": "votos"
+  "requests_votes_short": "votos",
+  "requests_sort_old": "Mais antigos",
+  "requests_sort_comments": "Mais comentados",
+  "requests_search_label": "Buscar pedidos",
+  "requests_empty_search_title": "Nenhum pedido para “{query}”",
+  "requests_empty_search_text": "Confira a ortografia, use menos palavras ou procure em todos os status. Se ninguém pediu ainda, você pode pedir."
 }

@@ -16,12 +16,12 @@ import { Button } from '@sotf/ui/button';
 import { StarRating } from '@sotf/ui/domain';
 import { type ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { api, failureText, get } from '../comments/lib/api.ts';
+import { api, get } from '../comments/lib/api.ts';
 import { SocialI18n } from '../comments/lib/i18n.tsx';
 import { emitCount } from '../comments/lib/live-count.ts';
 import { t } from '../comments/lib/messages.ts';
 import type { MeSummary } from '../comments/lib/session.ts';
-import { deferWithUndo, LiveRegion, notify, ReportDialog } from '../comments/lib/ui.tsx';
+import { deferWithUndo, LiveRegion, notify, notifyFailure, ReportDialog } from '../comments/lib/ui.tsx';
 import type { VersionOption } from '../comments/types.ts';
 import { ReviewForm } from './ReviewForm.tsx';
 import { ReviewItem } from './ReviewItem.tsx';
@@ -168,7 +168,7 @@ export function ReviewsIsland(props: ReviewsIslandProps) {
         void api('DELETE', `/api/v2/reviews/${id}`).then((result) => {
           if (!result.ok) {
             restore();
-            notify(failureText(result));
+            notifyFailure(result);
           }
         });
       },

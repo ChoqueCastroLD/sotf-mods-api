@@ -9,8 +9,9 @@ import { cn } from '@sotf/ui/cn';
 import { Icon } from '@sotf/ui/icons';
 import { RadarSpinner } from '@sotf/ui/spinner';
 import { CircleAlert, CircleCheck, Send, TriangleAlert } from 'lucide-react';
-import type { ReactNode } from 'react';
+import { type ReactNode, useState } from 'react';
 import { Callout } from '../components/Callout.tsx';
+import { Reveal } from '../components/Reveal.tsx';
 import { ut } from '../i18n.ts';
 import { preflightLabel } from '../labels.ts';
 import { percent } from '../lib/format.ts';
@@ -60,10 +61,7 @@ function QualityMeter({
   const codes = new Set(preflight.map((row) => row.code));
   const tone = score >= 80 ? 'bg-success' : score >= 50 ? 'bg-warning' : 'bg-danger';
   return (
-    <section
-      aria-labelledby="upload-quality-title"
-      className="flex flex-col gap-3 rounded-lg border border-border bg-surface p-4 sm:p-5"
-    >
+    <section aria-labelledby="upload-quality-title" className="flex flex-col gap-3 border-t border-border pt-5">
       <div className="flex flex-wrap items-end justify-between gap-2">
         <h3 id="upload-quality-title" className="text-base font-semibold text-fg">
           {ut('upload_quality_title')}
@@ -103,6 +101,46 @@ function QualityMeter({
   );
 }
 
+function PreflightList({
+  rows,
+  mode,
+  onGoTo,
+}: {
+  rows: readonly PreflightItemDTO[];
+  mode: WizardMode;
+  onGoTo: (step: StepId, anchor: string) => void;
+}) {
+  return (
+    <ul className="flex flex-col divide-y divide-border">
+      {rows.map((row) => {
+        const target = fieldTarget(mode, row.field);
+        const icon = SEVERITY_ICON[row.severity];
+        return (
+          <li key={`${row.field}:${row.code}`} className="flex flex-wrap items-center justify-between gap-2 py-2">
+            <span className="flex min-w-0 items-start gap-2 text-sm">
+              <Icon icon={icon.icon} size={16} className={cn('mt-0.5 shrink-0', icon.className)} />
+              <span className="sr-only">
+                {row.severity === 'error'
+                  ? ut('upload_severity_error')
+                  : row.severity === 'warning'
+                    ? ut('upload_severity_warning')
+                    : ut('upload_severity_ok')}
+                :
+              </span>
+              <span className={row.severity === 'ok' ? 'text-fg-muted' : 'text-fg'}>{preflightLabel(row.code)}</span>
+            </span>
+            {target && row.severity !== 'ok' ? (
+              <Button variant="link" size="sm" onClick={() => onGoTo(target.step, target.anchor)}>
+                {ut('upload_preflight_fix')}
+              </Button>
+            ) : null}
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
 export function ReviewStep({
   mode,
   isBuild,
@@ -117,6 +155,9 @@ export function ReviewStep({
   headingId,
 }: ReviewStepProps) {
   const rows = preflight ?? [];
+  const [showPassed, setShowPassed] = useState(false);
+  const open = rows.filter((row) => row.severity !== 'ok');
+  const passed = rows.filter((row) => row.severity === 'ok');
   const errors = rows.filter((row) => row.severity === 'error');
   const blocked = errors.length > 0;
 
@@ -126,10 +167,7 @@ export function ReviewStep({
 
       {summary}
 
-      <section
-        aria-labelledby="upload-preflight-title"
-        className="flex flex-col gap-3 rounded-lg border border-border bg-surface p-4 sm:p-5"
-      >
+      <section aria-labelledby="upload-preflight-title" className="flex flex-col gap-3 border-t border-border pt-5">
         <div className="flex flex-wrap items-center justify-between gap-2">
           <h3 id="upload-preflight-title" className="text-base font-semibold text-fg">
             {ut('upload_preflight_title')}
@@ -143,35 +181,38 @@ export function ReviewStep({
         {preflight === null ? (
           <p className="text-sm text-fg-muted">{ut('upload_preflight_waiting')}</p>
         ) : (
-          <ul className="flex flex-col divide-y divide-border">
-            {rows.map((row) => {
-              const target = fieldTarget(mode, row.field);
-              const icon = SEVERITY_ICON[row.severity];
-              return (
-                <li key={`${row.field}:${row.code}`} className="flex flex-wrap items-center justify-between gap-2 py-2">
-                  <span className="flex min-w-0 items-start gap-2 text-sm">
-                    <Icon icon={icon.icon} size={16} className={cn('mt-0.5 shrink-0', icon.className)} />
-                    <span className="sr-only">
-                      {row.severity === 'error'
-                        ? ut('upload_severity_error')
-                        : row.severity === 'warning'
-                          ? ut('upload_severity_warning')
-                          : ut('upload_severity_ok')}
-                      :
-                    </span>
-                    <span className={row.severity === 'ok' ? 'text-fg-muted' : 'text-fg'}>
-                      {preflightLabel(row.code)}
-                    </span>
-                  </span>
-                  {target && row.severity !== 'ok' ? (
-                    <Button variant="link" size="sm" onClick={() => onGoTo(target.step, target.anchor)}>
-                      {ut('upload_preflight_fix')}
-                    </Button>
-                  ) : null}
-                </li>
-              );
-            })}
-          </ul>
+          <>
+            {open.length === 0 ? (
+              <p className="flex items-center gap-2 text-sm text-fg">
+                <Icon icon={CircleCheck} size={16} className="text-success" />
+                {ut('upload_preflight_all_passed')}
+              </p>
+            ) : (
+              <PreflightList rows={open} mode={mode} onGoTo={onGoTo} />
+            )}
+            {passed.length > 0 ? (
+              <div className="flex flex-col">
+                <div>
+                  <Button
+                    variant="link"
+                    size="sm"
+                    aria-expanded={showPassed}
+                    aria-controls="upload-preflight-passed"
+                    onClick={() => setShowPassed((value) => !value)}
+                  >
+                    {showPassed
+                      ? ut('upload_preflight_hide_passed')
+                      : ut('upload_preflight_show_passed', { count: passed.length })}
+                  </Button>
+                </div>
+                <Reveal show={showPassed} spaced={false}>
+                  <div id="upload-preflight-passed">
+                    <PreflightList rows={passed} mode={mode} onGoTo={onGoTo} />
+                  </div>
+                </Reveal>
+              </div>
+            ) : null}
+          </>
         )}
       </section>
 
@@ -185,7 +226,7 @@ export function ReviewStep({
         </Callout>
       ) : null}
 
-      <div className="flex flex-col gap-2 rounded-lg border border-border bg-raised p-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-3 border-t border-border pt-5 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm text-fg-muted">
           {blocked
             ? ut('upload_submit_blocked', { count: errors.length })

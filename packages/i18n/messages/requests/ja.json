@@ -85,5 +85,10 @@
   "requests_badge_author": "リクエスト投稿者",
   "requests_comment_delete_title": "このコメントを削除しますか？",
   "requests_comment_delete_text": "元に戻せません。",
-  "requests_votes_short": "票"
+  "requests_votes_short": "票",
+  "requests_sort_old": "古い順",
+  "requests_sort_comments": "コメントが多い順",
+  "requests_search_label": "リクエストを検索",
+  "requests_empty_search_title": "「{query}」に一致するリクエストはありません",
+  "requests_empty_search_text": "つづりを確認するか、言葉を減らすか、すべてのステータスから探してください。まだ誰もリクエストしていなければ、あなたが投稿できます。"
 }

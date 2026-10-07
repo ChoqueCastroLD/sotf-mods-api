@@ -5,7 +5,7 @@
 import { BRAND } from './brand.ts';
 
 /** Rendered sizes (CSS px) with the aspect ratio of the files, so the images never shift the layout. */
-const LOCKUP = { width: 91, height: 24 };
+const LOCKUP = { width: 122, height: 32 };
 const MARK = { width: 28, height: 28 };
 
 export function BrandLogo({ variant, className }: { variant: 'lockup' | 'mark'; className?: string }) {

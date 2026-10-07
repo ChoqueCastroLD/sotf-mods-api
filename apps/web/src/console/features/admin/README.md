@@ -1,9 +1,7 @@
 # Admin — console screens (WP-83)
 
 Ranger Station → Admin (PLAN §7.4 «Admin», §7.10, §7.2). Admins only: `routes/ranger/admin/route.tsx`
-checks the role; the API re-checks every call and also demands a session younger than 12 h —
-`REAUTH_REQUIRED` shows «Confirm it's you» (`ReauthPanel`, or a toast with «Sign in again» on writes),
-which signs out and returns to the same screen after the new sign-in.
+checks the role; the API re-checks every call. A valid session is enough, there is no re-authentication.
 
 | Route (`routes/ranger/admin/`) | Screen | API |
 |---|---|---|

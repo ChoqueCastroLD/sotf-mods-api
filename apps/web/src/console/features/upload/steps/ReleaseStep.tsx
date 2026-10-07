@@ -7,11 +7,11 @@ import { STUDIO_LIMITS } from '@sotf/contracts/studio';
 import { RadioCardGroup } from '@sotf/ui/radio-card';
 import { Switch } from '@sotf/ui/switch';
 import { Callout } from '../components/Callout.tsx';
+import { GameBuildPicker } from '../components/GameBuildPicker.tsx';
 import { MarkdownField } from '../components/MarkdownField.tsx';
 import { ut } from '../i18n.ts';
 import type { VersionCheck } from '../lib/semver.ts';
 import { type DraftData, type UpdateData, VERSION_CHANNELS, type VersionChannel } from '../types.ts';
-import { GameBuildPicker } from './CompatStep.tsx';
 import { FieldGroup, StepHeader } from './StepHeader.tsx';
 
 export interface ReleaseStepProps {

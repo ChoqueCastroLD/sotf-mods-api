@@ -27,7 +27,7 @@ export const PROFILE_TABS = ['mods', 'builds', 'reviews'] as const;
 export type ProfileTab = (typeof PROFILE_TABS)[number];
 
 /** Sorts offered on the Mods and Builds tabs (subset of `ModSort`). */
-export const PROFILE_SORTS = ['downloads', 'updated', 'new'] as const;
+export const PROFILE_SORTS = ['downloads', 'updated', 'new', 'name'] as const;
 export type ProfileSort = (typeof PROFILE_SORTS)[number];
 
 /** Items per page of the Mods and Builds tabs. */

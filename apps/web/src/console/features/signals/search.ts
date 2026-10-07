@@ -8,3 +8,7 @@ export type SignalFilter = (typeof SIGNAL_FILTERS)[number];
 export function isSignalFilter(value: unknown): value is SignalFilter {
   return typeof value === 'string' && (SIGNAL_FILTERS as readonly string[]).includes(value);
 }
+
+/** Page sizes of `/notifications`. */
+export const SIGNAL_PAGE_SIZES = [20, 50, 100] as const;
+export const DEFAULT_SIGNAL_PAGE_SIZE = 20;

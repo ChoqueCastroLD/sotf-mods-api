@@ -41,7 +41,7 @@ const summary = build.reviewsSummary;
 const rating = summary.showStars && summary.average !== null ? summary.average : null;
 const shownName = displayName(build);
 const translation = locale !== 'en' && build.shortDescription ? await loadModTranslation(build, locale) : null;
-const stat = 'inline-flex items-center gap-1.5 tabular-nums';
+const stat = 'bp-nums inline-flex items-center gap-1.5 tabular-nums';
 const LINK =
   'inline-flex h-9 items-center gap-1.5 rounded-md px-2.5 text-sm font-medium text-fg-muted hover:bg-fg/6 hover:text-fg aria-pressed:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus';
 ---
@@ -205,33 +205,6 @@ const LINK =
         <Icon icon={Flag} size={16} />
         {m.mod_action_report()}
       </button>
-    </div>
-
-    <div
-      data-mod-toast
-      role="status"
-      aria-live="polite"
-      class="pointer-events-none fixed inset-x-0 bottom-[calc(9rem+env(safe-area-inset-bottom))] z-(--z-toast) flex justify-center px-4 md:bottom-6"
-    ></div>
-    <div
-      data-build-toast
-      role="status"
-      aria-live="polite"
-      class="group/toast pointer-events-none fixed inset-x-4 bottom-[calc(9.5rem+env(safe-area-inset-bottom))] z-(--z-overlay) flex justify-center md:bottom-8"
-    >
-      <div
-        class="pointer-events-auto flex max-w-md items-center gap-3 rounded-lg border border-border bg-overlay px-4 py-3 text-sm text-fg opacity-0 shadow-lg transition-opacity duration-(--dur-fast) group-data-open/toast:opacity-100 motion-reduce:transition-none"
-      >
-        <span data-build-toast-text></span>
-        <button
-          type="button"
-          data-build-undo
-          hidden
-          class="inline-flex min-h-8 items-center font-semibold text-link underline underline-offset-3"
-        >
-          {m.common_action_undo()}
-        </button>
-      </div>
     </div>
   </div>
 </header>

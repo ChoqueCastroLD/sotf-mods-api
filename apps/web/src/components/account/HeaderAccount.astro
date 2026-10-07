@@ -65,6 +65,9 @@ const itemClass =
     <span class="hidden lg:inline">{m.shell_nav_upload()}</span>
   </a>
 
+  <!-- Room for the notifications bell (mounted here later, `islands/signals/mount.ts`): the header does not shift when it appears. -->
+  <span data-signals-bell class="hidden size-10 shrink-0 items-center justify-center [html[data-signed-in]_&]:inline-flex"></span>
+
   <button
     type="button"
     data-account-user

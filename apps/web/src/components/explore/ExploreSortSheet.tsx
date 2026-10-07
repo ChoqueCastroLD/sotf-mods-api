@@ -8,13 +8,14 @@ import { m } from '@sotf/i18n/messages';
 import { Icon } from '@sotf/ui/icons';
 import { ArrowDownUp, Check, X } from 'lucide-react';
 import type { ExploreModel } from './model.ts';
+import { defaultOrderOf } from './state.ts';
 
 export interface ExploreSortSheetProps {
   model: ExploreModel;
 }
 
 export default function ExploreSortSheet({ model }: ExploreSortSheetProps) {
-  const reversed = model.state.order === 'asc';
+  const reversed = model.state.order !== defaultOrderOf(model.state.sort);
   const row =
     'flex min-h-14 w-full items-center gap-3 rounded-xl px-3 text-start text-base text-fg active:bg-fg/8 ' +
     'focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-focus';
@@ -26,11 +27,11 @@ export default function ExploreSortSheet({ model }: ExploreSortSheetProps) {
       aria-labelledby="explore-sort-title"
       className="explore-sheet explore-sheet-actions"
     >
-      <div data-sheet-handle="" className="explore-sheet-handle md:hidden">
+      <div data-sheet-handle="" className="explore-sheet-handle lg:hidden">
         <span />
       </div>
       <div data-sheet-drag="" className="flex items-center justify-between gap-2 px-4 pb-1">
-        <h2 id="explore-sort-title" className="font-display-caps text-display-xs text-fg">
+        <h2 id="explore-sort-title" className="text-lg font-bold text-fg">
           {m.explore_sort_title()}
         </h2>
         <a

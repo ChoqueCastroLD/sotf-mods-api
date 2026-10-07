@@ -7,7 +7,6 @@
  *   URL is fetched and its `[data-explore-root]` replaces the current one inside a View
  *   Transition (none under reduced motion); `history.pushState` keeps real URLs, `popstate`
  *   restores them;
- * - «Load more» appends the next page's items and moves the URL with `history.replaceState`;
  * - on screens below `lg` the filter rail is a modal bottom sheet (focus trap, Escape, backdrop);
  * - loading skeletons only after 300 ms, `aria-busy`, a polite live region with the result
  *   count, offline and failure messages; focus returns to the control that triggered the change.
@@ -25,11 +24,7 @@ import { track } from '../beacon.ts';
 const ROOT = '[data-explore-root]';
 const SKELETON_DELAY_MS = 300;
 const TEXT_DEBOUNCE_MS = 350;
-const SHEET_QUERY = '(width < 48rem)';
-/** Pages that load by themselves while the visitor scrolls (mobile); then the button takes over. */
-const AUTO_LOAD_PAGES = 3;
-const AUTO_LOAD_MARGIN = '900px 0px';
-const PENDING_SKELETONS = 4;
+const SHEET_QUERY = '(width < 64rem)';
 
 type SheetKind = 'filters' | 'sort';
 
@@ -45,9 +40,6 @@ let textTimer: ReturnType<typeof setTimeout> | undefined;
 let backdrop: HTMLElement | null = null;
 let sheetReturnFocus: HTMLElement | null = null;
 let openKind: SheetKind | null = null;
-let sentinelObserver: IntersectionObserver | null = null;
-let autoLoaded = 0;
-let loadingMore = false;
 /** Path + query of the listing on screen (popstate ignores hash-only changes). */
 let shownUrl = '';
 
@@ -78,10 +70,6 @@ function reducedMotion(win: Window): boolean {
   return win.matchMedia('(prefers-reduced-motion: reduce)').matches;
 }
 
-function revealLoadMore(root: ParentNode): void {
-  for (const button of root.querySelectorAll<HTMLButtonElement>('[data-explore-more]')) button.hidden = false;
-}
-
 function sameOriginUrl(win: Window, raw: string): URL | null {
   try {
     const url = new URL(raw, win.location.href);
@@ -97,6 +85,7 @@ function sameOriginUrl(win: Window, raw: string): URL | null {
 
 function focusKeyOf(element: Element | null): string | null {
   if (!(element instanceof HTMLElement) || !element.closest(ROOT)) return null;
+  if (element instanceof HTMLSelectElement) return `select|${element.name}`;
   if (element instanceof HTMLInputElement) {
     return element.type === 'search' || element.type === 'text'
       ? `text|${element.name}`
@@ -119,6 +108,7 @@ function focusKeyOf(element: Element | null): string | null {
 function findByFocusKey(root: HTMLElement, key: string): HTMLElement | null {
   const [kind, a = '', b = '', c = ''] = key.split('|');
   if (kind === 'text') return root.querySelector<HTMLElement>(`input[name="${CSS.escape(a)}"]`);
+  if (kind === 'select') return root.querySelector<HTMLElement>(`select[name="${CSS.escape(a)}"]`);
   if (kind === 'input') {
     return root.querySelector<HTMLElement>(`input[name="${CSS.escape(a)}"][value="${CSS.escape(b)}"]`);
   }
@@ -311,6 +301,8 @@ interface NavigateOptions {
   filter?: boolean;
   /** Background refresh (not asked by the visitor): focus stays put and nothing is announced. */
   quiet?: boolean;
+  /** Bring the top of the results into view (a page change). */
+  scrollToResults?: boolean;
 }
 
 /** In-feed units of a swapped-in listing (guests; `scripts/ads.ts` skips members and filled units). */
@@ -386,7 +378,6 @@ async function navigate(win: Window, target: URL, options: NavigateOptions): Pro
     current.replaceWith(next);
     if (title) doc.title = title;
     syncHead(doc, fetched.doc);
-    revealLoadMore(next);
     fillAds(next);
   };
   const transition = !reducedMotion(win) && typeof doc.startViewTransition === 'function';
@@ -415,8 +406,6 @@ async function navigate(win: Window, target: URL, options: NavigateOptions): Pro
     }
   }
 
-  autoLoaded = 0;
-  observeSentinel(win);
   if (wasSheetOpen && wasKind === 'filters' && !options.closeSheet && isSheetMode(win)) {
     openSheet(win, 'filters', null, true);
     const body = sheetOf(next, 'filters')?.querySelector<HTMLElement>('[data-explore-sheet-body]');
@@ -429,7 +418,11 @@ async function navigate(win: Window, target: URL, options: NavigateOptions): Pro
       (options.focusKey && !options.closeSheet ? findByFocusKey(next, options.focusKey) : null) ??
       (options.closeSheet || !options.focusKey ? next.querySelector<HTMLElement>('#explore-results') : null);
     focusTarget?.focus({ preventScroll: !options.closeSheet });
-    if (options.closeSheet) next.querySelector('#explore-results')?.scrollIntoView({ block: 'start' });
+    if (options.closeSheet || options.scrollToResults) {
+      next
+        .querySelector('#explore-results')
+        ?.scrollIntoView({ block: 'start', behavior: reducedMotion(win) ? 'auto' : 'smooth' });
+    }
   }
 
   const count = next.querySelector('[data-explore-count]')?.textContent?.trim() ?? '';
@@ -461,126 +454,20 @@ function formUrl(win: Window, form: HTMLFormElement): URL | null {
   const action = sameOriginUrl(win, form.getAttribute('action') ?? win.location.pathname);
   if (!action) return null;
   const params = new URLSearchParams();
+  // A control with `data-default` equal to its value is not written (the canonical URL stays clean).
+  const defaults = new Map<string, string>();
+  for (const element of form.elements) {
+    if (element instanceof HTMLElement && element.dataset.default !== undefined && 'name' in element) {
+      defaults.set(String(element.name), element.dataset.default);
+    }
+  }
   for (const [name, value] of new FormData(form)) {
     if (typeof value !== 'string') continue;
     const trimmed = value.trim();
-    if (trimmed !== '') params.append(name, trimmed);
+    if (trimmed !== '' && defaults.get(name) !== trimmed) params.append(name, trimmed);
   }
   action.search = params.toString();
   return action;
-}
-
-// ---------------------------------------------------------------------------------------------
-// Load more
-// ---------------------------------------------------------------------------------------------
-
-/** Placeholder cards (the page's skeleton template) at the end of the list while a page loads. */
-function addPending(root: HTMLElement, list: Element): void {
-  const template = root.querySelector<HTMLTemplateElement>('template[data-explore-skeleton]');
-  const cells = template ? [...template.content.querySelectorAll('li')].slice(0, PENDING_SKELETONS) : [];
-  for (const cell of cells) {
-    const clone = cell.cloneNode(true) as HTMLElement;
-    clone.setAttribute('data-explore-pending', '');
-    list.append(clone);
-  }
-}
-
-function clearPending(root: ParentNode): void {
-  for (const cell of root.querySelectorAll('[data-explore-pending]')) cell.remove();
-}
-
-async function loadMore(win: Window, button: HTMLButtonElement, automatic = false): Promise<void> {
-  const doc = win.document;
-  const root = rootOf(doc);
-  const target = sameOriginUrl(win, button.dataset.nextHref ?? '');
-  if (!root || !target || loadingMore) return;
-  const messages = messagesOf(root);
-  if (!win.navigator.onLine) {
-    announce(root, messages.offline);
-    return;
-  }
-  loadingMore = true;
-  button.disabled = true;
-  button.setAttribute('aria-busy', 'true');
-  const pendingList = root.querySelector('[data-explore-items]');
-  if (pendingList) addPending(root, pendingList);
-  let fetched: { doc: Document; url: URL } | null = null;
-  try {
-    fetched = await fetchDocument(win, target, new AbortController().signal);
-  } catch {
-    fetched = null;
-  }
-  loadingMore = false;
-  clearPending(root);
-  if (automatic) autoLoaded += 1;
-  const incoming = fetched ? rootOf(fetched.doc) : null;
-  const list = root.querySelector('[data-explore-items]');
-  const newItems = incoming ? [...incoming.querySelectorAll('[data-explore-items] > [data-explore-item]')] : [];
-  if (!fetched || !incoming || !list || newItems.length === 0) {
-    button.disabled = false;
-    button.removeAttribute('aria-busy');
-    if (automatic) autoLoaded = AUTO_LOAD_PAGES;
-    if (!fetched || !incoming) {
-      announce(root, win.navigator.onLine ? messages.failed : messages.offline);
-      if (win.navigator.onLine && !automatic) win.location.assign(target.href);
-    }
-    return;
-  }
-  const known = new Set(
-    [...list.querySelectorAll<HTMLElement>('[data-explore-item] [data-mod-id]')].map((card) => card.dataset.modId),
-  );
-  const appended: Element[] = [];
-  for (const item of newItems) {
-    const id = item.querySelector<HTMLElement>('[data-mod-id]')?.dataset.modId;
-    if (id && known.has(id)) continue;
-    const node = doc.importNode(item, true);
-    list.append(node);
-    appended.push(node);
-  }
-  const pager = root.querySelector('[data-explore-pager]');
-  const nextPager = incoming.querySelector('[data-explore-pager]');
-  if (pager && nextPager) {
-    const imported = doc.importNode(nextPager, true);
-    pager.replaceWith(imported);
-    revealLoadMore(imported);
-  } else if (pager) {
-    pager.querySelector('[data-explore-more]')?.remove();
-  }
-  win.history.replaceState({ explore: true }, '', fetched.url.pathname + fetched.url.search);
-  // A visitor who tapped the button lands on the first new card; an automatic load must not
-  // steal focus or move the page.
-  if (!automatic) appended[0]?.querySelector<HTMLElement>('h2 a, h3 a, h4 a, a')?.focus({ preventScroll: true });
-  shownUrl = fetched.url.pathname + fetched.url.search;
-  fillAds(root);
-  observeSentinel(win);
-  const pageText = root.querySelector('[data-explore-page-indicator]')?.textContent?.trim();
-  if (pageText) announce(root, pageText);
-}
-
-// ---------------------------------------------------------------------------------------------
-// Infinite feel (mobile): the next page loads before the visitor reaches the end of the list
-// ---------------------------------------------------------------------------------------------
-
-/** (Re)observes the sentinel of the current pager; the first `AUTO_LOAD_PAGES` pages are automatic. */
-function observeSentinel(win: Window): void {
-  sentinelObserver?.disconnect();
-  sentinelObserver = null;
-  const doc = win.document;
-  const sentinel = rootOf(doc)?.querySelector<HTMLElement>('[data-explore-sentinel]');
-  if (!sentinel || !isSheetMode(win) || autoLoaded >= AUTO_LOAD_PAGES || typeof IntersectionObserver === 'undefined')
-    return;
-  const observer = new IntersectionObserver(
-    (entries) => {
-      if (!entries.some((entry) => entry.isIntersecting)) return;
-      const button = rootOf(doc)?.querySelector<HTMLButtonElement>('[data-explore-more]');
-      if (!button || button.disabled || loadingMore) return;
-      observer.disconnect();
-      void loadMore(win, button, true);
-    },
-    { rootMargin: AUTO_LOAD_MARGIN },
-  );
-  observer.observe(sentinel);
-  sentinelObserver = observer;
 }
 
 // ---------------------------------------------------------------------------------------------
@@ -601,12 +488,10 @@ function isListingLink(win: Window, anchor: HTMLAnchorElement): URL | null {
 export function initExplore(win: Window = window): void {
   const doc = win.document;
   if (!rootOf(doc)) return;
-  revealLoadMore(doc);
   doc.documentElement.setAttribute('data-explore-js', '');
   if (bound) return;
   bound = true;
   bindSheetDrag(win);
-  observeSentinel(win);
 
   // Opened through `#explore-filters` / `#explore-sort` (no-JS link shared or reloaded): use the modal sheet.
   if (isSheetMode(win)) {
@@ -627,12 +512,6 @@ export function initExplore(win: Window = window): void {
     const target = event.target instanceof Element ? event.target : null;
     if (!target?.closest(ROOT)) return;
 
-    const more = target.closest<HTMLButtonElement>('[data-explore-more]');
-    if (more) {
-      event.preventDefault();
-      void loadMore(win, more);
-      return;
-    }
     const opener = target.closest<HTMLElement>('[data-explore-sheet-open]');
     if (opener && isSheetMode(win)) {
       event.preventDefault();
@@ -654,8 +533,9 @@ export function initExplore(win: Window = window): void {
     const inPager = Boolean(anchor.closest('[data-explore-pager]'));
     void navigate(win, url, {
       push: true,
-      focusKey: inPager ? null : focusKeyOf(anchor),
+      focusKey: anchor.hasAttribute('data-explore-clear-q') ? 'text|q' : inPager ? null : focusKeyOf(anchor),
       filter: !inPager,
+      scrollToResults: inPager,
       // The sort sheet is an action sheet: picking an option applies it and closes it.
       closeSheet: openKind === 'sort' && Boolean(anchor.closest('[data-explore-sheet="sort"]')),
     });
@@ -663,17 +543,25 @@ export function initExplore(win: Window = window): void {
 
   doc.addEventListener('change', (event) => {
     const input = event.target;
-    if (!(input instanceof HTMLInputElement)) return;
-    const form = input.closest<HTMLFormElement>('form[data-explore-form]');
-    if (!form || input.type === 'search' || input.type === 'text') return;
+    if (!(input instanceof HTMLInputElement || input instanceof HTMLSelectElement)) return;
+    // `input.form` also covers the controls outside the rail that carry the `form` attribute.
+    const form = input.form?.matches('form[data-explore-form]') ? input.form : null;
+    if (!form || (input instanceof HTMLInputElement && (input.type === 'search' || input.type === 'text'))) return;
     const url = formUrl(win, form);
-    if (url) void navigate(win, url, { push: true, focusKey: focusKeyOf(input), filter: true });
+    if (url) {
+      void navigate(win, url, {
+        push: true,
+        focusKey: focusKeyOf(input),
+        filter: true,
+        scrollToResults: input instanceof HTMLSelectElement,
+      });
+    }
   });
 
   doc.addEventListener('input', (event) => {
     const input = event.target;
     if (!(input instanceof HTMLInputElement) || input.type !== 'search') return;
-    const form = input.closest<HTMLFormElement>('form[data-explore-form]');
+    const form = input.form?.matches('form[data-explore-form]') ? input.form : null;
     if (!form) return;
     clearTimeout(textTimer);
     textTimer = setTimeout(() => {
@@ -751,6 +639,9 @@ export function initExplore(win: Window = window): void {
 
 /** Reloads the listing in place with `?nsfw=1` for opted-in members (the URL keeps the choice). */
 async function applyNsfwOptIn(win: Window): Promise<void> {
+  // Only the catalogue listings carry the 18+ filter (the request board shares this script).
+  const kind = rootOf(win.document)?.dataset.exploreKind;
+  if (kind !== 'mods' && kind !== 'builds') return;
   const start = win.location.pathname + win.location.search;
   if (new URLSearchParams(win.location.search).get('nsfw') === '1') return;
   if ((await accountSettings(win))?.nsfwOptIn !== true) return;

@@ -20,7 +20,7 @@ export function TrustedMark({ className }: TrustedMarkProps) {
     <span
       title={t('ui_domain_trusted_creator')}
       className={cn(
-        'inline-flex h-[1.125rem] shrink-0 items-center rounded-sm border border-primary/40 bg-primary/10 px-1.5 text-2xs font-semibold leading-none text-primary',
+        'inline-flex h-[1.125rem] shrink-0 items-center rounded-sm border border-primary/40 bg-primary/10 px-1.5 text-2xs font-semibold leading-none text-link',
         className,
       )}
     >

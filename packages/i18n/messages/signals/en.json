@@ -87,5 +87,10 @@
   "signals_request_comment_grouped": "{count, plural, one {# new comment on the request “{request}”} other {# new comments on the request “{request}”}}",
   "signals_request_adopted": "{actor} is working on your request “{request}”",
   "signals_request_fulfilled": "{mod} is out and fulfils the request “{request}”",
-  "signals_jam_phase": "{phase, select, announced {Mod Jam announced: {jam}} submissions {Submissions are open in {jam}} voting {Voting is open in {jam}} results {Results are out for {jam}} other {{jam} has an update}}"
+  "signals_jam_phase": "{phase, select, announced {Mod Jam announced: {jam}} submissions {Submissions are open in {jam}} voting {Voting is open in {jam}} results {Results are out for {jam}} other {{jam} has an update}}",
+  "signals_state_label": "Show",
+  "signals_state_all": "All",
+  "signals_state_unread": "Unread",
+  "signals_empty_unread_title": "No unread notifications",
+  "signals_empty_unread_text": "You have read everything that matches this filter."
 }

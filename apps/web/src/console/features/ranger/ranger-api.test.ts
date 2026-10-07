@@ -38,15 +38,19 @@ describe('storeQueueItem', () => {
     } as unknown as QueueItem;
     const other = { ...row, id: 'versions:version:5' };
     client.setQueryData(rangerKeys.item(row.id), { item: row, allowedActions: [] } as unknown as QueueItemDetail);
-    client.setQueryData(rangerKeys.queue('versions'), {
-      pages: [{ items: [row, other], counts: {}, nextCursor: null } as unknown as QueuePage],
-      pageParams: [null],
-    });
+    client.setQueryData(rangerKeys.queue('versions', {}), { items: [row, other], counts: {} } as unknown as QueuePage);
+    client.setQueryData(rangerKeys.queue('versions', { page: 2, risk: 'high' }), {
+      items: [row],
+      counts: {},
+    } as unknown as QueuePage);
     const updated = { ...row, assignee: { id: 7, handle: 'ana', displayName: 'Ana' } } as unknown as QueueItem;
     storeQueueItem(client, updated);
     expect(client.getQueryData<QueueItemDetail>(rangerKeys.item(row.id))?.item).toEqual(updated);
-    const lane = client.getQueryData<{ pages: QueuePage[] }>(rangerKeys.queue('versions'));
-    expect(lane?.pages[0]?.items).toEqual([updated, other]);
+    // Every cached page of the lane gets the new row, whatever its filters.
+    expect(client.getQueryData<QueuePage>(rangerKeys.queue('versions', {}))?.items).toEqual([updated, other]);
+    expect(client.getQueryData<QueuePage>(rangerKeys.queue('versions', { page: 2, risk: 'high' }))?.items).toEqual([
+      updated,
+    ]);
   });
 });
 

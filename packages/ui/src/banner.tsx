@@ -78,7 +78,7 @@ export function Banner({
       <span className="mt-0.5 flex md:mt-0">{icon ?? style.icon}</span>
       <div className="flex min-w-0 flex-1 flex-col gap-2 md:flex-row md:items-center md:gap-4">
         <p className="min-w-0 flex-1">
-          {title ? <strong className="me-1.5 font-semibold">{title}</strong> : null}
+          {title ? <strong className="block font-semibold">{title}</strong> : null}
           {children}
         </p>
         {action ? <div className="shrink-0">{action}</div> : null}

@@ -31,7 +31,7 @@ the recurring schedules. Business logic lives in `@sotf/core`.
   and changelogs older than `RENDER_VERSION` in batches; `legacy.mentions` runs every 10 min after the cut-over.
 - Deployment variables: `ops/coolify/env/worker.env.example`.
 
-## Backfills run by the worker (B15)
+## Backfills run by the worker (B15, B20, B21)
 
 Worker-side backfills are the `backfill.run` job. They are enqueued with the API image's
 `backfill` entry, from the Coolify terminal of `sotf-v2-api` (or `sotf-v2-worker`):
@@ -39,6 +39,18 @@ Worker-side backfills are the `backfill.run` job. They are enqueued with the API
 ```bash
 node dist/backfill.js B15                  # dry run: reports what would change
 node dist/backfill.js B15 --apply --wait   # applies; --wait blocks and exits 1 if the job failed
+```
+
+- `B20` runs the automatic checks (zip, manifest, size, hashes, VirusTotal lookup) on the versions
+  of mods that are still `pending` and whose `checksStatus` is `pending`, from the objects already
+  in the bucket. It never changes a mod or version status, is audited in `DataFixAudit`
+  (`pnpm db:revert-fix B20`) and needs the `R2_*` variables. `VIRUSTOTAL_API_KEY` is optional.
+- `B21` seeds `GameBuild` from the Steam news feed (patches, hotfixes, versions, updates). Needs
+  network access only; a second run creates nothing.
+
+```bash
+node dist/backfill.js B20 --apply --wait
+node dist/backfill.js B21 --apply --wait
 ```
 
 Operator guide: `ops/runbooks/deploy/05-migrations-and-backfills.md` and
@@ -49,7 +61,7 @@ Operator guide: `ops/runbooks/deploy/05-migrations-and-backfills.md` and
 | Group (`src/jobs/…`) | Queues | Event subscribers | Owner |
 |---|---|---|---|
 | `accounts` | `account.export`, `account.delete`, `accounts.trust-level`, `cleanup.sessions` | | WP-30 |
-| `backfill` | `backfill.run` (B15) | | WP-84 |
+| `backfill` | `backfill.run` (B15, B20, B21) | | WP-84 |
 | `builds` | `build.extract` | | WP-40 |
 | `cdn` | `cdn.purge` | | WP-61 |
 | `cleanup` | `cleanup.analytics` | | WP-52 |
@@ -71,6 +83,7 @@ Operator guide: `ops/runbooks/deploy/05-migrations-and-backfills.md` and
 | `platform` | | `cdn-purge-on-event` | WP-20 |
 | `security-scan` | `security.scan` | | WP-51 |
 | `stats` | `stats.rollup`, `stats.trending` | `stats.unfollows` | WP-52 |
+| `steam` | `steam.sync` (every 30 min: new Steam build becomes the current `GameBuild`) | | WP-50 |
 | `uploads` | `cleanup.uploads` | | WP-31 |
 
 Retired queues (gamification, Patch Radar uptime, bundle sweep) are listed in `RETIRED_JOB_SCHEDULES` of `@sotf/contracts/jobs`; the runtime deletes their schedules on start.

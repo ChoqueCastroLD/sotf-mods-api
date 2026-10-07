@@ -12,10 +12,10 @@ import { pageEntity, track } from '../../scripts/beacon.ts';
 import { useTurnstile } from '../auth/turnstile.ts';
 import { Composer } from './Composer.tsx';
 import { useComments } from './context.ts';
-import { api, type Failure } from './lib/api.ts';
+import { api } from './lib/api.ts';
 import { pageLang } from './lib/i18n.tsx';
 import { t } from './lib/messages.ts';
-import { FailureNote } from './lib/ui.tsx';
+import { notify, notifyFailure } from './lib/ui.tsx';
 import { COMMENT_IMAGE_TYPES, uploadCommentImage } from './lib/upload.ts';
 import type { Comment, VersionOption } from './types.ts';
 
@@ -81,7 +81,6 @@ export function CommentForm({ mode, onDone, onCancel, autoFocus = false }: Comme
   const [versions, setVersions] = useState<VersionOption[] | null>(null);
   const [attachments, setAttachments] = useState<Attachment[]>([]);
   const [busy, setBusy] = useState(false);
-  const [failure, setFailure] = useState<Failure | null>(null);
   const [fieldError, setFieldError] = useState<string | null>(null);
   const fileInput = useRef<HTMLInputElement | null>(null);
   const uploads = useRef(new AbortController());
@@ -173,7 +172,6 @@ export function CommentForm({ mode, onDone, onCancel, autoFocus = false }: Comme
       return;
     }
     setFieldError(null);
-    setFailure(null);
     setBusy(true);
     const result =
       mode.kind === 'edit'
@@ -193,7 +191,7 @@ export function CommentForm({ mode, onDone, onCancel, autoFocus = false }: Comme
         return send(token);
       } catch {
         setBusy(false);
-        setFailure(result);
+        notifyFailure(result, () => void send());
         return;
       }
     }
@@ -203,7 +201,7 @@ export function CommentForm({ mode, onDone, onCancel, autoFocus = false }: Comme
       const issue =
         result.kind === 'problem' ? result.problem.errors.find((item) => item.path.startsWith('bodyMd')) : undefined;
       if (issue) setFieldError(t('social_comment_invalid'));
-      else setFailure(result);
+      else notifyFailure(result, () => void send());
       return;
     }
     writeDraft(key, '');
@@ -217,13 +215,14 @@ export function CommentForm({ mode, onDone, onCancel, autoFocus = false }: Comme
         props: { reply: mode.kind === 'reply', bug: mode.kind === 'new' && isBug, images: attachments.length },
       });
     }
-    ctx.announce(
+    const confirmation =
       mode.kind === 'edit'
         ? t('social_comment_edited')
         : result.data.status === 'pending'
           ? t('social_comment_held')
-          : t('social_comment_posted'),
-    );
+          : t('social_comment_posted');
+    ctx.announce(confirmation);
+    notify(confirmation);
     onDone?.(result.data);
   };
 
@@ -291,7 +290,7 @@ export function CommentForm({ mode, onDone, onCancel, autoFocus = false }: Comme
                 value={versionId ?? ''}
                 disabled={!versions}
                 onChange={(event) => setVersionId(event.target.value ? Number(event.target.value) : null)}
-                className="min-h-11 max-w-60 rounded-md border border-border-strong bg-sunken px-2 text-sm md:min-h-9"
+                className="min-h-11 max-w-60 rounded-md border border-border-strong bg-sunken shadow-[inset_0_1px_2px_rgb(0_0_0/0.18)] transition-[border-color,box-shadow] duration-(--dur-fast) hover:border-fg-subtle focus-visible:border-focus focus-visible:shadow-[0_0_0_3px_var(--focus-halo)] focus-visible:outline-none px-2 text-sm md:min-h-9"
               >
                 {!versions ? <option value="">{t('social_loading')}</option> : null}
                 {versions?.map((version) => (
@@ -356,7 +355,6 @@ export function CommentForm({ mode, onDone, onCancel, autoFocus = false }: Comme
       ) : null}
 
       <div ref={turnstile.containerRef} />
-      {failure ? <FailureNote failure={failure} onRetry={() => void send()} /> : null}
 
       <div className="flex flex-wrap items-center justify-end gap-2">
         {onCancel ? (

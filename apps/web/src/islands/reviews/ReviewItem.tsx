@@ -11,14 +11,14 @@ import { Icon } from '@sotf/ui/icons';
 import { ThumbsDown, ThumbsUp } from 'lucide-react';
 import { useState } from 'react';
 import { Composer } from '../comments/Composer.tsx';
-import { api, type Failure, failureText } from '../comments/lib/api.ts';
+import { api, type Failure } from '../comments/lib/api.ts';
 import { formatNumber, localized } from '../comments/lib/i18n.tsx';
 import { myVote, rememberVote } from '../comments/lib/local.ts';
 import { htmlToMarkdown } from '../comments/lib/markdown.ts';
 import { ActionMenu, type MenuItem } from '../comments/lib/menu.tsx';
 import { t } from '../comments/lib/messages.ts';
 import type { MeSummary } from '../comments/lib/session.ts';
-import { deferWithUndo, FailureNote, notify } from '../comments/lib/ui.tsx';
+import { deferWithUndo, FailureNote, notifyFailure } from '../comments/lib/ui.tsx';
 import { REVIEW_REPLY_MAX, type Review } from './types.ts';
 
 export interface ReviewItemProps {
@@ -145,7 +145,7 @@ export function ReviewItem({
     } else {
       setVote(previous.vote);
       onChange(previous.review);
-      notify(failureText(result));
+      notifyFailure(result);
     }
   };
 
@@ -159,7 +159,7 @@ export function ReviewItem({
           if (result.ok) onChange(result.data);
           else {
             onChange(before);
-            notify(failureText(result));
+            notifyFailure(result);
           }
         });
       },
@@ -176,7 +176,7 @@ export function ReviewItem({
         void api('DELETE', `/api/v2/reviews/${review.id}`).then((result) => {
           if (!result.ok) {
             restore();
-            notify(failureText(result));
+            notifyFailure(result);
           }
         });
       },

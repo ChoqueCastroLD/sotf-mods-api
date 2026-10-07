@@ -1,26 +1,21 @@
 /**
- * Pieces shared by the admin screens: page header and panels, the 12 h re-authentication rule
- * (`REAUTH_REQUIRED` → «Sign in again»), failure toasts, `Intl` formatting in the console locale
+ * Pieces shared by the admin screens: page header and panels, the failure toasts, `Intl` formatting in the console locale
  * and time zone, and the per-locale text fields of categories, tags, announcements and templates.
  */
 import { isApiError } from '@sotf/contracts/client';
 import { formatDate, formatDateTime, formatNumber, formatPercent, LOCALE_INFO, LOCALES, type Locale } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
-import { Button } from '@sotf/ui/button';
 import { cn } from '@sotf/ui/cn';
-import { EmptyState } from '@sotf/ui/empty-state';
 import { ErrorState } from '@sotf/ui/error-state';
 import { Field } from '@sotf/ui/field';
 import { Icon } from '@sotf/ui/icons';
 import { Input } from '@sotf/ui/input';
 import { Textarea } from '@sotf/ui/textarea';
 import type { ErrorComponentProps } from '@tanstack/react-router';
-import { KeyRound, Languages } from 'lucide-react';
+import { Languages } from 'lucide-react';
 import { type ReactNode, useEffect, useId, useRef, useState } from 'react';
 import { RouteError } from '../../components/RouteError.tsx';
-import { currentPath, redirectToLogin } from '../../lib/auth.ts';
 import { errorReference } from '../../lib/errors.ts';
-import { shellApi } from '../../lib/http.ts';
 import { browserTimeZone } from '../../lib/i18n.ts';
 import { activeLocale, problemText } from '../../lib/messages.ts';
 import { notify } from '../../lib/notify.ts';
@@ -40,8 +35,7 @@ export function AdminHeader({ title, description, actions }: AdminHeaderProps) {
   return (
     <header className="flex flex-wrap items-end justify-between gap-4">
       <div className="grid gap-1">
-        <p className="readout text-signal max-md:hidden">{m.admin_readout()}</p>
-        <h1 className="font-display-caps text-display-xs text-fg max-md:sr-only">{title}</h1>
+        <h1 className="text-2xl font-bold text-fg">{title}</h1>
         <p className="max-w-prose text-sm text-fg-muted max-md:line-clamp-2">{description}</p>
       </div>
       {actions ? <div className="flex flex-wrap items-center gap-2">{actions}</div> : null}
@@ -63,7 +57,7 @@ export function Panel({ title, description, actions, children, className }: Pane
   return (
     <section
       aria-labelledby={id}
-      className={cn('grid gap-4 rounded-lg border border-border bg-surface p-4 md:p-5', className)}
+      className={cn('grid gap-4 border-t border-border pt-5 first:border-t-0 first:pt-0', className)}
     >
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="grid gap-1">
@@ -105,34 +99,19 @@ export function TableScroller({ label, children }: { label: string; children: Re
       // biome-ignore lint/a11y/noNoninteractiveTabindex: a scrollable region must be reachable by keyboard (WCAG 2.1.1)
       tabIndex={0}
       data-more={more ? 'true' : 'false'}
-      className="overflow-x-auto rounded-md border border-border data-[more=true]:[mask-image:linear-gradient(to_right,#000_calc(100%-2.5rem),transparent)] rtl:data-[more=true]:[mask-image:linear-gradient(to_left,#000_calc(100%-2.5rem),transparent)]"
+      className="relative overflow-x-auto rounded-md border border-border data-[more=true]:[mask-image:linear-gradient(to_right,#000_calc(100%-2.5rem),transparent)] rtl:data-[more=true]:[mask-image:linear-gradient(to_left,#000_calc(100%-2.5rem),transparent)]"
     >
       {children}
     </section>
   );
 }
 
-export const thClasses = 'px-3 py-2 text-start readout whitespace-nowrap';
+export const thClasses = 'px-3 py-2 text-start text-xs font-medium text-fg-muted whitespace-nowrap';
 export const tdClasses = 'px-3 py-2 align-middle';
 
 // -----------------------------------------------------------------------------------------------
-// Failures and the 12 h re-authentication rule
+// Failures
 // -----------------------------------------------------------------------------------------------
-
-export function isReauthRequired(error: unknown): boolean {
-  return isApiError(error) && error.code === 'REAUTH_REQUIRED';
-}
-
-/** Ends the (too old) session and comes back to this screen after signing in again. */
-export async function signInAgain(): Promise<void> {
-  const next = currentPath();
-  try {
-    await shellApi.logout();
-  } catch {
-    // Signing out failing (already gone, offline) must not block the way back in.
-  }
-  redirectToLogin(next);
-}
 
 /** The server's own words for a failed write: field messages of a 422, else the problem text. */
 export function failureDetail(error: unknown): string {
@@ -150,17 +129,8 @@ export function failureDetail(error: unknown): string {
   return problemText(null).detail;
 }
 
-/** Toast for a failed admin action; the 12 h rule offers «Sign in again». */
+/** Toast for a failed admin action. */
 export function reportFailure(error: unknown, title: string): void {
-  if (isReauthRequired(error)) {
-    notify.warning(m.admin_reauth_title(), {
-      id: 'admin-reauth',
-      description: m.admin_reauth_text(),
-      duration: Number.POSITIVE_INFINITY,
-      action: { label: m.admin_reauth_action(), onClick: () => void signInAgain() },
-    });
-    return;
-  }
   const reference = errorReference(error);
   notify.error(title, {
     description: reference
@@ -169,38 +139,13 @@ export function reportFailure(error: unknown, title: string): void {
   });
 }
 
-/** «Confirm it's you»: the admin session is older than 12 h. */
-export function ReauthPanel() {
-  const [busy, setBusy] = useState(false);
-  return (
-    <EmptyState
-      icon={<Icon icon={KeyRound} size={32} />}
-      title={m.admin_reauth_title()}
-      description={m.admin_reauth_text()}
-      action={
-        <Button
-          loading={busy}
-          onClick={() => {
-            setBusy(true);
-            void signInAgain();
-          }}
-        >
-          {m.admin_reauth_action()}
-        </Button>
-      }
-    />
-  );
-}
-
-/** Error component of every admin route: the re-authentication panel, else the console's. */
+/** Error component of every admin route. */
 export function AdminRouteError(props: ErrorComponentProps) {
-  if (isReauthRequired(props.error)) return <ReauthPanel />;
   return <RouteError {...props} />;
 }
 
 /** Inline failure of a panel (not the whole screen) with retry. */
 export function PanelError({ error, onRetry }: { error: unknown; onRetry: () => void }) {
-  if (isReauthRequired(error)) return <ReauthPanel />;
   const reference = errorReference(error);
   return (
     <ErrorState

@@ -7,6 +7,7 @@
  * The admin reads return every stored field (`retiredAt`, `hubIntro`, tag description and order),
  * so the forms edit what is stored instead of replacing it with defaults.
  */
+
 import { isApiError } from '@sotf/contracts/client';
 import { LOCALES, type Locale } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
@@ -27,6 +28,7 @@ import { useNavigate } from '@tanstack/react-router';
 import { Archive, MoreHorizontal, Pencil, Plus, Shuffle, Tags, Trash2 } from 'lucide-react';
 import { type FormEvent, useState } from 'react';
 import { notify } from '../../lib/notify.ts';
+import { PageNav, SortSelect } from '../ranger/controls.tsx';
 import { adminApi, adminKeys, type Category, categoriesQuery, type Tag, tagsQuery } from './api.ts';
 import { ADMIN_LIMITS } from './constants.ts';
 import {
@@ -85,6 +87,32 @@ function CategoriesPanel() {
   const { data: categories } = useSuspenseQuery(categoriesQuery);
   const [editing, setEditing] = useState<AdminCategory | 'new' | null>(null);
   const [retiring, setRetiring] = useState<AdminCategory | null>(null);
+  const [filter, setFilter] = useState('');
+  const [kind, setKind] = useState<'all' | 'mod' | 'build'>('all');
+  const [sort, setSort] = useState<'order' | 'name' | 'count'>('order');
+  const [page, setPage] = useState(1);
+  const [size, setSize] = useState(25);
+
+  const needle = filter.trim().toLowerCase();
+  const ordered = categories
+    .filter(
+      (category) =>
+        (kind === 'all' || category.kind === kind) &&
+        (!needle || category.name.toLowerCase().includes(needle) || category.slug.includes(needle)),
+    )
+    .sort((a, b) =>
+      sort === 'count'
+        ? b.count - a.count || a.name.localeCompare(b.name)
+        : sort === 'name'
+          ? a.name.localeCompare(b.name)
+          : Number(isRetired(a)) - Number(isRetired(b)) ||
+            (a.kind === b.kind ? 0 : a.kind === 'mod' ? -1 : 1) ||
+            a.sortOrder - b.sortOrder ||
+            a.name.localeCompare(b.name),
+    );
+  const totalPages = Math.max(1, Math.ceil(ordered.length / size));
+  const current = Math.min(page, totalPages);
+  const visible = ordered.slice((current - 1) * size, current * size);
 
   const refresh = () =>
     Promise.all([
@@ -119,11 +147,57 @@ function CategoriesPanel() {
           {m.admin_tax_add_category()}
         </Button>
       </div>
-      {categories.length === 0 ? (
+      {categories.length > 0 ? (
+        <div className="flex flex-wrap items-end gap-2">
+          <Field label={m.admin_tax_filter_categories()} className="w-full max-w-xs">
+            <Input
+              type="search"
+              value={filter}
+              onChange={(event) => {
+                setFilter(event.currentTarget.value);
+                setPage(1);
+              }}
+            />
+          </Field>
+          <Select<'all' | 'mod' | 'build'>
+            label={m.admin_tax_col_kind()}
+            hideLabel
+            size="sm"
+            value={kind}
+            onValueChange={(next) => {
+              if (!next) return;
+              setKind(next);
+              setPage(1);
+            }}
+            options={[
+              { value: 'all', label: m.admin_tax_kind_all() },
+              { value: 'mod', label: m.admin_tax_kind_mod() },
+              { value: 'build', label: m.admin_tax_kind_build() },
+            ]}
+            className="w-full md:w-48"
+          />
+          <SortSelect
+            value={sort}
+            onChange={(value) => {
+              setSort(value);
+              setPage(1);
+            }}
+            options={[
+              { value: 'order', label: m.admin_tax_sort_order() },
+              { value: 'name', label: m.ranger_users_sort_name() },
+              { value: 'count', label: m.admin_tax_sort_count() },
+            ]}
+          />
+        </div>
+      ) : null}
+      <p className="sr-only" aria-live="polite">
+        {m.admin_results({ count: ordered.length })}
+      </p>
+      {visible.length === 0 ? (
         <EmptyState
           icon={<Icon icon={Tags} size={32} />}
-          title={m.admin_tax_categories_empty()}
-          description={m.admin_tax_categories_empty_text()}
+          title={categories.length === 0 ? m.admin_tax_categories_empty() : m.admin_no_matches()}
+          description={categories.length === 0 ? m.admin_tax_categories_empty_text() : undefined}
         />
       ) : (
         <TableScroller label={m.admin_tax_tab_categories()}>
@@ -155,7 +229,7 @@ function CategoriesPanel() {
               </tr>
             </thead>
             <tbody>
-              {categories.map((category) => {
+              {visible.map((category) => {
                 const retired = isRetired(category);
                 return (
                   <tr key={category.id} className="border-t border-border">
@@ -225,6 +299,20 @@ function CategoriesPanel() {
           </table>
         </TableScroller>
       )}
+      {ordered.length > 0 ? (
+        <PageNav
+          page={current}
+          totalPages={totalPages}
+          total={ordered.length}
+          pageSize={size}
+          onPage={setPage}
+          sizes={[25, 50, 100]}
+          onPageSize={(next) => {
+            setSize(next);
+            setPage(1);
+          }}
+        />
+      ) : null}
 
       <Dialog
         open={editing !== null}
@@ -491,10 +579,13 @@ function TagsPanel() {
   const [editing, setEditing] = useState<AdminTag | 'new' | null>(null);
   const [deleting, setDeleting] = useState<AdminTag | null>(null);
   const [filter, setFilter] = useState('');
+  const [sort, setSort] = useState<'name' | 'count'>('name');
+  const [page, setPage] = useState(1);
+  const [size, setSize] = useState(25);
 
   const refresh = () => queryClient.invalidateQueries({ queryKey: adminKeys.tags });
   const needle = filter.trim().toLowerCase();
-  const visible = needle
+  const matching = needle
     ? tags.filter(
         (tag) =>
           tag.slug.includes(needle) ||
@@ -502,6 +593,12 @@ function TagsPanel() {
           (tag.group ?? '').toLowerCase().includes(needle),
       )
     : tags;
+  const ordered = [...matching].sort((a, b) =>
+    sort === 'count' ? b.count - a.count || a.name.localeCompare(b.name) : a.name.localeCompare(b.name),
+  );
+  const totalPages = Math.max(1, Math.ceil(ordered.length / size));
+  const current = Math.min(page, totalPages);
+  const visible = ordered.slice((current - 1) * size, current * size);
 
   const remove = async (tag: AdminTag) => {
     try {
@@ -517,15 +614,35 @@ function TagsPanel() {
   return (
     <div className="grid gap-4">
       <div className="flex flex-wrap items-end justify-between gap-3">
-        <Field label={m.admin_tax_filter_tags()} className="w-full max-w-xs">
-          <Input type="search" value={filter} onChange={(event) => setFilter(event.currentTarget.value)} />
-        </Field>
+        <div className="flex flex-wrap items-end gap-2">
+          <Field label={m.admin_tax_filter_tags()} className="w-full max-w-xs">
+            <Input
+              type="search"
+              value={filter}
+              onChange={(event) => {
+                setFilter(event.currentTarget.value);
+                setPage(1);
+              }}
+            />
+          </Field>
+          <SortSelect
+            value={sort}
+            onChange={(value) => {
+              setSort(value);
+              setPage(1);
+            }}
+            options={[
+              { value: 'name', label: m.ranger_users_sort_name() },
+              { value: 'count', label: m.admin_tax_sort_count() },
+            ]}
+          />
+        </div>
         <Button icon={<Icon icon={Plus} size={18} />} onClick={() => setEditing('new')}>
           {m.admin_tax_add_tag()}
         </Button>
       </div>
       <p className="sr-only" aria-live="polite">
-        {m.admin_results({ count: visible.length })}
+        {m.admin_results({ count: ordered.length })}
       </p>
       {visible.length === 0 ? (
         <EmptyState
@@ -604,6 +721,20 @@ function TagsPanel() {
           </table>
         </TableScroller>
       )}
+      {ordered.length > 0 ? (
+        <PageNav
+          page={current}
+          totalPages={totalPages}
+          total={ordered.length}
+          pageSize={size}
+          onPage={setPage}
+          sizes={[25, 50, 100]}
+          onPageSize={(next) => {
+            setSize(next);
+            setPage(1);
+          }}
+        />
+      ) : null}
 
       <Dialog
         open={editing !== null}

@@ -11,12 +11,12 @@ import type { ModCardDTO } from '@sotf/contracts/catalog';
 import { absoluteUrl, categoryPath, profilePath } from '@sotf/contracts/seo';
 import { SOCIAL_LINKS } from '../site.ts';
 import type { CategoryDTO } from './data.ts';
-import { isoDay, mdInline } from './markdown.ts';
+import { isoDay, mdInline, readableVersion } from './markdown.ts';
 
 const numberFormat = new Intl.NumberFormat('en-US');
 
 const SUMMARY =
-  'SOTF Mods (sotf-mods.com) is the community home of Sons of the Forest modding since 2023: free, direct downloads of mods, libraries and builds (BuildShare) for the RedLoader mod loader, with reviews, comments and creator profiles.';
+  'SOTF Mods (sotf-mods.com) is a catalogue of Sons of the Forest mods, libraries and builds made by the community. Downloads are free and direct. Mods run on the RedLoader mod loader and builds import through the BuildShare mod. Each page lists the description, versions with changelogs, requirements, reviews and comments.';
 
 const MULTIPLAYER: Readonly<Record<string, string>> = {
   client_side: 'client-side',
@@ -46,23 +46,33 @@ export function llmsTxt(input: {
     '',
     `The catalog lists ${numberFormat.format(mods.length)} mods and libraries and ${numberFormat.format(input.cards.length - mods.length)} builds (as of ${isoDay(input.now)}). Every mod page has a Markdown version: append \`.md\` to its URL. Full catalog in one file: ${url('/llms-full.txt')}`,
     '',
+    '## Browse',
+    '',
+    link('Mods', url('/mods'), 'all mods and libraries, searchable by category, tag and type'),
+    link('Builds', url('/builds'), 'bases, forts and treehouses to import with BuildShare'),
+    link('Categories', url('/categories')),
+    link('Tags', url('/tags')),
+    link('New and updated mods (RSS)', url('/feed.xml')),
+    '',
     '## Guides',
     '',
     link('How to install Sons of the Forest mods', url('/install'), 'RedLoader and RedManager, step by step'),
     link('Mod requests', url('/requests'), 'what players ask modders to build, most voted first'),
     link('Mod Jams', url('/jams'), 'community mod-making events with themes, voting and public results'),
+    link('Share logs', url('/logs'), 'paste a RedLoader log and get a private link to share when asking for help'),
     '',
     '## Categories',
     '',
     ...input.categories
       .filter((category) => category.count > 0)
-      .map((category) =>
-        link(
-          `${category.name} ${category.kind === 'build' ? 'builds' : 'mods'}`,
+      .map((category) => {
+        const [one, many] = category.kind === 'build' ? ['build', 'builds'] : ['mod', 'mods'];
+        return link(
+          category.name,
           url(categoryPath(category.slug)),
-          `${numberFormat.format(category.count)} items`,
-        ),
-      ),
+          `${numberFormat.format(category.count)} ${category.count === 1 ? one : many}`,
+        );
+      }),
     '',
     '## Top 50 mods by downloads',
     '',
@@ -105,8 +115,8 @@ export function llmsFullTxt(input: { siteUrl: string; cards: readonly ModCardDTO
     const facts = [
       `${kind} by ${mdInline(card.userDisplayName)} (${url(profilePath(card.userHandle))})`,
       card.category ? `Category: ${card.category.name}` : null,
-      card.latestVersion
-        ? `Version: ${card.latestVersion} (${isoDay(card.lastReleasedAt)})`
+      readableVersion(card.latestVersion)
+        ? `Version: ${readableVersion(card.latestVersion)} (${isoDay(card.lastReleasedAt)})`
         : `Updated: ${isoDay(card.lastReleasedAt)}`,
       card.kind === 'build' ? null : `Multiplayer: ${MULTIPLAYER[card.multiplayerRole ?? 'unknown'] ?? 'not stated'}`,
       `Downloads: ${numberFormat.format(card.downloads)}`,
@@ -114,6 +124,7 @@ export function llmsFullTxt(input: { siteUrl: string; cards: readonly ModCardDTO
         ? `Rating: ${card.ratingAvg.toFixed(1)}/5 (${card.ratingCount} reviews)`
         : null,
       `URL: ${url(card.canonicalPath)}`,
+      `Markdown: ${url(`${card.canonicalPath}.md`)}`,
     ].filter((fact): fact is string => fact !== null);
     for (const fact of facts) lines.push(`- ${fact}`);
     if (card.shortDescription.trim()) lines.push('', mdInline(card.shortDescription));

@@ -15,17 +15,9 @@ import { Switch } from '@sotf/ui/switch';
 import { Eye, EyeOff, Plus, Trash2, Webhook } from 'lucide-react';
 import { type FormEvent, useState } from 'react';
 import { ADMIN_LIMITS, DISCORD_EVENTS, type DiscordEvent } from './constants.ts';
-import {
-  asArray,
-  asBoolean,
-  asRecord,
-  asString,
-  rowId,
-  SettingFooter,
-  useSettingDraft,
-  useUnsavedGuard,
-} from './setting-draft.tsx';
+import { asArray, asBoolean, asRecord, asString, rowId, SettingFooter, useSettingDraft } from './setting-draft.tsx';
 import { AdminHeader, Panel } from './shared.tsx';
+import { UnsavedGuard } from './UnsavedGuard.tsx';
 
 interface HookRow {
   id: string;
@@ -72,7 +64,6 @@ type HookErrors = Partial<Record<'name' | 'url' | 'events', string>>;
 export function IntegrationsScreen() {
   const state = useSettingDraft('discordWebhooks', normalizeHooks, serializeHooks, m.admin_hooks_saved());
   const [revealed, setRevealed] = useState<ReadonlySet<string>>(new Set());
-  useUnsavedGuard(state.dirty);
 
   const names = state.draft.map((row) => row.name.trim());
   const errorsOf = (row: HookRow): HookErrors => {
@@ -95,6 +86,7 @@ export function IntegrationsScreen() {
 
   return (
     <div className="grid gap-6">
+      <UnsavedGuard dirty={state.dirty} />
       <AdminHeader
         title={m.admin_integrations_title()}
         description={m.admin_integrations_description()}

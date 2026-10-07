@@ -171,5 +171,13 @@
   "explore_catalog_empty_clear": "Rensa filter",
   "explore_catalog_error_title": "Det gick inte att läsa in mods",
   "explore_catalog_error_text": "Försök igen om en stund.",
-  "explore_catalog_retry": "Försök igen"
+  "explore_catalog_retry": "Försök igen",
+  "explore_sort_name": "Namn A till Ö",
+  "explore_facet_downloads": "Nedladdningar",
+  "explore_downloads_min": "{count, number}+ nedladdningar",
+  "explore_page_size_label": "Per sida",
+  "explore_search_builds_label": "Sök byggen",
+  "explore_noresults_query_title": "Inga resultat för ”{query}”",
+  "explore_suggest_popular": "Populära mods",
+  "explore_results_range": "Visar {from, number}–{to, number} av {total, number}"
 }

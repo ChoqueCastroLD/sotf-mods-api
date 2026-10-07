@@ -171,5 +171,13 @@
   "explore_catalog_empty_clear": "フィルターを解除",
   "explore_catalog_error_title": "MODを読み込めませんでした",
   "explore_catalog_error_text": "しばらくしてからもう一度お試しください。",
-  "explore_catalog_retry": "再試行"
+  "explore_catalog_retry": "再試行",
+  "explore_sort_name": "名前順（A から Z）",
+  "explore_facet_downloads": "ダウンロード数",
+  "explore_downloads_min": "{count, number} 回以上",
+  "explore_page_size_label": "表示件数",
+  "explore_search_builds_label": "建築を検索",
+  "explore_noresults_query_title": "「{query}」に一致する結果はありません",
+  "explore_suggest_popular": "人気の MOD",
+  "explore_results_range": "{total, number} 件中 {from, number}–{to, number} 件"
 }

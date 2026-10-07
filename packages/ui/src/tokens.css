@@ -2,6 +2,9 @@
    @sotf/ui · tokens.css
    Design tokens of SOTF Mods: an evolution of the old site. DaisyUI-like dark neutrals, one red
    accent (the red of the logo), one sans family (Onest), 8 px surfaces, no textures, no glows.
+   The dark theme is deliberately deep (page #0E1114) with a layered elevation system: surfaces step
+   up in lightness (sunken, bg, surface, raised, overlay), borders carry the structure and raised
+   things get a 1 px top highlight plus a soft layered shadow.
    Dark is the default; Light = [data-theme="light"]; "system" follows the OS.
    The scale names (night, flare, signal, blueprint, ...) are historical and kept so existing
    utilities keep working: night = neutrals, flare = red, signal and blueprint = neutrals.
@@ -37,7 +40,7 @@
   --color-black: #000000;
 
   /* ---------- Raw scales ---------- */
-  /* Neutrals (DaisyUI dark): 950 page, 900 surface, 800 border, 700 strong border, 100 text. */
+  /* Neutrals: 975 sunken/backdrop, 950 surface, 900 raised, 800 border, 700 strong border, 100 text. */
   --color-night-25:  #FFFFFF;
   --color-night-50:  #F6F7F8;
   --color-night-100: #E5E7EB;
@@ -46,11 +49,11 @@
   --color-night-400: #9CA3AF;
   --color-night-500: #6B7280;
   --color-night-600: #4B5563;
-  --color-night-700: #3D4651;
-  --color-night-800: #2A323C;
-  --color-night-900: #1D232A;
-  --color-night-950: #15191E;
-  --color-night-975: #111418;
+  --color-night-700: #4A5663;
+  --color-night-800: #2B343E;
+  --color-night-900: #1C2228;
+  --color-night-950: #151A1F;
+  --color-night-975: #0A0C0F;
 
   /* The accent: red. 500 is the primary (the logo red, a notch calmer), 600 its hover. */
   --color-flare-50:  #FEF2F2;
@@ -128,39 +131,39 @@
   --color-blueprint-950: #0F141B;
 
   /* ---------- Semantic tokens: light-dark(DAY, NIGHT) ---------- */
-  --color-bg:             light-dark(#F6F7F8, #15191E);
-  --color-surface:        light-dark(#FFFFFF, #1D232A);
-  --color-raised:         light-dark(#FFFFFF, #232A32);
-  --color-overlay:        light-dark(#FFFFFF, #232A32);
-  --color-sunken:         light-dark(#EDEFF2, #111418);
-  --color-border:         light-dark(#E1E4E8, #2A323C);   /* hairlines */
-  --color-border-strong:  light-dark(#838B98, #3D4651);   /* controls */
+  --color-bg:             light-dark(#F6F7F8, #0E1114);
+  --color-surface:        light-dark(#FFFFFF, #151A1F);
+  --color-raised:         light-dark(#FFFFFF, #1C2228);
+  --color-overlay:        light-dark(#FFFFFF, #20272E);
+  --color-sunken:         light-dark(#EDEFF2, #0A0C0F);
+  --color-border:         light-dark(#E1E4E8, #2B343E);   /* structure: cards, rows, dividers */
+  --color-border-strong:  light-dark(#838B98, #4A5663);   /* controls */
 
-  --color-fg:             light-dark(#1B2027, #E5E7EB);
-  --color-fg-muted:       light-dark(#4B5563, #9CA3AF);
-  --color-fg-subtle:      light-dark(#636B78, #8A92A0);
-  --color-fg-inverse:     light-dark(#F6F7F8, #15191E);
+  --color-fg:             light-dark(#1B2027, #F3F4F6);
+  --color-fg-muted:       light-dark(#4B5563, #A8B0BC);
+  --color-fg-subtle:      light-dark(#636B78, #8F98A5);
+  --color-fg-inverse:     light-dark(#F6F7F8, #0E1114);
 
   --color-primary:        #E11D1D;
   --color-primary-hover:  #C81414;
   --color-primary-fg:     #FFFFFF;
-  --color-primary-soft:   light-dark(#FDECEC, #2C1719);
+  --color-primary-soft:   light-dark(#FDECEC, #2A1416);
   --color-link:           light-dark(#B91C1C, #F87171);
 
-  --color-signal:         light-dark(#4B5563, #9CA3AF);   /* info: neutral */
-  --color-signal-soft:    light-dark(#EDEFF2, #232A32);
+  --color-signal:         light-dark(#4B5563, #A8B0BC);   /* info: neutral */
+  --color-signal-soft:    light-dark(#EDEFF2, #1C2228);
   --color-success:        light-dark(#136C21, #87D48A);
   --color-success-soft:   light-dark(#D8F7D8, #12261A);
   --color-warning:        light-dark(#745301, #E4B65C);
   --color-warning-soft:   light-dark(#FDEAC9, #2A2210);
   --color-danger:         light-dark(#C92F33, #FF6E68);
-  --color-danger-fg:      light-dark(#FFFFFF, #15191E);
+  --color-danger-fg:      light-dark(#FFFFFF, #0E1114);
   --color-danger-soft:    light-dark(#FEE7E4, #3A1618);
-  --color-featured:       light-dark(#374151, #E5E7EB);   /* featured: neutral emphasis */
-  --color-featured-soft:  light-dark(#E5E7EB, #2A323C);
+  --color-featured:       light-dark(#374151, #F3F4F6);   /* featured: neutral emphasis */
+  --color-featured-soft:  light-dark(#E5E7EB, #2B343E);
 
-  --color-blueprint:          light-dark(#4B5563, #9CA3AF);
-  --color-blueprint-surface:  light-dark(#F6F7F8, #1D232A);
+  --color-blueprint:          light-dark(#4B5563, #A8B0BC);
+  --color-blueprint-surface:  light-dark(#F6F7F8, #151A1F);
 
   --color-focus:          light-dark(#C81414, #F87171);
   --color-selection:      light-dark(#FECACA, #5A1D1D);
@@ -174,7 +177,7 @@
   --color-chart-6: light-dark(#4C7F48, #6FA06B);
   --color-chart-7: light-dark(#6A62A0, #8A82B8);
   --color-chart-8: light-dark(#A84848, #C46A6A);
-  --color-chart-grid: light-dark(#E5E7EB, #2A323C);
+  --color-chart-grid: light-dark(#E5E7EB, #2B343E);
 
   /* ---------- Typography: one sans family. Mono only for versions, code and file names. ---------- */
   --font-sans: "Onest Variable", "Onest Fallback", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
@@ -217,13 +220,18 @@
   --aspect-banner: 4 / 1;
   --aspect-og: 1200 / 630;
 
-  /* ---------- Elevation: light shadows, for overlays only ---------- */
-  --shadow-xs: 0 1px 0 0 var(--elev-color-soft);
-  --shadow-sm: 0 1px 2px 0 var(--elev-color-soft);
-  --shadow-md: 0 4px 16px -6px var(--elev-color);
-  --shadow-lg: 0 12px 32px -12px var(--elev-color);
+  /* ---------- Elevation ----------
+     Five steps, each a tight contact shadow plus a wide soft one (layered, never glossy). Raised
+     surfaces also carry a 1 px top highlight (`inset-shadow-highlight`). In the dark theme the
+     shadow alone is nearly invisible on #0E1114, so the highlight and the lighter surface do the
+     work; in the light theme the shadows do. */
+  --shadow-xs: 0 1px 1px 0 var(--elev-color-soft);
+  --shadow-sm: 0 1px 2px 0 var(--elev-color-soft), 0 2px 6px -2px var(--elev-color-soft);
+  --shadow-md: 0 1px 3px 0 var(--elev-color-soft), 0 8px 20px -8px var(--elev-color);
+  --shadow-lg: 0 2px 6px 0 var(--elev-color-soft), 0 18px 44px -14px var(--elev-color);
+  --shadow-lift: 0 2px 4px 0 var(--elev-color-soft), 0 12px 28px -10px var(--elev-color);
   --shadow-glow: none;
-  --inset-shadow-highlight: inset 0 0 0 0 transparent;
+  --inset-shadow-highlight: inset 0 1px 0 0 var(--highlight-color);
 
   /* ---------- Motion ---------- */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -256,10 +264,12 @@
     --z-base: 0; --z-raised: 10; --z-sticky: 20; --z-dropdown: 30; --z-overlay: 40;
     --z-drawer: 50; --z-modal: 60; --z-popover: 70; --z-toast: 80; --z-skip: 100;
     --dur-instant: 80ms; --dur-fast: 140ms; --dur-base: 200ms; --dur-slow: 320ms; --dur-slower: 480ms; --dur-hero: 700ms;
-    --elev-color:      light-dark(rgb(17 24 39 / 0.16), rgb(0 0 0 / 0.5));
-    --elev-color-soft: light-dark(rgb(17 24 39 / 0.08), rgb(0 0 0 / 0.3));
+    --elev-color:      light-dark(rgb(17 24 39 / 0.18), rgb(0 0 0 / 0.65));
+    --elev-color-soft: light-dark(rgb(17 24 39 / 0.07), rgb(0 0 0 / 0.4));
     --glow-color:      transparent;
-    --highlight-color: transparent;
+    --highlight-color: light-dark(rgb(255 255 255 / 0.9), rgb(255 255 255 / 0.055));
+    /* Focus halo around controls: the ring colour at low alpha. */
+    --focus-halo:      color-mix(in oklab, var(--color-focus) 28%, transparent);
     accent-color: var(--color-primary);
   }
   :root[data-theme="light"]  { color-scheme: light; }
@@ -293,6 +303,59 @@
   background: linear-gradient(90deg, var(--color-raised) 0%,
               color-mix(in oklab, var(--color-raised), var(--color-fg) 6%) 50%, var(--color-raised) 100%);
   background-size: 200% 100%; animation: var(--animate-shimmer); border-radius: var(--radius-sm);
+}
+/* Motif: the deterministic pine and tick pattern of motif-svg.ts. An absolutely positioned layer;
+   `--motif-neutral` and `--motif-accent` are mask images (set inline by <Motif/> / Motif.astro), so the
+   shapes take the theme colours: the page text colour at a few percent and a few red trees. Tones set
+   the opacity, `data-fade` fades the pattern out toward one side. Static, nothing to animate. */
+@utility motif {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  contain: paint;
+  --motif-a-neutral: 0.075;
+  --motif-a-accent: 0.14;
+  &[data-tone="quiet"] { --motif-a-neutral: 0.045; --motif-a-accent: 0.08; }
+  &[data-tone="strong"] { --motif-a-neutral: 0.13; --motif-a-accent: 0.24; }
+  &[data-fade="bottom"] { mask-image: linear-gradient(to bottom, #000 15%, transparent 95%); }
+  &[data-fade="top"] { mask-image: linear-gradient(to top, #000 15%, transparent 95%); }
+  &[data-fade="edges"] { mask-image: radial-gradient(ellipse 75% 85% at 50% 45%, #000 25%, transparent 100%); }
+  &::before, &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    mask-size: var(--motif-size, 360px) var(--motif-size, 360px);
+    mask-repeat: repeat;
+    mask-position: 0 0;
+  }
+  &::before { background: var(--color-fg); opacity: var(--motif-a-neutral); mask-image: var(--motif-neutral); }
+  &::after { background: var(--color-primary); opacity: var(--motif-a-accent); mask-image: var(--motif-accent); }
+}
+
+/* Elevation helpers. `elevated`: a raised surface (top highlight + layered shadow). `lift`: hover lift
+   for clickable cards (2 px, stronger border, wider shadow; pointer devices only, never under reduced
+   motion). `row-hover`: the hover tint of clickable list and table rows. */
+@utility elevated {
+  box-shadow: var(--shadow-sm), var(--inset-shadow-highlight);
+}
+@utility lift {
+  transition: translate var(--dur-fast) var(--ease-out), box-shadow var(--dur-base) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out), background-color var(--dur-fast) var(--ease-out);
+  @media (hover: hover) {
+    &:hover { border-color: var(--color-border-strong); box-shadow: var(--shadow-lift), var(--inset-shadow-highlight); }
+  }
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    &:hover { translate: 0 -2px; }
+  }
+}
+@utility row-hover {
+  transition: background-color var(--dur-fast) var(--ease-out);
+  @media (hover: hover) {
+    &:hover { background-color: color-mix(in oklab, var(--color-fg) 4.5%, transparent); }
+  }
+  &:active { background-color: color-mix(in oklab, var(--color-fg) 7%, transparent); }
 }
 @utility prose-locator {
   --tw-prose-body: var(--color-fg-muted);        --tw-prose-headings: var(--color-fg);

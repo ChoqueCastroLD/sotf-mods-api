@@ -10,7 +10,7 @@ import { m } from '@sotf/i18n/messages';
 import { Button } from '@sotf/ui/button';
 import { Dialog } from '@sotf/ui/dialog';
 import { Field } from '@sotf/ui/field';
-import { RadioCardGroup } from '@sotf/ui/radio-card';
+import { Select } from '@sotf/ui/select';
 import { Textarea } from '@sotf/ui/textarea';
 import { useQuery } from '@tanstack/react-query';
 import { type FormEvent, useEffect, useId, useState } from 'react';
@@ -124,23 +124,30 @@ export function DecisionDialog({
       <form id={formId} onSubmit={submit} className="grid gap-4" noValidate>
         {mode === 'decision' ? (
           options.length > 0 ? (
-            <RadioCardGroup
-              legend={m.ranger_decision_template_label()}
-              columns={1}
-              value={templateKey}
-              onValueChange={(value) => {
-                setTemplateKey(value);
-                setError(null);
-              }}
-              options={[
-                { value: NO_TEMPLATE, title: m.ranger_decision_no_template() },
-                ...options.map((template) => ({
-                  value: template.key,
-                  title: templateTitle(template),
-                  description: templateText(template),
-                })),
-              ]}
-            />
+            <div className="grid gap-2">
+              <Select<string>
+                label={m.ranger_decision_template_label()}
+                value={templateKey}
+                onValueChange={(value) => {
+                  if (!value) return;
+                  setTemplateKey(value);
+                  setError(null);
+                }}
+                options={[
+                  { value: NO_TEMPLATE, label: m.ranger_decision_no_template() },
+                  ...options.map((template) => ({
+                    value: template.key,
+                    label: templateTitle(template),
+                    textValue: templateTitle(template),
+                  })),
+                ]}
+              />
+              {chosen ? (
+                <p className="rounded-md border border-border bg-sunken px-3 py-2 text-sm text-fg-muted">
+                  {templateText(chosen)}
+                </p>
+              ) : null}
+            </div>
           ) : templates.isPending ? (
             <p className="text-sm text-fg-muted" role="status">
               {m.ranger_loading()}
@@ -151,7 +158,7 @@ export function DecisionDialog({
           label={mode === 'comment' ? m.ranger_comment_reject_reason() : m.ranger_decision_note_label()}
           description={mode === 'comment' ? m.ranger_comment_reject_reason_hint() : m.ranger_decision_note_hint()}
           error={error ?? undefined}
-          optional={mode === 'decision'}
+          optional={mode === 'decision' && chosen !== null}
         >
           <Textarea
             value={note}

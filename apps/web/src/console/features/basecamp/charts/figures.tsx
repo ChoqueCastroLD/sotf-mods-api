@@ -177,16 +177,30 @@ export function CategoryFigure({ title, rowHeader, valueLabel, rows, colorIndex,
  * Daily (or weekly) downloads of each version as stacked bars (`seriesByVersion`: ≤ 8 versions +
  * «other», buckets without downloads omitted → zero-filled on the buckets of `series`).
  */
+/** The chart theme has 8 colour slots: the 7 busiest versions get one, the rest share «other». */
+export const VERSION_SERIES_MAX = 8;
+
+/** «v1.2.3» for one mod; the label already names the mod when all my mods are shown («Name 1.2.3»). */
+export function versionLabel(version: string, otherLabel: string): string {
+  if (version === 'other') return otherLabel;
+  return /\s/.test(version) ? version : `v${version}`;
+}
+
 export function versionSeries(
   analytics: Pick<Analytics, 'series' | 'seriesByVersion'>,
   otherLabel: string,
 ): { data: Array<{ day: string } & Record<string, number | string>>; series: SeriesSpec[] } {
-  const versions: string[] = [];
+  const totals = new Map<string, number>();
   for (const entry of analytics.seriesByVersion ?? [])
-    if (!versions.includes(entry.version)) versions.push(entry.version);
-  // «Other» last, like the totals chart.
-  versions.sort((a, b) => (a === 'other' ? 1 : b === 'other' ? -1 : 0));
-  const keyOf = (version: string) => `v${versions.indexOf(version)}`;
+    totals.set(entry.version, (totals.get(entry.version) ?? 0) + entry.downloads);
+  const named = [...totals.keys()]
+    .filter((version) => version !== 'other')
+    .sort((a, b) => (totals.get(b) ?? 0) - (totals.get(a) ?? 0));
+  const needsOther = totals.has('other') || named.length > VERSION_SERIES_MAX;
+  const kept = named.slice(0, needsOther ? VERSION_SERIES_MAX - 1 : VERSION_SERIES_MAX);
+  const versions = needsOther ? [...kept, 'other'] : kept;
+  const slotOf = (version: string) => (kept.includes(version) ? version : 'other');
+  const keyOf = (version: string) => `v${versions.indexOf(slotOf(version))}`;
   const byDay = new Map<string, Record<string, number>>();
   for (const entry of analytics.seriesByVersion ?? []) {
     const row = byDay.get(entry.day) ?? {};
@@ -202,7 +216,7 @@ export function versionSeries(
   });
   const series = versions.map((version) => ({
     key: keyOf(version),
-    label: version === 'other' ? otherLabel : `v${version}`,
+    label: versionLabel(version, otherLabel),
   }));
   return { data, series };
 }

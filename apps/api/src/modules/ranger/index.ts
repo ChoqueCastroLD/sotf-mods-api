@@ -8,8 +8,8 @@
  * - Reports, hiding comments and reviews, users and sanctions, roles (👑), the verified creator
  *   flag, signing a user out, scan overrides and the audit log.
  *
- * The platform checks the contract's role; core re-checks it against the account row and
- * requires a session younger than 12 h (`REAUTH_REQUIRED`). Every write lands in `AuditLog`.
+ * The platform checks the contract's role; core re-checks it against the account row
+ * (role, suspension). A valid session is enough, there is no re-authentication. Every write lands in `AuditLog`.
  */
 import { moderationEndpoints } from '@sotf/contracts/moderation';
 import { listAudit } from '@sotf/core/audit/index';
@@ -53,7 +53,19 @@ export default defineModule({
 
     // Queue.
     m.implement(moderationEndpoints.queue, async ({ query, ctx }) =>
-      getQueue(ctx, deps, { lane: query.lane, cursor: query.cursor, limit: query.limit }),
+      getQueue(ctx, deps, {
+        lane: query.lane,
+        cursor: query.cursor,
+        limit: query.limit,
+        page: query.page,
+        sort: query.sort,
+        risk: query.risk,
+        minAgeHours: query.minAgeHours,
+        author: query.author,
+        assignee: query.assignee,
+        escalated: query.escalated === undefined ? undefined : query.escalated === '1',
+        q: query.q,
+      }),
     );
     m.implement(moderationEndpoints.item, async ({ params, ctx }) => getQueueItem(ctx, deps, params.id));
     m.implement(moderationEndpoints.assignItem, async ({ params, body, ctx }) =>
@@ -73,7 +85,16 @@ export default defineModule({
 
     // Reports.
     m.implement(moderationEndpoints.reports, async ({ query, ctx }) =>
-      listReports(ctx, config, { status: query.status, cursor: query.cursor, limit: query.limit }),
+      listReports(ctx, config, {
+        status: query.status,
+        cursor: query.cursor,
+        limit: query.limit,
+        page: query.page,
+        sort: query.sort,
+        reason: query.reason,
+        targetType: query.targetType,
+        q: query.q,
+      }),
     );
     m.implement(moderationEndpoints.resolveReport, async ({ params, body, ctx }) =>
       resolveReport(ctx, config, params.id, body),
@@ -98,7 +119,15 @@ export default defineModule({
 
     // Users and sanctions.
     m.implement(moderationEndpoints.users, async ({ query, ctx }) =>
-      searchRangerUsers(ctx, config, { q: query.q, page: query.page, pageSize: query.pageSize }),
+      searchRangerUsers(ctx, config, {
+        q: query.q,
+        page: query.page,
+        pageSize: query.pageSize,
+        role: query.role,
+        status: query.status,
+        verified: query.verified === undefined ? undefined : query.verified === '1',
+        sort: query.sort,
+      }),
     );
     m.implement(moderationEndpoints.user, async ({ params, ctx }) => getRangerUser(ctx, config, params.id));
     m.implement(moderationEndpoints.sanction, async ({ params, body, ctx, reply }) => {
@@ -126,6 +155,12 @@ export default defineModule({
         actor: query.actor,
         action: query.action,
         target: query.target,
+        page: query.page,
+        from: query.from,
+        to: query.to,
+        targetType: query.targetType,
+        q: query.q,
+        sort: query.sort,
       }),
     );
   },

@@ -85,5 +85,10 @@
   "requests_badge_author": "Demandeur",
   "requests_comment_delete_title": "Supprimer ce commentaire ?",
   "requests_comment_delete_text": "Cette action est irréversible.",
-  "requests_votes_short": "votes"
+  "requests_votes_short": "votes",
+  "requests_sort_old": "Plus anciennes",
+  "requests_sort_comments": "Plus commentées",
+  "requests_search_label": "Rechercher des demandes",
+  "requests_empty_search_title": "Aucune demande pour « {query} »",
+  "requests_empty_search_text": "Vérifiez l’orthographe, utilisez moins de mots ou cherchez dans tous les statuts. Si personne ne l’a encore demandé, vous pouvez le faire."
 }

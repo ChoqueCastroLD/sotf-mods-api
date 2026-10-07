@@ -48,7 +48,6 @@ function excerpt(html: string): string {
             data-no-details={detailsHref ? '' : undefined}
             data-published-at={version.publishedAt}
             data-download-href={version.status === 'active' ? version.downloadPath : undefined}
-            aria-label={m.entity_version_open({ version: version.version })}
             class="flex min-h-[4.5rem] items-center gap-3 py-3 active:bg-fg/6"
           >
             <span class="grid min-w-0 flex-1 gap-1">

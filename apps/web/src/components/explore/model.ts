@@ -10,13 +10,15 @@ import type { FilterChipOption, SortOption } from '@sotf/ui/domain';
 import { href } from '../../lib/i18n.ts';
 import {
   activeFilterCount,
-  EXPLORE_SORTS,
+  DOWNLOADS_VALUES,
+  defaultOrderOf,
   type ExploreScope,
   type ExploreState,
   type ExploreView,
   exploreHref,
   type ListType,
   MULTIPLAYER_VALUES,
+  PAGE_SIZES,
   PLATFORM_VALUES,
   patchState,
   RATING_VALUES,
@@ -78,6 +80,8 @@ export interface ExploreModel {
   tabs: TabModel[];
   sortOptions: SortOption[];
   sortValue: string;
+  /** Page size choices (`pageSize` select of the toolbar). */
+  pageSizes: { value: number; label: string; selected: boolean }[];
   reverseOrderHref: string;
   viewHrefs: Record<ExploreView, string>;
   categoryChips: FilterChipOption[];
@@ -93,10 +97,12 @@ export interface ExploreModel {
 /** Number of tag chips shown before «More tags». */
 const VISIBLE_TAGS = 12;
 
-function sortLabel(sort: string): string {
+function sortLabel(sort: string, scope: ExploreScope['kind'] = 'builds'): string {
   switch (sort) {
     case 'trending':
-      return m.explore_sort_trending();
+      return scope === 'mods' ? m.explore_catalog_sort_trending() : m.explore_sort_trending();
+    case 'name':
+      return m.explore_sort_name();
     case 'downloads':
       return m.explore_sort_downloads();
     case 'updated':
@@ -172,9 +178,13 @@ export function buildExploreModel(input: {
   const tabTypes: ListType[] = ['mod', 'library', 'build', 'all'];
   const tabs: TabModel[] = tabTypes.map((type) => {
     let tabHref: string;
-    if (scope.kind === 'mods' || scope.kind === 'builds') {
-      tabHref =
-        type === 'build' ? href('/builds', locale) : href(type === 'mod' ? '/mods' : `/mods?type=${type}`, locale);
+    if (type === 'build' && (scope.kind === 'mods' || scope.kind === 'builds')) {
+      tabHref = href('/builds', locale);
+    } else if (scope.kind === 'mods') {
+      // The search page keeps its query and filters when the type changes.
+      tabHref = hrefOf({ type });
+    } else if (scope.kind === 'builds') {
+      tabHref = href(type === 'mod' ? '/mods' : `/mods?type=${type}`, locale);
     } else {
       tabHref = hrefOf({ type });
     }
@@ -188,15 +198,22 @@ export function buildExploreModel(input: {
   });
 
   // Sort.
-  const sorts: string[] = [...EXPLORE_SORTS];
+  const sorts: ExploreState['sort'][] = ['new', 'updated', 'downloads', 'trending', 'rating', 'name'];
   if (state.q) sorts.unshift('relevance');
+  // A shared link may use a sort the menu does not list (followers, comments): keep it visible.
+  if (!sorts.includes(state.sort)) sorts.push(state.sort);
   const sortOptions: SortOption[] = sorts.map((sort) => ({
     value: sort,
     label:
-      state.order === 'asc' && sort === state.sort
-        ? m.explore_sort_reversed({ sort: sortLabel(sort) })
-        : sortLabel(sort),
-    href: hrefOf({ sort: sort as ExploreState['sort'], order: 'desc' }),
+      state.order !== defaultOrderOf(sort) && sort === state.sort
+        ? m.explore_sort_reversed({ sort: sortLabel(sort, scope.kind) })
+        : sortLabel(sort, scope.kind),
+    href: hrefOf({ sort, order: defaultOrderOf(sort) }),
+  }));
+  const pageSizes = PAGE_SIZES.map((value) => ({
+    value,
+    label: String(value),
+    selected: state.pageSize === value,
   }));
   const viewHrefs = Object.fromEntries(VIEW_VALUES.map((view) => [view, hrefOf({ view, page: state.page })])) as Record<
     ExploreView,
@@ -266,8 +283,9 @@ export function buildExploreModel(input: {
   const pinned = state.tag.length + state.excludeTag.length;
   const visible = Math.max(VISIBLE_TAGS, pinned);
 
-  // Radio groups (GET form controls).
-  const choices: ChoiceGroup[] = [
+  // Select groups (GET form controls). Builds have no side or server support to filter on.
+  const forBuilds = state.type === 'build';
+  const allChoices: ChoiceGroup[] = [
     {
       name: 'multiplayer',
       legend: m.explore_facet_multiplayer(),
@@ -320,22 +338,57 @@ export function buildExploreModel(input: {
         })),
       ],
     },
+    {
+      name: 'minDownloads',
+      legend: m.explore_facet_downloads(),
+      options: [
+        { value: '', label: m.explore_any(), checked: state.minDownloads === null, count: null },
+        ...DOWNLOADS_VALUES.map((value) => ({
+          value: String(value),
+          label: m.explore_downloads_min({ count: value }),
+          checked: state.minDownloads === value,
+          count: null,
+        })),
+      ],
+    },
   ];
+  const choices = allChoices.filter((group) => !(forBuilds && group.name === 'platform'));
+  if (state.minDownloads !== null && !(DOWNLOADS_VALUES as readonly number[]).includes(state.minDownloads)) {
+    choices
+      .find((group) => group.name === 'minDownloads')
+      ?.options.push({
+        value: String(state.minDownloads),
+        label: m.explore_downloads_min({ count: state.minDownloads }),
+        checked: true,
+        count: null,
+      });
+  }
   // A legacy/hand-written `minRating` outside the offered values stays selectable.
   if (state.minRating !== null && !(RATING_VALUES as readonly number[]).includes(state.minRating)) {
-    choices[4]?.options.push({
-      value: String(state.minRating),
-      label: m.explore_rating_min({ rating: state.minRating }),
-      checked: true,
-      count: null,
-    });
+    choices
+      .find((group) => group.name === 'minRating')
+      ?.options.push({
+        value: String(state.minRating),
+        label: m.explore_rating_min({ rating: state.minRating }),
+        checked: true,
+        count: null,
+      });
   }
 
   const toggles: ToggleModel[] = [
-    { name: 'dedicated', value: 'yes', label: m.explore_dedicated(), checked: state.dedicated },
-    { name: 'hasSource', value: '1', label: m.explore_has_source(), checked: state.hasSource },
+    ...(forBuilds
+      ? []
+      : [
+          { name: 'dedicated', value: 'yes', label: m.explore_dedicated(), checked: state.dedicated },
+          { name: 'hasSource', value: '1', label: m.explore_has_source(), checked: state.hasSource },
+        ]),
     { name: 'verified', value: '1', label: m.explore_verified(), checked: state.verified },
+    { name: 'nsfw', value: '1', label: m.explore_catalog_nsfw(), checked: state.nsfw },
+    ...(scope.kind === 'mods' || scope.kind === 'builds'
+      ? [{ name: 'unapproved', value: '1', label: m.explore_catalog_unapproved(), checked: state.unapproved }]
+      : []),
   ];
+  const hasToggle = (name: string) => toggles.some((toggle) => toggle.name === name);
 
   // State without a form control travels as hidden inputs.
   const target = scopeFor(state, scope, kindOf);
@@ -346,10 +399,14 @@ export function buildExploreModel(input: {
   for (const slug of state.tag) if (slug !== target.fixedTag) hidden.push(['tag', slug]);
   for (const slug of state.excludeTag) hidden.push(['excludeTag', slug]);
   if (state.author) hidden.push(['author', state.author]);
-  if (state.nsfw) hidden.push(['nsfw', '1']);
-  if (state.unapproved) hidden.push(['unapproved', '1']);
+  // Hand-written filters the build listing has no control for survive a submit.
+  if (forBuilds && state.platform) hidden.push(['platform', state.platform]);
+  if (forBuilds && state.dedicated) hidden.push(['dedicated', 'yes']);
+  if (forBuilds && state.hasSource) hidden.push(['hasSource', '1']);
+  if (state.nsfw && !hasToggle('nsfw')) hidden.push(['nsfw', '1']);
+  if (state.unapproved && !hasToggle('unapproved')) hidden.push(['unapproved', '1']);
   if (state.sort !== 'new' && state.sort !== 'relevance') hidden.push(['sort', state.sort]);
-  if (state.order !== 'desc') hidden.push(['order', state.order]);
+  if (state.order !== defaultOrderOf(state.sort)) hidden.push(['order', state.order]);
   if (state.view !== 'grid') hidden.push(['view', state.view]);
 
   // Active filters (removable chips above the results).
@@ -430,6 +487,13 @@ export function buildExploreModel(input: {
       removeHref: hrefOf({ minRating: null }),
       excluded: false,
     });
+  if (state.minDownloads)
+    active.push({
+      key: 'minDownloads',
+      label: m.explore_downloads_min({ count: state.minDownloads }),
+      removeHref: hrefOf({ minDownloads: null }),
+      excluded: false,
+    });
   if (state.hasSource)
     active.push({
       key: 'hasSource',
@@ -451,6 +515,15 @@ export function buildExploreModel(input: {
       removeHref: hrefOf({ author: null }),
       excluded: false,
     });
+  if (state.nsfw)
+    active.push({ key: 'nsfw', label: m.explore_catalog_nsfw(), removeHref: hrefOf({ nsfw: false }), excluded: false });
+  if (state.unapproved)
+    active.push({
+      key: 'unapproved',
+      label: m.explore_catalog_unapproved(),
+      removeHref: hrefOf({ unapproved: false }),
+      excluded: false,
+    });
 
   const cleared = patchState(state, {
     category: scope.fixedCategory ? [scope.fixedCategory] : [],
@@ -462,9 +535,12 @@ export function buildExploreModel(input: {
     platform: null,
     updatedWithin: null,
     minRating: null,
+    minDownloads: null,
     hasSource: false,
     verified: false,
     author: null,
+    nsfw: false,
+    unapproved: false,
     q: '',
     sort: 'new',
     order: 'desc',
@@ -481,6 +557,7 @@ export function buildExploreModel(input: {
     tabs,
     sortOptions,
     sortValue: state.sort,
+    pageSizes,
     reverseOrderHref: hrefOf({ order: state.order === 'asc' ? 'desc' : 'asc' }),
     viewHrefs,
     categoryChips,

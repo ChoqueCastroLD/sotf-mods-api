@@ -113,6 +113,7 @@ function matches(
     (entry.ratingAvg === null || entry.ratingAvg < query.minRating)
   )
     return false;
+  if (query.minDownloads !== undefined && entry.downloads < query.minDownloads) return false;
   if (query.hasSource && !entry.hasSource) return false;
   if (query.verified && !entry.verifiedCreator) return false;
   if (r.author && entry.userHandle.toLowerCase() !== r.author) return false;
@@ -121,7 +122,9 @@ function matches(
 
 type SortKey = (e: CatalogEntry) => number;
 
-const SORT_KEYS: Record<Exclude<ModSort, 'relevance'>, SortKey[]> = {
+const NAME_COLLATOR = new Intl.Collator('en', { sensitivity: 'base', numeric: true });
+
+const SORT_KEYS: Record<Exclude<ModSort, 'relevance' | 'name'>, SortKey[]> = {
   trending: [(e) => e.trendingScore, (e) => e.downloads7d, (e) => e.downloads],
   downloads: [(e) => e.downloads],
   updated: [(e) => e.lastReleasedAt.getTime()],
@@ -139,13 +142,17 @@ export function sortEntries(
   order: 'asc' | 'desc',
   relevance: Relevance,
 ): CatalogEntry[] {
+  const dir = order === 'asc' ? 1 : -1;
+  if (sort === 'name') {
+    // A to Z when ascending: case, accents and digit runs ("Mod 2" before "Mod 10") are natural.
+    return entries.sort((a, b) => NAME_COLLATOR.compare(a.name, b.name) * dir || (a.id - b.id) * dir);
+  }
   const keys: SortKey[] =
     sort === 'relevance'
       ? relevance
         ? [(e) => relevance.get(e.id) ?? 0, (e) => e.downloads]
         : SORT_KEYS.trending
       : SORT_KEYS[sort];
-  const dir = order === 'asc' ? 1 : -1;
   return entries.sort((a, b) => {
     for (const key of keys) {
       const d = key(a) - key(b);

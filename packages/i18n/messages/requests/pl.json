@@ -85,5 +85,10 @@
   "requests_badge_author": "Autor prośby",
   "requests_comment_delete_title": "Usunąć ten komentarz?",
   "requests_comment_delete_text": "Nie można tego cofnąć.",
-  "requests_votes_short": "głosów"
+  "requests_votes_short": "głosów",
+  "requests_sort_old": "Najstarsze",
+  "requests_sort_comments": "Najczęściej komentowane",
+  "requests_search_label": "Szukaj próśb",
+  "requests_empty_search_title": "Brak próśb dla „{query}”",
+  "requests_empty_search_text": "Sprawdź pisownię, użyj mniejszej liczby słów albo szukaj we wszystkich statusach. Jeśli nikt jeszcze o to nie prosił, możesz to zrobić."
 }

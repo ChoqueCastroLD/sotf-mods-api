@@ -3,7 +3,7 @@ export type Basecamp_Status_PublishedInputs = {};
 /**
 * | output |
 * | --- |
-* | "Live" |
+* | "Published" |
 *
 * @param {Basecamp_Status_PublishedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Dedicated_UnknownInputs */
 
 const en_upload_dedicated_unknown = /** @type {(inputs: Upload_Dedicated_UnknownInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Not sure`)
+	return /** @type {LocalizedString} */ (`I don’t know`)
 };
 
 const es_upload_dedicated_unknown = /** @type {(inputs: Upload_Dedicated_UnknownInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_upload_dedicated_unknown = /** @type {(inputs: Upload_Dedicated_Unknown
 /**
 * | output |
 * | --- |
-* | "Not sure" |
+* | "I don’t know" |
 *
 * @param {Upload_Dedicated_UnknownInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

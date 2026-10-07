@@ -4,12 +4,12 @@
  * Every key lives under `['moderation', …]`, the prefix the console stream invalidates on a
  * `moderation.queue` event (`lib/stream.ts`), so lanes, counts and open items stay live:
  *
- *   ['moderation', 'queue', lane]           one lane (infinite, cursor pages) + counts of all lanes
+ *   ['moderation', 'queue', lane, view]     one page of a lane (filters, sort, page) + counts of all lanes
  *   ['moderation', 'item', itemId]          the item view (inspection, diffs, scan, history)
- *   ['moderation', 'reports', status]       reports (infinite)
- *   ['moderation', 'users', q, page]        user search
+ *   ['moderation', 'reports', view]         one page of reports (status, filters, sort)
+ *   ['moderation', 'users', view]           user search (filters, sort, page)
  *   ['moderation', 'user', id]              one user with sanctions
- *   ['moderation', 'audit', filters]        audit log (infinite)
+ *   ['moderation', 'audit', filters]        one page of the audit log
  *
  * Reason templates (`GET /ranger/templates`) live under `['ranger-templates']` and the review-time
  * metrics under `['ranger-metrics']`: they do not change with every queue event.
@@ -34,17 +34,18 @@ import type {
   ReviewMetricsDTO,
   SanctionDTO,
 } from '@sotf/contracts/moderation';
-import { infiniteQueryOptions, type QueryClient, queryOptions } from '@tanstack/react-query';
+import { type QueryClient, queryOptions } from '@tanstack/react-query';
 import type { z } from 'zod';
 import { api } from '../../lib/api.ts';
 import { queryKeys } from '../../lib/query-keys.ts';
-import type { AuditFilters, ReportFilter } from './search.ts';
+import { type AuditFilters, QUEUE_AGE_HOURS, type QueueView, type ReportFilter } from './search.ts';
 
 export {
   AUDIT_TARGET,
   type AuditFilters,
   isItemId,
   QUEUE_LANES,
+  type QueueView,
   REPORT_STATUSES,
   type ReportFilter,
 } from './search.ts';
@@ -112,10 +113,12 @@ export function needsReason(action: ModerationAction): action is ReasonAction {
 
 export const rangerKeys = {
   all: queryKeys.moderation,
-  queue: (lane: Lane) => [...queryKeys.moderation, 'queue', lane] as const,
+  /** Every cached page of a lane (any view). */
+  lane: (lane: Lane) => [...queryKeys.moderation, 'queue', lane] as const,
+  queue: (lane: Lane, view: QueueView) => [...queryKeys.moderation, 'queue', lane, view] as const,
   item: (itemId: string) => [...queryKeys.moderation, 'item', itemId] as const,
-  reports: (status: ReportFilter) => [...queryKeys.moderation, 'reports', status] as const,
-  users: (q: string, page: number) => [...queryKeys.moderation, 'users', q, page] as const,
+  reports: (view: ReportsView) => [...queryKeys.moderation, 'reports', view] as const,
+  users: (view: UsersView) => [...queryKeys.moderation, 'users', view] as const,
   user: (id: number) => [...queryKeys.moderation, 'user', id] as const,
   audit: (filters: AuditFilters) => [...queryKeys.moderation, 'audit', filters] as const,
   /** Outside the `moderation` prefix: stream events must not refetch them. */
@@ -127,20 +130,32 @@ export const rangerKeys = {
 // Queue
 // -----------------------------------------------------------------------------------------------
 
-export const QUEUE_PAGE_SIZE = 30;
+export const QUEUE_PAGE_SIZE = 25;
 
-/** One lane, oldest and riskiest first, with the counts of every lane (cursor pages). */
-export const laneQuery = (lane: Lane) =>
-  infiniteQueryOptions({
-    queryKey: rangerKeys.queue(lane),
-    queryFn: ({ pageParam, signal }) =>
+/** One page of a lane (oldest first unless the view says otherwise) with the counts of every lane. */
+export const laneQuery = (lane: Lane, view: QueueView = {}) =>
+  queryOptions({
+    queryKey: rangerKeys.queue(lane, view),
+    queryFn: ({ signal }) =>
       api.moderation.queue(
-        { query: { lane, limit: QUEUE_PAGE_SIZE, ...(pageParam ? { cursor: pageParam } : {}) } },
+        {
+          query: {
+            lane,
+            limit: QUEUE_PAGE_SIZE,
+            page: view.page ?? 1,
+            sort: view.sort ?? 'oldest',
+            ...(view.risk ? { risk: view.risk } : {}),
+            ...(view.age ? { minAgeHours: QUEUE_AGE_HOURS[view.age] } : {}),
+            ...(view.author ? { author: view.author } : {}),
+            ...(view.assignee ? { assignee: view.assignee } : {}),
+            ...(view.escalated ? { escalated: '1' as const } : {}),
+            ...(view.q ? { q: view.q } : {}),
+          },
+        },
         { signal },
       ),
-    initialPageParam: null as string | null,
-    getNextPageParam: (page: QueuePage) => page.nextCursor,
     staleTime: 15_000,
+    placeholderData: (previous) => previous,
   });
 
 export const itemQuery = (itemId: string) =>
@@ -206,23 +221,13 @@ export const rangerApi = {
     }),
 };
 
-/** Writes an updated row (assignment, escalation) into the open item and its cached lane. */
+/** Writes an updated row (assignment, escalation) into the open item and every cached page of its lane. */
 export function storeQueueItem(queryClient: QueryClient, item: QueueItem): void {
   queryClient.setQueryData<QueueItemDetail>(rangerKeys.item(item.id), (detail) =>
     detail ? { ...detail, item } : detail,
   );
-  queryClient.setQueryData<{ pages: QueuePage[]; pageParams: (string | null)[] }>(
-    rangerKeys.queue(item.lane),
-    (data) =>
-      data
-        ? {
-            ...data,
-            pages: data.pages.map((page) => ({
-              ...page,
-              items: page.items.map((entry) => (entry.id === item.id ? item : entry)),
-            })),
-          }
-        : data,
+  queryClient.setQueriesData<QueuePage>({ queryKey: rangerKeys.lane(item.lane) }, (data) =>
+    data ? { ...data, items: data.items.map((entry) => (entry.id === item.id ? item : entry)) } : data,
   );
 }
 
@@ -239,17 +244,17 @@ export function refreshModeration(queryClient: QueryClient): Promise<void> {
   return queryClient.invalidateQueries({ queryKey: rangerKeys.all });
 }
 
-/** Removes an item from the cached lane at once (the refetch confirms it). */
+/** Removes an item from the cached pages of its lane at once (the refetch confirms it). */
 export function dropFromLane(queryClient: QueryClient, lane: Lane, itemId: string): void {
-  queryClient.setQueryData<{ pages: QueuePage[]; pageParams: (string | null)[] }>(rangerKeys.queue(lane), (data) => {
+  queryClient.setQueriesData<QueuePage>({ queryKey: rangerKeys.lane(lane) }, (data) => {
     if (!data) return data;
+    const items = data.items.filter((item) => item.id !== itemId);
+    if (items.length === data.items.length) return data;
     return {
       ...data,
-      pages: data.pages.map((page) => {
-        const items = page.items.filter((item) => item.id !== itemId);
-        if (items.length === page.items.length) return page;
-        return { ...page, items, counts: { ...page.counts, [lane]: Math.max(0, (page.counts[lane] ?? 1) - 1) } };
-      }),
+      items,
+      total: Math.max(0, data.total - 1),
+      counts: { ...data.counts, [lane]: Math.max(0, (data.counts[lane] ?? 1) - 1) },
     };
   });
 }
@@ -258,30 +263,73 @@ export function dropFromLane(queryClient: QueryClient, lane: Lane, itemId: strin
 // Reports
 // -----------------------------------------------------------------------------------------------
 
-export const reportsQuery = (status: ReportFilter) =>
-  infiniteQueryOptions({
-    queryKey: rangerKeys.reports(status),
-    queryFn: ({ pageParam, signal }) =>
+export const REPORTS_PAGE_SIZE = 25;
+
+export interface ReportsView {
+  status: ReportFilter;
+  page?: number;
+  sort?: 'oldest' | 'newest';
+  reason?: ReportReason;
+  targetType?: ReportTargetType;
+  q?: string;
+}
+
+export const reportsQuery = (view: ReportsView) =>
+  queryOptions({
+    queryKey: rangerKeys.reports(view),
+    queryFn: ({ signal }) =>
       api.moderation.reports(
-        { query: { status, limit: QUEUE_PAGE_SIZE, ...(pageParam ? { cursor: pageParam } : {}) } },
+        {
+          query: {
+            status: view.status,
+            limit: REPORTS_PAGE_SIZE,
+            page: view.page ?? 1,
+            ...(view.sort ? { sort: view.sort } : {}),
+            ...(view.reason ? { reason: view.reason } : {}),
+            ...(view.targetType ? { targetType: view.targetType } : {}),
+            ...(view.q ? { q: view.q } : {}),
+          },
+        },
         { signal },
       ),
-    initialPageParam: null as string | null,
-    getNextPageParam: (page: ReportPage) => page.nextCursor,
     staleTime: 15_000,
+    placeholderData: (previous) => previous,
   });
 
 // -----------------------------------------------------------------------------------------------
 // Users
 // -----------------------------------------------------------------------------------------------
 
-export const USERS_PAGE_SIZE = 20;
+export interface UsersView {
+  q?: string;
+  page?: number;
+  size?: number;
+  role?: Role;
+  status?: 'active' | 'suspended' | 'banned';
+  verified?: '1' | '0';
+  sort?: 'newest' | 'oldest' | 'name' | 'reports' | 'seen';
+}
 
-export const usersQuery = (q: string, page: number) =>
+export const USERS_PAGE_SIZE = 25;
+
+export const usersQuery = (view: UsersView) =>
   queryOptions({
-    queryKey: rangerKeys.users(q, page),
+    queryKey: rangerKeys.users(view),
     queryFn: ({ signal }) =>
-      api.moderation.users({ query: { page, pageSize: USERS_PAGE_SIZE, ...(q ? { q } : {}) } }, { signal }),
+      api.moderation.users(
+        {
+          query: {
+            page: view.page ?? 1,
+            pageSize: view.size ?? USERS_PAGE_SIZE,
+            ...(view.q ? { q: view.q } : {}),
+            ...(view.role ? { role: view.role } : {}),
+            ...(view.status ? { status: view.status } : {}),
+            ...(view.verified ? { verified: view.verified } : {}),
+            ...(view.sort ? { sort: view.sort } : {}),
+          },
+        },
+        { signal },
+      ),
     staleTime: 30_000,
     placeholderData: (previous) => previous,
   });
@@ -303,25 +351,38 @@ export function storeUser(queryClient: QueryClient, user: RangerUser): void {
 // Audit
 // -----------------------------------------------------------------------------------------------
 
+export const AUDIT_PAGE_SIZE = 50;
+
+/** Day boundaries of `from`/`to` (`YYYY-MM-DD`, UTC); `to` is inclusive, the API takes an exclusive instant. */
+function dayStart(date: string): string {
+  return `${date}T00:00:00.000Z`;
+}
+function dayAfter(date: string): string {
+  return new Date(Date.parse(`${date}T00:00:00.000Z`) + 86_400_000).toISOString();
+}
+
 export const auditQuery = (filters: AuditFilters) =>
-  infiniteQueryOptions({
+  queryOptions({
     queryKey: rangerKeys.audit(filters),
-    queryFn: ({ pageParam, signal }) =>
+    queryFn: ({ signal }) =>
       api.moderation.audit(
         {
           query: {
-            limit: 50,
-            ...(pageParam ? { cursor: pageParam } : {}),
+            limit: filters.size ?? AUDIT_PAGE_SIZE,
+            page: filters.page ?? 1,
+            ...(filters.sort ? { sort: filters.sort } : {}),
             ...(filters.actor ? { actor: filters.actor } : {}),
             ...(filters.action ? { action: filters.action } : {}),
             ...(filters.target ? { target: filters.target } : {}),
+            ...(filters.q ? { q: filters.q } : {}),
+            ...(filters.from ? { from: dayStart(filters.from) } : {}),
+            ...(filters.to ? { to: dayAfter(filters.to) } : {}),
           },
         },
         { signal },
       ),
-    initialPageParam: null as string | null,
-    getNextPageParam: (page: AuditPage) => page.nextCursor,
     staleTime: 30_000,
+    placeholderData: (previous) => previous,
   });
 
 // -----------------------------------------------------------------------------------------------

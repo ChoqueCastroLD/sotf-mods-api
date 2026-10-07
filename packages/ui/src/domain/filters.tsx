@@ -77,7 +77,7 @@ export function FilterChips({
   const active = options.some((option) => (option.state ?? 'off') !== 'off');
   return (
     <fieldset className={cn('flex min-w-0 flex-col gap-2', className)}>
-      <legend className="readout mb-2">{label}</legend>
+      <legend className="mb-2 text-xs font-medium text-fg-muted">{label}</legend>
       <ul className="flex flex-wrap gap-2">
         {options.map((option) => {
           const state = option.state ?? 'off';

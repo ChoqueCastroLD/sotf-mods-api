@@ -10,8 +10,6 @@
  * - `mod.publish_without_review`: verified creators (and staff) skip the first-mod human review.
  * - Moderation actions: moderators and admins (not while suspended). Admin actions: admins.
  * - Ownership actions (`*.edit`, `*.delete`): the owner, or staff where moderation allows it.
- * - Moderator/admin actions additionally require a session younger than 12 h
- *   (`needsFreshSession(action)` + `assertFreshSession`, `REAUTH_REQUIRED`).
  */
 import { PERMISSIONS, type Permission } from '@sotf/contracts/me';
 import type { Actor } from '../kernel/context.ts';
@@ -51,8 +49,6 @@ export interface OwnedResource {
 }
 
 export const ALL_ACTIONS: readonly Action[] = [...PERMISSIONS, ...RESOURCE_ACTIONS];
-
-const REAUTH_WINDOW_MS = 12 * 3600 * 1000;
 
 function isSuspended(subject: PermissionSubject, now: Date): boolean {
   return Boolean(subject.suspendedUntil && subject.suspendedUntil.getTime() > now.getTime());
@@ -157,19 +153,4 @@ export function assertCan(
 /** The `permissions` list of `GET /me` (global permissions only; resources are checked per call). */
 export function permissionsOf(subject: PermissionSubject | null, now: Date = new Date()): Permission[] {
   return PERMISSIONS.filter((permission) => can(subject, permission, undefined, now));
-}
-
-/** Moderator/admin actions require a recent sign-in (PLAN §7.4). */
-export function needsFreshSession(action: Action): boolean {
-  return action.startsWith('moderation.') || action.startsWith('admin.') || action === 'mod.restore';
-}
-
-/**
- * Throws `REAUTH_REQUIRED` when the session that authenticated the request is older than 12 h.
- * `sessionCreatedAt` comes from `loadSessionCreatedAt` (auth) or the resolver.
- */
-export function assertFreshSession(sessionCreatedAt: Date | null, now: Date = new Date()): void {
-  if (!sessionCreatedAt || now.getTime() - sessionCreatedAt.getTime() > REAUTH_WINDOW_MS) {
-    throw new DomainError('REAUTH_REQUIRED', undefined, 'Sign in again to continue');
-  }
 }

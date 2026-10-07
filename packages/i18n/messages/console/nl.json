@@ -68,5 +68,15 @@
   "console_nav_jams": "Mod Jams",
   "console_tab_ranger": "Moderatie",
   "console_pull_refreshing": "Vernieuwen…",
-  "console_tab_basecamp": "Dashboard"
+  "console_tab_basecamp": "Dashboard",
+  "console_language_failed": "De taal kon niet worden gewijzigd",
+  "console_pager_range": "{from}–{to} van {total}",
+  "console_pager_page_size": "Items per pagina",
+  "console_pager_per_page": "{count} per pagina",
+  "console_pager_of": "Pagina {page} van {pages}",
+  "console_nav_tokens": "Toegangstokens",
+  "console_nav_group_account": "Je account",
+  "console_nav_group_app": "App",
+  "console_nav_group_creator": "Maker en gegevens",
+  "console_area_you": "Jij"
 }

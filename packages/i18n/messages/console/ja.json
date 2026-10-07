@@ -68,5 +68,15 @@
   "console_nav_jams": "Mod ジャム",
   "console_tab_ranger": "モデレーション",
   "console_pull_refreshing": "更新中…",
-  "console_tab_basecamp": "ダッシュボード"
+  "console_tab_basecamp": "ダッシュボード",
+  "console_language_failed": "言語を変更できませんでした",
+  "console_pager_range": "{total} 件中 {from}–{to} 件",
+  "console_pager_page_size": "1 ページあたりの件数",
+  "console_pager_per_page": "{count} 件/ページ",
+  "console_pager_of": "{page} / {pages} ページ",
+  "console_nav_tokens": "アクセストークン",
+  "console_nav_group_account": "アカウント",
+  "console_nav_group_app": "アプリ",
+  "console_nav_group_creator": "クリエイターとデータ",
+  "console_area_you": "あなた"
 }

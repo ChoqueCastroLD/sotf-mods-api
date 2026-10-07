@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Game_Builds_HintInputs */
 
 const en_upload_game_builds_hint = /** @type {(inputs: Upload_Game_Builds_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Only tick the patches you actually played on.`)
+	return /** @type {LocalizedString} */ (`Pick the patches you actually played on. Newest first.`)
 };
 
 const es_upload_game_builds_hint = /** @type {(inputs: Upload_Game_Builds_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Marca solo los parches en los que jugaste de verdad.`)
+	return /** @type {LocalizedString} */ (`Elige los parches en los que jugaste de verdad. Los más recientes primero.`)
 };
 
 const de_upload_game_builds_hint = /** @type {(inputs: Upload_Game_Builds_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Hake nur die Patches an, auf denen du wirklich gespielt hast.`)
+	return /** @type {LocalizedString} */ (`Wähle die Patches, auf denen du wirklich gespielt hast. Neueste zuerst.`)
 };
 
 const fr_upload_game_builds_hint = /** @type {(inputs: Upload_Game_Builds_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ne cochez que les patchs sur lesquels vous avez vraiment joué.`)
+	return /** @type {LocalizedString} */ (`Choisissez les patchs sur lesquels vous avez vraiment joué. Les plus récents d’abord.`)
 };
 
 const it_upload_game_builds_hint = /** @type {(inputs: Upload_Game_Builds_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Seleziona solo le patch su cui hai davvero giocato.`)
+	return /** @type {LocalizedString} */ (`Scegli le patch su cui hai davvero giocato. Le più recenti per prime.`)
 };
 
 const nl_upload_game_builds_hint = /** @type {(inputs: Upload_Game_Builds_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vink alleen de patches aan waarop je echt hebt gespeeld.`)
+	return /** @type {LocalizedString} */ (`Kies de patches waarop je echt hebt gespeeld. Nieuwste eerst.`)
 };
 
 const pl_upload_game_builds_hint = /** @type {(inputs: Upload_Game_Builds_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zaznacz tylko te łatki, na których naprawdę grałeś.`)
+	return /** @type {LocalizedString} */ (`Wybierz łatki, na których naprawdę grałeś. Najnowsze na górze.`)
 };
 
 const pt_upload_game_builds_hint = /** @type {(inputs: Upload_Game_Builds_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Marque só os patches em que você realmente jogou.`)
+	return /** @type {LocalizedString} */ (`Escolha os patches em que você realmente jogou. Os mais recentes primeiro.`)
 };
 
 const ru_upload_game_builds_hint = /** @type {(inputs: Upload_Game_Builds_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Отмечайте только патчи, на которых вы действительно играли.`)
+	return /** @type {LocalizedString} */ (`Выберите патчи, на которых вы действительно играли. Сначала новые.`)
 };
 
 const sv_upload_game_builds_hint = /** @type {(inputs: Upload_Game_Builds_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kryssa bara i patcharna du faktiskt har spelat på.`)
+	return /** @type {LocalizedString} */ (`Välj de patchar du faktiskt har spelat på. Nyast först.`)
 };
 
 const tr_upload_game_builds_hint = /** @type {(inputs: Upload_Game_Builds_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Yalnızca gerçekten oynadığın yamaları işaretle.`)
+	return /** @type {LocalizedString} */ (`Gerçekten oynadığın yamaları seç. En yeniler önce.`)
 };
 
 const zh_upload_game_builds_hint = /** @type {(inputs: Upload_Game_Builds_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`只勾选你真正玩过的补丁。`)
+	return /** @type {LocalizedString} */ (`选择你真正玩过的补丁，最新的排在前面。`)
 };
 
 const ja_upload_game_builds_hint = /** @type {(inputs: Upload_Game_Builds_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`実際に遊んだパッチだけにチェックしてください。`)
+	return /** @type {LocalizedString} */ (`実際に遊んだパッチを選んでください。新しい順です。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Only tick the patches you actually played on." |
+* | "Pick the patches you actually played on. Newest first." |
 *
 * @param {Upload_Game_Builds_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

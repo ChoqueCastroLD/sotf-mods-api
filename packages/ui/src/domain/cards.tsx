@@ -65,8 +65,14 @@ export function BuildCard({
       data-mod-id={build.id}
       className={tight ? cn('@container/build', className) : className}
     >
-      <div className={cn(cardClasses, 'flex h-full flex-col overflow-hidden', tight && '@max-[260px]/build:text-xs')}>
-        <div className="aspect-cover overflow-hidden bg-raised">
+      <div
+        className={cn(
+          cardClasses,
+          'bp-card flex h-full flex-col overflow-hidden',
+          tight && '@max-[260px]/build:text-xs',
+        )}
+      >
+        <div className="bp-cover aspect-cover overflow-hidden bg-raised">
           <Cover
             image={build.thumbnail}
             seed={build.slug}
@@ -113,7 +119,7 @@ export function BuildCard({
             {build.verifiedCreator ? <TrustedMark size={14} className={cardControlClasses} /> : null}
           </p>
           <div className="mt-auto flex flex-wrap items-center gap-x-3 gap-y-1 pt-1 text-xs text-fg-muted">
-            <span className="tabular-nums" title={formatCount(locale, build.downloads)}>
+            <span className="bp-mono tabular-nums" title={formatCount(locale, build.downloads)}>
               {t('ui_domain_downloads_count', { count: build.downloads, display })}
             </span>
             {typeof pieces === 'number' ? (

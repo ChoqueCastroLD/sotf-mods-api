@@ -29,7 +29,7 @@ const SIDE =
 <div aria-hidden="true" class="h-20 md:hidden"></div>
 <div
   data-mobile-download-bar
-  class="fixed inset-x-0 bottom-[calc(4rem+env(safe-area-inset-bottom))] z-(--z-sticky) border-t border-border bg-bg/95 px-3 py-2 transition-[bottom] duration-(--dur-base) supports-[backdrop-filter]:bg-bg/80 supports-[backdrop-filter]:backdrop-blur-md md:hidden [html[data-scroll-dir=down]_&]:bottom-0 [html[data-scroll-dir=down]_&]:pb-[calc(0.5rem+env(safe-area-inset-bottom))] motion-reduce:transition-none"
+  class="fixed inset-x-0 bottom-[calc(4rem+env(safe-area-inset-bottom))] z-(--z-sticky) border-t border-border bg-bg/95 px-3 py-2 transition-transform duration-(--dur-base) ease-out supports-[backdrop-filter]:bg-bg/80 supports-[backdrop-filter]:backdrop-blur-md md:hidden [html[data-scroll-dir=down]_&]:translate-y-16 motion-reduce:transition-none"
 >
   <div class="mx-auto flex max-w-lg items-center gap-2">
     {
@@ -49,12 +49,14 @@ const SIDE =
         </p>
       )
     }
-    <!-- biome-ignore lint/a11y/useAriaPropsSupportedByRole: aria-pressed is the toggle state set by build-page.ts (guests: the link to sign-in) -->
-    <a href={loginHref} aria-pressed="false" data-follow data-mod-id={build.id} data-login={loginHref} class={SIDE}>
-      <Icon icon={Heart} size={20} className="[[aria-pressed=true]_&]:fill-current" />
-      <span class="sr-only" data-follow-label>{m.common_action_follow()}</span>
-    </a>
-    <button type="button" hidden data-js-only data-dialog-open="more-sheet" class={SIDE} aria-haspopup="dialog">
+    <form method="get" action={href('/login', locale)} class="contents" data-follow-form>
+      <input type="hidden" name="next" value={href(Astro.locals.pagePath, locale)} />
+      <button type="submit" aria-pressed="false" data-follow data-mod-id={build.id} data-login={loginHref} class={SIDE}>
+        <Icon icon={Heart} size={20} className="[[aria-pressed=true]_&]:fill-current" />
+        <span class="sr-only" data-follow-label>{m.common_action_follow()}</span>
+      </button>
+    </form>
+    <button type="button" data-js-only data-js-reserve aria-hidden="true" tabindex="-1" data-dialog-open="more-sheet" class={`${SIDE} invisible`} aria-haspopup="dialog">
       <Icon icon={Ellipsis} size={22} />
       <span class="sr-only">{m.mod_action_more()}</span>
     </button>

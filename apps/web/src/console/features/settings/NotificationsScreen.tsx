@@ -241,7 +241,7 @@ export function NotificationsScreen() {
                   <th scope="col" className="py-2 text-start font-medium">
                     {m.settings_notif_col_signal()}
                   </th>
-                  <th scope="col" className="w-28 py-2 text-start font-medium">
+                  <th scope="col" className="w-32 py-2 text-start font-medium">
                     {m.settings_notif_col_app()}
                   </th>
                   <th scope="col" className="w-44 py-2 text-start font-medium">
@@ -265,7 +265,7 @@ export function NotificationsScreen() {
                           <span className="mt-1 block text-xs text-fg-subtle">{m.settings_notif_removal_note()}</span>
                         ) : null}
                       </th>
-                      <td className="md:py-3">
+                      <td className="md:py-3 md:pe-6">
                         {row.inAppAvailable ? (
                           <Switch
                             label={

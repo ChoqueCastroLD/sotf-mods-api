@@ -12,6 +12,7 @@ import { Dialog } from '@sotf/ui/dialog';
 import { ProseLocator } from '@sotf/ui/domain';
 import { Field } from '@sotf/ui/field';
 import { Icon } from '@sotf/ui/icons';
+import { Select } from '@sotf/ui/select';
 import { Textarea } from '@sotf/ui/textarea';
 import { useQueryClient } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
@@ -24,6 +25,7 @@ import { date, number } from '../format.ts';
 import { bt } from '../i18n.ts';
 import { scanVerdictLabel, scanVerdictVariant, versionStatusLabel, versionStatusVariant } from '../labels.ts';
 import { reportFailure } from '../shared.tsx';
+import { PageNav } from '../../ranger/controls.tsx';
 
 function YankDialog({
   version,
@@ -317,8 +319,25 @@ function VersionCard({ modId, version, lang }: { modId: number; version: Version
   );
 }
 
+type VersionSort = 'newest' | 'oldest' | 'downloads';
+
 export function VersionsTab({ studio }: { studio: StudioMod }) {
-  const versions = [...studio.versions].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
+  const [status, setStatus] = useState<'all' | Version['status']>('all');
+  const [sort, setSort] = useState<VersionSort>('newest');
+  const [page, setPage] = useState(1);
+  const [size, setSize] = useState(10);
+  const statuses = [...new Set(studio.versions.map((version) => version.status))];
+  const matching = studio.versions.filter((version) => status === 'all' || version.status === status);
+  const versions = matching.sort((a, b) =>
+    sort === 'oldest'
+      ? a.publishedAt.localeCompare(b.publishedAt)
+      : sort === 'downloads'
+        ? b.downloadsCount - a.downloadsCount || b.publishedAt.localeCompare(a.publishedAt)
+        : b.publishedAt.localeCompare(a.publishedAt),
+  );
+  const totalPages = Math.max(1, Math.ceil(versions.length / size));
+  const current = Math.min(page, totalPages);
+  const visible = versions.slice((current - 1) * size, current * size);
   const canRelease = studio.mod.kind !== 'build' && studio.mod.status !== 'removed';
   return (
     <div className="flex flex-col gap-4">
@@ -335,14 +354,69 @@ export function VersionsTab({ studio }: { studio: StudioMod }) {
           </Link>
         ) : null}
       </div>
-      {versions.length === 0 ? (
+      {studio.versions.length > 1 ? (
+        <div className="flex flex-wrap items-center gap-2">
+          {statuses.length > 1 ? (
+            <Select<string>
+              label={bt('basecamp_versions_filter_all')}
+              hideLabel
+              size="sm"
+              value={status}
+              onValueChange={(next) => {
+                if (!next) return;
+                setStatus(next as 'all' | Version['status']);
+                setPage(1);
+              }}
+              options={[
+                { value: 'all', label: bt('basecamp_versions_filter_all') },
+                ...statuses.map((value) => ({ value, label: versionStatusLabel(value) })),
+              ]}
+              className="w-full md:w-48"
+            />
+          ) : null}
+          <Select<string>
+            label={bt('basecamp_versions_sort_newest')}
+            hideLabel
+            size="sm"
+            value={sort}
+            onValueChange={(next) => {
+              if (!next) return;
+              setSort(next as VersionSort);
+              setPage(1);
+            }}
+            options={[
+              { value: 'newest', label: bt('basecamp_versions_sort_newest') },
+              { value: 'oldest', label: bt('basecamp_versions_sort_oldest') },
+              { value: 'downloads', label: bt('basecamp_versions_sort_downloads') },
+            ]}
+            className="w-full md:ml-auto md:w-48"
+          />
+        </div>
+      ) : null}
+      {studio.versions.length === 0 ? (
         <p className="text-sm text-fg-muted">{bt('basecamp_versions_empty')}</p>
+      ) : versions.length === 0 ? (
+        <p className="text-sm text-fg-muted">{bt('basecamp_versions_no_match')}</p>
       ) : (
-        <ul className="grid gap-3">
-          {versions.map((version) => (
-            <VersionCard key={version.id} modId={studio.mod.id} version={version} lang={studio.mod.contentLang} />
-          ))}
-        </ul>
+        <>
+          <ul className="grid gap-3">
+            {visible.map((version) => (
+              <VersionCard key={version.id} modId={studio.mod.id} version={version} lang={studio.mod.contentLang} />
+            ))}
+          </ul>
+          <PageNav
+            page={current}
+            totalPages={totalPages}
+            total={versions.length}
+            pageSize={size}
+            onPage={setPage}
+            sizes={[10, 25, 50]}
+            onPageSize={(next) => {
+              setSize(next);
+              setPage(1);
+            }}
+          />
+        </>
       )}
     </div>
   );

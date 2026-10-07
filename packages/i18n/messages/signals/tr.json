@@ -87,5 +87,10 @@
   "signals_request_comment_grouped": "{count, plural, one {“{request}” isteğinde # yeni yorum} other {“{request}” isteğinde # yeni yorum}}",
   "signals_request_adopted": "{actor}, “{request}” isteğin üzerinde çalışıyor",
   "signals_request_fulfilled": "{mod} yayında ve “{request}” isteğini karşılıyor",
-  "signals_jam_phase": "{phase, select, announced {Mod Jam duyuruldu: {jam}} submissions {{jam} için katılımlar açıldı} voting {{jam} için oylama açıldı} results {{jam} sonuçları açıklandı} other {{jam} ile ilgili yenilik var}}"
+  "signals_jam_phase": "{phase, select, announced {Mod Jam duyuruldu: {jam}} submissions {{jam} için katılımlar açıldı} voting {{jam} için oylama açıldı} results {{jam} sonuçları açıklandı} other {{jam} ile ilgili yenilik var}}",
+  "signals_state_label": "Göster",
+  "signals_state_all": "Tümü",
+  "signals_state_unread": "Okunmamış",
+  "signals_empty_unread_title": "Okunmamış bildirim yok",
+  "signals_empty_unread_text": "Bu filtreye uyan her şeyi okudunuz."
 }

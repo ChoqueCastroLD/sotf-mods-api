@@ -1,0 +1,32 @@
+---
+/**
+ * Motif (Astro): the deterministic pine and tick background pattern of `@sotf/ui/motif-svg`, a
+ * decorative layer for any `relative` box. It is absolutely positioned, ignores pointer events,
+ * is hidden from assistive technology and takes no space (no layout shift). Static. The shapes are
+ * CSS masks painted with the theme colours (`.motif` in tokens.css), so it needs no JavaScript and
+ * follows the light and dark themes.
+ *
+ *   <section class="relative isolate overflow-hidden"> <Motif seed="mods-empty" fade="bottom" /> ... </section>
+ */
+import { type MotifDensity, type MotifFade, type MotifTone, motifStyle } from '@sotf/ui/motif-svg';
+
+interface Props {
+  seed?: string | number;
+  density?: MotifDensity;
+  tone?: MotifTone;
+  fade?: MotifFade;
+  /** Tile edge in px (default 360). */
+  size?: number;
+  class?: string;
+}
+
+const { seed, density, tone = 'neutral', fade = 'none', size, class: className } = Astro.props;
+---
+
+<span
+  aria-hidden="true"
+  data-motif
+  data-tone={tone}
+  data-fade={fade}
+  class:list={['motif', className]}
+  style={motifStyle({ seed, density, size })}></span>

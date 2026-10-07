@@ -124,7 +124,7 @@ function ItemSkeleton({ preview, onBack }: { preview: QueueItem | null; onBack?:
   return (
     <div className="grid gap-4">
       {onBack ? <BackButton onBack={onBack} /> : null}
-      {preview ? <h2 className="font-display text-xl text-fg">{preview.title}</h2> : null}
+      {preview ? <h2 className="text-xl font-bold text-fg">{preview.title}</h2> : null}
       <SkeletonGroup label={m.ranger_loading()} className="grid gap-4">
         {preview ? null : <Skeleton className="h-8 w-72 max-w-full" />}
         <Skeleton className="h-5 w-96 max-w-full" />
@@ -379,8 +379,8 @@ function ItemDetail({
       {onBack ? <BackButton onBack={onBack} /> : null}
 
       <header className="grid gap-2">
-        <p className="readout text-fg-muted">{laneLabel(item.lane)}</p>
-        <h2 id="ranger-item-title" className="font-display text-xl text-fg break-words">
+        <p className="text-xs text-fg-muted">{laneLabel(item.lane)}</p>
+        <h2 id="ranger-item-title" className="text-xl font-bold text-fg break-words">
           {item.title}
         </h2>
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-fg-muted">

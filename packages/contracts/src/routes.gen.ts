@@ -17,6 +17,8 @@ export const API_ROUTES = {
   admin: {
     activeAnnouncements: { id: 'admin.activeAnnouncements', method: 'GET', path: "/api/v2/announcements/active", kind: 'json', bodyKind: null },
     listGameBuilds: { id: 'admin.listGameBuilds', method: 'GET', path: "/api/v2/admin/game-builds", kind: 'json', bodyKind: null },
+    steamSyncStatus: { id: 'admin.steamSyncStatus', method: 'GET', path: "/api/v2/admin/game-builds/steam", kind: 'json', bodyKind: null },
+    steamSyncNow: { id: 'admin.steamSyncNow', method: 'POST', path: "/api/v2/admin/game-builds/steam/sync", kind: 'json', bodyKind: null },
     createGameBuild: { id: 'admin.createGameBuild', method: 'POST', path: "/api/v2/admin/game-builds", kind: 'json', bodyKind: 'json' },
     updateGameBuild: { id: 'admin.updateGameBuild', method: 'PATCH', path: "/api/v2/admin/game-builds/:id", kind: 'json', bodyKind: 'json' },
     deleteGameBuild: { id: 'admin.deleteGameBuild', method: 'DELETE', path: "/api/v2/admin/game-builds/:id", kind: 'empty', bodyKind: null },
@@ -385,6 +387,7 @@ export const API_ROUTES = {
     overview: { id: 'studio.overview', method: 'GET', path: "/api/v2/studio/overview", kind: 'json', bodyKind: null },
     analytics: { id: 'studio.analytics', method: 'GET', path: "/api/v2/studio/analytics", kind: 'json', bodyKind: null },
     analyticsCsv: { id: 'studio.analyticsCsv', method: 'GET', path: "/api/v2/studio/analytics.csv", kind: 'csv', bodyKind: null },
+    attention: { id: 'studio.attention', method: 'GET', path: "/api/v2/studio/attention", kind: 'json', bodyKind: null },
     inbox: { id: 'studio.inbox', method: 'GET', path: "/api/v2/studio/inbox", kind: 'json', bodyKind: null },
   },
   tokens: {

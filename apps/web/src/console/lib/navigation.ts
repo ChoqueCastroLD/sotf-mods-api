@@ -9,9 +9,7 @@
 
 import {
   Activity,
-  Backpack,
   BellRing,
-  Binoculars,
   ChartLine,
   Database,
   Download,
@@ -21,8 +19,11 @@ import {
   Gamepad2,
   Gauge,
   Hammer,
+  Heart,
+  House,
   Inbox,
   KeyRound,
+  KeySquare,
   LayoutDashboard,
   type LucideIcon,
   Megaphone,
@@ -38,7 +39,6 @@ import {
   Shuffle,
   SlidersHorizontal,
   Tags,
-  Tent,
   Trophy,
   UserRound,
   Users,
@@ -85,12 +85,12 @@ export const CONSOLE_AREAS: readonly ConsoleArea[] = [
     id: 'basecamp',
     to: '/dashboard',
     label: () => t('common_term_basecamp'),
-    icon: Tent,
+    icon: LayoutDashboard,
     sections: [
       {
         id: 'basecamp',
         items: [
-          { to: '/dashboard', label: () => t('console_nav_overview'), icon: LayoutDashboard, exact: true },
+          { to: '/dashboard', label: () => t('console_nav_overview'), icon: House, exact: true },
           { to: '/dashboard/mods', label: () => t('console_nav_my_mods'), icon: Package },
           // Paraglide (the two labels live in the `basecamp` namespace, not in the shell catalogue).
           { to: '/dashboard/inbox', label: () => t('console_nav_inbox'), icon: Inbox },
@@ -106,13 +106,13 @@ export const CONSOLE_AREAS: readonly ConsoleArea[] = [
   {
     id: 'me',
     to: '/me/following',
-    label: () => t('common_nav_you'),
-    icon: Backpack,
+    label: () => t('console_area_you'),
+    icon: UserRound,
     sections: [
       {
         id: 'me',
         items: [
-          { to: '/me/following', label: () => t('common_term_backpack'), icon: Backpack },
+          { to: '/me/following', label: () => t('common_term_backpack'), icon: Heart },
           { to: '/me/downloads', label: () => t('console_nav_downloads'), icon: Download },
         ],
       },
@@ -132,14 +132,28 @@ export const CONSOLE_AREAS: readonly ConsoleArea[] = [
     icon: Settings2,
     sections: [
       {
-        id: 'settings',
+        id: 'settings-account',
+        label: () => t('console_nav_group_account'),
         items: [
           { to: '/settings/profile', label: () => t('console_nav_profile'), icon: UserRound },
           { to: '/settings/account', label: () => t('console_nav_account'), icon: KeyRound },
           { to: '/settings/security', label: () => t('console_nav_security'), icon: ShieldCheck },
+          { to: '/settings/tokens', label: () => t('console_nav_tokens'), icon: KeySquare },
+        ],
+      },
+      {
+        id: 'settings-app',
+        label: () => t('console_nav_group_app'),
+        items: [
           { to: '/settings/notifications', label: () => t('console_nav_notifications'), icon: BellRing },
           { to: '/settings/preferences', label: () => t('console_nav_preferences'), icon: SlidersHorizontal },
           { to: '/settings/privacy', label: () => t('console_nav_privacy'), icon: EyeOff },
+        ],
+      },
+      {
+        id: 'settings-creator',
+        label: () => t('console_nav_group_creator'),
+        items: [
           { to: '/settings/creator', label: () => t('console_nav_creator'), icon: Hammer },
           { to: '/settings/data', label: () => t('console_nav_data'), icon: Database },
         ],
@@ -150,7 +164,7 @@ export const CONSOLE_AREAS: readonly ConsoleArea[] = [
     id: 'ranger',
     to: '/moderation',
     label: () => t('common_term_ranger_station'),
-    icon: Binoculars,
+    icon: ShieldCheck,
     rangerOnly: true,
     sections: [
       {

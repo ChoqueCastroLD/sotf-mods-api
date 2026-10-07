@@ -96,6 +96,7 @@ const SORT_LABEL: Record<ProfileSort, () => string> = {
   downloads: () => m.profile_sort_downloads(),
   updated: () => m.profile_sort_updated(),
   new: () => m.profile_sort_new(),
+  name: () => m.explore_sort_name(),
 };
 
 const baseTitle = profileTitle(user);

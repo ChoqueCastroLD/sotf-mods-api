@@ -5,12 +5,11 @@ Publishing (new mod, new build, new version, drafts) is `features/upload` (WP-74
 
 | Route | Screen | What |
 |---|---|---|
-| `/dashboard?range=` | `OverviewScreen` | Greeting + «Day N», KPIs (sparkline + delta), downloads chart with release/patch markers, «Needs attention», «Live», «My mods», next milestone and tier |
-| `/dashboard/mods?status=&q=&sort=` | `ModsScreen` | Every mod and build in any status; filter, search, sort; table from `md`, cards on phones |
-| `/dashboard/mods/$modId?tab=` | `editor/ModEditorScreen` | Listing, media, versions, compatibility, status — with the quality score and preflight rows |
-| `/dashboard/analytics?mod=&range=` | `AnalyticsScreen` | Downloads (total/unique), views and conversion, followers, by version, by channel, referrers (grouped), visitor language, ratings, compatibility by build, CSV |
-| `/dashboard/inbox?type=&state=` | `InboxScreen` | Comments, bug reports, reviews and field reports with inline answers |
-| `/dashboard/badges` | `BadgesScreen` | Creator tier, next milestone, locked badges with progress, earned badges |
+| `/dashboard?range=&attention=&asort=&apage=&dismissed=` | `OverviewScreen` | Key figures strip (`KpiStrip`: downloads today / 7 d / 30 d, followers, to answer, waiting for review), downloads chart with release/patch markers, «Needs attention» (`AttentionPanel`: tabs by kind with counts, sort, server pages, dismiss), recent activity (`ActivityPanel`), busiest mods |
+| `/dashboard/mods?status=&category=&q=&sort=&page=&size=` | `ModsScreen` | Every mod and build in any status; the server searches, filters, sorts and paginates (`GET /studio/mods`); table from `md` with sortable headings, cards on phones |
+| `/dashboard/mods/$modId?tab=` | `editor/ModEditorScreen` | Listing, media, versions, compatibility, status, with the quality score and preflight rows |
+| `/dashboard/analytics?mod=&range=&from=&to=` | `AnalyticsScreen` | Downloads (total/unique), views and conversion, followers, by version, by channel, referrers (grouped), visitor language, ratings, 7 d / 30 d / 90 d / all / custom date range, CSV of the same range |
+| `/dashboard/inbox?type=&state=&mod=&sort=&page=&size=` | `InboxScreen` | Comments, bug reports and reviews with inline answers; type tabs with counts, waiting / everything, one mod, order, server pages |
 
 ## How it works
 
@@ -23,11 +22,15 @@ Publishing (new mod, new build, new version, drafts) is `features/upload` (WP-74
   analytics screen). `charts/figures.tsx` wraps every chart in `ChartFigure` (title, legend with ≥ 2
   series, «View as table») and applies `chartTheme`: thin marks, hairline grid, round ticks, never two
   Y axes, release markers as hairlines with a mono label, game patches dashed in Solafite.
-- **Live** (`LivePanel.tsx`): signals about my mods arrive over SSE (the shell's `notification` event
-  refetches `['notifications', 'list', 'my_mods']`); downloads have no stream event, so the live
-  counters of the five busiest published mods are polled every minute while the tab is visible and
-  each increase becomes a «● 2 downloads · Auto Pickup» entry. A new signal also refreshes the
-  summary and the inbox.
+- **Needs attention** (`AttentionPanel.tsx`, `GET /studio/attention`): one row per kind and mod; the
+  server groups (counts per kind), sorts (urgency, items, name) and paginates. Dismissed rows are
+  saved on the account (`settings.dismissedAttention`, keys `kind:modId:count`, so a row returns when
+  its count changes) and the server leaves them out; «Show dismissed» lists them to restore.
+- **Recent activity** (`ActivityPanel.tsx`): the latest notifications about my mods arrive over SSE
+  (the shell's `notification` event refetches `['notifications', 'list', …]`); a new one also
+  refreshes the summary, the attention list and the inbox.
+- **Pagination**: `components/ListPager.tsx` (numbered pages, «1–10 of 32», optional page size);
+  filters and the page live in the route's search params, the API paginates (`page`, `pageSize`).
 - **Editor** (`editor/`): the listing and compatibility forms send only the changed fields
   (`PATCH /studio/mods/:id`); media are reordered, described, removed or added without re-uploading
   the existing ones (`PUT /studio/mods/:id/media` with media ids parsed from `…/media/{uuid}/…`;
@@ -37,7 +40,7 @@ Publishing (new mod, new build, new version, drafts) is `features/upload` (WP-74
   removal). Panels stay mounted across tabs and leaving with unsaved edits asks first. The field
   components (Markdown editor, tag picker, support links, cover cropper, uploads) are the wizard's.
 - **Inbox**: comment → reply in the thread; bug → reply or mark resolved in a version; review →
-  public author reply; field report → acknowledge or mark fixed in a version.
+  public author reply. Field reports are no longer listed (the compatibility reports UI is gone).
 
 ## Messages
 

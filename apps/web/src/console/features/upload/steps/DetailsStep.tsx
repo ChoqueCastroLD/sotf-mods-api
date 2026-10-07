@@ -34,6 +34,8 @@ export interface DetailsStepProps {
   update: UpdateData;
   preflight: readonly PreflightItemDTO[];
   handle: string;
+  /** Fields the creator tried to leave without answering (shown as errors). */
+  failed?: ReadonlySet<string>;
   headingId: string;
 }
 
@@ -47,7 +49,9 @@ function localized(names: Partial<Record<string, string>>, fallback: string): st
   return names[activeLocale()] ?? fallback;
 }
 
-export function DetailsStep({ kind, data, update, preflight, handle, headingId }: DetailsStepProps) {
+const NONE: ReadonlySet<string> = new Set();
+
+export function DetailsStep({ kind, data, update, preflight, handle, failed = NONE, headingId }: DetailsStepProps) {
   const categories = useQuery(categoriesQuery(kind));
   const tags = useQuery(tagsQuery);
   const defaultLicense = useMe().settings.defaultLicense;
@@ -65,15 +69,23 @@ export function DetailsStep({ kind, data, update, preflight, handle, headingId }
   const shortDescription = data.shortDescription ?? '';
   const sourceUrl = data.sourceUrl ?? '';
 
+  const shown = (field: string) => touched.has(field) || failed.has(field);
   const nameError =
-    touched.has('name') && name.trim().length < 2 ? ut('upload_error_name') : serverError(preflight, 'name');
+    shown('name') && name.trim().length < 2
+      ? ut('upload_error_name')
+      : shown('name')
+        ? serverError(preflight, 'name')
+        : null;
   const slugError =
     slug && !SLUG_PATTERN.test(slug)
       ? ut('upload_error_slug')
-      : touched.has('slug') && slug.length < 2
+      : shown('slug') && slug.length < 2
         ? ut('upload_error_slug')
         : serverError(preflight, 'slug');
-  const sourceError = touched.has('sourceUrl') && sourceUrl && !isHttpUrl(sourceUrl) ? ut('upload_error_url') : null;
+  const sourceError = shown('sourceUrl') && sourceUrl && !isHttpUrl(sourceUrl) ? ut('upload_error_url') : null;
+  const shortError =
+    shown('shortDescription') && !shortDescription.trim() ? ut('upload_error_short_description') : null;
+  const categoryError = shown('categorySlug') && !data.categorySlug ? ut('upload_error_category') : null;
 
   const categoryOptions = (categories.data?.items ?? []).map((c) => ({
     value: c.slug,
@@ -129,7 +141,7 @@ export function DetailsStep({ kind, data, update, preflight, handle, headingId }
         </Field>
         <Field
           label={ut('upload_short_description_label')}
-          error={serverError(preflight, 'shortDescription')}
+          error={shortError ?? (shown('shortDescription') ? serverError(preflight, 'shortDescription') : null)}
           description={ut('upload_counter', {
             count: number(shortDescription.length),
             max: number(STUDIO_LIMITS.shortDescriptionMax),
@@ -145,6 +157,7 @@ export function DetailsStep({ kind, data, update, preflight, handle, headingId }
               const next = event.currentTarget.value.replace(/\n+/g, ' ');
               update((d) => ({ ...d, shortDescription: next }));
             }}
+            onBlur={() => touch('shortDescription')}
           />
         </Field>
       </FieldGroup>
@@ -163,8 +176,11 @@ export function DetailsStep({ kind, data, update, preflight, handle, headingId }
               options={categoryOptions}
               value={data.categorySlug ?? null}
               placeholder={ut('upload_category_placeholder')}
-              error={serverError(preflight, 'categorySlug')}
-              onValueChange={(value) => update((d) => ({ ...d, categorySlug: value ?? undefined }))}
+              error={categoryError ?? (shown('categorySlug') ? serverError(preflight, 'categorySlug') : null)}
+              onValueChange={(value) => {
+                touch('categorySlug');
+                update((d) => ({ ...d, categorySlug: value ?? undefined }));
+              }}
               className="sm:max-w-sm"
             />
           )}
@@ -193,7 +209,9 @@ export function DetailsStep({ kind, data, update, preflight, handle, headingId }
           maxLength={STUDIO_LIMITS.descriptionMax}
           recommendedMin={300}
           idPrefix="md-desc-"
-          placeholder={ut('upload_description_placeholder')}
+          placeholder={
+            kind === 'build' ? ut('upload_description_placeholder_build') : ut('upload_description_placeholder')
+          }
         />
       </FieldGroup>
 

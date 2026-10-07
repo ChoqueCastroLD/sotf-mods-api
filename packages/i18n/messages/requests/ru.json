@@ -85,5 +85,10 @@
   "requests_badge_author": "Автор запроса",
   "requests_comment_delete_title": "Удалить этот комментарий?",
   "requests_comment_delete_text": "Это нельзя отменить.",
-  "requests_votes_short": "голосов"
+  "requests_votes_short": "голосов",
+  "requests_sort_old": "Сначала старые",
+  "requests_sort_comments": "Больше обсуждений",
+  "requests_search_label": "Поиск запросов",
+  "requests_empty_search_title": "По запросу «{query}» ничего не найдено",
+  "requests_empty_search_text": "Проверьте написание, используйте меньше слов или ищите во всех статусах. Если этого ещё никто не просил, можете попросить вы."
 }

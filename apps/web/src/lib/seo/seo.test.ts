@@ -69,6 +69,22 @@ describe('buildSeoHead (PLAN §4.5)', () => {
     expect(head.metas.some((tag) => tag.name === 'keywords')).toBe(false);
   });
 
+  it('OG image sizes: the default card states 1200 x 630, a custom image only its own size', () => {
+    const meta = (head: ReturnType<typeof buildSeoHead>, key: string) =>
+      head.metas.filter((tag) => tag.property === key).map((tag) => tag.content);
+    const fallback = buildSeoHead({ ...base, locale: 'en', og: { imageAlt: 'x' } });
+    expect(meta(fallback, 'og:image:width')).toEqual(['1200']);
+    const custom = buildSeoHead({ ...base, locale: 'en', og: { imageAlt: 'x', image: 'https://r2.test/a.jpg' } });
+    expect(meta(custom, 'og:image')).toEqual(['https://r2.test/a.jpg']);
+    expect(meta(custom, 'og:image:width')).toEqual([]);
+    const sized = buildSeoHead({
+      ...base,
+      locale: 'en',
+      og: { imageAlt: 'x', image: 'https://r2.test/a.jpg', imageWidth: 1280, imageHeight: 720 },
+    });
+    expect(meta(sized, 'og:image:height')).toEqual(['720']);
+  });
+
   it('NSFW pages: rating adult and no explicit OG image', () => {
     const head = buildSeoHead({ ...base, locale: 'en', adult: true, og: { image: '/x.png', imageAlt: 'x' } });
     expect(head.metas).toContainEqual({ name: 'rating', content: 'adult' });
@@ -106,6 +122,7 @@ describe('JSON-LD', () => {
     const org = organizationJsonLd('https://sotf-mods.com');
     expect((org as { sameAs?: unknown }).sameAs).toEqual([
       'https://discord.gg/sotf',
+      'https://www.youtube.com/@ShokoCC',
       'https://github.com/ChoqueCastroLD/sotf-mods-api',
     ]);
     const site = websiteJsonLd('https://sotf-mods.com', 'pt', '/pt/search');

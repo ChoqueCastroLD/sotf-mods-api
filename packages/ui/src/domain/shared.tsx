@@ -19,9 +19,10 @@ import { cn } from '../cn.ts';
 import type { CategoryRefDTO, ImageDTO } from './contracts.ts';
 
 export const cardClasses =
-  'group/card relative isolate rounded-lg border border-border bg-surface text-fg shadow-xs inset-shadow-highlight ' +
-  'transition-[translate,border-color] duration-(--dur-fast) ease-out hover:border-border-strong ' +
-  'motion-safe:hover:-translate-y-0.5 has-[[data-card-link]:focus-visible]:outline-2 ' +
+  'group/card relative isolate rounded-lg border border-border bg-surface text-fg shadow-sm inset-shadow-highlight ' +
+  'transition-[translate,border-color,box-shadow,background-color] duration-(--dur-fast) ease-out hover:border-border-strong ' +
+  'hover:bg-[color-mix(in_oklab,var(--color-surface),var(--color-fg)_2.5%)] hover:shadow-lift ' +
+  'motion-safe:hover:-translate-y-0.5 motion-safe:active:translate-y-0 has-[[data-card-link]:focus-visible]:outline-2 ' +
   'has-[[data-card-link]:focus-visible]:outline-offset-2 has-[[data-card-link]:focus-visible]:outline-focus';
 
 /** Controls placed inside a card sit above the stretched link. */

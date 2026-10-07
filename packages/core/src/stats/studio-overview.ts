@@ -43,7 +43,7 @@ export const ATTENTION_QUESTION_DAYS = 90;
 /** Recommended gallery size (quality score). */
 export const RECOMMENDED_GALLERY = 3;
 
-interface ModFacts {
+export interface ModFacts {
   id: number;
   type: string | null;
   status: string;
@@ -64,7 +64,7 @@ interface ModFacts {
   unansweredReviews: string;
 }
 
-const MOD_FACTS_SQL = `
+export const MOD_FACTS_SQL = `
 SELECT m."id", m."type", m."status", m."statusReason", m."qualityScore", m."sourceUrl", m."platform", m."license",
        length(coalesce(nullif(m."descriptionMd", ''), m."description")) AS "descLength",
        (SELECT count(*) FROM "ModImage" i WHERE i."modId" = m."id" AND NOT i."isThumbnail") AS "gallery",
@@ -131,6 +131,44 @@ async function dailySeries(ctx: Ctx, text: string, values: unknown[]): Promise<M
   return new Map(found.map((r) => [r.day, num(r.n)]));
 }
 
+/** What needs the creator on one mod (rejected, breakage, unanswered questions and reviews, listing gaps). */
+export function attentionOf(f: ModFacts, ref: Attention['mod']): Attention[] {
+  const found: Attention[] = [];
+  if (f.status === 'rejected') found.push({ kind: 'rejected', mod: ref, count: 1 });
+  if (f.status === 'removed') return found;
+  // Field-report breakage (`broken_on_current`) is no longer listed: the compatibility reports UI is gone.
+  if (num(f.recentQuestions) > 0) found.push({ kind: 'unanswered_questions', mod: ref, count: num(f.recentQuestions) });
+  if (num(f.unansweredReviews) > 0) {
+    found.push({ kind: 'unanswered_reviews', mod: ref, count: num(f.unansweredReviews) });
+  }
+  if (f.status === 'published') {
+    if (f.type !== 'Build' && !f.sourceUrl?.trim()) found.push({ kind: 'missing_source', mod: ref, count: 1 });
+    const gallery = num(f.gallery);
+    if (gallery < RECOMMENDED_GALLERY) {
+      found.push({ kind: 'missing_gallery', mod: ref, count: RECOMMENDED_GALLERY - gallery });
+    }
+  }
+  return found;
+}
+
+const ATTENTION_ORDER: Record<Attention['kind'], number> = {
+  rejected: 0,
+  broken_on_current: 1,
+  unanswered_questions: 2,
+  unanswered_reviews: 3,
+  missing_source: 4,
+  missing_gallery: 5,
+};
+
+export function sortAttention(items: Attention[], sort: 'urgency' | 'count' | 'name' = 'urgency'): Attention[] {
+  const byName = (a: Attention, b: Attention) => a.mod.name.localeCompare(b.mod.name, 'en', { sensitivity: 'base' });
+  return [...items].sort((a, b) => {
+    if (sort === 'name') return byName(a, b) || ATTENTION_ORDER[a.kind] - ATTENTION_ORDER[b.kind];
+    if (sort === 'count') return b.count - a.count || ATTENTION_ORDER[a.kind] - ATTENTION_ORDER[b.kind] || byName(a, b);
+    return ATTENTION_ORDER[a.kind] - ATTENTION_ORDER[b.kind] || b.count - a.count || byName(a, b);
+  });
+}
+
 export async function getStudioOverview(ctx: Ctx, config: CatalogConfig): Promise<Overview> {
   const userId = creatorOf(ctx);
   const now = ctx.clock.now();
@@ -139,6 +177,7 @@ export async function getStudioOverview(ctx: Ctx, config: CatalogConfig): Promis
   if (modIds.length === 0) {
     return {
       kpis: {
+        downloads1d: kpi(0, 0, []),
         downloads7d: kpi(0, 0, []),
         downloads30d: kpi(0, 0, []),
         followers: kpi(0, 0, []),
@@ -147,6 +186,7 @@ export async function getStudioOverview(ctx: Ctx, config: CatalogConfig): Promis
         views7d: kpi(0, 0, []),
       },
       needsAttention: [],
+      queues: { versionsPending: 0, modsPending: 0, commentsToAnswer: 0, reviewsToAnswer: 0 },
       mods: [],
       nextMilestone: null,
       nextTier: nextCreatorTier(0),
@@ -154,7 +194,7 @@ export async function getStudioOverview(ctx: Ctx, config: CatalogConfig): Promis
   }
 
   const since60 = addDays(today, -59);
-  const [facts, downloads, views, follows, unfollows, reviews, compat, cards] = await Promise.all([
+  const [facts, downloads, views, follows, unfollows, reviews, compat, cards, pendingVersions] = await Promise.all([
     rows<ModFacts>(ctx.db, MOD_FACTS_SQL, [userId, today]),
     dailySeries(
       ctx,
@@ -198,6 +238,12 @@ export async function getStudioOverview(ctx: Ctx, config: CatalogConfig): Promis
       [modIds],
     ),
     loadModCards(ctx.db, modIds, cardOptionsOf(config)),
+    rows<{ n: string }>(
+      ctx.db,
+      `SELECT count(*) AS n FROM "ModVersion" v JOIN "Mod" m ON m."id" = v."modId"
+        WHERE v."modId" = ANY($1::int[]) AND v."status" = 'pending' AND m."status" <> 'removed'`,
+      [modIds],
+    ),
   ]);
 
   // Downloads.
@@ -266,6 +312,12 @@ export async function getStudioOverview(ctx: Ctx, config: CatalogConfig): Promis
   const needsAttention: Attention[] = [];
   const mods: ModRow[] = [];
   let lifetime = 0;
+  const queues = {
+    versionsPending: num(pendingVersions[0]?.n ?? 0),
+    modsPending: 0,
+    commentsToAnswer: 0,
+    reviewsToAnswer: 0,
+  };
   let milestone: Overview['nextMilestone'] = null;
   let milestoneRatio = -1;
   for (const f of facts) {
@@ -295,22 +347,12 @@ export async function getStudioOverview(ctx: Ctx, config: CatalogConfig): Promis
       qualityScore: Math.max(0, Math.min(100, Math.round(Number(quality)))),
     });
 
-    if (f.status === 'rejected') needsAttention.push({ kind: 'rejected', mod: ref, count: 1 });
+    needsAttention.push(...attentionOf(f, ref));
+    if (f.status === 'pending') queues.modsPending += 1;
     if (f.status === 'removed') continue;
-    if (num(f.brokenCurrent) > 0)
-      needsAttention.push({ kind: 'broken_on_current', mod: ref, count: num(f.brokenCurrent) });
-    if (num(f.recentQuestions) > 0) {
-      needsAttention.push({ kind: 'unanswered_questions', mod: ref, count: num(f.recentQuestions) });
-    }
-    if (num(f.unansweredReviews) > 0) {
-      needsAttention.push({ kind: 'unanswered_reviews', mod: ref, count: num(f.unansweredReviews) });
-    }
+    queues.commentsToAnswer += num(f.unansweredComments);
+    queues.reviewsToAnswer += num(f.unansweredReviews);
     if (f.status === 'published') {
-      if (f.type !== 'Build' && !f.sourceUrl?.trim())
-        needsAttention.push({ kind: 'missing_source', mod: ref, count: 1 });
-      if (gallery < RECOMMENDED_GALLERY) {
-        needsAttention.push({ kind: 'missing_gallery', mod: ref, count: RECOMMENDED_GALLERY - gallery });
-      }
       const current = num(f.total);
       const threshold = MOD_MILESTONES.find((t) => t > current);
       if (threshold !== undefined && current / threshold > milestoneRatio) {
@@ -320,15 +362,7 @@ export async function getStudioOverview(ctx: Ctx, config: CatalogConfig): Promis
     }
   }
 
-  const attentionOrder: Record<Attention['kind'], number> = {
-    rejected: 0,
-    broken_on_current: 1,
-    unanswered_questions: 2,
-    unanswered_reviews: 3,
-    missing_source: 4,
-    missing_gallery: 5,
-  };
-  needsAttention.sort((a, b) => attentionOrder[a.kind] - attentionOrder[b.kind] || b.count - a.count);
+  const sortedAttention = sortAttention(needsAttention);
   mods.sort(
     (a, b) =>
       (STATUS_ORDER[a.mod.status] ?? 9) - (STATUS_ORDER[b.mod.status] ?? 9) ||
@@ -338,6 +372,7 @@ export async function getStudioOverview(ctx: Ctx, config: CatalogConfig): Promis
 
   return {
     kpis: {
+      downloads1d: kpi(downloads.get(today) ?? 0, downloads.get(addDays(today, -1)) ?? 0, last(14)),
       downloads7d: kpi(d7, prev7, last(7)),
       downloads30d: kpi(d30, prev30, last(30)),
       followers: kpi(followersTotal, followersAt(addDays(today, -7)), followersSpark),
@@ -349,7 +384,8 @@ export async function getStudioOverview(ctx: Ctx, config: CatalogConfig): Promis
         viewDays.map((d) => views.get(d) ?? 0),
       ),
     },
-    needsAttention,
+    needsAttention: sortedAttention,
+    queues,
     mods,
     nextMilestone: milestone,
     nextTier: nextCreatorTier(lifetime),

@@ -5,6 +5,8 @@
  * (`data-mod-id`, `data-report-messages`, rendered by `components/mod/ReportDialog.astro`), so the
  * mod and build pages share it.
  */
+
+import { toast } from '../../lib/client/toast.ts';
 import type { MeSummary } from '../account-hint.ts';
 import { type ApiFailure, apiCall } from './api.ts';
 
@@ -59,7 +61,6 @@ export function bindReport(dialog: HTMLDialogElement, session: MeSummary | null)
   dialog.dataset.bound = '';
   const form = dialog.querySelector<HTMLFormElement>('form[data-report-form]');
   const guest = dialog.querySelector<HTMLElement>('[data-report-guest]');
-  const done = dialog.querySelector<HTMLElement>('[data-report-done]');
   const error = dialog.querySelector<HTMLElement>('[data-report-error]');
   if (!form) return;
   if (!session) {
@@ -99,15 +100,14 @@ export function bindReport(dialog: HTMLDialogElement, session: MeSummary | null)
       submit?.removeAttribute('aria-busy');
       if (submit) submit.disabled = false;
       if (result.ok || result.reason === 'conflict') {
-        form.hidden = true;
-        if (done) {
-          done.textContent = result.ok ? messages.sent : messages.duplicate;
-          done.hidden = false;
-          done.focus();
-        }
+        // The answer is a toast and the dialog closes: nothing else to do here.
+        if (result.ok) toast.success(messages.sent);
+        else toast.info(messages.duplicate);
+        if (dialog.open) dialog.close();
+        form.reset();
         return;
       }
-      showError(failureText(messages, result.reason));
+      toast.error(failureText(messages, result.reason));
     });
   });
 }

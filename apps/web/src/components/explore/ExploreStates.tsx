@@ -36,7 +36,7 @@ export function ListingEmpty({
   headingLevel = 3,
 }: ListingEmptyProps) {
   return (
-    <DiscoveryEmpty title={title} text={text} headingLevel={headingLevel}>
+    <DiscoveryEmpty title={title} text={text} headingLevel={headingLevel} art={false}>
       {filters.length > 0 ? (
         <div className="flex flex-col items-center gap-3">
           {tryRemovingLabel ? <p className="text-sm text-fg-muted">{tryRemovingLabel}</p> : null}

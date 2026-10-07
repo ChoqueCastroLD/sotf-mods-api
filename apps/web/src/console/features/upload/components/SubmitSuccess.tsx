@@ -6,7 +6,7 @@ import type { SubmitResultDTO } from '@sotf/contracts/studio';
 import { buttonClasses } from '@sotf/ui/button';
 import { Icon } from '@sotf/ui/icons';
 import { Link } from '@tanstack/react-router';
-import { Binoculars, PartyPopper } from 'lucide-react';
+import { CircleCheck, Clock } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { ut } from '../i18n.ts';
 import type { WizardMode } from '../lib/wizard.ts';
@@ -21,7 +21,7 @@ export function SubmitSuccess({ result, mode, name }: { result: SubmitResultDTO;
         className="flex size-16 items-center justify-center rounded-full bg-primary-soft text-primary"
         aria-hidden="true"
       >
-        <Icon icon={live ? PartyPopper : Binoculars} size={32} />
+        <Icon icon={live ? CircleCheck : Clock} size={32} />
       </span>
       <h1 ref={heading} tabIndex={-1} className="font-display-caps text-2xl text-fg outline-none sm:text-3xl">
         {live ? ut('upload_success_live_title') : ut('upload_success_queued_title')}

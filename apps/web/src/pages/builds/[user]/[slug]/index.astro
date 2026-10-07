@@ -25,6 +25,7 @@ import BuildHeader from '../../../../components/builds/BuildHeader.astro';
 import BuildMoreSheet from '../../../../components/builds/BuildMoreSheet.astro';
 import BuildSocial from '../../../../components/builds/BuildSocial.astro';
 import BuildViewer from '../../../../components/builds/BuildViewer.astro';
+import '../../../../components/builds/blueprint.css';
 import { BuildDependencies, RelatedBuildGrid } from '../../../../components/builds/Domain.tsx';
 import {
   BUILDSHARE_MANIFEST_ID,
@@ -56,6 +57,7 @@ import { localizeCards } from '../../../../lib/localize.ts';
 import { loadModTranslation } from '../../../../lib/mod-translation.ts';
 import { ensureLocals } from '../../../../lib/request-context.ts';
 import { breadcrumbJsonLd } from '../../../../lib/seo/jsonld.ts';
+import { entityOg } from '../../../../lib/seo/og.ts';
 
 export const prerender = false;
 
@@ -92,8 +94,6 @@ const preloadImage = hero
       }
     : { href: hero.url }
   : undefined;
-const ogImage = build.nsfw ? undefined : (build.ogImage?.url ?? build.thumbnail?.url ?? build.gallery[0]?.url);
-const ogSized = build.ogImage !== null && ogImage === build.ogImage?.url;
 const sectionTitle = 'text-xl font-bold text-fg';
 const trail: { label: string; path?: string }[] = [
   { label: m.common_nav_home(), path: '/' },
@@ -127,8 +127,7 @@ const visibleCrumbs = trail.map((crumb) => ({
     og: {
       imageAlt: m.builds_og_alt({ name: build.name }),
       type: 'article',
-      ...(ogImage ? { image: ogImage } : {}),
-      ...(ogSized ? { imageWidth: 1200, imageHeight: 630 } : {}),
+      ...entityOg(build),
     },
   }}
   jsonLd={jsonLd}
@@ -147,7 +146,11 @@ const visibleCrumbs = trail.map((crumb) => ({
     <article data-build-page data-mod-id={build.id} class="grid grid-cols-1 gap-6" aria-labelledby="build-title">
       <StatusBanners build={build} />
 
-      <div class="grid grid-cols-1 gap-6 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] md:items-start md:gap-8">
+      <div class="bp-hero bp-paper grid grid-cols-1 gap-6 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] md:items-start md:gap-8">
+        <span class="bp-tick bp-tick-tl" aria-hidden="true"></span>
+        <span class="bp-tick bp-tick-tr" aria-hidden="true"></span>
+        <span class="bp-tick bp-tick-bl" aria-hidden="true"></span>
+        <span class="bp-tick bp-tick-br" aria-hidden="true"></span>
         <BuildGallery build={build} />
         <BuildHeader build={build} spec={spec} versions={extras.versions} />
       </div>

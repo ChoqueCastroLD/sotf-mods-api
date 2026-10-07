@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Multiplayer_UnknownInputs */
 
 const en_upload_multiplayer_unknown = /** @type {(inputs: Upload_Multiplayer_UnknownInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Not sure`)
+	return /** @type {LocalizedString} */ (`I don’t know`)
 };
 
 const es_upload_multiplayer_unknown = /** @type {(inputs: Upload_Multiplayer_UnknownInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_upload_multiplayer_unknown = /** @type {(inputs: Upload_Multiplayer_Unk
 /**
 * | output |
 * | --- |
-* | "Not sure" |
+* | "I don’t know" |
 *
 * @param {Upload_Multiplayer_UnknownInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

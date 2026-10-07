@@ -3,7 +3,7 @@ export type Upload_Platform_Server_HintInputs = {};
 /**
 * | output |
 * | --- |
-* | "Runs on a dedicated server only." |
+* | "Runs on the host or a dedicated server only." |
 *
 * @param {Upload_Platform_Server_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

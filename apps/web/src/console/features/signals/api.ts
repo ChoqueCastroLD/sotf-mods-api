@@ -16,7 +16,13 @@ import { api } from '../../lib/api.ts';
 import { setUnreadCount } from '../../lib/stream.ts';
 import type { SignalFilter } from './search.ts';
 
-export { isSignalFilter, SIGNAL_FILTERS, type SignalFilter } from './search.ts';
+export {
+  DEFAULT_SIGNAL_PAGE_SIZE,
+  isSignalFilter,
+  SIGNAL_FILTERS,
+  SIGNAL_PAGE_SIZES,
+  type SignalFilter,
+} from './search.ts';
 
 export type { NotificationDTO };
 
@@ -25,12 +31,26 @@ export const PAGE_SIZE = 30;
 export interface SignalPage {
   items: NotificationDTO[];
   nextCursor: string | null;
+  /** Only on numbered pages. */
+  page?: number | undefined;
+  pageSize?: number | undefined;
+  total?: number | undefined;
+  totalPages?: number | undefined;
+}
+
+/** A numbered page of `/notifications`. */
+export interface SignalPageParams {
+  filter: SignalFilter;
+  unread: boolean;
+  page: number;
+  pageSize: number;
 }
 
 export const signalKeys = {
   all: ['notifications'] as const,
   lists: ['notifications', 'list'] as const,
   list: (filter: SignalFilter) => ['notifications', 'list', filter] as const,
+  page: (params: SignalPageParams) => ['notifications', 'list', 'page', params] as const,
 } as const;
 
 export const signalsQuery = (filter: SignalFilter) =>
@@ -44,6 +64,26 @@ export const signalsQuery = (filter: SignalFilter) =>
     initialPageParam: null as string | null,
     getNextPageParam: (last) => last.nextCursor,
     staleTime: 30_000,
+  });
+
+/** Numbered pages of the full list (filters in the URL). */
+export const signalsPageQuery = (params: SignalPageParams) =>
+  queryOptions({
+    queryKey: signalKeys.page(params),
+    queryFn: ({ signal }): Promise<SignalPage> =>
+      api.notifications.list(
+        {
+          query: {
+            filter: params.filter,
+            limit: params.pageSize,
+            page: params.page,
+            ...(params.unread ? { unread: true } : {}),
+          },
+        },
+        { signal },
+      ),
+    staleTime: 30_000,
+    placeholderData: (previous) => previous,
   });
 
 /** The `signals` catalogue of `locale` (never invalidated by the stream: not under `notifications`). */
@@ -68,19 +108,17 @@ type Pages = InfiniteData<SignalPage, string | null>;
 export function markReadInCache(queryClient: QueryClient, ids: readonly number[] | 'all'): void {
   const stamp = new Date().toISOString();
   const wanted = ids === 'all' ? null : new Set(ids);
-  queryClient.setQueriesData<Pages>({ queryKey: signalKeys.lists }, (data) =>
-    data
-      ? {
-          ...data,
-          pages: data.pages.map((page) => ({
-            ...page,
-            items: page.items.map((item) =>
-              item.readAt === null && (wanted === null || wanted.has(item.id)) ? { ...item, readAt: stamp } : item,
-            ),
-          })),
-        }
-      : data,
-  );
+  const mark = (page: SignalPage): SignalPage => ({
+    ...page,
+    items: page.items.map((item) =>
+      item.readAt === null && (wanted === null || wanted.has(item.id)) ? { ...item, readAt: stamp } : item,
+    ),
+  });
+  queryClient.setQueriesData<Pages | SignalPage>({ queryKey: signalKeys.lists }, (data) => {
+    if (!data) return data;
+    if ('pages' in data) return { ...data, pages: data.pages.map(mark) };
+    return mark(data);
+  });
 }
 
 /** `POST /notifications/read` and the new unread count everywhere. */

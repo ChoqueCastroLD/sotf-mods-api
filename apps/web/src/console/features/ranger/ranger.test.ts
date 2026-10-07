@@ -103,26 +103,31 @@ describe('reason templates', () => {
 describe('dropFromLane', () => {
   const item = (id: string) => ({ id }) as QueuePage['items'][number];
   const page = (ids: string[], count: number) =>
-    ({ items: ids.map(item), counts: { new_mods: count, versions: 4 }, nextCursor: null }) as unknown as QueuePage;
+    ({
+      items: ids.map(item),
+      total: ids.length,
+      counts: { new_mods: count, versions: 4 },
+      nextCursor: null,
+    }) as unknown as QueuePage;
 
-  it('removes the item from its page and decrements that lane count only', () => {
+  it('removes the item from its cached pages and decrements that lane count only', () => {
     const client = new QueryClient();
-    client.setQueryData(rangerKeys.queue('new_mods'), {
-      pages: [page(['new_mods:mod:1', 'new_mods:mod:2'], 2), page(['new_mods:mod:3'], 2)],
-      pageParams: [null, 'c1'],
-    });
+    client.setQueryData(rangerKeys.queue('new_mods', {}), page(['new_mods:mod:1', 'new_mods:mod:2'], 3));
+    client.setQueryData(rangerKeys.queue('new_mods', { risk: 'high' }), page(['new_mods:mod:3'], 3));
     dropFromLane(client, 'new_mods', 'new_mods:mod:2');
-    const data = client.getQueryData<{ pages: QueuePage[] }>(rangerKeys.queue('new_mods'));
-    expect(data?.pages[0]?.items.map((i) => i.id)).toEqual(['new_mods:mod:1']);
-    expect(data?.pages[0]?.counts).toMatchObject({ new_mods: 1, versions: 4 });
-    expect(data?.pages[1]?.items).toHaveLength(1);
-    expect(data?.pages[1]?.counts).toMatchObject({ new_mods: 2 });
+    const data = client.getQueryData<QueuePage>(rangerKeys.queue('new_mods', {}));
+    expect(data?.items.map((i) => i.id)).toEqual(['new_mods:mod:1']);
+    expect(data?.total).toBe(1);
+    expect(data?.counts).toMatchObject({ new_mods: 2, versions: 4 });
+    const other = client.getQueryData<QueuePage>(rangerKeys.queue('new_mods', { risk: 'high' }));
+    expect(other?.items).toHaveLength(1);
+    expect(other?.counts).toMatchObject({ new_mods: 3 });
   });
 
   it('is a no-op for an unknown item or an empty cache', () => {
     const client = new QueryClient();
     dropFromLane(client, 'versions', 'versions:version:9');
-    expect(client.getQueryData(rangerKeys.queue('versions'))).toBeUndefined();
+    expect(client.getQueryData(rangerKeys.queue('versions', {}))).toBeUndefined();
   });
 });
 

@@ -19,7 +19,9 @@
     "./font-preloads": "./src/font-preloads.ts",
     "./password-strength": "./src/password-strength.ts",
     "./pagination-range": "./src/pagination-range.ts",
+    "./motif-svg": "./src/motif-svg.ts",
     "./domain": "./src/domain/index.ts",
+    "./domain/icu": "./src/domain/icu.ts",
     "./messages/*": "./messages/*",
     "./*": "./src/*.tsx"
   },

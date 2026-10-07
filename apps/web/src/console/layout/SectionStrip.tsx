@@ -33,7 +33,7 @@ export function SectionStrip({ area, viewer, pathname }: { area: AreaId; viewer:
     >
       <ul
         ref={list}
-        className="flex snap-x snap-proximity gap-2 overflow-x-auto px-3 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        className="relative flex snap-x snap-proximity gap-2 overflow-x-auto px-3 py-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
         {items.map((item) => {
           const active = isActivePath(pathname, item);
@@ -41,6 +41,7 @@ export function SectionStrip({ area, viewer, pathname }: { area: AreaId; viewer:
             <li key={item.to} className="shrink-0 snap-start">
               <Link
                 to={item.to as LinkProps['to']}
+                activeOptions={{ exact: item.exact === true }}
                 aria-current={active ? 'page' : 'false'}
                 className={cn(
                   'inline-flex h-9 items-center gap-1.5 rounded-full border px-3.5 text-sm font-semibold whitespace-nowrap transition-colors',

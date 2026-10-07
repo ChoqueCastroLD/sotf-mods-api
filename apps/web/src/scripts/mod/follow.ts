@@ -40,6 +40,8 @@ export function failureMessage(data: ModPageData, reason: ApiFailure): string {
 }
 
 function paint(element: Element, target: Target, data: ModPageData, following: boolean): void {
+  // `aria-pressed` is only valid on buttons: the link becomes one once it is a toggle.
+  if (element.localName === 'a') element.setAttribute('role', 'button');
   element.setAttribute('aria-pressed', following ? 'true' : 'false');
   const label = element.querySelector('[data-follow-label]');
   if (label) {
@@ -109,7 +111,7 @@ function upgrade(target: Target, data: ModPageData, following: boolean, doc: Doc
     if (!result.ok) {
       setPressed(target, data, !follow);
       if (target.kind === 'mod' && Number.isFinite(followers)) setFollowers(doc, data, followers);
-      toast(failureMessage(data, result.reason));
+      toast(failureMessage(data, result.reason), undefined, 'error');
       return;
     }
     if (target.kind === 'mod') {
@@ -135,13 +137,19 @@ function upgrade(target: Target, data: ModPageData, following: boolean, doc: Doc
         : follow
           ? messages.creatorFollowed
           : messages.creatorUnfollowed;
-    toast(text, { label: messages.undo, onClick: () => void apply(!follow, false) });
+    toast(text, { label: messages.undo, onClick: () => void apply(!follow, false) }, 'success');
   };
 
   element.addEventListener('click', (event) => {
     event.preventDefault();
     if (busy) return;
     void apply(element.getAttribute('aria-pressed') !== 'true', true);
+  });
+  // A link with role=button also answers to Space.
+  element.addEventListener('keydown', (event) => {
+    if (event.key !== ' ' || !(event instanceof KeyboardEvent)) return;
+    event.preventDefault();
+    element.click();
   });
 }
 

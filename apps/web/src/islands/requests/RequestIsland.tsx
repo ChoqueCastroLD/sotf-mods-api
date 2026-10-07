@@ -13,7 +13,6 @@
 import { Button } from '@sotf/ui/button';
 import { useState } from 'react';
 import { api, type Failure } from '../comments/lib/api.ts';
-import { formatNumber } from '../comments/lib/i18n.tsx';
 import { htmlToMarkdown } from '../comments/lib/markdown.ts';
 import { ActionMenu, type MenuItem } from '../comments/lib/menu.tsx';
 import { t } from '../comments/lib/messages.ts';
@@ -123,8 +122,9 @@ export function RequestIsland({
     <>
       <div className="flex flex-col gap-6">
         <div className="flex flex-wrap items-center gap-3 border-y border-border py-3">
-          <span className="text-lg font-bold text-fg tabular-nums">{formatNumber(request.voteCount)}</span>
-          <span className="text-sm text-fg-muted">{t('requests_votes', { count: request.voteCount })}</span>
+          <span className="text-lg font-bold text-fg tabular-nums">
+            {t('requests_votes', { count: request.voteCount })}
+          </span>
 
           {active && !isAuthor && verified ? (
             <Button

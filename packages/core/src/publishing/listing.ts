@@ -3,6 +3,7 @@
  * (PLAN §5.2, §7.5 step 2): validated input → `"Mod"` columns (v2 and their legacy mirrors), tags
  * (`"_ModToTag"`) and the facts the preflight and the quality score need.
  */
+import { normalizeWhere } from '@sotf/contracts/where';
 import type { NewMod } from '@sotf/db';
 import { type Executor, modToTag } from '@sotf/db';
 import { eq, sql } from 'drizzle-orm';
@@ -64,7 +65,17 @@ export interface ResolvedListing {
 export async function resolveListing(
   exec: Executor,
   input: ListingInput,
-  options: { kind: 'mod' | 'library' | 'build'; legacy: boolean; now: Date },
+  options: {
+    kind: 'mod' | 'library' | 'build';
+    legacy: boolean;
+    now: Date;
+    /** Stored "where it works" answers, merged with a partial update before they are normalised. */
+    current?: {
+      platform: string | null;
+      multiplayerRole: string | null;
+      dedicatedServer: string | null;
+    };
+  },
 ): Promise<ResolvedListing> {
   const columns: Partial<NewMod> = {};
   const fields: string[] = [];
@@ -119,15 +130,35 @@ export async function resolveListing(
   if (input.videoUrl !== undefined) set('videoUrl', 'videoUrl', input.videoUrl);
   if (input.nsfw !== undefined) set('nsfw', 'isNSFW', input.nsfw);
   if (input.contentLang !== undefined) set('contentLang', 'contentLang', input.contentLang);
-  if (input.platform !== undefined) {
-    set('platform', 'platform', input.platform);
-    columns.modSide = legacyModSide(input.platform);
+  if (input.platform !== undefined || input.multiplayerRole !== undefined || input.dedicatedServer !== undefined) {
+    // The three answers are stored coherent (`@sotf/contracts/where`): implied values are derived
+    // and contradicting ones replaced, whatever the client sent.
+    const cur = options.current;
+    const where = normalizeWhere({
+      platform: (input.platform !== undefined ? input.platform : (cur?.platform ?? null)) as PlatformValue | null,
+      multiplayerRole: (input.multiplayerRole !== undefined
+        ? input.multiplayerRole
+        : (cur?.multiplayerRole ?? null)) as MultiplayerRoleValue | null,
+      dedicatedServer: (input.dedicatedServer !== undefined ? input.dedicatedServer : (cur?.dedicatedServer ?? null)) as
+        | 'yes'
+        | 'no'
+        | 'partial'
+        | 'unknown'
+        | null,
+      safeToRemove: null,
+    });
+    if (!cur || where.platform !== cur.platform) {
+      set('platform', 'platform', where.platform);
+      columns.modSide = legacyModSide(where.platform);
+    }
+    if (!cur || where.multiplayerRole !== cur.multiplayerRole) {
+      set('multiplayerRole', 'multiplayerRole', where.multiplayerRole);
+      Object.assign(columns, legacyMultiplayer(where.multiplayerRole));
+    }
+    if (!cur || where.dedicatedServer !== cur.dedicatedServer) {
+      set('dedicatedServer', 'dedicatedServer', where.dedicatedServer);
+    }
   }
-  if (input.multiplayerRole !== undefined) {
-    set('multiplayerRole', 'multiplayerRole', input.multiplayerRole);
-    Object.assign(columns, legacyMultiplayer(input.multiplayerRole));
-  }
-  if (input.dedicatedServer !== undefined) set('dedicatedServer', 'dedicatedServer', input.dedicatedServer);
   if (input.safeToRemove !== undefined) set('safeToRemove', 'safeToRemove', input.safeToRemove);
   if (input.originalAuthor !== undefined) {
     set('originalAuthor', 'originalAuthorName', input.originalAuthor?.name.trim() ?? null);

@@ -55,6 +55,45 @@ describe('catalogue state', () => {
   });
 });
 
+describe('search page state', () => {
+  it('sorts names A to Z by default and writes the order only when it is reversed', () => {
+    const az = parse('sort=name');
+    expect([az.sort, az.order]).toEqual(['name', 'asc']);
+    expect(exploreHref(az, MODS_SCOPE)).toBe('/mods?sort=name');
+    expect(apiQueryOf(az)).toMatchObject({ sort: 'name', order: 'asc' });
+    const za = parse('sort=name&order=desc');
+    expect(za.order).toBe('desc');
+    expect(exploreHref(za, MODS_SCOPE)).toBe('/mods?sort=name&order=desc');
+    // Every other sort is newest or biggest first.
+    expect(parse('sort=downloads').order).toBe('desc');
+    expect(parse('sort=downloads&order=asc').order).toBe('asc');
+  });
+
+  it('reads the page size and the minimum downloads, and drops them from the default URL', () => {
+    const state = parse('pageSize=48&minDownloads=100');
+    expect([state.pageSize, state.minDownloads]).toEqual([48, 100]);
+    expect(exploreHref(state, MODS_SCOPE)).toBe('/mods?minDownloads=100&pageSize=48');
+    expect(apiQueryOf(state)).toMatchObject({ pageSize: 48, minDownloads: 100 });
+    expect(parse('pageSize=24').pageSize).toBe(24);
+    expect(parse('pageSize=7').pageSize).toBe(24);
+    expect(parse('minDownloads=0').minDownloads).toBeNull();
+    expect(exploreHref(parse('pageSize=24'), MODS_SCOPE)).toBe('/mods');
+  });
+
+  it('marks another page size or the A to Z sort as filtered (noindex)', () => {
+    expect(isFiltered(parse('pageSize=48'), MODS_SCOPE)).toBe(true);
+    expect(isFiltered(parse('sort=name'), MODS_SCOPE)).toBe(true);
+    expect(isFiltered(parse('page=3'), MODS_SCOPE)).toBe(false);
+  });
+
+  it('redirects an explicit default page size to the clean URL', () => {
+    expect(redirect('/mods?pageSize=24')).toBe('/mods');
+    expect(redirect('/mods?pageSize=48')).toBeNull();
+    expect(redirect('/mods?minDownloads=100')).toBeNull();
+    expect(hasListingParams(new URLSearchParams('pageSize=48'))).toBe(true);
+  });
+});
+
 describe('legacy catalogue URLs', () => {
   it('maps the old Unapproved and NSFW checkboxes', () => {
     expect(redirect('/mods?showunapproved=true')).toBe('/mods?unapproved=1');

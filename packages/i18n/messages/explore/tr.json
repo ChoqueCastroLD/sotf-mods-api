@@ -171,5 +171,13 @@
   "explore_catalog_empty_clear": "Filtreleri temizle",
   "explore_catalog_error_title": "Modlar yüklenemedi",
   "explore_catalog_error_text": "Birazdan tekrar deneyin.",
-  "explore_catalog_retry": "Tekrar dene"
+  "explore_catalog_retry": "Tekrar dene",
+  "explore_sort_name": "Ad, A’dan Z’ye",
+  "explore_facet_downloads": "İndirmeler",
+  "explore_downloads_min": "{count, number}+ indirme",
+  "explore_page_size_label": "Sayfa başına",
+  "explore_search_builds_label": "Yapı ara",
+  "explore_noresults_query_title": "“{query}” için sonuç yok",
+  "explore_suggest_popular": "Popüler modlar",
+  "explore_results_range": "{total, number} sonuçtan {from, number}–{to, number} arası"
 }

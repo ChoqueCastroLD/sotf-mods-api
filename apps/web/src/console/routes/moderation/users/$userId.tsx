@@ -1,7 +1,6 @@
 /**
  * `/moderation/users/$userId` — a user's moderation card (WP-82). The user is loaded before the
- * screen renders; an unknown id ends in «Off the map», a session older than 12 h in «Confirm
- * it's you».
+ * screen renders; an unknown id ends in «not found».
  */
 import { m } from '@sotf/i18n/messages';
 import { createFileRoute, notFound } from '@tanstack/react-router';

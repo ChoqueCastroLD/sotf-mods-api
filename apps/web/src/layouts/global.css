@@ -238,3 +238,289 @@ html[data-signed-in] [data-ad-slot-container],
 html[data-signed-in] [data-explore-ad] {
   display: none;
 }
+
+/* ---- Horizontal scrollers (tab strips, chip rows, filter bars). No native scrollbar: Windows
+   draws one with arrow buttons that looks broken under a tab bar. Instead the strip fades at the
+   edge that has more content (driven by the scroll position, no JS, where the browser supports
+   scroll-driven animations; `lib/client/scrollers.ts` sets `data-scroll-start/-end` elsewhere),
+   items snap loosely and keep clear of the fade when focused or scrolled into view. Opt in with
+   `data-hscroll`; lists, navs, tab lists and fieldsets that use `overflow-x-auto` get it
+   automatically. Opt out (a gallery strip that should show its bar) with `data-scrollbar`.
+   Tables and code blocks are not matched: they keep their scrollbar. ------------------------- */
+@property --fade-start {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+@property --fade-end {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+@layer base {
+  :where(ul, ol, nav, fieldset, [role="tablist"])[class*="overflow-x-auto"]:not(
+      [data-scrollbar],
+      [class*="scrollbar-width:thin"],
+      [class*="snap-mandatory"]
+    ),
+  [data-hscroll] {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    scroll-padding-inline: 1.5rem;
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 var(--fade-start),
+      #000 calc(100% - var(--fade-end)),
+      transparent
+    );
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    > * {
+      scroll-snap-align: start;
+    }
+    &:dir(rtl) {
+      mask-image: linear-gradient(
+        to left,
+        transparent,
+        #000 var(--fade-start),
+        #000 calc(100% - var(--fade-end)),
+        transparent
+      );
+    }
+  }
+}
+@supports (animation-timeline: scroll()) {
+  @layer base {
+    :where(ul, ol, nav, fieldset, [role="tablist"])[class*="overflow-x-auto"]:not(
+        [data-scrollbar],
+        [class*="scrollbar-width:thin"],
+        [class*="snap-mandatory"]
+      ),
+    [data-hscroll] {
+      animation: hscroll-fade linear both;
+      animation-timeline: scroll(self inline);
+    }
+  }
+}
+@keyframes hscroll-fade {
+  0% {
+    --fade-start: 0px;
+    --fade-end: 1.5rem;
+  }
+  5%,
+  95% {
+    --fade-start: 1.5rem;
+    --fade-end: 1.5rem;
+  }
+  100% {
+    --fade-start: 1.5rem;
+    --fade-end: 0px;
+  }
+}
+/* Fallback state set by scrollers.ts (browsers without scroll-driven animations). */
+@supports not (animation-timeline: scroll()) {
+  [data-scroll-start] {
+    --fade-start: 1.5rem;
+  }
+  [data-scroll-end] {
+    --fade-end: 1.5rem;
+  }
+}
+
+/* ---- Toasts (lib/client/toast.ts). Fixed, so appearing and leaving never moves the page.
+   Phones: centred above the tab bar (and the sticky download bar when the page has one);
+   desktop: bottom right. Entering and leaving are a short fade and rise; reduced motion: none. - */
+:root {
+  --toast-bottom: calc(var(--bottom-chrome) + 0.75rem);
+}
+html:has([data-mobile-download-bar]) {
+  --toast-bottom: calc(var(--bottom-chrome) + 4.75rem);
+}
+@media (min-width: 48rem) {
+  :root,
+  html:has([data-mobile-download-bar]) {
+    --toast-bottom: 1.5rem;
+  }
+}
+[data-toast-region] {
+  position: fixed;
+  z-index: var(--z-toast);
+  inset-inline: 0.75rem;
+  inset-block-end: var(--toast-bottom);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.5rem;
+  pointer-events: none;
+  transition: inset-block-end var(--dur-base) var(--ease-out);
+}
+@media (min-width: 48rem) {
+  [data-toast-region] {
+    inset-inline: auto 1.5rem;
+    inline-size: 22rem;
+  }
+}
+[data-toast-polite],
+[data-toast-assertive] {
+  display: contents;
+}
+[data-toast] {
+  transition:
+    opacity var(--dur-base) var(--ease-out),
+    translate var(--dur-base) var(--ease-out);
+  touch-action: pan-y;
+}
+[data-toast][data-state="enter"],
+[data-toast][data-state="exit"] {
+  opacity: 0;
+  translate: 0 0.5rem;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-toast] {
+    transition: none;
+  }
+}
+
+/* ---- Console: route changes. A quick cross-fade when the screen changes (the router adds the
+   `console` view-transition type; same-path filter and page changes do not), and the thin
+   progress line of a slow navigation. ------------------------------------------------------- */
+@media (prefers-reduced-motion: no-preference) {
+  :root:active-view-transition-type(console)::view-transition-old(root) {
+    animation: vt-out 90ms var(--ease-in) both;
+  }
+  :root:active-view-transition-type(console)::view-transition-new(root) {
+    animation: vt-fade-in 160ms var(--ease-out) both;
+  }
+  .route-progress-bar {
+    animation: route-progress 1.1s var(--ease-out) infinite;
+  }
+}
+@keyframes vt-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes route-progress {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(250%);
+  }
+}
+
+/* ---- Ad slots: the reserved box is a fixed height (not a minimum), so whatever the ad network
+   draws inside cannot push the page: the unit is clipped, never grown. The numbers mirror
+   `AD_MIN_HEIGHT` in @sotf/ui/domain. ----------------------------------------------------- */
+[data-ad-slot-container="in-feed"] > div:last-of-type {
+  height: 320px;
+}
+[data-ad-slot-container="sidebar"] > div:last-of-type,
+[data-ad-slot-container="inline"] > div:last-of-type {
+  height: 280px;
+}
+@media (min-width: 48rem) {
+  [data-ad-slot-container="in-feed"] > div:last-of-type {
+    height: 360px;
+  }
+  [data-ad-slot-container="sidebar"] > div:last-of-type {
+    height: 600px;
+  }
+  [data-ad-slot-container="inline"] > div:last-of-type {
+    height: 250px;
+  }
+}
+
+/* ---- Header account area: the guest buttons (Log in, Register) and the signed-in ones (Upload,
+   avatar) swap once the account hint resolves. The slot keeps the width of the wider of the two,
+   so the centred navigation never shifts. ------------------------------------------------------ */
+[data-account-slot] {
+  min-inline-size: 5.5rem;
+}
+@media (min-width: 64rem) {
+  [data-account-slot] {
+    min-inline-size: 12.25rem;
+  }
+}
+
+/* ---- Busy feedback for the plain (non-React) buttons the page scripts drive: follow, report,
+   «Download all». While the request runs the control pulses softly, shows the progress cursor and
+   ignores clicks (React buttons use their own spinner: `Button loading`). --------------------- */
+:is(
+    [data-follow],
+    [data-follow-user],
+    [data-deps-download-all],
+    [data-report-form] [type="submit"],
+    [data-menu-resend]
+  )[aria-busy="true"] {
+  cursor: progress;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  :is(
+      [data-follow],
+      [data-follow-user],
+      [data-deps-download-all],
+      [data-report-form] [type="submit"],
+      [data-menu-resend]
+    )[aria-busy="true"] {
+    animation: busy-pulse 900ms ease-in-out infinite;
+  }
+}
+@keyframes busy-pulse {
+  50% {
+    opacity: 0.6;
+  }
+}
+/* The avatar button appears when the account summary arrives (a moment after the page is
+   painted for a signed-in visitor): until then an empty circle of its size keeps the place. */
+html[data-signed-in] [data-account-slot]:not(:has([data-account-user]:not([hidden])))::after {
+  content: "";
+  flex: none;
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
+}
+
+/* ---- Render deferral (Core Web Vitals). The footer's link columns and the cards below the first screen are not
+   styled, laid out or painted until they come near the viewport, which keeps the first render small.
+   The reserved size is only an estimate (`auto` remembers the real one once rendered), a little
+   clip margin keeps card shadows and focus outlines from being cut by the paint containment. ---- */
+[data-defer-footer],
+[data-catalog-items] > li[data-position]:nth-child(n + 4),
+[data-explore-item]:nth-child(n + 5),
+[data-defer] {
+  content-visibility: auto;
+  contain-intrinsic-block-size: auto var(--defer-h, 5rem);
+  overflow-clip-margin: 1rem;
+}
+[data-defer-footer] {
+  --defer-h: 29.5rem;
+}
+[data-explore-items][data-view="grid"] {
+  --defer-h: 15rem;
+}
+[data-catalog-items],
+[data-explore-items][data-view="list"] {
+  --defer-h: 5rem;
+}
+@media (min-width: 48rem) {
+  [data-defer-footer] {
+    --defer-h: 44.5rem;
+  }
+  [data-explore-items][data-view="grid"] {
+    --defer-h: 19.5rem;
+  }
+  [data-catalog-items],
+  [data-explore-items][data-view="list"] {
+    --defer-h: 9.5rem;
+  }
+}
+@media (min-width: 64rem) {
+  [data-defer-footer] {
+    --defer-h: 20.25rem;
+  }
+}

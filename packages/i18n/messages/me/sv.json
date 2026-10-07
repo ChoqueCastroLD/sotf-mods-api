@@ -52,5 +52,15 @@
   "me_downloads_times": "{count, plural, one {# nedladdning} other {# nedladdningar}}",
   "me_downloads_remove": "Ta bort från listan",
   "me_downloads_remove_label": "Ta bort {mod} från listan",
-  "me_downloads_removed": "{mod} togs bort från listan"
+  "me_downloads_removed": "{mod} togs bort från listan",
+  "me_search_label": "Sök på namn",
+  "me_search_placeholder": "Moddens namn",
+  "me_sort_label": "Sortera efter",
+  "me_sort_recent": "Senaste",
+  "me_sort_name": "Namn",
+  "me_sort_updates": "Uppdateringar först",
+  "me_sort_times": "Mest nedladdade",
+  "me_no_match_title": "Inga moddar matchar",
+  "me_no_match_text": "Prova ett annat namn eller visa allt.",
+  "me_clear_filters": "Rensa filter"
 }

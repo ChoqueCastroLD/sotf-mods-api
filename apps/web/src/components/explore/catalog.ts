@@ -56,7 +56,12 @@ export function sortChoices(state: ExploreState): SelectChoice[] {
   if (state.q) entries.unshift(['relevance', m.explore_sort_relevance()]);
   // A shared link may use a sort the toolbar does not list (followers, comments): keep it visible.
   if (!entries.some(([value]) => value === current)) {
-    const extra = current === 'follows' ? m.explore_sort_follows() : m.explore_sort_comments();
+    const extra =
+      current === 'follows'
+        ? m.explore_sort_follows()
+        : current === 'name'
+          ? m.explore_sort_name()
+          : m.explore_sort_comments();
     entries.push([current, extra]);
   }
   return entries.map(([value, label]) => ({ value, label, selected: value === current }));
@@ -102,6 +107,7 @@ export function buildToolbarModel(input: {
   if (state.platform) hidden.push(['platform', state.platform]);
   if (state.updatedWithin) hidden.push(['updatedWithin', state.updatedWithin]);
   if (state.minRating) hidden.push(['minRating', String(state.minRating)]);
+  if (state.minDownloads) hidden.push(['minDownloads', String(state.minDownloads)]);
   if (state.hasSource) hidden.push(['hasSource', '1']);
   if (state.verified) hidden.push(['verified', '1']);
   if (state.author) hidden.push(['author', state.author]);

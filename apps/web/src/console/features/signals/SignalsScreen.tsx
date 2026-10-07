@@ -1,9 +1,10 @@
 /**
- * `/notifications` (PLAN §4.3, §7.3; research/03 §6.12): every signal, newest first, grouped by day
- * (Today · Yesterday · dates), with the filters All · Mentions · Updates · My mods · Ranger,
- * «Mark all as read», per-row «Mark as read», «Download» on new versions and a link to the
- * notification settings. The list refreshes itself on the SSE `notification` event (keys under
- * `['notifications']`); older pages load on demand (cursor).
+ * `/notifications` (PLAN §4.3, §7.3; research/03 §6.12): every notification, newest first, grouped
+ * by day (Today · Yesterday · dates), with the filters All · Mentions · Updates · My mods ·
+ * Moderation and All · Unread, numbered pages (server side), «Mark all as read», per-row «Mark as
+ * read», «Download» on new versions and a link to the notification settings. The list refreshes
+ * itself on the SSE `notification` event (keys under `['notifications']`). Filters and the page
+ * are kept in the URL.
  */
 import { formatDate, type Locale } from '@sotf/i18n';
 import { BELOW_MD_QUERY, useMediaQuery } from '@sotf/ui';
@@ -12,7 +13,7 @@ import { cn } from '@sotf/ui/cn';
 import { EmptyState } from '@sotf/ui/empty-state';
 import { ErrorState } from '@sotf/ui/error-state';
 import { Icon } from '@sotf/ui/icons';
-import { useQueryClient, useSuspenseInfiniteQuery, useSuspenseQuery } from '@tanstack/react-query';
+import { useQuery, useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
 import { Check, CheckCheck, Radio, Settings2 } from 'lucide-react';
 import { useMemo, useState } from 'react';
@@ -20,6 +21,7 @@ import { st } from '../../../islands/signals/i18n.ts';
 import { localTimeZone, SignalRow } from '../../../islands/signals/SignalRow.tsx';
 import { track } from '../../../scripts/beacon.ts';
 import { ArtState } from '../../components/ArtState.tsx';
+import { ListPager } from '../../components/ListPager.tsx';
 import { SwipeRow } from '../../components/SwipeRow.tsx';
 import { useDocumentTitle } from '../../hooks/use-document-title.ts';
 import { useMe } from '../../hooks/use-me.ts';
@@ -32,10 +34,11 @@ import {
   markReadInCache,
   type NotificationDTO,
   SIGNAL_FILTERS,
+  SIGNAL_PAGE_SIZES,
   type SignalFilter,
   signalKeys,
   signalsMessagesQuery,
-  signalsQuery,
+  signalsPageQuery,
 } from './api.ts';
 
 const FILTER_LABELS = {
@@ -68,28 +71,33 @@ interface DayGroup {
   items: NotificationDTO[];
 }
 
-export function SignalsScreen({ filter }: { filter: SignalFilter }) {
+export interface SignalFilters {
+  filter: SignalFilter;
+  unread: boolean;
+  page: number;
+  pageSize: number;
+}
+
+export function SignalsScreen({
+  filters,
+  onFilters,
+}: {
+  filters: SignalFilters;
+  onFilters: (next: Partial<SignalFilters>) => void;
+}) {
+  const { filter, unread: onlyUnread, page, pageSize } = filters;
   const locale = activeLocale();
   useSuspenseQuery(signalsMessagesQuery(locale));
   const me = useMe();
   const queryClient = useQueryClient();
-  const query = useSuspenseInfiniteQuery(signalsQuery(filter));
+  const query = useQuery(signalsPageQuery({ filter, unread: onlyUnread, page, pageSize }));
   const [marking, setMarking] = useState(false);
   const phone = useMediaQuery(BELOW_MD_QUERY);
   useDocumentTitle(st('signals_page_title'));
 
   const timeZone = useMemo(() => localTimeZone(), []);
   const now = query.dataUpdatedAt || Date.now();
-  const items = useMemo(() => {
-    const seen = new Set<number>();
-    return query.data.pages
-      .flatMap((page) => page.items)
-      .filter((item) => {
-        if (seen.has(item.id)) return false;
-        seen.add(item.id);
-        return true;
-      });
-  }, [query.data]);
+  const items = useMemo(() => query.data?.items ?? [], [query.data]);
   const groups = useMemo(() => {
     const result: DayGroup[] = [];
     for (const item of items) {
@@ -137,31 +145,62 @@ export function SignalsScreen({ filter }: { filter: SignalFilter }) {
   const filterNav = (
     <nav
       aria-label={st('signals_filter_label')}
-      className="-mx-1 min-w-0 flex-1 overflow-x-auto px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      className="relative -mx-1 min-w-0 flex-1 overflow-x-auto px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
     >
       <ul className="flex gap-2">
         {SIGNAL_FILTERS.map((value) => {
           const active = value === filter;
           return (
             <li key={value}>
-              <Link
-                to="/notifications"
-                search={value === 'all' ? {} : { filter: value }}
-                aria-current={active ? 'page' : undefined}
+              <button
+                type="button"
+                aria-pressed={active}
+                onClick={() => onFilters({ filter: value, page: 1 })}
                 className={cn(
-                  'inline-flex h-10 items-center whitespace-nowrap rounded-full border px-4 text-sm font-semibold transition-colors md:h-9',
+                  'inline-flex h-10 items-center whitespace-nowrap rounded-full border px-4 text-sm font-medium transition-colors duration-(--dur-fast) md:h-9',
+                  'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
                   active
-                    ? 'border-primary bg-primary text-primary-fg'
-                    : 'border-border-strong text-fg-muted hover:bg-fg/8 hover:text-fg',
+                    ? 'border-primary bg-primary-soft text-fg'
+                    : 'border-border text-fg-muted hover:border-border-strong hover:text-fg',
                 )}
               >
                 {st(FILTER_LABELS[value])}
-              </Link>
+              </button>
             </li>
           );
         })}
       </ul>
     </nav>
+  );
+
+  const readState = (
+    <div
+      role="radiogroup"
+      aria-label={st('signals_state_label')}
+      className="flex shrink-0 rounded-lg border border-border bg-sunken p-0.5 md:rounded-md"
+    >
+      {([false, true] as const).map((value) => {
+        const checked = value === onlyUnread;
+        return (
+          // biome-ignore lint/a11y/useSemanticElements: a segmented control of buttons (radio semantics).
+          <button
+            key={String(value)}
+            type="button"
+            role="radio"
+            aria-checked={checked}
+            tabIndex={checked ? 0 : -1}
+            onClick={() => onFilters({ unread: value, page: 1 })}
+            className={cn(
+              'inline-flex h-9 items-center justify-center rounded-md px-3 text-sm font-medium transition-colors md:h-8 md:rounded-sm md:text-xs',
+              'focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus',
+              checked ? 'bg-surface text-fg shadow-sm' : 'text-fg-muted hover:text-fg',
+            )}
+          >
+            {value ? st('signals_state_unread') : st('signals_state_all')}
+          </button>
+        );
+      })}
+    </div>
   );
 
   const markAll = phone ? (
@@ -192,7 +231,6 @@ export function SignalsScreen({ filter }: { filter: SignalFilter }) {
     <div className="grid gap-4 md:gap-6">
       <header className="flex flex-wrap items-end justify-between gap-4 max-md:hidden">
         <div className="grid gap-1">
-          <p className="readout text-signal">{st('signals_page_readout')}</p>
           <h1 className="font-display-caps text-display-xs text-fg">{st('signals_page_title')}</h1>
           <p className="max-w-prose text-sm text-fg-muted">{st('signals_page_description')}</p>
         </div>
@@ -211,38 +249,53 @@ export function SignalsScreen({ filter }: { filter: SignalFilter }) {
       <h1 className="sr-only md:hidden">{st('signals_page_title')}</h1>
 
       {/* Phones: the area title lives in the top bar; filters and the bulk action share one row. */}
-      <div className="flex items-center gap-2 md:block">
+      <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-3">
         {filterNav}
-        {phone ? (
-          <>
-            {markAll}
-            <Link
-              to="/settings/notifications"
-              className="inline-flex size-11 shrink-0 items-center justify-center rounded-full border border-border-strong text-fg-muted active:bg-fg/8"
-              aria-label={st('signals_preferences')}
-            >
-              <Icon icon={Settings2} size={18} />
-            </Link>
-          </>
-        ) : null}
+        <div className="flex items-center gap-2">
+          {readState}
+          {phone ? (
+            <>
+              <span className="ms-auto" />
+              {markAll}
+              <Link
+                to="/settings/notifications"
+                className="inline-flex size-11 shrink-0 items-center justify-center rounded-full border border-border-strong text-fg-muted active:bg-fg/8"
+                aria-label={st('signals_preferences')}
+              >
+                <Icon icon={Settings2} size={18} />
+              </Link>
+            </>
+          ) : null}
+        </div>
       </div>
 
-      {items.length === 0 ? (
-        filter === 'all' ? (
+      {!query.data ? (
+        query.isError ? (
+          <ErrorState
+            headingLevel={3}
+            title={st('signals_error_title')}
+            description={st('signals_error_text')}
+            onRetry={() => void query.refetch()}
+          />
+        ) : (
+          <div className="grid gap-2" aria-hidden="true">
+            {[0, 1, 2, 3, 4].map((row) => (
+              <div key={row} className="h-16 animate-pulse rounded-md bg-fg/6" />
+            ))}
+          </div>
+        )
+      ) : items.length === 0 ? (
+        filter === 'all' && !onlyUnread ? (
           <ArtState art="camp" title={st('signals_empty_title')} description={st('signals_empty_text')} />
         ) : (
           <EmptyState
             icon={<Icon icon={Radio} size={32} />}
-            title={st('signals_empty_filtered_title')}
-            description={st('signals_empty_filtered_text')}
+            title={onlyUnread ? st('signals_empty_unread_title') : st('signals_empty_filtered_title')}
+            description={onlyUnread ? st('signals_empty_unread_text') : st('signals_empty_filtered_text')}
             action={
-              <Link
-                to="/notifications"
-                search={{}}
-                className="inline-flex h-10 items-center rounded-md border border-border-strong px-4 text-sm font-semibold text-fg hover:bg-fg/8"
-              >
+              <Button variant="secondary" onClick={() => onFilters({ filter: 'all', unread: false, page: 1 })}>
                 {st('signals_show_all')}
-              </Link>
+              </Button>
             }
           />
         )
@@ -295,23 +348,16 @@ export function SignalsScreen({ filter }: { filter: SignalFilter }) {
             </section>
           ))}
 
-          <div className="flex justify-center">
-            {query.hasNextPage ? (
-              <Button variant="secondary" onClick={() => void query.fetchNextPage()} loading={query.isFetchingNextPage}>
-                {query.isFetchingNextPage ? st('signals_loading_more') : st('signals_load_more')}
-              </Button>
-            ) : (
-              <p className="text-sm text-fg-subtle">{st('signals_end')}</p>
-            )}
-          </div>
-          {query.isFetchNextPageError ? (
-            <ErrorState
-              headingLevel={3}
-              title={st('signals_more_error')}
-              description={st('signals_error_text')}
-              onRetry={() => void query.fetchNextPage()}
-            />
-          ) : null}
+          <ListPager
+            page={query.data.page ?? page}
+            totalPages={query.data.totalPages ?? 1}
+            total={query.data.total ?? items.length}
+            pageSize={query.data.pageSize ?? pageSize}
+            onPage={(next) => onFilters({ page: next })}
+            pageSizes={SIGNAL_PAGE_SIZES}
+            onPageSize={(size) => onFilters({ pageSize: size, page: 1 })}
+            busy={query.isFetching}
+          />
         </div>
       )}
     </div>

@@ -1,6 +1,6 @@
 /**
  * Building blocks shared by the auth islands: the root wrapper (text dictionary, `@sotf/ui`
- * labels, lazily loaded toaster), the accessible form-level alert (what happened, what to do,
+ * labels, toast bus), the accessible form-level alert (what happened, what to do,
  * reference: PLAN §1.2), the error summary that links to each invalid field (research/03 §5.7) and
  * the rate-limit countdown.
  */
@@ -9,10 +9,8 @@ import { englishUiTranslate, type UiTranslate, UiTranslateProvider } from '@sotf
 import { CircleAlert, TriangleAlert } from 'lucide-react';
 import {
   createContext,
-  lazy,
   type ReactNode,
   type RefObject,
-  Suspense,
   useCallback,
   useContext,
   useEffect,
@@ -20,6 +18,7 @@ import {
   useRef,
   useState,
 } from 'react';
+import { toast } from '../../lib/client/toast.ts';
 import type { ApiFailure } from './api.ts';
 import { type AuthDictionary, AuthI18nProvider, createTranslate, type Translate, useT } from './i18n.tsx';
 import type { AuthMessageKey } from './message-keys.ts';
@@ -35,49 +34,19 @@ export interface AuthIslandProps {
 export type ToastKind = 'success' | 'info' | 'error';
 export type Notify = (kind: ToastKind, title: string, description?: string) => void;
 
-interface ToastRequest {
-  kind: ToastKind;
-  title: string;
-  description?: string | undefined;
-}
-
 const NotifyContext = createContext<Notify>(() => {});
 
-/** Shows a toast (the toaster and sonner load on the first call). */
+/** Shows a toast on the shared public toast bus (`lib/client/toast.ts`). */
 export function useNotify(): Notify {
   return useContext(NotifyContext);
 }
 
-const LazyToaster = lazy(() => import('@sotf/ui/toast').then((module) => ({ default: module.Toaster })));
-
-/** Sends the queued toasts once the toaster is mounted (effects run after the sibling's). */
-function ToastFlusher({ queue, onFlushed }: { queue: readonly ToastRequest[]; onFlushed: () => void }) {
-  useEffect(() => {
-    if (queue.length === 0) return;
-    let cancelled = false;
-    void import('@sotf/ui/toast').then(({ toast }) => {
-      if (cancelled) return;
-      for (const item of queue) {
-        toast[item.kind](item.title, item.description ? { description: item.description } : undefined);
-      }
-      onFlushed();
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [queue, onFlushed]);
-  return null;
-}
+const notify: Notify = (kind, title, description) => {
+  toast[kind](title, description ? { description } : undefined);
+};
 
 /** Root of every auth island. */
 export function AuthIsland({ messages, lang, children }: AuthIslandProps & { children: ReactNode }) {
-  const [queue, setQueue] = useState<ToastRequest[]>([]);
-  const [toasterWanted, setToasterWanted] = useState(false);
-  const notify = useCallback<Notify>((kind, title, description) => {
-    setToasterWanted(true);
-    setQueue((current) => [...current, { kind, title, description }]);
-  }, []);
-  const flushed = useCallback(() => setQueue([]), []);
   const uiTranslate = useMemo<UiTranslate>(() => {
     const t = createTranslate(messages, lang);
     return (key, params) =>
@@ -86,15 +55,7 @@ export function AuthIsland({ messages, lang, children }: AuthIslandProps & { chi
   return (
     <AuthI18nProvider messages={messages} lang={lang}>
       <UiTranslateProvider value={uiTranslate}>
-        <NotifyContext.Provider value={notify}>
-          {children}
-          {toasterWanted ? (
-            <Suspense fallback={null}>
-              <LazyToaster />
-              <ToastFlusher queue={queue} onFlushed={flushed} />
-            </Suspense>
-          ) : null}
-        </NotifyContext.Provider>
+        <NotifyContext.Provider value={notify}>{children}</NotifyContext.Provider>
       </UiTranslateProvider>
     </AuthI18nProvider>
   );

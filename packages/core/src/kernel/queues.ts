@@ -45,6 +45,8 @@ export const QUEUE_OVERRIDES: Partial<Record<JobQueue, QueueConfig>> = {
   'build.geometry': { retryLimit: 2, expireInSeconds: 10 * 60 },
   'bundle.build': { retryLimit: 2, expireInSeconds: 30 * 60 },
   'security.rescan': { policy: 'singleton', retryLimit: 1 },
+  // One check queued or running at a time: the schedule and "sync now" never pile up.
+  'steam.sync': { policy: 'exclusive', retryLimit: 1, expireInSeconds: 5 * 60 },
   'markdown.rerender': { policy: 'singleton', retryLimit: 2, expireInSeconds: 60 * 60 },
   'ops.alerts': { policy: 'singleton', retryLimit: 1, expireInSeconds: 4 * 60 },
 };

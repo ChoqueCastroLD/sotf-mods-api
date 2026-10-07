@@ -20,18 +20,22 @@ export type ButtonSize = (typeof BUTTON_SIZES)[number];
 
 const BASE =
   'relative inline-flex shrink-0 items-center justify-center gap-2 whitespace-nowrap rounded-md font-medium select-none ' +
-  'transition-[background-color,border-color,color,box-shadow,translate] duration-(--dur-fast) ease-out ' +
-  'active:translate-y-px disabled:cursor-not-allowed disabled:opacity-55 aria-disabled:cursor-not-allowed aria-disabled:opacity-55 ' +
-  'aria-busy:cursor-progress aria-busy:opacity-100';
+  'transition-[background-color,border-color,color,box-shadow,translate,scale,filter] duration-(--dur-fast) ease-out ' +
+  'motion-safe:active:scale-[0.975] active:brightness-90 ' +
+  'disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none disabled:saturate-50 ' +
+  'aria-disabled:cursor-not-allowed aria-disabled:opacity-50 aria-disabled:shadow-none aria-disabled:saturate-50 ' +
+  'aria-busy:cursor-progress aria-busy:opacity-100 aria-busy:saturate-100';
 
 const VARIANT: Record<ButtonVariant, string> = {
-  primary: 'bg-primary text-primary-fg hover:bg-primary-hover',
+  primary:
+    'bg-primary text-primary-fg shadow-[inset_0_1px_0_rgb(255_255_255/0.18),0_1px_2px_rgb(0_0_0/0.35)] hover:bg-primary-hover',
   secondary:
-    'border border-border-strong bg-raised text-fg shadow-xs inset-shadow-highlight hover:bg-[color-mix(in_oklab,var(--color-raised),var(--color-fg)_7%)]',
+    'border border-border-strong bg-raised text-fg shadow-sm inset-shadow-highlight hover:border-fg-subtle hover:bg-[color-mix(in_oklab,var(--color-raised),var(--color-fg)_7%)]',
   ghost: 'text-fg hover:bg-fg/8',
-  outline: 'border border-border-strong text-fg hover:bg-fg/6',
-  danger: 'bg-danger text-danger-fg hover:bg-[color-mix(in_oklab,var(--color-danger),var(--color-fg)_14%)]',
-  link: 'h-auto rounded-xs px-0 text-link underline decoration-1 underline-offset-3 hover:decoration-2 active:translate-y-0',
+  outline: 'border border-border-strong text-fg hover:border-fg-subtle hover:bg-fg/6',
+  danger:
+    'bg-danger text-danger-fg shadow-[inset_0_1px_0_rgb(255_255_255/0.2),0_1px_2px_rgb(0_0_0/0.35)] hover:bg-[color-mix(in_oklab,var(--color-danger),var(--color-fg)_14%)]',
+  link: 'h-auto rounded-xs px-0 text-link underline decoration-1 underline-offset-3 hover:decoration-2 active:scale-100 active:brightness-100',
   icon: 'text-fg hover:bg-fg/8',
 };
 

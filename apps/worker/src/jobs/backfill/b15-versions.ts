@@ -65,7 +65,7 @@ export interface VersionPassReport {
   errors: Array<{ versionId: number; error: string }>;
 }
 
-type Candidate = {
+export type Candidate = {
   id: number;
   version: string;
   storageKey: string;
@@ -77,7 +77,7 @@ type Candidate = {
   userId: number | null;
 };
 
-interface Inspected {
+export interface Inspected {
   status: 'passed' | 'flagged' | 'failed';
   flags: InspectionFlagDTO[];
   sha256: string;
@@ -124,7 +124,7 @@ async function readWhole(storage: ObjectStorage, bucket: string, key: string, ma
   return Buffer.concat(chunks);
 }
 
-function asJsonObject(value: unknown): JsonObject | null {
+export function asJsonObject(value: unknown): JsonObject | null {
   return value !== null && typeof value === 'object' && !Array.isArray(value)
     ? (JSON.parse(JSON.stringify(value)) as JsonObject)
     : null;
@@ -152,7 +152,7 @@ async function readRawManifest(source: RandomAccessSource, path: string): Promis
   }
 }
 
-async function inspectZipVersion(
+export async function inspectZipVersion(
   storage: ObjectStorage,
   bucket: string,
   candidate: Candidate,
@@ -193,7 +193,7 @@ async function inspectZipVersion(
   };
 }
 
-async function inspectBuildVersion(
+export async function inspectBuildVersion(
   storage: ObjectStorage,
   bucket: string,
   candidate: Candidate,
@@ -243,13 +243,13 @@ async function inspectBuildVersion(
   };
 }
 
-function declared(manifest: JsonObject | null, field: string): string | null {
+export function declared(manifest: JsonObject | null, field: string): string | null {
   const value = manifest?.[field];
   return typeof value === 'string' && value.trim() !== '' ? value.trim().slice(0, 40) : null;
 }
 
 /** Thumbnail of a build without cover: private source → `Media` → variants → `Mod.thumbnailMediaId`. */
-async function storeBuildThumbnail(
+export async function storeBuildThumbnail(
   ctx: Ctx,
   storage: ObjectStorage,
   candidate: Candidate,

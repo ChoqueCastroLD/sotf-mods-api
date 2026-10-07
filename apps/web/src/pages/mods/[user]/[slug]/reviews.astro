@@ -24,6 +24,7 @@ import { setPageCache } from '../../../../lib/cache/page.ts';
 import { pageCache } from '../../../../lib/cache/policy.ts';
 import { href } from '../../../../lib/i18n.ts';
 import { ensureLocals } from '../../../../lib/request-context.ts';
+import { entityOg } from '../../../../lib/seo/og.ts';
 
 export const prerender = false;
 
@@ -77,7 +78,7 @@ const loginHref = loginHrefFor(href('/login', locale), href(Astro.locals.pagePat
     description: truncate(m.mod_reviews_meta_description({ name: mod.name, count: summary.count }), 160),
     path: basePath,
     noindex: !indexable,
-    og: { imageAlt: m.mod_og_alt({ name: mod.name }), ...(mod.nsfw || !mod.thumbnail ? {} : { image: mod.thumbnail.url }) },
+    og: { imageAlt: m.mod_og_alt({ name: mod.name }), ...entityOg(mod) },
   }}
 >
   <section aria-labelledby="reviews-title" class="grid gap-5">

@@ -87,6 +87,7 @@ function LoginFormBody({ locale, turnstileSiteKey }: Omit<LoginFormProps, keyof 
   const [challenge, setChallenge] = useState<TwoFactorRequired['twoFactor'] | null>(null);
   const [passkeyBusy, setPasskeyBusy] = useState(false);
   const [canPasskey, setCanPasskey] = useState(false);
+  const [passkeyChecked, setPasskeyChecked] = useState(false);
   const [retryIn, startRetry] = useCountdown();
   const alertRef = useRef<HTMLDivElement | null>(null);
   const turnstile = useTurnstile({
@@ -101,6 +102,7 @@ function LoginFormBody({ locale, turnstileSiteKey }: Omit<LoginFormProps, keyof 
     const params = new URLSearchParams(window.location.search);
     setNext(params.get(NEXT_PARAM));
     setCanPasskey(passkeysSupported());
+    setPasskeyChecked(true);
     for (const flag of flagToasts(params)) notify(flag.kind, t(flag.messageKey));
     const oauthError = params.get('oauth_error');
     if (oauthError) notify('error', t('oauth_error_title'), t(oauthErrorKey(oauthError)));
@@ -315,11 +317,27 @@ function LoginFormBody({ locale, turnstileSiteKey }: Omit<LoginFormProps, keyof 
       <Button type="submit" size="lg" block loading={submitting} disabled={retryIn > 0} glow>
         {retryIn > 0 ? t('auth_rate_limited_submit', { seconds: retryIn }) : t('auth_login_submit')}
       </Button>
-      {canPasskey ? (
-        <Button type="button" variant="outline" size="lg" block loading={passkeyBusy} onClick={onPasskey}>
+      {passkeyChecked ? (
+        canPasskey ? (
+          <Button type="button" variant="outline" size="lg" block loading={passkeyBusy} onClick={onPasskey}>
+            {t('auth_login_passkey')}
+          </Button>
+        ) : null
+      ) : (
+        // Server HTML and first paint keep the passkey button's room (no jump once support is known).
+        <Button
+          type="button"
+          variant="outline"
+          size="lg"
+          block
+          disabled
+          aria-hidden="true"
+          tabIndex={-1}
+          className="invisible"
+        >
           {t('auth_login_passkey')}
         </Button>
-      ) : null}
+      )}
       {providers?.discord ? (
         <div className="grid gap-4" data-auth-oauth="discord">
           <p className="flex items-center gap-3 text-xs text-fg-subtle before:h-px before:flex-1 before:bg-border after:h-px after:flex-1 after:bg-border">

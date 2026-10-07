@@ -43,6 +43,7 @@ interface InboxRow {
   buildLabel: string | null;
   state: 'open' | 'answered' | 'resolved';
   createdAt: Date;
+  total?: string;
 }
 
 const INBOX_SQL = `
@@ -86,7 +87,27 @@ SELECT type, id::text AS id, "modId", "userId", body, title, result, mode, "buil
    AND ($4::timestamptz IS NULL OR ("createdAt", rank, id) < ($4::timestamptz, $5::int, $6::bigint))
    AND ($8::int IS NULL OR "modId" = $8::int)
  ORDER BY "createdAt" DESC, rank DESC, id DESC
- LIMIT $7`;
+ LIMIT $7 OFFSET $9`;
+
+/** Numbered pages: same filters, either order, the total of the selection alongside every row. */
+function numberedSql(oldest: boolean): string {
+  const direction = oldest ? 'ASC' : 'DESC';
+  return INBOX_SQL.replace(
+    'SELECT type, id::text AS id, "modId", "userId", body, title, result, mode, "buildLabel", state, "createdAt"\n  FROM items',
+    'SELECT type, id::text AS id, "modId", "userId", body, title, result, mode, "buildLabel", state, "createdAt",\n       count(*) OVER() AS total\n  FROM items',
+  ).replace(
+    'ORDER BY "createdAt" DESC, rank DESC, id DESC',
+    `ORDER BY "createdAt" ${direction}, rank ${direction}, id ${direction}`,
+  );
+}
+
+/** Items per type under the state and mod filters (the tabs' counters). */
+const TYPE_COUNTS_TAIL = `
+SELECT type, count(*) AS n FROM items
+ WHERE ($2::boolean OR state = 'open') AND ($3::int IS NULL OR "modId" = $3::int)
+ GROUP BY type`;
+
+const ITEMS_CTE = INBOX_SQL.slice(0, INBOX_SQL.indexOf('SELECT type, id::text'));
 
 function parseCursor(cursor: string | undefined): { at: string; rank: number; id: string } | null {
   if (!cursor) return null;
@@ -120,19 +141,34 @@ function permalinkOf(path: string, row: InboxRow): string {
 export async function getCreatorInbox(ctx: Ctx, config: CatalogConfig, query: Query): Promise<InboxPage> {
   const userId = creatorOf(ctx);
   const types = query.type && query.type.length > 0 ? query.type : [...INBOX_TYPES];
-  const after = parseCursor(query.cursor);
+  const numbered = query.page !== undefined;
+  const after = numbered ? null : parseCursor(query.cursor);
   const limit = query.limit;
-  const found = await rows<InboxRow>(ctx.db, INBOX_SQL, [
+  const offset = numbered ? ((query.page ?? 1) - 1) * limit : 0;
+  const found = await rows<InboxRow>(ctx.db, numbered ? numberedSql(query.sort === 'oldest') : INBOX_SQL, [
     userId,
     types,
     query.state === 'all',
     after?.at ?? null,
     after?.rank ?? 0,
     after?.id ?? '0',
-    limit + 1,
+    numbered ? limit : limit + 1,
     query.modId ?? null,
+    offset,
   ]);
   const page = found.slice(0, limit);
+  const total = numbered ? Number(found[0]?.total ?? 0) : undefined;
+  const typeCounts: Partial<Record<InboxType, number>> | undefined = numbered
+    ? Object.fromEntries(
+        (
+          await rows<{ type: InboxType; n: string }>(ctx.db, ITEMS_CTE + TYPE_COUNTS_TAIL, [
+            userId,
+            query.state === 'all',
+            query.modId ?? null,
+          ])
+        ).map((r) => [r.type, Number(r.n)]),
+      )
+    : undefined;
   const [cards, users] = await Promise.all([
     loadModCards(ctx.db, [...new Set(page.map((r) => Number(r.modId)))], cardOptionsOf(config)),
     loadUserRefDtos(
@@ -161,8 +197,17 @@ export async function getCreatorInbox(ctx: Ctx, config: CatalogConfig, query: Qu
   }
   const lastRow = page[page.length - 1];
   const nextCursor =
-    found.length > limit && lastRow
+    !numbered && found.length > limit && lastRow
       ? encodeCursor({ createdAt: new Date(lastRow.createdAt).toISOString(), id: `${lastRow.type}-${lastRow.id}` })
       : null;
-  return { items, nextCursor };
+  if (!numbered || total === undefined) return { items, nextCursor };
+  return {
+    items,
+    nextCursor,
+    page: query.page ?? 1,
+    pageSize: limit,
+    total,
+    totalPages: total === 0 ? 0 : Math.ceil(total / limit),
+    ...(typeCounts ? { typeCounts } : {}),
+  };
 }

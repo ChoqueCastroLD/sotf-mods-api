@@ -10,10 +10,15 @@ import { Banner } from '@sotf/ui/banner';
 import { Button } from '@sotf/ui/button';
 import { cn } from '@sotf/ui/cn';
 import { StatTile } from '@sotf/ui/domain';
+import { Field } from '@sotf/ui/field';
 import { Icon } from '@sotf/ui/icons';
+import { Input } from '@sotf/ui/input';
+import { Select } from '@sotf/ui/select';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { RefreshCw } from 'lucide-react';
+import { useState } from 'react';
 import { DomainI18nBridge } from '../../components/DomainI18nBridge.tsx';
+import { PageNav, SortSelect } from '../ranger/controls.tsx';
 import { OPERATIONS_REFRESH_MS, operationsQuery } from './api.ts';
 import { type OpsQueue, type QueueState, queueState, queueTotals, waitingMinutes } from './operations.ts';
 import {
@@ -57,6 +62,26 @@ export function OperationsScreen() {
   });
   const now = dataUpdatedAt || Date.parse(data.generatedAt);
   const totals = queueTotals(data.queues);
+  const [filter, setFilter] = useState('');
+  const [stateFilter, setStateFilter] = useState<'all' | QueueState>('all');
+  const [sort, setSort] = useState<'busiest' | 'name' | 'failed'>('busiest');
+  const [page, setPage] = useState(1);
+  const [size, setSize] = useState(10);
+  const needle = filter.trim().toLowerCase();
+  const matching = data.queues.filter(
+    (queue) =>
+      (!needle || queue.name.toLowerCase().includes(needle)) &&
+      (stateFilter === 'all' || queueState(queue, now) === stateFilter),
+  );
+  const ordered =
+    sort === 'busiest'
+      ? matching
+      : [...matching].sort((a, b) =>
+          sort === 'name' ? a.name.localeCompare(b.name) : b.failed24h - a.failed24h || a.name.localeCompare(b.name),
+        );
+  const totalPages = Math.max(1, Math.ceil(ordered.length / size));
+  const current = Math.min(page, totalPages);
+  const visible = ordered.slice((current - 1) * size, current * size);
 
   return (
     <DomainI18nBridge>
@@ -116,41 +141,101 @@ export function OperationsScreen() {
           {data.queues.length === 0 ? (
             <p className="text-sm text-fg-muted">{m.admin_ops_queues_empty()}</p>
           ) : (
-            <TableScroller label={m.admin_ops_queues_title()}>
-              <table className="w-full border-collapse text-sm tabular-nums">
-                <caption className="sr-only">{m.admin_ops_queues_title()}</caption>
-                <thead className="bg-sunken">
-                  <tr>
-                    <th scope="col" className={thClasses}>
-                      {m.admin_ops_col_queue()}
-                    </th>
-                    <th scope="col" className={thClasses}>
-                      {m.admin_ops_col_state()}
-                    </th>
-                    <th scope="col" className={cn(thClasses, 'text-end')}>
-                      {m.admin_ops_col_queued()}
-                    </th>
-                    <th scope="col" className={cn(thClasses, 'text-end')}>
-                      {m.admin_ops_col_active()}
-                    </th>
-                    <th scope="col" className={cn(thClasses, 'text-end')}>
-                      {m.admin_ops_col_failed()}
-                    </th>
-                    <th scope="col" className={cn(thClasses, 'text-end')}>
-                      {m.admin_ops_col_completed()}
-                    </th>
-                    <th scope="col" className={cn(thClasses, 'text-end')}>
-                      {m.admin_ops_col_oldest()}
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {data.queues.map((queue) => (
-                    <QueueRow key={queue.name} queue={queue} now={now} />
-                  ))}
-                </tbody>
-              </table>
-            </TableScroller>
+            <>
+              <div className="mb-3 flex flex-wrap items-end gap-2">
+                <Field label={m.admin_ops_filter_queues()} className="w-full max-w-xs">
+                  <Input
+                    type="search"
+                    value={filter}
+                    onChange={(event) => {
+                      setFilter(event.currentTarget.value);
+                      setPage(1);
+                    }}
+                  />
+                </Field>
+                <Select<'all' | QueueState>
+                  label={m.admin_ops_col_state()}
+                  hideLabel
+                  size="sm"
+                  value={stateFilter}
+                  onValueChange={(next) => {
+                    if (!next) return;
+                    setStateFilter(next);
+                    setPage(1);
+                  }}
+                  options={[
+                    { value: 'all', label: m.admin_ops_state_all() },
+                    { value: 'failing', label: m.admin_ops_state_failing() },
+                    { value: 'slow', label: m.admin_ops_state_slow() },
+                    { value: 'ok', label: m.admin_ops_state_ok() },
+                  ]}
+                  className="w-full md:w-44"
+                />
+                <SortSelect
+                  value={sort}
+                  onChange={(value) => {
+                    setSort(value);
+                    setPage(1);
+                  }}
+                  options={[
+                    { value: 'busiest', label: m.admin_ops_sort_busiest() },
+                    { value: 'name', label: m.ranger_users_sort_name() },
+                    { value: 'failed', label: m.admin_ops_sort_failed() },
+                  ]}
+                />
+              </div>
+              <TableScroller label={m.admin_ops_queues_title()}>
+                <table className="w-full border-collapse text-sm tabular-nums">
+                  <caption className="sr-only">{m.admin_ops_queues_title()}</caption>
+                  <thead className="bg-sunken">
+                    <tr>
+                      <th scope="col" className={thClasses}>
+                        {m.admin_ops_col_queue()}
+                      </th>
+                      <th scope="col" className={thClasses}>
+                        {m.admin_ops_col_state()}
+                      </th>
+                      <th scope="col" className={cn(thClasses, 'text-end')}>
+                        {m.admin_ops_col_queued()}
+                      </th>
+                      <th scope="col" className={cn(thClasses, 'text-end')}>
+                        {m.admin_ops_col_active()}
+                      </th>
+                      <th scope="col" className={cn(thClasses, 'text-end')}>
+                        {m.admin_ops_col_failed()}
+                      </th>
+                      <th scope="col" className={cn(thClasses, 'text-end')}>
+                        {m.admin_ops_col_completed()}
+                      </th>
+                      <th scope="col" className={cn(thClasses, 'text-end')}>
+                        {m.admin_ops_col_oldest()}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {visible.map((queue) => (
+                      <QueueRow key={queue.name} queue={queue} now={now} />
+                    ))}
+                  </tbody>
+                </table>
+              </TableScroller>
+              {ordered.length === 0 ? (
+                <p className="mt-3 text-sm text-fg-muted">{m.admin_no_matches()}</p>
+              ) : (
+                <PageNav
+                  page={current}
+                  totalPages={totalPages}
+                  total={ordered.length}
+                  pageSize={size}
+                  onPage={setPage}
+                  sizes={[10, 25, 50]}
+                  onPageSize={(next) => {
+                    setSize(next);
+                    setPage(1);
+                  }}
+                />
+              )}
+            </>
           )}
         </Panel>
 

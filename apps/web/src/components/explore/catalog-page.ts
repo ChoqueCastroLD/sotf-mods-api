@@ -1,13 +1,13 @@
 /**
- * Loader shared by `/` and `/mods`: the same catalogue view (listing + side blocks), one SEO rule.
+ * Loader of the landing catalogue `/` (listing + carousel + side blocks).
  *
  * - `/` is the default listing (newest mods, page 1). Any listing parameter on `/` (page 2, a
  *   search, a filter, a legacy `?category=qol`) is a 301 to the canonical `/mods…` URL, so the home
- *   page never duplicates a filtered view.
- * - `/mods` renders the same view. Its canonical is `/` for the default listing and itself for
- *   `?page=N`; every filtered view (search, category, sort, NSFW, Unapproved…) is `noindex, follow`.
- *   The Unapproved view is always `noindex`.
- * - Legacy parameters (`category`, `search`, `orderby`, `showunapproved`…) keep redirecting.
+ *   page never duplicates a filtered view. `/mods` is the dedicated search page (its own loader in
+ *   `pages/mods/index.astro`, rendered by `ExploreGridView`).
+ * - The `mods` mode is kept for callers that still render the catalogue rows on another path: its
+ *   canonical is `/` for the default listing and itself for `?page=N`; every filtered view is
+ *   `noindex, follow`. The Unapproved view is always `noindex`.
  */
 import type { Locale } from '@sotf/i18n';
 import { formatNumber } from '@sotf/i18n';
@@ -86,7 +86,13 @@ export async function loadCatalogPage(input: { url: URL; locale: Locale; mode: C
     rawTitle = true;
     description = m.landing_meta_description({ count, mods: formatNumber(locale, count) });
   }
-  title = pagedTitle(title, state.page);
+  if (rawTitle && state.page > 1) {
+    // The raw landing title carries its own suffix: page numbers go before it, not after.
+    title = pagedTitle(heading, state.page);
+    rawTitle = false;
+  } else {
+    title = pagedTitle(title, state.page);
+  }
 
   // `/` is the canonical of the default listing; every other indexable view keeps its own path.
   const path = defaultView ? '/' : seo.path;

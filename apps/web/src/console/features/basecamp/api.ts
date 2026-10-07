@@ -31,6 +31,7 @@ import type {
   DOWNLOAD_CHANNELS,
   InboxItemDTO,
   InboxPageDTO,
+  StudioAttentionDTO,
   StudioModDTO,
   StudioModListDTO,
   StudioModRowDTO,
@@ -47,6 +48,9 @@ import { type AnalyticsRange, INBOX_KINDS, type InboxType } from './search.ts';
 
 export {
   type AnalyticsRange,
+  ATTENTION_KINDS,
+  ATTENTION_SORTS,
+  type AttentionSort,
   INBOX_KINDS,
   type InboxType,
   isInboxType,
@@ -59,6 +63,7 @@ export type Overview = z.output<typeof StudioOverviewDTO>;
 export type Kpi = Overview['kpis']['downloads7d'];
 export type KpiKey = keyof Overview['kpis'];
 export type Attention = Overview['needsAttention'][number];
+export type AttentionPage = z.output<typeof StudioAttentionDTO>;
 export type AttentionKind = Attention['kind'];
 export type ModRow = z.output<typeof StudioModRowDTO>;
 export type ModList = z.output<typeof StudioModListDTO>;
@@ -131,9 +136,14 @@ export const basecampKeys = {
   list: [...studio, 'list'] as const,
   mod: (modId: number) => queryKeys.studioMod(modId),
   compat: (modId: number) => [...queryKeys.studioMod(modId), 'compat'] as const,
-  analytics: (modId: number | null, range: AnalyticsRange) => [...studio, 'analytics', modId ?? 'all', range] as const,
+  listPage: (filters: ModsPageFilters) => [...studio, 'list', 'page', filters] as const,
+  attention: (params: AttentionParams) => [...studio, 'attention', params] as const,
+  attentionAll: [...studio, 'attention'] as const,
+  analytics: (modId: number | null, range: AnalyticsRange, from?: string, to?: string) =>
+    [...studio, 'analytics', modId ?? 'all', range, from ?? '', to ?? ''] as const,
   inbox: (types: readonly InboxType[], state: InboxState, modId: number | null = null) =>
     [...studio, 'inbox', types.join(','), state, modId ?? 'all'] as const,
+  inboxPage: (params: InboxPageParams) => [...studio, 'inbox', 'page', params] as const,
   inboxAll: [...studio, 'inbox'] as const,
   live: (modId: number) => ['studio', 'live', modId] as const,
   knowledge: (modId: number) => [...queryKeys.studioMod(modId), 'knowledge'] as const,
@@ -166,15 +176,101 @@ export function studioModQuery(modId: number) {
   });
 }
 
-export function analyticsQuery(modId: number | null, range: AnalyticsRange) {
+/** A custom analytics range (UTC days, inclusive). */
+export interface CustomRange {
+  from: string;
+  to: string;
+}
+
+/** Buckets of a custom range: days up to 4 months, weeks up to 2 years, then months. */
+export function granularityOfSpan(days: number): 'day' | 'week' | 'month' {
+  if (days <= 120) return 'day';
+  if (days <= 730) return 'week';
+  return 'month';
+}
+
+export function spanDays(range: CustomRange): number {
+  return Math.round((Date.parse(`${range.to}T00:00:00Z`) - Date.parse(`${range.from}T00:00:00Z`)) / 86_400_000) + 1;
+}
+
+export function analyticsQuery(modId: number | null, range: AnalyticsRange, custom?: CustomRange | null) {
   return queryOptions({
-    queryKey: basecampKeys.analytics(modId, range),
+    queryKey: basecampKeys.analytics(modId, range, custom?.from, custom?.to),
     queryFn: ({ signal }): Promise<Analytics> =>
       api.studio.analytics(
-        { query: { range, granularity: granularityOf(range), ...(modId ? { modId } : {}) } },
+        {
+          query: {
+            range,
+            granularity: custom ? granularityOfSpan(spanDays(custom)) : granularityOf(range),
+            ...(custom ? { from: custom.from, to: custom.to } : {}),
+            ...(modId ? { modId } : {}),
+          },
+        },
         { signal },
       ),
     staleTime: 5 * 60_000,
+    placeholderData: (previous) => previous,
+  });
+}
+
+/** «My mods» filters as the API takes them (the page of the filtered, sorted list). */
+export interface ModsPageFilters {
+  q?: string;
+  status?: ModStatus;
+  category?: string;
+  sort: ModSortApi;
+  page: number;
+  pageSize: number;
+}
+type ModSortApi = 'downloads' | 'updated' | 'name' | 'rating' | 'attention';
+
+export function modsPageQuery(filters: ModsPageFilters) {
+  return queryOptions({
+    queryKey: basecampKeys.listPage(filters),
+    queryFn: ({ signal }): Promise<ModList> =>
+      api.studio.listMods(
+        {
+          query: {
+            sort: filters.sort,
+            page: filters.page,
+            pageSize: filters.pageSize,
+            ...(filters.q ? { q: filters.q } : {}),
+            ...(filters.status ? { status: filters.status } : {}),
+            ...(filters.category ? { category: filters.category } : {}),
+          },
+        },
+        { signal },
+      ),
+    staleTime: 30_000,
+    placeholderData: (previous) => previous,
+  });
+}
+
+export interface AttentionParams {
+  kind?: Attention['kind'];
+  sort: 'urgency' | 'count' | 'name';
+  page: number;
+  pageSize: number;
+  dismissed?: boolean;
+}
+
+export function attentionQuery(params: AttentionParams) {
+  return queryOptions({
+    queryKey: basecampKeys.attention(params),
+    queryFn: ({ signal }): Promise<AttentionPage> =>
+      api.studio.attention(
+        {
+          query: {
+            sort: params.sort,
+            page: params.page,
+            pageSize: params.pageSize,
+            ...(params.kind ? { kind: params.kind } : {}),
+            ...(params.dismissed ? { dismissed: true } : {}),
+          },
+        },
+        { signal },
+      ),
+    staleTime: 30_000,
     placeholderData: (previous) => previous,
   });
 }
@@ -190,7 +286,7 @@ export function inboxQuery(types: readonly InboxType[], state: InboxState, modId
           query: {
             state,
             limit: INBOX_PAGE_SIZE,
-            ...(types.length > 0 && types.length < INBOX_KINDS.length ? { type: [...types] } : {}),
+            type: types.length > 0 ? [...types] : [...INBOX_KINDS],
             ...(modId !== null ? { modId } : {}),
             ...(pageParam ? { cursor: pageParam } : {}),
           },
@@ -200,6 +296,38 @@ export function inboxQuery(types: readonly InboxType[], state: InboxState, modId
     initialPageParam: null as string | null,
     getNextPageParam: (page: InboxPage) => page.nextCursor,
     staleTime: 30_000,
+  });
+}
+
+export interface InboxPageParams {
+  types: readonly InboxType[];
+  state: InboxState;
+  modId: number | null;
+  sort: 'newest' | 'oldest';
+  page: number;
+  pageSize: number;
+}
+
+/** Numbered pages of the inbox (filters in the URL). */
+export function inboxPageQuery(params: InboxPageParams) {
+  return queryOptions({
+    queryKey: basecampKeys.inboxPage(params),
+    queryFn: ({ signal }): Promise<InboxPage> =>
+      api.studio.inbox(
+        {
+          query: {
+            state: params.state,
+            limit: params.pageSize,
+            page: params.page,
+            sort: params.sort,
+            type: params.types.length > 0 ? [...params.types] : [...INBOX_KINDS],
+            ...(params.modId !== null ? { modId: params.modId } : {}),
+          },
+        },
+        { signal },
+      ),
+    staleTime: 30_000,
+    placeholderData: (previous) => previous,
   });
 }
 
@@ -310,6 +438,7 @@ export function refreshLists(queryClient: QueryClient): Promise<void> {
     queryClient.invalidateQueries({ queryKey: basecampKeys.overview }),
     queryClient.invalidateQueries({ queryKey: basecampKeys.list }),
     queryClient.invalidateQueries({ queryKey: basecampKeys.inboxAll }),
+    queryClient.invalidateQueries({ queryKey: basecampKeys.attentionAll }),
   ]).then(() => undefined);
 }
 
@@ -370,8 +499,15 @@ export function mediaIdOf(url: string | null | undefined): string | null {
 }
 
 /** CSV export URL (same origin; the session cookie authorizes it). */
-export function analyticsCsvHref(modId: number | null, range: AnalyticsRange): string {
-  const params = new URLSearchParams({ range, granularity: granularityOf(range) });
+export function analyticsCsvHref(modId: number | null, range: AnalyticsRange, custom?: CustomRange | null): string {
+  const params = new URLSearchParams({
+    range,
+    granularity: custom ? granularityOfSpan(spanDays(custom)) : granularityOf(range),
+  });
+  if (custom) {
+    params.set('from', custom.from);
+    params.set('to', custom.to);
+  }
   if (modId) params.set('modId', String(modId));
   return `/api/v2/studio/analytics.csv?${params.toString()}`;
 }

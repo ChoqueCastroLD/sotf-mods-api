@@ -43,6 +43,14 @@ export function reloadForNewVersion(): boolean {
   return true;
 }
 
+function isAbortedViewTransition(reason: unknown): boolean {
+  return (
+    reason instanceof DOMException &&
+    reason.name === 'InvalidStateError' &&
+    /transition was (aborted|skipped)/i.test(reason.message)
+  );
+}
+
 /**
  * Listens for Vite's `vite:preloadError` (a dynamic import or its CSS failed) and for unhandled
  * chunk-load rejections, and reloads once. Returns the cleanup function.
@@ -53,6 +61,9 @@ export function installChunkErrorRecovery(): () => void {
   };
   const onRejection = (event: PromiseRejectionEvent) => {
     if (isChunkLoadError(event.reason) && reloadForNewVersion()) event.preventDefault();
+    // A screen cross-fade the browser gave up on (the window was resized or rotated meanwhile):
+    // the navigation itself went through, there is nothing to report.
+    else if (isAbortedViewTransition(event.reason)) event.preventDefault();
   };
   window.addEventListener('vite:preloadError', onPreloadError);
   window.addEventListener('unhandledrejection', onRejection);

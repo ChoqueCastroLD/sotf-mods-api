@@ -68,5 +68,15 @@
   "console_nav_jams": "Мод-джемы",
   "console_tab_ranger": "Модерация",
   "console_pull_refreshing": "Обновление…",
-  "console_tab_basecamp": "Панель"
+  "console_tab_basecamp": "Панель",
+  "console_language_failed": "Не удалось сменить язык",
+  "console_pager_range": "{from}–{to} из {total}",
+  "console_pager_page_size": "Элементов на странице",
+  "console_pager_per_page": "{count} на странице",
+  "console_pager_of": "Страница {page} из {pages}",
+  "console_nav_tokens": "Токены доступа",
+  "console_nav_group_account": "Ваш аккаунт",
+  "console_nav_group_app": "Приложение",
+  "console_nav_group_creator": "Автор и данные",
+  "console_area_you": "Вы"
 }

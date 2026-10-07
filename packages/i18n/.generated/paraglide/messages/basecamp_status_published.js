@@ -6,7 +6,7 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Basecamp_Status_PublishedInputs */
 
 const en_basecamp_status_published = /** @type {(inputs: Basecamp_Status_PublishedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Live`)
+	return /** @type {LocalizedString} */ (`Published`)
 };
 
 const es_basecamp_status_published = /** @type {(inputs: Basecamp_Status_PublishedInputs) => LocalizedString} */ () => {
@@ -14,19 +14,19 @@ const es_basecamp_status_published = /** @type {(inputs: Basecamp_Status_Publish
 };
 
 const de_basecamp_status_published = /** @type {(inputs: Basecamp_Status_PublishedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Live`)
+	return /** @type {LocalizedString} */ (`Veröffentlicht`)
 };
 
 const fr_basecamp_status_published = /** @type {(inputs: Basecamp_Status_PublishedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`En ligne`)
+	return /** @type {LocalizedString} */ (`Publié`)
 };
 
 const it_basecamp_status_published = /** @type {(inputs: Basecamp_Status_PublishedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pubblicata`)
+	return /** @type {LocalizedString} */ (`Pubblicato`)
 };
 
 const nl_basecamp_status_published = /** @type {(inputs: Basecamp_Status_PublishedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Live`)
+	return /** @type {LocalizedString} */ (`Gepubliceerd`)
 };
 
 const pl_basecamp_status_published = /** @type {(inputs: Basecamp_Status_PublishedInputs) => LocalizedString} */ () => {
@@ -50,7 +50,7 @@ const tr_basecamp_status_published = /** @type {(inputs: Basecamp_Status_Publish
 };
 
 const zh_basecamp_status_published = /** @type {(inputs: Basecamp_Status_PublishedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`已上线`)
+	return /** @type {LocalizedString} */ (`已发布`)
 };
 
 const ja_basecamp_status_published = /** @type {(inputs: Basecamp_Status_PublishedInputs) => LocalizedString} */ () => {
@@ -60,7 +60,7 @@ const ja_basecamp_status_published = /** @type {(inputs: Basecamp_Status_Publish
 /**
 * | output |
 * | --- |
-* | "Live" |
+* | "Published" |
 *
 * @param {Basecamp_Status_PublishedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

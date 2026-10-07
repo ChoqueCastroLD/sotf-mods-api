@@ -3,15 +3,15 @@
  * Motion (PLAN §3.7): only transform + opacity, feedback ≤ 140 ms, exits 30 % faster.
  */
 
-/** Positioner of dropdown-like popups (Menu, Select, Combobox). */
-export const dropdownPositionerClasses = 'z-(--z-dropdown) outline-none';
+/** Positioner of dropdown-like popups (Menu, Select, Combobox). Above dialogs: they open inside them too. */
+export const dropdownPositionerClasses = 'z-(--z-popover) outline-none';
 
 /** Positioner of popovers and tooltips. */
 export const popoverPositionerClasses = 'z-(--z-popover) outline-none';
 
 /** Floating panel: overlay surface, decorative border, elevation, scale+fade from the anchor. */
 export const floatingPanelClasses =
-  'rounded-lg border border-border bg-overlay text-fg shadow-lg inset-shadow-highlight outline-none ' +
+  'rounded-lg border border-border-strong/60 bg-overlay text-fg shadow-lg inset-shadow-highlight outline-none ' +
   'origin-(--transform-origin) transition-[scale,opacity] duration-(--dur-fast) ease-out ' +
   'data-starting-style:scale-97 data-starting-style:opacity-0 ' +
   'data-ending-style:scale-97 data-ending-style:opacity-0 data-ending-style:duration-(--dur-instant) ' +
@@ -27,5 +27,5 @@ export const listItemClasses =
 
 /** Modal backdrop (dialogs and sheets). */
 export const backdropClasses =
-  'fixed inset-0 z-(--z-overlay) min-h-dvh bg-night-975/60 transition-opacity duration-(--dur-base) ease-out ' +
+  'fixed inset-0 z-(--z-overlay) min-h-dvh bg-night-975/70 transition-opacity duration-(--dur-base) ease-out ' +
   'data-starting-style:opacity-0 data-ending-style:opacity-0 data-ending-style:duration-(--dur-fast)';

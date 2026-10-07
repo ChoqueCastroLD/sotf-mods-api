@@ -26,6 +26,7 @@ function NewVersionScreen() {
       draftId={draft}
       {...(id !== undefined && id > 0 ? { modId: id } : {})}
       onDraftCreated={(created) => void navigate({ search: { draft: created }, replace: true })}
+      onDraftDone={() => void navigate({ search: {}, replace: true })}
     />
   );
 }

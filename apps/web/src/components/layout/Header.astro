@@ -47,19 +47,19 @@ const languages = languageLinks(Astro.locals.pagePath);
       <SiteLogo variant="header" height={32} eager />
     </a>
 
-    <nav aria-label={m.common_nav_label()} class="hidden min-w-0 flex-1 justify-center md:flex">
-      <ul class="flex items-center gap-0.5 rounded-full border border-border bg-surface p-1">
+    <nav aria-label={m.common_nav_label()} class="hidden min-w-0 flex-1 md:flex">
+      <ul class="mx-auto flex items-center gap-0.5 rounded-full border border-border bg-surface p-1">
         {
           NAV.map((item) => {
             const external = item.external !== undefined;
             return (
-              <li>
+              <li class={item.icon === 'discord' ? 'max-[1100px]:hidden' : undefined}>
                 <a
                   href={external ? item.external : href(item.path ?? '/', locale)}
                   target={external ? '_blank' : undefined}
                   rel={external ? 'noopener' : undefined}
                   aria-current={isCurrent(item.path) ? 'page' : undefined}
-                  class="flex h-9 items-center gap-2 rounded-full px-3 text-sm font-medium text-fg-muted transition-colors duration-(--dur-fast) hover:bg-fg/8 hover:text-fg aria-[current=page]:bg-raised aria-[current=page]:text-fg lg:px-4"
+                  class="flex h-9 items-center gap-2 rounded-full px-3 text-sm font-medium text-fg-muted transition-colors max-[820px]:px-2 duration-(--dur-fast) hover:bg-fg/8 hover:text-fg aria-[current=page]:bg-raised aria-[current=page]:text-fg lg:px-4"
                 >
                   <span class="hidden xl:flex">
                     {item.icon === 'discord' ? (

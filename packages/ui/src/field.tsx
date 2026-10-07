@@ -15,9 +15,11 @@ import { useUiTranslate } from './labels.ts';
 /** Shared look of text-like controls (Input, Textarea, Select and Combobox triggers). */
 export const controlClasses =
   'w-full min-w-0 rounded-md border border-border-strong bg-sunken text-fg text-base md:text-sm ' +
-  'placeholder:text-fg-subtle transition-[border-color,background-color] duration-(--dur-fast) ' +
-  'hover:border-fg-subtle focus-visible:border-focus data-invalid:border-danger aria-invalid:border-danger ' +
-  'disabled:cursor-not-allowed disabled:opacity-55 data-disabled:cursor-not-allowed data-disabled:opacity-55 ' +
+  'placeholder:text-fg-subtle transition-[border-color,background-color,box-shadow] duration-(--dur-fast) ' +
+  'shadow-[inset_0_1px_2px_rgb(0_0_0/0.18)] hover:border-fg-subtle ' +
+  'focus-visible:border-focus focus-visible:shadow-[0_0_0_3px_var(--focus-halo)] focus-visible:outline-none ' +
+  'data-invalid:border-danger aria-invalid:border-danger ' +
+  'disabled:cursor-not-allowed disabled:opacity-50 data-disabled:cursor-not-allowed data-disabled:opacity-50 ' +
   'read-only:bg-surface';
 
 export const labelClasses = 'text-sm font-medium text-fg';

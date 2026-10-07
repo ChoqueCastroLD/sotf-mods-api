@@ -36,7 +36,16 @@ export function isSitemapType(value: string | undefined): value is SitemapType {
 const TAG_INDEX_MIN_ITEMS = 3;
 
 /** Localized public pages without an entity nor a Markdown document (PLAN §4.2), all 13 locales. */
-export const STATIC_PATHS: readonly string[] = ['/', '/mods', '/builds', '/requests', '/jams', '/categories', '/tags'];
+export const STATIC_PATHS: readonly string[] = [
+  '/',
+  '/mods',
+  '/builds',
+  '/requests',
+  '/jams',
+  '/categories',
+  '/tags',
+  '/logs',
+];
 
 /**
  * Document pages (`content/{install,about,developers,legal}`): listed only in the locales that have

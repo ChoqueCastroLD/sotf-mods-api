@@ -188,6 +188,7 @@ describe('endpoint contracts', () => {
       v2('GET', '/studio/overview'),
       v2('GET', '/studio/analytics'),
       v2('GET', '/studio/analytics.csv'),
+      v2('GET', '/studio/attention'),
       v2('GET', '/studio/inbox'),
       // Translations (T1-25)
       v2('GET', '/mods/:id/translation'),

@@ -1,11 +1,12 @@
 /**
  * The console shell (research/03 §6.9–§6.12): sidebar per area (icons on tablets, a menu on
- * phones), top bar (live status, Signals, account), offline and verify-email banners, the route
+ * phones), top bar (language, notifications, account), offline and verify-email banners, the route
  * outlet, realtime stream, shortcuts and accessible route changes. Rendered by the root route
  * once the session guard has loaded `/me`.
  */
 
 import { Banner } from '@sotf/ui/banner';
+import { Motif } from '@sotf/ui/motif';
 import { SkipLink } from '@sotf/ui/skip-link';
 import { Outlet, useMatches, useRouterState } from '@tanstack/react-router';
 import { Plus } from 'lucide-react';
@@ -25,6 +26,7 @@ import { t } from '../lib/messages.ts';
 import { areaOf, isPushedRoute, type Viewer } from '../lib/navigation.ts';
 import { GlobalShortcuts } from './GlobalShortcuts.tsx';
 import { RouteAnnouncer } from './RouteAnnouncer.tsx';
+import { RouteProgress } from './RouteProgress.tsx';
 import { Sidebar } from './Sidebar.tsx';
 import { TAB_BAR_HEIGHT, TabBar } from './TabBar.tsx';
 import { TopBar } from './TopBar.tsx';
@@ -48,9 +50,12 @@ function useStaticTitle(pathname: string): (() => string) | undefined {
     },
   });
   const { locale } = useConsoleLocale();
+  // The title can be read before the route's loader has fetched its messages (it would show the
+  // message key): read it again once the navigation settles.
+  const status = useRouterState({ select: (state) => state.status });
   useEffect(() => {
     applyStaticTitle(title?.());
-  }, [title, pathname, locale]);
+  }, [title, pathname, locale, status]);
   return title;
 }
 
@@ -150,13 +155,18 @@ export function ConsoleLayout() {
             collapsed={sidebar.collapsed}
             onToggle={sidebar.toggle}
           />
-          <div className="flex min-w-0 flex-1 flex-col">
+          <div className="relative isolate flex min-w-0 flex-1 flex-col">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[30rem] overflow-hidden opacity-60"
+            >
+              <Motif seed="console" tone="quiet" fade="bottom" />
+            </div>
             <TopBar
               me={me}
               viewer={viewer}
               area={area}
               pathname={pathname}
-              status={status}
               pushed={pushed}
               title={screenTitle?.()}
               onShowShortcuts={showShortcuts}
@@ -190,6 +200,7 @@ export function ConsoleLayout() {
         {tabs ? <TabBar viewer={viewer} area={area} unread={me.unreadNotifications} /> : null}
         <PullToRefresh label={t('console_pull_refreshing')} />
         <RouteAnnouncer mainId={MAIN_ID} />
+        <RouteProgress />
         {shortcutsRequested ? (
           <Suspense fallback={null}>
             <ShortcutsDialog open={shortcutsOpen} onOpenChange={setShortcutsOpen} />

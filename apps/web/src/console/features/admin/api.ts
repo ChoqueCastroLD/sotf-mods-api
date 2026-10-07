@@ -1,11 +1,12 @@
 /**
  * Data of the admin screens (`/moderation/admin/*`, WP-83 on the WP-50/WP-51/WP-52/WP-60 backend).
- * Every admin read and write needs 👑 admin and a session younger than 12 h (the API answers
- * `REAUTH_REQUIRED` otherwise; see `shared.tsx`).
+ * Every admin read and write needs 👑 admin and a valid session.
  *
  * Query keys live under `['admin', …]`:
  *
- *   ['admin', 'game-builds']            game builds, newest first
+ *   ['admin', 'game-builds']            every game build, newest first (the ecosystem screen's picker)
+ *   ['admin', 'game-builds', 'list', p] one page of the game builds screen (search, filters, sort)
+ *   ['admin', 'game-builds', 'steam']   state of the Steam sync
  *   ['admin', 'loader-releases']        RedLoader / RedManager releases
  *   ['admin', 'ecosystem']              loader × build status (public compat read)
  *   ['admin', 'categories']             every category (retired included)
@@ -17,14 +18,16 @@
  *   ['admin', 'rum', range]             RUM p75 per template × country
  *   ['admin', 'operations']             job queues, dead letters, downloads, CDN purges
  */
-import { type QueryClient, queryOptions } from '@tanstack/react-query';
+import { keepPreviousData, type QueryClient, queryOptions } from '@tanstack/react-query';
 import { api } from '../../lib/api.ts';
 import type { SiteSettingKey } from './constants.ts';
 
 type Out<F extends (...args: never[]) => Promise<unknown>> = Awaited<ReturnType<F>>;
 type In<F extends (...args: never[]) => Promise<unknown>> = NonNullable<Parameters<F>[0]>;
 
-export type GameBuild = Out<typeof api.admin.listGameBuilds>['items'][number];
+export type GameBuildPage = Out<typeof api.admin.listGameBuilds>;
+export type GameBuild = GameBuildPage['items'][number];
+export type SteamSyncStatus = Out<typeof api.admin.steamSyncStatus>;
 export type LoaderRelease = Out<typeof api.admin.listLoaderReleases>['items'][number];
 export type Ecosystem = Out<typeof api.compat.ecosystem>;
 export type EcosystemEntry = Ecosystem['entries'][number];
@@ -61,9 +64,67 @@ export const adminKeys = {
   operations: ['admin', 'operations'] as const,
 } as const;
 
+/** Every build (newest first, all pages): the ecosystem screen's picker. */
 export const gameBuildsQuery = queryOptions({
   queryKey: adminKeys.gameBuilds,
-  queryFn: async ({ signal }) => (await api.admin.listGameBuilds({}, { signal })).items,
+  queryFn: async ({ signal }) => {
+    const first = await api.admin.listGameBuilds({ query: { pageSize: 100 } }, { signal });
+    const items = [...first.items];
+    for (let page = 2; page <= first.totalPages; page += 1) {
+      items.push(...(await api.admin.listGameBuilds({ query: { pageSize: 100, page } }, { signal })).items);
+    }
+    return items;
+  },
+});
+
+export const GAME_BUILD_SORTS = ['newest', 'oldest', 'label', 'label_desc', 'added'] as const;
+export type GameBuildSort = (typeof GAME_BUILD_SORTS)[number];
+export const GAME_BUILD_PAGE_SIZES = [25, 50, 100] as const;
+
+const SORT_PARAMS = {
+  newest: { sort: 'released', dir: 'desc' },
+  oldest: { sort: 'released', dir: 'asc' },
+  label: { sort: 'label', dir: 'asc' },
+  label_desc: { sort: 'label', dir: 'desc' },
+  added: { sort: 'created', dir: 'desc' },
+} as const;
+
+/** What the game builds screen asks for; the URL holds the same fields. */
+export interface GameBuildListParams {
+  q: string;
+  current: boolean | undefined;
+  breaking: boolean | undefined;
+  source: 'steam' | 'manual' | undefined;
+  sort: GameBuildSort;
+  page: number;
+  size: number;
+}
+
+export const gameBuildsPageQuery = (params: GameBuildListParams) =>
+  queryOptions({
+    queryKey: [...adminKeys.gameBuilds, 'list', params] as const,
+    queryFn: ({ signal }) =>
+      api.admin.listGameBuilds(
+        {
+          query: {
+            ...SORT_PARAMS[params.sort],
+            ...(params.q ? { q: params.q } : {}),
+            ...(params.current !== undefined ? { current: params.current } : {}),
+            ...(params.breaking !== undefined ? { breaking: params.breaking } : {}),
+            ...(params.source ? { source: params.source } : {}),
+            page: params.page,
+            pageSize: params.size,
+          },
+        },
+        { signal },
+      ),
+    placeholderData: keepPreviousData,
+  });
+
+export const steamSyncStatusQuery = queryOptions({
+  queryKey: [...adminKeys.gameBuilds, 'steam'] as const,
+  queryFn: ({ signal }) => api.admin.steamSyncStatus({}, { signal }),
+  refetchInterval: 60_000,
 });
 
 export const loaderReleasesQuery = queryOptions({
@@ -133,6 +194,7 @@ export const adminApi = {
   createGameBuild: (body: CreateGameBuildInput) => api.admin.createGameBuild({ body }),
   updateGameBuild: (id: number, body: UpdateGameBuildInput) => api.admin.updateGameBuild({ params: { id }, body }),
   deleteGameBuild: (id: number) => api.admin.deleteGameBuild({ params: { id } }),
+  steamSyncNow: () => api.admin.steamSyncNow({}),
   createLoaderRelease: (body: CreateLoaderInput) => api.admin.createLoaderRelease({ body }),
   putEcosystem: (body: EcosystemInput) => api.admin.putEcosystem({ body }),
   createCategory: (body: CategoryInput) => api.admin.createCategory({ body }),

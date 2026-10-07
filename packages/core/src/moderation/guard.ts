@@ -5,17 +5,15 @@
  *    suspension), so a demoted or suspended moderator loses access on the next request even if the
  *    session still carries the old role;
  * 2. `assertCan(subject, action)` — moderators and admins for `moderation.*`, admins for `admin.*`;
- * 3. the session that authenticated the request is younger than 12 h (`REAUTH_REQUIRED`).
  *
  * The platform already rejects anonymous callers and callers below the contract's role; this is
  * the authoritative check (core never trusts the transport layer).
  */
 import { sql } from 'drizzle-orm';
-import { sessionCreatedAt } from '../auth/sessions.ts';
 import { queryOne, toDate } from '../follows/sql.ts';
 import type { Ctx, Role } from '../kernel/context.ts';
 import { errors } from '../kernel/errors.ts';
-import { type Action, assertCan, assertFreshSession, type PermissionSubject } from '../permissions/can.ts';
+import { type Action, assertCan, type PermissionSubject } from '../permissions/can.ts';
 
 export interface StaffActor extends PermissionSubject {
   role: Role;
@@ -61,15 +59,13 @@ export async function loadSubject(ctx: Ctx): Promise<StaffActor | null> {
 }
 
 /**
- * Staff guard: permission `action` plus a session younger than 12 h. Returns the fresh subject.
+ * Staff guard: the actor is signed in and holds permission `action`. Returns the re-read subject.
  */
 export async function assertStaff(ctx: Ctx, action: Action): Promise<StaffActor> {
   const subject = await loadSubject(ctx);
   if (!subject) throw errors.unauthenticated();
   const now = ctx.clock.now();
   assertCan(subject, action, undefined, now);
-  const createdAt = subject.sessionId ? await sessionCreatedAt(ctx.db, subject.sessionId) : null;
-  assertFreshSession(createdAt, now);
   return subject;
 }
 

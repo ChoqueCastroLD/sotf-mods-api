@@ -27,6 +27,7 @@ type Catalog = Readonly<Record<string, string>>;
 const LOADERS = import.meta.glob<{ default: Catalog }>('../../../../../../packages/i18n/messages/upload/*.json');
 
 const catalogs = new Map<Locale, Catalog>();
+/** One promise per locale, kept after it settles: `use()` needs the same object on every render. */
 const pending = new Map<Locale, Promise<void>>();
 
 function loaderFor(locale: Locale): (() => Promise<{ default: Catalog }>) | undefined {
@@ -37,7 +38,6 @@ function loaderFor(locale: Locale): (() => Promise<{ default: Catalog }>) | unde
 
 /** Loads the catalogue of `locale` (English if that locale fails). Idempotent. */
 export function loadUploadMessages(locale: Locale = activeLocale()): Promise<void> {
-  if (catalogs.has(locale)) return Promise.resolve();
   const existing = pending.get(locale);
   if (existing) return existing;
   const run = (async () => {
@@ -50,18 +50,18 @@ export function loadUploadMessages(locale: Locale = activeLocale()): Promise<voi
       await loadUploadMessages('en');
       const en = catalogs.get('en');
       if (en) catalogs.set(locale, en);
-    } finally {
-      pending.delete(locale);
     }
   })();
   pending.set(locale, run);
+  // A failed load can be tried again by the next visit.
+  run.catch(() => pending.delete(locale));
   return run;
 }
 
 /** Suspends until the messages of the console's current locale are loaded. */
 export function useUploadMessages(): void {
   const { locale } = useConsoleLocale();
-  if (!catalogs.has(locale)) use(loadUploadMessages(locale));
+  use(loadUploadMessages(locale));
 }
 
 /** The message `key` in the active console locale, formatted with `params` (ICU). */

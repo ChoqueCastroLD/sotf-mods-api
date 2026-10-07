@@ -21,6 +21,7 @@ import { ArrowUpCircle, Download, Heart, HeartOff, History, Search, Trash2, X } 
 import { useEffect, useMemo, useState } from 'react';
 import { track } from '../../../scripts/beacon.ts';
 import { DomainI18nBridge } from '../../components/DomainI18nBridge.tsx';
+import { ListPager } from '../../components/ListPager.tsx';
 import { useDocumentTitle } from '../../hooks/use-document-title.ts';
 import { useMe } from '../../hooks/use-me.ts';
 import { notify } from '../../lib/notify.ts';
@@ -35,6 +36,8 @@ import {
   meKeys,
   storeSettings,
 } from './api.ts';
+import { MeToolbar } from './list-controls.tsx';
+import { ME_PAGE_SIZES, type MeListState, paginate } from './search.ts';
 import { localDate, ModThumb, publicHref } from './shared.tsx';
 
 /** Rows hidden in this browser by an earlier version (modId → `lastDownloaded.at`). */
@@ -62,7 +65,15 @@ function downloadHref(item: DownloadItem): string | null {
   return version ? `${item.mod.canonicalPath}/download/${encodeURIComponent(version)}` : null;
 }
 
-export function DownloadsScreen() {
+const DOWNLOAD_SORTS = ['recent', 'name', 'updates', 'times'] as const;
+
+export function DownloadsScreen({
+  state,
+  onChange,
+}: {
+  state: MeListState;
+  onChange: (next: Partial<MeListState>) => void;
+}) {
   const queryClient = useQueryClient();
   const me = useMe();
   const { data } = useSuspenseQuery(downloadsQuery);
@@ -85,7 +96,28 @@ export function DownloadsScreen() {
       if (results.every((result) => result.status === 'fulfilled')) storage.remove(HIDDEN_KEY);
     });
   }, [legacyHidden, data.items]);
-  const ids = useMemo(() => items.map((item) => item.mod.id).sort((a, b) => a - b), [items]);
+  const matching = useMemo(() => {
+    const q = state.q.trim().toLocaleLowerCase();
+    const rows = items.filter(
+      (item) =>
+        (state.filter === 'updates' ? item.hasUpdate : true) && (!q || item.mod.name.toLocaleLowerCase().includes(q)),
+    );
+    const collator = new Intl.Collator(undefined, { sensitivity: 'base', numeric: true });
+    const recent = (a: DownloadItem, b: DownloadItem) => b.lastDownloaded.at.localeCompare(a.lastDownloaded.at);
+    switch (state.sort) {
+      case 'name':
+        return rows.sort((a, b) => collator.compare(a.mod.name, b.mod.name));
+      case 'updates':
+        return rows.sort((a, b) => Number(b.hasUpdate) - Number(a.hasUpdate) || recent(a, b));
+      case 'times':
+        return rows.sort((a, b) => b.downloadsCount - a.downloadsCount || recent(a, b));
+      default:
+        return rows.sort(recent);
+    }
+  }, [items, state.q, state.filter, state.sort]);
+  const { rows: pageRows, page, pages } = paginate(matching, state.page, state.size);
+  // Follow state of the rows on screen only.
+  const ids = useMemo(() => pageRows.map((item) => item.mod.id).sort((a, b) => a - b), [pageRows]);
   const lookup = useQuery(followLookupQuery(ids));
   const followed = lookup.data;
 
@@ -224,90 +256,125 @@ export function DownloadsScreen() {
             }
           />
         ) : (
-          <ul className="grid gap-2" aria-label={m.me_downloads_list_label()}>
-            {items.map((item) => {
-              const href = downloadHref(item);
-              const following = followed?.has(item.mod.id) ?? null;
-              return (
-                <li
-                  key={item.mod.id}
-                  className="flex flex-col gap-3 rounded-lg border border-border bg-surface p-3 lg:flex-row lg:items-center"
-                >
-                  <div className="flex min-w-0 flex-1 items-start gap-3">
-                    <ModThumb mod={item.mod} className="h-14 w-24" />
-                    <div className="grid min-w-0 gap-1">
-                      <a
-                        href={publicHref(item.mod.canonicalPath)}
-                        className="truncate font-semibold text-fg hover:text-link"
-                      >
-                        {item.mod.name}
-                      </a>
-                      <p className="text-xs text-fg-muted">
-                        {m.me_downloads_last({
-                          version: item.lastDownloaded.version,
-                          date: localDate(item.lastDownloaded.at),
-                        })}
-                        {item.downloadsCount > 1 ? ` · ${m.me_downloads_times({ count: item.downloadsCount })}` : null}
-                      </p>
-                      <div className="flex flex-wrap items-center gap-2 text-xs">
-                        {item.hasUpdate && item.current ? (
-                          <Badge variant="signal" size="sm" icon={<Icon icon={ArrowUpCircle} size={12} />}>
-                            {m.me_update_from_to({ from: item.lastDownloaded.version, to: item.current.version })}
-                          </Badge>
-                        ) : item.current ? (
-                          <span className="text-fg-muted">{m.me_up_to_date({ version: item.current.version })}</span>
-                        ) : (
-                          <span className="text-fg-muted">{m.me_no_current_version()}</span>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex flex-wrap items-center gap-2 lg:justify-end">
-                    {href ? (
-                      <a
-                        href={href}
-                        rel="nofollow"
-                        onClick={() =>
-                          track('download_click', {
-                            entityType: 'mod',
-                            entityId: item.mod.id,
-                            props: { source: 'downloads' },
-                          })
-                        }
-                        className="inline-flex h-10 items-center gap-2 rounded-md bg-primary px-3 text-sm font-semibold text-primary-fg hover:bg-primary/90 md:h-9"
-                      >
-                        <Icon icon={Download} size={16} />
-                        {item.hasUpdate ? m.me_action_update() : m.me_action_download()}
-                        <span className="sr-only"> · {item.mod.name}</span>
-                      </a>
-                    ) : null}
-                    {following === null ? null : (
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        aria-pressed={following}
-                        disabled={followBusy.has(item.mod.id)}
-                        icon={<Icon icon={following ? HeartOff : Heart} size={16} />}
-                        onClick={() => void toggleFollow(item, following)}
-                      >
-                        {following ? m.me_unfollow() : m.me_follow()}
-                        <span className="sr-only"> · {item.mod.name}</span>
-                      </Button>
-                    )}
-                    <Button
-                      variant="icon"
-                      size="sm"
-                      aria-label={m.me_downloads_remove_label({ mod: item.mod.name })}
-                      title={m.me_downloads_remove()}
-                      onClick={() => void remove(item)}
+          <>
+            <MeToolbar
+              state={state}
+              onChange={onChange}
+              sorts={DOWNLOAD_SORTS}
+              counts={{ all: items.length, updates: items.filter((item) => item.hasUpdate).length }}
+            />
+            {pageRows.length === 0 ? (
+              <EmptyState
+                headingLevel={2}
+                icon={<Icon icon={Search} size={28} />}
+                title={m.me_no_match_title()}
+                description={m.me_no_match_text()}
+                action={
+                  <Button variant="secondary" onClick={() => onChange({ q: '', filter: 'all', page: 1 })}>
+                    {m.me_clear_filters()}
+                  </Button>
+                }
+              />
+            ) : (
+              <ul className="grid gap-2" aria-label={m.me_downloads_list_label()}>
+                {pageRows.map((item) => {
+                  const href = downloadHref(item);
+                  const following = followed?.has(item.mod.id) ?? null;
+                  return (
+                    <li
+                      key={item.mod.id}
+                      className="flex flex-col gap-3 rounded-lg border border-border bg-surface p-3 lg:flex-row lg:items-center"
                     >
-                      <Icon icon={X} size={16} />
-                    </Button>
-                  </div>
-                </li>
-              );
-            })}
-          </ul>
+                      <div className="flex min-w-0 flex-1 items-start gap-3">
+                        <ModThumb mod={item.mod} className="h-14 w-24" />
+                        <div className="grid min-w-0 gap-1">
+                          <a
+                            href={publicHref(item.mod.canonicalPath)}
+                            className="truncate font-semibold text-fg hover:text-link"
+                          >
+                            {item.mod.name}
+                          </a>
+                          <p className="text-xs text-fg-muted">
+                            {m.me_downloads_last({
+                              version: item.lastDownloaded.version,
+                              date: localDate(item.lastDownloaded.at),
+                            })}
+                            {item.downloadsCount > 1
+                              ? ` · ${m.me_downloads_times({ count: item.downloadsCount })}`
+                              : null}
+                          </p>
+                          <div className="flex flex-wrap items-center gap-2 text-xs">
+                            {item.hasUpdate && item.current ? (
+                              <Badge variant="signal" size="sm" icon={<Icon icon={ArrowUpCircle} size={12} />}>
+                                {m.me_update_from_to({ from: item.lastDownloaded.version, to: item.current.version })}
+                              </Badge>
+                            ) : item.current ? (
+                              <span className="text-fg-muted">
+                                {m.me_up_to_date({ version: item.current.version })}
+                              </span>
+                            ) : (
+                              <span className="text-fg-muted">{m.me_no_current_version()}</span>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex flex-wrap items-center gap-2 lg:justify-end">
+                        {href ? (
+                          <a
+                            href={href}
+                            rel="nofollow"
+                            onClick={() =>
+                              track('download_click', {
+                                entityType: 'mod',
+                                entityId: item.mod.id,
+                                props: { source: 'downloads' },
+                              })
+                            }
+                            className="inline-flex h-10 items-center gap-2 rounded-md bg-primary px-3 text-sm font-semibold text-primary-fg hover:bg-primary/90 md:h-9"
+                          >
+                            <Icon icon={Download} size={16} />
+                            {item.hasUpdate ? m.me_action_update() : m.me_action_download()}
+                            <span className="sr-only"> · {item.mod.name}</span>
+                          </a>
+                        ) : null}
+                        {following === null ? null : (
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            aria-pressed={following}
+                            disabled={followBusy.has(item.mod.id)}
+                            icon={<Icon icon={following ? HeartOff : Heart} size={16} />}
+                            onClick={() => void toggleFollow(item, following)}
+                          >
+                            {following ? m.me_unfollow() : m.me_follow()}
+                            <span className="sr-only"> · {item.mod.name}</span>
+                          </Button>
+                        )}
+                        <Button
+                          variant="icon"
+                          size="sm"
+                          aria-label={m.me_downloads_remove_label({ mod: item.mod.name })}
+                          title={m.me_downloads_remove()}
+                          onClick={() => void remove(item)}
+                        >
+                          <Icon icon={X} size={16} />
+                        </Button>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+            <ListPager
+              page={page}
+              totalPages={pages}
+              total={matching.length}
+              pageSize={state.size}
+              onPage={(next) => onChange({ page: next })}
+              pageSizes={ME_PAGE_SIZES}
+              onPageSize={(size) => onChange({ size, page: 1 })}
+            />
+          </>
         )}
 
         <ConfirmDialog

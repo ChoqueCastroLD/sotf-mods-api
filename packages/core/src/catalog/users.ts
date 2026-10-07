@@ -251,7 +251,12 @@ export async function getUserItems(
 ): Promise<{ userId: number; page: PageResult<CatalogEntry['card']> }> {
   const user = await loadUser(ctx, handle);
   const snapshot = await getSnapshot(ctx, config);
-  const items = sortEntries(listableOf(snapshot, user.id, kinds), query.sort, 'desc', undefined);
+  const items = sortEntries(
+    listableOf(snapshot, user.id, kinds),
+    query.sort,
+    query.sort === 'name' ? 'asc' : 'desc',
+    undefined,
+  );
   const start = (query.page - 1) * query.pageSize;
   return {
     userId: user.id,

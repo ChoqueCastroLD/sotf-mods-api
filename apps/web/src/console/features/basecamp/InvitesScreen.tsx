@@ -14,7 +14,7 @@ import { useState } from 'react';
 import { notify } from '../../lib/notify.ts';
 import { basecampKeys, type CoAuthorInvite, invitesQuery, knowledgeApi, refreshLists } from './api.ts';
 import { date } from './format.ts';
-import { bt, useBasecampMessages } from './i18n.ts';
+import { useBasecampMessages } from './i18n.ts';
 import { kt, useKnowledgeMessages } from './knowledge-i18n.ts';
 import { ModThumb, reportFailure, ScreenHeader } from './shared.tsx';
 
@@ -101,7 +101,6 @@ export function InvitesScreen() {
   return (
     <div className="grid gap-6">
       <ScreenHeader
-        readout={bt('basecamp_readout')}
         title={kt('mod_knowledge_invites_title')}
         description={kt('mod_knowledge_invites_intro')}
         actions={

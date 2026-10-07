@@ -53,7 +53,7 @@ function CloseButton() {
   const t = useUiTranslate();
   return (
     <BaseDialog.Close
-      render={<Button variant="icon" size="sm" aria-label={t('ui_close')} className="absolute end-3 top-3" />}
+      render={<Button variant="icon" size="sm" aria-label={t('ui_close')} className="absolute! end-3 top-3" />}
     >
       <Icon icon={X} size={18} />
     </BaseDialog.Close>
@@ -134,22 +134,29 @@ export function Dialog({
         <BaseDialog.Backdrop className={backdropClasses} />
         <BaseDialog.Popup
           className={cn(
-            'fixed top-1/2 left-1/2 z-(--z-modal) flex max-h-[calc(100dvh-4rem)] w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col gap-4',
-            'overflow-y-auto overscroll-contain rounded-xl border border-border bg-overlay p-6 text-fg shadow-lg inset-shadow-highlight outline-none',
+            'fixed top-1/2 left-1/2 z-(--z-modal) flex max-h-[calc(100dvh-4rem)] w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col',
+            'overflow-hidden rounded-xl border border-border bg-overlay text-fg shadow-lg inset-shadow-highlight outline-none',
             'transition-[scale,opacity] duration-(--dur-base) ease-out data-starting-style:scale-98 data-starting-style:opacity-0',
             'data-ending-style:scale-98 data-ending-style:opacity-0 data-ending-style:duration-(--dur-fast)',
             WIDTH[size],
             className,
           )}
         >
-          <header className="flex flex-col gap-1 pe-8">
-            <BaseDialog.Title className="text-lg font-semibold text-fg">{title}</BaseDialog.Title>
-            {description ? (
-              <BaseDialog.Description className="text-sm text-fg-muted">{description}</BaseDialog.Description>
-            ) : null}
-          </header>
-          {children}
-          {footer ? <footer className="flex flex-wrap justify-end gap-2 pt-2">{footer}</footer> : null}
+          {/* The body scrolls on its own; the actions below it stay in reach however tall it is. */}
+          <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto overscroll-contain p-6">
+            <header className="flex flex-col gap-1 pe-8">
+              <BaseDialog.Title className="text-lg font-semibold text-fg">{title}</BaseDialog.Title>
+              {description ? (
+                <BaseDialog.Description className="text-sm text-fg-muted">{description}</BaseDialog.Description>
+              ) : null}
+            </header>
+            {children}
+          </div>
+          {footer ? (
+            <footer className="flex shrink-0 flex-wrap justify-end gap-2 border-t border-border px-6 py-4">
+              {footer}
+            </footer>
+          ) : null}
           {hideClose ? null : <CloseButton />}
         </BaseDialog.Popup>
       </BaseDialog.Portal>

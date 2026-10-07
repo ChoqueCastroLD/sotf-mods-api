@@ -56,6 +56,23 @@ describe('versionSeries', () => {
     ]);
   });
 
+  it('never needs more than the 8 colour slots of the chart theme: the busiest 7 versions and «other»', () => {
+    const seriesByVersion = [
+      ...Array.from({ length: 9 }, (_, index) => ({
+        day: '2026-09-29',
+        version: `Mod ${index} 1.0.0`,
+        downloads: 10 + index,
+      })),
+      { day: '2026-09-29', version: 'other', downloads: 1 },
+    ];
+    const { data, series } = versionSeries({ series: [{ day: '2026-09-29' }] as never, seriesByVersion }, 'Other');
+    expect(series).toHaveLength(8);
+    expect(series[0]).toEqual({ key: 'v0', label: 'Mod 8 1.0.0' });
+    expect(series.at(-1)).toEqual({ key: 'v7', label: 'Other' });
+    // The two smallest versions (10 and 11) and the original «other» (1) share the last slot.
+    expect(data[0]?.v7).toBe(10 + 11 + 1);
+  });
+
   it('is empty without per-version data', () => {
     expect(versionSeries({ series: [], seriesByVersion: [] }, 'Other').series).toEqual([]);
   });

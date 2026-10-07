@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Admin_Unsaved_ConfirmInputs */
 
 const en_admin_unsaved_confirm = /** @type {(inputs: Admin_Unsaved_ConfirmInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`You have unsaved changes. Leave without saving?`)
+	return /** @type {LocalizedString} */ (`You have unsaved changes. They will be lost if you leave.`)
 };
 
 const es_admin_unsaved_confirm = /** @type {(inputs: Admin_Unsaved_ConfirmInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tienes cambios sin guardar. ¿Salir sin guardar?`)
+	return /** @type {LocalizedString} */ (`Tienes cambios sin guardar. Se perderán si sales.`)
 };
 
 const de_admin_unsaved_confirm = /** @type {(inputs: Admin_Unsaved_ConfirmInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Du hast ungespeicherte Änderungen. Ohne Speichern verlassen?`)
+	return /** @type {LocalizedString} */ (`Du hast ungespeicherte Änderungen. Sie gehen verloren, wenn du die Seite verlässt.`)
 };
 
 const fr_admin_unsaved_confirm = /** @type {(inputs: Admin_Unsaved_ConfirmInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vous avez des modifications non enregistrées. Quitter sans enregistrer ?`)
+	return /** @type {LocalizedString} */ (`Vous avez des modifications non enregistrées. Elles seront perdues si vous quittez.`)
 };
 
 const it_admin_unsaved_confirm = /** @type {(inputs: Admin_Unsaved_ConfirmInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Hai modifiche non salvate. Uscire senza salvare?`)
+	return /** @type {LocalizedString} */ (`Hai modifiche non salvate. Andranno perse se esci.`)
 };
 
 const nl_admin_unsaved_confirm = /** @type {(inputs: Admin_Unsaved_ConfirmInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Je hebt niet-opgeslagen wijzigingen. Verlaten zonder opslaan?`)
+	return /** @type {LocalizedString} */ (`Je hebt niet-opgeslagen wijzigingen. Ze gaan verloren als je weggaat.`)
 };
 
 const pl_admin_unsaved_confirm = /** @type {(inputs: Admin_Unsaved_ConfirmInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Masz niezapisane zmiany. Wyjść bez zapisywania?`)
+	return /** @type {LocalizedString} */ (`Masz niezapisane zmiany. Zostaną utracone, jeśli wyjdziesz.`)
 };
 
 const pt_admin_unsaved_confirm = /** @type {(inputs: Admin_Unsaved_ConfirmInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Você tem alterações não salvas. Sair sem salvar?`)
+	return /** @type {LocalizedString} */ (`Você tem alterações não salvas. Elas serão perdidas se você sair.`)
 };
 
 const ru_admin_unsaved_confirm = /** @type {(inputs: Admin_Unsaved_ConfirmInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Есть несохранённые изменения. Уйти без сохранения?`)
+	return /** @type {LocalizedString} */ (`Есть несохранённые изменения. Если выйти, они пропадут.`)
 };
 
 const sv_admin_unsaved_confirm = /** @type {(inputs: Admin_Unsaved_ConfirmInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Du har osparade ändringar. Lämna utan att spara?`)
+	return /** @type {LocalizedString} */ (`Du har osparade ändringar. De går förlorade om du lämnar.`)
 };
 
 const tr_admin_unsaved_confirm = /** @type {(inputs: Admin_Unsaved_ConfirmInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kaydedilmemiş değişikliklerin var. Kaydetmeden çıkılsın mı?`)
+	return /** @type {LocalizedString} */ (`Kaydedilmemiş değişiklikleriniz var. Çıkarsanız kaybolacaklar.`)
 };
 
 const zh_admin_unsaved_confirm = /** @type {(inputs: Admin_Unsaved_ConfirmInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`有未保存的更改。确定不保存就离开吗？`)
+	return /** @type {LocalizedString} */ (`有未保存的更改，离开后将丢失。`)
 };
 
 const ja_admin_unsaved_confirm = /** @type {(inputs: Admin_Unsaved_ConfirmInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`保存されていない変更があります。保存せずに移動しますか？`)
+	return /** @type {LocalizedString} */ (`未保存の変更があります。移動すると失われます。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "You have unsaved changes. Leave without saving?" |
+* | "You have unsaved changes. They will be lost if you leave." |
 *
 * @param {Admin_Unsaved_ConfirmInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

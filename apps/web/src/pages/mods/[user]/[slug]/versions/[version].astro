@@ -23,6 +23,7 @@ import { setPageCache } from '../../../../../lib/cache/page.ts';
 import { EDGE_TTL, pageCache } from '../../../../../lib/cache/policy.ts';
 import { href } from '../../../../../lib/i18n.ts';
 import { ensureLocals } from '../../../../../lib/request-context.ts';
+import { entityOg } from '../../../../../lib/seo/og.ts';
 
 export const prerender = false;
 
@@ -77,7 +78,7 @@ const row = 'grid gap-1 border-b border-border py-2.5 last:border-b-0 sm:grid-co
     ),
     path: versionPagePath(mod, version.version),
     noindex: mod.noindex || version.status !== 'active',
-    og: { imageAlt: m.mod_og_alt({ name: mod.name }), ...(mod.nsfw || !mod.thumbnail ? {} : { image: mod.thumbnail.url }) },
+    og: { imageAlt: m.mod_og_alt({ name: mod.name }), ...entityOg(mod) },
   }}
 >
   <section aria-labelledby="version-title" class="grid gap-5">

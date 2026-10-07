@@ -10,11 +10,11 @@ import { Icon } from '@sotf/ui/icons';
 import { SmilePlus } from 'lucide-react';
 import { type KeyboardEvent, useEffect, useId, useRef, useState } from 'react';
 import { useComments } from './context.ts';
-import { api, failureText } from './lib/api.ts';
+import { api } from './lib/api.ts';
 import { formatNumber } from './lib/i18n.tsx';
 import { myReactions, rememberReactions } from './lib/local.ts';
 import { t } from './lib/messages.ts';
-import { notify } from './lib/ui.tsx';
+import { notifyFailure } from './lib/ui.tsx';
 import type { AnyComment, ReactionKind, ReactionState } from './types.ts';
 
 const KINDS = Object.keys(REACTION_GLYPHS) as ReactionKind[];
@@ -88,7 +88,7 @@ export function Reactions({ comment }: { comment: AnyComment }) {
     } else {
       setMine(previous.mine);
       ctx.patch(comment.id, { reactions: previous.reactions });
-      notify(failureText(result));
+      notifyFailure(result);
     }
   };
 

@@ -15,7 +15,12 @@
  * pushed to the `moderation` SSE channel after every change (`publishLaneCounts`).
  */
 import type { UserRefDTO } from '@sotf/contracts/common';
-import type { ModerationLane, QueueItemDTO, QueuePageDTO } from '@sotf/contracts/moderation';
+import {
+  MODERATION_SLA_HOURS,
+  type ModerationLane,
+  type QueueItemDTO,
+  type QueuePageDTO,
+} from '@sotf/contracts/moderation';
 import { decodeCursor, encodeCursor } from '@sotf/contracts/pagination';
 import type { Executor } from '@sotf/db';
 import { type SQL, sql } from 'drizzle-orm';
@@ -425,14 +430,24 @@ export async function laneRows(ctx: Ctx, lane: ModerationLane): Promise<LaneRow[
   }
 }
 
-function sortKey(r: LaneRow): [number, number, string] {
-  return [-RISK_RANK[r.risk], r.submittedAt.getTime(), `${r.targetType}-${r.targetId}`];
-}
+export type QueueSort = 'oldest' | 'newest' | 'risk';
 
-function compareRows(a: LaneRow, b: LaneRow): number {
-  const [ra, ta, ia] = sortKey(a);
-  const [rb, tb, ib] = sortKey(b);
-  return ra - rb || ta - tb || (ia < ib ? -1 : ia > ib ? 1 : 0);
+/** Comparator of a sort: `oldest` (default), `newest`, or `risk` (high first, then oldest). */
+function comparatorOf(sort: QueueSort): (a: LaneRow, b: LaneRow) => number {
+  const tie = (a: LaneRow, b: LaneRow) => {
+    const ia = `${a.targetType}-${a.targetId}`;
+    const ib = `${b.targetType}-${b.targetId}`;
+    return ia < ib ? -1 : ia > ib ? 1 : 0;
+  };
+  switch (sort) {
+    case 'risk':
+      return (a, b) =>
+        RISK_RANK[b.risk] - RISK_RANK[a.risk] || a.submittedAt.getTime() - b.submittedAt.getTime() || tie(a, b);
+    case 'newest':
+      return (a, b) => b.submittedAt.getTime() - a.submittedAt.getTime() || tie(a, b);
+    default:
+      return (a, b) => a.submittedAt.getTime() - b.submittedAt.getTime() || tie(a, b);
+  }
 }
 
 function cursorOf(r: LaneRow): string {
@@ -442,7 +457,7 @@ function cursorOf(r: LaneRow): string {
   });
 }
 
-function afterCursor(cursor: string): (r: LaneRow) => boolean {
+function afterCursor(cursor: string, compare: (a: LaneRow, b: LaneRow) => number): (r: LaneRow) => boolean {
   const position = decodeCursor(cursor);
   const match = position ? /^([0-2])-([a-z]+)-(\d+)$/.exec(position.id) : null;
   if (!position || !match) {
@@ -460,7 +475,7 @@ function afterCursor(cursor: string): (r: LaneRow) => boolean {
     flags: [],
     assigneeId: null,
   };
-  return (r) => compareRows(r, pivot) > 0;
+  return (r) => compare(r, pivot) > 0;
 }
 
 /** Turns lane rows into `QueueItemDTO`s. */
@@ -502,25 +517,112 @@ export async function toQueueItems(ctx: Ctx, deps: ModerationDeps, list: readonl
   });
 }
 
-/** `GET /ranger/queue?lane=&cursor=&limit=`. */
+/** Filters of `GET /ranger/queue` (all optional). */
+export interface QueueFilters {
+  risk?: Risk | undefined;
+  /** Only items that have waited at least this many hours. */
+  minAgeHours?: number | undefined;
+  /** Author handle or display name (contains, case-insensitive). */
+  author?: string | undefined;
+  assignee?: 'me' | 'none' | 'others' | undefined;
+  escalated?: boolean | undefined;
+  /** Text in the title (contains, case-insensitive). */
+  q?: string | undefined;
+}
+
+function likeEscape(value: string): string {
+  return value.replace(/[\\%_]/g, (c) => `\\${c}`);
+}
+
+/** Ids of the accounts whose handle or display name contains `text`. */
+async function authorIdsLike(ctx: Ctx, text: string): Promise<Set<number>> {
+  const pattern = `%${likeEscape(text.toLowerCase())}%`;
+  const list = await query<{ id: number }>(
+    ctx.db,
+    sql`SELECT "id" FROM "User"
+         WHERE lower("slug") LIKE ${pattern} OR lower(coalesce("displayName", '')) LIKE ${pattern} OR lower("name") LIKE ${pattern}
+         LIMIT 500`,
+  );
+  return new Set(list.map((r) => Number(r.id)));
+}
+
+/** Applies the queue filters to loaded rows. */
+async function filterRows(
+  ctx: Ctx,
+  rows: readonly LaneRow[],
+  filters: QueueFilters,
+  actorId: number,
+): Promise<LaneRow[]> {
+  const now = ctx.clock.now().getTime();
+  const authors = filters.author?.trim() ? await authorIdsLike(ctx, filters.author.trim()) : null;
+  const text = filters.q?.trim().toLowerCase();
+  return rows.filter((r) => {
+    if (filters.risk && r.risk !== filters.risk) return false;
+    if (filters.minAgeHours !== undefined && (now - r.submittedAt.getTime()) / 3_600_000 < filters.minAgeHours) {
+      return false;
+    }
+    if (authors && (r.authorId === null || !authors.has(r.authorId))) return false;
+    if (filters.assignee === 'me' && r.assigneeId !== actorId) return false;
+    if (filters.assignee === 'none' && r.assigneeId !== null) return false;
+    if (filters.assignee === 'others' && (r.assigneeId === null || r.assigneeId === actorId)) return false;
+    if (filters.escalated !== undefined && Boolean(r.escalation) !== filters.escalated) return false;
+    if (text && !r.title.toLowerCase().includes(text)) return false;
+    return true;
+  });
+}
+
+/**
+ * `GET /ranger/queue`: one lane, filtered and sorted (oldest first by default). With `page` the
+ * result is the `limit` items of that page; without it the `cursor` walks the sorted list.
+ */
 export async function getQueue(
   ctx: Ctx,
   deps: ModerationDeps,
-  input: { lane: ModerationLane; cursor?: string | undefined; limit: number },
+  input: {
+    lane: ModerationLane;
+    cursor?: string | undefined;
+    limit: number;
+    page?: number | undefined;
+    sort?: QueueSort | undefined;
+  } & QueueFilters,
 ): Promise<QueuePage> {
-  await assertStaff(ctx, 'moderation.queue');
+  const actor = await assertStaff(ctx, 'moderation.queue');
   const [rows, counts] = await Promise.all([
     laneRows(ctx, input.lane).then((list) => applyQueueMarks(ctx.db, list)),
     laneCounts(ctx.db, ctx.clock.now()),
   ]);
-  let sorted = [...rows].sort(compareRows);
-  if (input.cursor) sorted = sorted.filter(afterCursor(input.cursor));
-  const page = sorted.slice(0, input.limit);
-  const last = page[page.length - 1];
+  const nowMs = ctx.clock.now().getTime();
+  const waits = rows.map((r) => Math.max(0, (nowMs - r.submittedAt.getTime()) / 3_600_000));
+  const stats = {
+    overSla: waits.filter((hours) => hours >= MODERATION_SLA_HOURS).length,
+    oldestHours: Math.round(Math.max(0, ...waits) * 10) / 10,
+    averageHours:
+      waits.length === 0 ? 0 : Math.round((waits.reduce((sum, hours) => sum + hours, 0) / waits.length) * 10) / 10,
+  };
+  const compare = comparatorOf(input.sort ?? 'oldest');
+  const matching = await filterRows(ctx, rows, input, actor.userId);
+  const sorted = matching.sort(compare);
+  const total = sorted.length;
+  const totalPages = total === 0 ? 0 : Math.ceil(total / input.limit);
+  let window = sorted;
+  let page = 1;
+  if (input.page !== undefined) {
+    page = Math.max(1, Math.min(input.page, Math.max(1, totalPages)));
+    window = sorted.slice((page - 1) * input.limit);
+  } else if (input.cursor) {
+    window = sorted.filter(afterCursor(input.cursor, compare));
+  }
+  const slice = window.slice(0, input.limit);
+  const last = slice[slice.length - 1];
   return {
     lane: input.lane,
     counts,
-    items: await toQueueItems(ctx, deps, page),
-    nextCursor: sorted.length > input.limit && last ? cursorOf(last) : null,
+    items: await toQueueItems(ctx, deps, slice),
+    nextCursor: window.length > input.limit && last ? cursorOf(last) : null,
+    page,
+    pageSize: input.limit,
+    total,
+    totalPages,
+    stats,
   };
 }

@@ -57,7 +57,9 @@ const label = m.builds_gallery_label({ name: build.name });
       </details>
     ) : (
       <>
-        <GalleryCarousel mod={build} sizes={sizes} label={label} />
+        <div class="bp-cover overflow-hidden rounded-lg">
+          <GalleryCarousel mod={build} sizes={sizes} label={label} />
+        </div>
         {(build.gallery.length > 1 || build.video) && (
           <div data-gallery-strip class="max-md:hidden">
             <GalleryStrip

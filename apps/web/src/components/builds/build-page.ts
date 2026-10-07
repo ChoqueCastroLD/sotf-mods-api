@@ -22,6 +22,7 @@ import {
   common_followers_count,
 } from '@sotf/i18n/messages';
 import { initSocialIslands } from '../../islands/comments/social.ts';
+import { pageToast, type PageToast as Toast } from '../../lib/client/toast.ts';
 import { hasSignedInHint } from '../../scripts/account-hint.ts';
 import { track } from '../../scripts/beacon.ts';
 import { initCarousels } from '../../scripts/mod/carousel.ts';
@@ -33,8 +34,6 @@ import { initSectionNav } from '../../scripts/mod/section-nav.ts';
 import { whenSession } from '../../scripts/mod/session.ts';
 import { initSheetSections } from '../../scripts/mod/sheets.ts';
 import { initVersions } from '../../scripts/mod/versions.ts';
-
-const TOAST_MS = 6000;
 
 interface FollowState {
   following: boolean;
@@ -48,41 +47,6 @@ function reducedMotion(): boolean {
 // -----------------------------------------------------------------------------------------------
 // Status line (toast + undo)
 // -----------------------------------------------------------------------------------------------
-
-interface Toast {
-  show(message: string, undo?: () => void): void;
-}
-
-function createToast(root: HTMLElement): Toast {
-  const text = root.querySelector<HTMLElement>('[data-build-toast-text]');
-  const undoButton = root.querySelector<HTMLButtonElement>('[data-build-undo]');
-  let timer: number | undefined;
-  let undoAction: (() => void) | undefined;
-  undoButton?.addEventListener('click', () => {
-    const action = undoAction;
-    undoAction = undefined;
-    if (undoButton) undoButton.hidden = true;
-    if (text) text.textContent = '';
-    delete root.dataset.open;
-    window.clearTimeout(timer);
-    action?.();
-  });
-  return {
-    show(message, undo) {
-      window.clearTimeout(timer);
-      if (text) text.textContent = message;
-      root.dataset.open = '';
-      undoAction = undo;
-      if (undoButton) undoButton.hidden = !undo;
-      timer = window.setTimeout(() => {
-        delete root.dataset.open;
-        if (text) text.textContent = '';
-        if (undoButton) undoButton.hidden = true;
-        undoAction = undefined;
-      }, TOAST_MS);
-    },
-  };
-}
 
 // -----------------------------------------------------------------------------------------------
 // Follow
@@ -179,7 +143,7 @@ function initFollow(toast: Toast): void {
       following = previous.following;
       followers = previous.followers;
       paint();
-      toast.show(builds_follow_error());
+      toast.show(builds_follow_error(), undefined, 'error');
     } finally {
       busy = false;
     }
@@ -247,7 +211,7 @@ function initCopy(toast: Toast): void {
       const value = button.hasAttribute('data-copy-link') ? canonicalHref() : (button.dataset.copyText ?? '');
       if (!value) return;
       const ok = await copyText(value);
-      toast.show(ok ? (button.dataset.copied ?? '') : builds_copy_failed());
+      toast.show(ok ? (button.dataset.copied ?? '') : builds_copy_failed(), undefined, ok ? 'success' : 'error');
     });
   }
 }
@@ -315,8 +279,7 @@ export function initBuildPage(): void {
   const root = document.querySelector<HTMLElement>('[data-build-page]');
   if (!root) return;
   const modId = Number(root.dataset.modId);
-  const toastRoot = document.querySelector<HTMLElement>('[data-build-toast]');
-  const toast = toastRoot ? createToast(toastRoot) : { show: () => {} };
+  const toast = pageToast();
   initFollow(toast);
   initCopy(toast);
   if (Number.isInteger(modId) && modId > 0) {
@@ -356,7 +319,8 @@ function initShareAction(toast: Toast): void {
         await navigator.share({ title, url }).catch(() => {});
         return;
       }
-      toast.show((await copyText(url)) ? builds_link_copied() : builds_copy_failed());
+      const copied = await copyText(url);
+      toast.show(copied ? builds_link_copied() : builds_copy_failed(), undefined, copied ? 'success' : 'error');
     });
   }
 }

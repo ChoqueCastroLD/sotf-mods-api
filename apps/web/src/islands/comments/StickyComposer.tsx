@@ -53,7 +53,7 @@ export function StickyComposer({ canWrite, open, onOpenChange, host, children }:
         <button
           type="button"
           onClick={() => onOpenChange(true)}
-          className="flex min-h-12 w-full items-center gap-3 rounded-full border border-border-strong bg-sunken px-4 text-start text-fg-muted active:bg-fg/8"
+          className="flex min-h-12 w-full items-center gap-3 rounded-full border border-border-strong bg-sunken shadow-[inset_0_1px_2px_rgb(0_0_0/0.18)] transition-[border-color,box-shadow] duration-(--dur-fast) hover:border-fg-subtle focus-visible:border-focus focus-visible:shadow-[0_0_0_3px_var(--focus-halo)] focus-visible:outline-none px-4 text-start text-fg-muted active:bg-fg/8"
         >
           <Icon icon={PenLine} size={18} className="shrink-0 text-signal" />
           <span className="min-w-0 flex-1 truncate">{t('social_comment_placeholder')}</span>

@@ -84,7 +84,7 @@ export function RequestForm({
             setTitle(event.target.value);
             if (titleError) setTitleError(null);
           }}
-          className="h-11 rounded-md border border-border-strong bg-raised px-3 text-base text-fg placeholder:text-fg-subtle aria-invalid:border-danger md:h-10 md:text-sm"
+          className="h-11 rounded-md border border-border-strong bg-sunken shadow-[inset_0_1px_2px_rgb(0_0_0/0.18)] transition-[border-color,box-shadow] duration-(--dur-fast) hover:border-fg-subtle focus-visible:border-focus focus-visible:shadow-[0_0_0_3px_var(--focus-halo)] focus-visible:outline-none px-3 text-base text-fg placeholder:text-fg-subtle aria-invalid:border-danger md:h-10 md:text-sm"
         />
         <p id={hintId} className="text-xs text-fg-muted">
           {t('requests_field_title_hint', { min: REQUEST_TITLE_MIN, max: REQUEST_TITLE_MAX })}

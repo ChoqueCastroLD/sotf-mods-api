@@ -1,0 +1,78 @@
+---
+/**
+ * The search box of the Explore pages (`/mods`, `/builds`): a large input with a clear button and
+ * a submit button. It belongs to the filter form through the `form` attribute, so the URL stays the
+ * only state: typing applies after a short pause (`scripts/explore/explore.ts`), Enter submits, and
+ * without JavaScript the plain GET form still works.
+ */
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { Search, X } from 'lucide-react';
+
+interface Props {
+  /** Id of the filter form this input belongs to. */
+  form: string;
+  q: string;
+  label: string;
+  placeholder: string;
+  /** URL without the text query (the clear button). */
+  clearHref: string;
+  class?: string;
+}
+
+const { form, q, label, placeholder, clearHref, class: className } = Astro.props;
+---
+
+<div class:list={['explore-search relative flex items-stretch gap-2', className]} data-explore-intercept="">
+  <div class="relative min-w-0 flex-1">
+    <span class="pointer-events-none absolute inset-y-0 start-4 flex items-center text-fg-subtle">
+      <Icon icon={Search} size={20} />
+    </span>
+    <input
+      id="explore-q"
+      form={form}
+      type="search"
+      name="q"
+      value={q}
+      maxlength={100}
+      autocomplete="off"
+      autocapitalize="off"
+      spellcheck="false"
+      enterkeyhint="search"
+      aria-label={label}
+      placeholder={placeholder}
+      class="explore-q h-12 w-full rounded-lg border border-border-strong bg-sunken ps-12 pe-12 text-base text-fg shadow-sm transition-colors placeholder:text-fg-subtle hover:border-fg-subtle focus-visible:border-primary focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-primary/60 lg:h-14 lg:text-lg"
+    />
+    {
+      q !== '' && (
+        <a
+          href={clearHref}
+          rel="nofollow"
+          data-explore-clear-q=""
+          title={m.explore_search_clear_input()}
+          class="absolute inset-y-1 end-1 inline-flex w-10 items-center justify-center rounded-md text-fg-muted transition-colors hover:bg-fg/8 hover:text-fg focus-visible:outline-2 focus-visible:outline-focus lg:inset-y-1.5"
+        >
+          <Icon icon={X} size={18} />
+          <span class="sr-only">{m.explore_search_clear_input()}</span>
+        </a>
+      )
+    }
+  </div>
+  <button
+    type="submit"
+    form={form}
+    class="inline-flex h-12 shrink-0 items-center justify-center rounded-lg bg-primary text-base font-semibold text-primary-fg transition-colors hover:bg-primary-hover active:scale-[0.98] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus max-sm:w-12 sm:px-6 lg:h-14 lg:px-8"
+  >
+    <span class="sm:hidden"><Icon icon={Search} size={20} /></span>
+    <span class="max-sm:sr-only">{m.explore_catalog_search_button()}</span>
+  </button>
+</div>
+
+<style is:global>
+  /* The clear button replaces the browser's own cross. */
+  .explore-q::-webkit-search-cancel-button,
+  .explore-q::-webkit-search-decoration {
+    appearance: none;
+    display: none;
+  }
+</style>

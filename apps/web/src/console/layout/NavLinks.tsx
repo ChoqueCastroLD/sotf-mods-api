@@ -35,21 +35,39 @@ interface NavEntryProps {
   badge?: ReactNode;
   /** Accessible name when it differs from the visible label (a count next to it). */
   accessibleLabel?: string;
+  /** `area`: the top level (neutral highlight); `place`: a place inside the area (red tint, the one that stands out). */
+  level?: 'area' | 'place';
+  /** Active only on this exact path (the router would otherwise mark `/dashboard` active on every sub page). */
+  exact?: boolean;
 }
 
-function NavEntry({ to, label, icon, active, compact, onNavigate, badge, accessibleLabel }: NavEntryProps) {
+function NavEntry({
+  to,
+  label,
+  icon,
+  active,
+  compact,
+  onNavigate,
+  badge,
+  accessibleLabel,
+  level = 'place',
+  exact = false,
+}: NavEntryProps) {
   const name = accessibleLabel ?? (compact ? label : undefined);
   return (
     <li>
       <Link
         // Area routes are registered by their own work packages; unknown paths render «not found».
         to={to as LinkProps['to']}
+        activeOptions={{ exact }}
         aria-current={active ? 'page' : 'false'}
         {...(name ? { 'aria-label': name } : {})}
         onClick={onNavigate}
         className={cn(
           'group/nav relative flex min-h-10 items-center gap-3 rounded-md px-3 text-sm font-medium text-fg-muted transition-colors duration-(--dur-fast) hover:bg-fg/8 hover:text-fg max-md:min-h-11',
-          'aria-[current=page]:bg-primary/12 aria-[current=page]:text-fg aria-[current=page]:shadow-[inset_2px_0_0_var(--color-primary)]',
+          level === 'place'
+            ? 'aria-[current=page]:bg-primary/12 aria-[current=page]:text-fg aria-[current=page]:shadow-[inset_2px_0_0_var(--color-primary)]'
+            : 'aria-[current=page]:bg-fg/8 aria-[current=page]:text-fg',
           compact && 'justify-center px-0',
         )}
       >
@@ -78,6 +96,7 @@ function itemEntry(item: NavItem, props: NavListProps) {
       label={item.label()}
       icon={item.icon}
       active={isActivePath(props.pathname, item)}
+      exact={item.exact === true}
       compact={props.compact ?? false}
       {...(props.onNavigate ? { onNavigate: props.onNavigate } : {})}
     />
@@ -103,6 +122,7 @@ export function AreaList({ viewer, current, label, unread = 0, ...props }: AreaL
             label={area.label()}
             icon={area.icon}
             active={area.id === current}
+            level="area"
             compact={props.compact ?? false}
             {...(props.onNavigate ? { onNavigate: props.onNavigate } : {})}
             {...(area.id === 'signals' && unread > 0

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Step_File_HintInputs */
 
 const en_upload_step_file_hint = /** @type {(inputs: Upload_Step_File_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zip or build file`)
+	return /** @type {LocalizedString} */ (`Mod .zip file`)
 };
 
 const es_upload_step_file_hint = /** @type {(inputs: Upload_Step_File_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zip o archivo de build`)
+	return /** @type {LocalizedString} */ (`Archivo .zip del mod`)
 };
 
 const de_upload_step_file_hint = /** @type {(inputs: Upload_Step_File_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zip oder Build-Datei`)
+	return /** @type {LocalizedString} */ (`Mod-.zip-Datei`)
 };
 
 const fr_upload_step_file_hint = /** @type {(inputs: Upload_Step_File_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zip ou fichier de build`)
+	return /** @type {LocalizedString} */ (`Fichier .zip du mod`)
 };
 
 const it_upload_step_file_hint = /** @type {(inputs: Upload_Step_File_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zip o file della build`)
+	return /** @type {LocalizedString} */ (`File .zip della mod`)
 };
 
 const nl_upload_step_file_hint = /** @type {(inputs: Upload_Step_File_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zip of buildbestand`)
+	return /** @type {LocalizedString} */ (`.zip-bestand van de mod`)
 };
 
 const pl_upload_step_file_hint = /** @type {(inputs: Upload_Step_File_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zip lub plik builda`)
+	return /** @type {LocalizedString} */ (`Plik .zip moda`)
 };
 
 const pt_upload_step_file_hint = /** @type {(inputs: Upload_Step_File_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zip ou arquivo de build`)
+	return /** @type {LocalizedString} */ (`Arquivo .zip do mod`)
 };
 
 const ru_upload_step_file_hint = /** @type {(inputs: Upload_Step_File_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zip или файл постройки`)
+	return /** @type {LocalizedString} */ (`Файл .zip мода`)
 };
 
 const sv_upload_step_file_hint = /** @type {(inputs: Upload_Step_File_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zip eller byggfil`)
+	return /** @type {LocalizedString} */ (`.zip-fil för modden`)
 };
 
 const tr_upload_step_file_hint = /** @type {(inputs: Upload_Step_File_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zip ya da yapı dosyası`)
+	return /** @type {LocalizedString} */ (`Modun .zip dosyası`)
 };
 
 const zh_upload_step_file_hint = /** @type {(inputs: Upload_Step_File_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zip 或建筑文件`)
+	return /** @type {LocalizedString} */ (`模组 .zip 文件`)
 };
 
 const ja_upload_step_file_hint = /** @type {(inputs: Upload_Step_File_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zip またはビルドファイル`)
+	return /** @type {LocalizedString} */ (`MODの .zip ファイル`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Zip or build file" |
+* | "Mod .zip file" |
 *
 * @param {Upload_Step_File_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

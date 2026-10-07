@@ -171,5 +171,13 @@
   "explore_catalog_empty_clear": "清除筛选",
   "explore_catalog_error_title": "无法加载模组",
   "explore_catalog_error_text": "请稍后再试。",
-  "explore_catalog_retry": "重试"
+  "explore_catalog_retry": "重试",
+  "explore_sort_name": "名称 A 到 Z",
+  "explore_facet_downloads": "下载量",
+  "explore_downloads_min": "下载量 {count, number}+",
+  "explore_page_size_label": "每页显示",
+  "explore_search_builds_label": "搜索建筑",
+  "explore_noresults_query_title": "没有找到与“{query}”相关的结果",
+  "explore_suggest_popular": "热门模组",
+  "explore_results_range": "第 {from, number}–{to, number} 项，共 {total, number} 项"
 }

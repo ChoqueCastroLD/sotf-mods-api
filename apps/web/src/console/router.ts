@@ -18,8 +18,12 @@ export interface ConsoleRouterContext {
   queryClient: QueryClient;
 }
 
-/** Only show the pending skeleton when a route takes longer than this (PLAN §1.2: 300 ms). */
-export const PENDING_MS = 300;
+/**
+ * Only show the pending skeleton when a route takes longer than this. Until then the previous
+ * screen stays put (a thin progress line in the shell, `layout/RouteProgress.tsx`, answers the
+ * click after 120 ms), so quick navigations never flash a skeleton.
+ */
+export const PENDING_MS = 600;
 /** …and then keep it at least this long, so it does not flash. */
 export const PENDING_MIN_MS = 400;
 
@@ -32,6 +36,12 @@ export function createConsoleRouter(queryClient: QueryClient) {
     defaultPendingMs: PENDING_MS,
     defaultPendingMinMs: PENDING_MIN_MS,
     defaultPendingComponent: PendingScreen,
+    // A quick cross-fade between screens (`:active-view-transition-type(console)` in global.css);
+    // filters and pagination (same path) and reduced motion navigate without it.
+    defaultViewTransition: {
+      types: ({ pathChanged }) =>
+        pathChanged && !window.matchMedia('(prefers-reduced-motion: reduce)').matches ? ['console'] : false,
+    },
     defaultErrorComponent: RouteError,
     defaultNotFoundComponent: NotFound,
     scrollRestoration: true,

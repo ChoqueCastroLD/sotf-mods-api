@@ -87,5 +87,10 @@
   "signals_request_comment_grouped": "{count, plural, one {# nouveau commentaire sur la demande « {request} »} other {# nouveaux commentaires sur la demande « {request} »}}",
   "signals_request_adopted": "{actor} travaille sur votre demande « {request} »",
   "signals_request_fulfilled": "{mod} est publié et répond à la demande « {request} »",
-  "signals_jam_phase": "{phase, select, announced {Mod Jam annoncée : {jam}} submissions {Les participations à {jam} sont ouvertes} voting {Le vote de {jam} est ouvert} results {Les résultats de {jam} sont publiés} other {{jam} a du nouveau}}"
+  "signals_jam_phase": "{phase, select, announced {Mod Jam annoncée : {jam}} submissions {Les participations à {jam} sont ouvertes} voting {Le vote de {jam} est ouvert} results {Les résultats de {jam} sont publiés} other {{jam} a du nouveau}}",
+  "signals_state_label": "Afficher",
+  "signals_state_all": "Toutes",
+  "signals_state_unread": "Non lues",
+  "signals_empty_unread_title": "Aucune notification non lue",
+  "signals_empty_unread_text": "Vous avez tout lu pour ce filtre."
 }

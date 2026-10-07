@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Admin_Builds_Table_LabelInputs */
 
 const en_admin_builds_table_label = /** @type {(inputs: Admin_Builds_Table_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Game builds, newest first`)
+	return /** @type {LocalizedString} */ (`Game builds`)
 };
 
 const es_admin_builds_table_label = /** @type {(inputs: Admin_Builds_Table_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Builds del juego, de la más reciente a la más antigua`)
+	return /** @type {LocalizedString} */ (`Builds del juego`)
 };
 
 const de_admin_builds_table_label = /** @type {(inputs: Admin_Builds_Table_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Spiel-Builds, neueste zuerst`)
+	return /** @type {LocalizedString} */ (`Spiel-Builds`)
 };
 
 const fr_admin_builds_table_label = /** @type {(inputs: Admin_Builds_Table_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Builds du jeu, du plus récent au plus ancien`)
+	return /** @type {LocalizedString} */ (`Builds du jeu`)
 };
 
 const it_admin_builds_table_label = /** @type {(inputs: Admin_Builds_Table_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Build del gioco, dalla più recente`)
+	return /** @type {LocalizedString} */ (`Build del gioco`)
 };
 
 const nl_admin_builds_table_label = /** @type {(inputs: Admin_Builds_Table_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Gamebuilds, nieuwste eerst`)
+	return /** @type {LocalizedString} */ (`Gamebuilds`)
 };
 
 const pl_admin_builds_table_label = /** @type {(inputs: Admin_Builds_Table_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Buildy gry, od najnowszego`)
+	return /** @type {LocalizedString} */ (`Buildy gry`)
 };
 
 const pt_admin_builds_table_label = /** @type {(inputs: Admin_Builds_Table_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Builds do jogo, do mais recente ao mais antigo`)
+	return /** @type {LocalizedString} */ (`Builds do jogo`)
 };
 
 const ru_admin_builds_table_label = /** @type {(inputs: Admin_Builds_Table_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Сборки игры, сначала новые`)
+	return /** @type {LocalizedString} */ (`Сборки игры`)
 };
 
 const sv_admin_builds_table_label = /** @type {(inputs: Admin_Builds_Table_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Spelbyggen, nyaste först`)
+	return /** @type {LocalizedString} */ (`Spelbyggen`)
 };
 
 const tr_admin_builds_table_label = /** @type {(inputs: Admin_Builds_Table_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Oyun sürümleri, en yeni önce`)
+	return /** @type {LocalizedString} */ (`Oyun sürümleri`)
 };
 
 const zh_admin_builds_table_label = /** @type {(inputs: Admin_Builds_Table_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`游戏版本，从新到旧`)
+	return /** @type {LocalizedString} */ (`游戏版本`)
 };
 
 const ja_admin_builds_table_label = /** @type {(inputs: Admin_Builds_Table_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ゲームビルド（新しい順）`)
+	return /** @type {LocalizedString} */ (`ゲームビルド`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Game builds, newest first" |
+* | "Game builds" |
 *
 * @param {Admin_Builds_Table_LabelInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -7,7 +7,7 @@ import { createFileRoute } from '@tanstack/react-router';
 import { AreaOutlet } from '../components/AreaOutlet.tsx';
 import { t } from '../lib/messages.ts';
 
-const title = () => t('common_nav_you');
+const title = () => t('console_area_you');
 
 export const Route = createFileRoute('/me')({
   staticData: { title },

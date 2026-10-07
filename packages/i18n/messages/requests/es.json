@@ -85,5 +85,10 @@
   "requests_badge_author": "Autor de la petición",
   "requests_comment_delete_title": "¿Eliminar este comentario?",
   "requests_comment_delete_text": "No se puede deshacer.",
-  "requests_votes_short": "votos"
+  "requests_votes_short": "votos",
+  "requests_sort_old": "Más antiguas",
+  "requests_sort_comments": "Más comentadas",
+  "requests_search_label": "Buscar peticiones",
+  "requests_empty_search_title": "Sin peticiones para «{query}»",
+  "requests_empty_search_text": "Revisa la ortografía, usa menos palabras o busca en todos los estados. Si nadie lo ha pedido aún, puedes hacerlo tú."
 }

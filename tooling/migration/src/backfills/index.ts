@@ -48,6 +48,8 @@ export const ELSEWHERE: Readonly<Record<string, string>> = {
   B16: 'B16 (retroactive gamification) runs in the worker: node dist/backfill.js B16 [--apply] [--wait] (API image)',
   B17: 'B17 rewrites R2 metadata from the operator CLI: pnpm --filter @sotf/migration-tools r2:b17 [--apply]',
   B18: 'B18 (pending mentions) is flushed by the worker at the cut-over (legacy.mentions, LEGACY_COEXIST=false)',
+  B20: 'B20 (automatic checks of the versions of pending legacy mods, needs R2) runs in the worker: node dist/backfill.js B20 [--apply] [--wait] (API image)',
+  B21: 'B21 (game builds seeded from the Steam news feed) runs in the worker: node dist/backfill.js B21 [--apply] [--wait] (API image)',
 };
 
 /** Resolves `B1,b12` style lists, keeping the canonical order. Throws on unknown ids. */

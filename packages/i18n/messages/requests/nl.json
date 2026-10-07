@@ -85,5 +85,10 @@
   "requests_badge_author": "Aanvrager",
   "requests_comment_delete_title": "Deze reactie verwijderen?",
   "requests_comment_delete_text": "Dit kan niet ongedaan worden gemaakt.",
-  "requests_votes_short": "stemmen"
+  "requests_votes_short": "stemmen",
+  "requests_sort_old": "Oudste",
+  "requests_sort_comments": "Meest besproken",
+  "requests_search_label": "Verzoeken zoeken",
+  "requests_empty_search_title": "Geen verzoeken voor “{query}”",
+  "requests_empty_search_text": "Controleer de spelling, gebruik minder woorden of zoek in alle statussen. Heeft nog niemand erom gevraagd, dan kun jij dat doen."
 }

@@ -4,24 +4,14 @@
  * builds the creator tested per version.
  */
 import { Button } from '@sotf/ui/button';
-import { RadioCardGroup } from '@sotf/ui/radio-card';
 import { Select } from '@sotf/ui/select';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { notify } from '../../../lib/notify.ts';
-import { DEDICATED_LABELS, MULTIPLAYER_LABELS, PLATFORM_LABELS, SAFE_TO_REMOVE_LABELS } from '../../upload/labels.ts';
-import { GameBuildPicker } from '../../upload/steps/CompatStep.tsx';
+import { GameBuildPicker } from '../../upload/components/GameBuildPicker.tsx';
+import { WhereFields } from '../../upload/components/WhereFields.tsx';
 import { FieldGroup } from '../../upload/steps/StepHeader.tsx';
-import {
-  DEDICATED_SERVER,
-  type DedicatedServer,
-  MULTIPLAYER_ROLES,
-  type MultiplayerRole,
-  PLATFORMS,
-  type Platform,
-  SAFE_TO_REMOVE,
-  type SafeToRemove,
-} from '../../upload/types.ts';
+import type { DedicatedServer, MultiplayerRole, Platform, SafeToRemove } from '../../upload/types.ts';
 import { basecampApi, basecampKeys, type ListingPatch, type StudioMod, storeStudioMod, storeVersion } from '../api.ts';
 import { bt } from '../i18n.ts';
 import { reportFailure } from '../shared.tsx';
@@ -146,53 +136,7 @@ export function CompatTab({ studio, onDirty }: { studio: StudioMod; onDirty: (di
   return (
     <div className="flex flex-col gap-5">
       <FieldGroup id="basecamp-compat-where" title={bt('basecamp_compat_where')}>
-        <RadioCardGroup<Platform>
-          legend={bt('basecamp_compat_platform')}
-          columns={3}
-          optional
-          value={form.platform}
-          onValueChange={(platform) => setForm((current) => ({ ...current, platform }))}
-          options={PLATFORMS.map((value) => ({
-            value,
-            title: PLATFORM_LABELS[value].title(),
-            description: PLATFORM_LABELS[value].description(),
-          }))}
-        />
-        <RadioCardGroup<MultiplayerRole>
-          legend={bt('basecamp_compat_multiplayer')}
-          columns={2}
-          optional
-          value={form.multiplayerRole}
-          onValueChange={(multiplayerRole) => setForm((current) => ({ ...current, multiplayerRole }))}
-          options={MULTIPLAYER_ROLES.map((value) => ({
-            value,
-            title: MULTIPLAYER_LABELS[value].title(),
-            description: MULTIPLAYER_LABELS[value].description(),
-          }))}
-        />
-        <Select<DedicatedServer>
-          label={bt('basecamp_compat_dedicated')}
-          optional
-          options={DEDICATED_SERVER.map((value) => ({ value, label: DEDICATED_LABELS[value]() }))}
-          value={form.dedicatedServer}
-          placeholder={bt('basecamp_select_placeholder')}
-          onValueChange={(dedicatedServer) =>
-            setForm((current) => ({ ...current, dedicatedServer: dedicatedServer ?? null }))
-          }
-          className="sm:max-w-sm"
-        />
-        <RadioCardGroup<SafeToRemove>
-          legend={bt('basecamp_compat_safe_remove')}
-          columns={3}
-          optional
-          value={form.safeToRemove}
-          onValueChange={(safeToRemove) => setForm((current) => ({ ...current, safeToRemove }))}
-          options={SAFE_TO_REMOVE.map((value) => ({
-            value,
-            title: SAFE_TO_REMOVE_LABELS[value].title(),
-            description: SAFE_TO_REMOVE_LABELS[value].description(),
-          }))}
-        />
+        <WhereFields platformOptional value={form} onChange={setForm} />
         <SaveBar
           dirty={dirty}
           saving={saving}

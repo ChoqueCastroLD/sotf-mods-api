@@ -68,5 +68,15 @@
   "console_nav_jams": "模组 Jam",
   "console_tab_ranger": "审核",
   "console_pull_refreshing": "正在刷新…",
-  "console_tab_basecamp": "控制台"
+  "console_tab_basecamp": "控制台",
+  "console_language_failed": "无法切换语言",
+  "console_pager_range": "第 {from}–{to} 项，共 {total} 项",
+  "console_pager_page_size": "每页条数",
+  "console_pager_per_page": "每页 {count} 条",
+  "console_pager_of": "第 {page} 页，共 {pages} 页",
+  "console_nav_tokens": "访问令牌",
+  "console_nav_group_account": "你的账号",
+  "console_nav_group_app": "应用",
+  "console_nav_group_creator": "创作者与数据",
+  "console_area_you": "我的"
 }

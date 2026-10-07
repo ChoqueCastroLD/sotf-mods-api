@@ -22,6 +22,12 @@ export function isoDay(value: string | Date): string {
   return (value instanceof Date ? value : new Date(value)).toISOString().slice(0, 10);
 }
 
+/** Builds without a real version carry the GUID of their file as version: that is not a version. */
+export function readableVersion(version: string | null | undefined): string | null {
+  if (!version || /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(version)) return null;
+  return version;
+}
+
 /** Binary sizes with Windows labels (1 KB = 1024 B), as players see them. */
 export function formatBytes(bytes: number): string {
   const units = ['B', 'KB', 'MB', 'GB'];
@@ -76,7 +82,7 @@ export function modMarkdown(
 ): string {
   const url = absoluteUrl(mod.canonicalPath, siteUrl);
   const isBuild = mod.kind === 'build';
-  const kindLabel = isBuild ? 'Build (BuildShare blueprint)' : mod.kind === 'library' ? 'Library' : 'Mod';
+  const kindLabel = isBuild ? 'Build (BuildShare)' : mod.kind === 'library' ? 'Library' : 'Mod';
   const latest = mod.latestVersion;
   const lines: string[] = [];
 
@@ -97,7 +103,14 @@ export function modMarkdown(
   // At a glance (PLAN §8.7): every fact of the visible <dl>, with dates.
   lines.push('## At a glance', '');
   const facts: Array<[string, string]> = [];
-  if (latest) facts.push(['Version', `${latest.version} (released ${isoDay(latest.publishedAt)})`]);
+  if (latest) {
+    const version = readableVersion(latest.version);
+    facts.push(
+      version
+        ? ['Version', `${version} (released ${isoDay(latest.publishedAt)})`]
+        : ['Released', isoDay(latest.publishedAt)],
+    );
+  }
   if (mod.category) facts.push(['Category', mod.category.name]);
   if (mod.tags.length > 0) facts.push(['Tags', mod.tags.map((tag) => tag.name).join(', ')]);
   if (latest?.gameVersionDeclared) facts.push(['Declared game version', latest.gameVersionDeclared]);
@@ -137,7 +150,7 @@ export function modMarkdown(
   if (isBuild) {
     lines.push(
       `1. Install ${LOADER_NAME} and the BuildShare mod (RedManager can install both).`,
-      '2. Download the blueprint from the link below.',
+      '2. Download the build from the link below.',
       '3. Import it from the BuildShare menu in game.',
     );
   } else {
@@ -148,7 +161,10 @@ export function modMarkdown(
       `${required.length > 0 ? 4 : 3}. Launch the game and press F1 to confirm it loaded.`,
     );
   }
-  if (latest) lines.push('', `Download ${latest.version}: ${absoluteUrl(latest.downloadPath, siteUrl)}`);
+  if (latest) {
+    const version = readableVersion(latest.version);
+    lines.push('', `Download${version ? ` ${version}` : ''}: ${absoluteUrl(latest.downloadPath, siteUrl)}`);
+  }
   lines.push(`Full guide: ${absoluteUrl('/install', siteUrl)}`, '');
 
   // Requirements.
@@ -173,7 +189,12 @@ export function modMarkdown(
   if (latest) {
     const changelog = htmlToMarkdown(latest.changelogHtml, siteUrl);
     if (changelog) {
-      lines.push(`## Changelog ${latest.version} (${isoDay(latest.publishedAt)})`, '', changelog, '');
+      lines.push(
+        `## Changelog${readableVersion(latest.version) ? ` ${readableVersion(latest.version)}` : ''} (${isoDay(latest.publishedAt)})`,
+        '',
+        changelog,
+        '',
+      );
     }
     lines.push(`All versions: ${absoluteUrl(versionsPath(mod.kind, mod.userHandle, mod.slug), siteUrl)}`, '');
   }
@@ -222,7 +243,7 @@ export function modMarkdown(
 
 function cardLine(card: ModCardDTO, siteUrl: string): string {
   const facts = [
-    card.latestVersion ? `v${card.latestVersion}` : null,
+    readableVersion(card.latestVersion) ? `v${readableVersion(card.latestVersion)}` : null,
     `${numberFormat.format(card.downloads)} downloads`,
     card.ratingAvg !== null && card.ratingCount >= 3 ? `${ratingFormat.format(card.ratingAvg)}/5` : null,
     `updated ${isoDay(card.lastReleasedAt)}`,
@@ -251,7 +272,7 @@ export function profileMarkdown(
       '',
     );
   lines.push(
-    `${user.verifiedCreator ? 'Verified Sons of the Forest mod creator' : 'Sons of the Forest modding community member'} on SOTF Mods. Profile: ${url}`,
+    `${user.verifiedCreator ? 'Trusted Sons of the Forest mod creator' : 'Sons of the Forest modding community member'} on SOTF Mods. Profile: ${url}`,
     '',
     '## Stats',
     '',

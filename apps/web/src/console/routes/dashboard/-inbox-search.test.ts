@@ -12,4 +12,10 @@ describe('/dashboard/inbox search params', () => {
     expect(validate({ type: 'spam', state: 'open', mod: '-3' })).toEqual({});
     expect(validate({ mod: 'abc' })).toEqual({});
   });
+
+  it('keeps the order, the page and a known page size, and drops the defaults', () => {
+    expect(validate({ sort: 'oldest', page: '3', size: '50' })).toEqual({ sort: 'oldest', page: 3, size: 50 });
+    expect(validate({ sort: 'newest', page: '1', size: '25' })).toEqual({});
+    expect(validate({ page: '0', size: '7' })).toEqual({});
+  });
 });

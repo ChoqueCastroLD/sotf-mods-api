@@ -7,6 +7,7 @@ import { Button, ButtonLink } from '@sotf/ui/button';
 import { Icon } from '@sotf/ui/icons';
 import { Check, Copy, FileUp, Link2, Trash2, X } from 'lucide-react';
 import { type DragEvent, type FormEvent, useEffect, useId, useRef, useState } from 'react';
+import { toast } from '../../lib/client/toast.ts';
 import { useTurnstile } from '../auth/turnstile.ts';
 import { API_LOGS, fill, formatBytes, type LogLabels, MAX_LOG_BYTES } from './labels.ts';
 import { ReadFileFailure, readLogFile } from './read-file.ts';
@@ -57,6 +58,8 @@ export default function CreateLogIsland({ labels, lang, basePath, turnstileSiteK
   useEffect(() => {
     // Members skip Turnstile on the server; here it only decides whether to fetch a token.
     let alive = true;
+    // Guests (no `sotf_li` hint cookie) never pay for a request that would only log a 401.
+    if (!/(?:^|;\s*)sotf_li=1(?:;|$)/.test(document.cookie)) return;
     fetch('/api/v2/me/summary', { credentials: 'same-origin', headers: { accept: 'application/json' } })
       .then((response) => {
         if (alive) setSignedIn(response.ok);
@@ -256,7 +259,7 @@ export default function CreateLogIsland({ labels, lang, basePath, turnstileSiteK
           placeholder={dragging ? labels.drop_active : labels.field_text_placeholder}
           aria-describedby={error ? `${sizeId} ${errorId}` : sizeId}
           aria-invalid={error ? true : undefined}
-          className="min-h-44 w-full resize-y rounded-md border border-border-strong bg-raised p-3 font-mono text-[13px] leading-5 text-fg placeholder:text-fg-subtle md:min-h-72"
+          className="min-h-44 w-full resize-y rounded-md border border-border-strong bg-sunken shadow-[inset_0_1px_2px_rgb(0_0_0/0.18)] transition-[border-color,box-shadow] duration-(--dur-fast) hover:border-fg-subtle focus-visible:border-focus focus-visible:shadow-[0_0_0_3px_var(--focus-halo)] focus-visible:outline-none p-3 font-mono text-[13px] leading-5 text-fg placeholder:text-fg-subtle md:min-h-72"
           wrap="off"
         />
         <p id={sizeId} className="text-xs text-fg-muted">
@@ -275,7 +278,7 @@ export default function CreateLogIsland({ labels, lang, basePath, turnstileSiteK
           disabled={busy}
           placeholder={labels.field_title_placeholder}
           onChange={(event) => setTitle(event.target.value)}
-          className="h-11 rounded-md border border-border-strong bg-raised px-3 text-base text-fg placeholder:text-fg-subtle md:h-10 md:text-sm"
+          className="h-11 rounded-md border border-border-strong bg-sunken shadow-[inset_0_1px_2px_rgb(0_0_0/0.18)] transition-[border-color,box-shadow] duration-(--dur-fast) hover:border-fg-subtle focus-visible:border-focus focus-visible:shadow-[0_0_0_3px_var(--focus-halo)] focus-visible:outline-none px-3 text-base text-fg placeholder:text-fg-subtle md:h-10 md:text-sm"
         />
       </div>
       <div ref={turnstile.containerRef} />
@@ -312,6 +315,7 @@ function Result({
   const copy = async (which: string, value: string): Promise<void> => {
     if (await copyText(value)) {
       setCopied(which);
+      toast.success(labels.copied);
       setTimeout(() => setCopied((current) => (current === which ? null : current)), 2000);
     }
   };
@@ -335,7 +339,7 @@ function Result({
             value={link}
             aria-label={labels.done_link}
             onFocus={(event) => event.currentTarget.select()}
-            className="h-11 min-w-0 flex-1 rounded-md border border-border-strong bg-raised px-3 font-mono text-sm text-fg md:h-10"
+            className="h-11 min-w-0 flex-1 rounded-md border border-border-strong bg-sunken shadow-[inset_0_1px_2px_rgb(0_0_0/0.18)] transition-[border-color,box-shadow] duration-(--dur-fast) hover:border-fg-subtle focus-visible:border-focus focus-visible:shadow-[0_0_0_3px_var(--focus-halo)] focus-visible:outline-none px-3 font-mono text-sm text-fg md:h-10"
           />
           <Button
             type="button"

@@ -1,0 +1,208 @@
+{
+  "appnews": {
+    "appid": 1326470,
+    "newsitems": [
+      {
+        "gid": "1811772772638778",
+        "title": "Steam Global Top Sellers for week of 30 Sep — 7 October 2025",
+        "date": 1759827600,
+        "feedlabel": "SteamDB",
+        "feedname": "SteamDB",
+        "feed_type": 0,
+        "appid": 1086940,
+        "contents": "<a href=\"https://steamdb.info/topsellers/2025W41/?utm_source=Steam&utm_medium=Steam&utm_campaign=SteamRSS\"><img src=\"https://steamdb.info/topsellers/2025W41.png\"></a><ol><li><a href=\"https://steamdb.info/app/2807960/charts/?utm_source=Steam&utm_medium=Steam&utm_campaign=SteamRSS\">Battlefield™ 6</a></li><li><a href=\"https://steamdb.info/app/1675200/charts/?utm_source=Steam&utm_medium=Steam&utm_camp"
+      },
+      {
+        "gid": "1811772772517758",
+        "title": "Unity security update",
+        "date": 1759517232,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "[p]Hey everyone,  [/p][p][/p][p]Due to a Unity engine security issue outlined here: [url=\"https://unity.com/security/sept-2025-01/remediation\"]https://unity.com/security/sept-2025-01/remediation[/url] [/p][p]we’ve updated the UnityPlayer.dll file for the following titles:  [/p][list][*][p]Sons of the Forest [/p][/*][*][p]Sons of the Forest Dedicated Server [/p][/*][*][p]The Forest VR  [/p][/*][/li"
+      },
+      {
+        "gid": "1803527891896641",
+        "title": "Steam Global Top Sellers for week of 1 Jul — 8 July 2025",
+        "date": 1751965200,
+        "feedlabel": "SteamDB",
+        "feedname": "SteamDB",
+        "feed_type": 0,
+        "appid": 381210,
+        "contents": "<a href=\"https://steamdb.info/topsellers/2025W28/?utm_source=Steam&utm_medium=Steam&utm_campaign=SteamRSS\"><img src=\"https://steamdb.info/topsellers/2025W28.png\"></a><ol><li><a href=\"https://steamdb.info/app/1675200/charts/?utm_source=Steam&utm_medium=Steam&utm_campaign=SteamRSS\">Steam Deck</a></li><li><a href=\"https://steamdb.info/app/3527290/charts/?utm_source=Steam&utm_medium=Steam&utm_campaign"
+      },
+      {
+        "gid": "1803527891646123",
+        "title": "Brutal survival game Sons of the Forest is cheaper than ever, exploding on Steam",
+        "date": 1751304892,
+        "feedlabel": "PCGamesN",
+        "feedname": "PCGamesN",
+        "feed_type": 0,
+        "appid": 1326470,
+        "contents": "<img width=\"900\" height=\"507\" src=\"https://www.pcgamesn.com/wp-content/sites/pcgamesn/2025/06/Screenshot-474-900x506.png\"/><p><span style=\"font-weight: 400;\">From its bloodthirsty cannibals to its freakish mutants, there's a lot to love about Endnight Games' </span><b>Sons of the Forest</b><span style=\"font-weight: 400;\">. And now, there's another reason to fall for the brutal survival game. Thank"
+      },
+      {
+        "gid": "1789039014504127",
+        "title": "Hotfix",
+        "date": 1737481646,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nHere is another small hotfix for last weeks raft patch.\n\n[list]\n[*] Fixed issue where Structures built at centerpoint of raft could prevent raft from moving correctly\n[/list]\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub."
+      },
+      {
+        "gid": "1789039014476715",
+        "title": "Hotfix",
+        "date": 1737409255,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\n\nHere is a small hotfix for last weeks raft patch.\n[list]\n\n[*] Fixed issue that could occur with overlapping structures being linked incorrectly causing them to be missing on clients or impossible to dismantle.\n[/list]\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub."
+      },
+      {
+        "gid": "1789039014402946",
+        "title": "Sons of the Forest's first patch in 6 months is a doozy, adding buildable rafts, a procedural wall system, and fixing more than 100 bugs",
+        "date": 1737212400,
+        "feedlabel": "PC Gamer",
+        "feedname": "PC Gamer",
+        "feed_type": 0,
+        "appid": 1326470,
+        "contents": "<img src=\"https://cdn.mos.cms.futurecdn.net/TRZv3x95bwxaBxxVX9V3ud.jpg\"/><br><br>\n                <a href=\"https://www.pcgamer.com/sons-of-the-forest/\">Sons of The Forest</a>'s cannibal-infested woods have been quiet lately. After a <a href=\"https://www.pcgamer.com/selling-2-million-copies-in-24-hours-sons-of-the-forest-is-definitely-a-hit/\">wildly popular</a> early access period, it launched in F"
+      },
+      {
+        "gid": "1789039014334148",
+        "title": "Big new Sons of the Forest update makes the brilliant survival game even better",
+        "date": 1737030337,
+        "feedlabel": "PCGamesN",
+        "feedname": "PCGamesN",
+        "feed_type": 0,
+        "appid": 1326470,
+        "contents": "<img width=\"900\" height=\"507\" src=\"https://www.pcgamesn.com/wp-content/sites/pcgamesn/2025/01/sons-of-the-forest-steam-survival-game-new-update-endnight-900x506.jpg\"/><p>The survival game genre is suitably competitive. You've got The Long Dark, DayZ, Rust - in such a packed ecosystem, only the strongest can prevail. Back in 2014, The Forest dominated the survival world thanks to its intuitive base"
+      },
+      {
+        "gid": "1788945554762878",
+        "title": "Rafts, Defensive Wall Blueprints, Fixes, Improvements and more",
+        "date": 1736963096,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nThis patch adds 3 buildable rafts along with a mooring post. Additionally there are new buildable holders for the KnightV and the hang glider. We also added a procedural defensive wall placement system so you can now just draw out where you want the walls and let Kelvin finish them. There is also added Steam Game Recording support and a secret clothing item you can find.\n\nRanged wea"
+      },
+      {
+        "gid": "1786573930849616",
+        "title": "Top-rated survival sim Sons of the Forest drops to its lowest-ever price",
+        "date": 1735226151,
+        "feedlabel": "PCGamesN",
+        "feedname": "PCGamesN",
+        "feed_type": 0,
+        "appid": 1326470,
+        "contents": "<img width=\"900\" height=\"507\" src=\"https://www.pcgamesn.com/wp-content/sites/pcgamesn/2024/12/sons-of-the-forest-1-1-900x506.jpg\"/><p><strong>Sons of the Forest,</strong> a survival sim that traps you on a cannibal and mutant-infested island, is 50% off in Steam's Winter Sale. You'll need a strong stomach to deal with some of its horrors, but at $14.99 this 95% rated game is an absolute steal.</p>"
+      },
+      {
+        "gid": "6146943657174056138",
+        "title": "Steam Global Top Sellers for week of 29 Oct — 5 November 2024",
+        "date": 1730797200,
+        "feedlabel": "SteamDB",
+        "feedname": "SteamDB",
+        "feed_type": 0,
+        "appid": 427520,
+        "contents": "<a href=\"https://steamdb.info/topsellers/2024W45/?utm_source=Steam&utm_medium=Steam&utm_campaign=SteamRSS\"><img src=\"https://steamdb.info/topsellers/2024W45.png\"></a><ol><li><a href=\"https://steamdb.info/app/2933620/charts/?utm_source=Steam&utm_medium=Steam&utm_campaign=SteamRSS\">Call of Duty®: Black Ops 6</a></li><li><a href=\"https://steamdb.info/app/1845910/charts/?utm_source=Steam&utm_medium=St"
+      },
+      {
+        "gid": "5759622039976950252",
+        "title": "Hotfix",
+        "date": 1718907075,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nHere are a few more fixes for some issues that have come up recently.\n\n[list]\n[*] Modified custom settings for health and stamina regeneration: there are now two options to control the base regeneration rate and regeneration rate when cold\n[*] Fix for clients cutscenes not syncing NPC states correctly\n[*] Fix for clients losing input control if host shuts down during end cutscene\n[*"
+      },
+      {
+        "gid": "5741605105608102653",
+        "title": "Hotfix",
+        "date": 1716490019,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone,\n\nHere are a few more fixes for some issues that have come up recently.\n\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub\n\n\n[b]Fixes[/b]\n\n[list]\n[*] Fixed chainsaw revved audio stuck on for other clients after ground attack\n[*] Fixed priest outfit showing low resolution texture in inventory and grab-bag\n[*] Fix for bushes a"
+      },
+      {
+        "gid": "5747233970415479912",
+        "title": "Hotfix",
+        "date": 1715793206,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone, \n\nHere is another hotfix for an issue that came up in Monday’s patch release\n\n[list]\n[*] Fixed issue where log sled could get into a bad state when holding stones\n[/list]\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub"
+      },
+      {
+        "gid": "5768625435415076568",
+        "title": "Hotfix",
+        "date": 1715721621,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey Everyone, \n\nHere is a hotfix for some issues that came up in yesterday's patch release.\n\n[list]\n[*]  Fixed a case where player could get stuck for a few seconds when placing floor planks in a structure\n[*]  Fixed an issue where cutting windows with axe would briefly cause player to transition into idle animation\n[/list]\n\nAs always, please continue to post your bug reports and feedback in the D"
+      },
+      {
+        "gid": "5768625435411253499",
+        "title": "Small Patch",
+        "date": 1715631012,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone,\n\nHere’s a small patch focused mostly on bug fixing.\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub\n\n\n\n\n[b] Improvements[/b]\n\n[list]\n[*] Rabbits can now be electrocuted with the stun gun\n[*] Captured puffies now have an electrocuted reaction that keeps them in the captured/tied up pose\n[*] Rope bridges will now generate n"
+      },
+      {
+        "gid": "5762994032391940590",
+        "title": "Small Patch",
+        "date": 1713471457,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone, \n\nHere’s a small patch that adds a new skunk animal type, the ability to catch, hold and breed rabbits and some small fixes and improvements.\n\nAs always, please continue to post your bug reports and feedback in the Discussions area of the Community Hub\n\n[b]Features[/b]\n[list]\n[*] Added Skunks\n[*] Added new rabbit breeding and holding structures\n[*] Small animal traps will now trap ra"
+      },
+      {
+        "gid": "7309977427449856667",
+        "title": "Sons of the Forest overtaken by The Forest on Steam, but don't worry",
+        "date": 1710777449,
+        "feedlabel": "PCGamesN",
+        "feedname": "PCGamesN",
+        "feed_type": 0,
+        "appid": 1326470,
+        "contents": "<img width=\"900\" height=\"507\" src=\"https://www.pcgamesn.com/wp-content/sites/pcgamesn/2024/03/sons-of-the-forest-steam-players-900x506.jpg\"/><p><strong>Sons of the Forest</strong> has been slightly overtaken by the original The Forest on Steam, as both games go up against one another in the ongoing Spring Sale. With The Forest getting a much steeper discount, it looks like more players are taking "
+      },
+      {
+        "gid": "7309977427442801231",
+        "title": "10 top games to grab during the Steam Spring Sale 2024",
+        "date": 1710608795,
+        "feedlabel": "PCGamesN",
+        "feedname": "PCGamesN",
+        "feed_type": 0,
+        "appid": 753,
+        "contents": "<img width=\"900\" height=\"507\" src=\"https://www.pcgamesn.com/wp-content/sites/pcgamesn/2024/03/spring-steam-sale-2024-best-games-sea-of-stars-900x506.jpg\"/><p>With the <strong>Steam Spring Sale 2024</strong> in full bloom, trying to find your next favorite game to play can be quite the daunting task. There's big discounts and deals galore, with savings on many big titles including older classic PC "
+      },
+      {
+        "gid": "5686429670869102800",
+        "title": "Small Patch",
+        "date": 1710366516,
+        "feedlabel": "Community Announcements",
+        "feedname": "steam_community_announcements",
+        "feed_type": 1,
+        "appid": 1326470,
+        "contents": "Hey everyone, \n\nThis patch gives Kelvin the ability to get into golf carts, allows players to create a new armor type, and adds improvements to the auto foundation snapping system.\n\nThere are also some additional fixes and improvements, listed below.\n\n\n[b]Features[/b]\n[list]\n[*] Added ability for Kelvin to get into golf carts\n[*] Added seat occupied indicators for golf carts\n[*] Added new Armor ty"
+      }
+    ],
+    "count": 214
+  }
+}

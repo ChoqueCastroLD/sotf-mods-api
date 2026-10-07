@@ -3,7 +3,7 @@ export type Admin_Unsaved_ConfirmInputs = {};
 /**
 * | output |
 * | --- |
-* | "You have unsaved changes. Leave without saving?" |
+* | "You have unsaved changes. They will be lost if you leave." |
 *
 * @param {Admin_Unsaved_ConfirmInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

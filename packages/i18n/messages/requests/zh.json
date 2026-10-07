@@ -85,5 +85,10 @@
   "requests_badge_author": "请求者",
   "requests_comment_delete_title": "删除此评论？",
   "requests_comment_delete_text": "此操作无法撤销。",
-  "requests_votes_short": "票"
+  "requests_votes_short": "票",
+  "requests_sort_old": "最早",
+  "requests_sort_comments": "讨论最多",
+  "requests_search_label": "搜索请求",
+  "requests_empty_search_title": "没有找到与“{query}”相关的请求",
+  "requests_empty_search_text": "检查拼写，减少关键词，或在所有状态中查找。如果还没有人提过，你可以提出。"
 }

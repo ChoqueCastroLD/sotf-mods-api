@@ -81,7 +81,7 @@ export function buildsFeedRoute(context: Context): Promise<Response> {
         cards,
         siteUrl: loadEnv().siteUrl,
         title: 'SOTF Mods: new and updated builds',
-        description: 'The latest Sons of the Forest builds (BuildShare blueprints) published on SOTF Mods.',
+        description: 'The latest Sons of the Forest builds for BuildShare published on SOTF Mods.',
         pagePath: '/builds',
         feedPath: '/builds/feed.xml',
         tags: ['list:builds'],

@@ -52,7 +52,11 @@ const now = Date.now();
 const featured = showFeatured && aside?.weekly ? aside.weekly.filter((mod) => mod.downloads7d > 0).slice(0, FEATURED_SIZE) : [];
 // Chips only for what the toolbar has no control for (tags, exclusions, legacy filters, author).
 const chips = model.active.filter(
-  (filter) => filter.key !== 'q' && !(filter.key.startsWith('category:') && state.category.length === 1),
+  (filter) =>
+    filter.key !== 'q' &&
+    filter.key !== 'nsfw' &&
+    filter.key !== 'unapproved' &&
+    !(filter.key.startsWith('category:') && state.category.length === 1),
 );
 const filtered = toolbar.changed > 0 || chips.length > 0 || state.q !== '';
 const selectClass =
@@ -84,7 +88,7 @@ const checkboxClass = 'size-4 shrink-0 rounded-xs accent-primary';
         data-catalog-form=""
         class="sticky top-(--sticky-top) z-(--z-raised,10) -mx-4 grid grid-cols-[minmax(0,1fr)_auto_auto] items-center gap-2 border-b border-border bg-bg/92 px-4 py-2 backdrop-blur-md md:mx-0 md:grid-cols-[minmax(0,1fr)_11rem_11rem_auto] md:rounded-lg md:border md:bg-surface/92 md:px-3 lg:grid-cols-[minmax(0,1fr)_12rem_12rem_auto]"
       >
-        <input type="checkbox" id="catalog-filters-toggle" class="peer sr-only" />
+        <input type="checkbox" id="catalog-filters-toggle" aria-label={m.explore_catalog_filters()} class="peer sr-only md:hidden" />
         <div class="relative min-w-0">
           <span class="pointer-events-none absolute inset-y-0 start-3 flex items-center text-fg-subtle">
             <Icon icon={Search} size={16} />

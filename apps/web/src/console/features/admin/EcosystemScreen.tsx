@@ -396,7 +396,7 @@ function CellNoteForm({
       />
       {current && entry?.noteMd == null ? (
         <div className="grid gap-1 rounded-md border border-border bg-sunken p-3 text-sm">
-          <p className="readout">{m.admin_eco_current_note()}</p>
+          <p className="text-xs font-medium text-fg-muted">{m.admin_eco_current_note()}</p>
           <p className="text-fg-muted">{current}</p>
         </div>
       ) : null}

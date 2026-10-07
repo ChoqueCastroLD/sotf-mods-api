@@ -19,6 +19,7 @@ import type { z } from 'zod';
 import { num, rows } from '../catalog/sql.ts';
 import { utcDay } from '../kernel/clock.ts';
 import type { Ctx } from '../kernel/context.ts';
+import { errors } from '../kernel/errors.ts';
 import { toCsv } from './csv.ts';
 import { addDays, analyticsScope, daysBetween } from './studio-common.ts';
 
@@ -33,6 +34,9 @@ export const MAX_REFERRERS = 20;
 export const MAX_LOCALES = 20;
 export const MAX_COUNTRIES = 50;
 export const MAX_VERSION_MARKERS = 200;
+
+/** Longest custom range (days). */
+export const MAX_CUSTOM_DAYS = 1100;
 
 const RANGE_DAYS: Record<Exclude<Query['range'], 'all'>, number> = { '7d': 7, '30d': 30, '90d': 90 };
 
@@ -66,11 +70,27 @@ interface Scope {
   from: string;
   to: string;
   multi: boolean;
+  custom: boolean;
 }
 
 async function scopeOf(ctx: Ctx, query: Query): Promise<Scope> {
   const modIds = await analyticsScope(ctx, query.modId);
-  const to = utcDay(ctx.clock.now());
+  const today = utcDay(ctx.clock.now());
+  if (query.from !== undefined || query.to !== undefined) {
+    const customTo = query.to ?? today;
+    const customFrom = query.from ?? addDays(customTo, -29);
+    if (customFrom > customTo || customTo > today || daysBetween(customFrom, customTo).length > MAX_CUSTOM_DAYS) {
+      throw errors.validation('Invalid date range', [
+        {
+          path: 'from',
+          code: 'invalid',
+          message: `from must not be after to, to not after today, at most ${MAX_CUSTOM_DAYS} days`,
+        },
+      ]);
+    }
+    return { modIds, from: customFrom, to: customTo, multi: query.modId === undefined, custom: true };
+  }
+  const to = today;
   let from: string;
   if (query.range === 'all') {
     const first = await rows<{ day: string | null }>(
@@ -86,7 +106,7 @@ async function scopeOf(ctx: Ctx, query: Query): Promise<Scope> {
   } else {
     from = addDays(to, -(RANGE_DAYS[query.range] - 1));
   }
-  return { modIds, from, to, multi: query.modId === undefined };
+  return { modIds, from, to, multi: query.modId === undefined, custom: false };
 }
 
 interface DownloadRow {
@@ -275,7 +295,7 @@ export async function getCreatorAnalytics(ctx: Ctx, query: Query): Promise<Analy
   const totalViews = [...viewSeries.values()].reduce((a, b) => a + b, 0);
 
   return {
-    range: query.range,
+    range: scope.custom ? 'custom' : query.range,
     granularity: g,
     from,
     to,
@@ -364,5 +384,8 @@ export async function getCreatorAnalyticsCsv(ctx: Ctx, query: Query): Promise<An
     subject =
       (found?.slug ?? String(query.modId)).replace(/[^\w.-]+/g, '-').replace(/^-+|-+$/g, '') || String(query.modId);
   }
-  return { filename: `sotf-mods-analytics-${subject}-${query.range}-${scope.to}.csv`, body };
+  return {
+    filename: `sotf-mods-analytics-${subject}-${scope.custom ? `${scope.from}_${scope.to}` : query.range}-${scope.to}.csv`,
+    body,
+  };
 }

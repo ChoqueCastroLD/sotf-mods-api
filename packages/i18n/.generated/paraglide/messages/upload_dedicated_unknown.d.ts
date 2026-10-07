@@ -3,7 +3,7 @@ export type Upload_Dedicated_UnknownInputs = {};
 /**
 * | output |
 * | --- |
-* | "Not sure" |
+* | "I don’t know" |
 *
 * @param {Upload_Dedicated_UnknownInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

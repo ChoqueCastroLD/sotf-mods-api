@@ -15,11 +15,12 @@
  *   t('social_review_stars', { count: 4 });
  */
 import { type Locale, matchLocale, toHtmlLang } from '@sotf/i18n';
-import { formatIcu, type IcuParams } from '@sotf/ui/domain';
 import type errors from '../../../../../../packages/i18n/messages/errors/en.json';
 import type jams from '../../../../../../packages/i18n/messages/jams/en.json';
 import type requests from '../../../../../../packages/i18n/messages/requests/en.json';
 import type social from '../../../../../../packages/i18n/messages/social/en.json';
+// The ICU file itself: the `@sotf/ui/domain` barrel would pull React modules into this plain script.
+import { formatIcu, type IcuParams } from '../../../../../../packages/ui/src/domain/icu.ts';
 
 type Keys<T> = Exclude<keyof T, '$schema'>;
 export type SocialMessageKey = Keys<typeof social> | Keys<typeof errors> | Keys<typeof requests> | Keys<typeof jams>;

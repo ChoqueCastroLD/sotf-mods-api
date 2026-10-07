@@ -85,5 +85,10 @@
   "requests_badge_author": "Requester",
   "requests_comment_delete_title": "Delete this comment?",
   "requests_comment_delete_text": "This cannot be undone.",
-  "requests_votes_short": "votes"
+  "requests_votes_short": "votes",
+  "requests_sort_old": "Oldest",
+  "requests_sort_comments": "Most discussed",
+  "requests_search_label": "Search requests",
+  "requests_empty_search_title": "No requests for “{query}”",
+  "requests_empty_search_text": "Check the spelling, use fewer words or look in all statuses. If nobody asked for it yet, you can."
 }

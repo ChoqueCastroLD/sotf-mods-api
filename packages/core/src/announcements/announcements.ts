@@ -4,7 +4,7 @@
  * - Public: `GET /announcements/active?locale=` — announcements whose window contains "now",
  *   `patch` first, then `warning`, then `info`, newest start first; the message is resolved for
  *   the locale with English as fallback. Edge-cached 5 min under the `html` tag.
- * - Admin (👑, session < 12 h, `AuditLog`): list, create, replace, delete. Every write purges
+ * - Admin (admin only, `AuditLog`): list, create, replace, delete. Every write purges
  *   `html` (the banner is rendered into every page) and evicts the local caches.
  * - Creating an announcement whose window has already started emits `announcement.published`
  *   (a `system.announcement` signal for everyone). One that starts later is announced by the

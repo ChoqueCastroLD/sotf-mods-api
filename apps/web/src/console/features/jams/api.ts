@@ -6,7 +6,7 @@
  *
  *   ['jams', 'admin']           every jam (staff)
  *   ['jams', 'admin', id]       one jam for the editor
- *   ['jams', 'entries', id]     entries of a jam, any status
+ *   ['jams', 'entries', id, view] one page of the entries of a jam, any status (filters, sort)
  *   ['jams', 'mine']            open jams and own participations
  */
 import { queryOptions } from '@tanstack/react-query';
@@ -25,6 +25,7 @@ export const jamKeys = {
   admin: ['jams', 'admin'] as const,
   one: (id: number) => ['jams', 'admin', id] as const,
   entries: (id: number) => ['jams', 'entries', id] as const,
+  entriesPage: (id: number, view: EntriesView) => ['jams', 'entries', id, view] as const,
   mine: ['jams', 'mine'] as const,
 };
 
@@ -39,10 +40,38 @@ export const adminJamQuery = (id: number) =>
     queryFn: ({ signal }) => api.jams.adminGet({ params: { id } }, { signal }),
   });
 
-export const adminEntriesQuery = (id: number) =>
+export type EntryStatus = AdminEntry['status'];
+export type EntriesPage = Out<typeof api.jams.adminEntries>;
+
+/** Page, filters and sort of the entries list of a jam (every field optional: absent = default). */
+export interface EntriesView {
+  page?: number;
+  size?: number;
+  status?: EntryStatus;
+  q?: string;
+  sort?: 'oldest' | 'votes' | 'name';
+}
+
+export const ENTRIES_PAGE_SIZE = 25;
+
+export const adminEntriesQuery = (id: number, view: EntriesView = {}) =>
   queryOptions({
-    queryKey: jamKeys.entries(id),
-    queryFn: async ({ signal }) => (await api.jams.adminEntries({ params: { id } }, { signal })).items,
+    queryKey: jamKeys.entriesPage(id, view),
+    queryFn: ({ signal }) =>
+      api.jams.adminEntries(
+        {
+          params: { id },
+          query: {
+            page: view.page ?? 1,
+            pageSize: view.size ?? ENTRIES_PAGE_SIZE,
+            ...(view.status ? { status: view.status } : {}),
+            ...(view.q ? { q: view.q } : {}),
+            ...(view.sort ? { sort: view.sort } : {}),
+          },
+        },
+        { signal },
+      ),
+    placeholderData: (previous) => previous,
   });
 
 export const myJamsQuery = queryOptions({

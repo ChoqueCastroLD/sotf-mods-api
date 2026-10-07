@@ -20,7 +20,7 @@ import type { Ctx } from '../kernel/context.ts';
 import { errors } from '../kernel/errors.ts';
 import { renderUserText } from '../mentions/index.ts';
 import { changePhase } from './advance.ts';
-import { adminEntryDto, adminJamDto, type JamRow, listAdminEntryDtos, loadJamById } from './queries.ts';
+import { adminEntryDto, adminJamDto, type JamRow, listAdminEntriesPage, loadJamById } from './queries.ts';
 import { computeJamResults } from './results.ts';
 import { type JamSchedule, PHASE_INDEX, scheduleProblem } from './rules.ts';
 
@@ -225,10 +225,29 @@ export async function resumeSchedule(ctx: Ctx, config: CommunityConfig, id: numb
   return getAdminJam(ctx, config, id);
 }
 
-export async function listAdminEntries(ctx: Ctx, config: CommunityConfig, id: number) {
+export async function listAdminEntries(
+  ctx: Ctx,
+  config: CommunityConfig,
+  id: number,
+  input: {
+    page: number;
+    pageSize: number;
+    status?: JamAdminEntryDTO['status'] | undefined;
+    q?: string | undefined;
+    sort?: 'newest' | 'oldest' | 'votes' | 'name' | undefined;
+  },
+) {
   await staff(ctx);
   if (!(await loadJamById(ctx.db, id))) throw errors.notFound('Jam');
-  return { items: await listAdminEntryDtos(ctx.db, config, { jamId: id }) };
+  const first = await listAdminEntriesPage(ctx.db, config, id, {
+    status: input.status,
+    q: input.q,
+    sort: input.sort,
+    limit: input.pageSize,
+    offset: (input.page - 1) * input.pageSize,
+  });
+  const totalPages = first.total === 0 ? 0 : Math.ceil(first.total / input.pageSize);
+  return { ...first, page: input.page, pageSize: input.pageSize, totalPages };
 }
 
 export async function moderateEntry(

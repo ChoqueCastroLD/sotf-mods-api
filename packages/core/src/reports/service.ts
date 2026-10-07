@@ -184,16 +184,46 @@ export async function createReport(ctx: Ctx, input: CreateReportInput): Promise<
 // Rangers
 // -----------------------------------------------------------------------------------------------
 
-/** `GET /ranger/reports?status=&cursor=&limit=` (open reports oldest first, closed newest first). */
+function likeEscape(value: string): string {
+  return value.replace(/[\\%_]/g, (c) => `\\${c}`);
+}
+
+/**
+ * `GET /ranger/reports`: by status (open reports oldest first, closed newest first unless `sort`
+ * says otherwise), reason, target type and text (details or reporter handle). With `page` the
+ * result is that page with totals; without it the cursor walks the list.
+ */
 export async function listReports(
   ctx: Ctx,
   config: CatalogConfig,
-  input: { status: 'open' | 'resolved' | 'dismissed' | 'all'; cursor?: string | undefined; limit: number },
+  input: {
+    status: 'open' | 'resolved' | 'dismissed' | 'all';
+    cursor?: string | undefined;
+    limit: number;
+    page?: number | undefined;
+    sort?: 'oldest' | 'newest' | undefined;
+    reason?: string | undefined;
+    targetType?: string | undefined;
+    q?: string | undefined;
+  },
 ): Promise<ReportPage> {
   await assertStaff(ctx, 'moderation.reports');
-  const ascending = input.status === 'open';
-  const where: SQL[] = [input.status === 'all' ? sql`TRUE` : sql`r."status" = ${input.status}`];
-  if (input.cursor) {
+  const ascending = input.sort ? input.sort === 'oldest' : input.status === 'open';
+  const filters: SQL[] = [input.status === 'all' ? sql`TRUE` : sql`r."status" = ${input.status}`];
+  if (input.reason) filters.push(sql`r."reason" = ${input.reason}`);
+  if (input.targetType) filters.push(sql`r."targetType" = ${input.targetType}`);
+  const text = input.q?.trim();
+  if (text) {
+    const pattern = `%${likeEscape(text.toLowerCase())}%`;
+    filters.push(
+      sql`(lower(coalesce(r."details", '')) LIKE ${pattern}
+           OR EXISTS (SELECT 1 FROM "User" ru WHERE ru."id" = r."reporterId"
+                        AND (lower(ru."slug") LIKE ${pattern} OR lower(coalesce(ru."displayName", '')) LIKE ${pattern})))`,
+    );
+  }
+  const base = sql.join(filters, sql` AND `);
+  const where: SQL[] = [base];
+  if (input.page === undefined && input.cursor) {
     const position = decodeCursor(input.cursor);
     if (!position || !/^\d+$/.test(position.id)) {
       throw errors.validation('Invalid cursor', [{ path: 'cursor', code: 'invalid', message: 'invalid cursor' }]);
@@ -202,18 +232,31 @@ export async function listReports(
     where.push(ascending ? sql`(r."createdAt", r."id") > ${key}` : sql`(r."createdAt", r."id") < ${key}`);
   }
   const order = ascending ? sql`r."createdAt" ASC, r."id" ASC` : sql`r."createdAt" DESC, r."id" DESC`;
+  const totalRow = await queryOne<{ n: number }>(
+    ctx.db,
+    sql`SELECT count(*)::int AS "n" FROM "Report" r WHERE ${base}`,
+  );
+  const total = totalRow?.n ?? 0;
+  const pages = total === 0 ? 0 : Math.ceil(total / input.limit);
+  const page = input.page === undefined ? 1 : Math.max(1, Math.min(input.page, Math.max(1, pages)));
+  const offset = input.page === undefined ? 0 : (page - 1) * input.limit;
   const list = await query<ReportRow>(
     ctx.db,
-    sql`SELECT ${REPORT_COLUMNS} FROM "Report" r WHERE ${sql.join(where, sql` AND `)} ORDER BY ${order} LIMIT ${input.limit + 1}`,
+    sql`SELECT ${REPORT_COLUMNS} FROM "Report" r WHERE ${sql.join(where, sql` AND `)} ORDER BY ${order}
+        LIMIT ${input.limit + 1} OFFSET ${offset}`,
   );
-  const page = list.slice(0, input.limit);
-  const last = page[page.length - 1];
+  const slice = list.slice(0, input.limit);
+  const last = slice[slice.length - 1];
   return {
-    items: await toDtos(ctx, config, page),
+    items: await toDtos(ctx, config, slice),
     nextCursor:
       list.length > input.limit && last
         ? encodeCursor({ createdAt: (toDate(last.createdAt) ?? new Date(0)).toISOString(), id: Number(last.id) })
         : null,
+    page,
+    pageSize: input.limit,
+    total,
+    totalPages: pages,
   };
 }
 

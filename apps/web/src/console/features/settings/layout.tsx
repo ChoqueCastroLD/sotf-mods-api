@@ -108,7 +108,6 @@ export function SettingsPage({ section, children }: { section: SettingsSection; 
   return (
     <div className="grid max-w-3xl gap-6">
       <header className="grid gap-1">
-        <p className="readout text-signal max-md:hidden">{m.settings_readout()}</p>
         <h1 className="font-display-caps text-display-xs text-fg max-md:sr-only">{meta.title()}</h1>
         <p className="max-w-prose text-sm text-fg-muted">{meta.hint()}</p>
       </header>
@@ -214,7 +213,6 @@ export function SettingsIndex() {
   return (
     <div className="grid max-w-3xl gap-6">
       <header className="grid gap-1 max-md:sr-only">
-        <p className="readout text-signal">{m.settings_readout()}</p>
         <h1 className="font-display-caps text-display-xs text-fg">{m.settings_index_title()}</h1>
       </header>
       <Link

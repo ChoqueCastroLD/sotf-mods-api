@@ -9,6 +9,7 @@
  *   error state, never cached.
  */
 import { m } from '@sotf/i18n/messages';
+import { Pagination } from '@sotf/ui/pagination';
 import { groupJams, loadFinishedResults, loadJamList, winnerOf } from '../../components/jams/data.ts';
 import FirstJam from '../../components/jams/FirstJam.astro';
 import HowItWorks from '../../components/jams/HowItWorks.astro';
@@ -20,7 +21,9 @@ import PageState from '../../components/state/PageState.astro';
 import PageLayout from '../../layouts/PageLayout.astro';
 import { setPageCache } from '../../lib/cache/page.ts';
 import { pageCache } from '../../lib/cache/policy.ts';
+import { loadEnv } from '../../lib/env.ts';
 import { href } from '../../lib/i18n.ts';
+import { itemListJsonLd } from '../../lib/seo/jsonld.ts';
 
 export const prerender = false;
 
@@ -39,19 +42,51 @@ const rest = all.filter((jam) => jam.id !== featured?.id);
 const groups = groupJams(rest);
 const upcoming = groups.running.filter((jam) => jam.phase === 'announced');
 const running = groups.running.filter((jam) => jam.phase !== 'announced');
-const results = await loadFinishedResults(all);
 const ahead = [...running, ...upcoming];
-const past = [...groups.results, ...groups.archive];
+// The finished jams are paged (newest first, or oldest first) so the hub stays short as it grows.
+const PAST_PAGE_SIZE = 8;
+const oldestFirst = Astro.url.searchParams.get('sort') === 'old';
+const pastAll = [...groups.results, ...groups.archive];
+const past = oldestFirst ? [...pastAll].reverse() : pastAll;
+const pastPages = Math.max(1, Math.ceil(past.length / PAST_PAGE_SIZE));
+const rawPage = Number.parseInt(Astro.url.searchParams.get('page') ?? '', 10);
+const page = Number.isInteger(rawPage) && rawPage >= 1 ? Math.min(rawPage, pastPages) : 1;
+const pastPage = past.slice((page - 1) * PAST_PAGE_SIZE, page * PAST_PAGE_SIZE);
+const results = await loadFinishedResults([...(featured ? [featured] : []), ...pastPage], PAST_PAGE_SIZE + 1);
+const pastHref = (next: { page?: number; old?: boolean }) => {
+  const params = new URLSearchParams();
+  if (next.old) params.set('sort', 'old');
+  if (next.page && next.page > 1) params.set('page', String(next.page));
+  const query = params.toString();
+  return `${href('/jams', locale)}${query ? `?${query}` : ''}#jams-past`;
+};
 const sections = [
   { id: 'ahead', title: running.length > 0 ? m.jams_hub_running() : m.jams_hub_upcoming(), jams: ahead, finished: false },
-  { id: 'past', title: m.jams_hub_results(), jams: past, finished: true },
+  { id: 'past', title: m.jams_hub_results(), jams: pastPage, finished: true },
 ].filter((section) => section.jams.length > 0);
+const siteUrl = loadEnv().siteUrl;
+const jsonLd =
+  all.length > 0
+    ? [
+        itemListJsonLd({
+          url: `${siteUrl}${href('/jams', locale)}`,
+          name: m.jams_hub_title(),
+          items: all.map((jam) => ({ name: jam.title, url: `${siteUrl}${href(`/jams/${jam.slug}`, locale)}` })),
+        }),
+      ]
+    : [];
 ---
 
 <PageLayout
   template="jams"
   width="wide"
-  seo={{ title: m.jams_hub_title(), description: m.jams_hub_description(), path: '/jams' }}
+  seo={{
+    title: page > 1 ? m.requests_list_title_page({ title: m.jams_hub_title(), page }) : m.jams_hub_title(),
+    description: m.jams_hub_description(),
+    path: page > 1 && !oldestFirst ? `/jams?page=${page}` : '/jams',
+    noindex: oldestFirst,
+  }}
+  jsonLd={jsonLd}
   breadcrumbs={[{ label: m.common_nav_home(), path: '/' }, { label: m.jams_nav() }]}
 >
   <div class="flex flex-col gap-10 md:gap-12">
@@ -79,10 +114,37 @@ const sections = [
           <JamHero jam={featured} mode="hub" results={results.get(featured.slug) ?? null} />
           {sections.map((section) => (
             <section aria-labelledby={`jams-${section.id}`} class="flex flex-col gap-1">
-              <h2 id={`jams-${section.id}`} class="text-xl font-bold text-fg md:text-2xl">
-                {section.title}
-                <span class="ms-2 text-sm font-normal text-fg-muted tabular-nums">{section.jams.length}</span>
-              </h2>
+              <div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+                <h2 id={`jams-${section.id}`} class="scroll-mt-(--sticky-top) text-xl font-bold text-fg md:text-2xl">
+                  {section.title}
+                  <span class="ms-2 text-sm font-normal text-fg-muted tabular-nums">
+                    {section.finished ? past.length : section.jams.length}
+                  </span>
+                </h2>
+                {section.finished && past.length > 1 && (
+                  <nav aria-label={m.requests_sort_label()} class="flex items-center gap-x-4 text-sm">
+                    <span class="text-fg-muted max-md:sr-only">{m.requests_sort_label()}</span>
+                    {[
+                      { old: false, label: m.explore_sort_new() },
+                      { old: true, label: m.requests_sort_old() },
+                    ].map((sort) => (
+                      <a
+                        href={pastHref({ old: sort.old })}
+                        rel="nofollow"
+                        aria-current={oldestFirst === sort.old ? 'true' : undefined}
+                        class:list={[
+                          'inline-flex min-h-9 items-center',
+                          oldestFirst === sort.old
+                            ? 'font-semibold text-fg underline decoration-primary decoration-2 underline-offset-8'
+                            : 'text-fg-muted hover:text-fg',
+                        ]}
+                      >
+                        {sort.label}
+                      </a>
+                    ))}
+                  </nav>
+                )}
+              </div>
               <ul class="border-t border-border">
                 {section.jams.map((jam) => (
                   <li class="min-w-0">
@@ -90,6 +152,11 @@ const sections = [
                   </li>
                 ))}
               </ul>
+              {section.finished && pastPages > 1 && (
+                <div class="mt-4 flex justify-center">
+                  <Pagination page={page} totalPages={pastPages} hrefFor={(next: number) => pastHref({ page: next, old: oldestFirst })} />
+                </div>
+              )}
             </section>
           ))}
           <HowItWorks />

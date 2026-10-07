@@ -79,6 +79,9 @@ export const JOB_PAYLOADS = {
   'stats.trending': z.object({}),
   'legacy.counters': z.object({}),
   'compat.aggregate': z.object({ modVersionId: EntityId, gameBuildId: EntityId.optional() }),
+  'steam.sync': z.object({
+    force: z.boolean().default(false).describe('Ignore the back-off after failures (the admin "sync now" button)'),
+  }),
   // Accounts
   'account.export': z.object({ exportId: Uuid }),
   'account.delete': z.object({ userId: EntityId.optional().describe('Omit for the daily sweep of due deletions') }),
@@ -149,6 +152,8 @@ export const JOB_SCHEDULES: ReadonlyArray<{
   { queue: 'legacy.mentions', cron: '*/10 * * * *', key: 'every-10m', data: {} },
   // Re-enqueues scans left `pending` for 6 h (a lost or dropped job).
   { queue: 'security.rescan', cron: '35 * * * *', key: 'hourly', data: {} },
+  // New Sons of the Forest build on Steam: registers it as a game build (every 30 minutes).
+  { queue: 'steam.sync', cron: '7,37 * * * *', key: 'every-30m', data: {} },
   // Descriptions rendered with an older `RENDER_VERSION` (a pipeline bump) are re-rendered.
   { queue: 'markdown.rerender', cron: '0 5 * * *', key: 'nightly', data: {} },
   { queue: 'ops.alerts', cron: '*/5 * * * *', key: 'every-5m', data: {} },
@@ -203,6 +208,7 @@ export const JOB_PAYLOAD_EXAMPLES: { readonly [Q in Exclude<JobQueue, 'domain.ev
   'stats.trending': {},
   'legacy.counters': {},
   'compat.aggregate': { modVersionId: 412, gameBuildId: 7 },
+  'steam.sync': { force: false },
   'account.export': { exportId: '0192f3a6-2c3d-7e4f-9a51-6b7c8d9e0f1a' },
   'account.delete': {},
   'accounts.trust-level': {},

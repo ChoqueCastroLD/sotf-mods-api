@@ -5,8 +5,10 @@
  */
 import type { UploadDTO } from '@sotf/contracts/uploads';
 import { Button } from '@sotf/ui/button';
+import { Icon } from '@sotf/ui/icons';
 import { RadarSpinner } from '@sotf/ui/spinner';
 import { useQuery } from '@tanstack/react-query';
+import { CircleAlert } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { api } from '../../../lib/api.ts';
 import { Callout } from '../components/Callout.tsx';
@@ -33,6 +35,8 @@ export interface FileStepProps {
   maxBytes: number;
   /** New version: the mod the file must belong to. */
   target?: { name: string; manifestId: string; latestVersion: string | null } | null;
+  /** «Next» was pressed without a file: say so under the drop area. */
+  missing?: boolean;
   headingId: string;
 }
 
@@ -70,7 +74,7 @@ function buildFromUpload(upload: UploadDTO | null, thumbnail: string | null): Bu
   };
 }
 
-export function FileStep({ fileKind, upload, maxBytes, target, headingId }: FileStepProps) {
+export function FileStep({ fileKind, upload, maxBytes, target, missing = false, headingId }: FileStepProps) {
   const { state } = upload;
   const { report, phase } = state;
   const server = state.upload;
@@ -144,6 +148,12 @@ export function FileStep({ fileKind, upload, maxBytes, target, headingId }: File
           }}
           compact={hasFile}
         />
+      ) : null}
+      {missing && phase === 'idle' ? (
+        <p role="alert" className="flex items-center gap-1.5 text-sm text-danger">
+          <Icon icon={CircleAlert} size={16} />
+          {fileKind === 'build' ? ut('upload_error_file_required_build') : ut('upload_error_file_required')}
+        </p>
       ) : null}
 
       {filename ? (

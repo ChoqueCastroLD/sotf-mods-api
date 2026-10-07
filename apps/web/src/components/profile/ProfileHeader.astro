@@ -29,7 +29,6 @@ import Picture from '../layout/Picture.astro';
 import { markdownLabels } from '../mod/i18n.ts';
 import type { UserPublicDTO } from './data.ts';
 import { linkLabel } from './i18n.ts';
-import ProfileToast from './ProfileToast.astro';
 
 interface Props {
   user: UserPublicDTO;
@@ -215,6 +214,4 @@ if (stats.ratingAvg !== null) {
       ))
     }
   </dl>
-
-  <ProfileToast />
 </header>

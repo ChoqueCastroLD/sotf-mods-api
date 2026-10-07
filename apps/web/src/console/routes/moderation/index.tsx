@@ -1,16 +1,16 @@
 /**
  * `/moderation` — the moderation queue (WP-82): lanes new mods, versions, post-review, builds and
- * reports; `?lane=` picks the lane and `?item=` the open item. The screen lives in
- * `features/ranger`.
+ * reports; `?lane=` picks the lane, `?item=` the open item, and `page`, `sort`, `risk`, `age`,
+ * `assignee`, `escalated`, `author`, `q` the list. The screen lives in `features/ranger`.
  */
 import { m } from '@sotf/i18n/messages';
 import { createFileRoute } from '@tanstack/react-router';
 import type { Lane } from '../../features/ranger/api.ts';
 import { QueueScreen } from '../../features/ranger/QueueScreen.tsx';
-import { isItemId, QUEUE_LANES } from '../../features/ranger/search.ts';
+import { isItemId, parseQueueView, QUEUE_LANES, type QueueView } from '../../features/ranger/search.ts';
 import { RangerRouteError } from '../../features/ranger/shared.tsx';
 
-interface QueueSearch {
+interface QueueSearch extends QueueView {
   lane?: Lane;
   item?: string;
 }
@@ -24,20 +24,21 @@ export const Route = createFileRoute('/moderation/')({
   validateSearch: (search: Record<string, unknown>): QueueSearch => {
     const lane = queueLane(search.lane);
     const item = isItemId(search.item) ? search.item : undefined;
-    return { ...(lane ? { lane } : {}), ...(item ? { item } : {}) };
+    return { ...(lane ? { lane } : {}), ...(item ? { item } : {}), ...parseQueueView(search) };
   },
   errorComponent: RangerRouteError,
   component: QueueRoute,
 });
 
 function QueueRoute() {
-  const search = Route.useSearch();
+  const { lane, item, ...view } = Route.useSearch();
   return (
     <QueueScreen
       basePath="/moderation"
       lanes={QUEUE_LANES}
-      lane={search.lane ?? 'new_mods'}
-      itemId={search.item ?? null}
+      lane={lane ?? 'new_mods'}
+      itemId={item ?? null}
+      view={view}
     />
   );
 }

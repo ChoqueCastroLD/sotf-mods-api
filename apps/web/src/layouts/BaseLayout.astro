@@ -12,6 +12,7 @@
  * - app-shell metadata: installable web manifest, iOS standalone tags (opaque black status bar: the
  *   page starts below it, so nothing hides under the clock; the home-indicator inset is still
  *   handled) and splash screens, safe-area aware viewport (`viewport-fit=cover`);
+ * - the toast region (`lib/client/toast.ts`: two live regions, fixed, never moves the page);
  * - the pull-to-refresh indicator on feed pages (`pullToRefresh`, drawn only in the installed app);
  * - one bundled module (`lib/client/boot.ts`, ≤ 15 KB br budget) that wires the vanilla scripts
  *   (`boot={false}` for the self-contained offline page).
@@ -109,6 +110,14 @@ const locale = ensureLocals(Astro).locale;
     {chrome && <Footer />}
     {chrome && <MobileTabBar />}
     {chrome && <MoreSheet />}
+    {
+      boot && (
+        <div data-toast-region data-label-close={m.common_action_close()} data-label-undo={m.common_action_undo()}>
+          <div data-toast-polite role="status" aria-live="polite" />
+          <div data-toast-assertive role="alert" aria-live="assertive" />
+        </div>
+      )
+    }
     {
       withRefresh && (
         <div

@@ -1,119 +1,124 @@
 /**
  * `/moderation/audit` — the immutable audit log (PLAN §7.4 «Auditoría»): every moderator and admin
  * action with actor, action, target, before/after, reason and time, filterable by actor handle,
- * action (`mod.approve`, `sanction.create`…) and target (`user:12`, `mod:312`). Newest first,
- * cursor pages. The filters live in the URL so a filtered view can be shared.
+ * action (`mod.approve`, `mod.*`), target (`user:12`, `mod:312`), reason text and date range.
+ * Newest first by default, paged on the server. The filters live in the URL so a filtered view
+ * can be shared.
  */
 import { m } from '@sotf/i18n/messages';
 import { Button } from '@sotf/ui/button';
+import { cn } from '@sotf/ui/cn';
 import { EmptyState } from '@sotf/ui/empty-state';
-import { Field } from '@sotf/ui/field';
 import { Icon } from '@sotf/ui/icons';
 import { Input } from '@sotf/ui/input';
 import { Skeleton, SkeletonGroup } from '@sotf/ui/skeleton';
-import { useInfiniteQuery } from '@tanstack/react-query';
-import { Link, useNavigate } from '@tanstack/react-router';
-import { ScrollText } from 'lucide-react';
-import { type FormEvent, useEffect, useState } from 'react';
-import { AUDIT_TARGET, type AuditEntry, type AuditFilters, auditQuery } from './api.ts';
+import { useQuery } from '@tanstack/react-query';
+import { Link } from '@tanstack/react-router';
+import { ScrollText, SearchX } from 'lucide-react';
+import { AUDIT_PAGE_SIZE, AUDIT_TARGET, type AuditEntry, type AuditFilters, auditQuery } from './api.ts';
+import { FilterBar, PageNav, SearchField, SortSelect, useListSearch } from './controls.tsx';
+import { PAGE_SIZES } from './search.ts';
 import { dateTime, PanelError, relative, ScreenHeader, UserChip } from './shared.tsx';
 
+const isTarget = (value: string) => AUDIT_TARGET.test(value);
+
 export function AuditScreen({ filters }: { filters: AuditFilters }) {
-  const navigate = useNavigate();
-  const query = useInfiniteQuery(auditQuery(filters));
-  const entries = query.data?.pages.flatMap((page) => page.items) ?? [];
-  const [actor, setActor] = useState(filters.actor ?? '');
-  const [action, setAction] = useState(filters.action ?? '');
-  const [target, setTarget] = useState(filters.target ?? '');
-  const [targetError, setTargetError] = useState<string | null>(null);
-  useEffect(() => {
-    setActor(filters.actor ?? '');
-    setAction(filters.action ?? '');
-    setTarget(filters.target ?? '');
-  }, [filters.actor, filters.action, filters.target]);
-
-  const filtered = Boolean(filters.actor || filters.action || filters.target);
-
-  const submit = (event: FormEvent) => {
-    event.preventDefault();
-    const nextTarget = target.trim();
-    if (nextTarget && !AUDIT_TARGET.test(nextTarget)) {
-      setTargetError(m.ranger_audit_target_invalid());
-      return;
-    }
-    setTargetError(null);
-    const nextActor = actor.trim().replace(/^@/, '').slice(0, 64);
-    const nextAction = action.trim().slice(0, 80);
-    void navigate({
-      to: '/moderation/audit',
-      search: {
-        ...(nextActor ? { actor: nextActor } : {}),
-        ...(nextAction ? { action: nextAction } : {}),
-        ...(nextTarget ? { target: nextTarget } : {}),
-      },
+  const patch = useListSearch('/moderation/audit');
+  const query = useQuery(auditQuery(filters));
+  const data = query.data;
+  const entries = data?.items ?? [];
+  const size = filters.size ?? AUDIT_PAGE_SIZE;
+  const active = [filters.actor, filters.action, filters.target, filters.q, filters.from, filters.to].filter(
+    Boolean,
+  ).length;
+  const clear = () =>
+    patch({
+      actor: undefined,
+      action: undefined,
+      target: undefined,
+      q: undefined,
+      from: undefined,
+      to: undefined,
     });
-  };
+  const fetching = query.isFetching && query.isPlaceholderData;
 
   return (
     <div className="grid gap-5">
-      <ScreenHeader
-        readout={m.ranger_readout()}
-        title={m.ranger_audit_title()}
-        description={m.ranger_audit_description()}
-      />
+      <ScreenHeader title={m.ranger_audit_title()} description={m.ranger_audit_description()} />
 
-      <form
-        onSubmit={submit}
-        className="grid gap-3 rounded-lg border border-border bg-surface p-4 md:grid-cols-[1fr_1fr_1fr_auto] md:items-end"
-        noValidate
+      <FilterBar
+        search={
+          <SearchField
+            label={m.ranger_audit_reason_search()}
+            placeholder={m.ranger_audit_reason_search()}
+            value={filters.q ?? ''}
+            onCommit={(value) => patch({ q: value || undefined })}
+          />
+        }
+        sort={
+          <SortSelect
+            value={filters.sort ?? 'newest'}
+            onChange={(value) => patch({ sort: value === 'newest' ? undefined : value })}
+            options={[
+              { value: 'newest', label: m.ranger_sort_newest() },
+              { value: 'oldest', label: m.ranger_sort_oldest() },
+            ]}
+          />
+        }
+        activeCount={active}
+        onClear={clear}
       >
-        <Field label={m.ranger_audit_actor()} optional>
-          <Input
-            value={actor}
-            maxLength={65}
-            onChange={(event) => setActor(event.target.value)}
-            placeholder="imaxel"
-            autoCapitalize="none"
-            autoComplete="off"
-            spellCheck={false}
-          />
-        </Field>
-        <Field label={m.ranger_audit_action()} optional>
-          <Input
-            value={action}
-            maxLength={80}
-            onChange={(event) => setAction(event.target.value)}
-            placeholder="mod.reject"
-            autoCapitalize="none"
-            autoComplete="off"
-            spellCheck={false}
-          />
-        </Field>
-        <Field
+        <SearchField
+          label={m.ranger_audit_actor()}
+          placeholder={m.ranger_audit_actor()}
+          value={filters.actor ?? ''}
+          maxLength={64}
+          onCommit={(value) => patch({ actor: value.replace(/^@/, '') || undefined })}
+          className="w-full md:w-40"
+        />
+        <SearchField
+          label={m.ranger_audit_action()}
+          placeholder="mod.*"
+          value={filters.action ?? ''}
+          maxLength={80}
+          onCommit={(value) => patch({ action: value || undefined })}
+          className="w-full md:w-40"
+        />
+        <SearchField
           label={m.ranger_audit_target()}
-          description={m.ranger_audit_target_hint()}
-          error={targetError ?? undefined}
-          optional
-        >
+          placeholder="user:12"
+          value={filters.target ?? ''}
+          maxLength={40}
+          isValid={isTarget}
+          hint={m.ranger_audit_target_invalid()}
+          onCommit={(value) => patch({ target: value || undefined })}
+          className="w-full md:w-32"
+        />
+        <label className="flex items-center gap-2 text-xs text-fg-muted max-md:w-full">
+          <span className="shrink-0">{m.ranger_audit_from()}</span>
           <Input
-            value={target}
-            maxLength={40}
-            onChange={(event) => {
-              setTarget(event.target.value);
-              setTargetError(null);
-            }}
-            placeholder="user:12"
+            type="date"
+            size="sm"
+            title={m.ranger_audit_from()}
+            value={filters.from ?? ''}
+            max={filters.to}
+            onChange={(event) => patch({ from: event.target.value || undefined })}
+            className="w-full md:w-40"
           />
-        </Field>
-        <div className="flex gap-2">
-          <Button type="submit">{m.ranger_audit_apply()}</Button>
-          {filtered ? (
-            <Button variant="ghost" onClick={() => void navigate({ to: '/moderation/audit', search: {} })}>
-              {m.ranger_audit_clear()}
-            </Button>
-          ) : null}
-        </div>
-      </form>
+        </label>
+        <label className="flex items-center gap-2 text-xs text-fg-muted max-md:w-full">
+          <span className="shrink-0">{m.ranger_audit_to()}</span>
+          <Input
+            type="date"
+            size="sm"
+            title={m.ranger_audit_to()}
+            value={filters.to ?? ''}
+            min={filters.from}
+            onChange={(event) => patch({ to: event.target.value || undefined })}
+            className="w-full md:w-40"
+          />
+        </label>
+      </FilterBar>
 
       {query.isPending ? (
         <SkeletonGroup label={m.ranger_loading()} className="grid gap-2">
@@ -124,26 +129,42 @@ export function AuditScreen({ filters }: { filters: AuditFilters }) {
       ) : query.isError ? (
         <PanelError error={query.error} onRetry={() => void query.refetch()} />
       ) : entries.length === 0 ? (
-        <EmptyState
-          icon={<Icon icon={ScrollText} size={32} />}
-          title={m.ranger_audit_empty_title()}
-          description={filtered ? m.ranger_audit_empty_filtered() : m.ranger_audit_empty_text()}
-        />
+        active > 0 ? (
+          <EmptyState
+            icon={<Icon icon={SearchX} size={32} />}
+            title={m.ranger_audit_empty_title()}
+            description={m.ranger_audit_empty_filtered()}
+            action={
+              <Button variant="secondary" onClick={clear}>
+                {m.ranger_filters_clear()}
+              </Button>
+            }
+          />
+        ) : (
+          <EmptyState
+            icon={<Icon icon={ScrollText} size={32} />}
+            title={m.ranger_audit_empty_title()}
+            description={m.ranger_audit_empty_text()}
+          />
+        )
       ) : (
-        <ol className="grid gap-2">
-          {entries.map((entry) => (
-            <AuditRow key={entry.id} entry={entry} />
-          ))}
-        </ol>
-      )}
-
-      {query.hasNextPage ? (
-        <div className="flex justify-center">
-          <Button variant="secondary" loading={query.isFetchingNextPage} onClick={() => void query.fetchNextPage()}>
-            {m.ranger_load_more()}
-          </Button>
+        <div className={cn('grid gap-4 transition-opacity duration-(--dur-fast)', fetching && 'opacity-60')}>
+          <ol className="grid gap-2">
+            {entries.map((entry) => (
+              <AuditRow key={entry.id} entry={entry} />
+            ))}
+          </ol>
+          <PageNav
+            page={filters.page ?? 1}
+            totalPages={data?.totalPages ?? 0}
+            total={data?.total ?? entries.length}
+            pageSize={size}
+            onPage={(page) => patch({ page: page > 1 ? page : undefined })}
+            sizes={PAGE_SIZES}
+            onPageSize={(next) => patch({ size: next === AUDIT_PAGE_SIZE ? undefined : next })}
+          />
         </div>
-      ) : null}
+      )}
     </div>
   );
 }

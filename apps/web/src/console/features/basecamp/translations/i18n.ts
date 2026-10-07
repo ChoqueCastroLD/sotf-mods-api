@@ -21,7 +21,8 @@ const LOADERS = import.meta.glob<{ default: Catalog }>(
 );
 
 const catalogs = new Map<Locale, Catalog>();
-const pending = new Map<Locale, Promise<void>>();
+/** One promise per locale, kept after it settles: `use()` needs the same object on every render. */
+const loads = new Map<Locale, Promise<void>>();
 
 function loaderFor(locale: Locale): (() => Promise<{ default: Catalog }>) | undefined {
   const suffix = `/messages/translations/${locale}.json`;
@@ -31,8 +32,7 @@ function loaderFor(locale: Locale): (() => Promise<{ default: Catalog }>) | unde
 
 /** Loads the catalogue of `locale` (English if that locale fails). Idempotent. */
 export function loadTranslationsMessages(locale: Locale = activeLocale()): Promise<void> {
-  if (catalogs.has(locale)) return Promise.resolve();
-  const existing = pending.get(locale);
+  const existing = loads.get(locale);
   if (existing) return existing;
   const run = (async () => {
     const load = loaderFor(locale);
@@ -44,18 +44,18 @@ export function loadTranslationsMessages(locale: Locale = activeLocale()): Promi
       await loadTranslationsMessages('en');
       const en = catalogs.get('en');
       if (en) catalogs.set(locale, en);
-    } finally {
-      pending.delete(locale);
     }
   })();
-  pending.set(locale, run);
+  loads.set(locale, run);
+  // A failed load can be tried again by the next visit.
+  run.catch(() => loads.delete(locale));
   return run;
 }
 
 /** Suspends until the messages of the console's current locale are loaded. */
 export function useTranslationsMessages(): void {
   const { locale } = useConsoleLocale();
-  if (!catalogs.has(locale)) use(loadTranslationsMessages(locale));
+  use(loadTranslationsMessages(locale));
 }
 
 /** The message `key` in the active console locale, formatted with `params` (ICU). */

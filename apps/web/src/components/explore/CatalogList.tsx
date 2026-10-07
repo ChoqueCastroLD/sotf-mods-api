@@ -49,7 +49,7 @@ export default function CatalogList({
                   headingLevel={2}
                   labels={labels}
                   now={now}
-                  priority={priorityFirst && index === 0}
+                  priority={priorityFirst && index < 2}
                 />
               </li>
               {adAfter && ad ? (

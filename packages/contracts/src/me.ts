@@ -62,6 +62,10 @@ export const ReplyTemplate = z.object({
   text: z.string().trim().min(1).max(REPLY_TEMPLATE_LIMITS.textMax),
 });
 
+/** «Needs attention» rows the creator dismissed: `<kind>:<modId>:<count>` (they come back when the count changes). */
+export const DISMISSED_ATTENTION_MAX = 300;
+export const DismissedAttentionKey = z.string().regex(/^[a-z_]{3,40}:\d{1,10}:\d{1,6}$/);
+
 export const UserSettingsDTO = dto(
   'UserSettingsDTO',
   z.object({
@@ -77,6 +81,11 @@ export const UserSettingsDTO = dto(
     keyboardShortcuts: z.boolean(),
     defaultLicense: ModLicense.nullable().describe('Creator default: preselected licence of new mods'),
     replyTemplates: z.array(ReplyTemplate).max(REPLY_TEMPLATE_LIMITS.max).describe('Creator canned replies'),
+    dismissedAttention: z
+      .array(DismissedAttentionKey)
+      .max(DISMISSED_ATTENTION_MAX)
+      .optional()
+      .describe('Dashboard «Needs attention» rows the creator dismissed'),
   }),
   {
     description: 'UI and privacy-light preferences (`User.settings`).',
@@ -242,6 +251,11 @@ export const UpdateSettingsBody = dto(
       keyboardShortcuts: z.boolean().optional(),
       defaultLicense: ModLicense.nullable().optional(),
       replyTemplates: z.array(ReplyTemplate).max(REPLY_TEMPLATE_LIMITS.max).optional().describe('Replaces the list'),
+      dismissedAttention: z
+        .array(DismissedAttentionKey)
+        .max(DISMISSED_ATTENTION_MAX)
+        .optional()
+        .describe('Replaces the list'),
     })
     .refine((body) => body.nsfwOptIn !== true || body.confirmAdult === true, {
       message: 'confirm you are an adult to enable NSFW content',

@@ -127,19 +127,35 @@ async function requestDtos(db: Executor, config: CommunityConfig, found: Request
   }));
 }
 
+const REQUEST_ORDER = {
+  top: sql`r."voteCount" DESC, r."id" DESC`,
+  new: sql`r."createdAt" DESC, r."id" DESC`,
+  old: sql`r."createdAt" ASC, r."id" ASC`,
+  comments: sql`r."commentCount" DESC, r."voteCount" DESC, r."id" DESC`,
+} as const;
+
+/** Escapes the wildcards of a `LIKE` pattern (the user's text is matched literally). */
+function likeEscape(text: string): string {
+  return text.replace(/[\\%_]/g, (char) => `\\${char}`);
+}
+
 /** `GET /requests`. */
 export async function listRequests(
   db: Executor,
   config: CommunityConfig,
-  query: Pick<RequestListQuery, 'status' | 'sort' | 'page' | 'pageSize'>,
+  query: Pick<RequestListQuery, 'status' | 'sort' | 'page' | 'pageSize'> & Pick<Partial<RequestListQuery>, 'q'>,
 ) {
   const status = query.status === 'all' ? sql`TRUE` : sql`r."status" = ${query.status}`;
-  const order = query.sort === 'new' ? sql`r."createdAt" DESC, r."id" DESC` : sql`r."voteCount" DESC, r."id" DESC`;
+  const order = REQUEST_ORDER[query.sort];
+  const text = query.q?.trim() ? sql`r."title" ILIKE ${`%${likeEscape(query.q.trim())}%`} ESCAPE '\\'` : sql`TRUE`;
   const [count, found] = await Promise.all([
-    firstRow<{ n: number }>(db, sql`SELECT count(*)::int AS "n" FROM "ModRequest" r WHERE ${PUBLIC} AND ${status}`),
+    firstRow<{ n: number }>(
+      db,
+      sql`SELECT count(*)::int AS "n" FROM "ModRequest" r WHERE ${PUBLIC} AND ${status} AND ${text}`,
+    ),
     rows<RequestRow>(
       db,
-      sql`SELECT ${REQUEST_COLUMNS} FROM "ModRequest" r WHERE ${PUBLIC} AND ${status}
+      sql`SELECT ${REQUEST_COLUMNS} FROM "ModRequest" r WHERE ${PUBLIC} AND ${status} AND ${text}
            ORDER BY ${order} LIMIT ${query.pageSize} OFFSET ${(query.page - 1) * query.pageSize}`,
     ),
   ]);

@@ -6,6 +6,7 @@
  */
 import { m } from '@sotf/i18n/messages';
 import { VersionTable } from '@sotf/ui/domain';
+import { Pagination } from '@sotf/ui/pagination';
 import { loadVersions, resolveModPage } from '../../../../../components/mod/data.ts';
 import { versionsPagePath } from '../../../../../components/mod/format.ts';
 import ModLayout from '../../../../../components/mod/ModLayout.astro';
@@ -18,6 +19,7 @@ import { setPageCache } from '../../../../../lib/cache/page.ts';
 import { pageCache } from '../../../../../lib/cache/policy.ts';
 import { href } from '../../../../../lib/i18n.ts';
 import { ensureLocals } from '../../../../../lib/request-context.ts';
+import { entityOg } from '../../../../../lib/seo/og.ts';
 
 export const prerender = false;
 
@@ -29,6 +31,13 @@ if (resolved.rest.length !== 1 || resolved.rest[0] !== 'versions') return respon
 const { mod } = resolved;
 setPageCache(Astro, pageCache.mod(mod.id, mod.userId));
 const versions = await loadVersions(mod.id);
+const PAGE_SIZE = 12;
+const totalPages = Math.max(1, Math.ceil(versions.length / PAGE_SIZE));
+const requestedPage = Number.parseInt(Astro.url.searchParams.get('page') ?? '1', 10);
+const page = Math.min(Math.max(1, Number.isFinite(requestedPage) ? requestedPage : 1), totalPages);
+const visible = versions.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
+const pageHref = (next: number): string =>
+  href(next > 1 ? `${versionsPagePath(mod)}?page=${next}` : versionsPagePath(mod), Astro.locals.locale);
 const label = m.mod_tab_versions();
 const latest = versions.find((version) => version.isLatest) ?? versions[0] ?? null;
 ---
@@ -44,17 +53,18 @@ const latest = versions.find((version) => version.isLatest) ?? versions[0] ?? nu
       m.mod_versions_meta_description({ name: mod.name, count: versions.length, version: latest?.version ?? '-' }),
       160,
     ),
-    path: versionsPagePath(mod),
+    path: page > 1 ? `${versionsPagePath(mod)}?page=${page}` : versionsPagePath(mod),
     noindex: mod.noindex,
-    og: { imageAlt: m.mod_og_alt({ name: mod.name }), ...(mod.nsfw || !mod.thumbnail ? {} : { image: mod.thumbnail.url }) },
+    og: { imageAlt: m.mod_og_alt({ name: mod.name }), ...entityOg(mod) },
   }}
 >
   <section aria-labelledby="versions-title" class="grid gap-4">
     <h2 id="versions-title" class={SECTION_TITLE_CLASSES}>{m.mod_versions_title({ count: versions.length })}</h2>
     <div class="max-md:hidden">
-      <VersionTable versions={versions} caption={m.mod_versions_caption({ name: mod.name })} />
+      <VersionTable versions={visible} caption={m.mod_versions_caption({ name: mod.name })} />
     </div>
-    <VersionRows mod={mod} versions={versions} />
+    <VersionRows mod={mod} versions={visible} />
+    <Pagination page={page} totalPages={totalPages} hrefFor={pageHref} />
     {
       versions.length > 1 && (
         <p>
@@ -73,7 +83,7 @@ const latest = versions.find((version) => version.isLatest) ?? versions[0] ?? nu
     <h2 id="changelog-title" class={SECTION_TITLE_CLASSES}>{m.mod_changelog_title()}</h2>
     {
       versions.length > 0 ? (
-        <VersionTimeline mod={mod} versions={versions} />
+        <VersionTimeline mod={mod} versions={visible} />
       ) : (
         <p class="text-fg-muted">{m.mod_versions_empty()}</p>
       )

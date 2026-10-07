@@ -9,8 +9,16 @@
  *  - Fingerprinted assets (`/_astro/`), brand, art and PWA images are cache-first.
  *  - Everything else (API, uploads, downloads, other origins, non-GET) is not touched.
  *
+ * Rules that keep it correct:
+ *  - A response is cloned (synchronously, before anything reads its body) before it is stored, and
+ *    a failed cache write never breaks the response the page is getting.
+ *  - Navigation preload is always settled with `waitUntil`, including for navigations the worker
+ *    does not answer, so the browser never reports a cancelled preload.
+ *  - Only complete (200), same-origin, non-redirected, shareable responses are stored: never
+ *    `private`/`no-store` ones and never anything that sets a cookie.
+ *
  * Any unexpected error falls through to the plain network. Bump VERSION to drop old caches. */
-const VERSION = 'v2';
+const VERSION = 'v3';
 const PAGES = `sotf-pages-${VERSION}`;
 const ASSETS = `sotf-assets-${VERSION}`;
 const KEEP = new Set([PAGES, ASSETS]);
@@ -43,11 +51,25 @@ async function trim(cache) {
   await Promise.all(keys.slice(0, keys.length - MAX_ASSETS + 40).map((request) => cache.delete(request)));
 }
 
+/** Whether a response may be stored: complete, same-origin, not a redirect, not private. */
+function storable(response) {
+  if (!response || response.status !== 200 || response.type === 'opaque' || response.redirected) return false;
+  const control = (response.headers.get('cache-control') || '').toLowerCase();
+  if (/\b(?:private|no-store)\b/.test(control)) return false;
+  return !response.headers.has('set-cookie');
+}
+
+/** Stores a copy of `response`. The copy is made before the first await, while the body is unread. */
 async function remember(cacheName, request, response) {
-  if (!response?.ok || response.type === 'opaque') return;
-  const cache = await caches.open(cacheName);
-  await cache.put(request, response.clone());
-  if (cacheName === ASSETS) await trim(cache);
+  if (!storable(response)) return;
+  const copy = response.clone();
+  try {
+    const cache = await caches.open(cacheName);
+    await cache.put(request, copy);
+    if (cacheName === ASSETS) await trim(cache);
+  } catch {
+    // Quota or a body that was consumed anyway: the page already has its response.
+  }
 }
 
 /** Fetches a page and the stylesheet, script, font and image URLs it references (href/src). */
@@ -58,8 +80,8 @@ async function precachePage(pathname) {
   if (stored && Date.now() - stored < REFRESH_MS) return;
   const response = await fetch(pathname, { credentials: 'same-origin' });
   if (!response.ok) return;
-  await pages.put(pathname, response.clone());
-  const html = await response.text();
+  const html = await response.clone().text();
+  if (storable(response)) await pages.put(pathname, response);
   const assets = await caches.open(ASSETS);
   const urls = new Set();
   for (const match of html.matchAll(ASSET_IN_HTML)) urls.add(match[1]);
@@ -67,7 +89,7 @@ async function precachePage(pathname) {
     [...urls].map(async (url) => {
       if (await assets.match(url)) return;
       const asset = await fetch(url).catch(() => null);
-      if (asset?.ok) await assets.put(url, asset);
+      if (storable(asset)) await assets.put(url, asset).catch(() => {});
     }),
   );
 }
@@ -101,7 +123,8 @@ async function handleNavigation(event) {
   const url = new URL(event.request.url);
   try {
     const response = (await event.preloadResponse) || (await fetch(event.request));
-    if (GUIDE.test(url.pathname) && response.ok) event.waitUntil(remember(PAGES, event.request, response));
+    // Cloned inside `remember` before this function returns, so before the page reads the body.
+    if (GUIDE.test(url.pathname)) event.waitUntil(remember(PAGES, event.request, response));
     return response;
   } catch {
     const pages = await caches.open(PAGES);
@@ -129,7 +152,12 @@ self.addEventListener('fetch', (event) => {
   if (url.origin !== self.location.origin) return;
 
   if (request.mode === 'navigate') {
-    if ((request.headers.get('accept') || '').includes('text/html')) event.respondWith(handleNavigation(event));
+    if ((request.headers.get('accept') || '').includes('text/html')) {
+      event.respondWith(handleNavigation(event));
+    } else if (event.preloadResponse) {
+      // Not answered here, but the browser started a preload: let it settle instead of cancelling.
+      event.waitUntil(event.preloadResponse.catch(() => {}));
+    }
     return;
   }
   if (STATIC.test(url.pathname)) event.respondWith(handleStatic(event));

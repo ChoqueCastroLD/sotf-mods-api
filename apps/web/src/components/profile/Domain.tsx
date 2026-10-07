@@ -24,7 +24,9 @@ export interface CardGridProps {
   priorityFirst?: boolean;
 }
 
-const GRID = 'grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3';
+/** Pinned mods (at most three) fill one row; the full list is denser. */
+const GRID_PINNED = 'grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3';
+const GRID = 'grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4';
 
 function Cards({
   mods,
@@ -37,7 +39,7 @@ function Cards({
 }) {
   return mods.map((mod, index) => {
     const card = localizedCard(mod, locale);
-    const priority = priorityFirst && index === 0;
+    const priority = priorityFirst && index < 2;
     return (
       <li key={mod.id} className="min-w-0">
         {mod.kind === 'build' ? (
@@ -61,7 +63,7 @@ function Cards({
 export function PinnedMods({ i18n, locale, label, mods }: CardGridProps & { mods: readonly ModCardDTO[] }) {
   return (
     <Scope i18n={i18n}>
-      <ul className={GRID} aria-label={label}>
+      <ul className={GRID_PINNED} aria-label={label}>
         <Cards mods={mods} locale={locale} priorityFirst />
       </ul>
     </Scope>

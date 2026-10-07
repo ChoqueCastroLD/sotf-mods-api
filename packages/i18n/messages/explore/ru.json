@@ -171,5 +171,13 @@
   "explore_catalog_empty_clear": "Сбросить фильтры",
   "explore_catalog_error_title": "Не удалось загрузить моды",
   "explore_catalog_error_text": "Повторите попытку через минуту.",
-  "explore_catalog_retry": "Повторить"
+  "explore_catalog_retry": "Повторить",
+  "explore_sort_name": "Название от А до Я",
+  "explore_facet_downloads": "Загрузки",
+  "explore_downloads_min": "От {count, number} загрузок",
+  "explore_page_size_label": "На странице",
+  "explore_search_builds_label": "Поиск построек",
+  "explore_noresults_query_title": "По запросу «{query}» ничего не найдено",
+  "explore_suggest_popular": "Популярные моды",
+  "explore_results_range": "{from, number}–{to, number} из {total, number}"
 }

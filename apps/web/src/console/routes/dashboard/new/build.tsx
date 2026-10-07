@@ -22,6 +22,7 @@ function NewBuildScreen() {
       mode="build"
       draftId={draft}
       onDraftCreated={(id) => void navigate({ search: { draft: id }, replace: true })}
+      onDraftDone={() => void navigate({ search: {}, replace: true })}
     />
   );
 }

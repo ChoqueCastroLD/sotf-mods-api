@@ -73,7 +73,9 @@ export default defineModule({
     });
     m.implement(jamsEndpoints.adminSetPhase, async ({ params, body, ctx }) => forcePhase(ctx, config, params.id, body));
     m.implement(jamsEndpoints.adminResume, async ({ params, ctx }) => resumeSchedule(ctx, config, params.id));
-    m.implement(jamsEndpoints.adminEntries, async ({ params, ctx }) => listAdminEntries(ctx, config, params.id));
+    m.implement(jamsEndpoints.adminEntries, async ({ params, query, ctx }) =>
+      listAdminEntries(ctx, config, params.id, query),
+    );
     m.implement(jamsEndpoints.adminModerateEntry, async ({ params, body, ctx }) =>
       moderateEntry(ctx, config, params.id, params.entryId, body),
     );

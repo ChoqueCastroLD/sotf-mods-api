@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Platform_Server_HintInputs */
 
 const en_upload_platform_server_hint = /** @type {(inputs: Upload_Platform_Server_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Runs on a dedicated server only.`)
+	return /** @type {LocalizedString} */ (`Runs on the host or a dedicated server only.`)
 };
 
 const es_upload_platform_server_hint = /** @type {(inputs: Upload_Platform_Server_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Solo funciona en un servidor dedicado.`)
+	return /** @type {LocalizedString} */ (`Solo funciona en el anfitrión o en un servidor dedicado.`)
 };
 
 const de_upload_platform_server_hint = /** @type {(inputs: Upload_Platform_Server_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Läuft nur auf einem dedizierten Server.`)
+	return /** @type {LocalizedString} */ (`Läuft nur beim Host oder auf einem dedizierten Server.`)
 };
 
 const fr_upload_platform_server_hint = /** @type {(inputs: Upload_Platform_Server_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Fonctionne uniquement sur un serveur dédié.`)
+	return /** @type {LocalizedString} */ (`Fonctionne uniquement chez l’hôte ou sur un serveur dédié.`)
 };
 
 const it_upload_platform_server_hint = /** @type {(inputs: Upload_Platform_Server_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Funziona solo su un server dedicato.`)
+	return /** @type {LocalizedString} */ (`Funziona solo sull’host o su un server dedicato.`)
 };
 
 const nl_upload_platform_server_hint = /** @type {(inputs: Upload_Platform_Server_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Draait alleen op een dedicated server.`)
+	return /** @type {LocalizedString} */ (`Draait alleen bij de host of op een dedicated server.`)
 };
 
 const pl_upload_platform_server_hint = /** @type {(inputs: Upload_Platform_Server_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Działa tylko na serwerze dedykowanym.`)
+	return /** @type {LocalizedString} */ (`Działa tylko u hosta lub na serwerze dedykowanym.`)
 };
 
 const pt_upload_platform_server_hint = /** @type {(inputs: Upload_Platform_Server_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Roda só em servidor dedicado.`)
+	return /** @type {LocalizedString} */ (`Roda só no anfitrião ou em servidor dedicado.`)
 };
 
 const ru_upload_platform_server_hint = /** @type {(inputs: Upload_Platform_Server_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Работает только на выделенном сервере.`)
+	return /** @type {LocalizedString} */ (`Работает только у хоста или на выделенном сервере.`)
 };
 
 const sv_upload_platform_server_hint = /** @type {(inputs: Upload_Platform_Server_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Körs bara på en dedikerad server.`)
+	return /** @type {LocalizedString} */ (`Körs bara hos värden eller på en dedikerad server.`)
 };
 
 const tr_upload_platform_server_hint = /** @type {(inputs: Upload_Platform_Server_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Yalnızca özel sunucuda çalışır.`)
+	return /** @type {LocalizedString} */ (`Yalnızca ev sahibinde veya özel sunucuda çalışır.`)
 };
 
 const zh_upload_platform_server_hint = /** @type {(inputs: Upload_Platform_Server_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`只在专用服务器上运行。`)
+	return /** @type {LocalizedString} */ (`只在主机或专用服务器上运行。`)
 };
 
 const ja_upload_platform_server_hint = /** @type {(inputs: Upload_Platform_Server_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`専用サーバーでのみ動作します。`)
+	return /** @type {LocalizedString} */ (`ホストまたは専用サーバーでのみ動作します。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Runs on a dedicated server only." |
+* | "Runs on the host or a dedicated server only." |
 *
 * @param {Upload_Platform_Server_HintInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

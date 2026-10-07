@@ -234,6 +234,22 @@ const remainingNow = log ? Math.max(0, new Date(log.expiresAt).getTime() - Date.
 <script>
   // Small screens: keep the summary collapsed so the log itself is visible sooner.
   if (matchMedia('(max-width: 767px)').matches) {
-    for (const details of document.querySelectorAll<HTMLDetailsElement>('details[data-open-wide]')) details.open = false;
+    for (const details of document.querySelectorAll<HTMLDetailsElement>('details[data-open-wide]')) {
+      details.dataset.collapsed = '';
+      details.open = false;
+    }
   }
 </script>
+
+<style is:global>
+  /* The server renders these summaries open for wide screens. On a phone they start folded: hide the
+     body in CSS right away so the page does not jump when the script above folds them. */
+  @media (max-width: 47.99rem) {
+    details[data-open-wide][open]:not([data-collapsed]) > :not(summary) {
+      display: none;
+    }
+    details[data-open-wide][open]:not([data-collapsed]) > summary svg {
+      transform: none;
+    }
+  }
+</style>

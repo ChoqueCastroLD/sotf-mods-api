@@ -1,6 +1,6 @@
 /**
  * Ranger Station: moderation (PLAN §7.4, T0-21) and user reports. Implemented by WP-51
- * (+ WP-82 UI). Moderator and admin actions require a session created < 12 h ago.
+ * (+ WP-82 UI).
  */
 import { z } from 'zod';
 import { cache } from './cache.ts';
@@ -17,10 +17,10 @@ import {
   SitePath,
   UserRefDTO,
 } from './common.ts';
-import { dto, exampleOf } from './dto.ts';
+import { dto, exampleOf, wireInt } from './dto.ts';
 import { API_V2_PREFIX, defineEndpoint } from './endpoint.ts';
 import { InspectionFlagDTO } from './manifest.ts';
-import { CursorQuery, cursorPageOf, PageQuery, pageOf } from './pagination.ts';
+import { CursorQuery, PageQuery, pageOf } from './pagination.ts';
 import { UploadInspectionDTO } from './uploads.ts';
 import { ScanSummaryDTO, ScanVerdict } from './versions.ts';
 
@@ -152,8 +152,29 @@ export type ModerationLane = z.infer<typeof ModerationLane>;
 
 /** Review SLA in hours (PLAN §7.4). */
 export const MODERATION_SLA_HOURS = 72;
-/** Moderator/admin actions need a session created less than this many hours ago. */
-export const MODERATION_REAUTH_HOURS = 12;
+
+/** Sorts of a queue lane: waiting longest first (default), newest first, or riskiest first. */
+export const QUEUE_SORTS = ['oldest', 'newest', 'risk'] as const;
+export const QueueSort = z.enum(QUEUE_SORTS);
+export const QUEUE_ASSIGNEES = ['me', 'none', 'others'] as const;
+export const QUEUE_RISKS = ['low', 'medium', 'high'] as const;
+
+/**
+ * `GET /ranger/queue`: a lane with optional filters (risk, minimum waiting time, author, assignee,
+ * escalated, text in the title) and a sort. `page` switches from cursor to page mode: the page of
+ * `limit` items (`totalPages` in the response). Without `page` the cursor keeps working as before.
+ */
+export const QueueQuery = CursorQuery.extend({
+  lane: ModerationLane.default('new_mods'),
+  page: wireInt({ min: 1, max: 10_000, description: '1-based page (page mode)' }).optional(),
+  sort: QueueSort.default('oldest'),
+  risk: z.enum(QUEUE_RISKS).optional(),
+  minAgeHours: wireInt({ min: 0, max: 24 * 365, description: 'Only items waiting at least this long' }).optional(),
+  author: z.string().trim().max(64).optional().describe('Author handle or display name (contains)'),
+  assignee: z.enum(QUEUE_ASSIGNEES).optional(),
+  escalated: z.enum(['1', '0']).optional(),
+  q: z.string().trim().max(100).optional().describe('Text in the title'),
+});
 
 export const MODERATION_ACTIONS = ['approve', 'reject', 'request_changes', 'unlist', 'remove', 'restore'] as const;
 export const ModerationAction = z.enum(MODERATION_ACTIONS);
@@ -225,15 +246,32 @@ export const QueuePageDTO = dto(
     counts: z.record(ModerationLane, Count),
     items: z.array(QueueItemDTO),
     nextCursor: z.string().nullable(),
+    page: z.number().int().min(1).describe('Current page (1-based) when `page` was requested, else 1'),
+    pageSize: z.number().int().min(1),
+    total: Count.describe('Items of the lane that match the filters'),
+    totalPages: z.number().int().nonnegative(),
+    stats: z
+      .object({
+        overSla: Count.describe('Items waiting at least the SLA (whole lane, ignoring the filters)'),
+        oldestHours: z.number().nonnegative(),
+        averageHours: z.number().nonnegative(),
+      })
+      .describe('Waiting times of the whole lane'),
   }),
   {
-    description: 'One lane of the queue (oldest and riskiest first) with the counts of every lane.',
+    description:
+      'One lane of the queue with the counts of every lane (unfiltered) and the size of the filtered result.',
     examples: [
       {
         lane: 'versions',
         counts: { new_mods: 3, versions: 1, post_review: 12, reports: 2, comments: 0, builds: 1 },
         items: [exampleOf(QueueItemDTO)],
         nextCursor: null,
+        page: 1,
+        pageSize: 30,
+        total: 1,
+        totalPages: 1,
+        stats: { overSla: 0, oldestHours: 2.5, averageHours: 2.5 },
       },
     ],
   },
@@ -341,7 +379,21 @@ export const DecisionResultDTO = dto(
   },
 );
 
-export const ReportPageDTO = cursorPageOf('ReportPageDTO', ReportDTO, 'Cursor page of reports.');
+export const ReportPageDTO = dto(
+  'ReportPageDTO',
+  z.object({
+    items: z.array(ReportDTO),
+    nextCursor: z.string().nullable(),
+    page: z.number().int().min(1),
+    pageSize: z.number().int().min(1),
+    total: Count,
+    totalPages: z.number().int().nonnegative(),
+  }),
+  {
+    description: 'Page of reports (cursor or page mode) with the size of the filtered result.',
+    examples: [{ items: [exampleOf(ReportDTO)], nextCursor: null, page: 1, pageSize: 30, total: 1, totalPages: 1 }],
+  },
+);
 
 export const ReportCreatedDTO = dto('ReportCreatedDTO', z.object({ id: EntityId, status: z.literal('open') }), {
   description: 'Acknowledgement of a new report.',
@@ -566,7 +618,21 @@ export const AuditEntryDTO = dto(
     ],
   },
 );
-export const AuditPageDTO = cursorPageOf('AuditPageDTO', AuditEntryDTO, 'Cursor page of the audit log.');
+export const AuditPageDTO = dto(
+  'AuditPageDTO',
+  z.object({
+    items: z.array(AuditEntryDTO),
+    nextCursor: z.string().nullable(),
+    page: z.number().int().min(1),
+    pageSize: z.number().int().min(1),
+    total: Count.nullable().describe('Rows that match the filters; null in cursor mode'),
+    totalPages: z.number().int().nonnegative(),
+  }),
+  {
+    description: 'Page of the audit log (cursor or page mode).',
+    examples: [{ items: [exampleOf(AuditEntryDTO)], nextCursor: null, page: 1, pageSize: 50, total: 1, totalPages: 1 }],
+  },
+);
 
 export const RevokedSessionsDTO = dto('RevokedSessionsDTO', z.object({ revoked: Count }), {
   description: 'Number of sessions revoked.',
@@ -708,10 +774,9 @@ export const moderationEndpoints = {
     path: `${ranger}/queue`,
     summary: 'Queue lane',
     auth: 'moderator',
-    requires: ['recent_auth_12h'],
-    query: CursorQuery.extend({ lane: ModerationLane.default('new_mods') }),
+    query: QueueQuery,
     response: QueuePageDTO,
-    errors: ['FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN'],
     cache: cache.private,
   }),
   item: defineEndpoint({
@@ -721,10 +786,9 @@ export const moderationEndpoints = {
     path: `${ranger}/items/:id`,
     summary: 'Queue item with inspection, file diff, scan and author history',
     auth: 'moderator',
-    requires: ['recent_auth_12h'],
     params: QueueItemIdParams,
     response: QueueItemDetailDTO,
-    errors: ['NOT_FOUND', 'FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['NOT_FOUND', 'FORBIDDEN'],
     cache: cache.private,
   }),
   assignItem: defineEndpoint({
@@ -734,11 +798,10 @@ export const moderationEndpoints = {
     path: `${ranger}/items/:id/assign`,
     summary: 'Assign a queue item to yourself (or release it)',
     auth: 'moderator',
-    requires: ['recent_auth_12h'],
     params: QueueItemIdParams,
     body: AssignItemBody,
     response: QueueItemDTO,
-    errors: ['NOT_FOUND', 'FORBIDDEN', 'CONFLICT', 'REAUTH_REQUIRED'],
+    errors: ['NOT_FOUND', 'FORBIDDEN', 'CONFLICT'],
     cache: cache.noStore,
   }),
   escalateItem: defineEndpoint({
@@ -748,11 +811,10 @@ export const moderationEndpoints = {
     path: `${ranger}/items/:id/escalate`,
     summary: 'Escalate a queue item to the admins (or clear the escalation)',
     auth: 'moderator',
-    requires: ['recent_auth_12h'],
     params: QueueItemIdParams,
     body: EscalateItemBody,
     response: QueueItemDTO,
-    errors: ['NOT_FOUND', 'FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['NOT_FOUND', 'FORBIDDEN'],
     cache: cache.noStore,
   }),
   templates: defineEndpoint({
@@ -762,9 +824,8 @@ export const moderationEndpoints = {
     path: `${ranger}/templates`,
     summary: 'Reason templates in force',
     auth: 'moderator',
-    requires: ['recent_auth_12h'],
     response: ModerationTemplateListDTO,
-    errors: ['FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN'],
     cache: cache.private,
   }),
   metrics: defineEndpoint({
@@ -774,10 +835,9 @@ export const moderationEndpoints = {
     path: `${ranger}/metrics`,
     summary: 'Review time and SLA metrics',
     auth: 'moderator',
-    requires: ['recent_auth_12h'],
     query: ReviewMetricsQuery,
     response: ReviewMetricsDTO,
-    errors: ['FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN'],
     cache: cache.private,
   }),
   decideMod: defineEndpoint({
@@ -787,11 +847,10 @@ export const moderationEndpoints = {
     path: `${ranger}/mods/:id/decision`,
     summary: 'Decide on a mod',
     auth: 'moderator',
-    requires: ['recent_auth_12h'],
     params: IdParams,
     body: DecisionBody,
     response: DecisionResultDTO,
-    errors: ['NOT_FOUND', 'FORBIDDEN', 'CONFLICT', 'REAUTH_REQUIRED'],
+    errors: ['NOT_FOUND', 'FORBIDDEN', 'CONFLICT'],
     cache: cache.noStore,
   }),
   decideVersion: defineEndpoint({
@@ -801,11 +860,10 @@ export const moderationEndpoints = {
     path: `${ranger}/versions/:id/decision`,
     summary: 'Decide on a version',
     auth: 'moderator',
-    requires: ['recent_auth_12h'],
     params: IdParams,
     body: DecisionBody,
     response: DecisionResultDTO,
-    errors: ['NOT_FOUND', 'FORBIDDEN', 'CONFLICT', 'REAUTH_REQUIRED'],
+    errors: ['NOT_FOUND', 'FORBIDDEN', 'CONFLICT'],
     cache: cache.noStore,
   }),
   reports: defineEndpoint({
@@ -815,10 +873,16 @@ export const moderationEndpoints = {
     path: `${ranger}/reports`,
     summary: 'Reports',
     auth: 'moderator',
-    requires: ['recent_auth_12h'],
-    query: CursorQuery.extend({ status: z.enum(['open', 'resolved', 'dismissed', 'all']).default('open') }),
+    query: CursorQuery.extend({
+      status: z.enum(['open', 'resolved', 'dismissed', 'all']).default('open'),
+      page: wireInt({ min: 1, max: 10_000, description: '1-based page (page mode)' }).optional(),
+      sort: z.enum(['oldest', 'newest']).optional().describe('Default: open reports oldest first, closed newest first'),
+      reason: ReportReason.optional(),
+      targetType: ReportTargetType.optional(),
+      q: z.string().trim().max(100).optional().describe('Text in the details or the reporter handle'),
+    }),
     response: ReportPageDTO,
-    errors: ['FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN'],
     cache: cache.private,
   }),
   resolveReport: defineEndpoint({
@@ -828,11 +892,10 @@ export const moderationEndpoints = {
     path: `${ranger}/reports/:id/resolve`,
     summary: 'Resolve or dismiss a report',
     auth: 'moderator',
-    requires: ['recent_auth_12h'],
     params: IdParams,
     body: ResolveReportBody,
     response: ReportDTO,
-    errors: ['NOT_FOUND', 'FORBIDDEN', 'CONFLICT', 'REAUTH_REQUIRED'],
+    errors: ['NOT_FOUND', 'FORBIDDEN', 'CONFLICT'],
     cache: cache.noStore,
   }),
   hideComment: defineEndpoint({
@@ -842,11 +905,10 @@ export const moderationEndpoints = {
     path: `${ranger}/comments/:id/hide`,
     summary: 'Hide a comment',
     auth: 'moderator',
-    requires: ['recent_auth_12h'],
     params: IdParams,
     body: HideContentBody,
     response: HiddenStateDTO,
-    errors: ['NOT_FOUND', 'FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['NOT_FOUND', 'FORBIDDEN'],
     cache: cache.noStore,
   }),
   unhideComment: defineEndpoint({
@@ -856,10 +918,9 @@ export const moderationEndpoints = {
     path: `${ranger}/comments/:id/unhide`,
     summary: 'Unhide a comment',
     auth: 'moderator',
-    requires: ['recent_auth_12h'],
     params: IdParams,
     response: HiddenStateDTO,
-    errors: ['NOT_FOUND', 'FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['NOT_FOUND', 'FORBIDDEN'],
     cache: cache.noStore,
   }),
   lockComments: defineEndpoint({
@@ -869,11 +930,10 @@ export const moderationEndpoints = {
     path: `${ranger}/mods/:id/comments-lock`,
     summary: 'Lock or unlock the comment thread of a mod',
     auth: 'moderator',
-    requires: ['recent_auth_12h'],
     params: IdParams,
     body: CommentsLockBody,
     response: CommentsLockDTO,
-    errors: ['NOT_FOUND', 'FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['NOT_FOUND', 'FORBIDDEN'],
     cache: cache.noStore,
   }),
   hideReview: defineEndpoint({
@@ -883,11 +943,10 @@ export const moderationEndpoints = {
     path: `${ranger}/reviews/:id/hide`,
     summary: 'Hide a review',
     auth: 'moderator',
-    requires: ['recent_auth_12h'],
     params: IdParams,
     body: HideContentBody,
     response: HiddenStateDTO,
-    errors: ['NOT_FOUND', 'FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['NOT_FOUND', 'FORBIDDEN'],
     cache: cache.noStore,
   }),
   unhideReview: defineEndpoint({
@@ -897,10 +956,9 @@ export const moderationEndpoints = {
     path: `${ranger}/reviews/:id/unhide`,
     summary: 'Unhide a review',
     auth: 'moderator',
-    requires: ['recent_auth_12h'],
     params: IdParams,
     response: HiddenStateDTO,
-    errors: ['NOT_FOUND', 'FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['NOT_FOUND', 'FORBIDDEN'],
     cache: cache.noStore,
   }),
   users: defineEndpoint({
@@ -910,10 +968,15 @@ export const moderationEndpoints = {
     path: `${ranger}/users`,
     summary: 'Search users',
     auth: 'moderator',
-    requires: ['recent_auth_12h'],
-    query: PageQuery.extend({ q: z.string().trim().max(100).optional() }),
+    query: PageQuery.extend({
+      q: z.string().trim().max(100).optional(),
+      role: Role.optional(),
+      status: z.enum(['active', 'suspended', 'banned']).optional(),
+      verified: z.enum(['1', '0']).optional().describe('Verified creator flag'),
+      sort: z.enum(['newest', 'oldest', 'name', 'reports', 'seen']).optional(),
+    }),
     response: RangerUserPageDTO,
-    errors: ['FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN'],
     cache: cache.private,
   }),
   user: defineEndpoint({
@@ -923,10 +986,9 @@ export const moderationEndpoints = {
     path: `${ranger}/users/:id`,
     summary: 'User detail with history and sanctions',
     auth: 'moderator',
-    requires: ['recent_auth_12h'],
     params: IdParams,
     response: RangerUserDTO,
-    errors: ['NOT_FOUND', 'FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['NOT_FOUND', 'FORBIDDEN'],
     cache: cache.private,
   }),
   sanction: defineEndpoint({
@@ -936,12 +998,11 @@ export const moderationEndpoints = {
     path: `${ranger}/users/:id/sanctions`,
     summary: 'Sanction a user',
     auth: 'moderator',
-    requires: ['recent_auth_12h'],
     params: IdParams,
     body: CreateSanctionBody,
     status: 201,
     response: SanctionDTO,
-    errors: ['NOT_FOUND', 'FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['NOT_FOUND', 'FORBIDDEN'],
     cache: cache.noStore,
   }),
   revokeSanction: defineEndpoint({
@@ -951,10 +1012,9 @@ export const moderationEndpoints = {
     path: `${ranger}/sanctions/:id`,
     summary: 'Revoke a sanction',
     auth: 'moderator',
-    requires: ['recent_auth_12h'],
     params: IdParams,
     response: SanctionDTO,
-    errors: ['NOT_FOUND', 'FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['NOT_FOUND', 'FORBIDDEN'],
     cache: cache.noStore,
   }),
   setRole: defineEndpoint({
@@ -964,11 +1024,10 @@ export const moderationEndpoints = {
     path: `${ranger}/users/:id/role`,
     summary: 'Change the role of a user',
     auth: 'admin',
-    requires: ['recent_auth_12h'],
     params: IdParams,
     body: UpdateRoleBody,
     response: RangerUserDTO,
-    errors: ['NOT_FOUND', 'FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['NOT_FOUND', 'FORBIDDEN'],
     cache: cache.noStore,
   }),
   setVerifiedCreator: defineEndpoint({
@@ -978,11 +1037,10 @@ export const moderationEndpoints = {
     path: `${ranger}/users/:id/verified-creator`,
     summary: 'Grant or remove the verified creator flag',
     auth: 'moderator',
-    requires: ['recent_auth_12h'],
     params: IdParams,
     body: SetVerifiedCreatorBody,
     response: RangerUserDTO,
-    errors: ['NOT_FOUND', 'FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['NOT_FOUND', 'FORBIDDEN'],
     cache: cache.noStore,
   }),
   revokeSessions: defineEndpoint({
@@ -992,10 +1050,9 @@ export const moderationEndpoints = {
     path: `${ranger}/users/:id/revoke-sessions`,
     summary: 'Sign a user out everywhere',
     auth: 'moderator',
-    requires: ['recent_auth_12h'],
     params: IdParams,
     response: RevokedSessionsDTO,
-    errors: ['NOT_FOUND', 'FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['NOT_FOUND', 'FORBIDDEN'],
     cache: cache.noStore,
   }),
   overrideScan: defineEndpoint({
@@ -1005,11 +1062,10 @@ export const moderationEndpoints = {
     path: `${ranger}/scans/:id/override`,
     summary: 'Override a security scan verdict',
     auth: 'moderator',
-    requires: ['recent_auth_12h'],
     params: IdParams,
     body: ScanOverrideBody,
     response: ScanOverrideResultDTO,
-    errors: ['NOT_FOUND', 'FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['NOT_FOUND', 'FORBIDDEN'],
     cache: cache.noStore,
   }),
   audit: defineEndpoint({
@@ -1019,8 +1075,16 @@ export const moderationEndpoints = {
     path: `${ranger}/audit`,
     summary: 'Audit log',
     auth: 'moderator',
-    requires: ['recent_auth_12h'],
     query: CursorQuery.extend({
+      page: wireInt({ min: 1, max: 100_000, description: '1-based page (page mode, adds totals)' }).optional(),
+      from: IsoDateTime.optional().describe('Only entries at or after this instant'),
+      to: IsoDateTime.optional().describe('Only entries before this instant'),
+      targetType: z
+        .string()
+        .regex(/^[a-z_]{1,40}$/)
+        .optional(),
+      q: z.string().trim().max(100).optional().describe('Text in the reason'),
+      sort: z.enum(['newest', 'oldest']).optional().describe('Page mode only. Default: newest first'),
       actor: z.string().max(64).optional().describe('Actor handle'),
       action: z.string().max(80).optional(),
       target: z
@@ -1030,7 +1094,7 @@ export const moderationEndpoints = {
         .describe('`<targetType>:<id>`'),
     }),
     response: AuditPageDTO,
-    errors: ['FORBIDDEN', 'REAUTH_REQUIRED'],
+    errors: ['FORBIDDEN'],
     cache: cache.private,
   }),
 } as const;

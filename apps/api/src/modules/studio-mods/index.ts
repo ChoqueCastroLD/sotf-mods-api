@@ -32,7 +32,7 @@ export default defineModule({
       config: { mediaBaseUrl: m.platform.env.R2_PUBLIC_BASE_URL, publicBucket: m.platform.env.R2_BUCKET },
     };
 
-    m.implement(studioEndpoints.listMods, async ({ ctx }) => listStudioMods(ctx, deps));
+    m.implement(studioEndpoints.listMods, async ({ ctx, query }) => listStudioMods(ctx, deps, query));
 
     m.implement(studioEndpoints.getMod, async ({ params, ctx }) => getStudioMod(ctx, deps, params.id));
 

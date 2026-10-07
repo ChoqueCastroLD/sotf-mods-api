@@ -19,7 +19,7 @@ directory, achievements, badges, ranks, kits and the activity heatmap are gone (
 | `ProfileTabs.astro` | Link tab bar (`aria-current="page"`) |
 | `Domain.tsx` | Server-only `@sotf/ui/domain` blocks: card grids and written reviews |
 | `TabState.astro` | Empty and error states |
-| `ProfileToast.astro` + `profile-page.ts` | Vanilla client: follow (optimistic, undo, own profile shows «Edit profile»), share |
+| `profile-page.ts` | Vanilla client: follow (optimistic, undo through the shared page toast, own profile shows «Edit profile»), share |
 | `i18n.ts` | Link labels and the page `DomainI18n` |
 | `seo.ts` | Titles, descriptions, `ProfilePage` → `Person` |
 

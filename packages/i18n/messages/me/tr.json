@@ -52,5 +52,15 @@
   "me_downloads_times": "{count, plural, one {# indirme} other {# indirme}}",
   "me_downloads_remove": "Listeden kaldır",
   "me_downloads_remove_label": "{mod} listeden kaldır",
-  "me_downloads_removed": "{mod} listeden kaldırıldı"
+  "me_downloads_removed": "{mod} listeden kaldırıldı",
+  "me_search_label": "Ada göre ara",
+  "me_search_placeholder": "Mod adı",
+  "me_sort_label": "Sıralama",
+  "me_sort_recent": "En yeni",
+  "me_sort_name": "Ad",
+  "me_sort_updates": "Önce güncellemeler",
+  "me_sort_times": "En çok indirilen",
+  "me_no_match_title": "Eşleşen mod yok",
+  "me_no_match_text": "Başka bir ad deneyin ya da hepsini gösterin.",
+  "me_clear_filters": "Filtreleri temizle"
 }

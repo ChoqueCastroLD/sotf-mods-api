@@ -87,5 +87,10 @@
   "signals_request_comment_grouped": "{count, plural, one {# ny kommentar på förfrågan ”{request}”} other {# nya kommentarer på förfrågan ”{request}”}}",
   "signals_request_adopted": "{actor} arbetar på din förfrågan ”{request}”",
   "signals_request_fulfilled": "{mod} är ute och uppfyller förfrågan ”{request}”",
-  "signals_jam_phase": "{phase, select, announced {Mod Jam aviserad: {jam}} submissions {Bidrag till {jam} är öppna} voting {Röstningen i {jam} är öppen} results {Resultaten för {jam} är ute} other {Nyheter om {jam}}}"
+  "signals_jam_phase": "{phase, select, announced {Mod Jam aviserad: {jam}} submissions {Bidrag till {jam} är öppna} voting {Röstningen i {jam} är öppen} results {Resultaten för {jam} är ute} other {Nyheter om {jam}}}",
+  "signals_state_label": "Visa",
+  "signals_state_all": "Alla",
+  "signals_state_unread": "Olästa",
+  "signals_empty_unread_title": "Inga olästa aviseringar",
+  "signals_empty_unread_text": "Du har läst allt som matchar det här filtret."
 }

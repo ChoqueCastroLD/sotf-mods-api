@@ -28,7 +28,11 @@ export function VersionTable({ versions, caption, lastDownloadedAt, className }:
   if (versions.length === 0) {
     return <p className={cn('text-sm text-fg-muted', className)}>{t('ui_domain_versions_empty')}</p>;
   }
-  const th = 'px-3 py-2 text-start text-xs font-medium text-fg-muted whitespace-nowrap';
+  const th = 'px-3 py-2 text-xs font-medium text-fg-muted whitespace-nowrap';
+  // Columns without a single value are dropped (dashes in every row say nothing).
+  const hasSize = versions.some((version) => version.fileSize !== null);
+  const hasGame = versions.some((version) => Boolean(version.gameVersionDeclared));
+  const hasLoader = versions.some((version) => Boolean(version.loaderVersionDeclared));
   const td = 'px-3 py-2.5 align-middle whitespace-nowrap';
   return (
     <section
@@ -41,25 +45,31 @@ export function VersionTable({ versions, caption, lastDownloadedAt, className }:
         <caption className="sr-only">{caption ?? t('ui_domain_versions_caption')}</caption>
         <thead>
           <tr>
-            <th scope="col" className={cn(th, 'sticky start-0 bg-bg')}>
+            <th scope="col" className={cn(th, 'sticky start-0 bg-bg text-start')}>
               {t('ui_domain_versions_col_version')}
             </th>
-            <th scope="col" className={th}>
+            <th scope="col" className={cn(th, 'text-start')}>
               {t('ui_domain_versions_col_date')}
             </th>
-            <th scope="col" className={th}>
-              {t('ui_domain_versions_col_size')}
-            </th>
-            <th scope="col" className={th}>
-              {t('ui_domain_versions_col_game')}
-            </th>
-            <th scope="col" className={th}>
-              {t('ui_domain_versions_col_loader')}
-            </th>
+            {hasSize ? (
+              <th scope="col" className={cn(th, 'text-start')}>
+                {t('ui_domain_versions_col_size')}
+              </th>
+            ) : null}
+            {hasGame ? (
+              <th scope="col" className={cn(th, 'text-start')}>
+                {t('ui_domain_versions_col_game')}
+              </th>
+            ) : null}
+            {hasLoader ? (
+              <th scope="col" className={cn(th, 'text-start')}>
+                {t('ui_domain_versions_col_loader')}
+              </th>
+            ) : null}
             <th scope="col" className={cn(th, 'text-end')}>
               {t('ui_domain_versions_col_downloads')}
             </th>
-            <th scope="col" className={th}>
+            <th scope="col" className={cn(th, 'text-end')}>
               <span className="sr-only">{t('ui_domain_versions_col_download')}</span>
             </th>
           </tr>
@@ -109,15 +119,19 @@ export function VersionTable({ versions, caption, lastDownloadedAt, className }:
                     {formatDate(locale, version.publishedAt, timeZone)}
                   </time>
                 </td>
-                <td className={cn(td, 'text-fg-muted')}>
-                  {version.fileSize === null ? '-' : formatBytes(locale, version.fileSize)}
-                </td>
-                <td className={cn(td, 'font-mono text-xs')}>{version.gameVersionDeclared ?? '-'}</td>
-                <td className={cn(td, 'font-mono text-xs')}>
-                  {version.loaderVersionDeclared
-                    ? t('ui_domain_version_min', { version: version.loaderVersionDeclared })
-                    : '-'}
-                </td>
+                {hasSize ? (
+                  <td className={cn(td, 'text-fg-muted')}>
+                    {version.fileSize === null ? '-' : formatBytes(locale, version.fileSize)}
+                  </td>
+                ) : null}
+                {hasGame ? <td className={cn(td, 'font-mono text-xs')}>{version.gameVersionDeclared ?? '-'}</td> : null}
+                {hasLoader ? (
+                  <td className={cn(td, 'font-mono text-xs')}>
+                    {version.loaderVersionDeclared
+                      ? t('ui_domain_version_min', { version: version.loaderVersionDeclared })
+                      : '-'}
+                  </td>
+                ) : null}
                 <td className={cn(td, 'text-end')} title={formatCount(locale, version.downloadsCount)}>
                   {formatCompact(locale, version.downloadsCount)}
                 </td>

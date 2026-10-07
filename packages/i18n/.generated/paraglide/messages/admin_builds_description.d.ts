@@ -3,7 +3,7 @@ export type Admin_Builds_DescriptionInputs = {};
 /**
 * | output |
 * | --- |
-* | "The Sons of the Forest game versions. Exactly one is current." |
+* | "Sons of the Forest game versions. Exactly one is current. Steam is checked every 30 minutes for a new build." |
 *
 * @param {Admin_Builds_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

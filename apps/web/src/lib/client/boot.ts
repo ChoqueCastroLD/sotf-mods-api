@@ -11,6 +11,7 @@
  * module, language suggestion (lazy chunk with its three messages), the
  * analytics beacon and RUM, and ads (lazy chunk, guests with ad slots only).
  */
+import './dev-preamble.ts';
 import { bindCmdkTrigger } from '../../islands/cmdk/Trigger.ts';
 import { initSignalsBell } from '../../islands/signals/mount.ts';
 import { initAccountHint } from '../../scripts/account-hint.ts';
@@ -24,7 +25,18 @@ import { initTheme } from '../../scripts/theme.ts';
 import { initViewTransitions } from '../../scripts/view-transitions.ts';
 import { initChrome } from './chrome.ts';
 import { initInstall } from './install.ts';
+import { initPrefetch } from './prefetch.ts';
+import { initScrollers } from './scrollers.ts';
 import { initSheets, preloadSheets } from './sheet-loader.ts';
+
+/** Runs after the next frame has been painted (two frames on a hidden tab never come: then immediately). */
+function afterFirstPaint(task: () => void): void {
+  if (document.visibilityState === 'hidden' || typeof requestAnimationFrame !== 'function') {
+    task();
+    return;
+  }
+  requestAnimationFrame(() => setTimeout(task, 0));
+}
 
 function whenIdle(task: () => void): void {
   if ('requestIdleCallback' in window) requestIdleCallback(task, { timeout: 3000 });
@@ -63,6 +75,8 @@ export function boot(): void {
   safely(() => initPullToRefresh());
   safely(() => initReloginBanner());
   safely(() => initViewTransitions());
+  // Measures the strips (forced layout): after the first paint, never in the render-blocking task.
+  afterFirstPaint(() => safely(() => initScrollers()));
   safely(() => initAccountHint());
   safely(() => initSignalsBell());
   safely(() => initDisplayPreferences());
@@ -70,6 +84,7 @@ export function boot(): void {
   whenIdle(() => {
     safely(() => initBeacon());
     safely(() => preloadSheets());
+    safely(() => initPrefetch());
     safely(() => initServiceWorker());
     if (mayNeedLanguageSuggestion()) {
       safely(() => import('../../scripts/lang-suggest.ts').then(({ initLangSuggest }) => initLangSuggest()));

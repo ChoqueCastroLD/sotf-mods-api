@@ -3,7 +3,7 @@ export type Admin_Builds_Empty_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Register the game version players are on today." |
+* | "Sync from Steam, or register the game version players are on today." |
 *
 * @param {Admin_Builds_Empty_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -1,14 +1,15 @@
 /**
- * `/dashboard/inbox` — the creator inbox (PLAN §7.5 «Bandeja»): comments, bug reports (open or
- * resolved), reviews and field reports on my mods, newest first, with inline answers:
+ * `/dashboard/inbox`: the creator inbox (PLAN §7.5): comments, bug reports (open or resolved) and
+ * reviews on my mods, with inline answers (field reports left with the compatibility UI):
  *
  * - comment → reply in the thread;
  * - bug → reply, or mark it resolved in a version;
  * - review → the author's public reply (one per review; sending again replaces it);
  * - field report → acknowledge it, or mark it fixed in a version (the reporters are notified).
  *
- * `?type=` and `?state=` (open / all) keep the filters in the URL. Replying from a phone is a first
- * class flow: the composer is inline and full width.
+ * The server filters (type, waiting for me / everything, one of my mods), sorts (newest, oldest) and
+ * paginates; everything is kept in the URL. Replying from a phone is a first class flow: the
+ * composer is inline and full width.
  */
 import { formatRelativeTime } from '@sotf/i18n/format';
 import { Avatar } from '@sotf/ui/avatar';
@@ -20,12 +21,13 @@ import { EmptyState } from '@sotf/ui/empty-state';
 import { Icon } from '@sotf/ui/icons';
 import { Select } from '@sotf/ui/select';
 import { Textarea } from '@sotf/ui/textarea';
-import { type InfiniteData, useInfiniteQuery, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
-import { Bug, CheckCheck, ExternalLink, Inbox, MessageSquare, Radar, Reply, Star } from 'lucide-react';
+import { Bug, CheckCheck, ExternalLink, Inbox, MessageSquare, Radar, Reply, Star, X } from 'lucide-react';
 import { type ReactNode, useEffect, useId, useRef, useState } from 'react';
 import { useTurnstile } from '../../../islands/auth/turnstile.ts';
 import { DomainI18nBridge } from '../../components/DomainI18nBridge.tsx';
+import { ListPager } from '../../components/ListPager.tsx';
 import { SwipeRow } from '../../components/SwipeRow.tsx';
 import { useMe } from '../../hooks/use-me.ts';
 import { problemCode } from '../../lib/errors.ts';
@@ -39,14 +41,16 @@ import {
   type InboxPage,
   type InboxState,
   type InboxType,
-  inboxQuery,
+  inboxPageQuery,
   LIMITS,
+  modsQuery,
   refreshLists,
   studioModQuery,
 } from './api.ts';
 import { dateTime, number, publicHref } from './format.ts';
 import { bt, useBasecampMessages } from './i18n.ts';
 import { inboxStateLabel, inboxStateVariant, inboxTypeLabel } from './labels.ts';
+import { INBOX_PAGE_SIZES } from './search.ts';
 import { PanelError, PanelSkeleton, reportFailure, ScreenHeader } from './shared.tsx';
 
 function typeIcon(type: InboxType) {
@@ -62,24 +66,19 @@ function typeIcon(type: InboxType) {
   }
 }
 
-type Pages = InfiniteData<InboxPage, string | null>;
-
 /** Marks an item answered/resolved in every cached inbox page (the refetch confirms it). */
 function setItemState(
   queryClient: ReturnType<typeof useQueryClient>,
   item: InboxItem,
   state: InboxItem['state'],
 ): void {
-  queryClient.setQueriesData<Pages>({ queryKey: basecampKeys.inboxAll }, (data) =>
-    data
+  queryClient.setQueriesData<InboxPage>({ queryKey: basecampKeys.inboxAll }, (data) =>
+    data && Array.isArray(data.items)
       ? {
           ...data,
-          pages: data.pages.map((page) => ({
-            ...page,
-            items: page.items.map((entry) =>
-              entry.type === item.type && entry.id === item.id ? { ...entry, state } : entry,
-            ),
-          })),
+          items: data.items.map((entry) =>
+            entry.type === item.type && entry.id === item.id ? { ...entry, state } : entry,
+          ),
         }
       : data,
   );
@@ -467,13 +466,35 @@ function InboxRow({ item, now }: { item: InboxItem; now: number }) {
   );
 }
 
-function TypeFilter({ value, onChange }: { value: InboxType | null; onChange: (type: InboxType | null) => void }) {
-  const options: Array<{ value: InboxType | null; label: string }> = [
-    { value: null, label: bt('basecamp_inbox_type_all') },
-    ...INBOX_KINDS.map((type) => ({ value: type, label: inboxTypeLabel(type) })),
+export interface InboxFilters {
+  type: InboxType | null;
+  state: InboxState;
+  modId: number | null;
+  sort: 'newest' | 'oldest';
+  page: number;
+  pageSize: number;
+}
+
+function TypeFilter({
+  value,
+  counts,
+  onChange,
+}: {
+  value: InboxType | null;
+  counts: Partial<Record<InboxType, number>> | undefined;
+  onChange: (type: InboxType | null) => void;
+}) {
+  const total = counts ? INBOX_KINDS.reduce((sum, kind) => sum + (counts[kind] ?? 0), 0) : null;
+  const options: Array<{ value: InboxType | null; label: string; count: number | null }> = [
+    { value: null, label: bt('basecamp_inbox_type_all'), count: total },
+    ...INBOX_KINDS.map((type) => ({
+      value: type as InboxType | null,
+      label: inboxTypeLabel(type),
+      count: counts ? (counts[type] ?? 0) : null,
+    })),
   ];
   return (
-    <fieldset className="-mx-4 flex min-w-0 gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] md:mx-0 md:flex-wrap md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden">
+    <fieldset className="relative -mx-4 flex min-w-0 gap-2 overflow-x-auto px-4 pb-1 [scrollbar-width:none] md:mx-0 md:flex-wrap md:px-0 md:pb-0 [&::-webkit-scrollbar]:hidden">
       <legend className="sr-only">{bt('basecamp_inbox_filter_type')}</legend>
       {options.map((option) => {
         const active = option.value === value;
@@ -484,12 +505,15 @@ function TypeFilter({ value, onChange }: { value: InboxType | null; onChange: (t
             aria-pressed={active}
             onClick={() => onChange(option.value)}
             className={cn(
-              'inline-flex h-10 shrink-0 items-center rounded-full border px-4 text-sm transition-colors md:h-9 md:px-3',
+              'inline-flex h-10 shrink-0 items-center gap-1.5 rounded-full border px-4 text-sm transition-colors duration-(--dur-fast) md:h-9 md:px-3',
               'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
-              active ? 'border-primary bg-primary-soft text-fg' : 'border-border text-fg-muted hover:text-fg',
+              active
+                ? 'border-primary bg-primary-soft text-fg'
+                : 'border-border text-fg-muted hover:border-border-strong hover:text-fg',
             )}
           >
             {option.label}
+            {option.count !== null ? <span className="tabular-nums text-fg-subtle">{number(option.count)}</span> : null}
           </button>
         );
       })}
@@ -498,58 +522,77 @@ function TypeFilter({ value, onChange }: { value: InboxType | null; onChange: (t
 }
 
 export function InboxScreen({
-  type,
-  state,
-  modId = null,
+  filters,
   onFilters,
 }: {
-  type: InboxType | null;
-  state: InboxState;
-  /** Only the items of one of my mods («Needs attention» links here). */
-  modId?: number | null;
-  onFilters: (next: { type?: InboxType | null; state?: InboxState; modId?: number | null }) => void;
+  filters: InboxFilters;
+  onFilters: (next: Partial<InboxFilters>) => void;
 }) {
   useBasecampMessages();
-  const types = type ? [type] : [];
-  const inbox = useInfiniteQuery(inboxQuery(types, state, modId));
+  const { type, state, modId, sort, page, pageSize } = filters;
+  const inbox = useQuery(inboxPageQuery({ types: type ? [type] : [], state, modId, sort, page, pageSize }));
+  const mods = useQuery(modsQuery);
   const [now] = useState(() => Date.now());
-  const items = inbox.data?.pages.flatMap((page) => page.items) ?? [];
+  const items = inbox.data?.items ?? [];
+  const modOptions = [
+    { value: 'all', label: bt('basecamp_inbox_mod_all') },
+    ...(mods.data?.items ?? []).map((row) => ({ value: String(row.mod.id), label: row.mod.name })),
+  ];
+  const busy = inbox.isFetching && !inbox.isPending;
+  const filtered = type !== null || modId !== null || state !== 'open';
 
   return (
     <DomainI18nBridge>
       <div className="grid gap-6">
-        <ScreenHeader
-          readout={bt('basecamp_readout')}
-          title={bt('basecamp_inbox_title')}
-          description={bt('basecamp_inbox_intro')}
-        />
-        <div className="flex flex-wrap items-end justify-between gap-3">
-          <div className="flex flex-wrap items-center gap-3">
-            <TypeFilter value={type} onChange={(next) => onFilters({ type: next })} />
-            {modId !== null ? (
-              <span className="inline-flex h-9 items-center gap-2 rounded-full border border-primary bg-primary-soft px-3 text-sm text-fg">
-                {bt('basecamp_inbox_filter_mod', { mod: items[0]?.mod.name ?? `#${modId}` })}
-                <button
-                  type="button"
-                  onClick={() => onFilters({ modId: null })}
-                  className="text-xs font-semibold text-link hover:underline"
-                >
-                  {bt('basecamp_inbox_filter_mod_clear')}
-                </button>
-              </span>
+        <ScreenHeader title={bt('basecamp_inbox_title')} description={bt('basecamp_inbox_intro')} />
+        <div className="grid gap-3">
+          <TypeFilter
+            value={type}
+            counts={inbox.data?.typeCounts}
+            onChange={(next) => onFilters({ type: next, page: 1 })}
+          />
+          <div className="flex flex-wrap items-end gap-3">
+            <Select<InboxState>
+              label={bt('basecamp_inbox_filter_state')}
+              options={[
+                { value: 'open', label: bt('basecamp_inbox_state_filter_open') },
+                { value: 'all', label: bt('basecamp_inbox_state_filter_all') },
+              ]}
+              value={state}
+              onValueChange={(value) => onFilters({ state: value ?? 'open', page: 1 })}
+              size="sm"
+              className="min-w-44"
+            />
+            <Select<string>
+              label={bt('basecamp_inbox_filter_mod_label')}
+              options={modOptions}
+              value={modId === null ? 'all' : String(modId)}
+              onValueChange={(value) => onFilters({ modId: value && value !== 'all' ? Number(value) : null, page: 1 })}
+              size="sm"
+              className="min-w-52"
+            />
+            <Select<'newest' | 'oldest'>
+              label={bt('basecamp_inbox_sort_label')}
+              options={[
+                { value: 'newest', label: bt('basecamp_inbox_sort_newest') },
+                { value: 'oldest', label: bt('basecamp_inbox_sort_oldest') },
+              ]}
+              value={sort}
+              onValueChange={(value) => onFilters({ sort: value ?? 'newest', page: 1 })}
+              size="sm"
+              className="min-w-40"
+            />
+            {filtered ? (
+              <Button
+                variant="ghost"
+                size="sm"
+                icon={<Icon icon={X} size={14} />}
+                onClick={() => onFilters({ type: null, state: 'open', modId: null, page: 1 })}
+              >
+                {bt('basecamp_mods_clear_filters')}
+              </Button>
             ) : null}
           </div>
-          <Select<InboxState>
-            label={bt('basecamp_inbox_filter_state')}
-            options={[
-              { value: 'open', label: bt('basecamp_inbox_state_filter_open') },
-              { value: 'all', label: bt('basecamp_inbox_state_filter_all') },
-            ]}
-            value={state}
-            onValueChange={(value) => onFilters({ state: value ?? 'open' })}
-            size="sm"
-            className="min-w-40"
-          />
         </div>
 
         {inbox.isPending ? (
@@ -563,23 +606,27 @@ export function InboxScreen({
             description={state === 'open' ? bt('basecamp_inbox_empty_open_text') : bt('basecamp_inbox_empty_text')}
           />
         ) : (
-          <>
-            <ul className="grid gap-3" aria-label={bt('basecamp_inbox_title')}>
+          <div className="grid gap-4">
+            <ul
+              className={cn('grid gap-3 transition-opacity duration-(--dur-fast)', busy && 'opacity-60')}
+              aria-busy={busy}
+              aria-label={bt('basecamp_inbox_title')}
+            >
               {items.map((item) => (
                 <InboxRow key={`${item.type}:${item.id}`} item={item} now={now} />
               ))}
             </ul>
-            {inbox.hasNextPage ? (
-              <Button
-                variant="secondary"
-                className="justify-self-center"
-                loading={inbox.isFetchingNextPage}
-                onClick={() => void inbox.fetchNextPage()}
-              >
-                {bt('basecamp_inbox_more')}
-              </Button>
-            ) : null}
-          </>
+            <ListPager
+              page={inbox.data?.page ?? 1}
+              totalPages={inbox.data?.totalPages ?? 1}
+              total={inbox.data?.total ?? items.length}
+              pageSize={inbox.data?.pageSize ?? pageSize}
+              onPage={(next) => onFilters({ page: next })}
+              pageSizes={INBOX_PAGE_SIZES}
+              onPageSize={(size) => onFilters({ pageSize: size, page: 1 })}
+              busy={busy}
+            />
+          </div>
         )}
       </div>
     </DomainI18nBridge>

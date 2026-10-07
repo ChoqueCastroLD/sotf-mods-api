@@ -42,14 +42,22 @@ const loginHref = loginHrefFor(href('/login', locale), href('/requests/new', loc
       </div>
     </div>
   </div>
-  <div
-    data-mod-toast
-    role="status"
-    aria-live="polite"
-    class="pointer-events-none fixed inset-x-0 bottom-[calc(9rem+env(safe-area-inset-bottom))] z-(--z-toast) flex justify-center px-4 md:bottom-6"
-  >
-  </div>
 </PageLayout>
+
+<style is:global>
+  /* Members get the form after hydration: keep its room so nothing below moves (no layout shift). */
+  html[data-signed-in] [data-island='request-new'] {
+    min-height: 25rem;
+  }
+  html[data-signed-in] [data-island='request-new'] [data-request-guest-hint] {
+    visibility: hidden;
+  }
+  @media (max-width: 40rem) {
+    html[data-signed-in] [data-island='request-new'] {
+      min-height: 33.5rem;
+    }
+  }
+</style>
 
 <script>
   import { bootNewRequest } from '../../islands/requests/boot.ts';

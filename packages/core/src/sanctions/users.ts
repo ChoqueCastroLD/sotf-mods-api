@@ -217,12 +217,20 @@ function likeEscape(value: string): string {
 export async function searchRangerUsers(
   ctx: Ctx,
   config: CatalogConfig,
-  input: { q?: string | undefined; page: number; pageSize: number },
+  input: {
+    q?: string | undefined;
+    page: number;
+    pageSize: number;
+    role?: 'user' | 'moderator' | 'admin' | undefined;
+    status?: 'active' | 'suspended' | 'banned' | undefined;
+    verified?: boolean | undefined;
+    sort?: 'newest' | 'oldest' | 'name' | 'reports' | 'seen' | undefined;
+  },
 ): Promise<z.infer<typeof RangerUserPageDTO>> {
   await assertStaff(ctx, 'moderation.queue');
   const q = input.q?.trim() ?? '';
   let where: SQL = sql`TRUE`;
-  let rank: SQL = sql`0`;
+  let rank: SQL = sql`0::int`;
   if (/^#\d{1,9}$/.test(q)) {
     where = sql`u."id" = ${Number(q.slice(1))}`;
   } else if (q !== '') {
@@ -231,11 +239,41 @@ export async function searchRangerUsers(
                  OR lower(coalesce(u."displayName", '')) LIKE ${pattern} OR lower(u."email") LIKE ${pattern})`;
     rank = sql`CASE WHEN lower(u."slug") = ${q.toLowerCase()} OR lower(u."email") = ${q.toLowerCase()} THEN 0 ELSE 1 END`;
   }
-  const total = await queryOne<{ n: number }>(ctx.db, sql`SELECT count(*)::int AS "n" FROM "User" u WHERE ${where}`);
+  const filters: SQL[] = [where];
+  if (input.role) filters.push(sql`u."role" = ${input.role}`);
+  if (input.verified !== undefined) filters.push(sql`u."verifiedCreator" = ${input.verified}`);
+  if (input.status === 'banned') filters.push(sql`u."bannedAt" IS NOT NULL`);
+  if (input.status === 'suspended') {
+    filters.push(sql`u."bannedAt" IS NULL AND u."suspendedUntil" > ${ctx.clock.now().toISOString()}::timestamptz`);
+  }
+  if (input.status === 'active') {
+    filters.push(
+      sql`u."bannedAt" IS NULL AND (u."suspendedUntil" IS NULL OR u."suspendedUntil" <= ${ctx.clock.now().toISOString()}::timestamptz)`,
+    );
+  }
+  const condition = sql.join(filters, sql` AND `);
+  const order = (() => {
+    switch (input.sort) {
+      case 'oldest':
+        return sql`${rank}, u."createdAt" ASC, u."id" ASC`;
+      case 'name':
+        return sql`${rank}, lower(coalesce(nullif(u."displayName", ''), u."name")) ASC, u."id" ASC`;
+      case 'reports':
+        return sql`${rank}, "reportsAgainst" DESC, u."id" DESC`;
+      case 'seen':
+        return sql`${rank}, u."lastSeenAt" DESC NULLS LAST, u."id" DESC`;
+      default:
+        return sql`${rank}, u."createdAt" DESC, u."id" DESC`;
+    }
+  })();
+  const total = await queryOne<{ n: number }>(
+    ctx.db,
+    sql`SELECT count(*)::int AS "n" FROM "User" u WHERE ${condition}`,
+  );
   const offset = (input.page - 1) * input.pageSize;
   const list = await query<UserRow>(
     ctx.db,
-    sql`${USER_SELECT} WHERE ${where} ORDER BY ${rank}, u."createdAt" DESC, u."id" DESC
+    sql`${USER_SELECT} WHERE ${condition} ORDER BY ${order}
         LIMIT ${input.pageSize} OFFSET ${offset}`,
   );
   const count = total?.n ?? 0;

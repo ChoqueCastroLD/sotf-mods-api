@@ -171,5 +171,13 @@
   "explore_catalog_empty_clear": "Filters wissen",
   "explore_catalog_error_title": "De mods konden niet worden geladen",
   "explore_catalog_error_text": "Probeer het zo opnieuw.",
-  "explore_catalog_retry": "Opnieuw proberen"
+  "explore_catalog_retry": "Opnieuw proberen",
+  "explore_sort_name": "Naam A tot Z",
+  "explore_facet_downloads": "Downloads",
+  "explore_downloads_min": "{count, number}+ downloads",
+  "explore_page_size_label": "Per pagina",
+  "explore_search_builds_label": "Builds zoeken",
+  "explore_noresults_query_title": "Geen resultaten voor “{query}”",
+  "explore_suggest_popular": "Populaire mods",
+  "explore_results_range": "{from, number}–{to, number} van {total, number}"
 }

@@ -134,7 +134,7 @@ export function ChecksPanel({
   const all = inspection ? inspection.flags : flags;
   return (
     <section aria-labelledby="ranger-checks" className="grid gap-3 rounded-lg border border-border bg-surface p-4">
-      <h3 id="ranger-checks" className="readout text-fg-muted">
+      <h3 id="ranger-checks" className="text-sm font-semibold text-fg">
         {m.ranger_checks_title()}
       </h3>
       {inspection ? (
@@ -312,7 +312,7 @@ function show(value: unknown): string {
 export function ManifestDiffPanel({ diff }: { diff: QueueItemDetail['manifestDiff'] }) {
   if (diff.length === 0) return <p className="text-sm text-fg-muted">{m.ranger_manifest_identical()}</p>;
   return (
-    <div className="overflow-x-auto">
+    <div className="relative overflow-x-auto">
       <table className="w-full min-w-[32rem] text-left text-sm">
         <caption className="sr-only">{m.ranger_tab_manifest()}</caption>
         <thead className="text-xs text-fg-muted">

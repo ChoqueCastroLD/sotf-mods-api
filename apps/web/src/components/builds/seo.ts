@@ -1,7 +1,7 @@
 /**
  * SEO of the build page (PLAN §4.5 «Build», research/03 §6.6, research/04 «Build (BuildShare)»).
  *
- * - Title «{Name} — SOTF build (BuildShare blueprint)», shortened step by step so the full
+ * - Title «{Name} SOTF build», shortened step by step so the full
  *   `<title>` (with the site suffix) stays within 60 characters.
  * - Description: the short description (≤ 160) or a sentence built from the facts.
  * - JSON-LD `CreativeWork` + `about: VideoGame` + `author` (+ original author as `creator`) +
@@ -15,10 +15,13 @@ import { m } from '@sotf/i18n/messages';
 import { displayName, displayShortDescription } from '@sotf/ui/domain';
 import type { CreativeWork, PropertyValue, WithContext } from 'schema-dts';
 import type { JsonLd } from '../../lib/seo/jsonld.ts';
+import { readableVersion } from '../../lib/seo/markdown.ts';
 import type { BuildSpec, ModDetailDTO } from './data.ts';
 
 export const TITLE_MAX = 60;
 export const DESCRIPTION_MAX = 160;
+/** A shorter author summary is completed with the facts (meta descriptions below ~40 characters read as empty). */
+const MIN_SHORT_DESCRIPTION = 40;
 export const STEAM_APP_URL = 'https://store.steampowered.com/app/1326470/Sons_Of_The_Forest/';
 
 /** Cuts at a word boundary and adds «…» (never in the middle of a surrogate pair). */
@@ -45,8 +48,8 @@ export function buildTitle(build: ModDetailDTO): string {
 
 /** Meta description: the short description, or the facts. */
 export function buildDescription(build: ModDetailDTO, spec: BuildSpec, locale: Locale): string {
-  const short = displayShortDescription(build);
-  if (short.trim()) return truncate(short, DESCRIPTION_MAX);
+  const short = displayShortDescription(build).trim();
+  if (short.length >= MIN_SHORT_DESCRIPTION) return truncate(short, DESCRIPTION_MAX);
   const author = build.userDisplayName || build.userHandle;
   const facts =
     spec.elements === null
@@ -64,7 +67,7 @@ export function buildDescription(build: ModDetailDTO, spec: BuildSpec, locale: L
           count: build.downloads,
           downloads: formatCompactNumber(locale, build.downloads),
         });
-  return truncate(facts, DESCRIPTION_MAX);
+  return truncate(short ? `${short} · ${facts}` : facts, DESCRIPTION_MAX);
 }
 
 export interface BuildJsonLdInput {
@@ -101,13 +104,13 @@ export function buildJsonLd({ build, spec, locale, siteUrl, pageUrl }: BuildJson
     url: pageUrl,
     headline: displayName(build),
     description: displayShortDescription(build) || undefined,
-    genre: 'BuildShare blueprint',
+    genre: 'BuildShare build',
     inLanguage: build.localized ? toHreflang(locale) : (build.contentLang ?? toHreflang(locale)),
     isAccessibleForFree: true,
     ...(image ? { image, thumbnailUrl: image } : {}),
     ...(latest
       ? {
-          version: latest.version,
+          ...(readableVersion(latest.version) ? { version: latest.version } : {}),
           encoding: {
             '@type': 'MediaObject',
             contentUrl: absoluteUrl(latest.downloadPath, siteUrl),
@@ -138,7 +141,7 @@ export function buildJsonLd({ build, spec, locale, siteUrl, pageUrl }: BuildJson
         : {}),
     publisher: { '@id': `${siteUrl}/#organization` },
     about: { '@type': 'VideoGame', name: 'Sons of the Forest', sameAs: STEAM_APP_URL },
-    keywords: ['Sons of the Forest', 'BuildShare', 'blueprint', ...build.tags.map((tag) => tag.name)].join(', '),
+    keywords: ['Sons of the Forest', 'BuildShare', 'build', ...build.tags.map((tag) => tag.name)].join(', '),
     ...(size ? { size } : {}),
     ...(identifier ? { identifier } : {}),
     interactionStatistic: [

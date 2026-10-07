@@ -8,6 +8,7 @@ import {
   getCreatorAnalytics,
   getCreatorAnalyticsCsv,
   getCreatorInbox,
+  getStudioAttention,
   getStudioOverview,
 } from '@sotf/core/stats/index';
 import { defineModule } from '../../lib/define-module.ts';
@@ -19,6 +20,8 @@ export default defineModule({
     const config = catalogConfigOf(m.platform.env);
 
     m.implement(studioEndpoints.overview, async ({ ctx }) => getStudioOverview(ctx, config));
+
+    m.implement(studioEndpoints.attention, async ({ query, ctx }) => getStudioAttention(ctx, config, query));
 
     m.implement(studioEndpoints.analytics, async ({ query, ctx }) => getCreatorAnalytics(ctx, query));
 

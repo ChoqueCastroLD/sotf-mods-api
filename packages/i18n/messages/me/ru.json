@@ -52,5 +52,15 @@
   "me_downloads_times": "{count, plural, one {# загрузка} few {# загрузки} many {# загрузок} other {# загрузки}}",
   "me_downloads_remove": "Убрать из списка",
   "me_downloads_remove_label": "Убрать {mod} из списка",
-  "me_downloads_removed": "{mod} убран из списка"
+  "me_downloads_removed": "{mod} убран из списка",
+  "me_search_label": "Поиск по названию",
+  "me_search_placeholder": "Название мода",
+  "me_sort_label": "Сортировка",
+  "me_sort_recent": "Сначала новые",
+  "me_sort_name": "Название",
+  "me_sort_updates": "Сначала с обновлениями",
+  "me_sort_times": "Чаще всего загружались",
+  "me_no_match_title": "Нет подходящих модов",
+  "me_no_match_text": "Попробуйте другое название или покажите все.",
+  "me_clear_filters": "Сбросить фильтры"
 }

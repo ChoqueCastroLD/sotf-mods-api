@@ -39,6 +39,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { BANNER_INIT_SCRIPT } from '@sotf/ui/dismissals';
 import { THEME_INIT_SCRIPT } from '@sotf/ui/theme';
+import { FOOTER_ACCORDION_SCRIPT } from '../../scripts/footer-accordion.ts';
 import { LEGACY_CLEANUP_SCRIPT } from '../../scripts/legacy-cleanup.ts';
 import { SPECULATION_RULES_JSON } from '../speculation.ts';
 
@@ -55,6 +56,7 @@ export const INLINE_SCRIPTS: readonly string[] = [
   BANNER_INIT_SCRIPT,
   LEGACY_CLEANUP_SCRIPT,
   SPECULATION_RULES_JSON,
+  FOOTER_ACCORDION_SCRIPT,
 ];
 
 /** Where browsers send violation reports (API collector, same origin: `/api/v2/*`). */

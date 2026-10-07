@@ -271,6 +271,24 @@ describe('Explore listing', () => {
   });
 });
 
+describe('name sort and minimum downloads', () => {
+  const named = [
+    entry({ id: 21, name: 'zeta' }),
+    entry({ id: 22, name: 'Alpha 10' }),
+    entry({ id: 23, name: 'alpha 2' }),
+    entry({ id: 24, name: 'Émile' }),
+  ];
+  it('sorts names A to Z (natural digits, no case or accents) and reverses with desc', () => {
+    expect(ids(sortEntries([...named], 'name', 'asc', undefined))).toEqual([23, 22, 24, 21]);
+    expect(ids(sortEntries([...named], 'name', 'desc', undefined))).toEqual([21, 24, 22, 23]);
+  });
+
+  it('keeps items with at least the minimum downloads', () => {
+    const r = runListQuery(snapshot, query({ type: 'all', minDownloads: '500', sort: 'downloads' }), NOW);
+    expect(ids(r.items)).toEqual([2, 1]);
+  });
+});
+
 describe('Unapproved listing', () => {
   const pendingCatalog = [
     entry({ id: 1, status: 'published', downloads: 100 }),

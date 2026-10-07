@@ -19,13 +19,16 @@ import { ArrowLeft, Package } from 'lucide-react';
 import { loginHrefFor } from '../../components/mod/format.ts';
 import { configureModDomainI18n, markdownLabels } from '../../components/mod/i18n.ts';
 import { respondNotFound } from '../../components/mod/responses.ts';
+import { bioText } from '../../components/profile/seo.ts';
 import { loadRequestPage } from '../../components/requests/data.ts';
 import { STATUS_CLASSES, statusLabel } from '../../components/requests/status.ts';
 import PageState from '../../components/state/PageState.astro';
 import PageLayout from '../../layouts/PageLayout.astro';
 import { setPageCache } from '../../lib/cache/page.ts';
 import { pageCache } from '../../lib/cache/policy.ts';
+import { loadEnv } from '../../lib/env.ts';
 import { href } from '../../lib/i18n.ts';
+import { requestPostingJsonLd } from '../../lib/seo/jsonld.ts';
 
 export const prerender = false;
 
@@ -54,12 +57,30 @@ const title = request ? m.requests_detail_title({ title: request.title }) : m.re
 const description = request
   ? m.requests_detail_description({ author: authorName ?? m.social_deleted_user(), title: request.title })
   : m.requests_error_text();
+const siteUrl = loadEnv().siteUrl;
+const jsonLd = request
+  ? [
+      requestPostingJsonLd({
+        url: `${siteUrl}${href(path, locale)}`,
+        headline: request.title,
+        text: bioText(request.bodyHtml),
+        authorName: authorName,
+        authorUrl: author ? `${siteUrl}${href(profilePath(author.handle), locale)}` : null,
+        datePublished: request.createdAt,
+        dateModified: request.editedAt,
+        votes: request.voteCount,
+        comments: request.commentCount,
+        locale,
+      }),
+    ]
+  : [];
 ---
 
 <PageLayout
   template="request"
   width="content"
   seo={{ title, rawTitle: true, description, path, noindex: request === null }}
+  jsonLd={jsonLd}
   breadcrumbs={[
     { label: m.common_nav_home(), path: '/' },
     { label: m.common_term_requests(), path: '/requests' },
@@ -144,8 +165,7 @@ const description = request
           class="flex flex-col gap-6"
         >
           <div class="flex flex-wrap items-center gap-3 border-y border-border py-3">
-            <span class="text-lg font-bold text-fg tabular-nums">{request.voteCount}</span>
-            <span class="text-sm text-fg-muted">{m.requests_votes({ count: request.voteCount })}</span>
+            <span class="text-lg font-bold text-fg tabular-nums">{m.requests_votes({ count: request.voteCount })}</span>
             <p class="text-sm text-fg-muted" data-request-guest-hint>
               {m.requests_guest_hint()}
               <a href={loginHref} class="font-semibold text-link underline underline-offset-3" rel="nofollow">
@@ -200,14 +220,19 @@ const description = request
       </article>
     )
   }
-  <div
-    data-mod-toast
-    role="status"
-    aria-live="polite"
-    class="pointer-events-none fixed inset-x-0 bottom-[calc(9rem+env(safe-area-inset-bottom))] z-(--z-toast) flex justify-center px-4 md:bottom-6"
-  >
-  </div>
 </PageLayout>
+
+<style is:global>
+  /* Members get votes, actions and the comment box after hydration: keep that room (no layout shift). */
+  html[data-signed-in] [data-island='request'] {
+    min-height: 26rem;
+  }
+  @media (max-width: 40rem) {
+    html[data-signed-in] [data-island='request'] {
+      min-height: 36rem;
+    }
+  }
+</style>
 
 <script>
   import { bootRequestPage } from '../../islands/requests/boot.ts';

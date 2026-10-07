@@ -85,5 +85,10 @@
   "requests_badge_author": "Richiedente",
   "requests_comment_delete_title": "Eliminare questo commento?",
   "requests_comment_delete_text": "Non si può annullare.",
-  "requests_votes_short": "voti"
+  "requests_votes_short": "voti",
+  "requests_sort_old": "Più vecchie",
+  "requests_sort_comments": "Più discusse",
+  "requests_search_label": "Cerca richieste",
+  "requests_empty_search_title": "Nessuna richiesta per «{query}»",
+  "requests_empty_search_text": "Controlla l’ortografia, usa meno parole o cerca in tutti gli stati. Se nessuno l’ha ancora chiesto, puoi farlo tu."
 }

@@ -8,5 +8,6 @@ export * from './csv.ts';
 export * from './inbox.ts';
 export * from './legacy-counters.ts';
 export * from './rollup.ts';
+export * from './studio-attention.ts';
 export * from './studio-common.ts';
 export * from './studio-overview.ts';

@@ -1,35 +1,64 @@
 /**
- * Top bar. Phones: the brand mark (or a Back arrow on pushed screens), the area or screen title in
- * the display face, the realtime dot and the account menu, with the area's places as a strip of
- * pills below (the Signals bell lives in the bottom tabs). Larger screens: the current area,
- * realtime status, the Signals bell with the unread count (it opens a panel with the latest
- * signals, `SignalsBell.tsx`, lazy; until that chunk arrives it is a link to `/notifications`) and the
- * account menu.
+ * Top bar, styled like the public site header (same height, border and translucent surface; the
+ * logo sits in the sidebar's first row so the two read as one band). Phones: the brand mark (or a
+ * Back arrow on pushed screens), the area or screen title, the language menu and the account menu,
+ * with the area's places as a strip of pills below (the notifications bell lives in the bottom
+ * tabs). Larger screens: the current area, the language menu, the bell with the unread count (it
+ * opens a panel with the latest notifications, `SignalsBell.tsx`, lazy; until that chunk arrives it
+ * is a link to `/notifications`) and the account menu.
  */
 
+import { localizePath } from '@sotf/i18n';
 import { BELOW_MD_QUERY, useMediaQuery } from '@sotf/ui';
 import { cn } from '@sotf/ui/cn';
 import { Icon } from '@sotf/ui/icons';
 import { Link, useRouter } from '@tanstack/react-router';
-import { Bell, ChevronLeft } from 'lucide-react';
+import { Bell, ChevronLeft, Hammer, HandHelping, type LucideIcon, Package, Trophy } from 'lucide-react';
 import { lazy, Suspense } from 'react';
 import type { Me } from '../hooks/use-me.ts';
-import { t } from '../lib/messages.ts';
+import { activeLocale, t } from '../lib/messages.ts';
 import { type AreaId, findArea, isPushedRoute, parentPath, phoneItems, type Viewer } from '../lib/navigation.ts';
-import type { StreamStatus } from '../lib/stream.ts';
 import { AccountMenu } from './AccountMenu.tsx';
 import { BrandLogo } from './BrandLogo.tsx';
-import { LiveStatus } from './LiveStatus.tsx';
+import { LanguageMenu } from './LanguageMenu.tsx';
 import { SectionStrip } from './SectionStrip.tsx';
 
 const SignalsBell = lazy(() => import('./SignalsBell.tsx'));
+
+/** The public site's main links, as in its header (they leave the console). */
+const SITE_LINKS: ReadonlyArray<{ path: string; label: () => string; icon: LucideIcon }> = [
+  { path: '/mods', label: () => t('common_term_mods'), icon: Package },
+  { path: '/builds', label: () => t('common_term_builds'), icon: Hammer },
+  { path: '/jams', label: () => t('console_nav_jams'), icon: Trophy },
+  { path: '/requests', label: () => t('common_term_requests'), icon: HandHelping },
+];
+
+function SiteLinks() {
+  const locale = activeLocale();
+  return (
+    <nav aria-label={t('common_nav_label')} className="mx-auto hidden min-w-0 lg:block">
+      <ul className="flex items-center gap-0.5 rounded-full border border-border bg-surface p-1">
+        {SITE_LINKS.map((link) => (
+          <li key={link.path}>
+            <a
+              href={localizePath(link.path, locale)}
+              className="flex h-9 items-center gap-2 rounded-full px-4 text-sm font-medium text-fg-muted transition-colors duration-(--dur-fast) hover:bg-fg/8 hover:text-fg"
+            >
+              <Icon icon={link.icon} size={18} className="hidden xl:block" />
+              {link.label()}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  );
+}
 
 export interface TopBarProps {
   me: Me;
   viewer: Viewer;
   area: AreaId | null;
   pathname: string;
-  status: StreamStatus;
   /** A pushed screen (editor, wizard, open queue item): Back arrow instead of the mark, no strip. */
   pushed: boolean;
   /** Title of the current screen (deepest route title), shown on phones. */
@@ -56,7 +85,7 @@ function BackButton({ pathname }: { pathname: string }) {
   );
 }
 
-export function TopBar({ me, viewer, area, pathname, status, pushed, title, onShowShortcuts }: TopBarProps) {
+export function TopBar({ me, viewer, area, pathname, pushed, title, onShowShortcuts }: TopBarProps) {
   const unread = me.unreadNotifications;
   const bellLabel = t('console_signals_unread', { count: unread });
   const phone = useMediaQuery(BELOW_MD_QUERY);
@@ -89,7 +118,7 @@ export function TopBar({ me, viewer, area, pathname, status, pushed, title, onSh
         strip ? 'md:border-b md:border-border' : 'border-b border-border',
       )}
     >
-      <div className="flex h-14 items-center gap-2 px-3 md:gap-4 md:px-6">
+      <div className="flex h-14 items-center gap-2 px-3 md:h-16 md:gap-4 md:px-6">
         {pushed ? <BackButton pathname={pathname} /> : null}
         <a
           href="/"
@@ -98,10 +127,11 @@ export function TopBar({ me, viewer, area, pathname, status, pushed, title, onSh
         >
           <BrandLogo variant="mark" />
         </a>
-        <p className="font-display-caps min-w-0 truncate text-xl leading-none text-fg md:hidden">{phoneTitle}</p>
-        <p className="readout hidden md:block">{areaLabel}</p>
-        <div className="ms-auto flex items-center gap-1 md:gap-3">
-          <LiveStatus status={status} />
+        <p className="min-w-0 truncate text-lg font-semibold leading-none text-fg md:hidden">{phoneTitle}</p>
+        <p className="hidden min-w-0 truncate text-base font-semibold text-fg md:block lg:hidden">{areaLabel}</p>
+        <SiteLinks />
+        <div className="ms-auto flex items-center gap-0.5 md:gap-1.5">
+          <LanguageMenu />
           {phone ? null : (
             <Suspense fallback={bellLink}>
               <SignalsBell unread={unread} label={bellLabel} fallback={bellLink} />

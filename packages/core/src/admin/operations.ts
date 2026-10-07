@@ -1,5 +1,5 @@
 /**
- * `GET /admin/ops` (PLAN §10.3 "Métricas operativas", 👑 + session < 12 h): the readout the admin
+ * `GET /admin/ops` (PLAN §10.3 "Métricas operativas"): the readout the admin
  * checks before digging into logs — pg-boss queue depth and recent failures, the dead-letter
  * backlog (alert when > 0), downloads in the last hour and day, the state of the CDN purges, the
  * API responses by status (404/410/5xx) and the alerts active now.

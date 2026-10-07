@@ -8,7 +8,7 @@ import { Button } from '@sotf/ui/button';
 import { Icon } from '@sotf/ui/icons';
 import { X } from 'lucide-react';
 import { type FormEvent, type ReactNode, useEffect, useId, useRef, useState } from 'react';
-import { toast } from '../../../scripts/mod/toast.ts';
+import { toast } from '../../../lib/client/toast.ts';
 import { api, type Failure, failureRef, failureText } from './api.ts';
 import { t } from './messages.ts';
 
@@ -113,32 +113,49 @@ export function LiveRegion({ message }: { message: string }) {
 // Toasts
 // ---------------------------------------------------------------------------------------------
 
-/** One toast of the page (`[data-mod-toast]`), optionally with «Undo». */
+/** A confirmation toast, optionally with «Undo». */
 export function notify(message: string, undo?: () => void): void {
-  toast(message, undo ? { label: t('social_action_undo'), onClick: undo } : undefined);
+  toast.success(
+    message,
+    undo ? { action: { label: t('social_action_undo'), onClick: undo }, duration: 10_000 } : undefined,
+  );
+}
+
+/** A failure toast: stays until dismissed, with «Retry» when the action can be repeated. */
+export function notifyFailure(failure: Failure, retry?: () => void): void {
+  const reference = failureRef(failure);
+  toast.error(failureText(failure), {
+    ...(reference ? { description: t('errors_reference', { id: reference }) } : {}),
+    ...(retry ? { action: { label: t('social_action_retry'), onClick: retry } } : {}),
+  });
 }
 
 /**
  * Optimism with undo (PLAN §1.2) for destructive actions: the UI changes now, the request is sent
- * when the undo window closes (or right away when the page is being left).
+ * when the undo toast goes away (it stays {@link delayMs}, longer while hovered or focused), or
+ * right away when the page is being left. Undo reverts and cancels the request.
  */
 export function deferWithUndo(message: string, commit: () => void, revert: () => void, delayMs = 6000): void {
   let done = false;
   const run = () => {
     if (done) return;
     done = true;
-    window.clearTimeout(timer);
     window.removeEventListener('pagehide', run);
     commit();
   };
-  const timer = window.setTimeout(run, delayMs);
   window.addEventListener('pagehide', run);
-  notify(message, () => {
-    if (done) return;
-    done = true;
-    window.clearTimeout(timer);
-    window.removeEventListener('pagehide', run);
-    revert();
+  toast.success(message, {
+    duration: delayMs,
+    onClose: run,
+    action: {
+      label: t('social_action_undo'),
+      onClick: () => {
+        if (done) return;
+        done = true;
+        window.removeEventListener('pagehide', run);
+        revert();
+      },
+    },
   });
 }
 

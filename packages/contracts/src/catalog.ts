@@ -273,6 +273,7 @@ export const MOD_SORTS = [
   'follows',
   'comments',
   'week',
+  'name',
   'relevance',
 ] as const;
 export const ModSort = z.enum(MOD_SORTS);
@@ -297,6 +298,11 @@ export const ModListQuery = PageQuery.extend({
   platform: Platform.optional(),
   updatedWithin: z.enum(['30d', '90d', '1y']).optional(),
   minRating: wireInt({ min: 1, max: 5 }).optional(),
+  minDownloads: wireInt({
+    min: 1,
+    max: 1_000_000,
+    description: 'Only items with at least this many downloads',
+  }).optional(),
   hasSource: wireFlag('Only mods with a source link'),
   verified: wireFlag('Only verified creators'),
   unapproved: wireFlag(
@@ -630,7 +636,7 @@ export const catalogEndpoints = {
     path: `${base}/mods`,
     summary: 'Explore mods, libraries and builds',
     description:
-      'Only `published` items (or, with `unapproved=1`, `pending` ones whose checks passed). Include/exclude facets, sorts (`week` = downloads in the last 7 days) and counts (`facets=1`).',
+      'Only `published` items (or, with `unapproved=1`, `pending` ones whose checks passed). Include/exclude facets, sorts (`week` = downloads in the last 7 days; `name` = A to Z, `order=desc` for Z to A) and counts (`facets=1`).',
     auth: 'public',
     query: ModListQuery,
     response: ModListDTO,

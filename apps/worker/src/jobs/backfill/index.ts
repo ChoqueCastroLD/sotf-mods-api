@@ -7,14 +7,32 @@
  *   declared versions and platform, `logColor`, `buildMeta` and build thumbnails, AVIF/WebP
  *   variants of every legacy image and the OG cards of every entity. Needs R2 credentials.
  * - `B16` (retroactive gamification) was retired with the gamification features.
+ * - `B20` — automatic checks (zip, manifest, size, hashes, VirusTotal lookup) of the versions of
+ *   legacy mods that are still `pending`, from the objects already in the bucket (`runB20`).
+ *   Needs R2 credentials; never changes a mod or version status.
+ * - `B21` — seeds `GameBuild` from the Steam news feed (`runB21`); no R2, needs network access.
  * - Every other id is a database-only backfill of `tooling/migration` (`pnpm db:backfill`: B1–B14;
  *   `pnpm --filter @sotf/migration-tools r2:manifest-fixes`: B8 and the `Library` reclassification
  *   after B15; B17 is the operator CLI `r2:b17`). The job fails fast with that hint.
  *
  * `dryRun` defaults to true (the payload schema): nothing is written unless `--apply` was given.
  */
+import {
+  createVirusTotalClient,
+  createVirusTotalThrottle,
+  type VirusTotalClient,
+} from '@sotf/core/security-scan/index';
+import { createSteamClient, type SteamClient } from '@sotf/core/steam/index';
 import { defineJob, defineJobGroup } from '../../define-job.ts';
 import { runB15 } from './b15.ts';
+import { runB20 } from './b20.ts';
+import { runB21 } from './b21.ts';
+
+export interface BackfillJobOptions {
+  /** Tests inject fakes; by default the clients come from the environment. */
+  virusTotal?: (ctx: Parameters<typeof runB20>[0]) => VirusTotalClient | null;
+  steam?: () => SteamClient;
+}
 
 const TOOLING_HINT: Readonly<Record<string, string>> = {
   B8: 'B8 runs from tooling after B15: pnpm --filter @sotf/migration-tools r2:manifest-fixes [--apply]',
@@ -23,29 +41,53 @@ const TOOLING_HINT: Readonly<Record<string, string>> = {
   B18: 'B18 (pending mentions) is flushed by the worker at the cut-over (legacy.mentions, WP-43)',
 };
 
-export default defineJobGroup({
-  name: 'backfill',
-  jobs: [
-    defineJob({
-      queue: 'backfill.run',
-      options: { localConcurrency: 1 },
-      handler: async ({ name, dryRun, batchSize }, { ctx, job, services }) => {
-        ctx.log.info({ name, dryRun, batchSize }, 'backfill started');
-        switch (name) {
-          case 'B15': {
-            const storage = services.storage();
-            if (!storage) throw new Error('B15 needs R2 credentials (R2_* variables of the worker)');
-            const result = await runB15(ctx, storage, { dryRun, batchSize, signal: job.signal });
-            ctx.log.info({ name, dryRun, ms: result.ms }, 'backfill finished');
-            return result;
+export function createBackfillJobs(options: BackfillJobOptions = {}) {
+  return defineJobGroup({
+    name: 'backfill',
+    jobs: [
+      defineJob({
+        queue: 'backfill.run',
+        options: { localConcurrency: 1 },
+        handler: async ({ name, dryRun, batchSize }, { ctx, job, services }) => {
+          ctx.log.info({ name, dryRun, batchSize }, 'backfill started');
+          switch (name) {
+            case 'B15': {
+              const storage = services.storage();
+              if (!storage) throw new Error('B15 needs R2 credentials (R2_* variables of the worker)');
+              const result = await runB15(ctx, storage, { dryRun, batchSize, signal: job.signal });
+              ctx.log.info({ name, dryRun, ms: result.ms }, 'backfill finished');
+              return result;
+            }
+            case 'B20': {
+              const storage = services.storage();
+              if (!storage) throw new Error('B20 needs R2 credentials (R2_* variables of the worker)');
+              const virusTotal = options.virusTotal
+                ? options.virusTotal(ctx)
+                : (() => {
+                    const key = services.env.VIRUSTOTAL_API_KEY?.trim() || null;
+                    if (!key) return null;
+                    const throttle = createVirusTotalThrottle(ctx.db, ctx.clock);
+                    return createVirusTotalClient({ apiKey: key, beforeRequest: () => throttle('scan') });
+                  })();
+              const result = await runB20(ctx, storage, { dryRun, batchSize, signal: job.signal, virusTotal });
+              ctx.log.info({ name, dryRun, ms: result.ms }, 'backfill finished');
+              return result;
+            }
+            case 'B21': {
+              const result = await runB21(ctx, (options.steam ?? createSteamClient)(), { dryRun });
+              ctx.log.info({ name, dryRun, ms: result.ms }, 'backfill finished');
+              return result;
+            }
+            default:
+              throw new Error(
+                TOOLING_HINT[name] ??
+                  `${name} is a database backfill of tooling/migration: pnpm db:backfill ${name} [--dry-run]`,
+              );
           }
-          default:
-            throw new Error(
-              TOOLING_HINT[name] ??
-                `${name} is a database backfill of tooling/migration: pnpm db:backfill ${name} [--dry-run]`,
-            );
-        }
-      },
-    }),
-  ],
-});
+        },
+      }),
+    ],
+  });
+}
+
+export default createBackfillJobs();

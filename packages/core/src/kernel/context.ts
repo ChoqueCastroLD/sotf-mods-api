@@ -26,7 +26,7 @@ export interface Actor {
   verifiedCreator?: boolean;
   /** "User"."trustLevel" 0–3 as resolved with the session (unknown = 0). */
   trustLevel?: number;
-  /** Creation time of the session (`assertFreshSession`, 12 h re-authentication of staff actions). */
+  /** Creation time of the session. */
   sessionCreatedAt?: Date;
 }
 

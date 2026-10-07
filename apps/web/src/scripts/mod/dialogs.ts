@@ -39,7 +39,15 @@ export function closeDialog(dialog: HTMLDialogElement): void {
 }
 
 export function initDialogs(root: HTMLElement, doc: Document = document): void {
-  for (const element of root.querySelectorAll<HTMLElement>('[data-js-only]')) element.hidden = false;
+  for (const element of root.querySelectorAll<HTMLElement>('[data-js-only]')) {
+    element.hidden = false;
+    // `data-js-reserve`: rendered invisible (it keeps its place, so nothing shifts when it appears).
+    if (element.hasAttribute('data-js-reserve')) {
+      element.classList.remove('invisible');
+      element.removeAttribute('aria-hidden');
+      element.removeAttribute('tabindex');
+    }
+  }
 
   root.addEventListener('click', (event) => {
     const target = event.target as Element | null;

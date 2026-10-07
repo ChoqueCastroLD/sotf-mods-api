@@ -4,6 +4,7 @@ import { join } from 'node:path';
 import { BANNER_INIT_SCRIPT } from '@sotf/ui/dismissals';
 import { THEME_INIT_SCRIPT } from '@sotf/ui/theme';
 import { describe, expect, it } from 'vitest';
+import { FOOTER_ACCORDION_SCRIPT } from '../scripts/footer-accordion.ts';
 import { LEGACY_CLEANUP_SCRIPT } from '../scripts/legacy-cleanup.ts';
 import { pictureSources, safeHexColor, thumbhashDataUrl } from './images.ts';
 import { cspConfig, INLINE_SCRIPTS, sha256Source } from './security/csp.ts';
@@ -26,6 +27,7 @@ describe('CSP placeholder', () => {
       BANNER_INIT_SCRIPT,
       LEGACY_CLEANUP_SCRIPT,
       SPECULATION_RULES_JSON,
+      FOOTER_ACCORDION_SCRIPT,
     ]);
     for (const script of INLINE_SCRIPTS) {
       const expected = `sha256-${createHash('sha256').update(script).digest('base64')}`;
@@ -49,14 +51,36 @@ describe('CSP placeholder', () => {
       }
     }
   });
+
+  it('never ships an unhashed executable inline script in a component', () => {
+    const components = join(import.meta.dirname, '../components');
+    const walk = (dir: string): string[] =>
+      readdirSync(dir, { withFileTypes: true }).flatMap((entry) =>
+        entry.isDirectory()
+          ? walk(join(dir, entry.name))
+          : entry.name.endsWith('.astro')
+            ? [join(dir, entry.name)]
+            : [],
+      );
+    for (const file of walk(components)) {
+      const source = readFileSync(file, 'utf8');
+      for (const match of source.matchAll(/<script is:inline([^>]*)>/g)) {
+        const attrs = match[1] ?? '';
+        const data = /type="application\/(?:json|ld\+json)"|type="speculationrules"/.test(attrs);
+        const hashed = /set:html=\{(?:FOOTER_ACCORDION_SCRIPT)\}/.test(attrs);
+        expect(data || hashed, `${file}: executable inline script without a CSP hash`).toBe(true);
+      }
+    }
+  });
 });
 
 describe('legacy token cleanup (PLAN §6.10)', () => {
   it('stays tiny and removes both the localStorage token and the cookie', () => {
-    expect(Buffer.byteLength(LEGACY_CLEANUP_SCRIPT)).toBeLessThanOrEqual(170);
+    expect(Buffer.byteLength(LEGACY_CLEANUP_SCRIPT)).toBeLessThanOrEqual(280);
     expect(LEGACY_CLEANUP_SCRIPT).toContain('delete l.token');
     expect(LEGACY_CLEANUP_SCRIPT).toContain('token=;Max-Age=0;Path=/');
     expect(LEGACY_CLEANUP_SCRIPT).toContain('dataset.relogin');
+    expect(LEGACY_CLEANUP_SCRIPT).toContain('sotf_li=1');
   });
 });
 
@@ -71,6 +95,15 @@ describe('speculation rules (PLAN §8.8)', () => {
     expect(json).toContain('download');
     expect(json).toContain('/dashboard/*');
     expect(json).toContain('/api/*');
+  });
+
+  it('prefetches the other public pages but never auth, the console, downloads or the API', () => {
+    const rule = SPECULATION_RULES.prefetch[0];
+    expect(rule.eagerness).toBe('moderate');
+    const excluded = JSON.stringify(rule.where);
+    for (const path of ['/api/*', '/login', '/dashboard/*', '/logout', '/es/api/*', '/ja/login', '/*/download/*']) {
+      expect(excluded).toContain(`"${path}"`);
+    }
   });
 });
 

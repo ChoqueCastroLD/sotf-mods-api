@@ -87,6 +87,12 @@ export const GameBuildListDTO = dto('GameBuildListDTO', z.object({ items: z.arra
   examples: [{ items: [...examplesOf(GameBuildDTO)] }],
 });
 
+export const GameBuildsQuery = z.object({
+  limit: wireInt({ min: 1, max: 200, description: 'Newest N builds (omit for every build)' }).optional(),
+  q: z.string().trim().max(60).optional().describe('Search in the label'),
+});
+export type GameBuildsQuery = z.output<typeof GameBuildsQuery>;
+
 export const LoaderReleaseDTO = dto(
   'LoaderReleaseDTO',
   z.object({
@@ -524,6 +530,7 @@ export const compatEndpoints = {
     path: `${base}/game-builds`,
     summary: 'Registered game builds',
     auth: 'public',
+    query: GameBuildsQuery,
     response: GameBuildListDTO,
     cache: cache.publicApi(['compat']),
     rateLimit: 'anonymousRead',

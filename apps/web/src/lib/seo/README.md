@@ -20,3 +20,16 @@ when the API is down.
 `faq.ts` exports `buildModFaq(facts, locale)`: the per-mod FAQ generated from the facts in the 13
 locales (PLAN §8.7), for the mod page (`#faq` + `FAQPage` JSON-LD) and the `.md` alternate.
 Entities are resolved with `GET /api/v2/resolve` (`entities.ts`): renamed slugs 301, tombstones 410.
+
+## Checks
+
+- `node scripts/check-seo.mjs [--base URL] [--origin https://sotf-mods.com] [--indexable] [--locales en,es|all]`
+  fetches one URL per public template and asserts title/description lengths, canonical, hreflang
+  (13 + x-default), robots, Open Graph, Twitter, icons, manifest and the JSON-LD graph. Without
+  `--indexable` every page must be `noindex` (development); with it, run against a server started with
+  `SITE_ENV=production PUBLIC_SITE_URL=https://sotf-mods.com` to verify the production policy.
+- `node scripts/page-weight.mjs [--base URL]` sums HTML, CSS and JS (brotli) per template of a
+  production server.
+- `jsonld.test.ts` validates every JSON-LD builder (required properties, absolute URLs, ISO dates).
+- Helpers added in this pass: `og.ts` (OG image of an entity with real sizes), `itemListJsonLd`,
+  `requestPostingJsonLd`, `readableVersion` (builds without a version carry a GUID).

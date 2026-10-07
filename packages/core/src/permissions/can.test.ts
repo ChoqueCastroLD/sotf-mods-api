@@ -4,16 +4,7 @@
  */
 import { PERMISSIONS } from '@sotf/contracts/me';
 import { describe, expect, it } from 'vitest';
-import {
-  type Action,
-  ALL_ACTIONS,
-  assertCan,
-  assertFreshSession,
-  can,
-  needsFreshSession,
-  type PermissionSubject,
-  permissionsOf,
-} from './can.ts';
+import { type Action, ALL_ACTIONS, assertCan, can, type PermissionSubject, permissionsOf } from './can.ts';
 
 const NOW = new Date('2026-10-01T12:00:00.000Z');
 const LATER = new Date('2026-10-08T12:00:00.000Z');
@@ -149,21 +140,5 @@ describe('permissionsOf()', () => {
       'kit.write',
     ]);
     expect(permissionsOf(ACTORS.admin ?? null, NOW)).toEqual([...PERMISSIONS]);
-  });
-});
-
-describe('fresh sessions for staff actions', () => {
-  it('applies to moderation and admin actions only', () => {
-    expect(needsFreshSession('moderation.decide')).toBe(true);
-    expect(needsFreshSession('admin.roles')).toBe(true);
-    expect(needsFreshSession('comment.write')).toBe(false);
-  });
-
-  it('requires a session younger than 12 h', () => {
-    expect(() => assertFreshSession(new Date(NOW.getTime() - 11 * 3600_000), NOW)).not.toThrow();
-    expect(() => assertFreshSession(new Date(NOW.getTime() - 13 * 3600_000), NOW)).toThrow(
-      expect.objectContaining({ code: 'REAUTH_REQUIRED' }),
-    );
-    expect(() => assertFreshSession(null, NOW)).toThrow(expect.objectContaining({ code: 'REAUTH_REQUIRED' }));
   });
 });

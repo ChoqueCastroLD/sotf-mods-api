@@ -33,7 +33,7 @@ without React) cannot afford. Keys shared with other namespaces are copied into 
   «Helpful?» votes (optimistic), the author's single public reply (write/edit/delete), report.
 
 Shared pieces live in `comments/lib/` (API client with problem+json, native `<dialog>` modal, menu
-button, report dialog, undo toast through the page's `[data-mod-toast]`, local viewer state).
+button, report dialog, toasts through the shared bus (`lib/client/toast.ts`, with Undo and Retry), local viewer state).
 
 Viewer state that edge-cached lists cannot carry (my reactions, my votes) is
 remembered per account in `localStorage` from the write responses; editing rebuilds the Markdown

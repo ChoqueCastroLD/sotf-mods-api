@@ -1,6 +1,7 @@
 /**
- * Desktop/tablet sidebar (research/03 §6.9): brand, the console areas, the current area's
- * sections and, at the bottom, «Back to the site» and the collapse toggle. Icons only when
+ * Desktop/tablet sidebar (research/03 §6.9): the logo in a row as tall as the top bar (one band
+ * with it, like the public header), the console areas, the current area's sections and, at the
+ * bottom, «Back to the site» and the collapse toggle. Icons only when
  * collapsed (tablets by default), with the label as a tooltip and the accessible name.
  */
 
@@ -30,19 +31,27 @@ export function Sidebar({ viewer, area, pathname, unread, collapsed, onToggle }:
       id={SIDEBAR_ID}
       data-collapsed={collapsed ? 'true' : 'false'}
       className={cn(
-        'sticky top-0 hidden h-dvh shrink-0 flex-col gap-4 border-e border-border bg-surface py-3 md:flex',
+        'sticky top-0 hidden h-dvh shrink-0 flex-col border-e border-border bg-bg md:flex',
         'transition-[width] duration-(--dur-base) ease-(--ease-out)',
-        collapsed ? 'w-16 px-2' : 'w-60 px-3',
+        collapsed ? 'w-16' : 'w-60',
       )}
     >
       <a
         href="/"
-        className={cn('flex h-10 shrink-0 items-center rounded-md text-fg', collapsed ? 'justify-center' : 'px-2')}
+        className={cn(
+          'flex h-16 shrink-0 items-center border-b border-border text-fg transition-colors hover:bg-fg/4',
+          collapsed ? 'justify-center' : 'px-5',
+        )}
         aria-label={`${t('common_site_name')} · ${t('common_nav_home')}`}
       >
         <BrandLogo variant={collapsed ? 'mark' : 'lockup'} />
       </a>
-      <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto overflow-x-visible">
+      <div
+        className={cn(
+          'flex min-h-0 flex-1 flex-col gap-4 overflow-y-auto overflow-x-visible py-4',
+          collapsed ? 'px-2' : 'px-3',
+        )}
+      >
         <AreaList
           viewer={viewer}
           current={area}
@@ -58,7 +67,7 @@ export function Sidebar({ viewer, area, pathname, unread, collapsed, onToggle }:
           </>
         ) : null}
       </div>
-      <div className="flex shrink-0 flex-col gap-0.5 border-t border-border pt-3">
+      <div className={cn('flex shrink-0 flex-col gap-0.5 border-t border-border py-3', collapsed ? 'px-2' : 'px-3')}>
         <a
           href="/"
           {...(collapsed ? { 'aria-label': t('console_back_to_site') } : {})}

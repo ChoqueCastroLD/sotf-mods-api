@@ -171,5 +171,13 @@
   "explore_catalog_empty_clear": "Quitar filtros",
   "explore_catalog_error_title": "No se pudieron cargar los mods",
   "explore_catalog_error_text": "Inténtalo de nuevo en un momento.",
-  "explore_catalog_retry": "Reintentar"
+  "explore_catalog_retry": "Reintentar",
+  "explore_sort_name": "Nombre de A a Z",
+  "explore_facet_downloads": "Descargas",
+  "explore_downloads_min": "{count, number}+ descargas",
+  "explore_page_size_label": "Por página",
+  "explore_search_builds_label": "Buscar builds",
+  "explore_noresults_query_title": "Sin resultados para «{query}»",
+  "explore_suggest_popular": "Mods populares",
+  "explore_results_range": "Mostrando {from, number}–{to, number} de {total, number}"
 }
