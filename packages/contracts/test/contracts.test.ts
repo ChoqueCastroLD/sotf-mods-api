@@ -295,6 +295,8 @@ describe('endpoint contracts', () => {
       v2('PUT', '/admin/settings/:key'),
       v2('GET', '/admin/kelvinseek/usage'),
       v2('GET', '/admin/rum'),
+      v2('POST', '/admin/ops/dead-letters/retry'),
+      v2('POST', '/admin/ops/dead-letters/discard'),
       // Internal
       'GET /internal/downloads/resolve',
       'POST /internal/cdn/purge',

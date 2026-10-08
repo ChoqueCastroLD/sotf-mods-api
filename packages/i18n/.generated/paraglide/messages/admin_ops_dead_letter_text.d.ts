@@ -5,7 +5,7 @@ export type Admin_Ops_Dead_Letter_TextInputs = {
 /**
 * | output |
 * | --- |
-* | "Jobs in the dead letter queue: {count}. Check the worker logs; docs/operations/monitoring.md explains how to retry or drop them." |
+* | "Failed jobs waiting: {count}. They ran out of retries and nothing will run them again. Review them below, then retry or discard them." |
 *
 * @param {Admin_Ops_Dead_Letter_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

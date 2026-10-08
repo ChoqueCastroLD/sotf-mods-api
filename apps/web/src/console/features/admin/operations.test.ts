@@ -1,5 +1,14 @@
 import { describe, expect, it } from 'vitest';
-import { type OpsQueue, queueState, queueTotals, SLOW_QUEUE_MINUTES, waitingMinutes } from './operations.ts';
+import {
+  deadLetterTotal,
+  type OpsQueue,
+  queueState,
+  queueTotals,
+  retryBlock,
+  retryOutcome,
+  SLOW_QUEUE_MINUTES,
+  waitingMinutes,
+} from './operations.ts';
 
 const NOW = Date.parse('2026-09-29T10:00:00.000Z');
 
@@ -53,5 +62,35 @@ describe('queueTotals', () => {
       queueTotals([queue({ queued: 2, active: 1, failed24h: 0 }), queue({ queued: 5, active: 0, failed24h: 3 })]),
     ).toEqual({ queued: 7, active: 1, failed24h: 3 });
     expect(queueTotals([])).toEqual({ queued: 0, active: 0, failed24h: 0 });
+  });
+});
+
+describe('dead letters', () => {
+  const group = (patch: { queue?: string | null; count?: number; retryable?: boolean }) => ({
+    queue: 'og.render' as string | null,
+    count: 3,
+    firstFailedAt: '2026-09-29T08:00:00.000Z',
+    lastFailedAt: '2026-09-29T09:00:00.000Z',
+    lastError: null,
+    retryable: true,
+    ...patch,
+  });
+
+  it('adds up the jobs of every group', () => {
+    expect(deadLetterTotal([])).toBe(0);
+    expect(deadLetterTotal([group({ count: 80 }), group({ queue: null, count: 49 })])).toBe(129);
+  });
+
+  it('tells nothing to retry, a clean retry and a partial retry apart', () => {
+    expect(retryOutcome({ handled: 0, failed: 0 })).toBe('none');
+    expect(retryOutcome({ handled: 5, failed: 0 })).toBe('done');
+    expect(retryOutcome({ handled: 2, failed: 3 })).toBe('partial');
+    expect(retryOutcome({ handled: 0, failed: 3 })).toBe('partial');
+  });
+
+  it('only lets groups with a live source queue be retried', () => {
+    expect(retryBlock(group({}))).toBeNull();
+    expect(retryBlock(group({ queue: null, retryable: false }))).toBe('unknown');
+    expect(retryBlock(group({ queue: 'milestones.check', retryable: false }))).toBe('gone');
   });
 });

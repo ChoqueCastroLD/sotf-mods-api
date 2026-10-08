@@ -1,8 +1,9 @@
 /**
  * `GET /admin/ops` (PLAN §10.3 "Métricas operativas"): the readout the admin
  * checks before digging into logs — pg-boss queue depth and recent failures, the dead-letter
- * backlog (alert when > 0), downloads in the last hour and day, the state of the CDN purges, the
- * API responses by status (404/410/5xx) and the alerts active now.
+ * backlog (alert when > 0; grouped by source queue, with retry and discard in `../ops/dead-letter.ts`),
+ * downloads in the last hour and day, the state of the CDN purges, the API responses by status
+ * (404/410/5xx) and the alerts active now.
  *
  * Read-only aggregates over the pg-boss job table (`PGBOSS_SCHEMA`) and `"ModDownload"`; nothing
  * here is cached (the page is opened on demand).
@@ -15,6 +16,7 @@ import type { Ctx } from '../kernel/context.ts';
 import { DEAD_LETTER_QUEUE } from '../kernel/queues.ts';
 import { assertStaff } from '../moderation/guard.ts';
 import { evaluateOpsAlerts, type OpsAlertDeps } from '../ops/alerts.ts';
+import { deadLetterGroups } from '../ops/dead-letter.ts';
 import { httpStatusSince } from '../ops/http-status.ts';
 
 type Ops = z.infer<typeof OpsDTO>;
@@ -36,7 +38,7 @@ export async function getOperations(
   const now = ctx.clock.now();
   const hourAgo = new Date(now.getTime() - 3_600_000).toISOString();
   const dayAgo = new Date(now.getTime() - 86_400_000).toISOString();
-  const [queues, downloads, purge, last5m, lastHour, alerts] = await Promise.all([
+  const [queues, downloads, purge, last5m, lastHour, alerts, deadLetters] = await Promise.all([
     query<{
       name: string;
       queued: number;
@@ -71,6 +73,7 @@ export async function getOperations(
     httpStatusSince(ctx.db, new Date(now.getTime() - 5 * 60_000)),
     httpStatusSince(ctx.db, new Date(hourAgo)),
     alertDeps ? evaluateOpsAlerts(ctx, { ...alertDeps, schema }) : Promise.resolve([]),
+    deadLetterGroups(ctx, schema),
   ]);
   const list = queues
     .map((q) => ({
@@ -90,6 +93,7 @@ export async function getOperations(
     generatedAt: now.toISOString(),
     queues: list,
     deadLetter: dead ? dead.queued + dead.active : 0,
+    deadLetters,
     downloads: { lastHour: toInt(downloads?.lastHour), last24h: toInt(downloads?.last24h) },
     purge: {
       lastCompletedAt: toDate(purge?.lastCompletedAt)?.toISOString() ?? null,

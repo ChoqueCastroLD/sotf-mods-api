@@ -61,6 +61,8 @@ export const EMAIL_TEMPLATE_PAYLOADS = {
     details: z.array(z.string().max(300)).max(30),
     checkedAt: Iso,
     opsUrl: Url,
+    /** Greeting name of the admin (older queued emails have none). */
+    displayName: Name.optional(),
   }),
 } as const;
 

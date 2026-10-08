@@ -49,6 +49,7 @@ export const PERMISSIONS = [
   'admin.announcements',
   'admin.kelvinseek',
   'admin.rum',
+  'admin.operations',
 ] as const;
 export const Permission = z.enum(PERMISSIONS);
 export type Permission = z.infer<typeof Permission>;

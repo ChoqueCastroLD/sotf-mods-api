@@ -26,6 +26,12 @@ Objetivos (SLO, §10.3): disponibilidad mensual ≥ 99,9 % en descargas y API le
 
 ## 2. Consultas útiles (solo lectura)
 
+Los trabajos en `dead-letter` también se ven y se resuelven en `/moderation/admin/operations`, panel
+«Failed jobs»: agrupados por cola de origen, con **Retry** (los devuelve a su cola con los mismos
+datos) y **Discard** (los saca de la lista sin ejecutarlos). Solo admin; cada acción queda en el
+`AuditLog` (`ops.dead_letter.*`). El correo de alerta cada 6 h lista las mismas colas y enlaza al
+panel; deja de enviarse cuando no queda ninguno pendiente.
+
 Desde un contenedor efímero en la red de Coolify con el rol `sotf_readonly` (si lo creaste con
 `roles.sql`) o `sotf_v2_app`:
 

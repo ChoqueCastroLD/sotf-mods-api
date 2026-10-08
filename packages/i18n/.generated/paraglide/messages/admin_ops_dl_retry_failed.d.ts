@@ -1,0 +1,16 @@
+export type LocalizedString = import('../runtime.js').LocalizedString;
+export type Admin_Ops_Dl_Retry_FailedInputs = {};
+/**
+* | output |
+* | --- |
+* | "Could not retry the failed jobs" |
+*
+* @param {Admin_Ops_Dl_Retry_FailedInputs} inputs
+* @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options
+* @returns {LocalizedString}
+*/
+export declare const admin_ops_dl_retry_failed: ((inputs?: Admin_Ops_Dl_Retry_FailedInputs, options?: {
+    locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
+}) => LocalizedString) & import('../runtime.js').MessageMetadata<Admin_Ops_Dl_Retry_FailedInputs, {
+    locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
+}, {}>;

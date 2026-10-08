@@ -3,4 +3,5 @@
  * Import from `@sotf/core/ops/index`.
  */
 export * from './alerts.ts';
+export * from './dead-letter.ts';
 export * from './http-status.ts';

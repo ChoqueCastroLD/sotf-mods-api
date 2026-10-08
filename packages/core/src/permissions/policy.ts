@@ -127,6 +127,7 @@ export const PERMISSION_MATRIX = {
   'admin.announcements': administration('Announcements: admins only.'),
   'admin.kelvinseek': administration('KelvinSeek budget and kill switch: admins only.'),
   'admin.rum': administration('Real-user monitoring dashboards: admins only.'),
+  'admin.operations': administration('Retry or discard failed jobs (dead letters): admins only.'),
   'account.manage': {
     kind: 'resource',
     own: SIGNED_IN,

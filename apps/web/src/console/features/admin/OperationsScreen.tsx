@@ -16,10 +16,11 @@ import { Input } from '@sotf/ui/input';
 import { Select } from '@sotf/ui/select';
 import { useSuspenseQuery } from '@tanstack/react-query';
 import { RefreshCw } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DomainI18nBridge } from '../../components/DomainI18nBridge.tsx';
 import { PageNav, SortSelect } from '../ranger/controls.tsx';
 import { OPERATIONS_REFRESH_MS, operationsQuery } from './api.ts';
+import { DEAD_LETTERS_ANCHOR, DeadLettersPanel } from './DeadLettersPanel.tsx';
 import { type OpsQueue, type QueueState, queueState, queueTotals, waitingMinutes } from './operations.ts';
 import {
   AdminHeader,
@@ -83,6 +84,13 @@ export function OperationsScreen() {
   const current = Math.min(page, totalPages);
   const visible = ordered.slice((current - 1) * size, current * size);
 
+  // The alert email links to `#dead-letters`; the panel only exists once the data has loaded.
+  useEffect(() => {
+    if (window.location.hash === `#${DEAD_LETTERS_ANCHOR}`) {
+      document.getElementById(DEAD_LETTERS_ANCHOR)?.scrollIntoView({ block: 'start' });
+    }
+  }, []);
+
   return (
     <DomainI18nBridge>
       <div className="grid gap-6">
@@ -129,6 +137,8 @@ export function OperationsScreen() {
             failed: formatCount(data.purge.failed24h),
           })}
         </p>
+
+        {data.deadLetters ? <DeadLettersPanel groups={data.deadLetters} ago={(iso) => ago(iso, now)} /> : null}
 
         <Panel
           title={m.admin_ops_queues_title()}

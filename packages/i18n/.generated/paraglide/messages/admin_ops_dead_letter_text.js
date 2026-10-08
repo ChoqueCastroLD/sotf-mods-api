@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ count: NonNullable<unknown> }} Admin_Ops_Dead_Letter_TextInputs */
 
 const en_admin_ops_dead_letter_text = /** @type {(inputs: Admin_Ops_Dead_Letter_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Jobs in the dead letter queue: ${i?.count}. Check the worker logs; docs/operations/monitoring.md explains how to retry or drop them.`)
+	return /** @type {LocalizedString} */ (`Failed jobs waiting: ${i?.count}. They ran out of retries and nothing will run them again. Review them below, then retry or discard them.`)
 };
 
 const es_admin_ops_dead_letter_text = /** @type {(inputs: Admin_Ops_Dead_Letter_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Tareas en la cola de fallidas: ${i?.count}. Revisa los logs del worker; docs/operations/monitoring.md explica cómo reintentarlas o descartarlas.`)
+	return /** @type {LocalizedString} */ (`Tareas fallidas en espera: ${i?.count}. Se quedaron sin reintentos y nada volverá a ejecutarlas. Revísalas abajo y luego reinténtalas o descártalas.`)
 };
 
 const de_admin_ops_dead_letter_text = /** @type {(inputs: Admin_Ops_Dead_Letter_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Jobs in der Dead-Letter-Warteschlange: ${i?.count}. Prüfe die Worker-Logs; docs/operations/monitoring.md erklärt, wie du sie erneut ausführst oder verwirfst.`)
+	return /** @type {LocalizedString} */ (`Fehlgeschlagene Jobs im Wartezustand: ${i?.count}. Sie haben keine Versuche mehr übrig und werden nicht erneut ausgeführt. Prüfe sie unten und führe sie dann erneut aus oder verwirf sie.`)
 };
 
 const fr_admin_ops_dead_letter_text = /** @type {(inputs: Admin_Ops_Dead_Letter_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Tâches en échec définitif : ${i?.count}. Consultez les journaux du worker ; docs/operations/monitoring.md explique comment les relancer ou les abandonner.`)
+	return /** @type {LocalizedString} */ (`Tâches en échec en attente : ${i?.count}. Elles n’ont plus d’essais et rien ne les relancera. Consultez-les ci-dessous, puis relancez-les ou abandonnez-les.`)
 };
 
 const it_admin_ops_dead_letter_text = /** @type {(inputs: Admin_Ops_Dead_Letter_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Job nella coda dei falliti: ${i?.count}. Controlla i log del worker; docs/operations/monitoring.md spiega come riprovarli o scartarli.`)
+	return /** @type {LocalizedString} */ (`Job falliti in attesa: ${i?.count}. Hanno esaurito i tentativi e nulla li eseguirà di nuovo. Controllali qui sotto, poi riprovali o scartali.`)
 };
 
 const nl_admin_ops_dead_letter_text = /** @type {(inputs: Admin_Ops_Dead_Letter_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Taken in de dead-letter-wachtrij: ${i?.count}. Bekijk de worker-logs; docs/operations/monitoring.md legt uit hoe je ze opnieuw uitvoert of verwijdert.`)
+	return /** @type {LocalizedString} */ (`Wachtende mislukte taken: ${i?.count}. Ze hebben geen pogingen meer over en niets voert ze nog uit. Bekijk ze hieronder en voer ze opnieuw uit of verwijder ze.`)
 };
 
 const pl_admin_ops_dead_letter_text = /** @type {(inputs: Admin_Ops_Dead_Letter_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Zadania w kolejce nieudanych: ${i?.count}. Sprawdź logi workera; docs/operations/monitoring.md wyjaśnia, jak je ponowić lub odrzucić.`)
+	return /** @type {LocalizedString} */ (`Oczekujące nieudane zadania: ${i?.count}. Wyczerpały próby i nic ich już nie uruchomi. Sprawdź je poniżej, a potem ponów lub odrzuć.`)
 };
 
 const pt_admin_ops_dead_letter_text = /** @type {(inputs: Admin_Ops_Dead_Letter_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Tarefas na fila de falhas: ${i?.count}. Verifique os logs do worker; docs/operations/monitoring.md explica como tentar de novo ou descartá-las.`)
+	return /** @type {LocalizedString} */ (`Tarefas com falha em espera: ${i?.count}. Esgotaram as tentativas e nada vai executá-las de novo. Veja abaixo e depois tente de novo ou descarte.`)
 };
 
 const ru_admin_ops_dead_letter_text = /** @type {(inputs: Admin_Ops_Dead_Letter_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Задач в очереди неудачных: ${i?.count}. Проверь логи воркера; в docs/operations/monitoring.md описано, как их повторить или удалить.`)
+	return /** @type {LocalizedString} */ (`Неудачных задач в ожидании: ${i?.count}. Попытки закончились, и больше их ничто не запустит. Посмотри их ниже, затем повтори или удали.`)
 };
 
 const sv_admin_ops_dead_letter_text = /** @type {(inputs: Admin_Ops_Dead_Letter_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Jobb i dead letter-kön: ${i?.count}. Kolla workerns loggar; docs/operations/monitoring.md förklarar hur du kör om eller slänger dem.`)
+	return /** @type {LocalizedString} */ (`Misslyckade jobb som väntar: ${i?.count}. De har slut på försök och inget kör dem igen. Granska dem nedan och försök sedan igen eller släng dem.`)
 };
 
 const tr_admin_ops_dead_letter_text = /** @type {(inputs: Admin_Ops_Dead_Letter_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Başarısız iş kuyruğundaki işler: ${i?.count}. Worker günlüklerine bak; docs/operations/monitoring.md bunları nasıl yeniden deneyeceğini veya atacağını anlatır.`)
+	return /** @type {LocalizedString} */ (`Bekleyen başarısız işler: ${i?.count}. Deneme hakları bitti ve onları artık hiçbir şey çalıştırmayacak. Aşağıda incele, sonra yeniden dene ya da at.`)
 };
 
 const zh_admin_ops_dead_letter_text = /** @type {(inputs: Admin_Ops_Dead_Letter_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`死信队列中的任务:${i?.count}。请查看 worker 日志;docs/operations/monitoring.md 说明了如何重试或丢弃它们。`)
+	return /** @type {LocalizedString} */ (`等待处理的失败任务:${i?.count}。它们的重试次数已用完,不会再被运行。请在下方查看,然后重试或丢弃。`)
 };
 
 const ja_admin_ops_dead_letter_text = /** @type {(inputs: Admin_Ops_Dead_Letter_TextInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`デッドレターキューのジョブ: ${i?.count}。ワーカーのログを確認してください。再実行や破棄の方法は docs/operations/monitoring.md にあります。`)
+	return /** @type {LocalizedString} */ (`待機中の失敗したジョブ: ${i?.count}。再試行回数を使い切っており、このままでは再実行されません。下で確認し、再試行するか破棄してください。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Jobs in the dead letter queue: {count}. Check the worker logs; docs/operations/monitoring.md explains how to retry or drop them." |
+* | "Failed jobs waiting: {count}. They ran out of retries and nothing will run them again. Review them below, then retry or discard them." |
 *
 * @param {Admin_Ops_Dead_Letter_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

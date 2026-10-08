@@ -657,12 +657,79 @@ const HttpStatusCountsDTO = z.object({
 
 export const OPS_ALERT_KEYS = ['dead_letter', 'http_5xx', 'invariants', 'kelvinseek_budget'] as const;
 
+export const DeadLetterGroupDTO = dto(
+  'DeadLetterGroupDTO',
+  z.object({
+    queue: z
+      .string()
+      .nullable()
+      .describe('Queue the failed jobs came from; null when it cannot be determined (discard only)'),
+    count: Count.describe('Failed jobs of this queue waiting in the dead-letter queue'),
+    firstFailedAt: IsoDateTime,
+    lastFailedAt: IsoDateTime,
+    lastError: z.string().nullable().describe('Error message of the latest failure, trimmed to 200 characters'),
+    retryable: z.boolean().describe('The queue still exists, so the jobs can be sent back to it'),
+  }),
+  {
+    description: 'Failed jobs waiting in the dead-letter queue that came from the same source queue.',
+    examples: [
+      {
+        queue: 'og.render',
+        count: 17,
+        firstFailedAt: '2026-09-30T08:00:00.000Z',
+        lastFailedAt: '2026-10-01T17:20:00.000Z',
+        lastError: 'Font file not found',
+        retryable: true,
+      },
+    ],
+  },
+);
+
+const DeadLetterQueueName = z.string().trim().min(1).max(100);
+
+export const DeadLetterRetryBody = dto('DeadLetterRetryBody', z.strictObject({ queue: DeadLetterQueueName }), {
+  description: 'Send the failed jobs of one source queue back to it with their original data.',
+  examples: [{ queue: 'og.render' }],
+});
+
+export const DeadLetterDiscardBody = dto(
+  'DeadLetterDiscardBody',
+  z.strictObject({
+    scope: z.enum(['queue', 'unknown', 'all']).describe('One source queue, the rows with an unknown source, or all'),
+    queue: DeadLetterQueueName.optional().describe('Required when `scope` is `queue`'),
+  }),
+  {
+    description: 'Remove failed jobs from the dead-letter queue so they stop counting. They are not run again.',
+    examples: [{ scope: 'queue', queue: 'milestones.check' }, { scope: 'all' }],
+  },
+);
+
+export const DeadLetterActionResultDTO = dto(
+  'DeadLetterActionResultDTO',
+  z.object({
+    action: z.enum(['retry', 'discard']),
+    handled: Count.describe('Dead-letter rows that left the pending list'),
+    requeued: Count.describe('Jobs sent back to their queue (retry only)'),
+    skipped: Count.describe('Retried rows whose job already waits in the queue (retry only)'),
+    failed: Count.describe('Rows that could not be retried and are still pending'),
+    remaining: Count.describe('Dead-letter rows still pending after the action'),
+  }),
+  {
+    description: 'Outcome of retrying or discarding failed jobs.',
+    examples: [{ action: 'retry', handled: 17, requeued: 16, skipped: 1, failed: 0, remaining: 112 }],
+  },
+);
+
 export const OpsDTO = dto(
   'OpsDTO',
   z.object({
     generatedAt: IsoDateTime,
     queues: z.array(OpsQueueDTO).describe('Queues with any job in the last 24 h, busiest first'),
     deadLetter: Count.describe('Jobs whose retries are exhausted and not handled yet (alert when > 0)'),
+    deadLetters: z
+      .array(DeadLetterGroupDTO)
+      .optional()
+      .describe('The pending dead letters grouped by source queue, largest first'),
     downloads: z.object({ lastHour: Count, last24h: Count }),
     purge: z.object({
       lastCompletedAt: IsoDateTime.nullable(),
@@ -684,6 +751,7 @@ export const OpsDTO = dto(
         generatedAt: '2026-09-29T10:00:00.000Z',
         queues: [exampleOf(OpsQueueDTO)],
         deadLetter: 0,
+        deadLetters: [],
         downloads: { lastHour: 94, last24h: 1_720 },
         purge: { lastCompletedAt: '2026-09-29T09:58:12.000Z', queued: 2, failed24h: 0 },
         http: {
@@ -1073,6 +1141,28 @@ export const adminEndpoints = {
     path: `${admin}/ops`,
     summary: 'Job queues, dead letters, downloads per hour and CDN purges',
     response: OpsDTO,
+    errors: ['FORBIDDEN'],
+  }),
+  retryDeadLetters: defineEndpoint({
+    ...adminWrite,
+    id: 'admin.retryDeadLetters',
+    owner: 'WP-51',
+    method: 'POST',
+    path: `${admin}/ops/dead-letters/retry`,
+    summary: 'Send the failed jobs of one queue back to it',
+    body: DeadLetterRetryBody,
+    response: DeadLetterActionResultDTO,
+    errors: ['FORBIDDEN'],
+  }),
+  discardDeadLetters: defineEndpoint({
+    ...adminWrite,
+    id: 'admin.discardDeadLetters',
+    owner: 'WP-51',
+    method: 'POST',
+    path: `${admin}/ops/dead-letters/discard`,
+    summary: 'Discard the failed jobs of one queue, or all of them',
+    body: DeadLetterDiscardBody,
+    response: DeadLetterActionResultDTO,
     errors: ['FORBIDDEN'],
   }),
   rum: defineEndpoint({

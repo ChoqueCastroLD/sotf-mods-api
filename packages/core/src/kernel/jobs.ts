@@ -127,4 +127,18 @@ export class Jobs {
     if (options.singletonKey) send.singletonKey = options.singletonKey;
     return this.#boss.send(queue, data as object, send);
   }
+
+  /**
+   * Sends a failed job's original data back to its queue (dead-letter retry). The data is validated
+   * with the queue's schema; a job whose data no longer fits throws. Returns the new job id, or
+   * `null` when an equivalent job already waits (debounce slot, singleton queue). Domain events
+   * get a fresh job id: the id of the failed one is still taken.
+   */
+  async requeue(queue: JobQueue, data: unknown): Promise<string | null> {
+    if (queue === DOMAIN_EVENT_QUEUE) {
+      return this.#boss.send(queue, JOB_PAYLOADS[queue].parse(data) as object);
+    }
+    const target = queue as Exclude<JobQueue, 'domain.event'>;
+    return this.enqueue(target, data as JobPayload<typeof target>);
+  }
 }

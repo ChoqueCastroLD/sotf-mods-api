@@ -127,5 +127,33 @@ describe('operations alert', () => {
     expect(out.html).toContain(`href="${SITE}/moderation/admin"`);
     expect(out.text).toContain('email.send: 2 failed in the last 24 h');
     expect(out.text).toContain('administrator of SOTF Mods');
+    expect(out.text).toContain('Hi there,');
+  });
+
+  it('greets the admin by name and lists the failed queues with a link to the section', async () => {
+    const url = `${SITE}/moderation/admin/operations#dead-letters`;
+    const out = await renderAccountEmail(
+      'ops.alert',
+      'en',
+      {
+        key: 'dead_letter',
+        summary: '97 failed jobs in the dead-letter queue',
+        details: [
+          'translation.mod: 80 jobs, last failure 2026-10-01 12:00 UTC, last error: status 401',
+          'og.render: 17 jobs, last failure 2026-10-01 11:00 UTC, last error: font not found',
+        ],
+        checkedAt: '2026-10-01T10:05:00.000Z',
+        opsUrl: url,
+        displayName: 'Luis',
+      },
+      SITE,
+    );
+    expect(out.text).toContain('Hi Luis,');
+    expect(out.text).not.toContain('Hi admin');
+    expect(out.text).toContain('translation.mod: 80 jobs, last failure 2026-10-01 12:00 UTC, last error: status 401');
+    expect(out.text).toContain('retry');
+    expect(out.html).toContain(`href="${url}"`);
+    expect(out.html).not.toContain('No further details');
+    expect(out.text).not.toMatch(/\u2014/);
   });
 });

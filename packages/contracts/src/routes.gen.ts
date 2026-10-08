@@ -48,6 +48,8 @@ export const API_ROUTES = {
     putSetting: { id: 'admin.putSetting', method: 'PUT', path: "/api/v2/admin/settings/:key", kind: 'json', bodyKind: 'json' },
     kelvinseekUsage: { id: 'admin.kelvinseekUsage', method: 'GET', path: "/api/v2/admin/kelvinseek/usage", kind: 'json', bodyKind: null },
     operations: { id: 'admin.operations', method: 'GET', path: "/api/v2/admin/ops", kind: 'json', bodyKind: null },
+    retryDeadLetters: { id: 'admin.retryDeadLetters', method: 'POST', path: "/api/v2/admin/ops/dead-letters/retry", kind: 'json', bodyKind: 'json' },
+    discardDeadLetters: { id: 'admin.discardDeadLetters', method: 'POST', path: "/api/v2/admin/ops/dead-letters/discard", kind: 'json', bodyKind: 'json' },
     rum: { id: 'admin.rum', method: 'GET', path: "/api/v2/admin/rum", kind: 'json', bodyKind: null },
   },
   auth: {

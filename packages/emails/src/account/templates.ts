@@ -102,6 +102,8 @@ export interface OpsAlertPayload {
   details: string[];
   checkedAt: string;
   opsUrl: string;
+  /** Name of the admin the email is greeted to. */
+  displayName?: string;
 }
 
 /**
@@ -114,10 +116,18 @@ export function opsAlert(p: OpsAlertPayload, c: TemplateContext): TemplateOutput
     element: h(ActionEmail, {
       ...c,
       preview: p.summary,
-      name: 'admin',
+      name: p.displayName?.trim() || 'there',
       heading: p.summary,
-      paragraphs: p.details.length > 0 ? p.details : ['No further details.'],
-      action: { label: 'Open the operations page', url: p.opsUrl },
+      paragraphs: [
+        ...(p.key === 'dead_letter'
+          ? ['These jobs ran out of retries. Nothing will run them again until you retry or discard them. By queue:']
+          : []),
+        ...(p.details.length > 0 ? p.details : ['No further details.']),
+        ...(p.key === 'dead_letter'
+          ? ['Open the operations page to retry a queue or discard the jobs. The alert stops when none are left.']
+          : []),
+      ],
+      action: { label: p.key === 'dead_letter' ? 'Review the failed jobs' : 'Open the operations page', url: p.opsUrl },
       notes: [
         `Checked at ${emailDateTime(c.locale, p.checkedAt)} (alert: ${p.key}). The same alert is sent again at most every 6 hours while it lasts.`,
       ],

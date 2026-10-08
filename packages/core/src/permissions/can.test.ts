@@ -48,6 +48,7 @@ const GLOBAL: Record<(typeof PERMISSIONS)[number], Who[]> = {
   'admin.announcements': ['admin'],
   'admin.kelvinseek': ['admin'],
   'admin.rum': ['admin'],
+  'admin.operations': ['admin'],
 };
 
 /** Resource actions: who may act on their OWN resource and on SOMEONE ELSE's. */

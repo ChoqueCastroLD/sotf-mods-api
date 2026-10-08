@@ -2,7 +2,7 @@
  * Pure helpers of `/moderation/admin/operations` (PLAN §10.3 «Métricas operativas», WP-A4 backlog):
  * the health of one pg-boss queue and how long its oldest job has waited.
  */
-import type { Operations } from './api.ts';
+import type { DeadLetterGroup, DeadLetterResult, Operations } from './api.ts';
 
 export type OpsQueue = Operations['queues'][number];
 export type QueueState = 'ok' | 'slow' | 'failing';
@@ -40,4 +40,21 @@ export function queueTotals(queues: readonly OpsQueue[]): { queued: number; acti
     }),
     { queued: 0, active: 0, failed24h: 0 },
   );
+}
+
+/** Jobs waiting in all the groups of dead letters. */
+export function deadLetterTotal(groups: readonly DeadLetterGroup[]): number {
+  return groups.reduce((sum, group) => sum + group.count, 0);
+}
+
+/** What a retry did, for the toast: nothing to retry, everything sent, or some rows left pending. */
+export function retryOutcome(result: Pick<DeadLetterResult, 'handled' | 'failed'>): 'none' | 'done' | 'partial' {
+  if (result.failed > 0) return 'partial';
+  return result.handled === 0 ? 'none' : 'done';
+}
+
+/** Why a group cannot be retried (null when it can). */
+export function retryBlock(group: Pick<DeadLetterGroup, 'queue' | 'retryable'>): 'unknown' | 'gone' | null {
+  if (group.queue === null) return 'unknown';
+  return group.retryable ? null : 'gone';
 }

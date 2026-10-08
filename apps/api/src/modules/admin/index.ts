@@ -34,6 +34,7 @@ import {
   updateTag,
 } from '@sotf/core/admin/index';
 import type { KelvinSeekConfig } from '@sotf/core/kelvinseek/index';
+import { deadLetterTarget, discardDeadLetters, retryDeadLetters } from '@sotf/core/ops/index';
 import { getSiteSetting, putSiteSetting, type SettingDefaults } from '@sotf/core/settings/index';
 import { defineModule } from '../../lib/define-module.ts';
 import { catalogConfigOf } from '../catalog/index.ts';
@@ -114,6 +115,12 @@ export default defineModule({
     m.implement(adminEndpoints.rum, async ({ query, ctx }) => getAdminRum(ctx, query.range));
     m.implement(adminEndpoints.operations, async ({ ctx }) =>
       getOperations(ctx, env.PGBOSS_SCHEMA, { kelvinSeek: kelvinseek, siteUrl: env.PUBLIC_SITE_URL }),
+    );
+    m.implement(adminEndpoints.retryDeadLetters, async ({ body, ctx }) =>
+      retryDeadLetters(ctx, env.PGBOSS_SCHEMA, body.queue),
+    );
+    m.implement(adminEndpoints.discardDeadLetters, async ({ body, ctx }) =>
+      discardDeadLetters(ctx, env.PGBOSS_SCHEMA, deadLetterTarget(body)),
     );
   },
 });

@@ -39,6 +39,9 @@ export type SiteSetting = Out<typeof api.admin.getSetting>;
 export type Rum = Out<typeof api.admin.rum>;
 export type RumRow = Rum['rows'][number];
 export type Operations = Out<typeof api.admin.operations>;
+export type DeadLetterGroup = NonNullable<Operations['deadLetters']>[number];
+export type DeadLetterResult = Out<typeof api.admin.retryDeadLetters>;
+export type DiscardDeadLettersInput = In<typeof api.admin.discardDeadLetters>['body'];
 
 export type CreateGameBuildInput = In<typeof api.admin.createGameBuild>['body'];
 export type UpdateGameBuildInput = In<typeof api.admin.updateGameBuild>['body'];
@@ -207,6 +210,8 @@ export const adminApi = {
   createAnnouncement: (body: AnnouncementInput) => api.admin.createAnnouncement({ body }),
   updateAnnouncement: (id: number, body: AnnouncementInput) => api.admin.updateAnnouncement({ params: { id }, body }),
   deleteAnnouncement: (id: number) => api.admin.deleteAnnouncement({ params: { id } }),
+  retryDeadLetters: (queue: string) => api.admin.retryDeadLetters({ body: { queue } }),
+  discardDeadLetters: (body: DiscardDeadLettersInput) => api.admin.discardDeadLetters({ body }),
   putSetting: (key: SiteSettingKey, value: unknown) => api.admin.putSetting({ params: { key }, body: { value } }),
 };
 

@@ -1,7 +1,9 @@
 /**
  * `ops.alerts` (every 5 minutes; PLAN §10.3 «Alertas (email al admin vía worker)», backlog WP-A4):
  *
- * - `dead_letter`: jobs waiting in the dead-letter queue (retries exhausted) > 0;
+ * - `dead_letter`: jobs waiting in the dead-letter queue (retries exhausted) > 0, listed per source
+ *   queue with their count, last failure and last error (`./dead-letter.ts`). Retrying or
+ *   discarding them on the operations page empties the list and the alert stops;
  * - `http_5xx`: 5xx > 1 % of the API responses of the last 5 minutes (`http_status` counters of
  *   `./http-status.ts`, at least 50 responses so a single failure on an idle night is not a page);
  * - `invariants`: the latest `db:invariants` run (a `"MigrationRun"` row named `invariants` whose
@@ -19,7 +21,7 @@ import { queueEmail } from '../email/outbox.ts';
 import { query, queryOne, toInt } from '../follows/sql.ts';
 import { type KelvinSeekConfig, loadKelvinSeekConfig } from '../kelvinseek/service.ts';
 import type { Ctx } from '../kernel/context.ts';
-import { DEAD_LETTER_QUEUE } from '../kernel/queues.ts';
+import { type DeadLetterGroup, deadLetterGroups } from './dead-letter.ts';
 import { httpStatusSince } from './http-status.ts';
 
 export const OPS_ALERT_RULES = {
@@ -55,34 +57,34 @@ export interface OpsAlertDeps {
 }
 
 const SCHEMA = /^[a-z_][a-z0-9_]*$/;
+
+/** `2026-10-01 17:20 UTC`. */
+const utcMinute = (iso: string) => `${iso.slice(0, 10)} ${iso.slice(11, 16)} UTC`;
+
+/** One line of the alert for a group of dead letters (the email shows it as a paragraph). */
+export function deadLetterLine(group: DeadLetterGroup): string {
+  const queue = group.queue ?? 'Unknown queue';
+  const jobs = `${group.count} job${group.count === 1 ? '' : 's'}`;
+  const error = group.lastError ? `last error: ${group.lastError}` : 'no error message';
+  return `${queue}: ${jobs}, last failure ${utcMinute(group.lastFailedAt)}, ${error}`.slice(0, 300);
+}
+
 const pct = (n: number) => `${(n * 100).toFixed(1)} %`;
 
 /** The alerts active now (no side effects). */
 export async function evaluateOpsAlerts(ctx: Ctx, deps: OpsAlertDeps): Promise<OpsAlert[]> {
   const schema = deps.schema ?? 'pgboss';
   if (!SCHEMA.test(schema)) throw new Error(`invalid pg-boss schema "${schema}"`);
-  const job = sql.raw(`"${schema}"."job"`);
   const now = ctx.clock.now();
   const alerts: OpsAlert[] = [];
 
-  const dead = await queryOne<{ n: number }>(
-    ctx.db,
-    sql`SELECT count(*)::int AS "n" FROM ${job} j
-         WHERE j."name" = ${DEAD_LETTER_QUEUE} AND j."state" IN ('created', 'retry', 'active')`,
-  );
-  const deadCount = toInt(dead?.n);
+  const groups = await deadLetterGroups(ctx, schema);
+  const deadCount = groups.reduce((sum, g) => sum + g.count, 0);
   if (deadCount > 0) {
-    const failed = await query<{ name: string; n: number }>(
-      ctx.db,
-      sql`SELECT j."name", count(*)::int AS "n" FROM ${job} j
-           WHERE j."state" = 'failed' AND j."completed_on" >= ${new Date(now.getTime() - 86_400_000).toISOString()}::timestamptz
-             AND j."name" <> ${DEAD_LETTER_QUEUE}
-           GROUP BY j."name" ORDER BY count(*) DESC, j."name" LIMIT 10`,
-    );
     alerts.push({
       key: 'dead_letter',
-      summary: `${deadCount} job${deadCount === 1 ? '' : 's'} in the dead-letter queue`,
-      details: failed.map((f) => `${f.name}: ${toInt(f.n)} failed in the last 24 h`),
+      summary: `${deadCount} failed job${deadCount === 1 ? '' : 's'} in the dead-letter queue`,
+      details: groups.slice(0, 25).map(deadLetterLine),
     });
   }
 
@@ -150,15 +152,15 @@ export function alertWindow(date: Date): string {
 export async function runOpsAlerts(ctx: Ctx, deps: OpsAlertDeps): Promise<{ alerts: OpsAlert[]; emails: number }> {
   const alerts = await evaluateOpsAlerts(ctx, deps);
   if (alerts.length === 0) return { alerts, emails: 0 };
-  const admins = await query<{ id: number; email: string }>(
+  const admins = await query<{ id: number; email: string; displayName: string | null }>(
     ctx.db,
-    sql`SELECT "id", "email" FROM "User"
+    sql`SELECT "id", "email", coalesce(nullif(btrim("displayName"), ''), "slug") AS "displayName" FROM "User"
          WHERE "role" = 'admin' AND "emailVerifiedAt" IS NOT NULL AND "deletedAt" IS NULL AND "bannedAt" IS NULL
          ORDER BY "id"`,
   );
   const now = ctx.clock.now();
   const window = alertWindow(now);
-  const opsUrl = `${deps.siteUrl.replace(/\/+$/, '')}/moderation/admin`;
+  const operations = `${deps.siteUrl.replace(/\/+$/, '')}/moderation/admin/operations`;
   let emails = 0;
   for (const alert of alerts) {
     for (const admin of admins) {
@@ -172,7 +174,8 @@ export async function runOpsAlerts(ctx: Ctx, deps: OpsAlertDeps): Promise<{ aler
           summary: alert.summary,
           details: alert.details,
           checkedAt: now.toISOString(),
-          opsUrl,
+          opsUrl: alert.key === 'dead_letter' ? `${operations}#dead-letters` : operations,
+          ...(admin.displayName ? { displayName: admin.displayName.slice(0, 64) } : {}),
         },
         dedupeKey: `ops:${alert.key}:${admin.id}:${window}`,
       });

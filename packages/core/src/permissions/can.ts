@@ -104,6 +104,7 @@ export function can(
     case 'admin.announcements':
     case 'admin.kelvinseek':
     case 'admin.rum':
+    case 'admin.operations':
       return admin;
     // Resources.
     case 'account.manage':
