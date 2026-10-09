@@ -3,8 +3,9 @@
  * (idempotent, resumable, recorded in `MigrationRun`; WP-14/WP-84 implement the backfills).
  *
  *   node dist/backfill.js <B1..B99> [--apply] [--batch-size 2000] [--wait]
+ *   node dist/backfill.js B22 [--apply] [--include-unreferenced] [--delete-originals] [--wait]
  *
- * Without `--apply` the backfill runs as a dry run. `--wait` polls the job until it finishes and
+ * Without `--apply` the backfill runs as a dry run (`B22 --delete-originals` lists what it would delete). `--wait` polls the job until it finishes and
  * exits non-zero when it failed.
  */
 import { JOB_PAYLOADS } from '@sotf/contracts/jobs';
@@ -18,6 +19,8 @@ export interface BackfillArgs {
   name: string;
   dryRun: boolean;
   batchSize: number;
+  deleteOriginals: boolean;
+  includeUnreferenced: boolean;
   wait: boolean;
 }
 
@@ -33,7 +36,13 @@ export function parseBackfillArgs(argv: readonly string[]): BackfillArgs {
     else if (!arg.startsWith('--')) positional.push(arg);
   }
   const name = positional[0];
-  const payload = JOB_PAYLOADS[QUEUE].parse({ name, dryRun: !argv.includes('--apply'), batchSize });
+  const payload = JOB_PAYLOADS[QUEUE].parse({
+    name,
+    dryRun: !argv.includes('--apply'),
+    batchSize,
+    deleteOriginals: argv.includes('--delete-originals'),
+    includeUnreferenced: argv.includes('--include-unreferenced'),
+  });
   return { ...payload, wait: argv.includes('--wait') };
 }
 
@@ -42,7 +51,9 @@ async function main(): Promise<number> {
   try {
     args = parseBackfillArgs(process.argv.slice(2));
   } catch {
-    process.stderr.write('usage: backfill <B1..B99> [--apply] [--batch-size 100..5000] [--wait]\n');
+    process.stderr.write(
+      'usage: backfill <B1..B99> [--apply] [--batch-size 100..5000] [--include-unreferenced] [--delete-originals] [--wait]\n',
+    );
     return 2;
   }
   const env = loadBackfillEnv();

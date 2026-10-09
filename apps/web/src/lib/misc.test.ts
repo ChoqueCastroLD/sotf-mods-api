@@ -108,11 +108,13 @@ describe('speculation rules (PLAN §8.8)', () => {
 });
 
 describe('responsive images (PLAN §8.3)', () => {
-  it('splits AVIF and derives WebP twins', () => {
+  it('keeps the WebP srcset and maps an old AVIF list to its WebP twins', () => {
     const sources = pictureSources('https://r2/x/640.avif 640w, https://r2/x/1280.avif 1280w');
-    expect(sources.avif).toBe('https://r2/x/640.avif 640w, https://r2/x/1280.avif 1280w');
     expect(sources.webp).toBe('https://r2/x/640.webp 640w, https://r2/x/1280.webp 1280w');
-    expect(pictureSources(null)).toEqual({ avif: null, webp: null });
+    expect(pictureSources('https://r2/x/640.webp 640w, https://r2/x/1280.webp 1280w').webp).toBe(
+      'https://r2/x/640.webp 640w, https://r2/x/1280.webp 1280w',
+    );
+    expect(pictureSources(null)).toEqual({ webp: null });
     expect(pictureSources('https://r2/a.webp 320w').webp).toBe('https://r2/a.webp 320w');
   });
 

@@ -106,6 +106,10 @@ export const JOB_PAYLOADS = {
     name: z.string().regex(/^B\d{1,2}$/),
     dryRun: z.boolean().default(true),
     batchSize: z.number().int().min(100).max(5000).default(2000),
+    /** B22 phase 3: delete the originals that were converted to WebP (dry-run listing unless `dryRun` is false). */
+    deleteOriginals: z.boolean().default(false),
+    /** B22: also convert the images no database row references. */
+    includeUnreferenced: z.boolean().default(false),
   }),
 } as const;
 
@@ -223,5 +227,5 @@ export const JOB_PAYLOAD_EXAMPLES: { readonly [Q in Exclude<JobQueue, 'domain.ev
   'cleanup.logs': {},
   'recommendations.compute': {},
   'ops.alerts': {},
-  'backfill.run': { name: 'B1', dryRun: true, batchSize: 2000 },
+  'backfill.run': { name: 'B1', dryRun: true, batchSize: 2000, deleteOriginals: false, includeUnreferenced: false },
 };

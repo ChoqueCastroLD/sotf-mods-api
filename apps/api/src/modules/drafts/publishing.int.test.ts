@@ -10,7 +10,7 @@
  * - an `.exe` inside is flagged: quarantined, the mod and version stay `pending`;
  * - a new version with a lower semver is `version_not_greater`; exactly one `isLatest` per mod;
  * - a BuildShare JSON extracts its thumbnail and `buildMeta`;
- * - images get AVIF/WebP variants at widths ≤ the original and lose their EXIF.
+ * - images become WebP (original and variants, no AVIF) at widths ≤ the original and lose their EXIF.
  */
 import { type Ctx, silentLogger, systemCtx } from '@sotf/core';
 import { extractBuild } from '@sotf/core/builds/index';
@@ -344,20 +344,24 @@ describe('builds and images', () => {
     expect(version.rows[0].buildMeta).toMatchObject({ elements: 4125, guid: 'e215ede2e4d742398c72aaca62496c10' });
   });
 
-  it('images get AVIF and WebP variants at widths ≤ the original and no EXIF', async () => {
+  it('images become WebP (original.webp and WebP-only variants) at widths ≤ the original and no EXIF', async () => {
     const jpeg = await sharp({ create: { width: 1000, height: 500, channels: 3, background: '#a33' } })
       .jpeg()
       .withMetadata({ exif: { IFD0: { Copyright: 'secret-owner' } } })
       .toBuffer();
     const image = await upload(newbie.id, 'image', 'shot.jpg', jpeg, 'image/jpeg');
     expect(typeof image.mediaId).toBe('string');
-    const media = await t.db.pool.query(`SELECT "status", "variants", "width" FROM "Media" WHERE "id" = $1`, [
-      image.mediaId,
-    ]);
+    const media = await t.db.pool.query(
+      `SELECT "status", "variants", "width", "sourceKey", "contentType" FROM "Media" WHERE "id" = $1`,
+      [image.mediaId],
+    );
     expect(media.rows[0].status).toBe('ready');
+    expect(media.rows[0].sourceKey).toBe(`media/${image.mediaId}/original.webp`);
+    expect(media.rows[0].contentType).toBe('image/webp');
     const variants = media.rows[0].variants as Array<{ w: number; format: string; key: string }>;
     expect([...new Set(variants.map((v) => v.w))].sort((a, b) => a - b)).toEqual([320, 640, 960]);
-    expect(new Set(variants.map((v) => v.format))).toEqual(new Set(['avif', 'webp']));
+    expect(new Set(variants.map((v) => v.format))).toEqual(new Set(['webp']));
+    expect(variants.every((v) => v.key.endsWith('.webp'))).toBe(true);
     for (const v of variants) {
       const { body } = await storage.get(s3.config.publicBucket, v.key);
       const chunks: Buffer[] = [];

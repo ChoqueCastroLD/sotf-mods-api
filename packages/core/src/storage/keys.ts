@@ -62,9 +62,13 @@ export function buildFileKey(modId: number, versionId: number, name: string): st
   return `builds/${id(modId, 'modId')}/${id(versionId, 'versionId')}/${safeName(name)}.json`;
 }
 
-export const MEDIA_ORIGINAL_EXTENSIONS = ['png', 'jpg', 'jpeg', 'webp', 'avif', 'gif'] as const;
+/**
+ * Extensions an original can have: new media are always `webp`; the others only exist on objects
+ * written before the WebP-only pipeline (until the B22 backfill converts them).
+ */
+export const MEDIA_ORIGINAL_EXTENSIONS = ['webp', 'png', 'jpg', 'jpeg', 'avif', 'gif'] as const;
 
-/** `media/{mediaId}/original.{ext}` */
+/** `media/{mediaId}/original.{ext}` (`original.webp` for everything processed today) */
 export function mediaOriginalKey(mediaId: string, extension: string): string {
   const ext = extension.toLowerCase().replace(/^\./, '');
   if (!(MEDIA_ORIGINAL_EXTENSIONS as readonly string[]).includes(ext)) {
@@ -73,8 +77,8 @@ export function mediaOriginalKey(mediaId: string, extension: string): string {
   return `media/${id(mediaId.toLowerCase(), 'mediaId')}/original.${ext}`;
 }
 
-/** `media/{mediaId}/{w}.{avif|webp}` */
-export function mediaVariantKey(mediaId: string, width: number, format: 'avif' | 'webp'): string {
+/** `media/{mediaId}/{w}.webp` (the AVIF twins of older media are never written any more) */
+export function mediaVariantKey(mediaId: string, width: number, format: 'webp' = 'webp'): string {
   if (!Number.isInteger(width) || width <= 0) throw new TypeError(`invalid width ${width}`);
   return `media/${id(mediaId.toLowerCase(), 'mediaId')}/${width}.${format}`;
 }

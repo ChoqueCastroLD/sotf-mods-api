@@ -1,30 +1,27 @@
 /**
- * Responsive image helpers for `Picture.astro` (PLAN §8.3): the API delivers `ImageDTO` with an
- * AVIF `srcset` of immutable variants (`media/{id}/{w}.avif`); the WebP twin of every variant
- * lives next to it. Legacy images without variants fall back to their original URL.
+ * Responsive image helpers for `Picture.astro` (PLAN §8.3): the API delivers `ImageDTO` with a
+ * WebP `srcset` of immutable variants (`media/{id}/{w}.webp`); WebP is the only format the site
+ * stores. Legacy images without variants fall back to their original URL.
  */
 import type { ImageDTO } from '@sotf/contracts/common';
 import { thumbHashToDataURL } from 'thumbhash';
 
 export interface PictureSources {
-  avif: string | null;
   webp: string | null;
 }
 
-/** Splits the DTO srcset into AVIF and WebP candidate lists. */
+/**
+ * The WebP candidates of the DTO srcset. Candidates of any other format (an old cached DTO with the
+ * AVIF list) are rewritten to their WebP twin, which always sits next to them.
+ */
 export function pictureSources(srcset: string | null): PictureSources {
-  if (!srcset) return { avif: null, webp: null };
+  if (!srcset) return { webp: null };
   const candidates = srcset
     .split(',')
-    .map((candidate) => candidate.trim())
+    .map((candidate) => candidate.trim().replace(/\.avif(\s|$)/i, '.webp$1'))
     .filter((candidate) => candidate.length > 0);
-  const avif = candidates.filter((candidate) => /\.avif(?:\s|$)/i.test(candidate));
-  const webp = candidates.filter((candidate) => /\.webp(?:\s|$)/i.test(candidate));
-  const derivedWebp = webp.length > 0 ? webp : avif.map((candidate) => candidate.replace(/\.avif(\s|$)/i, '.webp$1'));
-  return {
-    avif: avif.length > 0 ? avif.join(', ') : null,
-    webp: derivedWebp.length > 0 ? derivedWebp.join(', ') : null,
-  };
+  const webp = [...new Set(candidates.filter((candidate) => /\.webp(?:\s|$)/i.test(candidate)))];
+  return { webp: webp.length > 0 ? webp.join(', ') : null };
 }
 
 /** Decodes a base64 ThumbHash into a tiny PNG data URL (hero placeholders only). */

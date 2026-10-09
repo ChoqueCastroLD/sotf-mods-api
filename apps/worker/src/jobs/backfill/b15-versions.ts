@@ -13,7 +13,7 @@
  *    `Library` reclassification read it).
  * 3. Builds (BuildShare JSON ≤ 20 MB, read whole): blueprint validation, `buildMeta` and, when the
  *    build has no cover, the PNG embedded in the blueprint becomes its thumbnail `Media`
- *    (`purpose = 'thumbnail'`, processed inline into AVIF/WebP variants).
+ *    (`purpose = 'thumbnail'`, processed inline into WebP variants).
  * 4. `VersionInspection` (status, flags, entries, sizes, SHA-256) and, for versions still waiting
  *    for their checks (`checksStatus` NULL or `pending`, the unapproved legacy mods of B12), the
  *    inspection status. Approved legacy versions keep `passed`: their flags are informative.

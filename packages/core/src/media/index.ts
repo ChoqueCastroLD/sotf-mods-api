@@ -4,6 +4,7 @@
  */
 export * from './description.ts';
 export * from './image.ts';
+export * from './image-refs.ts';
 export * from './process.ts';
 export * from './remote.ts';
 export * from './ssrf.ts';

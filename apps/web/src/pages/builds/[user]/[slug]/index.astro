@@ -85,12 +85,12 @@ const otherDependencies = build.dependencies.filter((dependency) => dependency.m
 const hero = build.nsfw ? null : (build.thumbnail ?? build.gallery[0] ?? null);
 const heroSources = hero ? pictureSources(hero.srcset) : null;
 const preloadImage = hero
-  ? heroSources?.avif
+  ? heroSources?.webp
     ? {
         href: hero.url,
-        srcset: heroSources.avif,
+        srcset: heroSources.webp,
         sizes: '(min-width: 80rem) 760px, (min-width: 64rem) 58vw, 100vw',
-        type: 'image/avif',
+        type: 'image/webp',
       }
     : { href: hero.url }
   : undefined;

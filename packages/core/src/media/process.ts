@@ -2,12 +2,14 @@
  * `media.process` (PLAN §2.9, §8.3): a pending `Media` row whose source is a private object
  * (`incoming/…` of an upload, a build thumbnail or a replicated remote image) becomes
  *
- *   media/{id}/original.{ext}          (oriented, metadata stripped)
- *   media/{id}/{w}.avif · {w}.webp      (widths of IMAGE_RULES, never enlarged)
+ *   media/{id}/original.webp            (full size, oriented, metadata stripped, WebP quality 75)
+ *   media/{id}/{w}.webp                 (widths of IMAGE_RULES, WebP quality 75, never enlarged)
  *
- * in the public bucket with `Cache-Control: immutable`; the row gets width, height, bytes, the
- * ThumbHash, the dominant colour and the variant list, and its source now points at the public
- * original. The private source object is deleted and the upload that produced it (if any) moves
+ * in the public bucket with `Cache-Control: immutable`. WebP is the only format ever stored (animated
+ * GIF/APNG/WebP stay animated); PNG, JPEG, GIF and AVIF are accepted as input only. The row gets width,
+ * height, bytes, the ThumbHash, the dominant colour and the variant list, and its source now points at
+ * the public original (`original.webp`; rows processed before the WebP-only change keep their
+ * `original.png|jpg|gif` and AVIF variants until the B22 backfill converts them). The private source object is deleted and the upload that produced it (if any) moves
  * to `ready`. Invalid images mark the media `failed` and the upload `rejected`.
  *
  * Idempotent: a `ready` media is left alone; a retry after a partial failure rewrites the same
@@ -97,9 +99,9 @@ export async function processMedia(ctx: Ctx, storage: ObjectStorage, mediaId: st
     throw error;
   }
 
-  // Legacy images (B15): the original object is never touched, only variants are added.
+  // Legacy images (B15): the original object is never touched, only variants are added (B22 converts it).
   const keepSource = row.purpose === 'legacy';
-  const originalKey = keepSource ? row.sourceKey : mediaOriginalKey(row.id, processed.extension);
+  const originalKey = keepSource ? row.sourceKey : mediaOriginalKey(row.id, 'webp');
   if (!keepSource) {
     await storage.put({
       bucket: publicBucket,
@@ -118,7 +120,7 @@ export async function processMedia(ctx: Ctx, storage: ObjectStorage, mediaId: st
       key,
       body: variant.body,
       contentLength: variant.body.length,
-      contentType: `image/${variant.format}`,
+      contentType: 'image/webp',
       cacheControl: IMMUTABLE_CACHE_CONTROL,
     });
     variants.push({ w: variant.width, format: variant.format, key, bytes: variant.body.length });
@@ -132,7 +134,7 @@ export async function processMedia(ctx: Ctx, storage: ObjectStorage, mediaId: st
       width: processed.width,
       height: processed.height,
       bytes: keepSource ? input.length : processed.original.length,
-      contentType: processed.contentType,
+      contentType: keepSource ? processed.sourceContentType : processed.contentType,
       thumbhash: processed.thumbhash,
       dominantColor: processed.dominantColor,
       variants,

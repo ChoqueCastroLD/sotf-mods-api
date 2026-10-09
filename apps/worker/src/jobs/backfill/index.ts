@@ -11,6 +11,10 @@
  *   legacy mods that are still `pending`, from the objects already in the bucket (`runB20`).
  *   Needs R2 credentials; never changes a mod or version status.
  * - `B21` — seeds `GameBuild` from the Steam news feed (`runB21`); no R2, needs network access.
+ * - `B22` — every stored image becomes WebP q75 (`runB22`, owner request): `B22` reports (dry run),
+ *   `B22 --apply [--include-unreferenced]` converts and rewrites every database reference,
+ *   `B22 --delete-originals [--apply]` lists / deletes the originals that are no longer referenced.
+ *   Needs R2 credentials; see ./b22.ts.
  * - Every other id is a database-only backfill of `tooling/migration` (`pnpm db:backfill`: B1–B14;
  *   `pnpm --filter @sotf/migration-tools r2:manifest-fixes`: B8 and the `Library` reclassification
  *   after B15; B17 is the operator CLI `r2:b17`). The job fails fast with that hint.
@@ -27,6 +31,7 @@ import { defineJob, defineJobGroup } from '../../define-job.ts';
 import { runB15 } from './b15.ts';
 import { runB20 } from './b20.ts';
 import { runB21 } from './b21.ts';
+import { runB22 } from './b22.ts';
 
 export interface BackfillJobOptions {
   /** Tests inject fakes; by default the clients come from the environment. */
@@ -48,8 +53,8 @@ export function createBackfillJobs(options: BackfillJobOptions = {}) {
       defineJob({
         queue: 'backfill.run',
         options: { localConcurrency: 1 },
-        handler: async ({ name, dryRun, batchSize }, { ctx, job, services }) => {
-          ctx.log.info({ name, dryRun, batchSize }, 'backfill started');
+        handler: async ({ name, dryRun, batchSize, deleteOriginals, includeUnreferenced }, { ctx, job, services }) => {
+          ctx.log.info({ name, dryRun, batchSize, deleteOriginals, includeUnreferenced }, 'backfill started');
           switch (name) {
             case 'B15': {
               const storage = services.storage();
@@ -76,6 +81,19 @@ export function createBackfillJobs(options: BackfillJobOptions = {}) {
             case 'B21': {
               const result = await runB21(ctx, (options.steam ?? createSteamClient)(), { dryRun });
               ctx.log.info({ name, dryRun, ms: result.ms }, 'backfill finished');
+              return result;
+            }
+            case 'B22': {
+              const storage = services.storage();
+              if (!storage) throw new Error('B22 needs R2 credentials (R2_* variables of the worker)');
+              const result = await runB22(ctx, storage, {
+                mode: deleteOriginals ? 'delete' : dryRun ? 'report' : 'convert',
+                dryRun,
+                includeUnreferenced,
+                batchSize,
+                signal: job.signal,
+              });
+              ctx.log.info({ name, dryRun, mode: result.mode, ms: result.ms }, 'backfill finished');
               return result;
             }
             default:

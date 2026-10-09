@@ -47,8 +47,8 @@ describe('key scheme', () => {
     const keys = [
       modFileKey(20, 415, "Axel's Mod Menu", '1.3.9'),
       buildFileKey(88, 530, 'Große Hütte (v2)'),
-      mediaOriginalKey('0192F3A4-7C1E-7B9A-9E1D-2C4F6A8B0C1D', 'PNG'),
-      mediaVariantKey('0192f3a4-7c1e-7b9a-9e1d-2c4f6a8b0c1d', 640, 'avif'),
+      mediaOriginalKey('0192F3A4-7C1E-7B9A-9E1D-2C4F6A8B0C1D', 'WEBP'),
+      mediaVariantKey('0192f3a4-7c1e-7b9a-9e1d-2c4f6a8b0c1d', 640, 'webp'),
       ogImageKey('mod', 20, '3F9A1C'),
       incomingKey(12, '0192f3a5-1b2c-7d3e-8f40-5a6b7c8d9e0f'),
       exportKey(12, '0192f3a6-2c3d-7e4f-9a51-6b7c8d9e0f1a'),
@@ -56,8 +56,8 @@ describe('key scheme', () => {
     expect(keys).toEqual([
       'mods/20/415/axels-mod-menu-1.3.9.zip',
       'builds/88/530/grosse-hutte-v2.json',
-      'media/0192f3a4-7c1e-7b9a-9e1d-2c4f6a8b0c1d/original.png',
-      'media/0192f3a4-7c1e-7b9a-9e1d-2c4f6a8b0c1d/640.avif',
+      'media/0192f3a4-7c1e-7b9a-9e1d-2c4f6a8b0c1d/original.webp',
+      'media/0192f3a4-7c1e-7b9a-9e1d-2c4f6a8b0c1d/640.webp',
       'og/mod/20-3f9a1c.png',
       'incoming/12/0192f3a5-1b2c-7d3e-8f40-5a6b7c8d9e0f',
       'exports/12/0192f3a6-2c3d-7e4f-9a51-6b7c8d9e0f1a.zip',

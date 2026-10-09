@@ -1,6 +1,6 @@
 /**
  * Client-side image work of the media step (PLAN §7.5 step 4): decoding, the 16:9 cover crop and
- * small previews. The server still re-encodes every image (AVIF/WebP variants, EXIF stripped); the
+ * small previews. The server still re-encodes every image (WebP only, quality 75, EXIF stripped); the
  * crop only decides which pixels are sent.
  */
 

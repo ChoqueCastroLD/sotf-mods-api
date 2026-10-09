@@ -101,14 +101,15 @@ describe('media URLs', () => {
     variants: [],
   };
 
-  it('uses processed variants with an AVIF srcset', () => {
+  it('uses processed variants with a WebP srcset (AVIF variants of old media are ignored)', () => {
     expect(imageDto(config, processed, null, 'Alt')).toEqual({
       url: 'https://r2.sotf-mods.com/media/u1/1280.webp',
       width: 1920,
       height: 1080,
       thumbhash: 'abc',
       dominantColor: '#112233',
-      srcset: 'https://r2.sotf-mods.com/media/u1/320.avif 320w, https://r2.sotf-mods.com/media/u1/1280.avif 1280w',
+      srcset:
+        'https://r2.sotf-mods.com/media/u1/64.webp 64w, https://r2.sotf-mods.com/media/u1/320.webp 320w, https://r2.sotf-mods.com/media/u1/1280.webp 1280w',
       alt: 'Alt',
     });
     expect(mediaUrlForWidth(config, processed, 96)).toBe('https://r2.sotf-mods.com/media/u1/320.webp');

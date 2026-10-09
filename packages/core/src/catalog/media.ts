@@ -1,6 +1,7 @@
 /**
  * Public image URLs (PLAN §2.8, §8.3). Processed media (`"Media".variants`) are served from the
- * public bucket as AVIF/WebP variants; legacy images (`purpose='legacy'`, no variants yet) point
+ * public bucket as WebP variants (AVIF variants of media processed before the WebP-only change are
+ * ignored: the B22 backfill deletes them); legacy images (`purpose='legacy'`, no variants yet) point
  * at their original object, and rows without a `Media` fall back to the legacy absolute URL.
  * Every URL is built with the per-segment encoding of `publicObjectUrl` (never form encoding).
  */
@@ -108,18 +109,15 @@ export function imageDto(
     alt: cleanAlt,
   };
   if (variants.length > 0) {
-    const flat = variants.filter((v) => v.format !== 'avif');
-    const pool = flat.length > 0 ? flat : variants;
+    const pool = variants.filter((v) => v.format !== 'avif');
     const largest = [...pool].sort(
       (a, b) => b.w - a.w || (FORMAT_RANK[a.format] ?? 9) - (FORMAT_RANK[b.format] ?? 9),
     )[0];
     const url = largest ? safeHttpUrl(publicObjectUrl(config.mediaBaseUrl, largest.key)) : null;
     if (url) {
-      // srcset of the best format available (AVIF first), one entry per width.
-      const avif = variants.filter((v) => v.format === 'avif');
-      const srcPool = avif.length > 0 ? avif : pool;
+      // srcset of the WebP variants, one entry per width.
       const byWidth = new Map<number, MediaVariant>();
-      for (const v of srcPool) if (!byWidth.has(v.w)) byWidth.set(v.w, v);
+      for (const v of pool) if (!byWidth.has(v.w)) byWidth.set(v.w, v);
       const srcset = [...byWidth.values()]
         .sort((a, b) => a.w - b.w)
         .map((v) => `${publicObjectUrl(config.mediaBaseUrl, v.key)} ${v.w}w`)

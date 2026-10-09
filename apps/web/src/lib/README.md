@@ -60,7 +60,7 @@ setPageCache(Astro, pageCache.mod(mod.id, mod.userId));      // E(900) mod:{id} 
 - `SeoHead` renders canonical (self, per locale), 13 hreflang + `x-default`, OG/Twitter,
   `theme-color`, robots (`noindex` automatically outside `SITE_ENV=production`) and JSON-LD
   (`lib/seo/jsonld.ts`, `schema-dts`, safely serialized).
-- `Picture.astro`: AVIF/WebP sources from `ImageDTO`, explicit size, `priority` for the LCP.
+- `Picture.astro`: WebP `srcset` from `ImageDTO`, explicit size, `priority` for the LCP.
 - Ads: `components/ads/AdUnit.astro` renders the shared `AdSlot` (reserved height) for a
   placement whose unit id is configured (`PUBLIC_ADSENSE_SLOT_HOME|FEED|MOD_SIDEBAR`, with
   `PUBLIC_ADSENSE_CLIENT`); Explore adds in-feed units after cards 6 and 18 (`lib/ads.ts`).

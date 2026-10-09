@@ -2,7 +2,7 @@
  * Media jobs (WP-40, PLAN §2.9, §8.3):
  *
  * - `media.process`: a pending `Media` (image upload, build thumbnail, replicated remote image)
- *   becomes an oriented, metadata-free original plus AVIF/WebP variants at 320–1920 px, with its
+ *   becomes an oriented, metadata-free original plus WebP variants at 320–1920 px, with its
  *   ThumbHash and dominant colour (`processMedia` of core). One image at a time per process: sharp
  *   already uses every core for a single image.
  * - `markdown.rerender` (nightly): descriptions and changelogs rendered with an older

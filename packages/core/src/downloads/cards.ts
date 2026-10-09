@@ -56,7 +56,7 @@ function thumbnailOf(row: Row, options: CardOptions): ImageDTO | null {
     const usable = variants.filter((v) => typeof v.key === 'string' && typeof v.w === 'number');
     const url = (v: MediaVariant) => publicObjectUrl(options.publicBaseUrl, v.key as string);
     const largestWebp = [...usable].filter((v) => v.format === 'webp').sort((a, b) => (b.w ?? 0) - (a.w ?? 0))[0];
-    const avif = usable.filter((v) => v.format === 'avif').sort((a, b) => (a.w ?? 0) - (b.w ?? 0));
+    const webp = usable.filter((v) => v.format === 'webp').sort((a, b) => (a.w ?? 0) - (b.w ?? 0));
     const original =
       row.mediaBucket === options.publicBucket && typeof row.mediaKey === 'string'
         ? publicObjectUrl(options.publicBaseUrl, row.mediaKey)
@@ -70,7 +70,7 @@ function thumbnailOf(row: Row, options: CardOptions): ImageDTO | null {
         thumbhash: typeof row.mediaThumbhash === 'string' ? row.mediaThumbhash.slice(0, 64) : null,
         dominantColor:
           typeof row.mediaColor === 'string' && /^#[0-9A-Fa-f]{6}$/.test(row.mediaColor) ? row.mediaColor : null,
-        srcset: avif.length ? avif.map((v) => `${url(v)} ${v.w}w`).join(', ') : null,
+        srcset: webp.length ? webp.map((v) => `${url(v)} ${v.w}w`).join(', ') : null,
         alt: null,
       };
     }

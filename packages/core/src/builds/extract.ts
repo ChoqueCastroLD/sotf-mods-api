@@ -1,7 +1,7 @@
 /**
  * `build.extract` (PLAN §2.9, T0-24): the PNG thumbnail embedded in a BuildShare blueprint
  * (`Thumbnail`, base64) becomes a `Media` (`purpose = 'thumbnail'`), processed by `media.process`
- * into AVIF/WebP variants. The wizard offers it as the (replaceable) cover of the build.
+ * into WebP variants. The wizard offers it as the (replaceable) cover of the build.
  *
  * - The blueprint is read from the upload's object (incoming, quarantine or, once published, its
  *   final key) — builds are ≤ 20 MB.

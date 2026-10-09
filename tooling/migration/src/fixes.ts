@@ -2,7 +2,7 @@
  * Audited fixes (PLAN §6.1 rule 3, §6.14 R2): `db:revert-fix <fixId>` and `admin:grant`.
  *
  * Every in-place change of a legacy column is recorded in `"DataFixAudit"` (old and new value as
- * JSON). Reverting restores the old value **only if the column still holds the value the fix
+ * JSON; `rowId` is the "id", or a JSON object of the key columns for tables without one). Reverting restores the old value **only if the column still holds the value the fix
  * wrote**; otherwise the row is reported as a conflict and left alone (someone changed it since).
  * Whole rows moved out of a legacy table (`columnName = '*'`, B5) are put back from the audit copy
  * and removed from their archive.
@@ -12,6 +12,20 @@ import { ident, inTransaction } from './db.ts';
 
 /** Legacy tables whose rows can be moved by a fix, and the archive that holds them. */
 const ROW_ARCHIVES: Readonly<Record<string, string>> = { ModFavorite: 'ModFavoriteArchive' };
+
+/** Key columns of a row of a table without "id" (`rowId` recorded as `{"modId":1,"locale":"es"}`), else null. */
+export function rowKeyOf(rowId: string): Record<string, string | number> | null {
+  if (!rowId.startsWith('{')) return null;
+  try {
+    const parsed = JSON.parse(rowId) as unknown;
+    if (parsed === null || typeof parsed !== 'object' || Array.isArray(parsed)) return null;
+    const entries = Object.entries(parsed as Record<string, unknown>);
+    if (entries.length === 0 || !entries.every(([, v]) => typeof v === 'string' || typeof v === 'number')) return null;
+    return Object.fromEntries(entries) as Record<string, string | number>;
+  } catch {
+    return null;
+  }
+}
 
 export interface RevertReport {
   fixId: string;
@@ -97,11 +111,29 @@ export async function revertFix(
             conflict('column does not exist');
           } else {
             const column = ident(audit.columnName);
+            // Tables without an "id" (composite keys) record the row as a JSON object of its key columns.
+            const key = rowKeyOf(audit.rowId);
+            const where = key
+              ? Object.keys(key)
+                  .map((name, i) => `${ident(name)}::text = $${i + 5}`)
+                  .join(' AND ')
+              : `"id"::text = $1`;
+            if (key && !Object.keys(key).every((name) => columns.has(name))) {
+              conflict('key column does not exist');
+              await client.query('RELEASE SAVEPOINT revert_row');
+              continue;
+            }
             const updated = await client.query(
               `UPDATE ${table} SET ${column} = (jsonb_populate_record(NULL::${table}, jsonb_build_object($2::text, $3::jsonb))).${column}
-                WHERE "id"::text = $1
+                WHERE ${where} AND $1::text IS NOT NULL
                   AND ${column} IS NOT DISTINCT FROM (jsonb_populate_record(NULL::${table}, jsonb_build_object($2::text, $4::jsonb))).${column}`,
-              [audit.rowId, audit.columnName, JSON.stringify(audit.oldValue), JSON.stringify(audit.newValue)],
+              [
+                audit.rowId,
+                audit.columnName,
+                JSON.stringify(audit.oldValue),
+                JSON.stringify(audit.newValue),
+                ...(key ? Object.values(key).map(String) : []),
+              ],
             );
             if (updated.rowCount === 1) done = true;
             else conflict('the value changed after the fix (or the row is gone)');

@@ -17,9 +17,10 @@ Domains `publishing/`, `inspection/`, `media/` and `builds/` of `@sotf/core` (PL
    and deleted. Build JSON: blueprint structure and 20 MB; the embedded PNG thumbnail is extracted
    by `build.extract` into a `Media`.
 3. `media.process` (`media/process.ts`): magic-byte format check, ≤ 8 000 px / 64 Mpx, EXIF
-   orientation applied and every metadata block dropped, AVIF + WebP at 320/640/960/1440/1920 (never
-   enlarged), ThumbHash and dominant colour; outputs are immutable public objects
-   `media/{id}/original.{ext}` and `media/{id}/{w}.{avif|webp}`.
+   orientation applied and every metadata block dropped, **WebP only, quality 75** (animated GIF, APNG
+   and animated WebP stay animated) at 320/640/960/1440/1920 (never enlarged), ThumbHash and dominant
+   colour; outputs are immutable public objects `media/{id}/original.webp` and `media/{id}/{w}.webp`
+   (media processed before that keep their `original.png|jpg|gif` and AVIF variants until the B22 backfill).
 4. Drafts (`drafts.ts`) autosave the wizard state in `ModDraft`; every read returns the preflight
    rows (`preflight.ts`, i18n key `studio_preflight_<code>`), the quality score and the file flags.
 5. `submit` (`submit.ts`) validates, reserves the row ids (remembered in the upload so a retry keeps

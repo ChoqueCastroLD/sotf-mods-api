@@ -2,9 +2,9 @@
  * B15, part 2 — image variants and Open Graph cards (PLAN §6.9 B15, §8.3, §8.6).
  *
  * - **Media**: every `Media` of `purpose = 'legacy'` still `pending` (thumbnails, gallery images and
- *   avatars registered by B2) gets its AVIF/WebP variants, ThumbHash and dominant colour through
+ *   avatars registered by B2) gets its WebP variants, ThumbHash and dominant colour through
  *   `processMedia`, which **never touches the legacy original** for that purpose (it only adds
- *   `media/{id}/{w}.{avif|webp}` objects). A source object that no longer exists marks the media
+ *   `media/{id}/{w}.webp` objects). A source object that no longer exists marks the media
  *   `failed` (`source_missing`) so the next run does not retry it forever; the pages keep using the
  *   legacy URL. One image at a time: sharp already uses every core.
  * - **OG**: one `og.render` job per entity that has no card yet — mods and builds that are live,

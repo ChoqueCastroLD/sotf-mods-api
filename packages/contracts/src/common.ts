@@ -418,7 +418,7 @@ export const ImageDTO = dto(
     height: z.number().int().positive().nullable(),
     thumbhash: z.string().max(64).nullable().describe('base64 ThumbHash placeholder'),
     dominantColor: HexColor.nullable(),
-    srcset: z.string().nullable().describe('Ready-to-use srcset of the AVIF/WebP variants'),
+    srcset: z.string().nullable().describe('Ready-to-use srcset of the WebP variants'),
     alt: z.string().max(300).nullable(),
   }),
   {
@@ -431,7 +431,7 @@ export const ImageDTO = dto(
         thumbhash: '1QcSHQRnh493V4dIh4eXh1h4kJUI',
         dominantColor: '#2F3B2A',
         srcset:
-          'https://r2.sotf-mods.com/media/0192f3a4-7c1e-7b9a-9e1d-2c4f6a8b0c1d/640.avif 640w, https://r2.sotf-mods.com/media/0192f3a4-7c1e-7b9a-9e1d-2c4f6a8b0c1d/1280.avif 1280w',
+          'https://r2.sotf-mods.com/media/0192f3a4-7c1e-7b9a-9e1d-2c4f6a8b0c1d/640.webp 640w, https://r2.sotf-mods.com/media/0192f3a4-7c1e-7b9a-9e1d-2c4f6a8b0c1d/1280.webp 1280w',
         alt: 'Axel’s Mod Menu open in the inventory',
       },
     ],

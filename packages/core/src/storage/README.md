@@ -13,7 +13,7 @@ S3 client for Cloudflare R2 and the local SeaweedFS emulator (PLAN §2.8, §11.6
   `NotImplemented`, `AccessDenied`) falls back to a streaming GET → PUT. Both paths are tested
   against SeaweedFS; production R2 has not been exercised from here (read-only rule).
 - Keys (`keys.ts`): new keys only use `[a-z0-9._/-]` — `mods/{modId}/{versionId}/{safe-name}-{version}.zip`,
-  `builds/…/{safe-name}.json`, `media/{mediaId}/original.{ext}` and `/{w}.{avif|webp}`,
+  `builds/…/{safe-name}.json`, `media/{mediaId}/original.webp` and `/{w}.webp` (older media: `original.{png|jpg|gif}` and `/{w}.avif` until B22),
   `og/{type}/{id}-{hash}.png`, private `incoming/{userId}/{uploadId}`, `quarantine/{uploadId}`,
   `exports/{userId}/{exportId}.zip`. Legacy keys are never renamed.
 - URLs: `publicObjectUrl(base, key)` = `base + '/' + key.split('/').map(encodeURIComponent).join('/')`
