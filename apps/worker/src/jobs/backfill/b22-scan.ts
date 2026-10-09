@@ -18,7 +18,10 @@ import { type SQL, sql } from 'drizzle-orm';
 /**
  * Never scanned nor rewritten: the history of what B22 itself changed (`DataFixAudit`, `MigrationRun`), the
  * audit trail (`AuditLog`, which records what was true at the time) and the private upload sessions
- * (`Upload`, whose `key` and `filename` are not public references).
+ * (`Upload`, whose `key` and `filename` are not public references), and telemetry/log tables
+ * (`AnalyticsEvent`, `AuthEvent`, `LoginAttempt`, `XpEvent`): an old image URL in a page-view or
+ * event record is history, never rendered, and rewriting tens of thousands of such rows one audited
+ * cell at a time made the production run take many hours.
  */
 export const EXCLUDED_TABLES: ReadonlySet<string> = new Set([
   'DataFixAudit',
@@ -26,6 +29,10 @@ export const EXCLUDED_TABLES: ReadonlySet<string> = new Set([
   'AuditLog',
   'Upload',
   '_v2_migrations',
+  'AnalyticsEvent',
+  'AuthEvent',
+  'LoginAttempt',
+  'XpEvent',
 ]);
 
 export interface ColumnInfo {
