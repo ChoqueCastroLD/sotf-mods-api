@@ -19,7 +19,7 @@ import { type SQL, sql } from 'drizzle-orm';
  * Never scanned nor rewritten: the history of what B22 itself changed (`DataFixAudit`, `MigrationRun`), the
  * audit trail (`AuditLog`, which records what was true at the time) and the private upload sessions
  * (`Upload`, whose `key` and `filename` are not public references), and telemetry/log tables
- * (`AnalyticsEvent`, `AuthEvent`, `LoginAttempt`, `XpEvent`): an old image URL in a page-view or
+ * (`AnalyticsEvent`, `AuthEvent`, `LoginAttempt`, `XpEvent`, `ModDownload`): an old image URL in a page-view or
  * event record is history, never rendered, and rewriting tens of thousands of such rows one audited
  * cell at a time made the production run take many hours.
  */
@@ -33,6 +33,7 @@ export const EXCLUDED_TABLES: ReadonlySet<string> = new Set([
   'AuthEvent',
   'LoginAttempt',
   'XpEvent',
+  'ModDownload',
 ]);
 
 export interface ColumnInfo {
@@ -165,10 +166,15 @@ export async function scanTable(
           sql`, `,
         )})`
       : sql``;
-    const res: { rows: Array<Record<string, string | null>> } = await ctx.db.execute<Record<string, string | null>>(sql`
+    // A regex pre-filter over a big table is a sequential scan: the application role's 5 s statement
+    // timeout is lifted for this read only (inside its own transaction).
+    const res: { rows: Array<Record<string, string | null>> } = await ctx.db.transaction(async (tx) => {
+      await tx.execute(sql`SET LOCAL statement_timeout = '600s'`);
+      return tx.execute<Record<string, string | null>>(sql`
       SELECT ${sql.join(selected, sql`, `)} FROM ${id(table.name)}
        WHERE (${anyMatch})${cursor}
        ORDER BY ${order} LIMIT ${options.pageSize}`);
+    });
     if (res.rows.length === 0) return;
     const rows: ScanRow[] = res.rows.map((row) => {
       const key: Record<string, string> = {};
