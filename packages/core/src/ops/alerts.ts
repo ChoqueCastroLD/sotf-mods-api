@@ -69,6 +69,9 @@ export function deadLetterLine(group: DeadLetterGroup): string {
   return `${queue}: ${jobs}, last failure ${utcMinute(group.lastFailedAt)}, ${error}`.slice(0, 300);
 }
 
+/** Dead-letter groups that never raise the `dead_letter` alert (shown in the panel only). */
+export const QUIET_DEAD_LETTER_QUEUES: ReadonlySet<string> = new Set(['backfill.run']);
+
 const pct = (n: number) => `${(n * 100).toFixed(1)} %`;
 
 /** The alerts active now (no side effects). */
@@ -78,7 +81,9 @@ export async function evaluateOpsAlerts(ctx: Ctx, deps: OpsAlertDeps): Promise<O
   const now = ctx.clock.now();
   const alerts: OpsAlert[] = [];
 
-  const groups = await deadLetterGroups(ctx, schema);
+  // Operator-run maintenance jobs (`backfill.run`) are started and watched by hand: a failed run
+  // stays visible in the Failed jobs panel but does not page the admins every 6 hours.
+  const groups = (await deadLetterGroups(ctx, schema)).filter((g) => !QUIET_DEAD_LETTER_QUEUES.has(g.queue ?? ''));
   const deadCount = groups.reduce((sum, g) => sum + g.count, 0);
   if (deadCount > 0) {
     alerts.push({
