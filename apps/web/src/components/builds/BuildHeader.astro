@@ -34,7 +34,9 @@ const { build, spec, versions } = Astro.props;
 const locale = Astro.locals.locale;
 const loginHref = loginHrefFor(href('/login', locale), href(Astro.locals.pagePath, locale));
 const latest = build.latestVersion;
-const others = (versions ?? []).filter((version) => version.id !== latest?.id && version.status === 'active');
+const others = build.latestVersionOnly
+  ? []
+  : (versions ?? []).filter((version) => version.id !== latest?.id && version.status === 'active');
 const authorName = build.userDisplayName || build.userHandle;
 const showBlueprintAuthor = blueprintAuthorDiffers(spec, build);
 const summary = build.reviewsSummary;

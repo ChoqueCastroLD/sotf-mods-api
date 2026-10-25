@@ -47,7 +47,9 @@ if (selector !== version.version) {
 setPageCache(Astro, pageCache.mod(mod.id, mod.userId));
 
 const labels = markdownLabels();
-const downloadable = version.status === 'active';
+// «Latest version only» (creator opt-in): an older version page shows no download.
+const supersededByLatestOnly = mod.latestVersionOnly && !version.isLatest;
+const downloadable = version.status === 'active' && !supersededByLatestOnly;
 const scan = version.scan;
 const scanTone = {
   clean: { icon: ShieldCheck, classes: 'text-success', label: m.mod_scan_clean() },
@@ -107,7 +109,7 @@ const row = 'grid gap-1 border-b border-border py-2.5 last:border-b-0 sm:grid-co
       downloadable ? (
         <DownloadSplitButton primary={downloadOptionOf(version)} allVersionsHref={href(versionsPagePath(mod), locale)} size="lg" className="max-w-md" />
       ) : (
-        <p class="text-sm text-fg-muted">{m.mod_version_not_downloadable()}</p>
+        <p class="text-sm text-fg-muted">{supersededByLatestOnly ? m.mod_versions_latest_only() : m.mod_version_not_downloadable()}</p>
       )
     }
 

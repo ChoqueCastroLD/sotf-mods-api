@@ -211,5 +211,8 @@
   "mod_details_title": "Detaljer",
   "mod_detail_game": "Spelversion",
   "mod_detail_loader": "RedLoader",
-  "mod_fact_multiplayer": "Flerspelare"
+  "mod_fact_multiplayer": "Flerspelare",
+  "mod_toast_latest_only": "Bara den senaste versionen av {name} kan laddas ner. Skaparen har stängt av äldre versioner.",
+  "mod_versions_latest_only": "Skaparen tillåter bara nedladdning av den senaste versionen.",
+  "mod_version_download_off": "Inte tillgänglig"
 }

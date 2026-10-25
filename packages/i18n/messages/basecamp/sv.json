@@ -466,5 +466,7 @@
   "basecamp_versions_sort_newest": "Nyast först",
   "basecamp_versions_sort_oldest": "Äldst först",
   "basecamp_versions_sort_downloads": "Mest nedladdade",
-  "basecamp_versions_no_match": "Ingen version matchar filtret."
+  "basecamp_versions_no_match": "Ingen version matchar filtret.",
+  "basecamp_latest_only_label": "Endast senaste versionen",
+  "basecamp_latest_only_hint": "Spelare kan bara ladda ner den senaste versionen. Äldre versioner finns kvar i listan med sina ändringsloggar, men deras nedladdningslänkar slutar fungera. Använd det här om äldre versioner har buggar som du inte vill att folk går tillbaka till."
 }

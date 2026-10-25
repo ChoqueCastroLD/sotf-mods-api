@@ -211,5 +211,8 @@
   "mod_details_title": "Details",
   "mod_detail_game": "Spelversie",
   "mod_detail_loader": "RedLoader",
-  "mod_fact_multiplayer": "Multiplayer"
+  "mod_fact_multiplayer": "Multiplayer",
+  "mod_toast_latest_only": "Van {name} kan alleen de nieuwste versie worden gedownload. De maker heeft oudere versies uitgeschakeld.",
+  "mod_versions_latest_only": "De maker staat alleen downloads van de nieuwste versie toe.",
+  "mod_version_download_off": "Niet beschikbaar"
 }

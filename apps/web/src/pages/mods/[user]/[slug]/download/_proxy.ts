@@ -142,6 +142,15 @@ export async function proxyDownload(input: DownloadProxyInput): Promise<Response
   if (resolved.status === 302 && resolved.location) {
     return new Response(null, { status: 302, headers: { location: resolved.location, ...BASE_HEADERS } });
   }
+  if (resolved.reason === 'version_superseded') {
+    // The creator allows only the latest version: browsers go back to the mod page (which explains
+    // it in a toast); clients get a clear 410.
+    if (wantsHtml(request)) {
+      const page = `/mods/${encodeURIComponent(params.user)}/${encodeURIComponent(params.slug)}?superseded=1`;
+      return new Response(null, { status: 303, headers: { location: page, ...BASE_HEADERS } });
+    }
+    return json(410, legacyError('GONE', 'Only the latest version of this mod can be downloaded'));
+  }
   const status: 404 | 410 = resolved.status === 410 ? 410 : 404;
   if (wantsHtml(request) && input.renderErrorPage) {
     try {

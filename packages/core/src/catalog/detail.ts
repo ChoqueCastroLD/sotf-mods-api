@@ -156,6 +156,7 @@ interface DetailRow {
   dedicatedServer: string | null;
   safeToRemove: string | null;
   logColor: string | null;
+  latestVersionOnly: boolean | null;
   originalAuthorName: string | null;
   originalAuthorUrl: string | null;
   successorModId: number | null;
@@ -237,7 +238,7 @@ export async function buildModDetail(
       row<DetailRow>(
         ctx.db,
         `SELECT "description", "descriptionHtml", "videoUrl", "license", "sourceUrl", "supportLinks", "contentLang",
-                "dedicatedServer", "safeToRemove", "logColor", "originalAuthorName", "originalAuthorUrl",
+                "dedicatedServer", "safeToRemove", "logColor", "latestVersionOnly", "originalAuthorName", "originalAuthorUrl",
                 "successorModId", "possiblyOutdated", "createdAt", "publishedAt", "editedAt", "ogImageKey",
                 "buildGuid", "buildShareVersion", "numberOfElements",
                 (SELECT v."buildMeta" FROM "ModVersion" v
@@ -321,6 +322,7 @@ export async function buildModDetail(
     dedicatedServer: (['yes', 'no', 'partial', 'unknown'] as const).find((v) => v === detail.dedicatedServer) ?? null,
     safeToRemove: (['yes', 'no', 'unknown'] as const).find((v) => v === detail.safeToRemove) ?? null,
     logColor: detail.logColor && HEX.test(detail.logColor) ? detail.logColor : null,
+    latestVersionOnly: detail.latestVersionOnly === true,
     dependencies: latest?.dependencies ?? [],
     dependentsCount: dependentIds.length,
     kitsCount: num(kits?.n),

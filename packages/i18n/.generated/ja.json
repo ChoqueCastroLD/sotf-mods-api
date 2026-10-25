@@ -1148,6 +1148,8 @@
   "basecamp_kpi_views_7d": "閲覧 · 7 日間",
   "basecamp_kpi_yesterday": "昨日：{count}",
   "basecamp_kpis_label": "主な数値",
+  "basecamp_latest_only_hint": "プレイヤーは最新バージョンのみダウンロードできます。古いバージョンは変更履歴とともに表示されたままですが、ダウンロードリンクは使えなくなります。古いバージョンに戻ってほしくない不具合がある場合に使ってください。",
+  "basecamp_latest_only_label": "最新バージョンのみ",
   "basecamp_listing_category": "カテゴリー",
   "basecamp_listing_category_placeholder": "カテゴリーを選択",
   "basecamp_listing_convert": "Markdownに変換",
@@ -4369,6 +4371,7 @@
   "mod_toast_error": "うまくいきませんでした。少し待ってからもう一度お試しください。",
   "mod_toast_followed": "{name} をフォローしました。更新があればお知らせします。",
   "mod_toast_followed_creator": "{name} をフォローしました。",
+  "mod_toast_latest_only": "{name} は最新バージョンのみダウンロードできます。作者が古いバージョンを無効にしています。",
   "mod_toast_rate_limited": "試行回数が多すぎます。1 分待ってからもう一度お試しください。",
   "mod_toast_sign_in": "セッションが切れました。もう一度ログインしてください。",
   "mod_toast_unfollowed": "{name} のフォローを解除しました。",
@@ -4376,6 +4379,7 @@
   "mod_toast_verify_email": "先にメールアドレスを確認してください。受信トレイをチェックしましょう。",
   "mod_value_not_declared": "未申告",
   "mod_version_beta": "ベータ",
+  "mod_version_download_off": "利用不可",
   "mod_version_latest": "最新",
   "mod_version_meta_description": "Sons of the Forest 用 {name} v{version}（{date} 公開）：更新履歴、ファイルサイズ、SHA-256、セキュリティスキャン、互換性。",
   "mod_version_no_changelog": "このバージョンには更新履歴がありません。",
@@ -4398,6 +4402,7 @@
   ],
   "mod_versions_caption": "{name} のバージョン",
   "mod_versions_empty": "まだ公開されたバージョンはありません。",
+  "mod_versions_latest_only": "作者は最新バージョンのダウンロードのみを許可しています。",
   "mod_versions_meta_description": [
     {
       "declarations": [
@@ -6672,6 +6677,7 @@
   "ui_domain_version_beta": "ベータ",
   "ui_domain_version_label": "v{version}",
   "ui_domain_version_latest": "最新",
+  "ui_domain_version_latest_only": "最新バージョンのみ",
   "ui_domain_version_min": "{version}+",
   "ui_domain_version_new_since": "前回のダウンロード以降の新バージョン",
   "ui_domain_version_unavailable": "ファイルを利用できません",

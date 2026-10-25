@@ -120,6 +120,28 @@ describe('proxyDownload', () => {
     expect(broken.status).toBe(404);
   });
 
+  it('«latest version only»: browsers go back to the mod page (303), clients get a clear 410', async () => {
+    const superseded = { ...OK, status: 410, location: null, reason: 'version_superseded', counted: false };
+    const browser = await proxyDownload({
+      request: new Request('https://sotf-mods.com/x', { headers: { accept: 'text/html' } }),
+      params,
+      clientAddress: null,
+      env,
+      fetchImpl: resolved(superseded),
+    });
+    expect(browser.status).toBe(303);
+    expect(browser.headers.get('location')).toBe('/mods/regitoxic/virginia-wardrobe-18%2B?superseded=1');
+    const client = await proxyDownload({
+      request: new Request('https://sotf-mods.com/x'),
+      params,
+      clientAddress: null,
+      env,
+      fetchImpl: resolved(superseded),
+    });
+    expect(client.status).toBe(410);
+    expect(JSON.stringify(await client.json())).toContain('Only the latest version');
+  });
+
   it('treats a 422 from the API as not found and any other failure as 503', async () => {
     const invalid = await proxyDownload({
       request: new Request('https://sotf-mods.com/x'),

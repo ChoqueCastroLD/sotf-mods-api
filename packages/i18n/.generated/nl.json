@@ -1247,6 +1247,8 @@
   "basecamp_kpi_views_7d": "Weergaven · 7 dagen",
   "basecamp_kpi_yesterday": "Gisteren: {count}",
   "basecamp_kpis_label": "Kerncijfers",
+  "basecamp_latest_only_hint": "Spelers kunnen alleen de nieuwste versie downloaden. Oudere versies blijven zichtbaar met hun wijzigingslog, maar hun downloadlinks werken niet meer. Gebruik dit als oudere versies bugs hebben waar je niet wilt dat mensen naar teruggaan.",
+  "basecamp_latest_only_label": "Alleen nieuwste versie",
   "basecamp_listing_category": "Categorie",
   "basecamp_listing_category_placeholder": "Kies een categorie",
   "basecamp_listing_convert": "Omzetten naar Markdown",
@@ -4789,6 +4791,7 @@
   "mod_toast_error": "Dat lukte niet. Probeer het zo opnieuw.",
   "mod_toast_followed": "Je volgt nu {name}. Je krijgt bericht bij updates.",
   "mod_toast_followed_creator": "Je volgt {name}.",
+  "mod_toast_latest_only": "Van {name} kan alleen de nieuwste versie worden gedownload. De maker heeft oudere versies uitgeschakeld.",
   "mod_toast_rate_limited": "Te veel pogingen. Wacht een minuut en probeer het opnieuw.",
   "mod_toast_sign_in": "Je sessie is verlopen. Log opnieuw in.",
   "mod_toast_unfollowed": "Je volgt {name} niet meer.",
@@ -4796,6 +4799,7 @@
   "mod_toast_verify_email": "Bevestig eerst je e-mailadres. Kijk in je inbox.",
   "mod_value_not_declared": "Niet opgegeven",
   "mod_version_beta": "Bèta",
+  "mod_version_download_off": "Niet beschikbaar",
   "mod_version_latest": "Nieuwste",
   "mod_version_meta_description": "{name} v{version} voor Sons of the Forest, uitgebracht op {date}: changelog, bestandsgrootte, SHA-256, beveiligingsscan en compatibiliteit.",
   "mod_version_no_changelog": "Geen changelog voor deze versie.",
@@ -4822,6 +4826,7 @@
   ],
   "mod_versions_caption": "Versies van {name}",
   "mod_versions_empty": "Nog geen versies gepubliceerd.",
+  "mod_versions_latest_only": "De maker staat alleen downloads van de nieuwste versie toe.",
   "mod_versions_meta_description": [
     {
       "declarations": [
@@ -7291,6 +7296,7 @@
   "ui_domain_version_beta": "Bèta",
   "ui_domain_version_label": "v{version}",
   "ui_domain_version_latest": "Nieuwste",
+  "ui_domain_version_latest_only": "Alleen nieuwste versie",
   "ui_domain_version_min": "{version}+",
   "ui_domain_version_new_since": "Nieuw sinds je laatste download",
   "ui_domain_version_unavailable": "Bestand niet beschikbaar",

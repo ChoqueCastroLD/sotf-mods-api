@@ -1247,6 +1247,8 @@
   "basecamp_kpi_views_7d": "Visningar · 7 dagar",
   "basecamp_kpi_yesterday": "Igår: {count}",
   "basecamp_kpis_label": "Nyckeltal",
+  "basecamp_latest_only_hint": "Spelare kan bara ladda ner den senaste versionen. Äldre versioner finns kvar i listan med sina ändringsloggar, men deras nedladdningslänkar slutar fungera. Använd det här om äldre versioner har buggar som du inte vill att folk går tillbaka till.",
+  "basecamp_latest_only_label": "Endast senaste versionen",
   "basecamp_listing_category": "Kategori",
   "basecamp_listing_category_placeholder": "Välj en kategori",
   "basecamp_listing_convert": "Konvertera till Markdown",
@@ -4789,6 +4791,7 @@
   "mod_toast_error": "Det gick inte. Försök igen om en stund.",
   "mod_toast_followed": "Du följer nu {name}. Du får besked om uppdateringar.",
   "mod_toast_followed_creator": "Du följer {name}.",
+  "mod_toast_latest_only": "Bara den senaste versionen av {name} kan laddas ner. Skaparen har stängt av äldre versioner.",
   "mod_toast_rate_limited": "För många försök. Vänta en minut och försök igen.",
   "mod_toast_sign_in": "Din session har gått ut. Logga in igen.",
   "mod_toast_unfollowed": "Du följer inte längre {name}.",
@@ -4796,6 +4799,7 @@
   "mod_toast_verify_email": "Verifiera din e-post först. Kolla inkorgen.",
   "mod_value_not_declared": "Inte angivet",
   "mod_version_beta": "Beta",
+  "mod_version_download_off": "Inte tillgänglig",
   "mod_version_latest": "Senaste",
   "mod_version_meta_description": "{name} v{version} till Sons of the Forest, släppt {date}: ändringslogg, filstorlek, SHA-256, säkerhetsskanning och kompatibilitet.",
   "mod_version_no_changelog": "Ingen ändringslogg för den här versionen.",
@@ -4822,6 +4826,7 @@
   ],
   "mod_versions_caption": "Versioner av {name}",
   "mod_versions_empty": "Inga versioner publicerade än.",
+  "mod_versions_latest_only": "Skaparen tillåter bara nedladdning av den senaste versionen.",
   "mod_versions_meta_description": [
     {
       "declarations": [
@@ -7291,6 +7296,7 @@
   "ui_domain_version_beta": "Beta",
   "ui_domain_version_label": "v{version}",
   "ui_domain_version_latest": "Senaste",
+  "ui_domain_version_latest_only": "Endast senaste versionen",
   "ui_domain_version_min": "{version}+",
   "ui_domain_version_new_since": "Ny sedan din senaste nedladdning",
   "ui_domain_version_unavailable": "Filen är inte tillgänglig",

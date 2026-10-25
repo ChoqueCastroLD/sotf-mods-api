@@ -193,6 +193,10 @@ export const ModDetailDTO = dto(
     dedicatedServer: DedicatedServer.nullable(),
     safeToRemove: SafeToRemove.nullable(),
     logColor: HexColor.nullable(),
+    latestVersionOnly: z
+      .boolean()
+      .default(false)
+      .describe('Opt-in by the creator: only the latest version can be downloaded (older ones answer 410)'),
     dependencies: z.array(DependencyDTO).describe('Dependencies of the latest version'),
     dependentsCount: Count,
     kitsCount: Count,
@@ -230,6 +234,7 @@ export const ModDetailDTO = dto(
         dedicatedServer: 'no',
         safeToRemove: 'yes',
         logColor: '#FF9900',
+        latestVersionOnly: false,
         dependencies: [...examplesOf(DependencyDTO)],
         dependentsCount: 0,
         kitsCount: 3,

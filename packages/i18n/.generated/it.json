@@ -1247,6 +1247,8 @@
   "basecamp_kpi_views_7d": "Visualizzazioni · 7 giorni",
   "basecamp_kpi_yesterday": "Ieri: {count}",
   "basecamp_kpis_label": "Dati chiave",
+  "basecamp_latest_only_hint": "I giocatori possono scaricare solo la versione più recente. Le versioni precedenti restano elencate con i loro changelog, ma i link di download smettono di funzionare. Usalo se le versioni vecchie hanno bug a cui non vuoi che si torni.",
+  "basecamp_latest_only_label": "Solo ultima versione",
   "basecamp_listing_category": "Categoria",
   "basecamp_listing_category_placeholder": "Scegli una categoria",
   "basecamp_listing_convert": "Converti in Markdown",
@@ -4789,6 +4791,7 @@
   "mod_toast_error": "Non ha funzionato. Riprova tra un momento.",
   "mod_toast_followed": "Ora segui {name}. Ti avviseremo degli aggiornamenti.",
   "mod_toast_followed_creator": "Segui {name}.",
+  "mod_toast_latest_only": "Di {name} si può scaricare solo l'ultima versione. Il creatore ha disattivato le versioni precedenti.",
   "mod_toast_rate_limited": "Troppi tentativi. Aspetta un minuto e riprova.",
   "mod_toast_sign_in": "La sessione è scaduta. Accedi di nuovo.",
   "mod_toast_unfollowed": "Non segui più {name}.",
@@ -4796,6 +4799,7 @@
   "mod_toast_verify_email": "Prima verifica la tua email. Controlla la posta in arrivo.",
   "mod_value_not_declared": "Non dichiarato",
   "mod_version_beta": "Beta",
+  "mod_version_download_off": "Non disponibile",
   "mod_version_latest": "Ultima",
   "mod_version_meta_description": "{name} v{version} per Sons of the Forest, pubblicata il {date}: changelog, dimensione, SHA-256, scansione di sicurezza e compatibilità.",
   "mod_version_no_changelog": "Nessun changelog per questa versione.",
@@ -4822,6 +4826,7 @@
   ],
   "mod_versions_caption": "Versioni di {name}",
   "mod_versions_empty": "Nessuna versione pubblicata finora.",
+  "mod_versions_latest_only": "Il creatore consente di scaricare solo l'ultima versione.",
   "mod_versions_meta_description": [
     {
       "declarations": [
@@ -7291,6 +7296,7 @@
   "ui_domain_version_beta": "Beta",
   "ui_domain_version_label": "v{version}",
   "ui_domain_version_latest": "Ultima",
+  "ui_domain_version_latest_only": "Solo ultima versione",
   "ui_domain_version_min": "{version}+",
   "ui_domain_version_new_since": "Nuova dal tuo ultimo download",
   "ui_domain_version_unavailable": "File non disponibile",

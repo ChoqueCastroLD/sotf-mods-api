@@ -76,7 +76,7 @@ export const DownloadResolveDTO = dto(
   z.object({
     status: z.union([z.literal(302), z.literal(404), z.literal(410)]),
     location: z.string().nullable().describe('R2 URL when status = 302'),
-    reason: z.enum(['ok', 'mod_not_found', 'version_not_found', 'file_missing', 'mod_removed', 'mod_rejected']),
+    reason: z.enum(['ok', 'mod_not_found', 'version_not_found', 'file_missing', 'mod_removed', 'mod_rejected', 'version_superseded']),
     counted: z.boolean().describe('Whether this request was counted'),
     modId: EntityId.nullable(),
     versionId: EntityId.nullable(),

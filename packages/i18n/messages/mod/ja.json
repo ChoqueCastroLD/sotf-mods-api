@@ -211,5 +211,8 @@
   "mod_details_title": "詳細",
   "mod_detail_game": "ゲームバージョン",
   "mod_detail_loader": "RedLoader",
-  "mod_fact_multiplayer": "マルチプレイ"
+  "mod_fact_multiplayer": "マルチプレイ",
+  "mod_toast_latest_only": "{name} は最新バージョンのみダウンロードできます。作者が古いバージョンを無効にしています。",
+  "mod_versions_latest_only": "作者は最新バージョンのダウンロードのみを許可しています。",
+  "mod_version_download_off": "利用不可"
 }

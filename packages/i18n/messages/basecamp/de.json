@@ -466,5 +466,7 @@
   "basecamp_versions_sort_newest": "Neueste zuerst",
   "basecamp_versions_sort_oldest": "Älteste zuerst",
   "basecamp_versions_sort_downloads": "Meiste Downloads",
-  "basecamp_versions_no_match": "Keine Version passt zu diesem Filter."
+  "basecamp_versions_no_match": "Keine Version passt zu diesem Filter.",
+  "basecamp_latest_only_label": "Nur neueste Version",
+  "basecamp_latest_only_hint": "Spieler können nur die neueste Version herunterladen. Ältere Versionen bleiben mit ihren Änderungsprotokollen sichtbar, ihre Download-Links funktionieren aber nicht mehr. Nutze das, wenn ältere Versionen Fehler haben, zu denen niemand zurückkehren soll."
 }

@@ -211,5 +211,8 @@
   "mod_details_title": "Сведения",
   "mod_detail_game": "Версия игры",
   "mod_detail_loader": "RedLoader",
-  "mod_fact_multiplayer": "Мультиплеер"
+  "mod_fact_multiplayer": "Мультиплеер",
+  "mod_toast_latest_only": "У {name} можно скачать только последнюю версию. Автор отключил старые версии.",
+  "mod_versions_latest_only": "Автор разрешает скачивать только последнюю версию.",
+  "mod_version_download_off": "Недоступно"
 }

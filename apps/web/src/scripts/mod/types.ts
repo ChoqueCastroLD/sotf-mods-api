@@ -26,6 +26,8 @@ export interface ModPageMessages {
   followers: Record<string, string>;
   videoEmbedTitle: string;
   undo: string;
+  /** Toast after an old-version download link was refused («latest version only»). */
+  latestOnly: string;
   error: string;
   offline: string;
   rateLimited: string;

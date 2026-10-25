@@ -1315,6 +1315,8 @@
   "basecamp_kpi_views_7d": "Просмотры · 7 дней",
   "basecamp_kpi_yesterday": "Вчера: {count}",
   "basecamp_kpis_label": "Ключевые показатели",
+  "basecamp_latest_only_hint": "Игроки смогут скачать только самую новую версию. Старые версии останутся в списке со списком изменений, но ссылки на их скачивание перестанут работать. Используйте это, если в старых версиях есть ошибки и вы не хотите, чтобы к ним возвращались.",
+  "basecamp_latest_only_label": "Только последняя версия",
   "basecamp_listing_category": "Категория",
   "basecamp_listing_category_placeholder": "Выберите категорию",
   "basecamp_listing_convert": "Преобразовать в Markdown",
@@ -5061,6 +5063,7 @@
   "mod_toast_error": "Не получилось. Попробуйте ещё раз чуть позже.",
   "mod_toast_followed": "Вы подписались на {name}. Вы узнаете об обновлениях.",
   "mod_toast_followed_creator": "Вы подписаны на {name}.",
+  "mod_toast_latest_only": "У {name} можно скачать только последнюю версию. Автор отключил старые версии.",
   "mod_toast_rate_limited": "Слишком много попыток. Подождите минуту и попробуйте снова.",
   "mod_toast_sign_in": "Сессия закончилась. Войдите снова.",
   "mod_toast_unfollowed": "Вы отписались от {name}.",
@@ -5068,6 +5071,7 @@
   "mod_toast_verify_email": "Сначала подтвердите почту. Проверьте входящие.",
   "mod_value_not_declared": "Не указано",
   "mod_version_beta": "Бета",
+  "mod_version_download_off": "Недоступно",
   "mod_version_latest": "Последняя",
   "mod_version_meta_description": "{name} v{version} для Sons of the Forest, выпуск {date}: изменения, размер, SHA-256, проверка безопасности и совместимость.",
   "mod_version_no_changelog": "У этой версии нет списка изменений.",
@@ -5096,6 +5100,7 @@
   ],
   "mod_versions_caption": "Версии {name}",
   "mod_versions_empty": "Версий пока нет.",
+  "mod_versions_latest_only": "Автор разрешает скачивать только последнюю версию.",
   "mod_versions_meta_description": [
     {
       "declarations": [
@@ -7721,6 +7726,7 @@
   "ui_domain_version_beta": "Бета",
   "ui_domain_version_label": "v{version}",
   "ui_domain_version_latest": "Последняя",
+  "ui_domain_version_latest_only": "Только последняя версия",
   "ui_domain_version_min": "{version}+",
   "ui_domain_version_new_since": "Новая с вашей последней загрузки",
   "ui_domain_version_unavailable": "Файл недоступен",

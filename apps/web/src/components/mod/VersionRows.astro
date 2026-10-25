@@ -47,7 +47,7 @@ function excerpt(html: string): string {
             data-version-open={version.version}
             data-no-details={detailsHref ? '' : undefined}
             data-published-at={version.publishedAt}
-            data-download-href={version.status === 'active' ? version.downloadPath : undefined}
+            data-download-href={version.status === 'active' && (!mod.latestVersionOnly || version.isLatest) ? version.downloadPath : undefined}
             class="flex min-h-[4.5rem] items-center gap-3 py-3 active:bg-fg/6"
           >
             <span class="grid min-w-0 flex-1 gap-1">

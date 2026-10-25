@@ -13,6 +13,7 @@ import { ProseLocator } from '@sotf/ui/domain';
 import { Field } from '@sotf/ui/field';
 import { Icon } from '@sotf/ui/icons';
 import { Select } from '@sotf/ui/select';
+import { Switch } from '@sotf/ui/switch';
 import { Textarea } from '@sotf/ui/textarea';
 import { useQueryClient } from '@tanstack/react-query';
 import { Link } from '@tanstack/react-router';
@@ -20,12 +21,12 @@ import { ExternalLink, Pencil, Plus, ShieldCheck, Undo2, XCircle } from 'lucide-
 import { useState } from 'react';
 import { activeLocale } from '../../../lib/messages.ts';
 import { notify } from '../../../lib/notify.ts';
-import { basecampApi, LIMITS, type StudioMod, storeVersion, type Version } from '../api.ts';
+import { PageNav } from '../../ranger/controls.tsx';
+import { basecampApi, LIMITS, type StudioMod, storeStudioMod, storeVersion, type Version } from '../api.ts';
 import { date, number } from '../format.ts';
 import { bt } from '../i18n.ts';
 import { scanVerdictLabel, scanVerdictVariant, versionStatusLabel, versionStatusVariant } from '../labels.ts';
 import { reportFailure } from '../shared.tsx';
-import { PageNav } from '../../ranger/controls.tsx';
 
 function YankDialog({
   version,
@@ -321,6 +322,40 @@ function VersionCard({ modId, version, lang }: { modId: number; version: Version
 
 type VersionSort = 'newest' | 'oldest' | 'downloads';
 
+/**
+ * «Latest version only» (opt-in): players can download only the newest version; older versions
+ * stay listed with their changelogs. Saved at once, with a toast.
+ */
+function LatestOnlySwitch({ studio }: { studio: StudioMod }) {
+  const queryClient = useQueryClient();
+  const [saving, setSaving] = useState(false);
+  const [checked, setChecked] = useState(studio.mod.latestVersionOnly);
+  const change = async (next: boolean) => {
+    setChecked(next);
+    setSaving(true);
+    try {
+      const updated = await basecampApi.updateMod(studio.mod.id, { latestVersionOnly: next });
+      storeStudioMod(queryClient, updated);
+      notify.success(bt('basecamp_listing_saved'));
+    } catch (error) {
+      setChecked(!next);
+      reportFailure(error, bt('basecamp_listing_save_failed'));
+    } finally {
+      setSaving(false);
+    }
+  };
+  return (
+    <Switch
+      label={bt('basecamp_latest_only_label')}
+      description={bt('basecamp_latest_only_hint')}
+      checked={checked}
+      disabled={saving || studio.mod.status === 'removed'}
+      onCheckedChange={(next) => void change(next)}
+      className="max-w-prose rounded-lg border border-border bg-surface p-3"
+    />
+  );
+}
+
 export function VersionsTab({ studio }: { studio: StudioMod }) {
   const [status, setStatus] = useState<'all' | Version['status']>('all');
   const [sort, setSort] = useState<VersionSort>('newest');
@@ -341,6 +376,7 @@ export function VersionsTab({ studio }: { studio: StudioMod }) {
   const canRelease = studio.mod.kind !== 'build' && studio.mod.status !== 'removed';
   return (
     <div className="flex flex-col gap-4">
+      <LatestOnlySwitch studio={studio} />
       <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="max-w-prose text-sm text-fg-muted">{bt('basecamp_versions_intro')}</p>
         {canRelease ? (

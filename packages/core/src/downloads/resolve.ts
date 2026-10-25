@@ -12,7 +12,8 @@
  *
  * Outcomes: mod `removed` (or a tombstoned path) → 410 · mod `rejected` → 404 · unknown mod/version → 404 · version
  * `rejected` or `pending` without passed checks → 404 · version `file_missing` or without an R2
- * object → 410 · otherwise 302 to `R2_PUBLIC_BASE_URL/<key encoded per segment>`.
+ * object → 410 · an older version of a mod with `latestVersionOnly` (opt-in by the creator) → 410
+ * `version_superseded` · otherwise 302 to `R2_PUBLIC_BASE_URL/<key encoded per segment>`.
  */
 import { LATEST_VERSION_ALIASES } from '@sotf/contracts/downloads';
 import { encodePathSegment } from '@sotf/contracts/seo';
@@ -33,7 +34,9 @@ export type DownloadReason =
   | 'version_not_found'
   | 'file_missing'
   | 'mod_removed'
-  | 'mod_rejected';
+  | 'mod_rejected'
+  /** The mod opted in to «latest version only» and an older version was asked for. */
+  | 'version_superseded';
 
 export interface ResolvedDownload {
   status: 302 | 404 | 410;
@@ -126,6 +129,21 @@ const MOD_COLUMNS = sql`m."id" AS "mId", m."name" AS "mName", m."slug" AS "mSlug
   m."mod_id" AS "mManifestId", m."type" AS "mType", m."status" AS "mStatus", m."userId" AS "mUserId",
   u."slug" AS "mOwnerSlug"`;
 
+/**
+ * «Latest version only» (opt-in per mod): true when the mod restricts downloads and `versionId` is
+ * not its current latest downloadable version.
+ */
+async function supersededForLatestOnly(db: Executor, modId: number, versionId: number): Promise<boolean> {
+  const rows = await db.execute<{ latestOnly: boolean; latestId: number | null }>(sql`
+    SELECT m."latestVersionOnly" AS "latestOnly", lv."id" AS "latestId"
+      FROM "Mod" m
+      LEFT JOIN LATERAL (${versionQuery(sql`m."id"`, 'latest')}) lv ON true
+     WHERE m."id" = ${modId}`);
+  const row = rows.rows[0];
+  if (!row?.latestOnly) return false;
+  return row.latestId !== null && Number(row.latestId) !== versionId;
+}
+
 async function findVersion(db: Executor, modId: number, version: string): Promise<VersionRow | null> {
   const rows = await db.execute<Record<string, unknown>>(versionQuery(sql`${modId}`, version));
   return rows.rows[0] ? versionOf(rows.rows[0]) : null;
@@ -212,9 +230,12 @@ export async function resolveDownload(
   if (mod.status === 'rejected') return outcome(404, 'mod_rejected', mod, version);
 
   if (target.by !== 'version' && !fast?.mod) version = await findVersion(db, mod.id, target.version);
-  if (!version) return outcome(404, 'version_not_found', mod, null);
   if (!version || hiddenVersion(version)) return outcome(404, 'version_not_found', mod, null);
   if (version.status === 'file_missing') return outcome(410, 'file_missing', mod, version);
+  const askedLatest = target.by !== 'version' && isLatestAlias(target.version);
+  if (!askedLatest && (await supersededForLatestOnly(db, mod.id, version.id))) {
+    return outcome(410, 'version_superseded', mod, version);
+  }
 
   const key =
     version.storageKey ??

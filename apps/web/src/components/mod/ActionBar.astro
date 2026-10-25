@@ -28,7 +28,8 @@ const { mod, versions, loginHref } = Astro.props;
 const locale = Astro.locals.locale;
 const latest = mod.latestVersion;
 const downloadable = latest !== null && latest.status === 'active';
-const others = otherVersions(versions, latest?.id ?? null).map(downloadOptionOf);
+// «Latest version only» (creator opt-in): the menu offers no older versions.
+const others = mod.latestVersionOnly ? [] : otherVersions(versions, latest?.id ?? null).map(downloadOptionOf);
 const versionsHref = href(versionsPagePath(mod), locale);
 const LINK =
   'inline-flex h-9 items-center gap-1.5 rounded-md px-2.5 text-sm font-medium text-fg-muted ' +

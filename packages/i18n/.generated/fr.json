@@ -1247,6 +1247,8 @@
   "basecamp_kpi_views_7d": "Vues · 7 jours",
   "basecamp_kpi_yesterday": "Hier : {count}",
   "basecamp_kpis_label": "Chiffres clés",
+  "basecamp_latest_only_hint": "Les joueurs ne peuvent télécharger que la version la plus récente. Les anciennes versions restent listées avec leur journal des modifications, mais leurs liens de téléchargement ne fonctionnent plus. Utilisez-le si d’anciennes versions ont des bugs vers lesquels vous ne voulez pas que l’on revienne.",
+  "basecamp_latest_only_label": "Dernière version uniquement",
   "basecamp_listing_category": "Catégorie",
   "basecamp_listing_category_placeholder": "Choisissez une catégorie",
   "basecamp_listing_convert": "Convertir en Markdown",
@@ -4789,6 +4791,7 @@
   "mod_toast_error": "Ça n’a pas marché. Réessayez dans un instant.",
   "mod_toast_followed": "Vous suivez maintenant {name}. Vous serez prévenu des mises à jour.",
   "mod_toast_followed_creator": "Vous suivez {name}.",
+  "mod_toast_latest_only": "Seule la dernière version de {name} peut être téléchargée. Le créateur a désactivé les versions précédentes.",
   "mod_toast_rate_limited": "Trop d’essais. Attendez une minute et réessayez.",
   "mod_toast_sign_in": "Votre session a expiré. Reconnectez-vous.",
   "mod_toast_unfollowed": "Vous ne suivez plus {name}.",
@@ -4796,6 +4799,7 @@
   "mod_toast_verify_email": "Vérifiez d’abord votre e-mail. Regardez votre boîte de réception.",
   "mod_value_not_declared": "Non déclaré",
   "mod_version_beta": "Bêta",
+  "mod_version_download_off": "Indisponible",
   "mod_version_latest": "Dernière",
   "mod_version_meta_description": "{name} v{version} pour Sons of the Forest, publiée le {date} : modifications, taille, SHA-256, analyse de sécurité et compatibilité.",
   "mod_version_no_changelog": "Pas de journal des modifications pour cette version.",
@@ -4822,6 +4826,7 @@
   ],
   "mod_versions_caption": "Versions de {name}",
   "mod_versions_empty": "Aucune version publiée pour l’instant.",
+  "mod_versions_latest_only": "Le créateur autorise uniquement le téléchargement de la dernière version.",
   "mod_versions_meta_description": [
     {
       "declarations": [
@@ -7291,6 +7296,7 @@
   "ui_domain_version_beta": "Bêta",
   "ui_domain_version_label": "v{version}",
   "ui_domain_version_latest": "Dernière",
+  "ui_domain_version_latest_only": "Dernière version uniquement",
   "ui_domain_version_min": "{version}+",
   "ui_domain_version_new_since": "Nouvelle depuis votre dernier téléchargement",
   "ui_domain_version_unavailable": "Fichier indisponible",

@@ -60,8 +60,9 @@ const latest = versions.find((version) => version.isLatest) ?? versions[0] ?? nu
 >
   <section aria-labelledby="versions-title" class="grid gap-4">
     <h2 id="versions-title" class={SECTION_TITLE_CLASSES}>{m.mod_versions_title({ count: versions.length })}</h2>
+    {mod.latestVersionOnly && <p class="text-sm text-fg-muted">{m.mod_versions_latest_only()}</p>}
     <div class="max-md:hidden">
-      <VersionTable versions={visible} caption={m.mod_versions_caption({ name: mod.name })} />
+      <VersionTable versions={visible} caption={m.mod_versions_caption({ name: mod.name })} latestOnly={mod.latestVersionOnly} />
     </div>
     <VersionRows mod={mod} versions={visible} />
     <Pagination page={page} totalPages={totalPages} hrefFor={pageHref} />

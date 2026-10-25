@@ -111,6 +111,8 @@ export const mod = pgTable(
     multiplayerRole: text('multiplayerRole').$type<(typeof MULTIPLAYER_ROLES)[number]>(),
     dedicatedServer: text('dedicatedServer').$type<(typeof DEDICATED_SERVER_SUPPORT)[number]>(),
     safeToRemove: text('safeToRemove').$type<(typeof SAFE_TO_REMOVE)[number]>(),
+    /** Opt-in: only the latest version can be downloaded (older ones answer 410). */
+    latestVersionOnly: boolean('latestVersionOnly').notNull().default(false),
     logColor: text('logColor'),
     originalAuthorName: text('originalAuthorName'),
     originalAuthorUrl: text('originalAuthorUrl'),

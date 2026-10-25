@@ -1148,6 +1148,8 @@
   "basecamp_kpi_views_7d": "浏览 · 7 天",
   "basecamp_kpi_yesterday": "昨天：{count}",
   "basecamp_kpis_label": "关键数据",
+  "basecamp_latest_only_hint": "玩家只能下载最新版本。旧版本仍会连同更新日志一起显示，但其下载链接将失效。如果旧版本存在你不希望玩家退回的错误，请使用此选项。",
+  "basecamp_latest_only_label": "仅最新版本",
   "basecamp_listing_category": "分类",
   "basecamp_listing_category_placeholder": "选择分类",
   "basecamp_listing_convert": "转换为 Markdown",
@@ -4369,6 +4371,7 @@
   "mod_toast_error": "操作失败，请稍后再试。",
   "mod_toast_followed": "已关注 {name}，有更新会通知你。",
   "mod_toast_followed_creator": "你已关注 {name}。",
+  "mod_toast_latest_only": "{name} 只能下载最新版本。作者已关闭旧版本的下载。",
   "mod_toast_rate_limited": "尝试次数过多，请等一分钟后再试。",
   "mod_toast_sign_in": "登录已过期，请重新登录。",
   "mod_toast_unfollowed": "已取消关注 {name}。",
@@ -4376,6 +4379,7 @@
   "mod_toast_verify_email": "请先验证邮箱，查看你的收件箱。",
   "mod_value_not_declared": "未声明",
   "mod_version_beta": "测试版",
+  "mod_version_download_off": "不可用",
   "mod_version_latest": "最新",
   "mod_version_meta_description": "Sons of the Forest 模组 {name} v{version}，发布于 {date}：更新日志、文件大小、SHA-256、安全扫描和兼容性。",
   "mod_version_no_changelog": "此版本没有更新日志。",
@@ -4398,6 +4402,7 @@
   ],
   "mod_versions_caption": "{name} 的版本",
   "mod_versions_empty": "还没有发布任何版本。",
+  "mod_versions_latest_only": "作者只允许下载最新版本。",
   "mod_versions_meta_description": [
     {
       "declarations": [
@@ -6672,6 +6677,7 @@
   "ui_domain_version_beta": "测试版",
   "ui_domain_version_label": "v{version}",
   "ui_domain_version_latest": "最新",
+  "ui_domain_version_latest_only": "仅限最新版本",
   "ui_domain_version_min": "{version}+",
   "ui_domain_version_new_since": "自你上次下载后的新版本",
   "ui_domain_version_unavailable": "文件不可用",

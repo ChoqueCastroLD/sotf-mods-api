@@ -179,6 +179,53 @@ describe('302 to R2 with the key encoded per segment', () => {
   });
 });
 
+describe('«latest version only» (creator opt-in)', () => {
+  it('refuses older versions with 410 version_superseded, keeps latest working, and is off by default', async () => {
+    const owner = await f.user();
+    const { mod, version: old } = await f.modWithVersion(
+      { userId: owner.id, slug: `latest-only-${owner.id}` },
+      { version: '1.0.0', storageKey: 'lo/old.zip', downloadUrl: `${R2}/lo/old.zip` },
+    );
+    await t.db.db.execute(sql`UPDATE "ModVersion" SET "isLatest" = false WHERE "id" = ${old.id}`);
+    const latest = await f.modVersion({
+      modId: mod.id,
+      version: '1.1.0',
+      storageKey: 'lo/new.zip',
+      downloadUrl: `${R2}/lo/new.zip`,
+    });
+    const headers = { 'user-agent': CHROME, 'cf-connecting-ip': nextIp() };
+    const get = (url: string) => t.app.inject({ method: 'GET', url, headers });
+
+    // Off by default: every version downloads (another URL form: resolutions are cached per URL for
+    // 60 s and the editor's save purges `mod:{id}`, which a raw UPDATE here does not).
+    expect((await get(`/api/mods/${mod.manifestId}/download/1.0.0`)).statusCode).toBe(302);
+
+    await t.db.db.execute(sql`UPDATE "Mod" SET "latestVersionOnly" = true WHERE "id" = ${mod.id}`);
+    for (const url of [
+      `/api/v2/versions/${old.id}/download`,
+      `/api/mods/slug/${owner.slug}/latest-only-${owner.id}/download/1.0.0`,
+    ]) {
+      expect((await get(url)).statusCode, url).toBe(410);
+    }
+    const internal = await t.app.inject({
+      method: 'GET',
+      url: `/internal/downloads/resolve?user=${owner.slug}&slug=latest-only-${owner.id}&version=1.0.0`,
+      headers: { ...t.internal(), ...headers },
+    });
+    expect(internal.json()).toMatchObject({ status: 410, reason: 'version_superseded' });
+
+    for (const url of [
+      `/api/v2/versions/${latest.id}/download`,
+      `/api/mods/slug/${owner.slug}/latest-only-${owner.id}/download/1.1.0`,
+      `/api/mods/slug/${owner.slug}/latest-only-${owner.id}/download/latest`,
+    ]) {
+      const res = await get(url);
+      expect(res.statusCode, url).toBe(302);
+      expect(res.headers.location).toBe(`${R2}/lo/new.zip`);
+    }
+  });
+});
+
 describe('what counts', () => {
   async function scenario(
     requests: Array<{ method?: 'GET' | 'HEAD'; headers?: Record<string, string> }>,

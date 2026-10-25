@@ -399,6 +399,10 @@ export const UpdateStudioModBody = dto(
     multiplayerRole: ListingFields.multiplayerRole.optional(),
     dedicatedServer: ListingFields.dedicatedServer.optional(),
     safeToRemove: ListingFields.safeToRemove.optional(),
+    latestVersionOnly: z
+      .boolean()
+      .optional()
+      .describe('Only the latest version can be downloaded; older versions stay listed, their downloads answer 410'),
     originalAuthor: ListingFields.originalAuthor.optional(),
     descriptionFormat: z
       .literal('markdown')

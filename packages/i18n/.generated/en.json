@@ -1247,6 +1247,8 @@
   "basecamp_kpi_views_7d": "Views · 7 days",
   "basecamp_kpi_yesterday": "Yesterday: {count}",
   "basecamp_kpis_label": "Key figures",
+  "basecamp_latest_only_hint": "Players can only download the newest version. Older versions stay listed with their changelogs, but their download links stop working. Use this when older versions have bugs you do not want people to go back to.",
+  "basecamp_latest_only_label": "Latest version only",
   "basecamp_listing_category": "Category",
   "basecamp_listing_category_placeholder": "Choose a category",
   "basecamp_listing_convert": "Convert to Markdown",
@@ -4789,6 +4791,7 @@
   "mod_toast_error": "That didn’t work. Try again in a moment.",
   "mod_toast_followed": "You now follow {name}. You’ll be notified of updates.",
   "mod_toast_followed_creator": "You follow {name}.",
+  "mod_toast_latest_only": "Only the latest version of {name} can be downloaded. The creator turned off older versions.",
   "mod_toast_rate_limited": "Too many tries. Wait a minute and try again.",
   "mod_toast_sign_in": "Your session ended. Log in again.",
   "mod_toast_unfollowed": "You no longer follow {name}.",
@@ -4796,6 +4799,7 @@
   "mod_toast_verify_email": "Verify your email first. Check your inbox.",
   "mod_value_not_declared": "Not declared",
   "mod_version_beta": "Beta",
+  "mod_version_download_off": "Not available",
   "mod_version_latest": "Latest",
   "mod_version_meta_description": "{name} v{version} for Sons of the Forest, released {date}: changelog, file size, SHA-256, security scan and compatibility.",
   "mod_version_no_changelog": "No changelog for this version.",
@@ -4822,6 +4826,7 @@
   ],
   "mod_versions_caption": "Versions of {name}",
   "mod_versions_empty": "No versions published yet.",
+  "mod_versions_latest_only": "The creator allows downloads of the latest version only.",
   "mod_versions_meta_description": [
     {
       "declarations": [
@@ -7291,6 +7296,7 @@
   "ui_domain_version_beta": "Beta",
   "ui_domain_version_label": "v{version}",
   "ui_domain_version_latest": "Latest",
+  "ui_domain_version_latest_only": "Latest version only",
   "ui_domain_version_min": "{version}+",
   "ui_domain_version_new_since": "New since your last download",
   "ui_domain_version_unavailable": "File unavailable",

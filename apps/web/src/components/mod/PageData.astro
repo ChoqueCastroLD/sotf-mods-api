@@ -52,6 +52,7 @@ const data: ModPageData = {
     followers: pluralTemplates(locale, (count) => m.common_followers_count({ count })),
     videoEmbedTitle: m.mod_video_embed_title(),
     undo: m.common_action_undo(),
+    latestOnly: m.mod_toast_latest_only({ name: mod.name }),
     error: m.mod_toast_error(),
     offline: m.common_state_offline(),
     rateLimited: m.mod_toast_rate_limited(),

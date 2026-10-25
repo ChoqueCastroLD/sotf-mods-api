@@ -106,5 +106,6 @@
   "ui_domain_reaction_party": "お祝い",
   "ui_domain_reaction_pray": "ありがとう",
   "ui_domain_reaction_fire": "炎",
-  "ui_domain_trusted": "信頼済み"
+  "ui_domain_trusted": "信頼済み",
+  "ui_domain_version_latest_only": "最新バージョンのみ"
 }

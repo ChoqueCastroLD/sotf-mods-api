@@ -25,6 +25,20 @@ import { initVersions } from './versions.ts';
 
 let started = false;
 
+/**
+ * Arrival from an old-version download link of a «latest version only» mod (the download route
+ * answers 303 here with `?superseded=1`): explain it once and drop the parameter from the URL.
+ */
+function noticeSuperseded(data: ModPageData, doc: Document): void {
+  const url = new URL(doc.location.href);
+  if (url.searchParams.get('superseded') !== '1') return;
+  url.searchParams.delete('superseded');
+  doc.defaultView?.history.replaceState(doc.defaultView.history.state, '', url.pathname + url.search + url.hash);
+  void import('../../lib/client/toast.ts').then(({ toast }) =>
+    toast.info(data.messages.latestOnly, { duration: 8000 }),
+  );
+}
+
 function initLiveMod(root: HTMLElement, data: ModPageData, doc: Document): void {
   const lang = doc.documentElement.lang || 'en';
   const compact = compactFormat(lang);
@@ -59,6 +73,7 @@ export function initModPage(doc: Document = document): void {
   safely(() => initSocialIslands(root, session));
   safely(() => initDialogs(root, doc));
   safely(() => initNsfwGate(root, session));
+  safely(() => noticeSuperseded(data, doc));
   safely(() => initDownloads(root, data, doc));
   safely(() => initShare(root, data, doc));
   safely(() => initTranslation(root));

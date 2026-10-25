@@ -1247,6 +1247,8 @@
   "basecamp_kpi_views_7d": "Görüntülenme · 7 gün",
   "basecamp_kpi_yesterday": "Dün: {count}",
   "basecamp_kpis_label": "Temel rakamlar",
+  "basecamp_latest_only_hint": "Oyuncular yalnızca en yeni sürümü indirebilir. Eski sürümler değişiklik notlarıyla listede kalır, ancak indirme bağlantıları çalışmaz. Eski sürümlerde insanların geri dönmesini istemediğin hatalar varsa bunu kullan.",
+  "basecamp_latest_only_label": "Yalnızca en son sürüm",
   "basecamp_listing_category": "Kategori",
   "basecamp_listing_category_placeholder": "Bir kategori seç",
   "basecamp_listing_convert": "Markdown'a dönüştür",
@@ -4789,6 +4791,7 @@
   "mod_toast_error": "Olmadı. Birazdan tekrar dene.",
   "mod_toast_followed": "{name} takip ediliyor. Güncellemelerden haberin olacak.",
   "mod_toast_followed_creator": "{name} kullanıcısını takip ediyorsun.",
+  "mod_toast_latest_only": "{name} için yalnızca en son sürüm indirilebilir. Yapımcı eski sürümleri kapattı.",
   "mod_toast_rate_limited": "Çok fazla deneme. Bir dakika bekleyip tekrar dene.",
   "mod_toast_sign_in": "Oturumun sona erdi. Tekrar giriş yap.",
   "mod_toast_unfollowed": "{name} artık takip edilmiyor.",
@@ -4796,6 +4799,7 @@
   "mod_toast_verify_email": "Önce e-postanı doğrula. Gelen kutunu kontrol et.",
   "mod_value_not_declared": "Belirtilmemiş",
   "mod_version_beta": "Beta",
+  "mod_version_download_off": "Kullanılamıyor",
   "mod_version_latest": "En yeni",
   "mod_version_meta_description": "Sons of the Forest için {name} v{version}, {date} tarihinde yayımlandı: değişiklik günlüğü, dosya boyutu, SHA-256, güvenlik taraması ve uyumluluk.",
   "mod_version_no_changelog": "Bu sürüm için değişiklik günlüğü yok.",
@@ -4822,6 +4826,7 @@
   ],
   "mod_versions_caption": "{name} sürümleri",
   "mod_versions_empty": "Henüz yayımlanmış sürüm yok.",
+  "mod_versions_latest_only": "Yapımcı yalnızca en son sürümün indirilmesine izin veriyor.",
   "mod_versions_meta_description": [
     {
       "declarations": [
@@ -7291,6 +7296,7 @@
   "ui_domain_version_beta": "Beta",
   "ui_domain_version_label": "v{version}",
   "ui_domain_version_latest": "En yeni",
+  "ui_domain_version_latest_only": "Yalnızca en son sürüm",
   "ui_domain_version_min": "{version}+",
   "ui_domain_version_new_since": "Son indirmenden beri yeni",
   "ui_domain_version_unavailable": "Dosya kullanılamıyor",

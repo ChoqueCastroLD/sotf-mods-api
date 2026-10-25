@@ -211,5 +211,8 @@
   "mod_details_title": "详情",
   "mod_detail_game": "游戏版本",
   "mod_detail_loader": "RedLoader",
-  "mod_fact_multiplayer": "多人游戏"
+  "mod_fact_multiplayer": "多人游戏",
+  "mod_toast_latest_only": "{name} 只能下载最新版本。作者已关闭旧版本的下载。",
+  "mod_versions_latest_only": "作者只允许下载最新版本。",
+  "mod_version_download_off": "不可用"
 }

@@ -466,5 +466,7 @@
   "basecamp_versions_sort_newest": "新しい順",
   "basecamp_versions_sort_oldest": "古い順",
   "basecamp_versions_sort_downloads": "ダウンロード数順",
-  "basecamp_versions_no_match": "このフィルターに一致するバージョンはありません。"
+  "basecamp_versions_no_match": "このフィルターに一致するバージョンはありません。",
+  "basecamp_latest_only_label": "最新バージョンのみ",
+  "basecamp_latest_only_hint": "プレイヤーは最新バージョンのみダウンロードできます。古いバージョンは変更履歴とともに表示されたままですが、ダウンロードリンクは使えなくなります。古いバージョンに戻ってほしくない不具合がある場合に使ってください。"
 }

@@ -30,6 +30,7 @@ export interface ListingInput {
   multiplayerRole?: MultiplayerRoleValue | null | undefined;
   dedicatedServer?: 'yes' | 'no' | 'partial' | 'unknown' | null | undefined;
   safeToRemove?: 'yes' | 'no' | 'unknown' | null | undefined;
+  latestVersionOnly?: boolean | undefined;
   originalAuthor?: { name: string; url: string | null } | null | undefined;
 }
 
@@ -160,6 +161,7 @@ export async function resolveListing(
     }
   }
   if (input.safeToRemove !== undefined) set('safeToRemove', 'safeToRemove', input.safeToRemove);
+  if (input.latestVersionOnly !== undefined) set('latestVersionOnly', 'latestVersionOnly', input.latestVersionOnly);
   if (input.originalAuthor !== undefined) {
     set('originalAuthor', 'originalAuthorName', input.originalAuthor?.name.trim() ?? null);
     columns.originalAuthorUrl = input.originalAuthor?.url ?? null;

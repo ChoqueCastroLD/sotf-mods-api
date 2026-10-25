@@ -466,5 +466,7 @@
   "basecamp_versions_sort_newest": "Önce en yeni",
   "basecamp_versions_sort_oldest": "Önce en eski",
   "basecamp_versions_sort_downloads": "En çok indirilen",
-  "basecamp_versions_no_match": "Bu filtreyle eşleşen sürüm yok."
+  "basecamp_versions_no_match": "Bu filtreyle eşleşen sürüm yok.",
+  "basecamp_latest_only_label": "Yalnızca en son sürüm",
+  "basecamp_latest_only_hint": "Oyuncular yalnızca en yeni sürümü indirebilir. Eski sürümler değişiklik notlarıyla listede kalır, ancak indirme bağlantıları çalışmaz. Eski sürümlerde insanların geri dönmesini istemediğin hatalar varsa bunu kullan."
 }

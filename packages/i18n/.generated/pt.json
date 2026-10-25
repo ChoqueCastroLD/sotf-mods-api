@@ -1247,6 +1247,8 @@
   "basecamp_kpi_views_7d": "Visualizações · 7 dias",
   "basecamp_kpi_yesterday": "Ontem: {count}",
   "basecamp_kpis_label": "Números principais",
+  "basecamp_latest_only_hint": "Os jogadores só poderão baixar a versão mais recente. As versões antigas continuam listadas com seus registros de alterações, mas os links de download deixam de funcionar. Use isto se versões antigas tiverem bugs para os quais você não quer que as pessoas voltem.",
+  "basecamp_latest_only_label": "Apenas a versão mais recente",
   "basecamp_listing_category": "Categoria",
   "basecamp_listing_category_placeholder": "Escolha uma categoria",
   "basecamp_listing_convert": "Converter para Markdown",
@@ -4789,6 +4791,7 @@
   "mod_toast_error": "Não deu certo. Tente de novo daqui a pouco.",
   "mod_toast_followed": "Você agora segue {name}. Vai ser avisado das atualizações.",
   "mod_toast_followed_creator": "Você segue {name}.",
+  "mod_toast_latest_only": "Só é possível baixar a versão mais recente de {name}. O criador desativou as versões anteriores.",
   "mod_toast_rate_limited": "Tentativas demais. Espere um minuto e tente de novo.",
   "mod_toast_sign_in": "Sua sessão expirou. Faça login de novo.",
   "mod_toast_unfollowed": "Você não segue mais {name}.",
@@ -4796,6 +4799,7 @@
   "mod_toast_verify_email": "Confirme seu e-mail primeiro. Veja sua caixa de entrada.",
   "mod_value_not_declared": "Não declarado",
   "mod_version_beta": "Beta",
+  "mod_version_download_off": "Indisponível",
   "mod_version_latest": "Mais recente",
   "mod_version_meta_description": "{name} v{version} para Sons of the Forest, lançada em {date}: changelog, tamanho, SHA-256, verificação de segurança e compatibilidade.",
   "mod_version_no_changelog": "Esta versão não tem changelog.",
@@ -4822,6 +4826,7 @@
   ],
   "mod_versions_caption": "Versões de {name}",
   "mod_versions_empty": "Nenhuma versão publicada ainda.",
+  "mod_versions_latest_only": "O criador permite baixar apenas a versão mais recente.",
   "mod_versions_meta_description": [
     {
       "declarations": [
@@ -7291,6 +7296,7 @@
   "ui_domain_version_beta": "Beta",
   "ui_domain_version_label": "v{version}",
   "ui_domain_version_latest": "Mais recente",
+  "ui_domain_version_latest_only": "Apenas a versão mais recente",
   "ui_domain_version_min": "{version}+",
   "ui_domain_version_new_since": "Nova desde o seu último download",
   "ui_domain_version_unavailable": "Arquivo indisponível",

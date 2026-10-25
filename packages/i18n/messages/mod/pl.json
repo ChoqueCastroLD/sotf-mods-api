@@ -211,5 +211,8 @@
   "mod_details_title": "Szczegóły",
   "mod_detail_game": "Wersja gry",
   "mod_detail_loader": "RedLoader",
-  "mod_fact_multiplayer": "Tryb wieloosobowy"
+  "mod_fact_multiplayer": "Tryb wieloosobowy",
+  "mod_toast_latest_only": "Z {name} można pobrać tylko najnowszą wersję. Twórca wyłączył starsze wersje.",
+  "mod_versions_latest_only": "Twórca pozwala pobierać tylko najnowszą wersję.",
+  "mod_version_download_off": "Niedostępne"
 }

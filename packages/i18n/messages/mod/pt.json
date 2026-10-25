@@ -211,5 +211,8 @@
   "mod_details_title": "Detalhes",
   "mod_detail_game": "Versão do jogo",
   "mod_detail_loader": "RedLoader",
-  "mod_fact_multiplayer": "Multijogador"
+  "mod_fact_multiplayer": "Multijogador",
+  "mod_toast_latest_only": "Só é possível baixar a versão mais recente de {name}. O criador desativou as versões anteriores.",
+  "mod_versions_latest_only": "O criador permite baixar apenas a versão mais recente.",
+  "mod_version_download_off": "Indisponível"
 }

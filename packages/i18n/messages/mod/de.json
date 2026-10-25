@@ -211,5 +211,8 @@
   "mod_details_title": "Details",
   "mod_detail_game": "Spielversion",
   "mod_detail_loader": "RedLoader",
-  "mod_fact_multiplayer": "Mehrspieler"
+  "mod_fact_multiplayer": "Mehrspieler",
+  "mod_toast_latest_only": "Von {name} kann nur die neueste Version heruntergeladen werden. Der Ersteller hat ältere Versionen deaktiviert.",
+  "mod_versions_latest_only": "Der Ersteller erlaubt nur den Download der neuesten Version.",
+  "mod_version_download_off": "Nicht verfügbar"
 }

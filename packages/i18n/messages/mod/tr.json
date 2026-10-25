@@ -211,5 +211,8 @@
   "mod_details_title": "Ayrıntılar",
   "mod_detail_game": "Oyun sürümü",
   "mod_detail_loader": "RedLoader",
-  "mod_fact_multiplayer": "Çok oyunculu"
+  "mod_fact_multiplayer": "Çok oyunculu",
+  "mod_toast_latest_only": "{name} için yalnızca en son sürüm indirilebilir. Yapımcı eski sürümleri kapattı.",
+  "mod_versions_latest_only": "Yapımcı yalnızca en son sürümün indirilmesine izin veriyor.",
+  "mod_version_download_off": "Kullanılamıyor"
 }

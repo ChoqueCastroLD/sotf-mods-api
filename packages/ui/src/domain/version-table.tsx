@@ -20,10 +20,18 @@ export interface VersionTableProps {
   caption?: string;
   /** Versions published after this instant get «New since your last download». */
   lastDownloadedAt?: string | null;
+  /** The creator allows only the latest version: older rows show no download button. */
+  latestOnly?: boolean;
   className?: string;
 }
 
-export function VersionTable({ versions, caption, lastDownloadedAt, className }: VersionTableProps) {
+export function VersionTable({
+  versions,
+  caption,
+  lastDownloadedAt,
+  latestOnly = false,
+  className,
+}: VersionTableProps) {
   const { t, locale, timeZone } = useDomainI18n();
   if (versions.length === 0) {
     return <p className={cn('text-sm text-fg-muted', className)}>{t('ui_domain_versions_empty')}</p>;
@@ -77,7 +85,8 @@ export function VersionTable({ versions, caption, lastDownloadedAt, className }:
         <tbody>
           {versions.map((version) => {
             const isNew = lastDownloadedAt ? Date.parse(version.publishedAt) > Date.parse(lastDownloadedAt) : false;
-            const downloadable = version.status === 'active' || version.status === 'pending';
+            const downloadable =
+              (version.status === 'active' || version.status === 'pending') && (!latestOnly || version.isLatest);
             return (
               <tr
                 key={version.id}
@@ -152,7 +161,9 @@ export function VersionTable({ versions, caption, lastDownloadedAt, className }:
                     <span className="text-xs text-fg-muted">
                       {version.status === 'yanked'
                         ? (version.statusReason ?? t('ui_domain_version_yanked'))
-                        : t('ui_domain_version_unavailable')}
+                        : latestOnly && !version.isLatest && version.status === 'active'
+                          ? t('ui_domain_version_latest_only')
+                          : t('ui_domain_version_unavailable')}
                     </span>
                   )}
                 </td>

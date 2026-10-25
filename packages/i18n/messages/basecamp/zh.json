@@ -466,5 +466,7 @@
   "basecamp_versions_sort_newest": "最新优先",
   "basecamp_versions_sort_oldest": "最早优先",
   "basecamp_versions_sort_downloads": "下载最多",
-  "basecamp_versions_no_match": "没有符合此筛选条件的版本。"
+  "basecamp_versions_no_match": "没有符合此筛选条件的版本。",
+  "basecamp_latest_only_label": "仅最新版本",
+  "basecamp_latest_only_hint": "玩家只能下载最新版本。旧版本仍会连同更新日志一起显示，但其下载链接将失效。如果旧版本存在你不希望玩家退回的错误，请使用此选项。"
 }

@@ -106,5 +106,6 @@
   "ui_domain_reaction_party": "Праздник",
   "ui_domain_reaction_pray": "Спасибо",
   "ui_domain_reaction_fire": "Огонь",
-  "ui_domain_trusted": "Проверенный"
+  "ui_domain_trusted": "Проверенный",
+  "ui_domain_version_latest_only": "Только последняя версия"
 }

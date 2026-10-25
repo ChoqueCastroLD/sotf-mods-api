@@ -106,5 +106,6 @@
   "ui_domain_reaction_party": "Festa",
   "ui_domain_reaction_pray": "Obrigado",
   "ui_domain_reaction_fire": "Fogo",
-  "ui_domain_trusted": "Confiável"
+  "ui_domain_trusted": "Confiável",
+  "ui_domain_version_latest_only": "Apenas a versão mais recente"
 }
