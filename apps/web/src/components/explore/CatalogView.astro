@@ -61,7 +61,8 @@ const chips = model.active.filter(
 );
 const filtered = toolbar.changed > 0 || chips.length > 0 || state.q !== '';
 // Game tabs: the catalogue mixes both games; counts come from the `game` facet (other filters applied).
-const gameCount = (game: string) => list?.facets?.game?.find((bucket) => bucket.value === game)?.count ?? null;
+const gameCount = (game: string) =>
+  list?.facets?.game ? (list.facets.game.find((bucket) => bucket.value === game)?.count ?? 0) : null;
 const sotfCount = gameCount('sotf');
 const forestCount = gameCount('the-forest');
 const allCount = sotfCount !== null && forestCount !== null ? sotfCount + forestCount : null;
