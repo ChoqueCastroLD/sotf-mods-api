@@ -4,6 +4,8 @@
  * on and «Notify followers» (on by default).
  */
 import { STUDIO_LIMITS } from '@sotf/contracts/studio';
+import { Field } from '@sotf/ui/field';
+import { Input } from '@sotf/ui/input';
 import { RadioCardGroup } from '@sotf/ui/radio-card';
 import { Switch } from '@sotf/ui/switch';
 import { Callout } from '../components/Callout.tsx';
@@ -23,9 +25,29 @@ export interface ReleaseStepProps {
   fileVersion: string | null;
   check: VersionCheck | null;
   headingId: string;
+  /** Free upload: no manifest, the creator types the version number. */
+  free?: boolean;
+  /** Versions the mod already has (new version of a free mod: duplicates are refused). */
+  existingVersions?: readonly string[];
+  /** «Next» was pressed with a missing or malformed version number. */
+  versionFailed?: boolean;
+  /** Game builds (from Steam) exist for Sons of the Forest only. */
+  showGameBuilds?: boolean;
 }
 
-export function ReleaseStep({ mode, isBuild, data, update, fileVersion, check, headingId }: ReleaseStepProps) {
+export function ReleaseStep({
+  mode,
+  isBuild,
+  data,
+  update,
+  fileVersion,
+  check,
+  headingId,
+  free = false,
+  existingVersions = [],
+  versionFailed = false,
+  showGameBuilds = true,
+}: ReleaseStepProps) {
   const release = data.version ?? {};
   const setRelease = (patch: Partial<NonNullable<DraftData['version']>>) =>
     update((d) => ({ ...d, version: { ...(d.version ?? {}), ...patch } }));
@@ -37,6 +59,29 @@ export function ReleaseStep({ mode, isBuild, data, update, fileVersion, check, h
       <FieldGroup id="upload-group-version" title={ut('upload_version_label')}>
         {isBuild ? (
           <p className="text-sm text-fg-muted">{ut('upload_version_build')}</p>
+        ) : free ? (
+          <Field
+            label={ut('upload_free_version_label')}
+            description={ut('upload_free_version_hint')}
+            error={
+              existingVersions.includes((release.version ?? '').trim())
+                ? ut('upload_free_version_exists')
+                : versionFailed
+                  ? ut('upload_free_version_error')
+                  : undefined
+            }
+          >
+            <Input
+              id="upload-version"
+              value={release.version ?? ''}
+              maxLength={40}
+              autoComplete="off"
+              spellCheck={false}
+              placeholder="1.0.0"
+              className="max-w-48 font-mono"
+              onChange={(event) => setRelease({ version: event.currentTarget.value })}
+            />
+          </Field>
         ) : fileVersion ? (
           <div className="flex flex-col gap-3">
             <p className="flex flex-wrap items-baseline gap-3">
@@ -95,7 +140,7 @@ export function ReleaseStep({ mode, isBuild, data, update, fileVersion, check, h
 
       {mode === 'version' ? (
         <FieldGroup id="upload-group-announce" title={ut('upload_announce_group')}>
-          {!isBuild ? (
+          {!isBuild && showGameBuilds ? (
             <GameBuildPicker
               value={data.testedGameBuildIds ?? []}
               onChange={(testedGameBuildIds) => update((d) => ({ ...d, testedGameBuildIds }))}

@@ -3337,6 +3337,10 @@
   "explore_facet_tags_more": "Więcej tagów",
   "explore_facet_updated": "Aktualizacja",
   "explore_failed": "Wyniki się nie wczytały. Odświeżamy stronę…",
+  "explore_filter_game": "Gra",
+  "explore_filter_game_any": "Obie gry",
+  "explore_filter_loader": "Loader modów",
+  "explore_filter_loader_any": "Dowolny loader",
   "explore_filter_search_label": "Filtruj",
   "explore_filter_search_placeholder": "Nazwa, tag lub autor…",
   "explore_filters_apply": "Zastosuj filtry",
@@ -4679,6 +4683,7 @@
   "mod_install_intro": "Te kroki instalują {name} ręcznie, bez menedżera.",
   "mod_install_manager_tip": "RedManager zainstaluje i zaktualizuje mody oraz ich zależności za ciebie.",
   "mod_install_multiplayer": "Tryb wieloosobowy: {role}.",
+  "mod_install_other_loader": "Ten mod jest zrobiony dla {loader}. Zainstaluj go według instrukcji w opisie; RedManager go nie zainstaluje.",
   "mod_install_redloader_not_bepinex": "Ten mod wymaga RedLoadera, nie BepInEx. Mody i poradniki do BepInEx nie dotyczą Sons of the Forest.",
   "mod_install_step_dependencies_title": "Najpierw zainstaluj zależności",
   "mod_install_step_download": "Pobierz {name}",
@@ -4791,6 +4796,7 @@
   "mod_license_other": "Własna licencja",
   "mod_license_reupload_with_credit": "Ponowne udostępnienie z podaniem autora",
   "mod_link_website": "Strona",
+  "mod_loader_other": "Inny",
   "mod_md_alert_caution": "Ostrożnie",
   "mod_md_alert_important": "Ważne",
   "mod_md_alert_note": "Uwaga",
@@ -4802,7 +4808,9 @@
       "declarations": [
         "input name",
         "input kind",
+        "input game",
         "input author",
+        "input loader",
         "input count",
         "input downloads",
         "local count__plural = count: plural"
@@ -4812,31 +4820,34 @@
         "count__plural"
       ],
       "match": {
-        "kind=library, count__plural=one": "{name} to biblioteka do Sons of the Forest od {author} dla RedLoadera. {downloads} pobranie. Pobieranie za darmo.",
-        "kind=library, count__plural=few": "{name} to biblioteka do Sons of the Forest od {author} dla RedLoadera. {downloads} pobrania. Pobieranie za darmo.",
-        "kind=library, count__plural=many": "{name} to biblioteka do Sons of the Forest od {author} dla RedLoadera. {downloads} pobrań. Pobieranie za darmo.",
-        "kind=library, count__plural=*": "{name} to biblioteka do Sons of the Forest od {author} dla RedLoadera. {downloads} pobrania. Pobieranie za darmo.",
-        "kind=*, count__plural=one": "{name} to mod do Sons of the Forest od {author} dla RedLoadera. {downloads} pobranie. Pobieranie za darmo.",
-        "kind=*, count__plural=few": "{name} to mod do Sons of the Forest od {author} dla RedLoadera. {downloads} pobrania. Pobieranie za darmo.",
-        "kind=*, count__plural=many": "{name} to mod do Sons of the Forest od {author} dla RedLoadera. {downloads} pobrań. Pobieranie za darmo.",
-        "kind=*, count__plural=*": "{name} to mod do Sons of the Forest od {author} dla RedLoadera. {downloads} pobrania. Pobieranie za darmo."
+        "kind=library, count__plural=one": "{name} to biblioteka do {game} od {author} dla {loader}a. {downloads} pobranie. Pobieranie za darmo.",
+        "kind=library, count__plural=few": "{name} to biblioteka do {game} od {author} dla {loader}a. {downloads} pobrania. Pobieranie za darmo.",
+        "kind=library, count__plural=many": "{name} to biblioteka do {game} od {author} dla {loader}a. {downloads} pobrań. Pobieranie za darmo.",
+        "kind=library, count__plural=*": "{name} to biblioteka do {game} od {author} dla {loader}a. {downloads} pobrania. Pobieranie za darmo.",
+        "kind=*, count__plural=one": "{name} to mod do {game} od {author} dla {loader}a. {downloads} pobranie. Pobieranie za darmo.",
+        "kind=*, count__plural=few": "{name} to mod do {game} od {author} dla {loader}a. {downloads} pobrania. Pobieranie za darmo.",
+        "kind=*, count__plural=many": "{name} to mod do {game} od {author} dla {loader}a. {downloads} pobrań. Pobieranie za darmo.",
+        "kind=*, count__plural=*": "{name} to mod do {game} od {author} dla {loader}a. {downloads} pobrania. Pobieranie za darmo."
       }
     }
   ],
+  "mod_meta_game": "Gra",
+  "mod_meta_loader": "Loader modów",
   "mod_meta_subpage_title": "{page} · {name}",
   "mod_meta_title": [
     {
       "declarations": [
         "input name",
         "input kind",
+        "input game",
         "input author"
       ],
       "selectors": [
         "kind"
       ],
       "match": {
-        "kind=library": "{name}: biblioteka do Sons of the Forest od {author}",
-        "kind=*": "{name}: mod do Sons of the Forest od {author}"
+        "kind=library": "{name}: biblioteka do {game} od {author}",
+        "kind=*": "{name}: mod do {game} od {author}"
       }
     }
   ],
@@ -4844,14 +4855,15 @@
     {
       "declarations": [
         "input name",
-        "input kind"
+        "input kind",
+        "input game"
       ],
       "selectors": [
         "kind"
       ],
       "match": {
-        "kind=library": "{name}: biblioteka do Sons of the Forest",
-        "kind=*": "{name}: mod do Sons of the Forest"
+        "kind=library": "{name}: biblioteka do {game}",
+        "kind=*": "{name}: mod do {game}"
       }
     }
   ],
@@ -7926,6 +7938,7 @@
   "upload_drop_hint": "{type} · do {max}",
   "upload_drop_replace": "Upuść inny plik, aby go zastąpić",
   "upload_drop_title_build": "Upuść tutaj plik .json builda",
+  "upload_drop_title_free": "Upuść tutaj plik moda",
   "upload_drop_title_mod": "Upuść tutaj plik .zip",
   "upload_entries_more": [
     {
@@ -7985,6 +7998,7 @@
   "upload_failure_too_large": "Plik jest za duży dla twojego konta.",
   "upload_failure_unsupported": "Ten typ pliku nie jest akceptowany.",
   "upload_file_intro_build": "Upuść plik .json builda wyeksportowany przez BuildShare. Miniatura, liczba elementów i wersja zostaną odczytane automatycznie.",
+  "upload_file_intro_free": "Prześlij plik, który instalują gracze: .zip, .dll, .mod albo inny format twojego loadera.",
   "upload_file_intro_mod": "Upuść plik .zip, który dałbyś graczom. Najpierw otwieramy go w przeglądarce i pokazujemy zawartość, zanim cokolwiek zostanie wysłane.",
   "upload_file_intro_version": "Wyślij nowy plik moda {name}. Jego identyfikator manifestu musi być {manifestId}, a wersja wyższa niż {version}.",
   "upload_file_title_build": "Twój build BuildShare",
@@ -8007,6 +8021,12 @@
   "upload_flag_zip_too_many_entries": "Zip ma za dużo plików (maksymalnie 5000).",
   "upload_flagged_detail": "Coś w nim wymaga sprawdzenia przez człowieka (zobacz ostrzeżenia poniżej). Nadal możesz go wysłać; zostanie opublikowany po zatwierdzeniu.",
   "upload_flagged_title": "Moderator przejrzy ten plik.",
+  "upload_free_drop_hint": "Do {max}, dowolny typ pliku",
+  "upload_free_note": "Dowolny typ pliku. Plik przechodzi tylko kontrole bezpieczeństwa (manifest RedLoadera nie jest potrzebny). Numer wersji wpisujesz w kroku Publikacja.",
+  "upload_free_version_error": "Wpisz numer wersji, na przykład 1.0.0.",
+  "upload_free_version_exists": "Ta wersja już istnieje dla tego moda.",
+  "upload_free_version_hint": "Na przykład 1.0.0. Litery, cyfry, kropki i myślniki.",
+  "upload_free_version_label": "Numer wersji",
   "upload_gallery_added": [
     {
       "declarations": [
@@ -8094,6 +8114,8 @@
       }
     }
   ],
+  "upload_game_hint": "Do jakiej gry jest ten mod?",
+  "upload_game_label": "Gra",
   "upload_image_no_preview": "Wysłano (podgląd na stronie po przetworzeniu)",
   "upload_image_reading": "Odczytywanie obrazu…",
   "upload_image_too_large": "Obrazy mogą mieć do 10 MB.",
@@ -8149,6 +8171,7 @@
   "upload_links_url": "Adres linku {n}",
   "upload_loader_hint": "Najstarsza wersja RedLoadera, z którą działa twój mod.",
   "upload_loader_label": "Minimalny RedLoader",
+  "upload_loader_other": "Inny",
   "upload_loading": "Wczytywanie…",
   "upload_manifest_author": "Autor",
   "upload_manifest_dependencies": "Zależności",
@@ -8173,6 +8196,7 @@
   "upload_markdown_write": "Pisz",
   "upload_media_intro": "Obrazy pomagają graczom zdecydować. Wpisy z 3 lub więcej obrazami są pobierane częściej.",
   "upload_media_title": "Multimedia",
+  "upload_modloader_label": "Loader modów",
   "upload_multiplayer_all_players": "Potrzebują go wszyscy",
   "upload_multiplayer_all_players_hint": "Każdy gracz w sesji musi go zainstalować.",
   "upload_multiplayer_client_side": "Po stronie klienta",
@@ -8297,6 +8321,9 @@
   "upload_preflight_thumbnail_missing": "Brak obrazu okładki.",
   "upload_preflight_thumbnail_ok": "Okładka ustawiona.",
   "upload_preflight_title": "Kontrole",
+  "upload_preflight_version_exists": "Ta wersja już istnieje dla tego moda.",
+  "upload_preflight_version_invalid": "Numer wersji może zawierać tylko litery, cyfry, kropki i myślniki.",
+  "upload_preflight_version_missing": "Wpisz numer wersji w kroku Publikacja.",
   "upload_preflight_waiting": "Kontrole pojawią się po zapisaniu szkicu.",
   "upload_problems_label": "Błędy i ostrzeżenia pliku",
   "upload_progress_direct": "Wysyłane prosto do magazynu. Jeśli połączenie zostanie przerwane, możesz wznowić.",

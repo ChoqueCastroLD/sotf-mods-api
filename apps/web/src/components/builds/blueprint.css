@@ -86,13 +86,15 @@
   position: relative;
 }
 .bp-cover::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 8px;
   z-index: 2;
   pointer-events: none;
   opacity: 0.85;
-  transition: opacity var(--dur-base, 200ms), inset var(--dur-base, 200ms);
+  transition:
+    opacity var(--dur-base, 200ms),
+    inset var(--dur-base, 200ms);
   background:
     linear-gradient(#b4cdf8, #b4cdf8) top left / 14px 1.5px no-repeat,
     linear-gradient(#b4cdf8, #b4cdf8) top left / 1.5px 14px no-repeat,
@@ -146,7 +148,7 @@
 }
 .bp-dim::before,
 .bp-dim::after {
-  content: '';
+  content: "";
   flex: 1 1 0;
   height: 9px;
   min-width: 1rem;

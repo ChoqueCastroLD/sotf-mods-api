@@ -3,91 +3,91 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {import('../runtime.js').LocalizedString} LocalizedString */
 
-/** @typedef {{ name: NonNullable<unknown>, kind: NonNullable<unknown> }} Mod_Meta_Title_ShortInputs */
+/** @typedef {{ name: NonNullable<unknown>, game: NonNullable<unknown>, kind: NonNullable<unknown> }} Mod_Meta_Title_ShortInputs */
 
 const en_mod_meta_title_short = /** @type {(inputs: Mod_Meta_Title_ShortInputs) => LocalizedString} */ (i) => {
-	if (i?.kind === "library") return /** @type {LocalizedString} */ (`${i?.name}: Sons of the Forest library`);
-	return /** @type {LocalizedString} */ (`${i?.name}: Sons of the Forest mod`)
+	if (i?.kind === "library") return /** @type {LocalizedString} */ (`${i?.name}: ${i?.game} library`);
+	return /** @type {LocalizedString} */ (`${i?.name}: ${i?.game} mod`)
 	
 };
 
 const es_mod_meta_title_short = /** @type {(inputs: Mod_Meta_Title_ShortInputs) => LocalizedString} */ (i) => {
-	if (i?.kind === "library") return /** @type {LocalizedString} */ (`${i?.name}: librería de Sons of the Forest`);
-	return /** @type {LocalizedString} */ (`${i?.name}: mod de Sons of the Forest`)
+	if (i?.kind === "library") return /** @type {LocalizedString} */ (`${i?.name}: librería de ${i?.game}`);
+	return /** @type {LocalizedString} */ (`${i?.name}: mod de ${i?.game}`)
 	
 };
 
 const de_mod_meta_title_short = /** @type {(inputs: Mod_Meta_Title_ShortInputs) => LocalizedString} */ (i) => {
-	if (i?.kind === "library") return /** @type {LocalizedString} */ (`${i?.name}: Sons-of-the-Forest-Bibliothek`);
-	return /** @type {LocalizedString} */ (`${i?.name}: Sons-of-the-Forest-Mod`)
+	if (i?.kind === "library") return /** @type {LocalizedString} */ (`${i?.name}: Bibliothek für ${i?.game}`);
+	return /** @type {LocalizedString} */ (`${i?.name}: Mod für ${i?.game}`)
 	
 };
 
 const fr_mod_meta_title_short = /** @type {(inputs: Mod_Meta_Title_ShortInputs) => LocalizedString} */ (i) => {
-	if (i?.kind === "library") return /** @type {LocalizedString} */ (`${i?.name} : bibliothèque Sons of the Forest`);
-	return /** @type {LocalizedString} */ (`${i?.name} : mod Sons of the Forest`)
+	if (i?.kind === "library") return /** @type {LocalizedString} */ (`${i?.name} : bibliothèque ${i?.game}`);
+	return /** @type {LocalizedString} */ (`${i?.name} : mod ${i?.game}`)
 	
 };
 
 const it_mod_meta_title_short = /** @type {(inputs: Mod_Meta_Title_ShortInputs) => LocalizedString} */ (i) => {
-	if (i?.kind === "library") return /** @type {LocalizedString} */ (`${i?.name}: libreria di Sons of the Forest`);
-	return /** @type {LocalizedString} */ (`${i?.name}: mod di Sons of the Forest`)
+	if (i?.kind === "library") return /** @type {LocalizedString} */ (`${i?.name}: libreria di ${i?.game}`);
+	return /** @type {LocalizedString} */ (`${i?.name}: mod di ${i?.game}`)
 	
 };
 
 const nl_mod_meta_title_short = /** @type {(inputs: Mod_Meta_Title_ShortInputs) => LocalizedString} */ (i) => {
-	if (i?.kind === "library") return /** @type {LocalizedString} */ (`${i?.name}: Sons of the Forest-bibliotheek`);
-	return /** @type {LocalizedString} */ (`${i?.name}: Sons of the Forest-mod`)
+	if (i?.kind === "library") return /** @type {LocalizedString} */ (`${i?.name}: ${i?.game}-bibliotheek`);
+	return /** @type {LocalizedString} */ (`${i?.name}: ${i?.game}-mod`)
 	
 };
 
 const pl_mod_meta_title_short = /** @type {(inputs: Mod_Meta_Title_ShortInputs) => LocalizedString} */ (i) => {
-	if (i?.kind === "library") return /** @type {LocalizedString} */ (`${i?.name}: biblioteka do Sons of the Forest`);
-	return /** @type {LocalizedString} */ (`${i?.name}: mod do Sons of the Forest`)
+	if (i?.kind === "library") return /** @type {LocalizedString} */ (`${i?.name}: biblioteka do ${i?.game}`);
+	return /** @type {LocalizedString} */ (`${i?.name}: mod do ${i?.game}`)
 	
 };
 
 const pt_mod_meta_title_short = /** @type {(inputs: Mod_Meta_Title_ShortInputs) => LocalizedString} */ (i) => {
-	if (i?.kind === "library") return /** @type {LocalizedString} */ (`${i?.name}: biblioteca de Sons of the Forest`);
-	return /** @type {LocalizedString} */ (`${i?.name}: mod de Sons of the Forest`)
+	if (i?.kind === "library") return /** @type {LocalizedString} */ (`${i?.name}: biblioteca de ${i?.game}`);
+	return /** @type {LocalizedString} */ (`${i?.name}: mod de ${i?.game}`)
 	
 };
 
 const ru_mod_meta_title_short = /** @type {(inputs: Mod_Meta_Title_ShortInputs) => LocalizedString} */ (i) => {
-	if (i?.kind === "library") return /** @type {LocalizedString} */ (`${i?.name}: библиотека для Sons of the Forest`);
-	return /** @type {LocalizedString} */ (`${i?.name}: мод для Sons of the Forest`)
+	if (i?.kind === "library") return /** @type {LocalizedString} */ (`${i?.name}: библиотека для ${i?.game}`);
+	return /** @type {LocalizedString} */ (`${i?.name}: мод для ${i?.game}`)
 	
 };
 
 const sv_mod_meta_title_short = /** @type {(inputs: Mod_Meta_Title_ShortInputs) => LocalizedString} */ (i) => {
-	if (i?.kind === "library") return /** @type {LocalizedString} */ (`${i?.name}: bibliotek till Sons of the Forest`);
-	return /** @type {LocalizedString} */ (`${i?.name}: mod till Sons of the Forest`)
+	if (i?.kind === "library") return /** @type {LocalizedString} */ (`${i?.name}: bibliotek till ${i?.game}`);
+	return /** @type {LocalizedString} */ (`${i?.name}: mod till ${i?.game}`)
 	
 };
 
 const tr_mod_meta_title_short = /** @type {(inputs: Mod_Meta_Title_ShortInputs) => LocalizedString} */ (i) => {
-	if (i?.kind === "library") return /** @type {LocalizedString} */ (`${i?.name}: Sons of the Forest kütüphanesi`);
-	return /** @type {LocalizedString} */ (`${i?.name}: Sons of the Forest modu`)
+	if (i?.kind === "library") return /** @type {LocalizedString} */ (`${i?.name}: ${i?.game} kütüphanesi`);
+	return /** @type {LocalizedString} */ (`${i?.name}: ${i?.game} modu`)
 	
 };
 
 const zh_mod_meta_title_short = /** @type {(inputs: Mod_Meta_Title_ShortInputs) => LocalizedString} */ (i) => {
-	if (i?.kind === "library") return /** @type {LocalizedString} */ (`${i?.name}：Sons of the Forest 前置库`);
-	return /** @type {LocalizedString} */ (`${i?.name}：Sons of the Forest 模组`)
+	if (i?.kind === "library") return /** @type {LocalizedString} */ (`${i?.name}：${i?.game} 前置库`);
+	return /** @type {LocalizedString} */ (`${i?.name}：${i?.game} 模组`)
 	
 };
 
 const ja_mod_meta_title_short = /** @type {(inputs: Mod_Meta_Title_ShortInputs) => LocalizedString} */ (i) => {
-	if (i?.kind === "library") return /** @type {LocalizedString} */ (`${i?.name}：Sons of the Forest ライブラリ`);
-	return /** @type {LocalizedString} */ (`${i?.name}：Sons of the Forest MOD`)
+	if (i?.kind === "library") return /** @type {LocalizedString} */ (`${i?.name}：${i?.game} ライブラリ`);
+	return /** @type {LocalizedString} */ (`${i?.name}：${i?.game} MOD`)
 	
 };
 
 /**
 * | kind | output |
 * | --- | --- |
-* | "library" | "{name}: Sons of the Forest library" |
-* | * | "{name}: Sons of the Forest mod" |
+* | "library" | "{name}: {game} library" |
+* | * | "{name}: {game} mod" |
 *
 * @param {Mod_Meta_Title_ShortInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -179,6 +179,69 @@ export async function inspectModArchive(
   };
 }
 
+/** Flags that only make sense for RedLoader mods (a free upload has no manifest rules). */
+const REDLOADER_ONLY_FLAGS: ReadonlySet<string> = new Set([
+  'manifest_missing',
+  'manifest_invalid',
+  'manifest_id_mismatch',
+  'version_not_semver',
+  'version_not_greater',
+  'extension_not_allowed',
+]);
+
+/**
+ * A free mod file (The Forest, or a loader other than RedLoader): any file type. Zip archives still
+ * get the archive safety checks (bombs, path traversal, too many entries) and executables inside
+ * are held for review; other files only get the size limit and, for an executable or script
+ * file, a review flag. No manifest is read: the creator types the name and version.
+ */
+export async function inspectFreeModFile(
+  source: RandomAccessSource,
+  options: { sha256: string | null; maxBytes: number; filename: string },
+): Promise<InspectionDetail> {
+  const head = source.size >= 4 ? await source.read(0, 4) : Buffer.alloc(0);
+  const isZip = head.length === 4 && head[0] === 0x50 && head[1] === 0x4b && (head[2] === 0x03 || head[2] === 0x05);
+  if (isZip) {
+    const detail = await inspectModArchive(source, { sha256: options.sha256, maxBytes: options.maxBytes });
+    const flags = detail.dto.flags.filter((f) => !REDLOADER_ONLY_FLAGS.has(f.code));
+    return { entries: detail.entries, dto: { ...detail.dto, manifest: null, flags, status: inspectionStatus(flags) } };
+  }
+  const flags: InspectionFlagDTO[] = [];
+  if (source.size > options.maxBytes) {
+    flags.push({
+      code: 'file_too_large',
+      severity: 'error',
+      path: null,
+      detail: `${source.size} bytes (max ${options.maxBytes})`,
+    });
+  }
+  const ext = options.filename.includes('.')
+    ? options.filename.slice(options.filename.lastIndexOf('.') + 1).toLowerCase()
+    : '';
+  if ((FILE_CHECKS.flaggedExtensions as readonly string[]).includes(ext)) {
+    flags.push({
+      code: 'extension_flagged',
+      severity: 'warning',
+      path: options.filename,
+      detail: 'executable or script',
+    });
+  }
+  return {
+    entries: [],
+    dto: {
+      status: inspectionStatus(flags),
+      manifest: null,
+      buildMeta: null,
+      entries: [],
+      entriesTotal: 0,
+      uncompressedBytes: source.size,
+      ratio: null,
+      sha256: options.sha256,
+      flags,
+    },
+  };
+}
+
 /** Inspects a BuildShare blueprint (also used by the backfill, WP-84). */
 export function inspectBuildFile(buffer: Buffer): InspectionDetail {
   const blueprint = inspectBlueprint(buffer);
@@ -291,7 +354,10 @@ export async function runInspection(
         sha256Of(storage, row.bucket, row.key, pin),
         presignedRangeSource(storage, row.bucket, row.key, before.size, pin ? { ifMatch: pin } : {}),
       ]);
-      detail = await inspectModArchive(source, { sha256, maxBytes });
+      detail =
+        ref.profile === 'free'
+          ? await inspectFreeModFile(source, { sha256, maxBytes, filename: row.filename })
+          : await inspectModArchive(source, { sha256, maxBytes });
       ctx.log.debug({ uploadId: row.id, rangeRequests: source.requests }, 'zip inspected with range reads');
     } else {
       const buffer = await readSmall(storage, row.bucket, row.key, FILE_CHECKS.maxBuildBytes, pin);

@@ -21,9 +21,22 @@ export interface CompatStepProps {
   manifestDependencies: readonly string[];
   failed?: ReadonlySet<string>;
   headingId: string;
+  /** Game builds come from Steam for Sons of the Forest only. */
+  showGameBuilds?: boolean;
+  /** The minimum RedLoader version only makes sense for RedLoader mods. */
+  showLoaderMin?: boolean;
 }
 
-export function CompatStep({ data, update, manifestId, manifestDependencies, failed, headingId }: CompatStepProps) {
+export function CompatStep({
+  data,
+  update,
+  manifestId,
+  manifestDependencies,
+  failed,
+  headingId,
+  showGameBuilds = true,
+  showLoaderMin = true,
+}: CompatStepProps) {
   const [loaderTouched, setLoaderTouched] = useState(false);
   const loaderMin = data.loaderMin ?? '';
   const loaderError =
@@ -35,29 +48,40 @@ export function CompatStep({ data, update, manifestId, manifestDependencies, fai
     <div className="flex flex-col gap-5">
       <StepHeader id={headingId} title={ut('upload_compat_title')} description={ut('upload_compat_intro')} />
 
-      <FieldGroup id="upload-group-builds" title={ut('upload_compat_game')}>
-        <GameBuildPicker
-          value={data.testedGameBuildIds ?? []}
-          onChange={(testedGameBuildIds) => update((d) => ({ ...d, testedGameBuildIds }))}
-        />
-        <Field label={ut('upload_loader_label')} description={ut('upload_loader_hint')} error={loaderError} optional>
-          <Input
-            id="upload-loader"
-            value={loaderMin}
-            maxLength={40}
-            placeholder="0.9.0"
-            spellCheck={false}
-            autoCapitalize="none"
-            autoComplete="off"
-            onChange={(event) => {
-              const next = event.currentTarget.value;
-              update((d) => ({ ...d, loaderMin: next.trim() ? next.trim() : null }));
-            }}
-            onBlur={() => setLoaderTouched(true)}
-            className="max-w-40"
-          />
-        </Field>
-      </FieldGroup>
+      {showGameBuilds || showLoaderMin ? (
+        <FieldGroup id="upload-group-builds" title={ut('upload_compat_game')}>
+          {showGameBuilds ? (
+            <GameBuildPicker
+              value={data.testedGameBuildIds ?? []}
+              onChange={(testedGameBuildIds) => update((d) => ({ ...d, testedGameBuildIds }))}
+            />
+          ) : null}
+          {showLoaderMin ? (
+            <Field
+              label={ut('upload_loader_label')}
+              description={ut('upload_loader_hint')}
+              error={loaderError}
+              optional
+            >
+              <Input
+                id="upload-loader"
+                value={loaderMin}
+                maxLength={40}
+                placeholder="0.9.0"
+                spellCheck={false}
+                autoCapitalize="none"
+                autoComplete="off"
+                onChange={(event) => {
+                  const next = event.currentTarget.value;
+                  update((d) => ({ ...d, loaderMin: next.trim() ? next.trim() : null }));
+                }}
+                onBlur={() => setLoaderTouched(true)}
+                className="max-w-40"
+              />
+            </Field>
+          ) : null}
+        </FieldGroup>
+      ) : null}
 
       <FieldGroup id="upload-group-multiplayer" title={ut('upload_compat_where')}>
         <WhereFields

@@ -33,6 +33,7 @@ import {
   type SurvivorRankKey,
   type UserRefDTO,
 } from '@sotf/contracts/common';
+import { MOD_GAMES, MOD_LOADERS, type ModGame, type ModLoader } from '@sotf/contracts/games';
 import { bayesianRating } from '@sotf/contracts/reviews';
 import { modPath } from '@sotf/contracts/seo';
 import type { Database, LocalizedNames, MediaVariant, UserPrivacy } from '@sotf/db';
@@ -106,6 +107,8 @@ export interface CatalogEntry {
   compatStatus: CompatStatus;
   multiplayerRole: MultiplayerRole | null;
   platform: Platform | null;
+  game: ModGame;
+  modLoader: ModLoader;
   dedicatedServer: string | null;
   hasSource: boolean;
   verifiedCreator: boolean;
@@ -309,6 +312,8 @@ interface ModRow {
   compatStatus: string | null;
   multiplayerRole: string | null;
   platform: string | null;
+  game: string | null;
+  modLoader: string | null;
   dedicatedServer: string | null;
   sourceUrl: string | null;
   lastReleasedAt: Date;
@@ -362,7 +367,7 @@ SELECT u."id", u."slug", u."name", u."displayName", u."imageUrl", u."verifiedCre
 const MODS_SQL = `
 SELECT m."id", m."type", m."mod_id" AS "manifestId", m."name", m."slug", m."userId", m."categoryId",
        m."shortDescription", m."imageUrl", m."isNSFW" AS "nsfw", m."isFeatured", m."status",
-       m."compatStatus", m."multiplayerRole", m."platform", m."dedicatedServer", m."sourceUrl",
+       m."compatStatus", m."multiplayerRole", m."platform", m."dedicatedServer", m."sourceUrl", m."game", m."modLoader",
        m."lastReleasedAt", m."publishedAt", m."createdAt", m."trendingScore",
        coalesce(s."downloadsTotal", m."downloads") AS "downloads",
        coalesce(s."downloads7d", m."lastWeekDownloads") AS "downloads7d",
@@ -563,6 +568,10 @@ export async function loadSnapshot(ctx: Ctx, config: CatalogConfig): Promise<Cat
     const canonicalPath = modPath(kind, author.ref.handle, m.slug);
     const shortDescription = m.shortDescription ?? '';
     const compatStatus = compatOf(m.compatStatus);
+    const game: ModGame = (MOD_GAMES as readonly string[]).includes(m.game ?? '') ? (m.game as ModGame) : 'sotf';
+    const modLoader: ModLoader = (MOD_LOADERS as readonly string[]).includes(m.modLoader ?? '')
+      ? (m.modLoader as ModLoader)
+      : 'redloader';
     const multiplayerRole =
       m.multiplayerRole && ROLES.has(m.multiplayerRole) ? (m.multiplayerRole as MultiplayerRole) : null;
     const platform = platformOf(m.platform);
@@ -603,6 +612,8 @@ export async function loadSnapshot(ctx: Ctx, config: CatalogConfig): Promise<Cat
       compatStatus,
       multiplayerRole,
       platform,
+      game,
+      modLoader,
       isFeatured: m.isFeatured,
       awards: awardsOfMod.get(m.id) ?? [],
       lastReleasedAt: m.lastReleasedAt.toISOString(),
@@ -635,6 +646,8 @@ export async function loadSnapshot(ctx: Ctx, config: CatalogConfig): Promise<Cat
       compatStatus,
       multiplayerRole,
       platform,
+      game,
+      modLoader,
       dedicatedServer: m.dedicatedServer,
       hasSource: safeHttpUrl(m.sourceUrl) !== null,
       verifiedCreator: author.ref.verifiedCreator,

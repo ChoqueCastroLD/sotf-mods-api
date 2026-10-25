@@ -25,12 +25,7 @@ export interface ArtStateProps {
 export function ArtState({ art, title, description, action, headingLevel = 2, className }: ArtStateProps) {
   const Heading = headingLevel === 2 ? 'h2' : 'h3';
   return (
-    <section
-      className={cn(
-        'relative isolate overflow-hidden rounded-xl',
-        className,
-      )}
-    >
+    <section className={cn('relative isolate overflow-hidden rounded-xl', className)}>
       <Motif seed={`console-${art}`} fade="edges" />
       <div className="relative grid justify-items-center gap-2 px-6 pt-14 pb-10 text-center">
         <Heading className="font-display-caps text-display-xs text-fg">{title}</Heading>

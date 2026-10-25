@@ -50,6 +50,11 @@ export interface FileUploadOptions {
   extensions: readonly string[];
   contentTypes: readonly string[];
   maxBytes: number;
+  /**
+   * Free upload (The Forest, or a loader other than RedLoader): any file type, no in-browser
+   * manifest inspection; the server runs the security checks only.
+   */
+  free?: boolean;
   /** Flow-specific check of the local report (new version); null = fine. */
   precheck?: (report: LocalReport) => BlockReason | null;
   /** The upload exists server-side (store its id in the draft). */
@@ -122,15 +127,20 @@ export function useFileUpload(options: FileUploadOptions): FileUpload {
       controller.current?.abort();
       const abort = new AbortController();
       controller.current = abort;
-      const { purpose, contentTypes } = optionsRef.current;
+      const { purpose, contentTypes, free } = optionsRef.current;
       patch({ phase: 'uploading', loaded: 0, total: file.size, error: null });
       try {
         const upload = await runUpload({
           file,
           filename: file.name,
           purpose,
-          contentType: contentTypeFor(file, contentTypes),
+          contentType: free
+            ? file.name.toLowerCase().endsWith('.zip')
+              ? 'application/zip'
+              : 'application/octet-stream'
+            : contentTypeFor(file, contentTypes),
           sha256: report?.sha256 ?? null,
+          ...(free ? { profile: 'free' as const } : {}),
           signal: abort.signal,
           session: session.current,
           onSession: (next) => {
@@ -160,9 +170,17 @@ export function useFileUpload(options: FileUploadOptions): FileUpload {
     async (file: File) => {
       controller.current?.abort();
       session.current = null;
-      const { extensions, maxBytes, purpose, precheck } = optionsRef.current;
+      const { extensions, maxBytes, purpose, precheck, free } = optionsRef.current;
       const ext = file.name.slice(file.name.lastIndexOf('.') + 1).toLowerCase();
       const base = { ...INITIAL, file, total: file.size };
+      if (free && purpose === 'mod_file') {
+        if (file.size === 0) return setState({ ...base, phase: 'blocked', block: { code: 'empty' } });
+        if (file.size > maxBytes)
+          return setState({ ...base, phase: 'blocked', block: { code: 'too_large', maxBytes } });
+        setState({ ...base });
+        await start(file, null);
+        return;
+      }
       if (!extensions.includes(ext)) return setState({ ...base, phase: 'blocked', block: { code: 'wrong_type' } });
       if (file.size === 0) return setState({ ...base, phase: 'blocked', block: { code: 'empty' } });
       if (file.size > maxBytes) {

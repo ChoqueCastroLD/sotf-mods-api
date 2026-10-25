@@ -9,6 +9,7 @@
 import type { ModCardDTO } from '@sotf/contracts/catalog';
 import { COMPAT_STATUSES, type ImageDTO, MULTIPLAYER_ROLES, PLATFORMS } from '@sotf/contracts/common';
 import type { CompatSummaryDTO } from '@sotf/contracts/compat';
+import { MOD_GAMES, MOD_LOADERS } from '@sotf/contracts/games';
 import type { Executor } from '@sotf/db';
 import { sql } from 'drizzle-orm';
 import { buildCardFacts } from '../catalog/build-facts.ts';
@@ -103,7 +104,7 @@ export async function loadModCards(
     )
     SELECT m."id", m."type", m."mod_id" AS "manifestId", m."name", m."slug", m."userId", m."shortDescription",
            m."latestVersion", m."downloads", m."lastWeekDownloads", m."favoritesCount", m."averageRating",
-           m."reviewsCount", m."compatStatus", m."multiplayerRole", m."platform", m."isFeatured",
+           m."reviewsCount", m."compatStatus", m."multiplayerRole", m."platform", m."isFeatured", m."game", m."modLoader",
            m."lastReleasedAt", m."isNSFW", m."status", m."buildGuid", m."buildShareVersion", m."numberOfElements",
            lv."buildMeta",
            u."slug" AS "ownerSlug", coalesce(nullif(u."displayName", ''), u."name") AS "ownerName",
@@ -187,6 +188,8 @@ export async function loadModCards(
       compatStatus: modCompat,
       multiplayerRole: oneOf(MULTIPLAYER_ROLES, row.multiplayerRole),
       platform: oneOf(PLATFORMS, row.platform),
+      game: oneOf(MOD_GAMES, row.game) ?? 'sotf',
+      modLoader: oneOf(MOD_LOADERS, row.modLoader) ?? 'redloader',
       isFeatured: row.isFeatured === true,
       awards: (row.awards as ModCardDTO['awards']) ?? [],
       lastReleasedAt: iso(row.lastReleasedAt),

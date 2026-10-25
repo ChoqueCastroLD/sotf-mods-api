@@ -45,8 +45,14 @@ export const CHECKS_PASSED = sql`EXISTS (
    WHERE lv."modId" = m."id" AND lv."isLatest" AND lv."checksStatus" = 'passed'
 )`;
 
+/**
+ * The legacy surface (RedManager, the in-game updates checker) only knows Sons of the Forest +
+ * RedLoader mods: mods for The Forest or for another loader never appear there (migration 2270).
+ */
+export const LEGACY_GAME = sql`m."game" = 'sotf' AND m."modLoader" = 'redloader'`;
+
 /** Detail, slug, find and check: everything except `rejected` and `removed` (deviation 4). */
-export const DETAIL_VISIBLE = sql`m."status" NOT IN ('rejected', 'removed')`;
+export const DETAIL_VISIBLE = sql`m."status" NOT IN ('rejected', 'removed') AND ${LEGACY_GAME}`;
 
 /** Versions the legacy surface exposes: never the ones under review or rejected. */
 export const VERSION_VISIBLE = sql`v."status" NOT IN ('pending', 'rejected')`;

@@ -490,5 +490,20 @@
   "upload_preflight_show_passed": "{count, plural, one {Visa # godkänd kontroll} other {Visa # godkända kontroller}}",
   "upload_preflight_hide_passed": "Dölj godkända kontroller",
   "upload_step_file_hint_build": "Byggets .json-fil",
-  "upload_description_placeholder_build": "Vad det är, hur man placerar det, vad spelare bör veta…"
+  "upload_description_placeholder_build": "Vad det är, hur man placerar det, vad spelare bör veta…",
+  "upload_game_label": "Spel",
+  "upload_game_hint": "Vilket spel är modden för?",
+  "upload_loader_other": "Annan",
+  "upload_free_note": "Valfri filtyp. Filen får bara säkerhetskontrollerna (inget RedLoader-manifest behövs). Versionsnumret skriver du i steget Publicering.",
+  "upload_free_drop_hint": "Upp till {max}, valfri filtyp",
+  "upload_free_version_label": "Versionsnummer",
+  "upload_free_version_hint": "Till exempel 1.0.0. Bokstäver, siffror, punkter och bindestreck.",
+  "upload_free_version_error": "Skriv ett versionsnummer, till exempel 1.0.0.",
+  "upload_free_version_exists": "Den här versionen finns redan för modden.",
+  "upload_preflight_version_missing": "Skriv versionsnumret i steget Publicering.",
+  "upload_preflight_version_invalid": "Versionsnumret får bara innehålla bokstäver, siffror, punkter och bindestreck.",
+  "upload_preflight_version_exists": "Den här versionen finns redan för modden.",
+  "upload_modloader_label": "Modladdare",
+  "upload_drop_title_free": "Släpp moddfilen här",
+  "upload_file_intro_free": "Ladda upp filen som spelarna installerar: en .zip, .dll, .mod eller vad din laddare använder."
 }

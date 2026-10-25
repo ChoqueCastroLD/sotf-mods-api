@@ -1,8 +1,8 @@
 {
-  "mod_meta_title": "{name}: Sons of the Forest {kind, select, library {library} other {mod}} by {author}",
-  "mod_meta_title_short": "{name}: Sons of the Forest {kind, select, library {library} other {mod}}",
+  "mod_meta_title": "{name}: {game} {kind, select, library {library} other {mod}} by {author}",
+  "mod_meta_title_short": "{name}: {game} {kind, select, library {library} other {mod}}",
   "mod_meta_subpage_title": "{page} · {name}",
-  "mod_meta_description_facts": "{name} is a Sons of the Forest {kind, select, library {library} other {mod}} by {author} for RedLoader. {count, plural, one {{downloads} download} other {{downloads} downloads}}. Free to download.",
+  "mod_meta_description_facts": "{name} is a {game} {kind, select, library {library} other {mod}} by {author} for {loader}. {count, plural, one {{downloads} download} other {{downloads} downloads}}. Free to download.",
   "mod_versions_meta_description": "All {count, plural, one {# version} other {# versions}} of {name} for Sons of the Forest, with changelogs, file sizes and compatibility. Latest: v{version}.",
   "mod_version_meta_description": "{name} v{version} for Sons of the Forest, released {date}: changelog, file size, SHA-256, security scan and compatibility.",
   "mod_reviews_meta_description": "Player reviews of {name}, a Sons of the Forest mod: {count, plural, one {# review} other {# reviews}} with ratings, verified downloads and creator replies.",
@@ -214,5 +214,9 @@
   "mod_fact_multiplayer": "Multiplayer",
   "mod_toast_latest_only": "Only the latest version of {name} can be downloaded. The creator turned off older versions.",
   "mod_versions_latest_only": "The creator allows downloads of the latest version only.",
-  "mod_version_download_off": "Not available"
+  "mod_version_download_off": "Not available",
+  "mod_meta_game": "Game",
+  "mod_meta_loader": "Mod loader",
+  "mod_loader_other": "Other",
+  "mod_install_other_loader": "This mod is made for {loader}. Install it with the instructions in the description; RedManager does not install it."
 }

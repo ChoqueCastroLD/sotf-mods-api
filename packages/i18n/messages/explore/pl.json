@@ -179,5 +179,9 @@
   "explore_search_builds_label": "Szukaj buildów",
   "explore_noresults_query_title": "Brak wyników dla „{query}”",
   "explore_suggest_popular": "Popularne mody",
-  "explore_results_range": "{from, number}–{to, number} z {total, number}"
+  "explore_results_range": "{from, number}–{to, number} z {total, number}",
+  "explore_filter_game": "Gra",
+  "explore_filter_game_any": "Obie gry",
+  "explore_filter_loader": "Loader modów",
+  "explore_filter_loader_any": "Dowolny loader"
 }

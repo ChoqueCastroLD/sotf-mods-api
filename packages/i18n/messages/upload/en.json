@@ -490,5 +490,20 @@
   "upload_preflight_show_passed": "{count, plural, one {Show # passed check} other {Show # passed checks}}",
   "upload_preflight_hide_passed": "Hide passed checks",
   "upload_step_file_hint_build": "Build .json file",
-  "upload_description_placeholder_build": "What it is, how to place it, anything players should know…"
+  "upload_description_placeholder_build": "What it is, how to place it, anything players should know…",
+  "upload_game_label": "Game",
+  "upload_game_hint": "Which game is this mod for?",
+  "upload_loader_other": "Other",
+  "upload_free_note": "Any file type. The file gets the security checks only (no RedLoader manifest needed). You type the version number in the Release step.",
+  "upload_free_drop_hint": "Up to {max}, any file type",
+  "upload_free_version_label": "Version number",
+  "upload_free_version_hint": "For example 1.0.0. Letters, numbers, dots and dashes.",
+  "upload_free_version_error": "Type a version number, for example 1.0.0.",
+  "upload_free_version_exists": "This version already exists for this mod.",
+  "upload_preflight_version_missing": "Type the version number in the Release step.",
+  "upload_preflight_version_invalid": "The version number can only use letters, numbers, dots and dashes.",
+  "upload_preflight_version_exists": "This version already exists for this mod.",
+  "upload_modloader_label": "Mod loader",
+  "upload_drop_title_free": "Drop your mod file here",
+  "upload_file_intro_free": "Upload the file players install: a .zip, a .dll, a .mod or anything else your loader uses."
 }

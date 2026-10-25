@@ -7,7 +7,7 @@
 import { formatBytes, formatDate } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import type { ModDetailDTO } from './data.ts';
-import { multiplayerLabel, platformLabel } from './format.ts';
+import { gameLabel, loaderLabel, multiplayerLabel, platformLabel } from './format.ts';
 import { licenseHref, licenseLabel } from './i18n.ts';
 import { SIDE_BLOCK_CLASSES, SIDE_TITLE_CLASSES } from './styles.ts';
 
@@ -35,6 +35,14 @@ const row = 'flex items-baseline justify-between gap-4 border-b border-border py
 <section aria-labelledby="details-title" class={SIDE_BLOCK_CLASSES}>
   <h2 id="details-title" class={SIDE_TITLE_CLASSES}>{m.mod_details_title()}</h2>
   <dl class="-mt-1 flex flex-col text-sm">
+    <div class={row}>
+      <dt class="text-fg-muted">{m.mod_meta_game()}</dt>
+      <dd class="text-end">{gameLabel(mod.game)}</dd>
+    </div>
+    <div class={row}>
+      <dt class="text-fg-muted">{m.mod_meta_loader()}</dt>
+      <dd class="text-end">{loaderLabel(mod.modLoader)}</dd>
+    </div>
     {
       latest && (
         <div class={row}>

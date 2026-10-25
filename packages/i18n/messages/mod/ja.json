@@ -1,8 +1,8 @@
 {
-  "mod_meta_title": "{name}：{author} による Sons of the Forest {kind, select, library {ライブラリ} other {MOD}}",
-  "mod_meta_title_short": "{name}：Sons of the Forest {kind, select, library {ライブラリ} other {MOD}}",
+  "mod_meta_title": "{name}：{author} による {game} {kind, select, library {ライブラリ} other {MOD}}",
+  "mod_meta_title_short": "{name}：{game} {kind, select, library {ライブラリ} other {MOD}}",
   "mod_meta_subpage_title": "{page} · {name}",
-  "mod_meta_description_facts": "{name} は {author} が RedLoader 向けに作った Sons of the Forest {kind, select, library {ライブラリ} other {MOD}} です。{count, plural, other {{downloads} ダウンロード}}。無料でダウンロードできます。",
+  "mod_meta_description_facts": "{name} は {author} が {loader} 向けに作った {game} {kind, select, library {ライブラリ} other {MOD}} です。{count, plural, other {{downloads} ダウンロード}}。無料でダウンロードできます。",
   "mod_versions_meta_description": "Sons of the Forest 用 {name} の全 {count, plural, other {# バージョン}}。更新履歴、ファイルサイズ、互換性つき。最新：v{version}。",
   "mod_version_meta_description": "Sons of the Forest 用 {name} v{version}（{date} 公開）：更新履歴、ファイルサイズ、SHA-256、セキュリティスキャン、互換性。",
   "mod_reviews_meta_description": "Sons of the Forest の MOD {name} のプレイヤーレビュー：評価、確認済みダウンロード、作者の返信つきで {count, plural, other {# 件}}。",
@@ -214,5 +214,9 @@
   "mod_fact_multiplayer": "マルチプレイ",
   "mod_toast_latest_only": "{name} は最新バージョンのみダウンロードできます。作者が古いバージョンを無効にしています。",
   "mod_versions_latest_only": "作者は最新バージョンのダウンロードのみを許可しています。",
-  "mod_version_download_off": "利用不可"
+  "mod_version_download_off": "利用不可",
+  "mod_meta_game": "ゲーム",
+  "mod_meta_loader": "MODローダー",
+  "mod_loader_other": "その他",
+  "mod_install_other_loader": "このMODは {loader} 用です。説明の手順に従ってインストールしてください。RedManager ではインストールできません。"
 }

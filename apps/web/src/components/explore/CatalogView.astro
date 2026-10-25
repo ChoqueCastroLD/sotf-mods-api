@@ -151,7 +151,16 @@ const checkboxClass = 'size-4 shrink-0 rounded-xs accent-primary';
               <span class="pointer-events-none absolute inset-y-0 end-3 flex items-center text-fg-subtle"><Icon icon={ChevronDown} size={16} /></span>
             </span>
           </label>
-          <div class="flex items-center gap-5 max-md:col-span-2 md:col-span-3 md:col-start-2 md:row-start-2 md:justify-end">
+          <label class="flex min-w-0 flex-col gap-1 text-xs text-fg-muted md:col-start-2 md:row-start-2 md:flex-row md:items-center md:gap-2">
+            {m.explore_filter_game()}
+            <span class="relative block md:w-44">
+              <select name="game" class={`${selectClass} md:h-8`}>
+                {toolbar.games.map((option) => <option value={option.value} selected={option.selected}>{option.label}</option>)}
+              </select>
+              <span class="pointer-events-none absolute inset-y-0 end-3 flex items-center text-fg-subtle"><Icon icon={ChevronDown} size={16} /></span>
+            </span>
+          </label>
+          <div class="flex items-center gap-5 max-md:col-span-2 md:col-start-3 md:row-start-2 md:justify-end">
             {toolbar.toggles.map((toggle) => (
               <label class="inline-flex min-h-8 cursor-pointer items-center gap-2 text-sm text-fg">
                 <input type="checkbox" name={toggle.name} value="1" checked={toggle.checked} class={checkboxClass} />

@@ -179,5 +179,9 @@
   "explore_search_builds_label": "Yapı ara",
   "explore_noresults_query_title": "“{query}” için sonuç yok",
   "explore_suggest_popular": "Popüler modlar",
-  "explore_results_range": "{total, number} sonuçtan {from, number}–{to, number} arası"
+  "explore_results_range": "{total, number} sonuçtan {from, number}–{to, number} arası",
+  "explore_filter_game": "Oyun",
+  "explore_filter_game_any": "Her iki oyun",
+  "explore_filter_loader": "Mod yükleyici",
+  "explore_filter_loader_any": "Herhangi bir yükleyici"
 }

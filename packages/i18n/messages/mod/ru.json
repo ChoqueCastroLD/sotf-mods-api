@@ -1,8 +1,8 @@
 {
-  "mod_meta_title": "{name}: {kind, select, library {библиотека} other {мод}} для Sons of the Forest от {author}",
-  "mod_meta_title_short": "{name}: {kind, select, library {библиотека} other {мод}} для Sons of the Forest",
+  "mod_meta_title": "{name}: {kind, select, library {библиотека} other {мод}} для {game} от {author}",
+  "mod_meta_title_short": "{name}: {kind, select, library {библиотека} other {мод}} для {game}",
   "mod_meta_subpage_title": "{page} · {name}",
-  "mod_meta_description_facts": "{name}: {kind, select, library {библиотека} other {мод}} для Sons of the Forest от {author} для RedLoader. {count, plural, one {{downloads} загрузка} few {{downloads} загрузки} many {{downloads} загрузок} other {{downloads} загрузки}}. Скачивание бесплатное.",
+  "mod_meta_description_facts": "{name}: {kind, select, library {библиотека} other {мод}} для {game} от {author} для {loader}. {count, plural, one {{downloads} загрузка} few {{downloads} загрузки} many {{downloads} загрузок} other {{downloads} загрузки}}. Скачивание бесплатное.",
   "mod_versions_meta_description": "{count, plural, one {# версия} few {# версии} many {# версий} other {# версии}} {name} для Sons of the Forest со списками изменений, размерами и совместимостью. Последняя: v{version}.",
   "mod_version_meta_description": "{name} v{version} для Sons of the Forest, выпуск {date}: изменения, размер, SHA-256, проверка безопасности и совместимость.",
   "mod_reviews_meta_description": "Отзывы игроков о {name}, моде для Sons of the Forest: {count, plural, one {# отзыв} few {# отзыва} many {# отзывов} other {# отзыва}} с оценками, подтверждёнными загрузками и ответами автора.",
@@ -214,5 +214,9 @@
   "mod_fact_multiplayer": "Мультиплеер",
   "mod_toast_latest_only": "У {name} можно скачать только последнюю версию. Автор отключил старые версии.",
   "mod_versions_latest_only": "Автор разрешает скачивать только последнюю версию.",
-  "mod_version_download_off": "Недоступно"
+  "mod_version_download_off": "Недоступно",
+  "mod_meta_game": "Игра",
+  "mod_meta_loader": "Загрузчик модов",
+  "mod_loader_other": "Другой",
+  "mod_install_other_loader": "Этот мод сделан для {loader}. Устанавливайте его по инструкции в описании; RedManager его не устанавливает."
 }

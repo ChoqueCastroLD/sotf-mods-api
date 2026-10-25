@@ -13,7 +13,9 @@
  * - `isFiltered(state, scope)`: anything beyond `?page=N` → `noindex, follow` + canonical to the
  *   base (PLAN §4.2).
  */
+
 import type { ModListQuery, ModSort } from '@sotf/contracts/catalog';
+import { MOD_GAMES, MOD_LOADERS, type ModGame, type ModLoader } from '@sotf/contracts/games';
 
 export const LIST_TYPES = ['mod', 'library', 'build', 'all'] as const;
 export type ListType = (typeof LIST_TYPES)[number];
@@ -67,6 +69,10 @@ export interface ExploreState {
   multiplayer: MultiplayerFilter | null;
   dedicated: boolean;
   platform: PlatformFilter | null;
+  /** Game (`@sotf/contracts/games`); null = both. */
+  game: ModGame | null;
+  /** Mod loader; null = any. */
+  loader: ModLoader | null;
   updatedWithin: UpdatedFilter | null;
   minRating: number | null;
   minDownloads: number | null;
@@ -125,6 +131,8 @@ export function defaultState(scope: ExploreScope): ExploreState {
     multiplayer: null,
     dedicated: false,
     platform: null,
+    game: null,
+    loader: null,
     updatedWithin: null,
     minRating: null,
     minDownloads: null,
@@ -202,6 +210,8 @@ export function parseExploreState(params: ParamsLike, scope: ExploreScope): Expl
   state.multiplayer = oneOf(MULTIPLAYER_VALUES, params.get('multiplayer'));
   state.dedicated = params.get('dedicated') === 'yes' || flag(params.get('dedicated'));
   state.platform = oneOf(PLATFORM_VALUES, params.get('platform'));
+  state.game = oneOf(MOD_GAMES, params.get('game'));
+  state.loader = oneOf(MOD_LOADERS, params.get('loader'));
   state.updatedWithin = oneOf(UPDATED_VALUES, params.get('updatedWithin'));
   const rating = Number(params.get('minRating'));
   state.minRating = Number.isInteger(rating) && rating >= 1 && rating <= 5 ? rating : null;
@@ -265,6 +275,8 @@ export function activeFilterCount(state: ExploreState, scope: ExploreScope): num
     (state.multiplayer ? 1 : 0) +
     (state.dedicated ? 1 : 0) +
     (state.platform ? 1 : 0) +
+    (state.game ? 1 : 0) +
+    (state.loader ? 1 : 0) +
     (state.updatedWithin ? 1 : 0) +
     (state.minRating ? 1 : 0) +
     (state.minDownloads ? 1 : 0) +
@@ -289,6 +301,8 @@ export function queryPairsOf(state: ExploreState, scope: ExploreScope): [string,
   if (state.multiplayer) pairs.push(['multiplayer', state.multiplayer]);
   if (state.dedicated) pairs.push(['dedicated', 'yes']);
   if (state.platform) pairs.push(['platform', state.platform]);
+  if (state.game) pairs.push(['game', state.game]);
+  if (state.loader) pairs.push(['loader', state.loader]);
   if (state.updatedWithin) pairs.push(['updatedWithin', state.updatedWithin]);
   if (state.minRating) pairs.push(['minRating', String(state.minRating)]);
   if (state.minDownloads) pairs.push(['minDownloads', String(state.minDownloads)]);
@@ -370,6 +384,8 @@ export function apiQueryOf(state: ExploreState, options: { facets?: boolean } = 
   if (state.multiplayer) query.multiplayer = state.multiplayer;
   if (state.dedicated) query.dedicated = 'yes';
   if (state.platform) query.platform = state.platform;
+  if (state.game) query.game = state.game;
+  if (state.loader) query.loader = state.loader;
   if (state.updatedWithin) query.updatedWithin = state.updatedWithin;
   if (state.minRating) query.minRating = state.minRating;
   if (state.minDownloads) query.minDownloads = state.minDownloads;

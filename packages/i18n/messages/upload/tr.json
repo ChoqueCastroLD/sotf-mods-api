@@ -490,5 +490,20 @@
   "upload_preflight_show_passed": "{count, plural, one {Geçen # kontrolü göster} other {Geçen # kontrolü göster}}",
   "upload_preflight_hide_passed": "Geçen kontrolleri gizle",
   "upload_step_file_hint_build": "Yapının .json dosyası",
-  "upload_description_placeholder_build": "Ne olduğu, nasıl yerleştirileceği, oyuncuların bilmesi gerekenler…"
+  "upload_description_placeholder_build": "Ne olduğu, nasıl yerleştirileceği, oyuncuların bilmesi gerekenler…",
+  "upload_game_label": "Oyun",
+  "upload_game_hint": "Bu mod hangi oyun için?",
+  "upload_loader_other": "Diğer",
+  "upload_free_note": "Her dosya türü olur. Dosya yalnızca güvenlik kontrollerinden geçer (RedLoader manifesti gerekmez). Sürüm numarasını Yayın adımında yazarsın.",
+  "upload_free_drop_hint": "{max} boyutuna kadar, her dosya türü",
+  "upload_free_version_label": "Sürüm numarası",
+  "upload_free_version_hint": "Örneğin 1.0.0. Harfler, rakamlar, nokta ve tire.",
+  "upload_free_version_error": "Bir sürüm numarası yaz, örneğin 1.0.0.",
+  "upload_free_version_exists": "Bu sürüm bu mod için zaten var.",
+  "upload_preflight_version_missing": "Sürüm numarasını Yayın adımında yaz.",
+  "upload_preflight_version_invalid": "Sürüm numarası yalnızca harf, rakam, nokta ve tire içerebilir.",
+  "upload_preflight_version_exists": "Bu sürüm bu mod için zaten var.",
+  "upload_modloader_label": "Mod yükleyici",
+  "upload_drop_title_free": "Mod dosyanı buraya bırak",
+  "upload_file_intro_free": "Oyuncuların kurduğu dosyayı yükle: .zip, .dll, .mod ya da yükleyicinin kullandığı başka bir dosya."
 }

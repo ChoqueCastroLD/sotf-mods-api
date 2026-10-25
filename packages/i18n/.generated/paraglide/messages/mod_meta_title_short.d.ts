@@ -1,13 +1,14 @@
 export type LocalizedString = import('../runtime.js').LocalizedString;
 export type Mod_Meta_Title_ShortInputs = {
     name: NonNullable<unknown>;
+    game: NonNullable<unknown>;
     kind: NonNullable<unknown>;
 };
 /**
 * | kind | output |
 * | --- | --- |
-* | "library" | "{name}: Sons of the Forest library" |
-* | * | "{name}: Sons of the Forest mod" |
+* | "library" | "{name}: {game} library" |
+* | * | "{name}: {game} mod" |
 *
 * @param {Mod_Meta_Title_ShortInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

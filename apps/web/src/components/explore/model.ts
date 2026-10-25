@@ -3,7 +3,9 @@
  * from the URL state, the facets and the taxonomy. Links are real (localized) URLs, so the page
  * works without JavaScript and the client script only has to follow them.
  */
+
 import type { ModListDTO } from '@sotf/contracts/catalog';
+import { GAME_NAMES, LOADER_NAMES, MOD_GAMES, MOD_LOADERS, type ModLoader } from '@sotf/contracts/games';
 import type { Locale } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import type { FilterChipOption, SortOption } from '@sotf/ui/domain';
@@ -133,6 +135,10 @@ export function multiplayerLabel(value: string): string {
     default:
       return m.explore_any();
   }
+}
+
+export function loaderLabel(value: ModLoader): string {
+  return value === 'other' ? m.mod_loader_other() : LOADER_NAMES[value];
 }
 
 export function platformLabel(value: string): string {
@@ -300,6 +306,27 @@ export function buildExploreModel(input: {
       ],
     },
     {
+      name: 'game',
+      legend: m.explore_filter_game(),
+      options: [
+        { value: '', label: m.explore_filter_game_any(), checked: state.game === null, count: null },
+        ...MOD_GAMES.map((value) => ({ value, label: GAME_NAMES[value], checked: state.game === value, count: null })),
+      ],
+    },
+    {
+      name: 'loader',
+      legend: m.explore_filter_loader(),
+      options: [
+        { value: '', label: m.explore_filter_loader_any(), checked: state.loader === null, count: null },
+        ...MOD_LOADERS.map((value) => ({
+          value,
+          label: loaderLabel(value),
+          checked: state.loader === value,
+          count: null,
+        })),
+      ],
+    },
+    {
       name: 'platform',
       legend: m.explore_facet_platform(),
       options: [
@@ -352,7 +379,9 @@ export function buildExploreModel(input: {
       ],
     },
   ];
-  const choices = allChoices.filter((group) => !(forBuilds && group.name === 'platform'));
+  const choices = allChoices.filter(
+    (group) => !(forBuilds && (group.name === 'platform' || group.name === 'game' || group.name === 'loader')),
+  );
   if (state.minDownloads !== null && !(DOWNLOADS_VALUES as readonly number[]).includes(state.minDownloads)) {
     choices
       .find((group) => group.name === 'minDownloads')
@@ -466,6 +495,15 @@ export function buildExploreModel(input: {
       removeHref: hrefOf({ dedicated: false }),
       excluded: false,
     });
+  if (state.game)
+    active.push({ key: 'game', label: GAME_NAMES[state.game], removeHref: hrefOf({ game: null }), excluded: false });
+  if (state.loader)
+    active.push({
+      key: 'loader',
+      label: loaderLabel(state.loader),
+      removeHref: hrefOf({ loader: null }),
+      excluded: false,
+    });
   if (state.platform)
     active.push({
       key: 'platform',
@@ -533,6 +571,8 @@ export function buildExploreModel(input: {
     multiplayer: null,
     dedicated: false,
     platform: null,
+    game: null,
+    loader: null,
     updatedWithin: null,
     minRating: null,
     minDownloads: null,

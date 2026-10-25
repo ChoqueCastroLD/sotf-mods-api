@@ -68,6 +68,8 @@ function entry(extra: Partial<CatalogEntry> = {}): CatalogEntry {
     thumbnail: null,
     thumb64Url: null,
     ...extra,
+    game: extra.game ?? ('sotf' as const),
+    modLoader: extra.modLoader ?? ('redloader' as const),
   };
   return {
     ...base,
@@ -356,6 +358,32 @@ describe('week sort', () => {
       entry({ id: 3, downloads: 500, downloads7d: 5 }),
     ];
     expect(ids(runListQuery(snapshotOf(list), query({ sort: 'week' }), NOW).items)).toEqual([2, 1, 3]);
+  });
+});
+
+describe('game and loader filters', () => {
+  it('lists both games by default and filters by game or loader', () => {
+    const snapshot = snapshotOf([
+      entry({ id: 901 }),
+      entry({ id: 902, game: 'the-forest', modLoader: 'modapi' }),
+      entry({ id: 903, modLoader: 'bepinex' }),
+    ]);
+    expect(
+      runListQuery(snapshot, query({ type: 'all' }), NOW)
+        .items.map((i) => i.id)
+        .sort(),
+    ).toEqual([901, 902, 903]);
+    expect(runListQuery(snapshot, query({ type: 'all', game: 'the-forest' }), NOW).items.map((i) => i.id)).toEqual([
+      902,
+    ]);
+    expect(
+      runListQuery(snapshot, query({ type: 'all', game: 'sotf' }), NOW)
+        .items.map((i) => i.id)
+        .sort(),
+    ).toEqual([901, 903]);
+    expect(runListQuery(snapshot, query({ type: 'all', loader: 'bepinex' }), NOW).items.map((i) => i.id)).toEqual([
+      903,
+    ]);
   });
 });
 

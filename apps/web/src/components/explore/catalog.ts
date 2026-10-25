@@ -3,6 +3,7 @@
  * controls and the texts of the list rows. The URL stays the only state; the toolbar is a plain
  * GET form that works without JavaScript, `scripts/explore/catalog.ts` only submits it on change.
  */
+import { GAME_NAMES, MOD_GAMES } from '@sotf/contracts/games';
 import type { Locale } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import type { ModCardListLabels } from '@sotf/ui/domain';
@@ -28,6 +29,8 @@ export interface CatalogToolbarModel {
   action: string;
   q: string;
   types: SelectChoice[];
+  /** Game select (both, Sons of the Forest, The Forest). */
+  games: SelectChoice[];
   categories: SelectChoice[];
   sorts: SelectChoice[];
   toggles: ToggleChoice[];
@@ -85,6 +88,10 @@ export function buildToolbarModel(input: {
     label: (TYPE_LABEL[value] ?? (() => value))(),
     selected: state.type === value,
   }));
+  const games: SelectChoice[] = [
+    { value: '', label: m.explore_filter_game_any(), selected: state.game === null },
+    ...MOD_GAMES.map((value) => ({ value, label: GAME_NAMES[value], selected: state.game === value })),
+  ];
   const single = state.category.length === 1 ? (state.category[0] ?? '') : '';
   const categories: SelectChoice[] = [
     { value: '', label: m.explore_catalog_all_categories(), selected: single === '' },
@@ -105,6 +112,7 @@ export function buildToolbarModel(input: {
   if (state.multiplayer) hidden.push(['multiplayer', state.multiplayer]);
   if (state.dedicated) hidden.push(['dedicated', 'yes']);
   if (state.platform) hidden.push(['platform', state.platform]);
+  if (state.loader) hidden.push(['loader', state.loader]);
   if (state.updatedWithin) hidden.push(['updatedWithin', state.updatedWithin]);
   if (state.minRating) hidden.push(['minRating', String(state.minRating)]);
   if (state.minDownloads) hidden.push(['minDownloads', String(state.minDownloads)]);
@@ -114,6 +122,7 @@ export function buildToolbarModel(input: {
   const changed =
     (state.type !== model.scope.defaultType ? 1 : 0) +
     (state.category.length > 0 ? 1 : 0) +
+    (state.game ? 1 : 0) +
     (sortChoiceValue(state) !== (state.q ? 'relevance' : 'new') ? 1 : 0) +
     (state.nsfw ? 1 : 0) +
     (state.unapproved ? 1 : 0);
@@ -121,6 +130,7 @@ export function buildToolbarModel(input: {
     action: href('/mods', locale),
     q: state.q,
     types,
+    games,
     categories,
     sorts: sortChoices(state),
     toggles: [

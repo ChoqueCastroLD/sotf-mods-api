@@ -1,8 +1,8 @@
 {
-  "mod_meta_title": "{name}: {kind, select, library {biblioteka} other {mod}} do Sons of the Forest od {author}",
-  "mod_meta_title_short": "{name}: {kind, select, library {biblioteka} other {mod}} do Sons of the Forest",
+  "mod_meta_title": "{name}: {kind, select, library {biblioteka} other {mod}} do {game} od {author}",
+  "mod_meta_title_short": "{name}: {kind, select, library {biblioteka} other {mod}} do {game}",
   "mod_meta_subpage_title": "{page} · {name}",
-  "mod_meta_description_facts": "{name} to {kind, select, library {biblioteka} other {mod}} do Sons of the Forest od {author} dla RedLoadera. {count, plural, one {{downloads} pobranie} few {{downloads} pobrania} many {{downloads} pobrań} other {{downloads} pobrania}}. Pobieranie za darmo.",
+  "mod_meta_description_facts": "{name} to {kind, select, library {biblioteka} other {mod}} do {game} od {author} dla {loader}a. {count, plural, one {{downloads} pobranie} few {{downloads} pobrania} many {{downloads} pobrań} other {{downloads} pobrania}}. Pobieranie za darmo.",
   "mod_versions_meta_description": "{count, plural, one {# wersja} few {# wersje} many {# wersji} other {# wersji}} {name} do Sons of the Forest z listami zmian, rozmiarami plików i kompatybilnością. Najnowsza: v{version}.",
   "mod_version_meta_description": "{name} v{version} do Sons of the Forest, wydana {date}: lista zmian, rozmiar, SHA-256, skan bezpieczeństwa i kompatybilność.",
   "mod_reviews_meta_description": "Recenzje graczy moda {name} do Sons of the Forest: {count, plural, one {# recenzja} few {# recenzje} many {# recenzji} other {# recenzji}} z ocenami, zweryfikowanymi pobraniami i odpowiedziami twórcy.",
@@ -214,5 +214,9 @@
   "mod_fact_multiplayer": "Tryb wieloosobowy",
   "mod_toast_latest_only": "Z {name} można pobrać tylko najnowszą wersję. Twórca wyłączył starsze wersje.",
   "mod_versions_latest_only": "Twórca pozwala pobierać tylko najnowszą wersję.",
-  "mod_version_download_off": "Niedostępne"
+  "mod_version_download_off": "Niedostępne",
+  "mod_meta_game": "Gra",
+  "mod_meta_loader": "Loader modów",
+  "mod_loader_other": "Inny",
+  "mod_install_other_loader": "Ten mod jest zrobiony dla {loader}. Zainstaluj go według instrukcji w opisie; RedManager go nie zainstaluje."
 }

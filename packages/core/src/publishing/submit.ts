@@ -15,6 +15,7 @@
  *    draft. Unique violations (slug, manifest id) become CONFLICT.
  */
 
+import { FreeVersion, uploadProfileOf } from '@sotf/contracts/games';
 import { modPath } from '@sotf/contracts/seo';
 import type { SubmitResultDTO } from '@sotf/contracts/studio';
 import type { UploadInspectionDTO as UploadInspectionSchema } from '@sotf/contracts/uploads';
@@ -182,6 +183,7 @@ export async function submitDraft(ctx: Ctx, deps: PublishingDeps, draftId: strin
       declaredDependencies: data.dependencies ?? null,
       draftId: draft.id,
       loaderMin: data.loaderMin ?? null,
+      versionNumber: evaluation.profile === 'free' ? (evaluation.versionNumber ?? undefined) : undefined,
     });
     return result.submit;
   }
@@ -191,7 +193,9 @@ export async function submitDraft(ctx: Ctx, deps: PublishingDeps, draftId: strin
   const kind = evaluation.publicationKind;
   const manifest = inspection.manifest;
   const buildMeta = inspection.buildMeta;
-  if (kind === 'build' ? !buildMeta : !manifest) throw fileError('file_failed', 'The file has no valid manifest');
+  const free = evaluation.profile === 'free';
+  if (kind === 'build' ? !buildMeta : !manifest && !free)
+    throw fileError('file_failed', 'The file has no valid manifest');
   const manifestId = evaluation.manifestId;
   const slug = evaluation.slug;
   const name = (data.name ?? manifest?.name ?? '').trim();
@@ -200,7 +204,11 @@ export async function submitDraft(ctx: Ctx, deps: PublishingDeps, draftId: strin
       { path: 'name', code: 'name_missing', message: 'name_missing' },
     ]);
   }
-  const version = kind === 'build' ? newId() : (manifest?.version ?? '');
+  const version = kind === 'build' ? newId() : (evaluation.versionNumber ?? '');
+  if (kind !== 'build' && !version)
+    throw errors.validation('The version number is missing', [
+      { path: 'version', code: 'version_missing', message: 'version_missing' },
+    ]);
   const actor = actorOf(ctx);
   const now = ctx.clock.now();
 
@@ -251,6 +259,8 @@ export async function submitDraft(ctx: Ctx, deps: PublishingDeps, draftId: strin
         name,
         slug,
         manifestId,
+        game: evaluation.game,
+        modLoader: evaluation.modLoader,
         description: '',
         dependencies: '',
         type: legacyType(kind),
@@ -371,6 +381,8 @@ export interface ReleaseVersionInput {
   draftId?: string;
   /** Minimum loader of the wizard (`DraftData.loaderMin`), when the manifest declares none. */
   loaderMin?: string | null;
+  /** Version typed by the creator (mods that are not Sons of the Forest + RedLoader). */
+  versionNumber?: string | undefined;
 }
 
 /** Declared (non-required) dependencies of the current latest version, carried to the next one. */
@@ -413,10 +425,31 @@ export async function releaseVersion(
   const { file, inspection, checks } = usableFile(
     await loadFileUpload(ctx, input.uploadId, isBuild ? 'build_file' : 'mod_file'),
   );
-  const manifest = inspection.manifest;
-  if (!isBuild && !manifest) throw fileError('manifest_missing', 'The file has no valid manifest');
+  // Not Sons of the Forest + RedLoader: no manifest, the creator types the version number.
+  const free = !isBuild && uploadProfileOf(current.game, current.modLoader) === 'free';
+  const manifest = free ? null : inspection.manifest;
+  if (!isBuild && !free && !manifest) throw fileError('manifest_missing', 'The file has no valid manifest');
+  if (free) {
+    const typed = FreeVersion.safeParse(input.versionNumber ?? '');
+    if (!typed.success) {
+      throw errors.validation('Type the version number of this release', [
+        { path: 'version', code: input.versionNumber ? 'version_invalid' : 'version_missing', message: 'version' },
+      ]);
+    }
+    if ((await existingVersions(ctx.db, current.id)).includes(typed.data)) {
+      throw errors.validation('This version already exists', [
+        { path: 'version', code: 'version_exists', message: 'version_exists' },
+      ]);
+    }
+  }
   if (isBuild && !inspection.buildMeta) throw fileError('blueprint_invalid', 'The file is not a valid blueprint');
-  const kind: 'mod' | 'library' | 'build' = isBuild ? 'build' : manifest?.type === 'Library' ? 'library' : 'mod';
+  const kind: 'mod' | 'library' | 'build' = isBuild
+    ? 'build'
+    : free
+      ? storedKind
+      : manifest?.type === 'Library'
+        ? 'library'
+        : 'mod';
 
   if (manifest) {
     const problems = checkAgainstMod(manifest, {
@@ -430,7 +463,7 @@ export async function releaseVersion(
       );
     }
   }
-  const version = isBuild ? newId() : (manifest?.version ?? '');
+  const version = isBuild ? newId() : free ? (input.versionNumber ?? '').trim() : (manifest?.version ?? '');
   let decision: ReturnType<typeof decidePublication>;
   try {
     decision = decidePublication({

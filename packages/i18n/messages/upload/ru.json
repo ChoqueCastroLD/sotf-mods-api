@@ -490,5 +490,20 @@
   "upload_preflight_show_passed": "{count, plural, one {Показать # пройденную проверку} few {Показать # пройденные проверки} many {Показать # пройденных проверок} other {Показать # пройденной проверки}}",
   "upload_preflight_hide_passed": "Скрыть пройденные проверки",
   "upload_step_file_hint_build": "Файл .json постройки",
-  "upload_description_placeholder_build": "Что это, как разместить, что нужно знать игрокам…"
+  "upload_description_placeholder_build": "Что это, как разместить, что нужно знать игрокам…",
+  "upload_game_label": "Игра",
+  "upload_game_hint": "Для какой игры этот мод?",
+  "upload_loader_other": "Другой",
+  "upload_free_note": "Подойдёт любой тип файла. Файл проходит только проверки безопасности (манифест RedLoader не нужен). Номер версии вы укажете на шаге «Публикация».",
+  "upload_free_drop_hint": "До {max}, любой тип файла",
+  "upload_free_version_label": "Номер версии",
+  "upload_free_version_hint": "Например, 1.0.0. Буквы, цифры, точки и дефисы.",
+  "upload_free_version_error": "Укажите номер версии, например 1.0.0.",
+  "upload_free_version_exists": "Такая версия у этого мода уже есть.",
+  "upload_preflight_version_missing": "Укажите номер версии на шаге «Публикация».",
+  "upload_preflight_version_invalid": "Номер версии может содержать только буквы, цифры, точки и дефисы.",
+  "upload_preflight_version_exists": "Такая версия у этого мода уже есть.",
+  "upload_modloader_label": "Загрузчик модов",
+  "upload_drop_title_free": "Перетащите сюда файл мода",
+  "upload_file_intro_free": "Загрузите файл, который устанавливают игроки: .zip, .dll, .mod или любой другой формат вашего загрузчика."
 }

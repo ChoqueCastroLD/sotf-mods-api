@@ -68,9 +68,12 @@ export function validateUpload(input: {
   size: number;
   contentType: string;
   verifiedCreator: boolean;
+  /** Mod files only: `free` = any file (not Sons of the Forest + RedLoader), security checks only. */
+  profile?: 'redloader' | 'free' | undefined;
 }): ValidatedUpload {
   const limit = UPLOAD_LIMITS[input.purpose];
   const extension = extensionOf(input.filename);
+  if (input.purpose === 'mod_file' && input.profile === 'free') return validateFreeModFile(input, extension);
   if (!limit.extensions.includes(extension)) {
     throw new DomainError(
       'UNSUPPORTED_MEDIA_TYPE',
@@ -107,6 +110,42 @@ export function validateUpload(input: {
     filename: input.filename,
     extension,
     contentType: canonical,
+    size: input.size,
+    maxBytes,
+    multipart,
+  };
+}
+
+/**
+ * A free mod file (The Forest, or a loader other than RedLoader): any file type, stored as
+ * `application/octet-stream`; only the size limits apply here (the inspection runs the security checks).
+ */
+function validateFreeModFile(
+  input: { purpose: UploadPurpose; filename: string; size: number; verifiedCreator: boolean },
+  extension: string,
+): ValidatedUpload {
+  const maxBytes = maxUploadBytes(input.purpose, input.verifiedCreator);
+  if (!Number.isInteger(input.size) || input.size <= 0) {
+    throw new DomainError('VALIDATION_FAILED', undefined, 'The file is empty');
+  }
+  if (input.size > maxBytes) {
+    throw new DomainError(
+      'PAYLOAD_TOO_LARGE',
+      undefined,
+      `The file is larger than ${Math.floor(maxBytes / (1024 * 1024))} MB`,
+    );
+  }
+  const multipart =
+    input.size > MULTIPART_THRESHOLD_BYTES
+      ? { partBytes: MULTIPART_PART_BYTES, parts: Math.ceil(input.size / MULTIPART_PART_BYTES) }
+      : null;
+  const contentType =
+    extension === 'zip' ? (CANONICAL_CONTENT_TYPES.zip ?? 'application/zip') : 'application/octet-stream';
+  return {
+    purpose: input.purpose,
+    filename: input.filename,
+    extension,
+    contentType,
     size: input.size,
     maxBytes,
     multipart,

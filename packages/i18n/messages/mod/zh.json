@@ -1,8 +1,8 @@
 {
-  "mod_meta_title": "{name}：{author} 制作的 Sons of the Forest {kind, select, library {前置库} other {模组}}",
-  "mod_meta_title_short": "{name}：Sons of the Forest {kind, select, library {前置库} other {模组}}",
+  "mod_meta_title": "{name}：{author} 制作的 {game} {kind, select, library {前置库} other {模组}}",
+  "mod_meta_title_short": "{name}：{game} {kind, select, library {前置库} other {模组}}",
   "mod_meta_subpage_title": "{page} · {name}",
-  "mod_meta_description_facts": "{name} 是 {author} 为 RedLoader 制作的 Sons of the Forest {kind, select, library {前置库} other {模组}}。{count, plural, other {已下载 {downloads} 次}}。免费下载。",
+  "mod_meta_description_facts": "{name} 是 {author} 为 {loader} 制作的 {game} {kind, select, library {前置库} other {模组}}。{count, plural, other {已下载 {downloads} 次}}。免费下载。",
   "mod_versions_meta_description": "Sons of the Forest 模组 {name} 的全部 {count, plural, other {# 个版本}}，含更新日志、文件大小和兼容性。最新：v{version}。",
   "mod_version_meta_description": "Sons of the Forest 模组 {name} v{version}，发布于 {date}：更新日志、文件大小、SHA-256、安全扫描和兼容性。",
   "mod_reviews_meta_description": "Sons of the Forest 模组 {name} 的玩家评价：{count, plural, other {# 条评价}}，含评分、已验证下载和作者回复。",
@@ -214,5 +214,9 @@
   "mod_fact_multiplayer": "多人游戏",
   "mod_toast_latest_only": "{name} 只能下载最新版本。作者已关闭旧版本的下载。",
   "mod_versions_latest_only": "作者只允许下载最新版本。",
-  "mod_version_download_off": "不可用"
+  "mod_version_download_off": "不可用",
+  "mod_meta_game": "游戏",
+  "mod_meta_loader": "模组加载器",
+  "mod_loader_other": "其他",
+  "mod_install_other_loader": "此模组适用于 {loader}。请按照说明中的步骤安装；RedManager 无法安装它。"
 }

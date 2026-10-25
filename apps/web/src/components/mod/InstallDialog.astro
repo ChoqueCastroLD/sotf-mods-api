@@ -9,7 +9,7 @@ import { Icon } from '@sotf/ui/icons';
 import { ArrowRight, TriangleAlert } from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
 import type { ModDetailDTO } from './data.ts';
-import { multiplayerLabel } from './format.ts';
+import { loaderLabel, multiplayerLabel } from './format.ts';
 import ModDialog from './ModDialog.astro';
 
 interface Props {
@@ -25,11 +25,21 @@ const platform = mod.platform ?? 'Client';
 const loader = latest?.loaderVersionDeclared ?? null;
 const multiplayer = mod.multiplayerRole ? multiplayerLabel(mod.multiplayerRole) : null;
 const installHref = href('/install', locale);
+// Mods for another loader (or The Forest) are not installed by RedManager: plain pointer to the description.
+const redloader = mod.modLoader === 'redloader' && mod.game === 'sotf';
 const CLIENT_PATH = 'Steam/steamapps/common/Sons Of The Forest/Mods';
 const SERVER_PATH = 'Sons Of The Forest Dedicated Server/Mods';
 ---
 
-<ModDialog id="install-dialog" title={m.mod_install_title()} description={m.mod_install_intro({ name: mod.name })}>
+<ModDialog id="install-dialog" title={m.mod_install_title()} description={redloader ? m.mod_install_intro({ name: mod.name }) : undefined}>
+  {
+    !redloader && (
+      <p class="text-sm">{m.mod_install_other_loader({ loader: loaderLabel(mod.modLoader) })}</p>
+    )
+  }
+  {
+    redloader && (
+      <Fragment>
   <p class="text-sm text-fg-muted">
     {m.mod_install_manager_tip()}
     <a href={installHref} class="ms-1 font-medium text-link underline underline-offset-3">{m.content_install_get_redmanager()}</a>
@@ -136,8 +146,15 @@ const SERVER_PATH = 'Sons Of The Forest Dedicated Server/Mods';
     )
   }
 
-  <a href={installHref} class="inline-flex min-h-11 items-center gap-2 self-start font-semibold text-link">
-    {m.mod_install_full_guide()}
-    <Icon icon={ArrowRight} size={16} className="rtl:rotate-180" />
-  </a>
+      </Fragment>
+    )
+  }
+  {
+    redloader && (
+      <a href={installHref} class="inline-flex min-h-11 items-center gap-2 self-start font-semibold text-link">
+        {m.mod_install_full_guide()}
+        <Icon icon={ArrowRight} size={16} className="rtl:rotate-180" />
+      </a>
+    )
+  }
 </ModDialog>

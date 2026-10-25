@@ -237,6 +237,12 @@ function Byline({ mod, className, tile = false }: { mod: ModCardDTO; className?:
         )}
       </span>
       {mod.verifiedCreator ? <TrustedMark size={14} className={cardControlClasses} /> : null}
+      {mod.game === 'the-forest' ? (
+        // Mods for the first game: a plain tag (the game title is not translated).
+        <span className="rounded-sm border border-border-strong px-1 py-px text-2xs font-medium text-fg">
+          The Forest
+        </span>
+      ) : null}
       {category ? (
         <span className="flex min-w-0 items-center gap-1" {...(tile ? { 'data-byline-extra': '' } : {})}>
           <span aria-hidden="true">·</span>

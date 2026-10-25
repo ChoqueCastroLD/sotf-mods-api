@@ -179,5 +179,9 @@
   "explore_search_builds_label": "Builds zoeken",
   "explore_noresults_query_title": "Geen resultaten voor “{query}”",
   "explore_suggest_popular": "Populaire mods",
-  "explore_results_range": "{from, number}–{to, number} van {total, number}"
+  "explore_results_range": "{from, number}–{to, number} van {total, number}",
+  "explore_filter_game": "Spel",
+  "explore_filter_game_any": "Beide spellen",
+  "explore_filter_loader": "Modloader",
+  "explore_filter_loader_any": "Elke loader"
 }

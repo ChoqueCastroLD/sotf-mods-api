@@ -490,5 +490,20 @@
   "upload_preflight_show_passed": "{count, plural, one {Afficher # contrôle réussi} other {Afficher # contrôles réussis}}",
   "upload_preflight_hide_passed": "Masquer les contrôles réussis",
   "upload_step_file_hint_build": "Fichier .json du build",
-  "upload_description_placeholder_build": "Ce que c’est, comment le placer, ce que les joueurs doivent savoir…"
+  "upload_description_placeholder_build": "Ce que c’est, comment le placer, ce que les joueurs doivent savoir…",
+  "upload_game_label": "Jeu",
+  "upload_game_hint": "Pour quel jeu est ce mod ?",
+  "upload_loader_other": "Autre",
+  "upload_free_note": "Tout type de fichier. Le fichier passe seulement les contrôles de sécurité (pas de manifeste RedLoader). Vous saisissez le numéro de version à l’étape Publication.",
+  "upload_free_drop_hint": "Jusqu’à {max}, tout type de fichier",
+  "upload_free_version_label": "Numéro de version",
+  "upload_free_version_hint": "Par exemple 1.0.0. Lettres, chiffres, points et tirets.",
+  "upload_free_version_error": "Saisissez un numéro de version, par exemple 1.0.0.",
+  "upload_free_version_exists": "Cette version existe déjà pour ce mod.",
+  "upload_preflight_version_missing": "Saisissez le numéro de version à l’étape Publication.",
+  "upload_preflight_version_invalid": "Le numéro de version ne peut contenir que des lettres, chiffres, points et tirets.",
+  "upload_preflight_version_exists": "Cette version existe déjà pour ce mod.",
+  "upload_modloader_label": "Chargeur de mods",
+  "upload_drop_title_free": "Déposez le fichier du mod ici",
+  "upload_file_intro_free": "Envoyez le fichier que les joueurs installent : un .zip, un .dll, un .mod ou tout autre format de votre chargeur."
 }

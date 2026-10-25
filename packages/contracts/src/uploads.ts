@@ -13,6 +13,7 @@ import { cache } from './cache.ts';
 import { IsoDateTime, Sha256Hex, Uuid } from './common.ts';
 import { dto, exampleOf } from './dto.ts';
 import { API_V2_PREFIX, defineEndpoint } from './endpoint.ts';
+import { UploadProfile } from './games.ts';
 import { BuildMetaDTO, FILE_CHECKS, InspectionFlagDTO, RedLoaderManifestDTO } from './manifest.ts';
 
 export const UPLOAD_PURPOSES = ['mod_file', 'build_file', 'image', 'avatar', 'banner', 'comment_image'] as const;
@@ -87,6 +88,9 @@ export const CreateUploadBody = dto(
     size: z.number().int().positive().max(FILE_CHECKS.maxModBytesVerified),
     contentType: z.string().min(1).max(100),
     sha256: Sha256Hex.optional().describe('Computed in the browser when available'),
+    profile: UploadProfile.optional().describe(
+      'Mod files: `free` for anything that is not Sons of the Forest + RedLoader (any file, security checks only). Default `redloader`.',
+    ),
   }),
   {
     description: 'Request a presigned upload.',

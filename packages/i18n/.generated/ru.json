@@ -3337,6 +3337,10 @@
   "explore_facet_tags_more": "Другие теги",
   "explore_facet_updated": "Обновлено",
   "explore_failed": "Результаты не загрузились. Перезагружаем страницу…",
+  "explore_filter_game": "Игра",
+  "explore_filter_game_any": "Обе игры",
+  "explore_filter_loader": "Загрузчик модов",
+  "explore_filter_loader_any": "Любой загрузчик",
   "explore_filter_search_label": "Фильтр",
   "explore_filter_search_placeholder": "Название, тег или автор…",
   "explore_filters_apply": "Применить фильтры",
@@ -4679,6 +4683,7 @@
   "mod_install_intro": "Эти шаги устанавливают {name} вручную, без менеджера.",
   "mod_install_manager_tip": "RedManager сам установит и обновит моды и их зависимости.",
   "mod_install_multiplayer": "Мультиплеер: {role}.",
+  "mod_install_other_loader": "Этот мод сделан для {loader}. Устанавливайте его по инструкции в описании; RedManager его не устанавливает.",
   "mod_install_redloader_not_bepinex": "Этому моду нужен RedLoader, а не BepInEx. Моды и гайды для BepInEx к Sons of the Forest не подходят.",
   "mod_install_step_dependencies_title": "Сначала установите зависимости",
   "mod_install_step_download": "Скачайте {name}",
@@ -4791,6 +4796,7 @@
   "mod_license_other": "Своя лицензия",
   "mod_license_reupload_with_credit": "Перезалив с указанием автора",
   "mod_link_website": "Сайт",
+  "mod_loader_other": "Другой",
   "mod_md_alert_caution": "Осторожно",
   "mod_md_alert_important": "Важно",
   "mod_md_alert_note": "Примечание",
@@ -4802,7 +4808,9 @@
       "declarations": [
         "input name",
         "input kind",
+        "input game",
         "input author",
+        "input loader",
         "input count",
         "input downloads",
         "local count__plural = count: plural"
@@ -4812,31 +4820,34 @@
         "count__plural"
       ],
       "match": {
-        "kind=library, count__plural=one": "{name}: библиотека для Sons of the Forest от {author} для RedLoader. {downloads} загрузка. Скачивание бесплатное.",
-        "kind=library, count__plural=few": "{name}: библиотека для Sons of the Forest от {author} для RedLoader. {downloads} загрузки. Скачивание бесплатное.",
-        "kind=library, count__plural=many": "{name}: библиотека для Sons of the Forest от {author} для RedLoader. {downloads} загрузок. Скачивание бесплатное.",
-        "kind=library, count__plural=*": "{name}: библиотека для Sons of the Forest от {author} для RedLoader. {downloads} загрузки. Скачивание бесплатное.",
-        "kind=*, count__plural=one": "{name}: мод для Sons of the Forest от {author} для RedLoader. {downloads} загрузка. Скачивание бесплатное.",
-        "kind=*, count__plural=few": "{name}: мод для Sons of the Forest от {author} для RedLoader. {downloads} загрузки. Скачивание бесплатное.",
-        "kind=*, count__plural=many": "{name}: мод для Sons of the Forest от {author} для RedLoader. {downloads} загрузок. Скачивание бесплатное.",
-        "kind=*, count__plural=*": "{name}: мод для Sons of the Forest от {author} для RedLoader. {downloads} загрузки. Скачивание бесплатное."
+        "kind=library, count__plural=one": "{name}: библиотека для {game} от {author} для {loader}. {downloads} загрузка. Скачивание бесплатное.",
+        "kind=library, count__plural=few": "{name}: библиотека для {game} от {author} для {loader}. {downloads} загрузки. Скачивание бесплатное.",
+        "kind=library, count__plural=many": "{name}: библиотека для {game} от {author} для {loader}. {downloads} загрузок. Скачивание бесплатное.",
+        "kind=library, count__plural=*": "{name}: библиотека для {game} от {author} для {loader}. {downloads} загрузки. Скачивание бесплатное.",
+        "kind=*, count__plural=one": "{name}: мод для {game} от {author} для {loader}. {downloads} загрузка. Скачивание бесплатное.",
+        "kind=*, count__plural=few": "{name}: мод для {game} от {author} для {loader}. {downloads} загрузки. Скачивание бесплатное.",
+        "kind=*, count__plural=many": "{name}: мод для {game} от {author} для {loader}. {downloads} загрузок. Скачивание бесплатное.",
+        "kind=*, count__plural=*": "{name}: мод для {game} от {author} для {loader}. {downloads} загрузки. Скачивание бесплатное."
       }
     }
   ],
+  "mod_meta_game": "Игра",
+  "mod_meta_loader": "Загрузчик модов",
   "mod_meta_subpage_title": "{page} · {name}",
   "mod_meta_title": [
     {
       "declarations": [
         "input name",
         "input kind",
+        "input game",
         "input author"
       ],
       "selectors": [
         "kind"
       ],
       "match": {
-        "kind=library": "{name}: библиотека для Sons of the Forest от {author}",
-        "kind=*": "{name}: мод для Sons of the Forest от {author}"
+        "kind=library": "{name}: библиотека для {game} от {author}",
+        "kind=*": "{name}: мод для {game} от {author}"
       }
     }
   ],
@@ -4844,14 +4855,15 @@
     {
       "declarations": [
         "input name",
-        "input kind"
+        "input kind",
+        "input game"
       ],
       "selectors": [
         "kind"
       ],
       "match": {
-        "kind=library": "{name}: библиотека для Sons of the Forest",
-        "kind=*": "{name}: мод для Sons of the Forest"
+        "kind=library": "{name}: библиотека для {game}",
+        "kind=*": "{name}: мод для {game}"
       }
     }
   ],
@@ -7926,6 +7938,7 @@
   "upload_drop_hint": "{type} · до {max}",
   "upload_drop_replace": "Перетащите другой файл, чтобы заменить",
   "upload_drop_title_build": "Перетащите сюда файл постройки .json",
+  "upload_drop_title_free": "Перетащите сюда файл мода",
   "upload_drop_title_mod": "Перетащите сюда .zip",
   "upload_entries_more": [
     {
@@ -7985,6 +7998,7 @@
   "upload_failure_too_large": "Файл слишком большой для вашего аккаунта.",
   "upload_failure_unsupported": "Такой тип файла не принимается.",
   "upload_file_intro_build": "Перетащите файл постройки .json, экспортированный из BuildShare. Миниатюра, число элементов и версия считываются автоматически.",
+  "upload_file_intro_free": "Загрузите файл, который устанавливают игроки: .zip, .dll, .mod или любой другой формат вашего загрузчика.",
   "upload_file_intro_mod": "Перетащите .zip, который вы отдали бы игрокам. Сначала мы откроем его в браузере и покажем содержимое, ещё до загрузки.",
   "upload_file_intro_version": "Загрузите новый файл для «{name}». Его id в манифесте должен быть {manifestId}, а версия выше {version}.",
   "upload_file_title_build": "Ваша постройка BuildShare",
@@ -8007,6 +8021,12 @@
   "upload_flag_zip_too_many_entries": "В архиве слишком много файлов (не больше 5000).",
   "upload_flagged_detail": "Что-то в нём требует проверки человеком (см. предупреждения ниже). Отправить всё равно можно: он будет опубликован после одобрения.",
   "upload_flagged_title": "Модератор посмотрит этот файл.",
+  "upload_free_drop_hint": "До {max}, любой тип файла",
+  "upload_free_note": "Подойдёт любой тип файла. Файл проходит только проверки безопасности (манифест RedLoader не нужен). Номер версии вы укажете на шаге «Публикация».",
+  "upload_free_version_error": "Укажите номер версии, например 1.0.0.",
+  "upload_free_version_exists": "Такая версия у этого мода уже есть.",
+  "upload_free_version_hint": "Например, 1.0.0. Буквы, цифры, точки и дефисы.",
+  "upload_free_version_label": "Номер версии",
   "upload_gallery_added": [
     {
       "declarations": [
@@ -8094,6 +8114,8 @@
       }
     }
   ],
+  "upload_game_hint": "Для какой игры этот мод?",
+  "upload_game_label": "Игра",
   "upload_image_no_preview": "Загружено (превью появится на странице после обработки)",
   "upload_image_reading": "Читаем изображение…",
   "upload_image_too_large": "Размер изображений не больше 10 МБ.",
@@ -8149,6 +8171,7 @@
   "upload_links_url": "Адрес ссылки {n}",
   "upload_loader_hint": "Самая старая версия RedLoader, с которой работает ваш мод.",
   "upload_loader_label": "Минимальная версия RedLoader",
+  "upload_loader_other": "Другой",
   "upload_loading": "Загрузка…",
   "upload_manifest_author": "Автор",
   "upload_manifest_dependencies": "Зависимости",
@@ -8173,6 +8196,7 @@
   "upload_markdown_write": "Текст",
   "upload_media_intro": "Изображения помогают игрокам решить. Карточки с 3 и более изображениями скачивают чаще.",
   "upload_media_title": "Медиа",
+  "upload_modloader_label": "Загрузчик модов",
   "upload_multiplayer_all_players": "Нужен всем",
   "upload_multiplayer_all_players_hint": "Его должен установить каждый игрок в сессии.",
   "upload_multiplayer_client_side": "На стороне клиента",
@@ -8297,6 +8321,9 @@
   "upload_preflight_thumbnail_missing": "Нет обложки.",
   "upload_preflight_thumbnail_ok": "Обложка есть.",
   "upload_preflight_title": "Проверки",
+  "upload_preflight_version_exists": "Такая версия у этого мода уже есть.",
+  "upload_preflight_version_invalid": "Номер версии может содержать только буквы, цифры, точки и дефисы.",
+  "upload_preflight_version_missing": "Укажите номер версии на шаге «Публикация».",
   "upload_preflight_waiting": "Проверки появятся после сохранения черновика.",
   "upload_problems_label": "Ошибки и предупреждения файла",
   "upload_progress_direct": "Файл идёт напрямую в хранилище. Если связь оборвётся, загрузку можно продолжить.",

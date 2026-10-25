@@ -51,6 +51,7 @@ export const FIELD_TARGETS: Readonly<Record<string, { step: StepId; anchor: stri
   thumbnail: { step: 'media', anchor: 'upload-cover' },
   gallery: { step: 'media', anchor: 'upload-gallery' },
   changelogMd: { step: 'release', anchor: 'upload-changelog' },
+  version: { step: 'release', anchor: 'upload-version' },
 };
 
 /** Where a preflight row points in `mode` (fields of skipped steps fall back to the file). */
@@ -94,7 +95,7 @@ export function listingPath(kind: 'mod' | 'build', handle: string, slug: string)
 
 /** A required answer a step still lacks: the field and the element to focus. */
 export interface StepProblem {
-  field: 'file' | 'name' | 'slug' | 'shortDescription' | 'categorySlug' | 'sourceUrl' | 'loaderMin';
+  field: 'file' | 'name' | 'slug' | 'shortDescription' | 'categorySlug' | 'sourceUrl' | 'loaderMin' | 'version';
   anchor: string;
 }
 
@@ -107,7 +108,12 @@ export function stepProblems(
   step: StepId,
   mode: WizardMode,
   data: DraftData,
-  checks: { isHttpUrl: (value: string) => boolean; isLoaderVersion: (value: string) => boolean },
+  checks: {
+    isHttpUrl: (value: string) => boolean;
+    isLoaderVersion: (value: string) => boolean;
+    /** Free upload: the version number is typed in the Release step and must be valid. */
+    freeVersionOk?: ((value: string) => boolean) | undefined;
+  },
 ): StepProblem[] {
   const problems: StepProblem[] = [];
   if (step === 'file' && !data.fileUploadId) problems.push({ field: 'file', anchor: 'upload-file' });
@@ -121,6 +127,9 @@ export function stepProblems(
     if (!data.categorySlug) problems.push({ field: 'categorySlug', anchor: 'upload-category' });
     if (data.sourceUrl && !checks.isHttpUrl(data.sourceUrl))
       problems.push({ field: 'sourceUrl', anchor: 'upload-source' });
+  }
+  if (step === 'release' && checks.freeVersionOk && !checks.freeVersionOk(data.version?.version ?? '')) {
+    problems.push({ field: 'version', anchor: 'upload-version' });
   }
   if (step === 'compat' && data.loaderMin && !checks.isLoaderVersion(data.loaderMin)) {
     problems.push({ field: 'loaderMin', anchor: 'upload-loader' });

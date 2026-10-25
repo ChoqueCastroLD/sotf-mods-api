@@ -10,6 +10,7 @@
  * `submit` turns a draft into a publication (see `submit.ts`) and deletes it.
  */
 
+import { FreeVersion, type ModGame, type ModLoader, type UploadProfile, uploadProfileOf } from '@sotf/contracts/games';
 import type { DraftDTO, DraftKind, PreflightItemDTO } from '@sotf/contracts/studio';
 import { DraftData, type DraftData as DraftDataSchema } from '@sotf/contracts/studio';
 import { type Executor, type ModDraft, modDraft, upload } from '@sotf/db';
@@ -107,6 +108,13 @@ export interface DraftEvaluation {
   thumbnailMediaId: string | null;
   gallery: Array<{ mediaId: string; alt: string | null }>;
   target: { id: number; manifestId: string; status: string; type: string | null; userId: number | null } | null;
+  /** Game and mod loader of the publication (the target mod's for a new version). */
+  game: ModGame;
+  modLoader: ModLoader;
+  /** `free`: not Sons of the Forest + RedLoader, so no manifest: name and version come from the form. */
+  profile: UploadProfile;
+  /** Version number to publish (the manifest's, or the one typed for a free upload). */
+  versionNumber: string | null;
   preflight: PreflightItemDTO[];
   qualityScore: number;
   flags: DraftDTO['inspectionFlags'];
@@ -148,14 +156,26 @@ export async function evaluateDraft(ctx: Ctx, row: ModDraft): Promise<DraftEvalu
   const kind = draftKindOf(row);
 
   let target: DraftEvaluation['target'] = null;
+  let game: ModGame = data.game ?? 'sotf';
+  let modLoader: ModLoader = data.modLoader ?? 'redloader';
   if (row.modId !== null) {
     const m = await loadManagedMod(ctx, row.modId).catch(() => null);
-    if (m) target = { id: m.id, manifestId: m.manifestId, status: m.status, type: m.type, userId: m.userId };
+    if (m) {
+      target = { id: m.id, manifestId: m.manifestId, status: m.status, type: m.type, userId: m.userId };
+      game = m.game;
+      modLoader = m.modLoader;
+    }
   }
+  if (row.kind === 'build') {
+    game = 'sotf';
+    modLoader = 'redloader';
+  }
+  const profile = uploadProfileOf(game, modLoader);
+  const free = profile === 'free';
   const isBuild = row.kind === 'build';
   const file = await loadFileUpload(ctx, data.fileUploadId, isBuild ? 'build_file' : 'mod_file');
   const inspection = file?.inspection ?? null;
-  const manifest = inspection?.manifest ?? null;
+  const manifest = free ? null : (inspection?.manifest ?? null);
   const buildMeta = inspection?.buildMeta ?? null;
 
   const publicationKind: DraftEvaluation['publicationKind'] = isBuild
@@ -167,7 +187,19 @@ export async function evaluateDraft(ctx: Ctx, row: ModDraft): Promise<DraftEvalu
       : target && kindOfType(target.type) === 'library'
         ? 'library'
         : 'mod';
-  const manifestId = target ? target.manifestId : isBuild ? (buildMeta?.guid ?? null) : (manifest?.id ?? null);
+  const name0 = data.name ?? (isBuild ? null : (manifest?.name ?? null));
+  const slug0 = data.slug ?? (name0 ? slugify(name0) : '');
+  // A free upload has no manifest id: the mod gets a stable generated one (owner id + slug).
+  const manifestId = target
+    ? target.manifestId
+    : isBuild
+      ? (buildMeta?.guid ?? null)
+      : free
+        ? slug0
+          ? `${game === 'the-forest' ? 'tf' : 'sotf'}.u${actor.userId}.${slug0}`
+          : null
+        : (manifest?.id ?? null);
+  const versionNumber = isBuild ? null : free ? data.version?.version?.trim() || null : (manifest?.version ?? null);
 
   // Mod-relative checks of a new version (same manifest id, greater semver).
   const flags: DraftDTO['inspectionFlags'] = [...(inspection?.flags ?? [])];
@@ -179,8 +211,8 @@ export async function evaluateDraft(ctx: Ctx, row: ModDraft): Promise<DraftEvalu
     for (const f of extra) if (!flags.some((g) => g.code === f.code)) flags.push(f);
   }
 
-  const name = data.name ?? (isBuild ? null : (manifest?.name ?? null));
-  const slug = data.slug ?? (name ? slugify(name) : '');
+  const name = name0;
+  const slug = slug0;
   const [category, tags, taken, idTaken] = await Promise.all([
     data.categorySlug ? findCategory(ctx.db, data.categorySlug, publicationKind) : Promise.resolve(null),
     findTags(ctx.db, data.tagSlugs ?? []),
@@ -247,6 +279,13 @@ export async function evaluateDraft(ctx: Ctx, row: ModDraft): Promise<DraftEvalu
   };
   const rows = preflight(facts);
   if (!data.fileUploadId) rows.unshift({ field: 'file', severity: 'error', code: 'file_missing' });
+  if (free && !isBuild) {
+    if (!versionNumber) rows.unshift({ field: 'version', severity: 'error', code: 'version_missing' });
+    else if (!FreeVersion.safeParse(versionNumber).success)
+      rows.unshift({ field: 'version', severity: 'error', code: 'version_invalid' });
+    else if (target && (await existingVersions(ctx.db, target.id)).includes(versionNumber))
+      rows.unshift({ field: 'version', severity: 'error', code: 'version_exists' });
+  }
   if (row.modId !== null && !target) rows.unshift({ field: 'modId', severity: 'error', code: 'target_missing' });
   if (target?.status === 'removed') rows.unshift({ field: 'modId', severity: 'error', code: 'target_removed' });
 
@@ -262,6 +301,10 @@ export async function evaluateDraft(ctx: Ctx, row: ModDraft): Promise<DraftEvalu
     thumbnailMediaId,
     gallery,
     target,
+    game,
+    modLoader,
+    profile,
+    versionNumber,
     preflight: rows,
     qualityScore: qualityScore(listing),
     flags,

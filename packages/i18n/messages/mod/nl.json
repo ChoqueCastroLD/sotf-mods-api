@@ -1,8 +1,8 @@
 {
-  "mod_meta_title": "{name}: Sons of the Forest-{kind, select, library {bibliotheek} other {mod}} van {author}",
-  "mod_meta_title_short": "{name}: Sons of the Forest-{kind, select, library {bibliotheek} other {mod}}",
+  "mod_meta_title": "{name}: {game}-{kind, select, library {bibliotheek} other {mod}} van {author}",
+  "mod_meta_title_short": "{name}: {game}-{kind, select, library {bibliotheek} other {mod}}",
   "mod_meta_subpage_title": "{page} · {name}",
-  "mod_meta_description_facts": "{name} is {kind, select, library {een bibliotheek} other {een mod}} voor Sons of the Forest van {author}, voor RedLoader. {count, plural, one {{downloads} download} other {{downloads} downloads}}. Gratis te downloaden.",
+  "mod_meta_description_facts": "{name} is {kind, select, library {een bibliotheek} other {een mod}} voor {game} van {author}, voor {loader}. {count, plural, one {{downloads} download} other {{downloads} downloads}}. Gratis te downloaden.",
   "mod_versions_meta_description": "{count, plural, one {De # versie} other {Alle # versies}} van {name} voor Sons of the Forest, met changelogs, bestandsgroottes en compatibiliteit. Nieuwste: v{version}.",
   "mod_version_meta_description": "{name} v{version} voor Sons of the Forest, uitgebracht op {date}: changelog, bestandsgrootte, SHA-256, beveiligingsscan en compatibiliteit.",
   "mod_reviews_meta_description": "Spelersreviews van {name}, een Sons of the Forest-mod: {count, plural, one {# review} other {# reviews}} met beoordelingen, geverifieerde downloads en antwoorden van de maker.",
@@ -214,5 +214,9 @@
   "mod_fact_multiplayer": "Multiplayer",
   "mod_toast_latest_only": "Van {name} kan alleen de nieuwste versie worden gedownload. De maker heeft oudere versies uitgeschakeld.",
   "mod_versions_latest_only": "De maker staat alleen downloads van de nieuwste versie toe.",
-  "mod_version_download_off": "Niet beschikbaar"
+  "mod_version_download_off": "Niet beschikbaar",
+  "mod_meta_game": "Spel",
+  "mod_meta_loader": "Modloader",
+  "mod_loader_other": "Anders",
+  "mod_install_other_loader": "Deze mod is gemaakt voor {loader}. Installeer hem met de instructies in de beschrijving; RedManager installeert hem niet."
 }

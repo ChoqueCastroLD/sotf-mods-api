@@ -3157,6 +3157,10 @@
   "explore_facet_tags_more": "Fler taggar",
   "explore_facet_updated": "Uppdaterad",
   "explore_failed": "Resultaten laddades inte. Laddar om sidan…",
+  "explore_filter_game": "Spel",
+  "explore_filter_game_any": "Båda spelen",
+  "explore_filter_loader": "Modladdare",
+  "explore_filter_loader_any": "Valfri laddare",
   "explore_filter_search_label": "Filtrera",
   "explore_filter_search_placeholder": "Namn, tagg eller skapare…",
   "explore_filters_apply": "Använd filter",
@@ -4421,6 +4425,7 @@
   "mod_install_intro": "De här stegen installerar {name} manuellt, utan hanterare.",
   "mod_install_manager_tip": "RedManager installerar och uppdaterar moddar och deras beroenden åt dig.",
   "mod_install_multiplayer": "Flerspelare: {role}.",
+  "mod_install_other_loader": "Modden är gjord för {loader}. Installera den med instruktionerna i beskrivningen; RedManager installerar den inte.",
   "mod_install_redloader_not_bepinex": "Den här moden kräver RedLoader, inte BepInEx. BepInEx-moddar och guider gäller inte Sons of the Forest.",
   "mod_install_step_dependencies_title": "Installera beroendena först",
   "mod_install_step_download": "Ladda ner {name}",
@@ -4533,6 +4538,7 @@
   "mod_license_other": "Egen licens",
   "mod_license_reupload_with_credit": "Återpublicering med erkännande",
   "mod_link_website": "Webbplats",
+  "mod_loader_other": "Annan",
   "mod_md_alert_caution": "Försiktighet",
   "mod_md_alert_important": "Viktigt",
   "mod_md_alert_note": "Obs",
@@ -4544,7 +4550,9 @@
       "declarations": [
         "input name",
         "input kind",
+        "input game",
         "input author",
+        "input loader",
         "input count",
         "input downloads",
         "local count__plural = count: plural"
@@ -4554,27 +4562,30 @@
         "count__plural"
       ],
       "match": {
-        "kind=library, count__plural=one": "{name} är ett bibliotek till Sons of the Forest av {author} för RedLoader. {downloads} nedladdning. Gratis nedladdning.",
-        "kind=library, count__plural=*": "{name} är ett bibliotek till Sons of the Forest av {author} för RedLoader. {downloads} nedladdningar. Gratis nedladdning.",
-        "kind=*, count__plural=one": "{name} är en mod till Sons of the Forest av {author} för RedLoader. {downloads} nedladdning. Gratis nedladdning.",
-        "kind=*, count__plural=*": "{name} är en mod till Sons of the Forest av {author} för RedLoader. {downloads} nedladdningar. Gratis nedladdning."
+        "kind=library, count__plural=one": "{name} är ett bibliotek till {game} av {author} för {loader}. {downloads} nedladdning. Gratis nedladdning.",
+        "kind=library, count__plural=*": "{name} är ett bibliotek till {game} av {author} för {loader}. {downloads} nedladdningar. Gratis nedladdning.",
+        "kind=*, count__plural=one": "{name} är en mod till {game} av {author} för {loader}. {downloads} nedladdning. Gratis nedladdning.",
+        "kind=*, count__plural=*": "{name} är en mod till {game} av {author} för {loader}. {downloads} nedladdningar. Gratis nedladdning."
       }
     }
   ],
+  "mod_meta_game": "Spel",
+  "mod_meta_loader": "Modladdare",
   "mod_meta_subpage_title": "{page} · {name}",
   "mod_meta_title": [
     {
       "declarations": [
         "input name",
         "input kind",
+        "input game",
         "input author"
       ],
       "selectors": [
         "kind"
       ],
       "match": {
-        "kind=library": "{name}: bibliotek till Sons of the Forest av {author}",
-        "kind=*": "{name}: mod till Sons of the Forest av {author}"
+        "kind=library": "{name}: bibliotek till {game} av {author}",
+        "kind=*": "{name}: mod till {game} av {author}"
       }
     }
   ],
@@ -4582,14 +4593,15 @@
     {
       "declarations": [
         "input name",
-        "input kind"
+        "input kind",
+        "input game"
       ],
       "selectors": [
         "kind"
       ],
       "match": {
-        "kind=library": "{name}: bibliotek till Sons of the Forest",
-        "kind=*": "{name}: mod till Sons of the Forest"
+        "kind=library": "{name}: bibliotek till {game}",
+        "kind=*": "{name}: mod till {game}"
       }
     }
   ],
@@ -7494,6 +7506,7 @@
   "upload_drop_hint": "{type} · upp till {max}",
   "upload_drop_replace": "Släpp en annan fil för att ersätta den",
   "upload_drop_title_build": "Släpp din bygg-.json här",
+  "upload_drop_title_free": "Släpp moddfilen här",
   "upload_drop_title_mod": "Släpp din .zip här",
   "upload_entries_more": [
     {
@@ -7549,6 +7562,7 @@
   "upload_failure_too_large": "Filen är för stor för ditt konto.",
   "upload_failure_unsupported": "Den här filtypen accepteras inte.",
   "upload_file_intro_build": "Släpp bygget som .json, exporterat från BuildShare. Miniatyr, antal element och version läses automatiskt.",
+  "upload_file_intro_free": "Ladda upp filen som spelarna installerar: en .zip, .dll, .mod eller vad din laddare använder.",
   "upload_file_intro_mod": "Släpp den .zip du skulle ge spelarna. Vi öppnar den först i din webbläsare och visar innehållet innan något laddas upp.",
   "upload_file_intro_version": "Ladda upp den nya filen för {name}. Manifest-id måste vara {manifestId} och versionen högre än {version}.",
   "upload_file_title_build": "Ditt BuildShare-bygge",
@@ -7571,6 +7585,12 @@
   "upload_flag_zip_too_many_entries": "Zip-filen har för många filer (högst 5 000).",
   "upload_flagged_detail": "Något i den behöver granskas av en människa (se varningarna nedan). Du kan ändå skicka in; den publiceras när den godkänts.",
   "upload_flagged_title": "En moderator tittar på den här filen.",
+  "upload_free_drop_hint": "Upp till {max}, valfri filtyp",
+  "upload_free_note": "Valfri filtyp. Filen får bara säkerhetskontrollerna (inget RedLoader-manifest behövs). Versionsnumret skriver du i steget Publicering.",
+  "upload_free_version_error": "Skriv ett versionsnummer, till exempel 1.0.0.",
+  "upload_free_version_exists": "Den här versionen finns redan för modden.",
+  "upload_free_version_hint": "Till exempel 1.0.0. Bokstäver, siffror, punkter och bindestreck.",
+  "upload_free_version_label": "Versionsnummer",
   "upload_gallery_added": [
     {
       "declarations": [
@@ -7652,6 +7672,8 @@
       }
     }
   ],
+  "upload_game_hint": "Vilket spel är modden för?",
+  "upload_game_label": "Spel",
   "upload_image_no_preview": "Uppladdad (förhandsvisning på sidan efter bearbetning)",
   "upload_image_reading": "Läser bilden…",
   "upload_image_too_large": "Bilder får vara upp till 10 MB.",
@@ -7707,6 +7729,7 @@
   "upload_links_url": "Adress för länk {n}",
   "upload_loader_hint": "Den äldsta RedLoader-versionen som din mod fungerar med.",
   "upload_loader_label": "Lägsta RedLoader",
+  "upload_loader_other": "Annan",
   "upload_loading": "Läser in…",
   "upload_manifest_author": "Skapare",
   "upload_manifest_dependencies": "Beroenden",
@@ -7731,6 +7754,7 @@
   "upload_markdown_write": "Skriv",
   "upload_media_intro": "Bilder hjälper spelarna att välja. Sidor med 3 eller fler bilder laddas ner oftare.",
   "upload_media_title": "Media",
+  "upload_modloader_label": "Modladdare",
   "upload_multiplayer_all_players": "Alla behöver den",
   "upload_multiplayer_all_players_hint": "Varje spelare i sessionen måste installera den.",
   "upload_multiplayer_client_side": "Klientsida",
@@ -7851,6 +7875,9 @@
   "upload_preflight_thumbnail_missing": "Ingen omslagsbild.",
   "upload_preflight_thumbnail_ok": "Omslag valt.",
   "upload_preflight_title": "Kontroller",
+  "upload_preflight_version_exists": "Den här versionen finns redan för modden.",
+  "upload_preflight_version_invalid": "Versionsnumret får bara innehålla bokstäver, siffror, punkter och bindestreck.",
+  "upload_preflight_version_missing": "Skriv versionsnumret i steget Publicering.",
   "upload_preflight_waiting": "Kontrollerna visas när ditt utkast har sparats.",
   "upload_problems_label": "Fel och varningar för filen",
   "upload_progress_direct": "Skickas direkt till lagringen. Bryts anslutningen kan du återuppta.",

@@ -47,6 +47,7 @@ import {
 import { CompatSummaryDTO } from './compat.ts';
 import { dto, exampleOf, examplesOf, wireFlag, wireInt, wireList, wireOneOrMany } from './dto.ts';
 import { API_V2_PREFIX, defineEndpoint } from './endpoint.ts';
+import { ModGame, ModLoader } from './games.ts';
 import { BuildMetaDTO } from './manifest.ts';
 import { CursorQuery, cursorPageOf, PageQuery, pageOf } from './pagination.ts';
 import { ReviewDTO, ReviewsSummaryDTO } from './reviews.ts';
@@ -109,6 +110,8 @@ export const ModCardDTO = dto(
     compatStatus: CompatStatus,
     multiplayerRole: MultiplayerRole.nullable(),
     platform: Platform.nullable(),
+    game: ModGame.default('sotf').describe('Game the mod is for'),
+    modLoader: ModLoader.default('redloader').describe('Mod loader the mod is made for'),
     isFeatured: z.boolean(),
     awards: z.array(AwardRefDTO),
     lastReleasedAt: IsoDateTime,
@@ -152,6 +155,8 @@ export const ModCardDTO = dto(
         compatStatus: 'works',
         multiplayerRole: 'host_only',
         platform: 'Client',
+        game: 'sotf',
+        modLoader: 'redloader',
         isFeatured: false,
         awards: [exampleOf(AwardRefDTO)],
         lastReleasedAt: '2026-09-26T21:33:31.396Z',
@@ -301,6 +306,8 @@ export const ModListQuery = PageQuery.extend({
   }),
   dedicated: z.literal('yes').optional(),
   platform: Platform.optional(),
+  game: ModGame.optional().describe('Only mods for this game (default: both games)'),
+  loader: ModLoader.optional().describe('Only mods for this mod loader'),
   updatedWithin: z.enum(['30d', '90d', '1y']).optional(),
   minRating: wireInt({ min: 1, max: 5 }).optional(),
   minDownloads: wireInt({

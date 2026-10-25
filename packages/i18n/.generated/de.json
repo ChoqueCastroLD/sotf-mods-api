@@ -3157,6 +3157,10 @@
   "explore_facet_tags_more": "Weitere Tags",
   "explore_facet_updated": "Aktualisiert",
   "explore_failed": "Die Ergebnisse wurden nicht geladen. Die Seite wird neu geladen…",
+  "explore_filter_game": "Spiel",
+  "explore_filter_game_any": "Beide Spiele",
+  "explore_filter_loader": "Mod-Loader",
+  "explore_filter_loader_any": "Jeder Loader",
   "explore_filter_search_label": "Filtern",
   "explore_filter_search_placeholder": "Name, Tag oder Autor…",
   "explore_filters_apply": "Filter anwenden",
@@ -4421,6 +4425,7 @@
   "mod_install_intro": "Diese Schritte installieren {name} von Hand, ohne Manager.",
   "mod_install_manager_tip": "RedManager installiert und aktualisiert Mods samt Abhängigkeiten für dich.",
   "mod_install_multiplayer": "Mehrspieler: {role}.",
+  "mod_install_other_loader": "Diese Mod ist für {loader} gemacht. Installiere sie nach der Anleitung in der Beschreibung; RedManager installiert sie nicht.",
   "mod_install_redloader_not_bepinex": "Dieser Mod braucht RedLoader, nicht BepInEx. BepInEx-Mods und -Anleitungen gelten nicht für Sons of the Forest.",
   "mod_install_step_dependencies_title": "Zuerst die Abhängigkeiten installieren",
   "mod_install_step_download": "{name} herunterladen",
@@ -4533,6 +4538,7 @@
   "mod_license_other": "Eigene Lizenz",
   "mod_license_reupload_with_credit": "Neu hochladen mit Namensnennung",
   "mod_link_website": "Website",
+  "mod_loader_other": "Andere",
   "mod_md_alert_caution": "Vorsicht",
   "mod_md_alert_important": "Wichtig",
   "mod_md_alert_note": "Hinweis",
@@ -4544,7 +4550,9 @@
       "declarations": [
         "input name",
         "input kind",
+        "input game",
         "input author",
+        "input loader",
         "input count",
         "input downloads",
         "local count__plural = count: plural"
@@ -4554,27 +4562,30 @@
         "count__plural"
       ],
       "match": {
-        "kind=library, count__plural=one": "{name} ist eine Bibliothek für Sons of the Forest von {author}, für RedLoader. {downloads} Download. Kostenloser Download.",
-        "kind=library, count__plural=*": "{name} ist eine Bibliothek für Sons of the Forest von {author}, für RedLoader. {downloads} Downloads. Kostenloser Download.",
-        "kind=*, count__plural=one": "{name} ist ein Mod für Sons of the Forest von {author}, für RedLoader. {downloads} Download. Kostenloser Download.",
-        "kind=*, count__plural=*": "{name} ist ein Mod für Sons of the Forest von {author}, für RedLoader. {downloads} Downloads. Kostenloser Download."
+        "kind=library, count__plural=one": "{name} ist eine Bibliothek für {game} von {author}, für {loader}. {downloads} Download. Kostenloser Download.",
+        "kind=library, count__plural=*": "{name} ist eine Bibliothek für {game} von {author}, für {loader}. {downloads} Downloads. Kostenloser Download.",
+        "kind=*, count__plural=one": "{name} ist ein Mod für {game} von {author}, für {loader}. {downloads} Download. Kostenloser Download.",
+        "kind=*, count__plural=*": "{name} ist ein Mod für {game} von {author}, für {loader}. {downloads} Downloads. Kostenloser Download."
       }
     }
   ],
+  "mod_meta_game": "Spiel",
+  "mod_meta_loader": "Mod-Loader",
   "mod_meta_subpage_title": "{page} · {name}",
   "mod_meta_title": [
     {
       "declarations": [
         "input name",
         "input kind",
+        "input game",
         "input author"
       ],
       "selectors": [
         "kind"
       ],
       "match": {
-        "kind=library": "{name}: Sons-of-the-Forest-Bibliothek von {author}",
-        "kind=*": "{name}: Sons-of-the-Forest-Mod von {author}"
+        "kind=library": "{name}: Bibliothek für {game} von {author}",
+        "kind=*": "{name}: Mod für {game} von {author}"
       }
     }
   ],
@@ -4582,14 +4593,15 @@
     {
       "declarations": [
         "input name",
-        "input kind"
+        "input kind",
+        "input game"
       ],
       "selectors": [
         "kind"
       ],
       "match": {
-        "kind=library": "{name}: Sons-of-the-Forest-Bibliothek",
-        "kind=*": "{name}: Sons-of-the-Forest-Mod"
+        "kind=library": "{name}: Bibliothek für {game}",
+        "kind=*": "{name}: Mod für {game}"
       }
     }
   ],
@@ -7494,6 +7506,7 @@
   "upload_drop_hint": "{type} · bis {max}",
   "upload_drop_replace": "Zieh eine andere Datei hierher, um sie zu ersetzen",
   "upload_drop_title_build": "Zieh deine Build-.json hierher",
+  "upload_drop_title_free": "Mod-Datei hier ablegen",
   "upload_drop_title_mod": "Zieh dein .zip hierher",
   "upload_entries_more": [
     {
@@ -7549,6 +7562,7 @@
   "upload_failure_too_large": "Die Datei ist für dein Konto zu groß.",
   "upload_failure_unsupported": "Dieser Dateityp wird nicht akzeptiert.",
   "upload_file_intro_build": "Zieh die von BuildShare exportierte Build-.json hierher. Vorschaubild, Elementanzahl und Version werden automatisch gelesen.",
+  "upload_file_intro_free": "Lade die Datei hoch, die Spieler installieren: eine .zip, .dll, .mod oder was dein Loader sonst nutzt.",
   "upload_file_intro_mod": "Zieh das .zip hierher, das Spieler bekommen sollen. Wir öffnen es zuerst in deinem Browser und zeigen dir den Inhalt, bevor etwas hochgeladen wird.",
   "upload_file_intro_version": "Lade die neue Datei von {name} hoch. Ihre Manifest-ID muss {manifestId} sein und ihre Version größer als {version}.",
   "upload_file_title_build": "Dein BuildShare-Build",
@@ -7571,6 +7585,12 @@
   "upload_flag_zip_too_many_entries": "Das Zip enthält zu viele Dateien (höchstens 5.000).",
   "upload_flagged_detail": "Etwas darin braucht eine menschliche Prüfung (siehe Warnungen unten). Du kannst trotzdem einreichen; online geht es nach der Freigabe.",
   "upload_flagged_title": "Ein Moderator sieht sich diese Datei an.",
+  "upload_free_drop_hint": "Bis zu {max}, jeder Dateityp",
+  "upload_free_note": "Jeder Dateityp. Die Datei wird nur auf Sicherheit geprüft (kein RedLoader-Manifest nötig). Die Versionsnummer gibst du im Schritt Veröffentlichung ein.",
+  "upload_free_version_error": "Gib eine Versionsnummer ein, zum Beispiel 1.0.0.",
+  "upload_free_version_exists": "Diese Version gibt es für diese Mod schon.",
+  "upload_free_version_hint": "Zum Beispiel 1.0.0. Buchstaben, Zahlen, Punkte und Bindestriche.",
+  "upload_free_version_label": "Versionsnummer",
   "upload_gallery_added": [
     {
       "declarations": [
@@ -7652,6 +7672,8 @@
       }
     }
   ],
+  "upload_game_hint": "Für welches Spiel ist diese Mod?",
+  "upload_game_label": "Spiel",
   "upload_image_no_preview": "Hochgeladen (Vorschau auf der Seite nach der Verarbeitung)",
   "upload_image_reading": "Bild wird gelesen…",
   "upload_image_too_large": "Bilder dürfen bis zu 10 MB groß sein.",
@@ -7707,6 +7729,7 @@
   "upload_links_url": "Adresse von Link {n}",
   "upload_loader_hint": "Die älteste RedLoader-Version, mit der dein Mod funktioniert.",
   "upload_loader_label": "Mindestversion von RedLoader",
+  "upload_loader_other": "Andere",
   "upload_loading": "Wird geladen…",
   "upload_manifest_author": "Autor",
   "upload_manifest_dependencies": "Abhängigkeiten",
@@ -7731,6 +7754,7 @@
   "upload_markdown_write": "Schreiben",
   "upload_media_intro": "Bilder helfen Spielern bei der Entscheidung. Einträge mit 3 oder mehr Bildern werden öfter heruntergeladen.",
   "upload_media_title": "Medien",
+  "upload_modloader_label": "Mod-Loader",
   "upload_multiplayer_all_players": "Alle brauchen ihn",
   "upload_multiplayer_all_players_hint": "Jeder Spieler der Sitzung muss ihn installieren.",
   "upload_multiplayer_client_side": "Clientseitig",
@@ -7851,6 +7875,9 @@
   "upload_preflight_thumbnail_missing": "Kein Titelbild.",
   "upload_preflight_thumbnail_ok": "Titelbild gesetzt.",
   "upload_preflight_title": "Prüfungen",
+  "upload_preflight_version_exists": "Diese Version gibt es für diese Mod schon.",
+  "upload_preflight_version_invalid": "Die Versionsnummer darf nur Buchstaben, Zahlen, Punkte und Bindestriche enthalten.",
+  "upload_preflight_version_missing": "Gib die Versionsnummer im Schritt Veröffentlichung ein.",
   "upload_preflight_waiting": "Die Checks erscheinen, sobald dein Entwurf gespeichert ist.",
   "upload_problems_label": "Fehler und Warnungen der Datei",
   "upload_progress_direct": "Geht direkt in den Speicher. Bricht die Verbindung ab, kannst du fortsetzen.",

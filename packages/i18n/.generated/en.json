@@ -3157,6 +3157,10 @@
   "explore_facet_tags_more": "More tags",
   "explore_facet_updated": "Updated",
   "explore_failed": "The results didn’t load. Reloading the page…",
+  "explore_filter_game": "Game",
+  "explore_filter_game_any": "Both games",
+  "explore_filter_loader": "Mod loader",
+  "explore_filter_loader_any": "Any loader",
   "explore_filter_search_label": "Filter",
   "explore_filter_search_placeholder": "Name, tag or author…",
   "explore_filters_apply": "Apply filters",
@@ -4421,6 +4425,7 @@
   "mod_install_intro": "These steps install {name} by hand, without a manager.",
   "mod_install_manager_tip": "RedManager installs and updates mods and their dependencies for you.",
   "mod_install_multiplayer": "Multiplayer: {role}.",
+  "mod_install_other_loader": "This mod is made for {loader}. Install it with the instructions in the description; RedManager does not install it.",
   "mod_install_redloader_not_bepinex": "This mod needs RedLoader, not BepInEx. BepInEx mods and guides don’t apply to Sons of the Forest.",
   "mod_install_step_dependencies_title": "Install its dependencies first",
   "mod_install_step_download": "Download {name}",
@@ -4533,6 +4538,7 @@
   "mod_license_other": "Custom license",
   "mod_license_reupload_with_credit": "Re-upload with credit",
   "mod_link_website": "Website",
+  "mod_loader_other": "Other",
   "mod_md_alert_caution": "Caution",
   "mod_md_alert_important": "Important",
   "mod_md_alert_note": "Note",
@@ -4543,8 +4549,10 @@
     {
       "declarations": [
         "input name",
+        "input game",
         "input kind",
         "input author",
+        "input loader",
         "input count",
         "input downloads",
         "local count__plural = count: plural"
@@ -4554,18 +4562,21 @@
         "count__plural"
       ],
       "match": {
-        "kind=library, count__plural=one": "{name} is a Sons of the Forest library by {author} for RedLoader. {downloads} download. Free to download.",
-        "kind=library, count__plural=*": "{name} is a Sons of the Forest library by {author} for RedLoader. {downloads} downloads. Free to download.",
-        "kind=*, count__plural=one": "{name} is a Sons of the Forest mod by {author} for RedLoader. {downloads} download. Free to download.",
-        "kind=*, count__plural=*": "{name} is a Sons of the Forest mod by {author} for RedLoader. {downloads} downloads. Free to download."
+        "kind=library, count__plural=one": "{name} is a {game} library by {author} for {loader}. {downloads} download. Free to download.",
+        "kind=library, count__plural=*": "{name} is a {game} library by {author} for {loader}. {downloads} downloads. Free to download.",
+        "kind=*, count__plural=one": "{name} is a {game} mod by {author} for {loader}. {downloads} download. Free to download.",
+        "kind=*, count__plural=*": "{name} is a {game} mod by {author} for {loader}. {downloads} downloads. Free to download."
       }
     }
   ],
+  "mod_meta_game": "Game",
+  "mod_meta_loader": "Mod loader",
   "mod_meta_subpage_title": "{page} · {name}",
   "mod_meta_title": [
     {
       "declarations": [
         "input name",
+        "input game",
         "input kind",
         "input author"
       ],
@@ -4573,8 +4584,8 @@
         "kind"
       ],
       "match": {
-        "kind=library": "{name}: Sons of the Forest library by {author}",
-        "kind=*": "{name}: Sons of the Forest mod by {author}"
+        "kind=library": "{name}: {game} library by {author}",
+        "kind=*": "{name}: {game} mod by {author}"
       }
     }
   ],
@@ -4582,14 +4593,15 @@
     {
       "declarations": [
         "input name",
+        "input game",
         "input kind"
       ],
       "selectors": [
         "kind"
       ],
       "match": {
-        "kind=library": "{name}: Sons of the Forest library",
-        "kind=*": "{name}: Sons of the Forest mod"
+        "kind=library": "{name}: {game} library",
+        "kind=*": "{name}: {game} mod"
       }
     }
   ],
@@ -7494,6 +7506,7 @@
   "upload_drop_hint": "{type} · up to {max}",
   "upload_drop_replace": "Drop another file to replace it",
   "upload_drop_title_build": "Drop your build .json here",
+  "upload_drop_title_free": "Drop your mod file here",
   "upload_drop_title_mod": "Drop your .zip here",
   "upload_entries_more": [
     {
@@ -7549,6 +7562,7 @@
   "upload_failure_too_large": "The file is too large for your account.",
   "upload_failure_unsupported": "This file type isn’t accepted.",
   "upload_file_intro_build": "Drop the build .json exported by BuildShare. Its thumbnail, element count and version are read automatically.",
+  "upload_file_intro_free": "Upload the file players install: a .zip, a .dll, a .mod or anything else your loader uses.",
   "upload_file_intro_mod": "Drop the .zip you’d give to players. We open it in your browser first and show what’s inside before anything is uploaded.",
   "upload_file_intro_version": "Upload the new file of {name}. Its manifest id must be {manifestId} and its version greater than {version}.",
   "upload_file_title_build": "Your BuildShare build",
@@ -7571,6 +7585,12 @@
   "upload_flag_zip_too_many_entries": "The zip has too many files (5,000 max).",
   "upload_flagged_detail": "Something in it needs a human check (see the warnings below). You can still submit; it goes live once approved.",
   "upload_flagged_title": "A moderator will review this file.",
+  "upload_free_drop_hint": "Up to {max}, any file type",
+  "upload_free_note": "Any file type. The file gets the security checks only (no RedLoader manifest needed). You type the version number in the Release step.",
+  "upload_free_version_error": "Type a version number, for example 1.0.0.",
+  "upload_free_version_exists": "This version already exists for this mod.",
+  "upload_free_version_hint": "For example 1.0.0. Letters, numbers, dots and dashes.",
+  "upload_free_version_label": "Version number",
   "upload_gallery_added": [
     {
       "declarations": [
@@ -7652,6 +7672,8 @@
       }
     }
   ],
+  "upload_game_hint": "Which game is this mod for?",
+  "upload_game_label": "Game",
   "upload_image_no_preview": "Uploaded (preview on the page once processed)",
   "upload_image_reading": "Reading the image…",
   "upload_image_too_large": "Images can be up to 10 MB.",
@@ -7707,6 +7729,7 @@
   "upload_links_url": "Address of link {n}",
   "upload_loader_hint": "The oldest RedLoader version your mod works with.",
   "upload_loader_label": "Minimum RedLoader",
+  "upload_loader_other": "Other",
   "upload_loading": "Loading…",
   "upload_manifest_author": "Author",
   "upload_manifest_dependencies": "Dependencies",
@@ -7731,6 +7754,7 @@
   "upload_markdown_write": "Write",
   "upload_media_intro": "Images help players decide. Listings with 3 or more images get more downloads.",
   "upload_media_title": "Media",
+  "upload_modloader_label": "Mod loader",
   "upload_multiplayer_all_players": "Everyone needs it",
   "upload_multiplayer_all_players_hint": "Every player in the session must install it.",
   "upload_multiplayer_client_side": "Client side",
@@ -7851,6 +7875,9 @@
   "upload_preflight_thumbnail_missing": "No cover image.",
   "upload_preflight_thumbnail_ok": "Cover set.",
   "upload_preflight_title": "Checks",
+  "upload_preflight_version_exists": "This version already exists for this mod.",
+  "upload_preflight_version_invalid": "The version number can only use letters, numbers, dots and dashes.",
+  "upload_preflight_version_missing": "Type the version number in the Release step.",
   "upload_preflight_waiting": "The checks appear once your draft is saved.",
   "upload_problems_label": "Errors and warnings of the file",
   "upload_progress_direct": "Sent straight to storage. If the connection drops you can resume.",

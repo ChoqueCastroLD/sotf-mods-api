@@ -56,8 +56,21 @@ async function api(method: 'GET' | 'POST' | 'PATCH' | 'PUT', url: string, userId
 }
 
 /** Presigned PUT → complete → the jobs the worker would run (inspection, media, build extract). */
-async function upload(userId: number, purpose: string, filename: string, bytes: Buffer, contentType: string) {
-  const created = await api('POST', '/api/v2/uploads', userId, { purpose, filename, size: bytes.length, contentType });
+async function upload(
+  userId: number,
+  purpose: string,
+  filename: string,
+  bytes: Buffer,
+  contentType: string,
+  profile?: 'free',
+) {
+  const created = await api('POST', '/api/v2/uploads', userId, {
+    purpose,
+    filename,
+    size: bytes.length,
+    contentType,
+    ...(profile ? { profile } : {}),
+  });
   expect(created.status, JSON.stringify(created.body)).toBe(201);
   const put = await fetch(created.body.url, { method: 'PUT', body: bytes, headers: created.body.headers });
   expect(put.status).toBe(200);
@@ -299,6 +312,103 @@ describe('new versions', () => {
     expect(await isLatestCount(modId)).toBe(1);
     const html = await t.db.pool.query(`SELECT "changelogHtml" FROM "ModVersion" WHERE "id" = $1`, [created.body.id]);
     expect(html.rows[0].changelogHtml).toContain('<strong>new</strong>');
+  });
+});
+
+describe('The Forest and other loaders (free uploads)', () => {
+  it('publishes a The Forest mod from any file with a typed version, hides it from the legacy API and filters by game', async () => {
+    // A ModAPI ".mod" file: not a zip, no manifest.
+    const file = await upload(
+      verified.id,
+      'mod_file',
+      'ForestMenu.mod',
+      Buffer.from('modapi-binary'),
+      'application/octet-stream',
+      'free',
+    );
+    expect(file.status).toBe('ready');
+    expect(file.inspection.status).toBe('passed');
+    expect(file.inspection.manifest).toBeNull();
+
+    const d = await draft(verified.id, 'mod', {
+      ...listing('forest-menu', file.id),
+      game: 'the-forest',
+      modLoader: 'modapi',
+      version: { version: '1.0' },
+    });
+    const submitted = await api('POST', `/api/v2/drafts/${d.id}/submit`, verified.id);
+    expect(submitted.status, JSON.stringify(submitted.body)).toBe(201);
+    expect(submitted.body.status).toBe('published');
+    const row = await t.db.pool.query(
+      `SELECT m."game", m."modLoader", m."mod_id", v."version" FROM "Mod" m JOIN "ModVersion" v ON v."modId" = m."id" WHERE m."id" = $1`,
+      [submitted.body.modId],
+    );
+    expect(row.rows[0]).toEqual({
+      game: 'the-forest',
+      modLoader: 'modapi',
+      mod_id: `tf.u${verified.id}.forest-menu`,
+      version: '1.0',
+    });
+
+    t.app.platform.caches.invalidate('*');
+    // RedManager and the legacy API only know Sons of the Forest + RedLoader mods.
+    expect((await t.app.inject({ method: 'GET', url: `/api/mods/tf.u${verified.id}.forest-menu` })).statusCode).toBe(
+      404,
+    );
+    const legacyList = await t.app.inject({ method: 'GET', url: '/api/mods?search=forest-menu' });
+    expect(legacyList.body).not.toContain('forest-menu');
+    // The v2 catalogue lists both games, and filters by game.
+    const forest = await api('GET', '/api/v2/mods?type=all&game=the-forest', null);
+    expect(forest.body.items.map((i: any) => i.id)).toContain(submitted.body.modId);
+    expect(forest.body.items.every((i: any) => i.game === 'the-forest')).toBe(true);
+    const sotf = await api('GET', '/api/v2/mods?type=all&game=sotf', null);
+    expect(sotf.body.items.map((i: any) => i.id)).not.toContain(submitted.body.modId);
+
+    // A new version: any file again, the version number is required and must be new.
+    const next = await upload(
+      verified.id,
+      'mod_file',
+      'ForestMenu-1.1.zip',
+      zip({ 'ForestMenu.dll': enc('MZ') }),
+      'application/zip',
+      'free',
+    );
+    expect(next.inspection.status).toBe('passed');
+    const missing = await api('POST', `/api/v2/studio/mods/${submitted.body.modId}/versions`, verified.id, {
+      uploadId: next.id,
+      changelogMd: '- Fix',
+    });
+    expect(missing.status).toBe(422);
+    const released = await api('POST', `/api/v2/studio/mods/${submitted.body.modId}/versions`, verified.id, {
+      uploadId: next.id,
+      changelogMd: '- Fix',
+      versionNumber: '1.1',
+    });
+    expect(released.status, JSON.stringify(released.body)).toBe(201);
+    expect(await isLatestCount(submitted.body.modId)).toBe(1);
+  });
+
+  it('a free upload still holds an executable for review and refuses an archive bomb', async () => {
+    const exe = await upload(
+      verified.id,
+      'mod_file',
+      'Installer.exe',
+      Buffer.from('MZ'),
+      'application/octet-stream',
+      'free',
+    );
+    expect(exe.inspection.status).toBe('flagged');
+    expect(exe.inspection.flags.map((f: any) => f.code)).toContain('extension_flagged');
+    const bomb = await upload(
+      verified.id,
+      'mod_file',
+      'Bomb.zip',
+      zip({ 'big.txt': new Uint8Array(30 * 1024 * 1024) }),
+      'application/zip',
+      'free',
+    );
+    expect(bomb.inspection.status).toBe('failed');
+    expect(bomb.inspection.flags.map((f: any) => f.code)).toContain('zip_bomb_ratio');
   });
 });
 

@@ -1,8 +1,8 @@
 {
-  "mod_meta_title": "{name}: {author} tarafından Sons of the Forest {kind, select, library {kütüphanesi} other {modu}}",
-  "mod_meta_title_short": "{name}: Sons of the Forest {kind, select, library {kütüphanesi} other {modu}}",
+  "mod_meta_title": "{name}: {author} tarafından {game} {kind, select, library {kütüphanesi} other {modu}}",
+  "mod_meta_title_short": "{name}: {game} {kind, select, library {kütüphanesi} other {modu}}",
   "mod_meta_subpage_title": "{page} · {name}",
-  "mod_meta_description_facts": "{name}, {author} tarafından RedLoader için yapılmış bir Sons of the Forest {kind, select, library {kütüphanesi} other {modu}}. {count, plural, one {{downloads} indirme} other {{downloads} indirme}}. Ücretsiz indirme.",
+  "mod_meta_description_facts": "{name}, {author} tarafından {loader} için yapılmış bir {game} {kind, select, library {kütüphanesi} other {modu}}. {count, plural, one {{downloads} indirme} other {{downloads} indirme}}. Ücretsiz indirme.",
   "mod_versions_meta_description": "Sons of the Forest için {name} modunun {count, plural, one {# sürümü} other {# sürümünün tamamı}}: değişiklik günlükleri, dosya boyutları ve uyumluluk. En yeni: v{version}.",
   "mod_version_meta_description": "Sons of the Forest için {name} v{version}, {date} tarihinde yayımlandı: değişiklik günlüğü, dosya boyutu, SHA-256, güvenlik taraması ve uyumluluk.",
   "mod_reviews_meta_description": "Bir Sons of the Forest modu olan {name} için oyuncu incelemeleri: puanlar, doğrulanmış indirmeler ve yapımcı yanıtlarıyla {count, plural, one {# inceleme} other {# inceleme}}.",
@@ -214,5 +214,9 @@
   "mod_fact_multiplayer": "Çok oyunculu",
   "mod_toast_latest_only": "{name} için yalnızca en son sürüm indirilebilir. Yapımcı eski sürümleri kapattı.",
   "mod_versions_latest_only": "Yapımcı yalnızca en son sürümün indirilmesine izin veriyor.",
-  "mod_version_download_off": "Kullanılamıyor"
+  "mod_version_download_off": "Kullanılamıyor",
+  "mod_meta_game": "Oyun",
+  "mod_meta_loader": "Mod yükleyici",
+  "mod_loader_other": "Diğer",
+  "mod_install_other_loader": "Bu mod {loader} için yapıldı. Açıklamadaki talimatlarla kur; RedManager bunu kurmaz."
 }

@@ -7,6 +7,7 @@
  * - JSON-LD `SoftwareApplication` (+ `VideoObject` when there is a trailer). `aggregateRating`
  *   only with ≥ 3 visible reviews (`reviewsSummary.showStars`).
  */
+
 import { REVIEW_RULES } from '@sotf/contracts/reviews';
 import { absoluteUrl, profilePath } from '@sotf/contracts/seo';
 import { formatBytes, formatCompactNumber, type Locale, toHreflang } from '@sotf/i18n';
@@ -16,6 +17,7 @@ import type { FAQPage, SoftwareApplication, VideoObject, WithContext } from 'sch
 import type { FaqEntry } from '../../lib/seo/faq.ts';
 import type { JsonLd } from '../../lib/seo/jsonld.ts';
 import type { ModDetailDTO } from './data.ts';
+import { gameLabel, loaderLabel } from './format.ts';
 import { licenseHref } from './i18n.ts';
 
 export const TITLE_MAX = 60;
@@ -23,6 +25,7 @@ export const DESCRIPTION_MAX = 160;
 /** A shorter author summary is completed with the facts (meta descriptions below ~40 characters read as empty). */
 const MIN_SHORT_DESCRIPTION = 40;
 export const STEAM_APP_URL = 'https://store.steampowered.com/app/1326470/Sons_Of_The_Forest/';
+const THE_FOREST_STEAM_URL = 'https://store.steampowered.com/app/242760/The_Forest/';
 
 /** Cuts at a word boundary and adds «…» (never in the middle of a surrogate pair). */
 export function truncate(text: string, max: number): string {
@@ -40,8 +43,8 @@ export function modTitle(mod: ModDetailDTO): string {
   const author = mod.userDisplayName || mod.userHandle;
   const full = (title: string) => m.meta_title_template({ title });
   const candidates = [
-    m.mod_meta_title({ name, author, kind: mod.kind }),
-    m.mod_meta_title_short({ name, kind: mod.kind }),
+    m.mod_meta_title({ name, author, kind: mod.kind, game: gameLabel(mod.game) }),
+    m.mod_meta_title_short({ name, kind: mod.kind, game: gameLabel(mod.game) }),
     name,
   ];
   for (const candidate of candidates) {
@@ -68,6 +71,8 @@ export function modDescription(mod: ModDetailDTO, locale: Locale): string {
     name: displayName(mod),
     author: mod.userDisplayName || mod.userHandle,
     kind: mod.kind,
+    game: gameLabel(mod.game),
+    loader: loaderLabel(mod.modLoader),
     downloads: formatCompactNumber(locale, mod.downloads),
     count: mod.downloads,
   });
@@ -109,7 +114,7 @@ export function modJsonLd({ mod, locale, siteUrl, pageUrl }: ModJsonLdInput): Js
           ...(typeof latest.fileSize === 'number' ? { fileSize: formatBytes('en', latest.fileSize) } : {}),
         }
       : {}),
-    softwareRequirements: 'Sons of the Forest (Steam), RedLoader',
+    softwareRequirements: `${gameLabel(mod.game)} (Steam), ${loaderLabel(mod.modLoader)}`,
     datePublished: mod.publishedAt ?? mod.createdAt,
     dateModified: mod.lastReleasedAt,
     ...(licenseUrl ? { license: licenseUrl } : {}),
@@ -122,8 +127,8 @@ export function modJsonLd({ mod, locale, siteUrl, pageUrl }: ModJsonLdInput): Js
     offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD', availability: 'https://schema.org/InStock' },
     about: {
       '@type': 'VideoGame',
-      name: 'Sons of the Forest',
-      sameAs: STEAM_APP_URL,
+      name: gameLabel(mod.game),
+      sameAs: mod.game === 'the-forest' ? THE_FOREST_STEAM_URL : STEAM_APP_URL,
     },
     interactionStatistic: [
       {

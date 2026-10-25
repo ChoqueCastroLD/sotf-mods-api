@@ -490,5 +490,20 @@
   "upload_preflight_show_passed": "{count, plural, one {# bestandene Prüfung anzeigen} other {# bestandene Prüfungen anzeigen}}",
   "upload_preflight_hide_passed": "Bestandene Prüfungen ausblenden",
   "upload_step_file_hint_build": "Build-.json-Datei",
-  "upload_description_placeholder_build": "Was es ist, wie man es platziert, was Spieler wissen sollten…"
+  "upload_description_placeholder_build": "Was es ist, wie man es platziert, was Spieler wissen sollten…",
+  "upload_game_label": "Spiel",
+  "upload_game_hint": "Für welches Spiel ist diese Mod?",
+  "upload_loader_other": "Andere",
+  "upload_free_note": "Jeder Dateityp. Die Datei wird nur auf Sicherheit geprüft (kein RedLoader-Manifest nötig). Die Versionsnummer gibst du im Schritt Veröffentlichung ein.",
+  "upload_free_drop_hint": "Bis zu {max}, jeder Dateityp",
+  "upload_free_version_label": "Versionsnummer",
+  "upload_free_version_hint": "Zum Beispiel 1.0.0. Buchstaben, Zahlen, Punkte und Bindestriche.",
+  "upload_free_version_error": "Gib eine Versionsnummer ein, zum Beispiel 1.0.0.",
+  "upload_free_version_exists": "Diese Version gibt es für diese Mod schon.",
+  "upload_preflight_version_missing": "Gib die Versionsnummer im Schritt Veröffentlichung ein.",
+  "upload_preflight_version_invalid": "Die Versionsnummer darf nur Buchstaben, Zahlen, Punkte und Bindestriche enthalten.",
+  "upload_preflight_version_exists": "Diese Version gibt es für diese Mod schon.",
+  "upload_modloader_label": "Mod-Loader",
+  "upload_drop_title_free": "Mod-Datei hier ablegen",
+  "upload_file_intro_free": "Lade die Datei hoch, die Spieler installieren: eine .zip, .dll, .mod oder was dein Loader sonst nutzt."
 }

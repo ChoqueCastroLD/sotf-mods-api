@@ -1,18 +1,20 @@
 export type LocalizedString = import('../runtime.js').LocalizedString;
 export type Mod_Meta_Description_FactsInputs = {
     name: NonNullable<unknown>;
+    game: NonNullable<unknown>;
     kind: NonNullable<unknown>;
     author: NonNullable<unknown>;
+    loader: NonNullable<unknown>;
     count: NonNullable<unknown>;
     downloads: NonNullable<unknown>;
 };
 /**
 * | kind | count__plural | output |
 * | --- | --- | --- |
-* | "library" | "one" | "{name} is a Sons of the Forest library by {author} for RedLoader. {downloads} download. Free to download." |
-* | "library" | * | "{name} is a Sons of the Forest library by {author} for RedLoader. {downloads} downloads. Free to download." |
-* | * | "one" | "{name} is a Sons of the Forest mod by {author} for RedLoader. {downloads} download. Free to download." |
-* | * | * | "{name} is a Sons of the Forest mod by {author} for RedLoader. {downloads} downloads. Free to download." |
+* | "library" | "one" | "{name} is a {game} library by {author} for {loader}. {downloads} download. Free to download." |
+* | "library" | * | "{name} is a {game} library by {author} for {loader}. {downloads} downloads. Free to download." |
+* | * | "one" | "{name} is a {game} mod by {author} for {loader}. {downloads} download. Free to download." |
+* | * | * | "{name} is a {game} mod by {author} for {loader}. {downloads} downloads. Free to download." |
 *
 * @param {Mod_Meta_Description_FactsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

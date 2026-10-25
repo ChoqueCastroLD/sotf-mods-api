@@ -56,6 +56,8 @@ export interface UploadRequest {
   purpose: UploadPurpose;
   contentType: string;
   sha256?: string | null;
+  /** Mod files: `free` = not Sons of the Forest + RedLoader (any file, security checks only). */
+  profile?: 'redloader' | 'free';
   signal: AbortSignal;
   /** Previous session of the same file (resume). */
   session?: UploadSession | null;
@@ -215,6 +217,7 @@ async function createSession(request: UploadRequest): Promise<UploadSession> {
               size: request.file.size,
               contentType: request.contentType,
               ...(request.sha256 ? { sha256: request.sha256 } : {}),
+              ...(request.profile === 'free' ? { profile: 'free' as const } : {}),
             },
           },
           { signal: request.signal },

@@ -490,5 +490,20 @@
   "upload_preflight_show_passed": "{count, plural, one {# geslaagde controle tonen} other {# geslaagde controles tonen}}",
   "upload_preflight_hide_passed": "Geslaagde controles verbergen",
   "upload_step_file_hint_build": ".json-bestand van de build",
-  "upload_description_placeholder_build": "Wat het is, hoe je het plaatst, wat spelers moeten weten…"
+  "upload_description_placeholder_build": "Wat het is, hoe je het plaatst, wat spelers moeten weten…",
+  "upload_game_label": "Spel",
+  "upload_game_hint": "Voor welk spel is deze mod?",
+  "upload_loader_other": "Anders",
+  "upload_free_note": "Elk bestandstype. Het bestand krijgt alleen de veiligheidscontroles (geen RedLoader-manifest nodig). Het versienummer vul je in bij de stap Publiceren.",
+  "upload_free_drop_hint": "Tot {max}, elk bestandstype",
+  "upload_free_version_label": "Versienummer",
+  "upload_free_version_hint": "Bijvoorbeeld 1.0.0. Letters, cijfers, punten en streepjes.",
+  "upload_free_version_error": "Vul een versienummer in, bijvoorbeeld 1.0.0.",
+  "upload_free_version_exists": "Deze versie bestaat al voor deze mod.",
+  "upload_preflight_version_missing": "Vul het versienummer in bij de stap Publiceren.",
+  "upload_preflight_version_invalid": "Het versienummer mag alleen letters, cijfers, punten en streepjes bevatten.",
+  "upload_preflight_version_exists": "Deze versie bestaat al voor deze mod.",
+  "upload_modloader_label": "Modloader",
+  "upload_drop_title_free": "Sleep je modbestand hierheen",
+  "upload_file_intro_free": "Upload het bestand dat spelers installeren: een .zip, .dll, .mod of wat je loader ook gebruikt."
 }

@@ -2855,6 +2855,10 @@
   "explore_facet_tags_more": "更多标签",
   "explore_facet_updated": "更新时间",
   "explore_failed": "结果未能加载，正在重新加载页面…",
+  "explore_filter_game": "游戏",
+  "explore_filter_game_any": "两款游戏",
+  "explore_filter_loader": "模组加载器",
+  "explore_filter_loader_any": "任意加载器",
   "explore_filter_search_label": "筛选",
   "explore_filter_search_placeholder": "名称、标签或作者…",
   "explore_filters_apply": "应用筛选",
@@ -4024,6 +4028,7 @@
   "mod_install_intro": "按以下步骤手动安装 {name}，无需管理器。",
   "mod_install_manager_tip": "RedManager 可以替你安装和更新模组及其前置。",
   "mod_install_multiplayer": "多人游戏：{role}。",
+  "mod_install_other_loader": "此模组适用于 {loader}。请按照说明中的步骤安装；RedManager 无法安装它。",
   "mod_install_redloader_not_bepinex": "此模组需要 RedLoader，而不是 BepInEx。BepInEx 的模组和教程不适用于 Sons of the Forest。",
   "mod_install_step_dependencies_title": "先安装它的前置",
   "mod_install_step_download": "下载 {name}",
@@ -4136,6 +4141,7 @@
   "mod_license_other": "自定义许可证",
   "mod_license_reupload_with_credit": "注明作者后可转载",
   "mod_link_website": "网站",
+  "mod_loader_other": "其他",
   "mod_md_alert_caution": "小心",
   "mod_md_alert_important": "重要",
   "mod_md_alert_note": "注意",
@@ -4147,6 +4153,8 @@
       "declarations": [
         "input name",
         "input author",
+        "input loader",
+        "input game",
         "input kind",
         "input count",
         "input downloads"
@@ -4155,25 +4163,28 @@
         "kind"
       ],
       "match": {
-        "kind=library": "{name} 是 {author} 为 RedLoader 制作的 Sons of the Forest 前置库。已下载 {downloads} 次。免费下载。",
-        "kind=*": "{name} 是 {author} 为 RedLoader 制作的 Sons of the Forest 模组。已下载 {downloads} 次。免费下载。"
+        "kind=library": "{name} 是 {author} 为 {loader} 制作的 {game} 前置库。已下载 {downloads} 次。免费下载。",
+        "kind=*": "{name} 是 {author} 为 {loader} 制作的 {game} 模组。已下载 {downloads} 次。免费下载。"
       }
     }
   ],
+  "mod_meta_game": "游戏",
+  "mod_meta_loader": "模组加载器",
   "mod_meta_subpage_title": "{page} · {name}",
   "mod_meta_title": [
     {
       "declarations": [
         "input name",
         "input author",
+        "input game",
         "input kind"
       ],
       "selectors": [
         "kind"
       ],
       "match": {
-        "kind=library": "{name}：{author} 制作的 Sons of the Forest 前置库",
-        "kind=*": "{name}：{author} 制作的 Sons of the Forest 模组"
+        "kind=library": "{name}：{author} 制作的 {game} 前置库",
+        "kind=*": "{name}：{author} 制作的 {game} 模组"
       }
     }
   ],
@@ -4181,14 +4192,15 @@
     {
       "declarations": [
         "input name",
+        "input game",
         "input kind"
       ],
       "selectors": [
         "kind"
       ],
       "match": {
-        "kind=library": "{name}：Sons of the Forest 前置库",
-        "kind=*": "{name}：Sons of the Forest 模组"
+        "kind=library": "{name}：{game} 前置库",
+        "kind=*": "{name}：{game} 模组"
       }
     }
   ],
@@ -6871,6 +6883,7 @@
   "upload_drop_hint": "{type} · 最大 {max}",
   "upload_drop_replace": "拖入另一个文件以替换",
   "upload_drop_title_build": "把建筑 .json 拖到这里",
+  "upload_drop_title_free": "将模组文件拖到这里",
   "upload_drop_title_mod": "把 .zip 拖到这里",
   "upload_entries_more": [
     {
@@ -6918,6 +6931,7 @@
   "upload_failure_too_large": "文件超出你账号的上限。",
   "upload_failure_unsupported": "不接受这种文件类型。",
   "upload_file_intro_build": "拖入 BuildShare 导出的建筑 .json。缩略图、元素数量和版本会自动读取。",
+  "upload_file_intro_free": "上传玩家安装的文件：.zip、.dll、.mod 或你的加载器使用的任何格式。",
   "upload_file_intro_mod": "拖入你会发给玩家的 .zip。我们会先在浏览器中打开它并展示内容，上传前不会发送任何东西。",
   "upload_file_intro_version": "上传 {name} 的新文件。清单 ID 必须是 {manifestId}，版本需高于 {version}。",
   "upload_file_title_build": "你的 BuildShare 建筑",
@@ -6940,6 +6954,12 @@
   "upload_flag_zip_too_many_entries": "zip 中文件过多（最多 5000 个）。",
   "upload_flagged_detail": "其中有内容需要人工检查（见下方警告）。你仍可提交，批准后即会发布。",
   "upload_flagged_title": "版主会查看这个文件。",
+  "upload_free_drop_hint": "最大 {max}，任意文件类型",
+  "upload_free_note": "任何文件类型均可。文件只进行安全检查（不需要 RedLoader 清单）。版本号在“发布”步骤中填写。",
+  "upload_free_version_error": "请输入版本号，例如 1.0.0。",
+  "upload_free_version_exists": "该模组已有此版本。",
+  "upload_free_version_hint": "例如 1.0.0。可使用字母、数字、点和连字符。",
+  "upload_free_version_label": "版本号",
   "upload_gallery_added": [
     {
       "declarations": [
@@ -7010,6 +7030,8 @@
       }
     }
   ],
+  "upload_game_hint": "这个模组适用于哪款游戏？",
+  "upload_game_label": "游戏",
   "upload_image_no_preview": "已上传（处理完成后在页面上预览）",
   "upload_image_reading": "正在读取图片…",
   "upload_image_too_large": "图片最大 10 MB。",
@@ -7065,6 +7087,7 @@
   "upload_links_url": "链接 {n} 的地址",
   "upload_loader_hint": "你的模组能运行的最旧 RedLoader 版本。",
   "upload_loader_label": "最低 RedLoader 版本",
+  "upload_loader_other": "其他",
   "upload_loading": "正在加载…",
   "upload_manifest_author": "作者",
   "upload_manifest_dependencies": "依赖",
@@ -7089,6 +7112,7 @@
   "upload_markdown_write": "编辑",
   "upload_media_intro": "图片能帮助玩家做决定。有 3 张以上图片的页面下载量更高。",
   "upload_media_title": "媒体",
+  "upload_modloader_label": "模组加载器",
   "upload_multiplayer_all_players": "所有人都需要",
   "upload_multiplayer_all_players_hint": "会话中的每位玩家都必须安装。",
   "upload_multiplayer_client_side": "客户端",
@@ -7201,6 +7225,9 @@
   "upload_preflight_thumbnail_missing": "没有封面图片。",
   "upload_preflight_thumbnail_ok": "已设置封面。",
   "upload_preflight_title": "检查",
+  "upload_preflight_version_exists": "该模组已有此版本。",
+  "upload_preflight_version_invalid": "版本号只能包含字母、数字、点和连字符。",
+  "upload_preflight_version_missing": "请在“发布”步骤中填写版本号。",
   "upload_preflight_waiting": "草稿保存后会显示检查结果。",
   "upload_problems_label": "文件的错误和警告",
   "upload_progress_direct": "文件直接上传到存储。连接中断后可以继续上传。",

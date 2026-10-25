@@ -179,5 +179,9 @@
   "explore_search_builds_label": "Cerca build",
   "explore_noresults_query_title": "Nessun risultato per «{query}»",
   "explore_suggest_popular": "Mod popolari",
-  "explore_results_range": "{from, number}–{to, number} di {total, number}"
+  "explore_results_range": "{from, number}–{to, number} di {total, number}",
+  "explore_filter_game": "Gioco",
+  "explore_filter_game_any": "Entrambi i giochi",
+  "explore_filter_loader": "Mod loader",
+  "explore_filter_loader_any": "Qualsiasi loader"
 }

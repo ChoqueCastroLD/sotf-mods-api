@@ -179,5 +179,9 @@
   "explore_search_builds_label": "建築を検索",
   "explore_noresults_query_title": "「{query}」に一致する結果はありません",
   "explore_suggest_popular": "人気の MOD",
-  "explore_results_range": "{total, number} 件中 {from, number}–{to, number} 件"
+  "explore_results_range": "{total, number} 件中 {from, number}–{to, number} 件",
+  "explore_filter_game": "ゲーム",
+  "explore_filter_game_any": "両方のゲーム",
+  "explore_filter_loader": "MODローダー",
+  "explore_filter_loader_any": "すべてのローダー"
 }

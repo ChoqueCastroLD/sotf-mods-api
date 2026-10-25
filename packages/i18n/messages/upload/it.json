@@ -490,5 +490,20 @@
   "upload_preflight_show_passed": "{count, plural, one {Mostra # controllo superato} other {Mostra # controlli superati}}",
   "upload_preflight_hide_passed": "Nascondi i controlli superati",
   "upload_step_file_hint_build": "File .json della build",
-  "upload_description_placeholder_build": "Cos’è, come posizionarla, cosa devono sapere i giocatori…"
+  "upload_description_placeholder_build": "Cos’è, come posizionarla, cosa devono sapere i giocatori…",
+  "upload_game_label": "Gioco",
+  "upload_game_hint": "Per quale gioco è questa mod?",
+  "upload_loader_other": "Altro",
+  "upload_free_note": "Qualsiasi tipo di file. Il file riceve solo i controlli di sicurezza (non serve il manifest di RedLoader). Il numero di versione lo scrivi nel passaggio Pubblicazione.",
+  "upload_free_drop_hint": "Fino a {max}, qualsiasi tipo di file",
+  "upload_free_version_label": "Numero di versione",
+  "upload_free_version_hint": "Ad esempio 1.0.0. Lettere, numeri, punti e trattini.",
+  "upload_free_version_error": "Scrivi un numero di versione, ad esempio 1.0.0.",
+  "upload_free_version_exists": "Questa versione esiste già per questa mod.",
+  "upload_preflight_version_missing": "Scrivi il numero di versione nel passaggio Pubblicazione.",
+  "upload_preflight_version_invalid": "Il numero di versione può contenere solo lettere, numeri, punti e trattini.",
+  "upload_preflight_version_exists": "Questa versione esiste già per questa mod.",
+  "upload_modloader_label": "Mod loader",
+  "upload_drop_title_free": "Trascina qui il file della mod",
+  "upload_file_intro_free": "Carica il file che i giocatori installano: uno .zip, un .dll, un .mod o qualsiasi altro formato del tuo loader."
 }

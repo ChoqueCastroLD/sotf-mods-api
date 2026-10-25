@@ -3157,6 +3157,10 @@
   "explore_facet_tags_more": "Meer tags",
   "explore_facet_updated": "Bijgewerkt",
   "explore_failed": "De resultaten zijn niet geladen. De pagina wordt herladen…",
+  "explore_filter_game": "Spel",
+  "explore_filter_game_any": "Beide spellen",
+  "explore_filter_loader": "Modloader",
+  "explore_filter_loader_any": "Elke loader",
   "explore_filter_search_label": "Filteren",
   "explore_filter_search_placeholder": "Naam, tag of maker…",
   "explore_filters_apply": "Filters toepassen",
@@ -4421,6 +4425,7 @@
   "mod_install_intro": "Met deze stappen installeer je {name} handmatig, zonder manager.",
   "mod_install_manager_tip": "RedManager installeert en werkt mods en hun afhankelijkheden voor je bij.",
   "mod_install_multiplayer": "Multiplayer: {role}.",
+  "mod_install_other_loader": "Deze mod is gemaakt voor {loader}. Installeer hem met de instructies in de beschrijving; RedManager installeert hem niet.",
   "mod_install_redloader_not_bepinex": "Deze mod heeft RedLoader nodig, niet BepInEx. BepInEx-mods en -gidsen gelden niet voor Sons of the Forest.",
   "mod_install_step_dependencies_title": "Installeer eerst de afhankelijkheden",
   "mod_install_step_download": "Download {name}",
@@ -4533,6 +4538,7 @@
   "mod_license_other": "Eigen licentie",
   "mod_license_reupload_with_credit": "Opnieuw uploaden met naamsvermelding",
   "mod_link_website": "Website",
+  "mod_loader_other": "Anders",
   "mod_md_alert_caution": "Let op",
   "mod_md_alert_important": "Belangrijk",
   "mod_md_alert_note": "Opmerking",
@@ -4544,7 +4550,9 @@
       "declarations": [
         "input name",
         "input kind",
+        "input game",
         "input author",
+        "input loader",
         "input count",
         "input downloads",
         "local count__plural = count: plural"
@@ -4554,18 +4562,21 @@
         "count__plural"
       ],
       "match": {
-        "kind=library, count__plural=one": "{name} is een bibliotheek voor Sons of the Forest van {author}, voor RedLoader. {downloads} download. Gratis te downloaden.",
-        "kind=library, count__plural=*": "{name} is een bibliotheek voor Sons of the Forest van {author}, voor RedLoader. {downloads} downloads. Gratis te downloaden.",
-        "kind=*, count__plural=one": "{name} is een mod voor Sons of the Forest van {author}, voor RedLoader. {downloads} download. Gratis te downloaden.",
-        "kind=*, count__plural=*": "{name} is een mod voor Sons of the Forest van {author}, voor RedLoader. {downloads} downloads. Gratis te downloaden."
+        "kind=library, count__plural=one": "{name} is een bibliotheek voor {game} van {author}, voor {loader}. {downloads} download. Gratis te downloaden.",
+        "kind=library, count__plural=*": "{name} is een bibliotheek voor {game} van {author}, voor {loader}. {downloads} downloads. Gratis te downloaden.",
+        "kind=*, count__plural=one": "{name} is een mod voor {game} van {author}, voor {loader}. {downloads} download. Gratis te downloaden.",
+        "kind=*, count__plural=*": "{name} is een mod voor {game} van {author}, voor {loader}. {downloads} downloads. Gratis te downloaden."
       }
     }
   ],
+  "mod_meta_game": "Spel",
+  "mod_meta_loader": "Modloader",
   "mod_meta_subpage_title": "{page} · {name}",
   "mod_meta_title": [
     {
       "declarations": [
         "input name",
+        "input game",
         "input kind",
         "input author"
       ],
@@ -4573,8 +4584,8 @@
         "kind"
       ],
       "match": {
-        "kind=library": "{name}: Sons of the Forest-bibliotheek van {author}",
-        "kind=*": "{name}: Sons of the Forest-mod van {author}"
+        "kind=library": "{name}: {game}-bibliotheek van {author}",
+        "kind=*": "{name}: {game}-mod van {author}"
       }
     }
   ],
@@ -4582,14 +4593,15 @@
     {
       "declarations": [
         "input name",
+        "input game",
         "input kind"
       ],
       "selectors": [
         "kind"
       ],
       "match": {
-        "kind=library": "{name}: Sons of the Forest-bibliotheek",
-        "kind=*": "{name}: Sons of the Forest-mod"
+        "kind=library": "{name}: {game}-bibliotheek",
+        "kind=*": "{name}: {game}-mod"
       }
     }
   ],
@@ -7494,6 +7506,7 @@
   "upload_drop_hint": "{type} · tot {max}",
   "upload_drop_replace": "Sleep een ander bestand hierheen om het te vervangen",
   "upload_drop_title_build": "Sleep je build-.json hierheen",
+  "upload_drop_title_free": "Sleep je modbestand hierheen",
   "upload_drop_title_mod": "Sleep je .zip hierheen",
   "upload_entries_more": [
     {
@@ -7549,6 +7562,7 @@
   "upload_failure_too_large": "Het bestand is te groot voor je account.",
   "upload_failure_unsupported": "Dit bestandstype wordt niet geaccepteerd.",
   "upload_file_intro_build": "Sleep de door BuildShare geëxporteerde build-.json. Miniatuur, aantal elementen en versie worden automatisch gelezen.",
+  "upload_file_intro_free": "Upload het bestand dat spelers installeren: een .zip, .dll, .mod of wat je loader ook gebruikt.",
   "upload_file_intro_mod": "Sleep de .zip die je aan spelers zou geven. We openen hem eerst in je browser en tonen de inhoud voordat er iets wordt geüpload.",
   "upload_file_intro_version": "Upload het nieuwe bestand van {name}. Het manifest-id moet {manifestId} zijn en de versie hoger dan {version}.",
   "upload_file_title_build": "Je BuildShare-build",
@@ -7571,6 +7585,12 @@
   "upload_flag_zip_too_many_entries": "De zip bevat te veel bestanden (maximaal 5.000).",
   "upload_flagged_detail": "Iets erin vraagt een menselijke controle (zie de waarschuwingen hieronder). Je kunt toch indienen; het gaat live na goedkeuring.",
   "upload_flagged_title": "Een moderator bekijkt dit bestand.",
+  "upload_free_drop_hint": "Tot {max}, elk bestandstype",
+  "upload_free_note": "Elk bestandstype. Het bestand krijgt alleen de veiligheidscontroles (geen RedLoader-manifest nodig). Het versienummer vul je in bij de stap Publiceren.",
+  "upload_free_version_error": "Vul een versienummer in, bijvoorbeeld 1.0.0.",
+  "upload_free_version_exists": "Deze versie bestaat al voor deze mod.",
+  "upload_free_version_hint": "Bijvoorbeeld 1.0.0. Letters, cijfers, punten en streepjes.",
+  "upload_free_version_label": "Versienummer",
   "upload_gallery_added": [
     {
       "declarations": [
@@ -7652,6 +7672,8 @@
       }
     }
   ],
+  "upload_game_hint": "Voor welk spel is deze mod?",
+  "upload_game_label": "Spel",
   "upload_image_no_preview": "Geüpload (voorbeeld op de pagina na verwerking)",
   "upload_image_reading": "Afbeelding lezen…",
   "upload_image_too_large": "Afbeeldingen mogen tot 10 MB zijn.",
@@ -7707,6 +7729,7 @@
   "upload_links_url": "Adres van link {n}",
   "upload_loader_hint": "De oudste RedLoader-versie waarmee je mod werkt.",
   "upload_loader_label": "Minimale RedLoader",
+  "upload_loader_other": "Anders",
   "upload_loading": "Laden…",
   "upload_manifest_author": "Auteur",
   "upload_manifest_dependencies": "Afhankelijkheden",
@@ -7731,6 +7754,7 @@
   "upload_markdown_write": "Schrijven",
   "upload_media_intro": "Afbeeldingen helpen spelers kiezen. Vermeldingen met 3 of meer afbeeldingen worden vaker gedownload.",
   "upload_media_title": "Media",
+  "upload_modloader_label": "Modloader",
   "upload_multiplayer_all_players": "Iedereen heeft hem nodig",
   "upload_multiplayer_all_players_hint": "Elke speler in de sessie moet hem installeren.",
   "upload_multiplayer_client_side": "Clientzijde",
@@ -7851,6 +7875,9 @@
   "upload_preflight_thumbnail_missing": "Geen omslagafbeelding.",
   "upload_preflight_thumbnail_ok": "Omslag ingesteld.",
   "upload_preflight_title": "Controles",
+  "upload_preflight_version_exists": "Deze versie bestaat al voor deze mod.",
+  "upload_preflight_version_invalid": "Het versienummer mag alleen letters, cijfers, punten en streepjes bevatten.",
+  "upload_preflight_version_missing": "Vul het versienummer in bij de stap Publiceren.",
   "upload_preflight_waiting": "De checks verschijnen zodra je concept is opgeslagen.",
   "upload_problems_label": "Fouten en waarschuwingen van het bestand",
   "upload_progress_direct": "Gaat rechtstreeks naar de opslag. Valt de verbinding weg, dan kun je hervatten.",

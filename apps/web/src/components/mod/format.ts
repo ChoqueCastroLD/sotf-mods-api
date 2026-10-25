@@ -1,7 +1,9 @@
 /**
  * Labels and small derivations shared by the mod page components (WP-62).
  */
+
 import type { MultiplayerRole, Platform } from '@sotf/contracts/common';
+import { GAME_NAMES, LOADER_NAMES } from '@sotf/contracts/games';
 import { downloadPath, encodePathSegment } from '@sotf/contracts/seo';
 import { type Locale, toHtmlLang } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
@@ -89,4 +91,12 @@ export function pluralTemplates(locale: Locale, message: (count: number) => stri
 /** Some uploads carry a GUID instead of a version number: those are not printed next to titles. */
 export function isShortVersion(version: string): boolean {
   return version.length <= 18;
+}
+
+/** Display name of a mod's game and loader (`@sotf/contracts/games`; game titles are not translated). */
+export function gameLabel(game: ModDetailDTO['game']): string {
+  return GAME_NAMES[game];
+}
+export function loaderLabel(loader: ModDetailDTO['modLoader']): string {
+  return loader === 'other' ? m.mod_loader_other() : LOADER_NAMES[loader];
 }

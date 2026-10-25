@@ -33,6 +33,9 @@ export const MOD_PLATFORMS = ['Client', 'Server', 'Universal'] as const;
 export const MULTIPLAYER_ROLES = ['singleplayer_only', 'client_side', 'host_only', 'all_players', 'unknown'] as const;
 export const DEDICATED_SERVER_SUPPORT = ['yes', 'no', 'partial', 'unknown'] as const;
 export const SAFE_TO_REMOVE = ['yes', 'no', 'unknown'] as const;
+/** Game and mod loader (migration 2270; `@sotf/contracts/games`). */
+export const MOD_GAME_VALUES = ['sotf', 'the-forest'] as const;
+export const MOD_LOADER_VALUES = ['redloader', 'bepinex', 'melonloader', 'modapi', 'other'] as const;
 export const COMPAT_STATUSES = ['works', 'mixed', 'broken', 'untested'] as const;
 export type CompatStatus = (typeof COMPAT_STATUSES)[number];
 /** `"Mod"."descriptionFormat"`: `legacy` → `legacyHtml` profile, `markdown` → `full` profile. */
@@ -113,6 +116,8 @@ export const mod = pgTable(
     safeToRemove: text('safeToRemove').$type<(typeof SAFE_TO_REMOVE)[number]>(),
     /** Opt-in: only the latest version can be downloaded (older ones answer 410). */
     latestVersionOnly: boolean('latestVersionOnly').notNull().default(false),
+    game: text('game').$type<(typeof MOD_GAME_VALUES)[number]>().notNull().default('sotf'),
+    modLoader: text('modLoader').$type<(typeof MOD_LOADER_VALUES)[number]>().notNull().default('redloader'),
     logColor: text('logColor'),
     originalAuthorName: text('originalAuthorName'),
     originalAuthorUrl: text('originalAuthorUrl'),

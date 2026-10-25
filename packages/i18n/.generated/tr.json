@@ -3157,6 +3157,10 @@
   "explore_facet_tags_more": "Diğer etiketler",
   "explore_facet_updated": "Güncellenme",
   "explore_failed": "Sonuçlar yüklenemedi. Sayfa yeniden yükleniyor…",
+  "explore_filter_game": "Oyun",
+  "explore_filter_game_any": "Her iki oyun",
+  "explore_filter_loader": "Mod yükleyici",
+  "explore_filter_loader_any": "Herhangi bir yükleyici",
   "explore_filter_search_label": "Filtrele",
   "explore_filter_search_placeholder": "Ad, etiket veya üretici…",
   "explore_filters_apply": "Filtreleri uygula",
@@ -4421,6 +4425,7 @@
   "mod_install_intro": "Bu adımlarla {name} yönetici kullanmadan elle kurulur.",
   "mod_install_manager_tip": "RedManager modları ve bağımlılıklarını senin için kurar ve günceller.",
   "mod_install_multiplayer": "Çok oyunculu: {role}.",
+  "mod_install_other_loader": "Bu mod {loader} için yapıldı. Açıklamadaki talimatlarla kur; RedManager bunu kurmaz.",
   "mod_install_redloader_not_bepinex": "Bu mod BepInEx değil, RedLoader gerektirir. BepInEx modları ve rehberleri Sons of the Forest için geçerli değildir.",
   "mod_install_step_dependencies_title": "Önce bağımlılıklarını kur",
   "mod_install_step_download": "{name} indir",
@@ -4533,6 +4538,7 @@
   "mod_license_other": "Özel lisans",
   "mod_license_reupload_with_credit": "Kaynak göstererek yeniden yükleme",
   "mod_link_website": "Web sitesi",
+  "mod_loader_other": "Diğer",
   "mod_md_alert_caution": "Dikkat",
   "mod_md_alert_important": "Önemli",
   "mod_md_alert_note": "Not",
@@ -4544,6 +4550,8 @@
       "declarations": [
         "input name",
         "input author",
+        "input loader",
+        "input game",
         "input kind",
         "input count",
         "input downloads",
@@ -4554,27 +4562,30 @@
         "count__plural"
       ],
       "match": {
-        "kind=library, count__plural=one": "{name}, {author} tarafından RedLoader için yapılmış bir Sons of the Forest kütüphanesi. {downloads} indirme. Ücretsiz indirme.",
-        "kind=library, count__plural=*": "{name}, {author} tarafından RedLoader için yapılmış bir Sons of the Forest kütüphanesi. {downloads} indirme. Ücretsiz indirme.",
-        "kind=*, count__plural=one": "{name}, {author} tarafından RedLoader için yapılmış bir Sons of the Forest modu. {downloads} indirme. Ücretsiz indirme.",
-        "kind=*, count__plural=*": "{name}, {author} tarafından RedLoader için yapılmış bir Sons of the Forest modu. {downloads} indirme. Ücretsiz indirme."
+        "kind=library, count__plural=one": "{name}, {author} tarafından {loader} için yapılmış bir {game} kütüphanesi. {downloads} indirme. Ücretsiz indirme.",
+        "kind=library, count__plural=*": "{name}, {author} tarafından {loader} için yapılmış bir {game} kütüphanesi. {downloads} indirme. Ücretsiz indirme.",
+        "kind=*, count__plural=one": "{name}, {author} tarafından {loader} için yapılmış bir {game} modu. {downloads} indirme. Ücretsiz indirme.",
+        "kind=*, count__plural=*": "{name}, {author} tarafından {loader} için yapılmış bir {game} modu. {downloads} indirme. Ücretsiz indirme."
       }
     }
   ],
+  "mod_meta_game": "Oyun",
+  "mod_meta_loader": "Mod yükleyici",
   "mod_meta_subpage_title": "{page} · {name}",
   "mod_meta_title": [
     {
       "declarations": [
         "input name",
         "input author",
+        "input game",
         "input kind"
       ],
       "selectors": [
         "kind"
       ],
       "match": {
-        "kind=library": "{name}: {author} tarafından Sons of the Forest kütüphanesi",
-        "kind=*": "{name}: {author} tarafından Sons of the Forest modu"
+        "kind=library": "{name}: {author} tarafından {game} kütüphanesi",
+        "kind=*": "{name}: {author} tarafından {game} modu"
       }
     }
   ],
@@ -4582,14 +4593,15 @@
     {
       "declarations": [
         "input name",
+        "input game",
         "input kind"
       ],
       "selectors": [
         "kind"
       ],
       "match": {
-        "kind=library": "{name}: Sons of the Forest kütüphanesi",
-        "kind=*": "{name}: Sons of the Forest modu"
+        "kind=library": "{name}: {game} kütüphanesi",
+        "kind=*": "{name}: {game} modu"
       }
     }
   ],
@@ -7494,6 +7506,7 @@
   "upload_drop_hint": "{type} · en fazla {max}",
   "upload_drop_replace": "Değiştirmek için başka bir dosya bırak",
   "upload_drop_title_build": "Yapı .json dosyanı buraya bırak",
+  "upload_drop_title_free": "Mod dosyanı buraya bırak",
   "upload_drop_title_mod": ".zip dosyanı buraya bırak",
   "upload_entries_more": [
     {
@@ -7549,6 +7562,7 @@
   "upload_failure_too_large": "Dosya hesabın için çok büyük.",
   "upload_failure_unsupported": "Bu dosya türü kabul edilmiyor.",
   "upload_file_intro_build": "BuildShare’in dışa aktardığı yapı .json dosyasını bırak. Küçük resim, öğe sayısı ve sürüm otomatik okunur.",
+  "upload_file_intro_free": "Oyuncuların kurduğu dosyayı yükle: .zip, .dll, .mod ya da yükleyicinin kullandığı başka bir dosya.",
   "upload_file_intro_mod": "Oyunculara vereceğin .zip dosyasını bırak. Önce tarayıcında açıp içeriğini gösteriyoruz, hiçbir şey yüklenmeden önce.",
   "upload_file_intro_version": "{name} için yeni dosyayı yükle. Manifest kimliği {manifestId} olmalı ve sürümü {version} sürümünden büyük olmalı.",
   "upload_file_title_build": "BuildShare yapın",
@@ -7571,6 +7585,12 @@
   "upload_flag_zip_too_many_entries": "Zip’te çok fazla dosya var (en fazla 5.000).",
   "upload_flagged_detail": "İçindeki bir şey insan kontrolü gerektiriyor (aşağıdaki uyarılara bak). Yine de gönderebilirsin; onaylanınca yayına girer.",
   "upload_flagged_title": "Bir moderatör bu dosyaya bakacak.",
+  "upload_free_drop_hint": "{max} boyutuna kadar, her dosya türü",
+  "upload_free_note": "Her dosya türü olur. Dosya yalnızca güvenlik kontrollerinden geçer (RedLoader manifesti gerekmez). Sürüm numarasını Yayın adımında yazarsın.",
+  "upload_free_version_error": "Bir sürüm numarası yaz, örneğin 1.0.0.",
+  "upload_free_version_exists": "Bu sürüm bu mod için zaten var.",
+  "upload_free_version_hint": "Örneğin 1.0.0. Harfler, rakamlar, nokta ve tire.",
+  "upload_free_version_label": "Sürüm numarası",
   "upload_gallery_added": [
     {
       "declarations": [
@@ -7652,6 +7672,8 @@
       }
     }
   ],
+  "upload_game_hint": "Bu mod hangi oyun için?",
+  "upload_game_label": "Oyun",
   "upload_image_no_preview": "Yüklendi (işlendikten sonra sayfada önizlenir)",
   "upload_image_reading": "Görsel okunuyor…",
   "upload_image_too_large": "Görseller en fazla 10 MB olabilir.",
@@ -7707,6 +7729,7 @@
   "upload_links_url": "{n}. bağlantının adresi",
   "upload_loader_hint": "Modunun çalıştığı en eski RedLoader sürümü.",
   "upload_loader_label": "En düşük RedLoader",
+  "upload_loader_other": "Diğer",
   "upload_loading": "Yükleniyor…",
   "upload_manifest_author": "Yapımcı",
   "upload_manifest_dependencies": "Bağımlılıklar",
@@ -7731,6 +7754,7 @@
   "upload_markdown_write": "Yaz",
   "upload_media_intro": "Görseller oyuncuların karar vermesine yardımcı olur. 3 veya daha fazla görseli olan sayfalar daha çok indirilir.",
   "upload_media_title": "Medya",
+  "upload_modloader_label": "Mod yükleyici",
   "upload_multiplayer_all_players": "Herkesin ihtiyacı var",
   "upload_multiplayer_all_players_hint": "Oturumdaki her oyuncu kurmalı.",
   "upload_multiplayer_client_side": "İstemci tarafı",
@@ -7851,6 +7875,9 @@
   "upload_preflight_thumbnail_missing": "Kapak görseli yok.",
   "upload_preflight_thumbnail_ok": "Kapak ayarlandı.",
   "upload_preflight_title": "Kontroller",
+  "upload_preflight_version_exists": "Bu sürüm bu mod için zaten var.",
+  "upload_preflight_version_invalid": "Sürüm numarası yalnızca harf, rakam, nokta ve tire içerebilir.",
+  "upload_preflight_version_missing": "Sürüm numarasını Yayın adımında yaz.",
   "upload_preflight_waiting": "Kontroller taslağın kaydedilince görünür.",
   "upload_problems_label": "Dosyanın hataları ve uyarıları",
   "upload_progress_direct": "Doğrudan depolamaya gönderiliyor. Bağlantı koparsa devam edebilirsin.",

@@ -1,8 +1,8 @@
 {
-  "mod_meta_title": "{name}: {kind, select, library {bibliotek} other {mod}} till Sons of the Forest av {author}",
-  "mod_meta_title_short": "{name}: {kind, select, library {bibliotek} other {mod}} till Sons of the Forest",
+  "mod_meta_title": "{name}: {kind, select, library {bibliotek} other {mod}} till {game} av {author}",
+  "mod_meta_title_short": "{name}: {kind, select, library {bibliotek} other {mod}} till {game}",
   "mod_meta_subpage_title": "{page} · {name}",
-  "mod_meta_description_facts": "{name} är {kind, select, library {ett bibliotek} other {en mod}} till Sons of the Forest av {author} för RedLoader. {count, plural, one {{downloads} nedladdning} other {{downloads} nedladdningar}}. Gratis nedladdning.",
+  "mod_meta_description_facts": "{name} är {kind, select, library {ett bibliotek} other {en mod}} till {game} av {author} för {loader}. {count, plural, one {{downloads} nedladdning} other {{downloads} nedladdningar}}. Gratis nedladdning.",
   "mod_versions_meta_description": "{count, plural, one {Den # versionen} other {Alla # versioner}} av {name} till Sons of the Forest, med ändringsloggar, filstorlekar och kompatibilitet. Senaste: v{version}.",
   "mod_version_meta_description": "{name} v{version} till Sons of the Forest, släppt {date}: ändringslogg, filstorlek, SHA-256, säkerhetsskanning och kompatibilitet.",
   "mod_reviews_meta_description": "Spelarrecensioner av {name}, en mod till Sons of the Forest: {count, plural, one {# recension} other {# recensioner}} med betyg, verifierade nedladdningar och svar från skaparen.",
@@ -214,5 +214,9 @@
   "mod_fact_multiplayer": "Flerspelare",
   "mod_toast_latest_only": "Bara den senaste versionen av {name} kan laddas ner. Skaparen har stängt av äldre versioner.",
   "mod_versions_latest_only": "Skaparen tillåter bara nedladdning av den senaste versionen.",
-  "mod_version_download_off": "Inte tillgänglig"
+  "mod_version_download_off": "Inte tillgänglig",
+  "mod_meta_game": "Spel",
+  "mod_meta_loader": "Modladdare",
+  "mod_loader_other": "Annan",
+  "mod_install_other_loader": "Modden är gjord för {loader}. Installera den med instruktionerna i beskrivningen; RedManager installerar den inte."
 }

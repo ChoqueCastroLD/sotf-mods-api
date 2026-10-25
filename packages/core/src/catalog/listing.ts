@@ -105,6 +105,8 @@ function matches(
     return false;
   if (query.dedicated === 'yes' && entry.dedicatedServer !== 'yes') return false;
   if (skip !== 'platform' && query.platform && entry.platform !== query.platform) return false;
+  if (query.game && entry.game !== query.game) return false;
+  if (query.loader && entry.modLoader !== query.loader) return false;
   if (skip !== 'updatedWithin' && r.updatedSince !== null && entry.lastReleasedAt.getTime() < r.updatedSince)
     return false;
   if (

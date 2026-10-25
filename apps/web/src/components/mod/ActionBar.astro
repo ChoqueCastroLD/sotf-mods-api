@@ -63,7 +63,7 @@ const LINK =
       class={buttonClasses({ variant: 'secondary', size: 'md' })}
     >
       <Icon icon={BookOpen} size={16} />
-      <span>{m.mod_action_install_manager()}</span>
+      <span>{mod.modLoader === 'redloader' && mod.game === 'sotf' ? m.mod_action_install_manager() : m.mod_install_title()}</span>
     </a>
   </div>
 

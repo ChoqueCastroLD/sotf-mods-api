@@ -6,7 +6,9 @@
  * Steps stay mounted once visited (hidden when not current), so an image upload or the Markdown
  * editor survives moving between steps.
  */
+
 import { isApiError } from '@sotf/contracts/client';
+import { FreeVersion, type ModGame, type ModLoader, uploadProfileOf } from '@sotf/contracts/games';
 import type { StudioModDTO, SubmitResultDTO } from '@sotf/contracts/studio';
 import { maxUploadBytes, UPLOAD_LIMITS } from '@sotf/contracts/uploads';
 import { changeWhere, normalizeWhere } from '@sotf/contracts/where';
@@ -205,6 +207,16 @@ export function PublishWizard({ mode, initial, target = null, onDraftCreated, on
     setPolling(codes.has('file_inspecting') || codes.has('media_processing'));
   }, [server]);
 
+  // ----- Game and loader ---------------------------------------------------------------------------
+  // New mod: chosen on step ①; new version: the mod's own; builds are Sons of the Forest only.
+  const game: ModGame = isBuild ? 'sotf' : mode === 'version' ? (target?.mod.game ?? 'sotf') : (data.game ?? 'sotf');
+  const modLoader: ModLoader = isBuild
+    ? 'redloader'
+    : mode === 'version'
+      ? (target?.mod.modLoader ?? 'redloader')
+      : (data.modLoader ?? 'redloader');
+  const free = !isBuild && uploadProfileOf(game, modLoader) === 'free';
+
   // ----- File --------------------------------------------------------------------------------
   const purpose = isBuild ? 'build_file' : 'mod_file';
   const limits = UPLOAD_LIMITS[purpose];
@@ -233,6 +245,7 @@ export function PublishWizard({ mode, initial, target = null, onDraftCreated, on
     extensions: limits.extensions,
     contentTypes: limits.contentTypes,
     maxBytes,
+    free,
     precheck,
     onUploaded: (upload, report) => {
       if (report?.kind === 'build' && report.blueprint?.thumbnailBase64) {
@@ -271,10 +284,13 @@ export function PublishWizard({ mode, initial, target = null, onDraftCreated, on
   }, [fileUpload.state.phase]);
 
   const report = fileUpload.state.report;
-  const manifest =
-    (report?.kind === 'zip' ? report.manifest : null) ?? fileUpload.state.upload?.inspection?.manifest ?? null;
-  const fileVersion = manifest?.version ?? data.version?.version ?? null;
-  const versionCheck = !isBuild && fileVersion ? checkNextVersion(fileVersion, existingVersions) : null;
+  const manifest = free
+    ? null
+    : ((report?.kind === 'zip' ? report.manifest : null) ?? fileUpload.state.upload?.inspection?.manifest ?? null);
+  const fileVersion = free
+    ? data.version?.version?.trim() || null
+    : (manifest?.version ?? data.version?.version ?? null);
+  const versionCheck = !isBuild && !free && fileVersion ? checkNextVersion(fileVersion, existingVersions) : null;
   const manifestId = target?.mod.manifestId ?? manifest?.id ?? null;
 
   // ----- Navigation ----------------------------------------------------------------------------
@@ -321,7 +337,17 @@ export function PublishWizard({ mode, initial, target = null, onDraftCreated, on
   const previous = index > 0 ? steps[index - 1] : null;
   const next = index < steps.length - 1 ? steps[index + 1] : null;
 
-  const problems = useMemo(() => stepProblems(step, mode, data, { isHttpUrl, isLoaderVersion }), [step, mode, data]);
+  const problems = useMemo(
+    () =>
+      stepProblems(step, mode, data, {
+        isHttpUrl,
+        isLoaderVersion,
+        freeVersionOk: free
+          ? (value: string) => FreeVersion.safeParse(value).success && !existingVersions.includes(value.trim())
+          : undefined,
+      }),
+    [step, mode, data, free, existingVersions],
+  );
   const failedFields = useMemo(
     () => (attempted.has(step) ? new Set<string>(problems.map((problem) => problem.field)) : new Set<string>()),
     [attempted, step, problems],
@@ -483,6 +509,27 @@ export function PublishWizard({ mode, initial, target = null, onDraftCreated, on
                     }
                     headingId={headingId(id)}
                     missing={failedFields.has('file') && !data.fileUploadId}
+                    free={free}
+                    gameLoader={
+                      mode === 'mod'
+                        ? {
+                            game,
+                            loader: modLoader,
+                            onChange: ({ game: nextGame, loader: nextLoader }) => {
+                              const changesChecks =
+                                uploadProfileOf(nextGame, nextLoader) !== uploadProfileOf(game, modLoader);
+                              // Another set of checks applies: the file already sent has to be sent again.
+                              if (changesChecks && data.fileUploadId) fileUpload.reset();
+                              setData((d) => ({
+                                ...d,
+                                game: nextGame,
+                                modLoader: nextLoader,
+                                ...(changesChecks ? { fileUploadId: undefined } : {}),
+                              }));
+                            },
+                          }
+                        : null
+                    }
                   />
                 ) : null}
                 {id === 'details' ? (
@@ -503,6 +550,8 @@ export function PublishWizard({ mode, initial, target = null, onDraftCreated, on
                     manifestId={manifestId}
                     manifestDependencies={manifest?.dependencies ?? []}
                     failed={failedFields}
+                    showGameBuilds={game === 'sotf'}
+                    showLoaderMin={modLoader === 'redloader'}
                     headingId={headingId(id)}
                   />
                 ) : null}
@@ -518,6 +567,10 @@ export function PublishWizard({ mode, initial, target = null, onDraftCreated, on
                     fileVersion={fileVersion}
                     check={mode === 'version' ? versionCheck : null}
                     headingId={headingId(id)}
+                    free={free}
+                    existingVersions={existingVersions}
+                    versionFailed={failedFields.has('version')}
+                    showGameBuilds={game === 'sotf'}
                   />
                 ) : null}
                 {id === 'review' ? (

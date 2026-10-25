@@ -490,5 +490,20 @@
   "upload_preflight_show_passed": "{count, plural, other {显示 # 项已通过的检查}}",
   "upload_preflight_hide_passed": "隐藏已通过的检查",
   "upload_step_file_hint_build": "建筑 .json 文件",
-  "upload_description_placeholder_build": "它是什么、怎么放置、玩家需要了解什么…"
+  "upload_description_placeholder_build": "它是什么、怎么放置、玩家需要了解什么…",
+  "upload_game_label": "游戏",
+  "upload_game_hint": "这个模组适用于哪款游戏？",
+  "upload_loader_other": "其他",
+  "upload_free_note": "任何文件类型均可。文件只进行安全检查（不需要 RedLoader 清单）。版本号在“发布”步骤中填写。",
+  "upload_free_drop_hint": "最大 {max}，任意文件类型",
+  "upload_free_version_label": "版本号",
+  "upload_free_version_hint": "例如 1.0.0。可使用字母、数字、点和连字符。",
+  "upload_free_version_error": "请输入版本号，例如 1.0.0。",
+  "upload_free_version_exists": "该模组已有此版本。",
+  "upload_preflight_version_missing": "请在“发布”步骤中填写版本号。",
+  "upload_preflight_version_invalid": "版本号只能包含字母、数字、点和连字符。",
+  "upload_preflight_version_exists": "该模组已有此版本。",
+  "upload_modloader_label": "模组加载器",
+  "upload_drop_title_free": "将模组文件拖到这里",
+  "upload_file_intro_free": "上传玩家安装的文件：.zip、.dll、.mod 或你的加载器使用的任何格式。"
 }

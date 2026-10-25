@@ -18,6 +18,7 @@ import {
   arrayParam,
   DETAIL_VISIBLE,
   firstRow,
+  LEGACY_GAME,
   likeContains,
   rows,
   VERSION_VISIBLE,
@@ -133,7 +134,7 @@ const MOD_FROM = sql`"Mod" m
 
 /** WHERE clause of `GET /api/mods` (research/01 §2.3 + the v2 deviations of PLAN §5.5). */
 export function legacyListWhere(filter: LegacyModsFilter): SQL {
-  const conditions: SQL[] = [];
+  const conditions: SQL[] = [LEGACY_GAME];
   if (filter.search !== null) {
     const pattern = likeContains(filter.search);
     conditions.push(sql`(m."name" ILIKE ${pattern} OR m."description" ILIKE ${pattern} OR u."name" ILIKE ${pattern})`);
@@ -309,7 +310,7 @@ export async function listLegacyFeatured(
   const found = await modRows(
     db,
     sql`SELECT ${MOD_COLUMNS} FROM ${MOD_FROM}
-         WHERE m."status" = 'published' AND NOT m."isNSFW" AND m."type" = ${type}
+         WHERE m."status" = 'published' AND NOT m."isNSFW" AND m."type" = ${type} AND ${LEGACY_GAME}
          ORDER BY m."lastWeekDownloads" DESC, m."id" DESC LIMIT ${limit}`,
   );
   const ids = found.map((m) => m.id);

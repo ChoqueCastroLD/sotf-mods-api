@@ -3157,6 +3157,10 @@
   "explore_facet_tags_more": "Mais tags",
   "explore_facet_updated": "Atualizado",
   "explore_failed": "Os resultados não carregaram. Recarregando a página…",
+  "explore_filter_game": "Jogo",
+  "explore_filter_game_any": "Ambos os jogos",
+  "explore_filter_loader": "Carregador de mods",
+  "explore_filter_loader_any": "Qualquer carregador",
   "explore_filter_search_label": "Filtrar",
   "explore_filter_search_placeholder": "Nome, tag ou autor…",
   "explore_filters_apply": "Aplicar filtros",
@@ -4421,6 +4425,7 @@
   "mod_install_intro": "Estes passos instalam {name} manualmente, sem gerenciador.",
   "mod_install_manager_tip": "O RedManager instala e atualiza os mods e as dependências para você.",
   "mod_install_multiplayer": "Multijogador: {role}.",
+  "mod_install_other_loader": "Este mod foi feito para {loader}. Instale seguindo as instruções da descrição; o RedManager não o instala.",
   "mod_install_redloader_not_bepinex": "Este mod precisa do RedLoader, não do BepInEx. Mods e guias de BepInEx não valem para Sons of the Forest.",
   "mod_install_step_dependencies_title": "Instale as dependências primeiro",
   "mod_install_step_download": "Baixe {name}",
@@ -4533,6 +4538,7 @@
   "mod_license_other": "Licença própria",
   "mod_license_reupload_with_credit": "Reenvio com crédito",
   "mod_link_website": "Site",
+  "mod_loader_other": "Outro",
   "mod_md_alert_caution": "Cuidado",
   "mod_md_alert_important": "Importante",
   "mod_md_alert_note": "Nota",
@@ -4544,7 +4550,9 @@
       "declarations": [
         "input name",
         "input kind",
+        "input game",
         "input author",
+        "input loader",
         "input count",
         "input downloads",
         "local count__plural = count: plural"
@@ -4554,27 +4562,30 @@
         "count__plural"
       ],
       "match": {
-        "kind=library, count__plural=one": "{name} é uma biblioteca de Sons of the Forest feito por {author} para o RedLoader. {downloads} download. Download gratuito.",
-        "kind=library, count__plural=*": "{name} é uma biblioteca de Sons of the Forest feito por {author} para o RedLoader. {downloads} downloads. Download gratuito.",
-        "kind=*, count__plural=one": "{name} é um mod de Sons of the Forest feito por {author} para o RedLoader. {downloads} download. Download gratuito.",
-        "kind=*, count__plural=*": "{name} é um mod de Sons of the Forest feito por {author} para o RedLoader. {downloads} downloads. Download gratuito."
+        "kind=library, count__plural=one": "{name} é uma biblioteca de {game} feito por {author} para o {loader}. {downloads} download. Download gratuito.",
+        "kind=library, count__plural=*": "{name} é uma biblioteca de {game} feito por {author} para o {loader}. {downloads} downloads. Download gratuito.",
+        "kind=*, count__plural=one": "{name} é um mod de {game} feito por {author} para o {loader}. {downloads} download. Download gratuito.",
+        "kind=*, count__plural=*": "{name} é um mod de {game} feito por {author} para o {loader}. {downloads} downloads. Download gratuito."
       }
     }
   ],
+  "mod_meta_game": "Jogo",
+  "mod_meta_loader": "Carregador de mods",
   "mod_meta_subpage_title": "{page} · {name}",
   "mod_meta_title": [
     {
       "declarations": [
         "input name",
         "input kind",
+        "input game",
         "input author"
       ],
       "selectors": [
         "kind"
       ],
       "match": {
-        "kind=library": "{name}: biblioteca de Sons of the Forest por {author}",
-        "kind=*": "{name}: mod de Sons of the Forest por {author}"
+        "kind=library": "{name}: biblioteca de {game} por {author}",
+        "kind=*": "{name}: mod de {game} por {author}"
       }
     }
   ],
@@ -4582,14 +4593,15 @@
     {
       "declarations": [
         "input name",
-        "input kind"
+        "input kind",
+        "input game"
       ],
       "selectors": [
         "kind"
       ],
       "match": {
-        "kind=library": "{name}: biblioteca de Sons of the Forest",
-        "kind=*": "{name}: mod de Sons of the Forest"
+        "kind=library": "{name}: biblioteca de {game}",
+        "kind=*": "{name}: mod de {game}"
       }
     }
   ],
@@ -7494,6 +7506,7 @@
   "upload_drop_hint": "{type} · até {max}",
   "upload_drop_replace": "Solte outro arquivo para substituí-lo",
   "upload_drop_title_build": "Solte o .json da sua build aqui",
+  "upload_drop_title_free": "Solte aqui o arquivo do mod",
   "upload_drop_title_mod": "Solte seu .zip aqui",
   "upload_entries_more": [
     {
@@ -7549,6 +7562,7 @@
   "upload_failure_too_large": "O arquivo é grande demais para sua conta.",
   "upload_failure_unsupported": "Este tipo de arquivo não é aceito.",
   "upload_file_intro_build": "Solte o .json da build exportado pelo BuildShare. A miniatura, o número de elementos e a versão são lidos automaticamente.",
+  "upload_file_intro_free": "Envie o arquivo que os jogadores instalam: um .zip, um .dll, um .mod ou o que o seu carregador usar.",
   "upload_file_intro_mod": "Solte o .zip que você daria aos jogadores. Primeiro o abrimos no seu navegador e mostramos o conteúdo antes de enviar qualquer coisa.",
   "upload_file_intro_version": "Envie o novo arquivo de {name}. O id do manifest deve ser {manifestId} e a versão maior que {version}.",
   "upload_file_title_build": "Sua build do BuildShare",
@@ -7571,6 +7585,12 @@
   "upload_flag_zip_too_many_entries": "O zip tem arquivos demais (máximo de 5.000).",
   "upload_flagged_detail": "Algo nele precisa de uma verificação humana (veja os avisos abaixo). Você ainda pode enviar; ele será publicado após a aprovação.",
   "upload_flagged_title": "Um moderador vai analisar este arquivo.",
+  "upload_free_drop_hint": "Até {max}, qualquer tipo de arquivo",
+  "upload_free_note": "Qualquer tipo de arquivo. O arquivo passa apenas pelas verificações de segurança (não precisa de manifesto do RedLoader). Você digita o número da versão na etapa Publicação.",
+  "upload_free_version_error": "Digite um número de versão, por exemplo 1.0.0.",
+  "upload_free_version_exists": "Esta versão já existe para este mod.",
+  "upload_free_version_hint": "Por exemplo 1.0.0. Letras, números, pontos e hífens.",
+  "upload_free_version_label": "Número da versão",
   "upload_gallery_added": [
     {
       "declarations": [
@@ -7652,6 +7672,8 @@
       }
     }
   ],
+  "upload_game_hint": "Para qual jogo é este mod?",
+  "upload_game_label": "Jogo",
   "upload_image_no_preview": "Enviada (prévia na página depois do processamento)",
   "upload_image_reading": "Lendo a imagem…",
   "upload_image_too_large": "As imagens podem ter até 10 MB.",
@@ -7707,6 +7729,7 @@
   "upload_links_url": "Endereço do link {n}",
   "upload_loader_hint": "A versão mais antiga do RedLoader com que seu mod funciona.",
   "upload_loader_label": "RedLoader mínimo",
+  "upload_loader_other": "Outro",
   "upload_loading": "Carregando…",
   "upload_manifest_author": "Autor",
   "upload_manifest_dependencies": "Dependências",
@@ -7731,6 +7754,7 @@
   "upload_markdown_write": "Escrever",
   "upload_media_intro": "As imagens ajudam os jogadores a decidir. Fichas com 3 imagens ou mais recebem mais downloads.",
   "upload_media_title": "Mídia",
+  "upload_modloader_label": "Carregador de mods",
   "upload_multiplayer_all_players": "Todos precisam",
   "upload_multiplayer_all_players_hint": "Todos os jogadores da partida precisam instalar.",
   "upload_multiplayer_client_side": "Do lado do cliente",
@@ -7851,6 +7875,9 @@
   "upload_preflight_thumbnail_missing": "Sem imagem de capa.",
   "upload_preflight_thumbnail_ok": "Capa definida.",
   "upload_preflight_title": "Verificações",
+  "upload_preflight_version_exists": "Esta versão já existe para este mod.",
+  "upload_preflight_version_invalid": "O número da versão só pode ter letras, números, pontos e hífens.",
+  "upload_preflight_version_missing": "Digite o número da versão na etapa Publicação.",
   "upload_preflight_waiting": "As verificações aparecem quando o rascunho é salvo.",
   "upload_problems_label": "Erros e avisos do arquivo",
   "upload_progress_direct": "Enviado direto para o armazenamento. Se a conexão cair, você pode retomar.",

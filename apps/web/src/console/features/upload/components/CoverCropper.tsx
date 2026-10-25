@@ -345,7 +345,7 @@ function CropArea({ source, crop, onCrop }: { source: Source; crop: CropRect; on
             aria-valuemin={0}
             aria-valuemax={Math.round(width - crop.width)}
             data-draggable=""
-              onPointerDown={onPointerDown}
+            onPointerDown={onPointerDown}
             onPointerMove={onPointerMove}
             onPointerUp={onPointerUp}
             onPointerCancel={onPointerUp}

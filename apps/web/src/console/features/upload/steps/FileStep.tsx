@@ -21,6 +21,7 @@ import {
   type ManifestView,
   ProblemList,
 } from '../components/FileSummary.tsx';
+import { GameLoaderPicker, type GameLoaderPickerProps } from '../components/GameLoaderPicker.tsx';
 import { ut } from '../i18n.ts';
 import { blockLabel, failureLabel } from '../labels.ts';
 import { bytes, percent } from '../lib/format.ts';
@@ -38,6 +39,10 @@ export interface FileStepProps {
   /** «Next» was pressed without a file: say so under the drop area. */
   missing?: boolean;
   headingId: string;
+  /** New mod: the game and loader picker shown above the file. */
+  gameLoader?: Omit<GameLoaderPickerProps, 'disabled'> | null;
+  /** Free upload (not Sons of the Forest + RedLoader): any file, no manifest. */
+  free?: boolean;
 }
 
 function manifestFromReport(report: LocalReport | null): ManifestView | null {
@@ -74,7 +79,16 @@ function buildFromUpload(upload: UploadDTO | null, thumbnail: string | null): Bu
   };
 }
 
-export function FileStep({ fileKind, upload, maxBytes, target, missing = false, headingId }: FileStepProps) {
+export function FileStep({
+  fileKind,
+  upload,
+  maxBytes,
+  target,
+  missing = false,
+  headingId,
+  gameLoader = null,
+  free = false,
+}: FileStepProps) {
   const { state } = upload;
   const { report, phase } = state;
   const server = state.upload;
@@ -91,7 +105,9 @@ export function FileStep({ fileKind, upload, maxBytes, target, missing = false, 
     };
   }, [fileKind, server, report]);
 
-  const manifest: ManifestView | null = manifestFromReport(report) ?? server?.inspection?.manifest ?? null;
+  const manifest: ManifestView | null = free
+    ? null
+    : (manifestFromReport(report) ?? server?.inspection?.manifest ?? null);
   const build = buildFromReport(report) ?? buildFromUpload(server, storedThumb);
   const localProblems = report?.problems ?? [];
   const serverFlags = server?.inspection?.flags ?? [];
@@ -104,7 +120,10 @@ export function FileStep({ fileKind, upload, maxBytes, target, missing = false, 
   const uncompressed =
     report?.kind === 'zip' ? report.uncompressedBytes : (server?.inspection?.uncompressedBytes ?? null);
   const busy = phase === 'reading' || phase === 'uploading' || phase === 'finishing';
-  const accept = fileKind === 'build' ? '.json,application/json' : '.zip,application/zip';
+  const accept = free ? '' : fileKind === 'build' ? '.json,application/json' : '.zip,application/zip';
+  const dropHint = free
+    ? ut('upload_free_drop_hint', { max: bytes(maxBytes) })
+    : ut('upload_drop_hint', { max: bytes(maxBytes), type: fileKind === 'build' ? '.json' : '.zip' });
   const hasFile = phase !== 'idle';
 
   const serverStatus = server?.inspection?.status ?? null;
@@ -125,9 +144,14 @@ export function FileStep({ fileKind, upload, maxBytes, target, missing = false, 
               })
             : fileKind === 'build'
               ? ut('upload_file_intro_build')
-              : ut('upload_file_intro_mod')
+              : free
+                ? ut('upload_file_intro_free')
+                : ut('upload_file_intro_mod')
         }
       />
+
+      {gameLoader ? <GameLoaderPicker {...gameLoader} disabled={busy} /> : null}
+      {free ? <Callout tone="info">{ut('upload_free_note')}</Callout> : null}
 
       {!hasFile || phase === 'blocked' || phase === 'error' || phase === 'rejected' ? (
         <Dropzone
@@ -139,9 +163,11 @@ export function FileStep({ fileKind, upload, maxBytes, target, missing = false, 
               ? ut('upload_drop_replace')
               : fileKind === 'build'
                 ? ut('upload_drop_title_build')
-                : ut('upload_drop_title_mod')
+                : free
+                  ? ut('upload_drop_title_free')
+                  : ut('upload_drop_title_mod')
           }
-          hint={ut('upload_drop_hint', { max: bytes(maxBytes), type: fileKind === 'build' ? '.json' : '.zip' })}
+          hint={dropHint}
           buttonLabel={ut('upload_drop_button')}
           onFiles={([file]) => {
             if (file) void upload.select(file);
@@ -262,14 +288,16 @@ export function FileStep({ fileKind, upload, maxBytes, target, missing = false, 
         problems={phase === 'ready' || phase === 'rejected' || phase === 'inspecting' ? serverFlags : localProblems}
         issues={issues}
       />
-      {fileKind === 'zip' ? <EntryList entries={entries} total={entriesTotal} uncompressed={uncompressed} /> : null}
+      {fileKind === 'zip' && entries.length > 0 ? (
+        <EntryList entries={entries} total={entriesTotal} uncompressed={uncompressed} />
+      ) : null}
 
       {phase === 'ready' || phase === 'inspecting' ? (
         <div>
           <Dropzone
             accept={accept}
             title={ut('upload_drop_replace')}
-            hint={ut('upload_drop_hint', { max: bytes(maxBytes), type: fileKind === 'build' ? '.json' : '.zip' })}
+            hint={dropHint}
             buttonLabel={ut('upload_drop_button')}
             onFiles={([file]) => {
               if (file) void upload.select(file);

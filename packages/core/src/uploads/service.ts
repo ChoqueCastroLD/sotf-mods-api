@@ -43,6 +43,8 @@ export interface UploadResultRef {
    */
   etag?: string;
   mediaId?: string;
+  /** Mod files: `free` = security checks only (no RedLoader manifest rules). Absent = `redloader`. */
+  profile?: 'redloader' | 'free';
   inspection?: unknown;
   final?: { bucket: string; key: string; size: number; at: string };
   quarantine?: { key: string; at: string };
@@ -111,6 +113,8 @@ export interface CreateUploadInput {
   size: number;
   contentType: string;
   sha256?: string | undefined;
+  /** Mod files: which checks run (`@sotf/contracts/games`). Default `redloader`. */
+  profile?: 'redloader' | 'free' | undefined;
 }
 
 /** `POST /uploads`. */
@@ -141,6 +145,7 @@ export async function createUpload(
     size: input.size,
     contentType: input.contentType,
     verifiedCreator: me.verifiedCreator === true,
+    profile: input.profile,
   });
 
   if (Number(me.open) >= UPLOAD_QUOTA.maxOpen) {
@@ -161,6 +166,7 @@ export async function createUpload(
   let headers: Record<string, string> = {};
   let multipart: { partBytes: number; parts: Array<{ partNumber: number; url: string }> } | null = null;
   const ref: UploadResultRef = {};
+  if (valid.purpose === 'mod_file' && input.profile === 'free') ref.profile = 'free';
   if (valid.multipart) {
     const s3UploadId = await storage.createMultipart({ bucket, key, contentType: valid.contentType });
     ref.multipart = { uploadId: s3UploadId, partBytes: valid.multipart.partBytes, parts: valid.multipart.parts };

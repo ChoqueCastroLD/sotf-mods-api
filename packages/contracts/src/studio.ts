@@ -36,6 +36,7 @@ import {
 } from './common.ts';
 import { dto, exampleOf, wireFlag, wireInt, wireIntDefault, wireList } from './dto.ts';
 import { API_V2_PREFIX, defineEndpoint } from './endpoint.ts';
+import { FreeVersion, ModGame, ModLoader } from './games.ts';
 import { InspectionFlagDTO } from './manifest.ts';
 import { Cursor, CursorQuery, MAX_CURSOR_LIMIT } from './pagination.ts';
 import { VersionDTO } from './versions.ts';
@@ -94,6 +95,9 @@ const ListingFields = {
 /** Autosaved wizard state (everything optional). */
 export const DraftData = z.strictObject({
   step: z.number().int().min(1).max(6).optional(),
+  /** Game and mod loader (`@sotf/contracts/games`); absent = Sons of the Forest + RedLoader. */
+  game: ModGame.optional(),
+  modLoader: ModLoader.optional(),
   fileUploadId: Uuid.optional(),
   slug: SlugInput.optional(),
   name: ListingFields.name.optional(),
@@ -128,7 +132,12 @@ export const DraftData = z.strictObject({
     .optional(),
   version: z
     .strictObject({
-      version: z.string().trim().max(64).optional(),
+      version: z
+        .string()
+        .trim()
+        .max(64)
+        .optional()
+        .describe('Version number typed by the creator (free uploads only: RedLoader mods take it from the manifest)'),
       channel: VersionChannel.optional(),
       changelogMd: z.string().max(STUDIO_LIMITS.changelogMax).optional(),
       notifyFollowers: z.boolean().optional(),
@@ -452,6 +461,9 @@ export const CreateVersionBody = dto(
     channel: VersionChannel.default('release'),
     testedGameBuildIds: z.array(EntityId).max(20).default([]),
     notifyFollowers: z.boolean().default(true),
+    versionNumber: FreeVersion.optional().describe(
+      'Required for mods that are not Sons of the Forest + RedLoader (no manifest); ignored otherwise',
+    ),
   }),
   {
     description: 'Publish a new version (same manifest id and a greater semver; builds excepted).',

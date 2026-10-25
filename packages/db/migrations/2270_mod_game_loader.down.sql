@@ -1,0 +1,5 @@
+ALTER TABLE "Mod"
+  DROP CONSTRAINT IF EXISTS "Mod_game_check",
+  DROP CONSTRAINT IF EXISTS "Mod_modLoader_check",
+  DROP COLUMN IF EXISTS "game",
+  DROP COLUMN IF EXISTS "modLoader";

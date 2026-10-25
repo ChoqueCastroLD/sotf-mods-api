@@ -1,8 +1,8 @@
 {
-  "mod_meta_title": "{name}: {kind, select, library {libreria} other {mod}} di Sons of the Forest di {author}",
-  "mod_meta_title_short": "{name}: {kind, select, library {libreria} other {mod}} di Sons of the Forest",
+  "mod_meta_title": "{name}: {kind, select, library {libreria} other {mod}} di {game} di {author}",
+  "mod_meta_title_short": "{name}: {kind, select, library {libreria} other {mod}} di {game}",
   "mod_meta_subpage_title": "{page} · {name}",
-  "mod_meta_description_facts": "{name} è {kind, select, library {una libreria} other {una mod}} di Sons of the Forest creata da {author} per RedLoader. {count, plural, one {{downloads} download} other {{downloads} download}}. Download gratuito.",
+  "mod_meta_description_facts": "{name} è {kind, select, library {una libreria} other {una mod}} di {game} creata da {author} per {loader}. {count, plural, one {{downloads} download} other {{downloads} download}}. Download gratuito.",
   "mod_versions_meta_description": "{count, plural, one {La # versione} other {Tutte le # versioni}} di {name} per Sons of the Forest, con changelog, dimensioni e compatibilità. Ultima: v{version}.",
   "mod_version_meta_description": "{name} v{version} per Sons of the Forest, pubblicata il {date}: changelog, dimensione, SHA-256, scansione di sicurezza e compatibilità.",
   "mod_reviews_meta_description": "Recensioni dei giocatori su {name}, una mod di Sons of the Forest: {count, plural, one {# recensione} other {# recensioni}} con voti, download verificati e risposte del creatore.",
@@ -214,5 +214,9 @@
   "mod_fact_multiplayer": "Multigiocatore",
   "mod_toast_latest_only": "Di {name} si può scaricare solo l'ultima versione. Il creatore ha disattivato le versioni precedenti.",
   "mod_versions_latest_only": "Il creatore consente di scaricare solo l'ultima versione.",
-  "mod_version_download_off": "Non disponibile"
+  "mod_version_download_off": "Non disponibile",
+  "mod_meta_game": "Gioco",
+  "mod_meta_loader": "Mod loader",
+  "mod_loader_other": "Altro",
+  "mod_install_other_loader": "Questa mod è fatta per {loader}. Installala seguendo le istruzioni nella descrizione; RedManager non la installa."
 }

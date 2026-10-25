@@ -490,5 +490,20 @@
   "upload_preflight_show_passed": "{count, plural, other {合格した#件のチェックを表示}}",
   "upload_preflight_hide_passed": "合格したチェックを隠す",
   "upload_step_file_hint_build": "建築の .json ファイル",
-  "upload_description_placeholder_build": "どんな建築か、設置のしかた、知っておくべきこと…"
+  "upload_description_placeholder_build": "どんな建築か、設置のしかた、知っておくべきこと…",
+  "upload_game_label": "ゲーム",
+  "upload_game_hint": "このMODはどのゲーム用ですか？",
+  "upload_loader_other": "その他",
+  "upload_free_note": "どの形式のファイルでも構いません。セキュリティチェックのみ行います（RedLoaderのマニフェストは不要）。バージョン番号は「公開」ステップで入力します。",
+  "upload_free_drop_hint": "最大 {max}、ファイル形式は自由",
+  "upload_free_version_label": "バージョン番号",
+  "upload_free_version_hint": "例: 1.0.0。英数字、ドット、ハイフンが使えます。",
+  "upload_free_version_error": "バージョン番号を入力してください（例: 1.0.0）。",
+  "upload_free_version_exists": "このバージョンはすでに存在します。",
+  "upload_preflight_version_missing": "「公開」ステップでバージョン番号を入力してください。",
+  "upload_preflight_version_invalid": "バージョン番号には英数字、ドット、ハイフンのみ使えます。",
+  "upload_preflight_version_exists": "このバージョンはすでに存在します。",
+  "upload_modloader_label": "MODローダー",
+  "upload_drop_title_free": "MODファイルをここにドロップ",
+  "upload_file_intro_free": "プレイヤーがインストールするファイルをアップロードします（.zip、.dll、.mod など、ローダーが使う形式）。"
 }

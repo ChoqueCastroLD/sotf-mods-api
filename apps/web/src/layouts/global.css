@@ -269,10 +269,10 @@ html[data-ptr-releasing] [data-ptr] {
 }
 @layer base {
   :where(ul, ol, nav, fieldset, [role="tablist"])[class*="overflow-x-auto"]:not(
-      [data-scrollbar],
-      [class*="scrollbar-width:thin"],
-      [class*="snap-mandatory"]
-    ),
+    [data-scrollbar],
+    [class*="scrollbar-width:thin"],
+    [class*="snap-mandatory"]
+  ),
   [data-hscroll] {
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -461,23 +461,23 @@ html:has([data-mobile-download-bar]) {
    «Download all». While the request runs the control pulses softly, shows the progress cursor and
    ignores clicks (React buttons use their own spinner: `Button loading`). --------------------- */
 :is(
+  [data-follow],
+  [data-follow-user],
+  [data-deps-download-all],
+  [data-report-form] [type="submit"],
+  [data-menu-resend]
+)[aria-busy="true"] {
+  cursor: progress;
+  pointer-events: none;
+}
+@media (prefers-reduced-motion: no-preference) {
+  :is(
     [data-follow],
     [data-follow-user],
     [data-deps-download-all],
     [data-report-form] [type="submit"],
     [data-menu-resend]
   )[aria-busy="true"] {
-  cursor: progress;
-  pointer-events: none;
-}
-@media (prefers-reduced-motion: no-preference) {
-  :is(
-      [data-follow],
-      [data-follow-user],
-      [data-deps-download-all],
-      [data-report-form] [type="submit"],
-      [data-menu-resend]
-    )[aria-busy="true"] {
     animation: busy-pulse 900ms ease-in-out infinite;
   }
 }
@@ -545,7 +545,16 @@ html[data-signed-in] [data-account-slot]:not(:has([data-account-user]:not([hidde
   select,
   label[for],
   label:has(> input:is([type="checkbox"], [type="radio"], [type="file"])),
-  input:is([type="checkbox"], [type="radio"], [type="file"], [type="color"], [type="range"], [type="submit"], [type="button"], [type="reset"]),
+  input:is(
+    [type="checkbox"],
+    [type="radio"],
+    [type="file"],
+    [type="color"],
+    [type="range"],
+    [type="submit"],
+    [type="button"],
+    [type="reset"]
+  ),
   [role="button"],
   [role="link"],
   [role="tab"],

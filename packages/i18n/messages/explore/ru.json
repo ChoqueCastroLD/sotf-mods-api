@@ -179,5 +179,9 @@
   "explore_search_builds_label": "Поиск построек",
   "explore_noresults_query_title": "По запросу «{query}» ничего не найдено",
   "explore_suggest_popular": "Популярные моды",
-  "explore_results_range": "{from, number}–{to, number} из {total, number}"
+  "explore_results_range": "{from, number}–{to, number} из {total, number}",
+  "explore_filter_game": "Игра",
+  "explore_filter_game_any": "Обе игры",
+  "explore_filter_loader": "Загрузчик модов",
+  "explore_filter_loader_any": "Любой загрузчик"
 }
