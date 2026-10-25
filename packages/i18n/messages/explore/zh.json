@@ -183,5 +183,7 @@
   "explore_filter_game": "游戏",
   "explore_filter_game_any": "两款游戏",
   "explore_filter_loader": "模组加载器",
-  "explore_filter_loader_any": "任意加载器"
+  "explore_filter_loader_any": "任意加载器",
+  "explore_heading_both_games": "Sons of the Forest 与 The Forest 模组",
+  "explore_heading_the_forest": "The Forest 模组"
 }

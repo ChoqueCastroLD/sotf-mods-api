@@ -240,6 +240,8 @@ export function PublishWizard({ mode, initial, target = null, onDraftCreated, on
   );
 
   const flushSoon = useRef(false);
+  // «Switch and keep this file»: the file is checked again once the new checks profile is in place.
+  const reselect = useRef<File | null>(null);
   const fileUpload = useFileUpload({
     purpose,
     extensions: limits.extensions,
@@ -266,6 +268,13 @@ export function PublishWizard({ mode, initial, target = null, onDraftCreated, on
     flushSoon.current = false;
     autosave.flush().catch(() => {});
   }, [data.fileUploadId, autosave]);
+
+  useEffect(() => {
+    const file = reselect.current;
+    if (!file) return;
+    reselect.current = null;
+    void fileUpload.select(file);
+  }, [free, fileUpload]);
 
   // Resumed draft: show its uploaded file.
   const adoptOnce = useRef(Boolean(initial?.data.fileUploadId));
@@ -510,6 +519,21 @@ export function PublishWizard({ mode, initial, target = null, onDraftCreated, on
                     headingId={headingId(id)}
                     missing={failedFields.has('file') && !data.fileUploadId}
                     free={free}
+                    onSwitchProfile={
+                      mode === 'mod'
+                        ? (to) => {
+                            const file = fileUpload.state.file;
+                            reselect.current = file ?? null;
+                            fileUpload.reset();
+                            setData((d) => ({
+                              ...d,
+                              game: 'sotf',
+                              modLoader: to === 'redloader' ? 'redloader' : 'other',
+                              fileUploadId: undefined,
+                            }));
+                          }
+                        : null
+                    }
                     gameLoader={
                       mode === 'mod'
                         ? {

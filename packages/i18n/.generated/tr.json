@@ -3206,9 +3206,11 @@
   "explore_filters_title": "Filtreler",
   "explore_has_source": "Kaynak kodu var",
   "explore_heading_all": "Modlar ve yapılar",
+  "explore_heading_both_games": "Sons of the Forest ve The Forest modları",
   "explore_heading_libraries": "Kütüphaneler",
   "explore_heading_mods": "Modlar",
   "explore_heading_tag": "“{tag}” etiketli",
+  "explore_heading_the_forest": "The Forest modları",
   "explore_loading": "Sonuçlar yükleniyor…",
   "explore_meta_all_description": [
     {
@@ -6467,7 +6469,7 @@
   "shell_footer_redloader": "RedLoader’ı nasıl kullanacağınızla ilgili resmi wiki",
   "shell_footer_related": "İlgili siteler",
   "shell_footer_since": "Mart 2023'ten beri kaliteli modlar",
-  "shell_footer_tagline": "Sons of the Forest için topluluk tarafından yapılan ve paylaşılan modlar.",
+  "shell_footer_tagline": "Sons of the Forest ve The Forest için topluluk tarafından yapılan ve paylaşılan modlar.",
   "shell_footer_tonihub": "Sons of the Forest için güncel veri dökümleri",
   "shell_footer_tutorials": "RedLoader kullanarak mod yapmaya başlama kılavuzu",
   "shell_install_app": "Uygulamayı yükle",
@@ -7169,6 +7171,7 @@
   "ui_domain_gallery_video": "Video",
   "ui_domain_hidden_by_ranger": "Bir moderatör tarafından gizlendi. Yalnızca sen ve moderatörler görebilirsiniz.",
   "ui_domain_hidden_by_ranger_reason": "Bir moderatör tarafından gizlendi: {reason}",
+  "ui_domain_loader_other": "Diğer yükleyici",
   "ui_domain_rating_out_of": "5 üzerinden {rating} puan",
   "ui_domain_rating_summary": [
     {
@@ -7674,6 +7677,9 @@
   ],
   "upload_game_hint": "Bu mod hangi oyun için?",
   "upload_game_label": "Oyun",
+  "upload_hint_not_redloader": "Bu dosyada RedLoader manifesti yok. Mod başka bir yükleyici ya da The Forest içinse yukarıdan seç; aynı dosya yeniden kontrol edilir.",
+  "upload_hint_redloader_text": "Zip içinde bir RedLoader manifest.json var. Sons of the Forest + RedLoader modlarını RedManager kurar; ad ve sürüm manifestten alınır.",
+  "upload_hint_redloader_title": "Bu bir RedLoader moduna benziyor",
   "upload_image_no_preview": "Yüklendi (işlendikten sonra sayfada önizlenir)",
   "upload_image_reading": "Görsel okunuyor…",
   "upload_image_too_large": "Görseller en fazla 10 MB olabilir.",
@@ -7977,6 +7983,8 @@
   "upload_summary_name": "Ad",
   "upload_summary_version": "Sürüm",
   "upload_summary_version_build": "Yeni yapı sürümü",
+  "upload_switch_to_free": "RedLoader modu değil mi? Yine de yükle",
+  "upload_switch_to_redloader": "Sons of the Forest + RedLoader kullan",
   "upload_tags_counter": "{count} / {max}",
   "upload_tags_filter": "Etiketleri filtrele",
   "upload_tags_full": "{max} etiket oldu: başka birini seçmek için birini kaldır.",

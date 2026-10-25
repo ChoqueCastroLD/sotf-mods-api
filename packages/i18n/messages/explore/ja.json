@@ -183,5 +183,7 @@
   "explore_filter_game": "ゲーム",
   "explore_filter_game_any": "両方のゲーム",
   "explore_filter_loader": "MODローダー",
-  "explore_filter_loader_any": "すべてのローダー"
+  "explore_filter_loader_any": "すべてのローダー",
+  "explore_heading_both_games": "Sons of the Forest と The Forest のMOD",
+  "explore_heading_the_forest": "The Forest のMOD"
 }

@@ -46,7 +46,13 @@ export type CatalogLoad = { kind: 'redirect'; location: string } | ({ kind: 'ok'
 export async function loadCatalogPage(input: { url: URL; locale: Locale; mode: CatalogMode }): Promise<CatalogLoad> {
   const { url, locale, mode } = input;
 
-  if (mode === 'home' && hasListingParams(url.searchParams)) {
+  // The game tabs stay on the home page (`/?game=the-forest`); any other listing parameter goes to
+  // the dedicated search page `/mods`.
+  const homeGameOnly =
+    mode === 'home' &&
+    [...url.searchParams.keys()].every((name) => name === 'game') &&
+    (url.searchParams.get('game') === 'sotf' || url.searchParams.get('game') === 'the-forest');
+  if (mode === 'home' && hasListingParams(url.searchParams) && !homeGameOnly) {
     // The category slug of a legacy link needs the catalogue to resolve (`qol` → `quality-of-life`).
     const taxonomy = await loadTaxonomy(locale);
     const target = legacyListingRedirect(url, MODS_SCOPE, {
@@ -55,7 +61,10 @@ export async function loadCatalogPage(input: { url: URL; locale: Locale; mode: C
     return { kind: 'redirect', location: target ? href(target, locale) : `${href('/mods', locale)}${url.search}` };
   }
 
-  const [loaded, aside] = await Promise.all([loadListing({ url, locale, scope: MODS_SCOPE }), loadAside()]);
+  const [loaded, aside] = await Promise.all([
+    loadListing({ url, locale, scope: MODS_SCOPE, skipCanonicalRedirect: homeGameOnly }),
+    loadAside(),
+  ]);
   if (loaded.kind === 'redirect') return loaded;
 
   const { state, list } = loaded;
@@ -81,7 +90,13 @@ export async function loadCatalogPage(input: { url: URL; locale: Locale; mode: C
     heading = m.explore_heading_all();
     title = m.explore_meta_all_title({ count });
     description = m.explore_meta_all_description({ count });
+  } else if (state.game === 'the-forest') {
+    heading = m.explore_heading_the_forest();
+    title = heading;
+    description = m.landing_meta_description({ count, mods: formatNumber(locale, count) });
   } else {
+    // Both games (the default view) say so; the Sons of the Forest tab keeps the classic heading.
+    if (state.game === null) heading = m.explore_heading_both_games();
     title = m.landing_meta_title();
     rawTitle = true;
     description = m.landing_meta_description({ count, mods: formatNumber(locale, count) });
@@ -126,6 +141,7 @@ export async function loadCatalogPage(input: { url: URL; locale: Locale; mode: C
     path,
     noindex: seo.noindex,
     jsonLd,
+    // A game tab of the home page is a filtered view of `/`: canonical `/`, not indexed.
     showFeatured: defaultView,
   };
 }

@@ -3390,9 +3390,11 @@
   "explore_filters_title": "Фильтры",
   "explore_has_source": "С исходным кодом",
   "explore_heading_all": "Моды и постройки",
+  "explore_heading_both_games": "Моды для Sons of the Forest и The Forest",
   "explore_heading_libraries": "Библиотеки",
   "explore_heading_mods": "Моды",
   "explore_heading_tag": "С тегом «{tag}»",
+  "explore_heading_the_forest": "Моды для The Forest",
   "explore_loading": "Загружаем результаты…",
   "explore_meta_all_description": [
     {
@@ -6853,7 +6855,7 @@
   "shell_footer_redloader": "Официальная вики по использованию RedLoader",
   "shell_footer_related": "Связанные сайты",
   "shell_footer_since": "Качественные моды с марта 2023 года",
-  "shell_footer_tagline": "Моды для Sons of the Forest, созданные и опубликованные сообществом.",
+  "shell_footer_tagline": "Моды для Sons of the Forest и The Forest, созданные и опубликованные сообществом.",
   "shell_footer_tonihub": "Актуальные выгрузки данных для Sons of the Forest",
   "shell_footer_tutorials": "Начальное руководство по созданию модов с использованием RedLoader",
   "shell_install_app": "Установить приложение",
@@ -7585,6 +7587,7 @@
   "ui_domain_gallery_video": "Видео",
   "ui_domain_hidden_by_ranger": "Скрыто модератором. Видите только вы и модераторы.",
   "ui_domain_hidden_by_ranger_reason": "Скрыто модератором: {reason}",
+  "ui_domain_loader_other": "Другой загрузчик",
   "ui_domain_rating_out_of": "Оценка {rating} из 5",
   "ui_domain_rating_summary": [
     {
@@ -8116,6 +8119,9 @@
   ],
   "upload_game_hint": "Для какой игры этот мод?",
   "upload_game_label": "Игра",
+  "upload_hint_not_redloader": "В этом файле нет манифеста RedLoader. Если мод для другого загрузчика или для The Forest, выберите это выше, и тот же файл проверится заново.",
+  "upload_hint_redloader_text": "В zip есть manifest.json RedLoader. Моды Sons of the Forest + RedLoader устанавливаются через RedManager, имя и версия берутся из манифеста.",
+  "upload_hint_redloader_title": "Похоже на мод для RedLoader",
   "upload_image_no_preview": "Загружено (превью появится на странице после обработки)",
   "upload_image_reading": "Читаем изображение…",
   "upload_image_too_large": "Размер изображений не больше 10 МБ.",
@@ -8425,6 +8431,8 @@
   "upload_summary_name": "Название",
   "upload_summary_version": "Версия",
   "upload_summary_version_build": "Новая версия постройки",
+  "upload_switch_to_free": "Это не мод для RedLoader? Загрузить всё равно",
+  "upload_switch_to_redloader": "Выбрать Sons of the Forest + RedLoader",
   "upload_tags_counter": "{count} / {max}",
   "upload_tags_filter": "Фильтр тегов",
   "upload_tags_full": "Выбрано {max} тегов: уберите один, чтобы выбрать другой.",

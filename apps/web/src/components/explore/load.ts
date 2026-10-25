@@ -36,11 +36,13 @@ export async function loadListing(input: {
   scope: ExploreScope;
   /** Pre-loaded taxonomy (category/tag pages resolve their slug first). */
   taxonomy?: Taxonomy;
+  /** The home page's game tabs (`/?game=…`) render in place: no canonical redirect to `/mods`. */
+  skipCanonicalRedirect?: boolean;
 }): Promise<ListingLoad> {
   const { url, locale, scope } = input;
   const taxonomy = input.taxonomy ?? (await loadTaxonomy(locale));
 
-  if (scope.kind === 'mods' || scope.kind === 'builds') {
+  if ((scope.kind === 'mods' || scope.kind === 'builds') && !input.skipCanonicalRedirect) {
     const target = legacyListingRedirect(url, scope, { resolveCategory: (slug) => taxonomy.resolveCategory(slug) });
     if (target !== null) return { kind: 'redirect', location: href(target, locale) };
   }

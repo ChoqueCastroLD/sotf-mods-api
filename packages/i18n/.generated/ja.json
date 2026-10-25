@@ -2898,9 +2898,11 @@
   "explore_filters_title": "絞り込み",
   "explore_has_source": "ソースコードあり",
   "explore_heading_all": "MOD と建築",
+  "explore_heading_both_games": "Sons of the Forest と The Forest のMOD",
   "explore_heading_libraries": "ライブラリ",
   "explore_heading_mods": "MOD",
   "explore_heading_tag": "タグ「{tag}」",
+  "explore_heading_the_forest": "The Forest のMOD",
   "explore_loading": "結果を読み込んでいます…",
   "explore_meta_all_description": [
     {
@@ -5934,7 +5936,7 @@
   "shell_footer_redloader": "RedLoader の使い方に関する公式Wiki",
   "shell_footer_related": "関連サイト",
   "shell_footer_since": "2023年3月から高品質なMODを提供",
-  "shell_footer_tagline": "コミュニティが作って共有する、Sons of the Forest のMOD。",
+  "shell_footer_tagline": "コミュニティが作って共有する、Sons of the Forest と The Forest のMOD。",
   "shell_footer_tonihub": "Sons of the Forest の最新データダンプ",
   "shell_footer_tutorials": "RedLoader を使った MOD 作成の入門ガイド",
   "shell_install_app": "アプリをインストール",
@@ -6578,6 +6580,7 @@
   "ui_domain_gallery_video": "動画",
   "ui_domain_hidden_by_ranger": "モデレーターにより非表示になりました。あなたとモデレーターだけが見られます。",
   "ui_domain_hidden_by_ranger_reason": "モデレーターにより非表示：{reason}",
+  "ui_domain_loader_other": "その他のローダー",
   "ui_domain_rating_out_of": "5 段階中 {rating}",
   "ui_domain_rating_summary": [
     {
@@ -7032,6 +7035,9 @@
   ],
   "upload_game_hint": "このMODはどのゲーム用ですか？",
   "upload_game_label": "ゲーム",
+  "upload_hint_not_redloader": "このファイルには RedLoader のマニフェストがありません。別のローダー用や The Forest 用なら上で選び直してください。同じファイルをもう一度チェックします。",
+  "upload_hint_redloader_text": "zip に RedLoader の manifest.json があります。Sons of the Forest + RedLoader のMODは RedManager でインストールでき、名前とバージョンはマニフェストから取得されます。",
+  "upload_hint_redloader_title": "RedLoader 用のMODのようです",
   "upload_image_no_preview": "アップロード済み（処理後にページでプレビューできます）",
   "upload_image_reading": "画像を読み込み中…",
   "upload_image_too_large": "画像は最大 10 MB です。",
@@ -7323,6 +7329,8 @@
   "upload_summary_name": "名前",
   "upload_summary_version": "バージョン",
   "upload_summary_version_build": "建築の新バージョン",
+  "upload_switch_to_free": "RedLoader用ではない？ そのままアップロード",
+  "upload_switch_to_redloader": "Sons of the Forest + RedLoader にする",
   "upload_tags_counter": "{count} / {max}",
   "upload_tags_filter": "タグを絞り込む",
   "upload_tags_full": "タグは {max} 個までです。別のタグを選ぶには1つ外してください。",

@@ -505,5 +505,10 @@
   "upload_preflight_version_exists": "Diese Version gibt es für diese Mod schon.",
   "upload_modloader_label": "Mod-Loader",
   "upload_drop_title_free": "Mod-Datei hier ablegen",
-  "upload_file_intro_free": "Lade die Datei hoch, die Spieler installieren: eine .zip, .dll, .mod oder was dein Loader sonst nutzt."
+  "upload_file_intro_free": "Lade die Datei hoch, die Spieler installieren: eine .zip, .dll, .mod oder was dein Loader sonst nutzt.",
+  "upload_switch_to_free": "Keine RedLoader-Mod? Trotzdem hochladen",
+  "upload_hint_not_redloader": "Diese Datei hat kein RedLoader-Manifest. Ist die Mod für einen anderen Loader oder für The Forest, wähle das oben aus; dieselbe Datei wird erneut geprüft.",
+  "upload_hint_redloader_title": "Das sieht nach einer RedLoader-Mod aus",
+  "upload_hint_redloader_text": "Die Zip enthält eine RedLoader-manifest.json. Mods für Sons of the Forest + RedLoader installiert RedManager, Name und Version kommen aus dem Manifest.",
+  "upload_switch_to_redloader": "Sons of the Forest + RedLoader verwenden"
 }

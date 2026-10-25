@@ -87,6 +87,7 @@ export { formatIcu, type IcuParams, parseIcu } from './icu.ts';
 export {
   displayName,
   displayShortDescription,
+  GameTag,
   MOD_CARD_COMPACT_BELOW,
   MOD_CARD_VARIANTS,
   ModCard,

@@ -112,6 +112,7 @@ export function buildToolbarModel(input: {
   if (state.multiplayer) hidden.push(['multiplayer', state.multiplayer]);
   if (state.dedicated) hidden.push(['dedicated', 'yes']);
   if (state.platform) hidden.push(['platform', state.platform]);
+  if (state.game) hidden.push(['game', state.game]);
   if (state.loader) hidden.push(['loader', state.loader]);
   if (state.updatedWithin) hidden.push(['updatedWithin', state.updatedWithin]);
   if (state.minRating) hidden.push(['minRating', String(state.minRating)]);
@@ -122,7 +123,6 @@ export function buildToolbarModel(input: {
   const changed =
     (state.type !== model.scope.defaultType ? 1 : 0) +
     (state.category.length > 0 ? 1 : 0) +
-    (state.game ? 1 : 0) +
     (sortChoiceValue(state) !== (state.q ? 'relevance' : 'new') ? 1 : 0) +
     (state.nsfw ? 1 : 0) +
     (state.unapproved ? 1 : 0);

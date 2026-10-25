@@ -84,6 +84,7 @@ export function getSearchIndex(ctx: Ctx, config: CatalogConfig, locale: Locale):
         e.ratingAvg === null ? null : Math.round(e.ratingAvg * 10),
         Math.max(0, MULTIPLAYER_ROLES.indexOf(e.multiplayerRole ?? 'unknown')),
         translated.has(e.id) ? e.name : null,
+        e.game,
       ]);
 
       const creators = new Map<number, number>();

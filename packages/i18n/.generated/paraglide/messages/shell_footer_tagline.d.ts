@@ -3,7 +3,7 @@ export type Shell_Footer_TaglineInputs = {};
 /**
 * | output |
 * | --- |
-* | "Mods for Sons of the Forest, made and shared by the community." |
+* | "Mods for Sons of the Forest and The Forest, made and shared by the community." |
 *
 * @param {Shell_Footer_TaglineInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

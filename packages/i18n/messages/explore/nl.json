@@ -183,5 +183,7 @@
   "explore_filter_game": "Spel",
   "explore_filter_game_any": "Beide spellen",
   "explore_filter_loader": "Modloader",
-  "explore_filter_loader_any": "Elke loader"
+  "explore_filter_loader_any": "Elke loader",
+  "explore_heading_both_games": "Mods voor Sons of the Forest en The Forest",
+  "explore_heading_the_forest": "Mods voor The Forest"
 }

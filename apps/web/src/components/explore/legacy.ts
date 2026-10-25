@@ -65,6 +65,8 @@ export const LISTING_PARAMS = [
   'multiplayer',
   'dedicated',
   'platform',
+  'game',
+  'loader',
   'updatedWithin',
   'minRating',
   'minDownloads',

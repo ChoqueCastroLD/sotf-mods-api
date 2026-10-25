@@ -31,6 +31,7 @@ export const SearchHitDTO = dto(
     thumbnailUrl: HttpUrl.nullable(),
     kind: ModKind.nullable(),
     compatStatus: CompatStatus.nullable(),
+    game: z.enum(['sotf', 'the-forest']).nullable().optional().describe('Game of a mod or build'),
     downloads: z.number().int().nonnegative().nullable(),
     score: z.number(),
     highlight: z.string().nullable().describe('Plain text with the match wrapped in «»'),
@@ -110,6 +111,8 @@ export const SearchIndexModTuple = z.tuple([
   z.number().int().min(0).max(50).nullable(),
   z.number().int().min(0).max(4),
   z.string().nullable().optional(),
+  /** Game (`sotf`, `the-forest`); absent in indexes built before the game column. */
+  z.enum(['sotf', 'the-forest']).optional(),
 ]);
 /** Kit tuple: `[id, name, ownerHandle, itemsCount, path, thumbUrl | null]` (first item's image). */
 export const SearchIndexKitTuple = z.tuple([

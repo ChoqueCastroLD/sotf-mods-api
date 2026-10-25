@@ -140,6 +140,7 @@ function entryMeta(item: EntryItem, locale: Locale): string {
     if (item.subtitle) parts.push(item.subtitle);
     if (item.count !== undefined) parts.push(t('cmdk_mods_count', { count: item.count }));
   } else if (item.type === 'mod' || item.type === 'build') {
+    if (item.type === 'mod') parts.push(item.game === 'the-forest' ? 'The Forest' : 'SOTF');
     parts.push(kindLabel(item));
     if (item.subtitle) parts.push(item.subtitle);
     if (item.downloads !== undefined) parts.push(downloadsLabel(locale, item.downloads));

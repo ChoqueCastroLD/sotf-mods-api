@@ -107,5 +107,6 @@
   "ui_domain_reaction_pray": "Bedankt",
   "ui_domain_reaction_fire": "Vuur",
   "ui_domain_trusted": "Vertrouwd",
-  "ui_domain_version_latest_only": "Alleen nieuwste versie"
+  "ui_domain_version_latest_only": "Alleen nieuwste versie",
+  "ui_domain_loader_other": "Andere loader"
 }

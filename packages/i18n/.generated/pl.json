@@ -3390,9 +3390,11 @@
   "explore_filters_title": "Filtry",
   "explore_has_source": "Z kodem źródłowym",
   "explore_heading_all": "Mody i buildy",
+  "explore_heading_both_games": "Mody do Sons of the Forest i The Forest",
   "explore_heading_libraries": "Biblioteki",
   "explore_heading_mods": "Mody",
   "explore_heading_tag": "Z tagiem „{tag}”",
+  "explore_heading_the_forest": "Mody do The Forest",
   "explore_loading": "Wczytywanie wyników…",
   "explore_meta_all_description": [
     {
@@ -6853,7 +6855,7 @@
   "shell_footer_redloader": "Oficjalna wiki dotycząca korzystania z RedLoader",
   "shell_footer_related": "Powiązane strony",
   "shell_footer_since": "Najlepsze mody od marca 2023",
-  "shell_footer_tagline": "Mody do Sons of the Forest, tworzone i udostępniane przez społeczność.",
+  "shell_footer_tagline": "Mody do Sons of the Forest i The Forest, tworzone i udostępniane przez społeczność.",
   "shell_footer_tonihub": "Bieżące zrzuty danych dla Sons of the Forest",
   "shell_footer_tutorials": "Przewodnik dla początkujących w tworzeniu modów za pomocą RedLoader",
   "shell_install_app": "Zainstaluj aplikację",
@@ -7585,6 +7587,7 @@
   "ui_domain_gallery_video": "Wideo",
   "ui_domain_hidden_by_ranger": "Ukryte przez moderatora. Widzisz to tylko ty i moderatorzy.",
   "ui_domain_hidden_by_ranger_reason": "Ukryte przez moderatora: {reason}",
+  "ui_domain_loader_other": "Inny loader",
   "ui_domain_rating_out_of": "Ocena {rating} na 5",
   "ui_domain_rating_summary": [
     {
@@ -8116,6 +8119,9 @@
   ],
   "upload_game_hint": "Do jakiej gry jest ten mod?",
   "upload_game_label": "Gra",
+  "upload_hint_not_redloader": "Ten plik nie ma manifestu RedLoadera. Jeśli mod jest do innego loadera albo do The Forest, wybierz to wyżej, a ten sam plik zostanie sprawdzony ponownie.",
+  "upload_hint_redloader_text": "Zip zawiera manifest.json RedLoadera. Mody do Sons of the Forest + RedLoader instaluje RedManager, a nazwa i wersja pochodzą z manifestu.",
+  "upload_hint_redloader_title": "To wygląda na mod do RedLoadera",
   "upload_image_no_preview": "Wysłano (podgląd na stronie po przetworzeniu)",
   "upload_image_reading": "Odczytywanie obrazu…",
   "upload_image_too_large": "Obrazy mogą mieć do 10 MB.",
@@ -8425,6 +8431,8 @@
   "upload_summary_name": "Nazwa",
   "upload_summary_version": "Wersja",
   "upload_summary_version_build": "Nowa wersja buildu",
+  "upload_switch_to_free": "To nie mod do RedLoadera? Prześlij mimo to",
+  "upload_switch_to_redloader": "Użyj Sons of the Forest + RedLoader",
   "upload_tags_counter": "{count} / {max}",
   "upload_tags_filter": "Filtruj tagi",
   "upload_tags_full": "Masz już {max} tagów: usuń jeden, aby wybrać inny.",

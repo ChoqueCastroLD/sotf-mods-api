@@ -15,7 +15,7 @@ import { href } from '../../lib/i18n.ts';
 import { loadModTranslation } from '../../lib/mod-translation.ts';
 import ActionBar from './ActionBar.astro';
 import type { ModDetailDTO, VersionDTO } from './data.ts';
-import { isShortVersion, reviewsPagePath } from './format.ts';
+import { gameLabel, isShortVersion, loaderLabel, reviewsPagePath } from './format.ts';
 import GalleryCarousel from './GalleryCarousel.astro';
 import { taxonomyName } from './i18n.ts';
 import TranslatedText from './TranslatedText.astro';
@@ -67,7 +67,18 @@ const stat = 'inline-flex items-center gap-1.5 tabular-nums';
 
   <div class="grid min-w-0 grid-cols-1 content-start gap-4">
     <div class="grid grid-cols-1 gap-2">
-      {mod.kind === 'library' && <p class="text-sm font-medium text-fg-muted">{m.mod_kind_library()}</p>}
+      <p class="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm font-medium text-fg-muted">
+        <a
+          href={`${href('/mods', locale)}?game=${mod.game}`}
+          class="inline-flex items-center gap-1.5 rounded-sm border border-border bg-raised px-2 py-0.5 text-fg hover:border-border-strong"
+          data-game={mod.game}
+        >
+          <span aria-hidden="true" class:list={['size-2 rounded-full', mod.game === 'the-forest' ? 'bg-[#4ade80]' : 'bg-primary']} />
+          {gameLabel(mod.game)}
+        </a>
+        <span>{m.mod_meta_loader()}: {loaderLabel(mod.modLoader)}</span>
+        {mod.kind === 'library' && <span>· {m.mod_kind_library()}</span>}
+      </p>
       <h1
         class:list={[
           'text-balance break-words font-bold text-fg [hyphens:auto]',

@@ -177,7 +177,17 @@ export function useFileUpload(options: FileUploadOptions): FileUpload {
         if (file.size === 0) return setState({ ...base, phase: 'blocked', block: { code: 'empty' } });
         if (file.size > maxBytes)
           return setState({ ...base, phase: 'blocked', block: { code: 'too_large', maxBytes } });
-        setState({ ...base });
+        // A zip is still read in the browser (never blocking): if it carries a RedLoader manifest the
+        // step can suggest «Sons of the Forest + RedLoader» instead.
+        let hint: LocalReport | null = null;
+        if (ext === 'zip') {
+          try {
+            hint = await (await import('./inspect.ts')).inspectZip(file);
+          } catch {
+            hint = null;
+          }
+        }
+        setState({ ...base, report: hint });
         await start(file, null);
         return;
       }

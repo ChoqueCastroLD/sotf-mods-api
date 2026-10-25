@@ -3206,9 +3206,11 @@
   "explore_filters_title": "Filter",
   "explore_has_source": "Har källkod",
   "explore_heading_all": "Moddar och byggen",
+  "explore_heading_both_games": "Moddar för Sons of the Forest och The Forest",
   "explore_heading_libraries": "Bibliotek",
   "explore_heading_mods": "Moddar",
   "explore_heading_tag": "Taggat ”{tag}”",
+  "explore_heading_the_forest": "Moddar för The Forest",
   "explore_loading": "Laddar resultat…",
   "explore_meta_all_description": [
     {
@@ -6467,7 +6469,7 @@
   "shell_footer_redloader": "Officiell wiki om hur man använder RedLoader",
   "shell_footer_related": "Relaterade webbplatser",
   "shell_footer_since": "Mods av hög kvalitet sedan mars 2023",
-  "shell_footer_tagline": "Mods för Sons of the Forest, skapade och delade av communityn.",
+  "shell_footer_tagline": "Mods för Sons of the Forest och The Forest, skapade och delade av communityn.",
   "shell_footer_tonihub": "Uppdaterade datauttag för Sons of the Forest",
   "shell_footer_tutorials": "En startguide om hur man gör mods med hjälp av RedLoader",
   "shell_install_app": "Installera appen",
@@ -7169,6 +7171,7 @@
   "ui_domain_gallery_video": "Video",
   "ui_domain_hidden_by_ranger": "Dold av en moderator. Bara du och moderatorer kan se det.",
   "ui_domain_hidden_by_ranger_reason": "Dold av en moderator: {reason}",
+  "ui_domain_loader_other": "Annan laddare",
   "ui_domain_rating_out_of": "Betyg {rating} av 5",
   "ui_domain_rating_summary": [
     {
@@ -7674,6 +7677,9 @@
   ],
   "upload_game_hint": "Vilket spel är modden för?",
   "upload_game_label": "Spel",
+  "upload_hint_not_redloader": "Filen har inget RedLoader-manifest. Är modden för en annan laddare eller för The Forest, välj det ovan så kontrolleras samma fil igen.",
+  "upload_hint_redloader_text": "Zip-filen har en RedLoader-manifest.json. Moddar för Sons of the Forest + RedLoader installeras av RedManager och får namn och version från manifestet.",
+  "upload_hint_redloader_title": "Det här ser ut som en RedLoader-modd",
   "upload_image_no_preview": "Uppladdad (förhandsvisning på sidan efter bearbetning)",
   "upload_image_reading": "Läser bilden…",
   "upload_image_too_large": "Bilder får vara upp till 10 MB.",
@@ -7977,6 +7983,8 @@
   "upload_summary_name": "Namn",
   "upload_summary_version": "Version",
   "upload_summary_version_build": "Ny version av bygget",
+  "upload_switch_to_free": "Inte en RedLoader-modd? Ladda upp ändå",
+  "upload_switch_to_redloader": "Använd Sons of the Forest + RedLoader",
   "upload_tags_counter": "{count} / {max}",
   "upload_tags_filter": "Filtrera taggar",
   "upload_tags_full": "Det är {max} taggar: ta bort en för att välja en annan.",

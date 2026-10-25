@@ -237,12 +237,6 @@ function Byline({ mod, className, tile = false }: { mod: ModCardDTO; className?:
         )}
       </span>
       {mod.verifiedCreator ? <TrustedMark size={14} className={cardControlClasses} /> : null}
-      {mod.game === 'the-forest' ? (
-        // Mods for the first game: a plain tag (the game title is not translated).
-        <span className="rounded-sm border border-border-strong px-1 py-px text-2xs font-medium text-fg">
-          The Forest
-        </span>
-      ) : null}
       {category ? (
         <span className="flex min-w-0 items-center gap-1" {...(tile ? { 'data-byline-extra': '' } : {})}>
           <span aria-hidden="true">·</span>
@@ -312,6 +306,7 @@ function GridCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
             priority={priority}
             className="transition-transform duration-(--dur-slow) ease-out motion-safe:group-hover/card:scale-[1.03]"
           />
+          <GameTag mod={mod} placement="overlay" className="absolute start-2 bottom-2" />
           {badges.length > 0 ? (
             <div
               className={cn(
@@ -385,6 +380,7 @@ function RowCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
             <Heading className="truncate text-sm font-semibold">
               <CardLink href={mod.canonicalPath}>{displayName(mod)}</CardLink>
             </Heading>
+            <GameTag mod={mod} />
             {badges.length > 0 ? <span className="hidden gap-1 @min-[28rem]/row:flex">{badges}</span> : null}
           </div>
           <OriginalName card={mod} className="text-2xs" />
@@ -430,7 +426,10 @@ function CompactCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
             <CardLink href={mod.canonicalPath}>{displayName(mod)}</CardLink>
           </Heading>
           <OriginalName card={mod} className="text-2xs" />
-          <Downloads value={mod.downloads} className="text-xs text-fg-muted" />
+          <span className="flex items-center gap-2">
+            <GameTag mod={mod} />
+            <Downloads value={mod.downloads} className="text-xs text-fg-muted" />
+          </span>
         </div>
       </div>
     </article>
@@ -453,6 +452,7 @@ function FeatureCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
             priority={priority}
             className="transition-transform duration-(--dur-slow) ease-out motion-safe:group-hover/card:scale-[1.03]"
           />
+          <GameTag mod={mod} placement="overlay" className="absolute start-3 bottom-3" />
         </div>
         {action ? <div className={cn('absolute z-10 end-3 top-3')}>{action}</div> : null}
         <div className="flex min-w-0 flex-col gap-3 p-5 @min-[40rem]/feature:p-8">
@@ -489,6 +489,53 @@ function FeatureCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
 }
 
 /** Small pill of the catalogue row: «Trusted» (old site's `badge-primary`, softer). */
+/**
+ * Game (and loader when it is not RedLoader) of a mod: every card says which game it is for, since
+ * the catalogue mixes Sons of the Forest and The Forest. `overlay` sits on the cover; `inline` next
+ * to a title. Game titles are not translated.
+ */
+export function GameTag({
+  mod,
+  placement = 'inline',
+  className,
+  loaderClassName,
+}: {
+  mod: Pick<ModCardDTO, 'game' | 'modLoader'>;
+  placement?: 'overlay' | 'inline';
+  className?: string;
+  /** Classes of the loader part (e.g. hidden on small thumbnails). */
+  loaderClassName?: string;
+}) {
+  const { t } = useDomainI18n();
+  const game = mod.game ?? 'sotf';
+  const loader = mod.modLoader ?? 'redloader';
+  const loaderName =
+    loader === 'redloader'
+      ? null
+      : loader === 'other'
+        ? t('ui_domain_loader_other')
+        : ({ bepinex: 'BepInEx', melonloader: 'MelonLoader', modapi: 'ModAPI' } as const)[loader];
+  return (
+    <span
+      data-game={game}
+      className={cn(
+        'inline-flex h-5 shrink-0 items-center gap-1.5 rounded-sm px-1.5 text-2xs leading-none font-semibold whitespace-nowrap',
+        placement === 'overlay'
+          ? 'pointer-events-none bg-black/75 text-white shadow-sm backdrop-blur-sm'
+          : 'border border-border bg-raised text-fg',
+        className,
+      )}
+    >
+      <span
+        aria-hidden="true"
+        className={cn('size-1.5 rounded-full', game === 'the-forest' ? 'bg-[#4ade80]' : 'bg-primary')}
+      />
+      {game === 'the-forest' ? 'The Forest' : 'SOTF'}
+      {loaderName ? <span className={cn('font-normal opacity-80', loaderClassName)}>· {loaderName}</span> : null}
+    </span>
+  );
+}
+
 function TrustedPill({ label }: { label: string }) {
   return (
     <span className="inline-flex h-4.5 shrink-0 items-center rounded-full border border-primary/40 bg-primary/12 px-1.5 text-2xs leading-none font-semibold text-fg">
@@ -594,6 +641,12 @@ function ListCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
             {t('ui_domain_badge_nsfw')}
           </Badge>
         ) : null}
+        <GameTag
+          mod={mod}
+          placement="overlay"
+          className="absolute start-1 bottom-1 @min-[34rem]/list:start-1.5 @min-[34rem]/list:bottom-1.5"
+          loaderClassName="@max-[34rem]/list:hidden"
+        />
       </div>
       <div className="flex min-w-0 flex-1 flex-col gap-1 @min-[34rem]/list:gap-2">
         <div className="flex min-w-0 items-baseline gap-2">

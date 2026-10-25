@@ -183,5 +183,7 @@
   "explore_filter_game": "Игра",
   "explore_filter_game_any": "Обе игры",
   "explore_filter_loader": "Загрузчик модов",
-  "explore_filter_loader_any": "Любой загрузчик"
+  "explore_filter_loader_any": "Любой загрузчик",
+  "explore_heading_both_games": "Моды для Sons of the Forest и The Forest",
+  "explore_heading_the_forest": "Моды для The Forest"
 }

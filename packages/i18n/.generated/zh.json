@@ -2898,9 +2898,11 @@
   "explore_filters_title": "筛选",
   "explore_has_source": "附带源代码",
   "explore_heading_all": "模组和建筑",
+  "explore_heading_both_games": "Sons of the Forest 与 The Forest 模组",
   "explore_heading_libraries": "前置库",
   "explore_heading_mods": "模组",
   "explore_heading_tag": "标签：“{tag}”",
+  "explore_heading_the_forest": "The Forest 模组",
   "explore_loading": "正在加载结果…",
   "explore_meta_all_description": [
     {
@@ -5934,7 +5936,7 @@
   "shell_footer_redloader": "官方 Wiki 关于如何使用 RedLoader",
   "shell_footer_related": "相关网站",
   "shell_footer_since": "自 2023 年 3 月起提供优质模组",
-  "shell_footer_tagline": "由社区制作并分享的 Sons of the Forest 模组。",
+  "shell_footer_tagline": "由社区制作并分享的 Sons of the Forest 与 The Forest 模组。",
   "shell_footer_tonihub": "提供最新数据转储供《森林之子》使用",
   "shell_footer_tutorials": "关于如何使用 RedLoader 制作模组的入门指南",
   "shell_install_app": "安装应用",
@@ -6578,6 +6580,7 @@
   "ui_domain_gallery_video": "视频",
   "ui_domain_hidden_by_ranger": "已被审核员隐藏。只有你和审核员能看到。",
   "ui_domain_hidden_by_ranger_reason": "已被审核员隐藏：{reason}",
+  "ui_domain_loader_other": "其他加载器",
   "ui_domain_rating_out_of": "评分 {rating}（满分 5）",
   "ui_domain_rating_summary": [
     {
@@ -7032,6 +7035,9 @@
   ],
   "upload_game_hint": "这个模组适用于哪款游戏？",
   "upload_game_label": "游戏",
+  "upload_hint_not_redloader": "该文件没有 RedLoader 清单。如果这个模组适用于其他加载器或 The Forest，请在上方选择，同一个文件会重新检查。",
+  "upload_hint_redloader_text": "该 zip 包含 RedLoader 的 manifest.json。Sons of the Forest + RedLoader 模组由 RedManager 安装，名称和版本取自清单。",
+  "upload_hint_redloader_title": "这看起来是 RedLoader 模组",
   "upload_image_no_preview": "已上传（处理完成后在页面上预览）",
   "upload_image_reading": "正在读取图片…",
   "upload_image_too_large": "图片最大 10 MB。",
@@ -7323,6 +7329,8 @@
   "upload_summary_name": "名称",
   "upload_summary_version": "版本",
   "upload_summary_version_build": "新的建筑版本",
+  "upload_switch_to_free": "不是 RedLoader 模组？仍然上传",
+  "upload_switch_to_redloader": "改为 Sons of the Forest + RedLoader",
   "upload_tags_counter": "{count} / {max}",
   "upload_tags_filter": "筛选标签",
   "upload_tags_full": "已选 {max} 个标签：移除一个才能选择其他。",

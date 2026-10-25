@@ -345,6 +345,7 @@ export const FacetsDTO = dto(
     compat: z.array(FacetBucketDTO),
     updatedWithin: z.array(FacetBucketDTO).describe('Items released within `30d`, `90d`, `1y`'),
     minRating: z.array(FacetBucketDTO).describe('Items rated at least `1`…`5` stars'),
+    game: z.array(FacetBucketDTO).default([]).describe('Items per game (`sotf`, `the-forest`)'),
   }),
   {
     description: 'Facet counts of an Explore query.',

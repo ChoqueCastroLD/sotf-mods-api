@@ -43,6 +43,11 @@ export interface FileStepProps {
   gameLoader?: Omit<GameLoaderPickerProps, 'disabled'> | null;
   /** Free upload (not Sons of the Forest + RedLoader): any file, no manifest. */
   free?: boolean;
+  /**
+   * New mod: switch the game/loader and re-check the same file (wrong choice detected: a zip without
+   * a RedLoader manifest, or a RedLoader mod sent as a free upload).
+   */
+  onSwitchProfile?: ((to: 'redloader' | 'free') => void) | null;
 }
 
 function manifestFromReport(report: LocalReport | null): ManifestView | null {
@@ -88,6 +93,7 @@ export function FileStep({
   headingId,
   gameLoader = null,
   free = false,
+  onSwitchProfile = null,
 }: FileStepProps) {
   const { state } = upload;
   const { report, phase } = state;
@@ -249,8 +255,34 @@ export function FileStep({
         ) : null}
 
         {phase === 'blocked' && state.block ? (
-          <Callout tone="danger" title={ut('upload_blocked_title')}>
+          <Callout
+            tone="danger"
+            title={ut('upload_blocked_title')}
+            action={
+              onSwitchProfile && !free && localProblems.some((p) => p.code === 'manifest_missing') ? (
+                <Button variant="secondary" size="sm" onClick={() => onSwitchProfile('free')}>
+                  {ut('upload_switch_to_free')}
+                </Button>
+              ) : null
+            }
+          >
             {blockLabel(state.block, bytes)}
+            {onSwitchProfile && !free && localProblems.some((p) => p.code === 'manifest_missing') ? (
+              <span className="mt-1 block">{ut('upload_hint_not_redloader')}</span>
+            ) : null}
+          </Callout>
+        ) : null}
+        {free && onSwitchProfile && report?.kind === 'zip' && report.manifest ? (
+          <Callout
+            tone="warning"
+            title={ut('upload_hint_redloader_title')}
+            action={
+              <Button variant="secondary" size="sm" onClick={() => onSwitchProfile('redloader')}>
+                {ut('upload_switch_to_redloader')}
+              </Button>
+            }
+          >
+            {ut('upload_hint_redloader_text')}
           </Callout>
         ) : null}
 

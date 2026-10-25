@@ -505,5 +505,10 @@
   "upload_preflight_version_exists": "Bu sürüm bu mod için zaten var.",
   "upload_modloader_label": "Mod yükleyici",
   "upload_drop_title_free": "Mod dosyanı buraya bırak",
-  "upload_file_intro_free": "Oyuncuların kurduğu dosyayı yükle: .zip, .dll, .mod ya da yükleyicinin kullandığı başka bir dosya."
+  "upload_file_intro_free": "Oyuncuların kurduğu dosyayı yükle: .zip, .dll, .mod ya da yükleyicinin kullandığı başka bir dosya.",
+  "upload_switch_to_free": "RedLoader modu değil mi? Yine de yükle",
+  "upload_hint_not_redloader": "Bu dosyada RedLoader manifesti yok. Mod başka bir yükleyici ya da The Forest içinse yukarıdan seç; aynı dosya yeniden kontrol edilir.",
+  "upload_hint_redloader_title": "Bu bir RedLoader moduna benziyor",
+  "upload_hint_redloader_text": "Zip içinde bir RedLoader manifest.json var. Sons of the Forest + RedLoader modlarını RedManager kurar; ad ve sürüm manifestten alınır.",
+  "upload_switch_to_redloader": "Sons of the Forest + RedLoader kullan"
 }

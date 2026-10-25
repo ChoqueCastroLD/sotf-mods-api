@@ -92,6 +92,17 @@ function Hit({ hit, locale, i18n }: { hit: SearchHitDTO; locale: Locale; i18n: D
         {snippet ? <span className="line-clamp-1 text-sm text-fg-muted">{snippet}</span> : null}
       </span>
       <span className="flex shrink-0 flex-col items-end gap-1 text-xs text-fg-muted">
+        {hit.type === 'mod' && hit.game ? (
+          <span className="inline-flex items-center gap-1 rounded-sm border border-border bg-raised px-1.5 py-0.5 text-2xs font-semibold text-fg">
+            <span
+              aria-hidden="true"
+              className={
+                hit.game === 'the-forest' ? 'size-1.5 rounded-full bg-[#4ade80]' : 'size-1.5 rounded-full bg-primary'
+              }
+            />
+            {hit.game === 'the-forest' ? 'The Forest' : 'SOTF'}
+          </span>
+        ) : null}
         {typeof hit.downloads === 'number' ? (
           <span className="inline-flex items-center gap-1 tabular-nums">
             <Icon icon={Download} size={14} />

@@ -107,5 +107,6 @@
   "ui_domain_reaction_pray": "Teşekkürler",
   "ui_domain_reaction_fire": "Ateş",
   "ui_domain_trusted": "Güvenilir",
-  "ui_domain_version_latest_only": "Yalnızca en son sürüm"
+  "ui_domain_version_latest_only": "Yalnızca en son sürüm",
+  "ui_domain_loader_other": "Diğer yükleyici"
 }

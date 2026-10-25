@@ -183,5 +183,7 @@
   "explore_filter_game": "Juego",
   "explore_filter_game_any": "Ambos juegos",
   "explore_filter_loader": "Cargador de mods",
-  "explore_filter_loader_any": "Cualquier cargador"
+  "explore_filter_loader_any": "Cualquier cargador",
+  "explore_heading_both_games": "Mods de Sons of the Forest y The Forest",
+  "explore_heading_the_forest": "Mods de The Forest"
 }

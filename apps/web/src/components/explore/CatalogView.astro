@@ -54,11 +54,22 @@ const featured = showFeatured && aside?.weekly ? aside.weekly.filter((mod) => mo
 const chips = model.active.filter(
   (filter) =>
     filter.key !== 'q' &&
+    filter.key !== 'game' &&
     filter.key !== 'nsfw' &&
     filter.key !== 'unapproved' &&
     !(filter.key.startsWith('category:') && state.category.length === 1),
 );
 const filtered = toolbar.changed > 0 || chips.length > 0 || state.q !== '';
+// Game tabs: the catalogue mixes both games; counts come from the `game` facet (other filters applied).
+const gameCount = (game: string) => list?.facets?.game?.find((bucket) => bucket.value === game)?.count ?? null;
+const sotfCount = gameCount('sotf');
+const forestCount = gameCount('the-forest');
+const allCount = sotfCount !== null && forestCount !== null ? sotfCount + forestCount : null;
+const gameTabs = [
+  { key: 'all', label: m.explore_filter_game_any(), count: allCount, href: model.hrefOf({ game: null }), current: state.game === null },
+  { key: 'sotf', label: 'Sons of the Forest', count: sotfCount, href: model.hrefOf({ game: 'sotf' }), current: state.game === 'sotf' },
+  { key: 'the-forest', label: 'The Forest', count: forestCount, href: model.hrefOf({ game: 'the-forest' }), current: state.game === 'the-forest' },
+];
 const selectClass =
   'h-10 w-full appearance-none rounded-md border border-border-strong bg-sunken ps-3 pe-9 text-sm text-fg transition-colors hover:border-fg-subtle focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-focus';
 const checkboxClass = 'size-4 shrink-0 rounded-xs accent-primary';
@@ -80,6 +91,27 @@ const checkboxClass = 'size-4 shrink-0 rounded-xs accent-primary';
         </div>
         {intro && <p class="max-w-(--container-prose) text-sm text-fg-muted md:text-base">{intro}</p>}
       </header>
+
+      <nav aria-label={m.explore_filter_game()} class="-mx-4 overflow-x-auto px-4 [scrollbar-width:none] md:mx-0 md:px-0">
+        <ul class="flex w-max gap-1 rounded-lg border border-border bg-surface p-1">
+          {gameTabs.map((tab) => (
+            <li>
+              <a
+                href={tab.href}
+                aria-current={tab.current ? 'page' : undefined}
+                data-game-tab={tab.key}
+                class="inline-flex h-9 items-center gap-2 rounded-md px-3 text-sm font-medium whitespace-nowrap text-fg-muted transition-colors hover:bg-fg/6 hover:text-fg aria-[current=page]:bg-raised aria-[current=page]:text-fg aria-[current=page]:shadow-sm"
+              >
+                {tab.key !== 'all' && (
+                  <span aria-hidden="true" class:list={['size-2 rounded-full', tab.key === 'the-forest' ? 'bg-[#4ade80]' : 'bg-primary']} />
+                )}
+                {tab.label}
+                {tab.count !== null && <span class="text-xs tabular-nums text-fg-subtle">{tab.count}</span>}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
 
       <form
         method="get"
@@ -151,16 +183,7 @@ const checkboxClass = 'size-4 shrink-0 rounded-xs accent-primary';
               <span class="pointer-events-none absolute inset-y-0 end-3 flex items-center text-fg-subtle"><Icon icon={ChevronDown} size={16} /></span>
             </span>
           </label>
-          <label class="flex min-w-0 flex-col gap-1 text-xs text-fg-muted md:col-start-2 md:row-start-2 md:flex-row md:items-center md:gap-2">
-            {m.explore_filter_game()}
-            <span class="relative block md:w-44">
-              <select name="game" class={`${selectClass} md:h-8`}>
-                {toolbar.games.map((option) => <option value={option.value} selected={option.selected}>{option.label}</option>)}
-              </select>
-              <span class="pointer-events-none absolute inset-y-0 end-3 flex items-center text-fg-subtle"><Icon icon={ChevronDown} size={16} /></span>
-            </span>
-          </label>
-          <div class="flex items-center gap-5 max-md:col-span-2 md:col-start-3 md:row-start-2 md:justify-end">
+          <div class="flex items-center gap-5 max-md:col-span-2 md:col-span-3 md:col-start-2 md:row-start-2 md:justify-end">
             {toolbar.toggles.map((toggle) => (
               <label class="inline-flex min-h-8 cursor-pointer items-center gap-2 text-sm text-fg">
                 <input type="checkbox" name={toggle.name} value="1" checked={toggle.checked} class={checkboxClass} />

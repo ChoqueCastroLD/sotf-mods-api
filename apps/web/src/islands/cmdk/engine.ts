@@ -130,6 +130,7 @@ export class PaletteIndex {
       const mp = typeof tail[14] === 'number' ? tail[14] : undefined;
       // Non-English indexes carry the original (English) name when `name` is a translation.
       const originalName = typeof tail[15] === 'string' && tail[15] ? tail[15] : null;
+      const game = tail[16] === 'the-forest' ? 'the-forest' : 'sotf';
       const type: EntryType = kind === 'build' ? 'build' : 'mod';
       const tags = tagsCsv ? tagsCsv.split(',').filter(Boolean) : [];
       const item: EntryItem = {
@@ -147,6 +148,7 @@ export class PaletteIndex {
         manifestId,
         handle,
         rating,
+        game,
         ...(updatedDay !== undefined ? { updatedDay } : {}),
         ...(createdDay !== undefined ? { createdDay } : {}),
         ...(mp !== undefined ? { mp } : {}),

@@ -50,6 +50,7 @@ const {
   StarRating,
   StatTile,
   TrustedMark,
+  GameTag,
   VersionTable,
   ViewToggle,
   CardLink,
@@ -121,6 +122,13 @@ const cases: Record<string, Case[]> = {
   DependencyList: [
     ['grouped', () => <DependencyList dependencies={[...dependencies, conflict]} />],
     ['empty', () => <DependencyList dependencies={[]} />],
+  ],
+  GameTag: [
+    ['sotf redloader', () => <GameTag mod={{ game: 'sotf', modLoader: 'redloader' }} />],
+    [
+      'the forest modapi overlay',
+      () => <GameTag mod={{ game: 'the-forest', modLoader: 'modapi' }} placement="overlay" />,
+    ],
   ],
   TrustedMark: [
     ['icon', () => <TrustedMark />],

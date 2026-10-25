@@ -16,6 +16,23 @@ import { Icon } from '@sotf/ui/icons';
 import { ChevronLeft, ChevronRight, Download } from 'lucide-react';
 import type { SiteStats } from './aside.ts';
 
+/** Which game a mod is for (the lists mix Sons of the Forest and The Forest). */
+function GameMark({ mod, overlay = false }: { mod: Pick<ModCardDTO, 'game'>; overlay?: boolean }) {
+  const forest = mod.game === 'the-forest';
+  return (
+    <span
+      data-game={mod.game ?? 'sotf'}
+      className={cn(
+        'inline-flex h-4.5 shrink-0 items-center gap-1 rounded-sm px-1.5 text-[0.625rem] leading-none font-semibold',
+        overlay ? 'bg-black/70 text-white' : 'border border-border bg-raised text-fg',
+      )}
+    >
+      <span aria-hidden="true" className={cn('size-1.5 rounded-full', forest ? 'bg-[#4ade80]' : 'bg-primary')} />
+      {forest ? 'The Forest' : 'SOTF'}
+    </span>
+  );
+}
+
 interface WithLocale {
   locale: Locale;
 }
@@ -75,6 +92,9 @@ export function FeaturedStrip({ mods, locale }: WithLocale & { mods: readonly Mo
               aria-hidden="true"
               className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent"
             />
+            <span className="pointer-events-none absolute start-2 top-2 z-10">
+              <GameMark mod={mod} overlay />
+            </span>
             <a
               href={modHref(mod, locale)}
               className="group/slide absolute inset-0 flex flex-col justify-end gap-0.5 p-3 text-white outline-none focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-focus"
@@ -190,6 +210,7 @@ function WeeklyItem({ mod, rank, locale }: WithLocale & { mod: ModCardDTO; rank:
             {mod.latestVersion ? (
               <span className="shrink-0 font-mono text-2xs text-fg-subtle">{mod.latestVersion}</span>
             ) : null}
+            <GameMark mod={mod} />
           </span>
           <span className="flex min-w-0 items-center gap-1.5 text-xs text-fg-muted">
             <Avatar mod={mod} size={16} />

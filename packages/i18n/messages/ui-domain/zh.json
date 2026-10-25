@@ -107,5 +107,6 @@
   "ui_domain_reaction_pray": "感谢",
   "ui_domain_reaction_fire": "火",
   "ui_domain_trusted": "受信任",
-  "ui_domain_version_latest_only": "仅限最新版本"
+  "ui_domain_version_latest_only": "仅限最新版本",
+  "ui_domain_loader_other": "其他加载器"
 }

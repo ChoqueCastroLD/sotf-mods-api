@@ -107,5 +107,6 @@
   "ui_domain_reaction_pray": "Grazie",
   "ui_domain_reaction_fire": "Fuoco",
   "ui_domain_trusted": "Affidabile",
-  "ui_domain_version_latest_only": "Solo ultima versione"
+  "ui_domain_version_latest_only": "Solo ultima versione",
+  "ui_domain_loader_other": "Altro loader"
 }

@@ -285,6 +285,7 @@ export async function search(ctx: Ctx, config: CatalogConfig, input: SearchInput
                 thumbnailUrl: entry.ref.thumbnailUrl,
                 kind: entry.kind,
                 compatStatus: entry.compatStatus,
+                game: entry.game,
                 downloads: entry.downloads,
                 score: modScore(r, entry.downloads),
                 highlight:

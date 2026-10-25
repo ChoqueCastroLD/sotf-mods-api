@@ -18,6 +18,8 @@ export interface EntryItem {
   path: string;
   thumb: string | null;
   kind?: ModKind;
+  /** Game of a mod or build (the catalogue mixes both). */
+  game?: 'sotf' | 'the-forest';
   downloads?: number;
   /** Mods of a user. */
   count?: number;

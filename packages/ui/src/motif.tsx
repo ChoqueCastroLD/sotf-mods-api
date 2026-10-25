@@ -16,8 +16,8 @@ import type { CSSProperties } from 'react';
 import { cn } from './cn.ts';
 import { type MotifDensity, type MotifFade, type MotifTone, motifVars } from './motif-svg.ts';
 
-export { motifLayers, motifStyle, motifUrl, motifVars } from './motif-svg.ts';
 export type { MotifDensity, MotifFade, MotifOptions, MotifTone } from './motif-svg.ts';
+export { motifLayers, motifStyle, motifUrl, motifVars } from './motif-svg.ts';
 
 export interface MotifProps {
   seed?: string | number;

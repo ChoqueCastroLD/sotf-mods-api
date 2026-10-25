@@ -30,8 +30,15 @@ const locale = Astro.locals.locale;
           </span>
           <span class="grid min-w-0 gap-0.5">
             <span class="truncate text-sm font-medium text-fg group-hover:underline underline-offset-3">{displayName(card)}</span>
-            <span class="truncate text-xs text-fg-muted tabular-nums">
-              {m.common_downloads_compact({ count: card.downloads, display: formatCompactNumber(locale, card.downloads) })}
+            <span class="flex min-w-0 items-center gap-1.5 text-xs text-fg-muted tabular-nums">
+              <span class="inline-flex shrink-0 items-center gap-1" data-game={card.game}>
+                <span aria-hidden="true" class:list={['size-1.5 rounded-full', card.game === 'the-forest' ? 'bg-[#4ade80]' : 'bg-primary']} />
+                {card.game === 'the-forest' ? 'The Forest' : 'SOTF'}
+              </span>
+              <span aria-hidden="true">·</span>
+              <span class="truncate">
+                {m.common_downloads_compact({ count: card.downloads, display: formatCompactNumber(locale, card.downloads) })}
+              </span>
             </span>
           </span>
         </a>

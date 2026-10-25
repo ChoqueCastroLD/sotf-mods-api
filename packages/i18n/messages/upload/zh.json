@@ -505,5 +505,10 @@
   "upload_preflight_version_exists": "该模组已有此版本。",
   "upload_modloader_label": "模组加载器",
   "upload_drop_title_free": "将模组文件拖到这里",
-  "upload_file_intro_free": "上传玩家安装的文件：.zip、.dll、.mod 或你的加载器使用的任何格式。"
+  "upload_file_intro_free": "上传玩家安装的文件：.zip、.dll、.mod 或你的加载器使用的任何格式。",
+  "upload_switch_to_free": "不是 RedLoader 模组？仍然上传",
+  "upload_hint_not_redloader": "该文件没有 RedLoader 清单。如果这个模组适用于其他加载器或 The Forest，请在上方选择，同一个文件会重新检查。",
+  "upload_hint_redloader_title": "这看起来是 RedLoader 模组",
+  "upload_hint_redloader_text": "该 zip 包含 RedLoader 的 manifest.json。Sons of the Forest + RedLoader 模组由 RedManager 安装，名称和版本取自清单。",
+  "upload_switch_to_redloader": "改为 Sons of the Forest + RedLoader"
 }

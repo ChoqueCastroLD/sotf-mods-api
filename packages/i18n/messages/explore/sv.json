@@ -183,5 +183,7 @@
   "explore_filter_game": "Spel",
   "explore_filter_game_any": "Båda spelen",
   "explore_filter_loader": "Modladdare",
-  "explore_filter_loader_any": "Valfri laddare"
+  "explore_filter_loader_any": "Valfri laddare",
+  "explore_heading_both_games": "Moddar för Sons of the Forest och The Forest",
+  "explore_heading_the_forest": "Moddar för The Forest"
 }

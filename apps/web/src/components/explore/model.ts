@@ -310,7 +310,12 @@ export function buildExploreModel(input: {
       legend: m.explore_filter_game(),
       options: [
         { value: '', label: m.explore_filter_game_any(), checked: state.game === null, count: null },
-        ...MOD_GAMES.map((value) => ({ value, label: GAME_NAMES[value], checked: state.game === value, count: null })),
+        ...MOD_GAMES.map((value) => ({
+          value,
+          label: GAME_NAMES[value],
+          checked: state.game === value,
+          count: bucketCount(facets?.game, value),
+        })),
       ],
     },
     {
