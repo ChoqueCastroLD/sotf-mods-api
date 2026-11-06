@@ -78,6 +78,9 @@ export function modTarget(action: ModerationAction, from: ModStatus): ModStatus 
   switch (action) {
     case 'approve':
       return from === 'pending' || from === 'unlisted' ? 'published' : null;
+    case 'unapprove':
+      // Back to «Pending approval»: out of the catalogue and into the New mods queue.
+      return from === 'published' || from === 'unlisted' ? 'pending' : null;
     case 'reject':
       return from === 'pending' ? 'rejected' : null;
     case 'request_changes':
@@ -94,7 +97,7 @@ export function modTarget(action: ModerationAction, from: ModStatus): ModStatus 
 /** Actions a ranger with `role` may take on a mod in `status`. */
 export function modAllowedActions(status: ModStatus, role: Role): ModerationAction[] {
   const out: ModerationAction[] = [];
-  for (const action of ['approve', 'reject', 'request_changes', 'unlist', 'remove', 'restore'] as const) {
+  for (const action of ['approve', 'unapprove', 'reject', 'request_changes', 'unlist', 'remove', 'restore'] as const) {
     const to = modTarget(action, status);
     if (to === null) continue;
     if (to === status || allowed(status, to, role)) out.push(action);

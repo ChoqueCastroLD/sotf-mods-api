@@ -92,5 +92,6 @@
   "signals_state_all": "Alle",
   "signals_state_unread": "Ongelezen",
   "signals_empty_unread_title": "Geen ongelezen meldingen",
-  "signals_empty_unread_text": "Je hebt alles gelezen wat bij dit filter past."
+  "signals_empty_unread_text": "Je hebt alles gelezen wat bij dit filter past.",
+  "signals_status_unapproved": "Je mod {mod} wacht weer op goedkeuring"
 }

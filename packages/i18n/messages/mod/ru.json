@@ -218,5 +218,9 @@
   "mod_meta_game": "Игра",
   "mod_meta_loader": "Загрузчик модов",
   "mod_loader_other": "Другой",
-  "mod_install_other_loader": "Этот мод сделан для {loader}. Устанавливайте его по инструкции в описании; RedManager его не устанавливает."
+  "mod_install_other_loader": "Этот мод сделан для {loader}. Устанавливайте его по инструкции в описании; RedManager его не устанавливает.",
+  "mod_unapprove_action": "Отменить одобрение",
+  "mod_unapprove_title": "Отменить одобрение {name}?",
+  "mod_unapprove_text": "Мод вернётся в статус ожидания одобрения: он пропадёт из основного списка и вернётся в очередь новых модов.",
+  "mod_unapprove_done": "{name} снова ожидает одобрения"
 }

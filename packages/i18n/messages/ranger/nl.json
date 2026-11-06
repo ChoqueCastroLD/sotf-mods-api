@@ -457,5 +457,7 @@
   "ranger_users_empty_filtered": "Geen enkele gebruiker komt overeen met de filters.",
   "ranger_audit_reason_search": "Zoeken in de reden",
   "ranger_audit_from": "Vanaf datum",
-  "ranger_audit_to": "Tot datum"
+  "ranger_audit_to": "Tot datum",
+  "ranger_action_unapprove": "Goedkeuring intrekken",
+  "ranger_decided_unapprove": "{title} wacht weer op goedkeuring"
 }

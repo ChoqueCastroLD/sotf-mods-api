@@ -478,5 +478,6 @@
   "admin_ops_dl_discard_all_title": "Alle fehlgeschlagenen Jobs verwerfen?",
   "admin_ops_dl_discard_all_text": "Aus dieser Liste entfernte Jobs: {count}, aus allen Warteschlangen. Sie laufen nicht mehr. Das lässt sich nicht rückgängig machen.",
   "admin_ops_dl_discarded": "Verworfene fehlgeschlagene Jobs: {count}.",
-  "admin_ops_dl_discard_failed": "Die fehlgeschlagenen Jobs konnten nicht verworfen werden"
+  "admin_ops_dl_discard_failed": "Die fehlgeschlagenen Jobs konnten nicht verworfen werden",
+  "admin_tpl_action_unapprove": "Freigabe zurückziehen"
 }

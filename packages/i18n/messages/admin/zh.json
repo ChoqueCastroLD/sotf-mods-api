@@ -478,5 +478,6 @@
   "admin_ops_dl_discard_all_title": "丢弃所有失败任务?",
   "admin_ops_dl_discard_all_text": "将从此列表移除的任务:{count},来自所有队列。它们不会再运行。此操作无法撤销。",
   "admin_ops_dl_discarded": "已丢弃的失败任务:{count}。",
-  "admin_ops_dl_discard_failed": "无法丢弃失败的任务"
+  "admin_ops_dl_discard_failed": "无法丢弃失败的任务",
+  "admin_tpl_action_unapprove": "取消批准"
 }

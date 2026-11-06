@@ -218,5 +218,9 @@
   "mod_meta_game": "Jogo",
   "mod_meta_loader": "Carregador de mods",
   "mod_loader_other": "Outro",
-  "mod_install_other_loader": "Este mod foi feito para {loader}. Instale seguindo as instruções da descrição; o RedManager não o instala."
+  "mod_install_other_loader": "Este mod foi feito para {loader}. Instale seguindo as instruções da descrição; o RedManager não o instala.",
+  "mod_unapprove_action": "Revogar aprovação",
+  "mod_unapprove_title": "Revogar a aprovação de {name}?",
+  "mod_unapprove_text": "Volta para Aguardando aprovação: sai da lista principal e retorna à fila de novos mods.",
+  "mod_unapprove_done": "{name} voltou a aguardar aprovação"
 }

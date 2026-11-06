@@ -218,5 +218,9 @@
   "mod_meta_game": "Spiel",
   "mod_meta_loader": "Mod-Loader",
   "mod_loader_other": "Andere",
-  "mod_install_other_loader": "Diese Mod ist für {loader} gemacht. Installiere sie nach der Anleitung in der Beschreibung; RedManager installiert sie nicht."
+  "mod_install_other_loader": "Diese Mod ist für {loader} gemacht. Installiere sie nach der Anleitung in der Beschreibung; RedManager installiert sie nicht.",
+  "mod_unapprove_action": "Freigabe zurückziehen",
+  "mod_unapprove_title": "Freigabe von {name} zurückziehen?",
+  "mod_unapprove_text": "Sie geht zurück auf „Wartet auf Freigabe“: Sie verschwindet aus der Hauptliste und kommt zurück in die Warteschlange „Neue Mods“.",
+  "mod_unapprove_done": "{name} wartet wieder auf Freigabe"
 }

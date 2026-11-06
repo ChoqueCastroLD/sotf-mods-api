@@ -8,7 +8,7 @@ export type Emails_Notify_Item_StatusInputs = {
 * | --- | --- |
 * | "published" | "{mod} was approved and is live" |
 * | "rejected" | "{mod} was not approved" |
-* | "pending" | "{mod} needs changes before it can be approved" |
+* | "pending" | "{mod} is pending approval again" |
 * | "archived" | "{mod} was archived" |
 * | "unlisted" | "{mod} was unlisted" |
 * | "removed" | "{mod} was removed from SOTF Mods" |

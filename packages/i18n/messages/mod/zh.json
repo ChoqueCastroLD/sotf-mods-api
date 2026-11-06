@@ -218,5 +218,9 @@
   "mod_meta_game": "游戏",
   "mod_meta_loader": "模组加载器",
   "mod_loader_other": "其他",
-  "mod_install_other_loader": "此模组适用于 {loader}。请按照说明中的步骤安装；RedManager 无法安装它。"
+  "mod_install_other_loader": "此模组适用于 {loader}。请按照说明中的步骤安装；RedManager 无法安装它。",
+  "mod_unapprove_action": "取消批准",
+  "mod_unapprove_title": "要取消批准 {name} 吗？",
+  "mod_unapprove_text": "它将回到“待批准”状态：从主列表移除，并返回新模组队列。",
+  "mod_unapprove_done": "{name} 已重新变为待批准"
 }

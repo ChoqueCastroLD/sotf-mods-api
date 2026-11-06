@@ -92,5 +92,6 @@
   "signals_state_all": "全部",
   "signals_state_unread": "未读",
   "signals_empty_unread_title": "没有未读通知",
-  "signals_empty_unread_text": "符合此筛选条件的通知都已读。"
+  "signals_empty_unread_text": "符合此筛选条件的通知都已读。",
+  "signals_status_unapproved": "你的模组 {mod} 已重新变为待批准"
 }

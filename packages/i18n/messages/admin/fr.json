@@ -478,5 +478,6 @@
   "admin_ops_dl_discard_all_title": "Abandonner toutes les tâches en échec ?",
   "admin_ops_dl_discard_all_text": "Tâches retirées de cette liste : {count}, de toutes les files. Elles ne s’exécuteront plus. Cette action est irréversible.",
   "admin_ops_dl_discarded": "Tâches en échec abandonnées : {count}.",
-  "admin_ops_dl_discard_failed": "Impossible d’abandonner les tâches en échec"
+  "admin_ops_dl_discard_failed": "Impossible d’abandonner les tâches en échec",
+  "admin_tpl_action_unapprove": "Retirer l’approbation"
 }

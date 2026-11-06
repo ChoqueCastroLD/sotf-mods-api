@@ -457,5 +457,7 @@
   "ranger_users_empty_filtered": "Нет пользователей по выбранным фильтрам.",
   "ranger_audit_reason_search": "Поиск по причине",
   "ranger_audit_from": "С даты",
-  "ranger_audit_to": "По дату"
+  "ranger_audit_to": "По дату",
+  "ranger_action_unapprove": "Отменить одобрение",
+  "ranger_decided_unapprove": "{title} снова ожидает одобрения"
 }

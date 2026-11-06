@@ -303,6 +303,14 @@ function ItemDetail({
   });
 
   const moreEntries: MenuEntry[] = [];
+  if (can('unapprove')) {
+    moreEntries.push({
+      type: 'item',
+      label: actionLabel('unapprove'),
+      icon: <Icon icon={RotateCcw} size={16} />,
+      onSelect: () => void decide('unapprove').catch(() => {}),
+    });
+  }
   if (can('unlist')) {
     moreEntries.push({
       type: 'item',

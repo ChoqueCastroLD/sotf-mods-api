@@ -457,5 +457,7 @@
   "ranger_users_empty_filtered": "Filtrelere uyan kullanıcı yok.",
   "ranger_audit_reason_search": "Gerekçede ara",
   "ranger_audit_from": "Başlangıç tarihi",
-  "ranger_audit_to": "Bitiş tarihi"
+  "ranger_audit_to": "Bitiş tarihi",
+  "ranger_action_unapprove": "Onayı kaldır",
+  "ranger_decided_unapprove": "{title} yeniden onay bekliyor"
 }

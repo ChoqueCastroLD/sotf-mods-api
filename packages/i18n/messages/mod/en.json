@@ -218,5 +218,9 @@
   "mod_meta_game": "Game",
   "mod_meta_loader": "Mod loader",
   "mod_loader_other": "Other",
-  "mod_install_other_loader": "This mod is made for {loader}. Install it with the instructions in the description; RedManager does not install it."
+  "mod_install_other_loader": "This mod is made for {loader}. Install it with the instructions in the description; RedManager does not install it.",
+  "mod_unapprove_action": "Unapprove",
+  "mod_unapprove_title": "Unapprove {name}?",
+  "mod_unapprove_text": "It goes back to Pending approval: it leaves the main list and returns to the New mods queue.",
+  "mod_unapprove_done": "{name} is pending approval again"
 }

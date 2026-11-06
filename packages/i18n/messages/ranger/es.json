@@ -457,5 +457,7 @@
   "ranger_users_empty_filtered": "Ningún usuario coincide con los filtros.",
   "ranger_audit_reason_search": "Buscar en el motivo",
   "ranger_audit_from": "Desde la fecha",
-  "ranger_audit_to": "Hasta la fecha"
+  "ranger_audit_to": "Hasta la fecha",
+  "ranger_action_unapprove": "Desaprobar",
+  "ranger_decided_unapprove": "{title} vuelve a estar pendiente de aprobación"
 }

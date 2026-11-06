@@ -218,5 +218,9 @@
   "mod_meta_game": "Jeu",
   "mod_meta_loader": "Chargeur de mods",
   "mod_loader_other": "Autre",
-  "mod_install_other_loader": "Ce mod est fait pour {loader}. Installez-le avec les instructions de la description ; RedManager ne l’installe pas."
+  "mod_install_other_loader": "Ce mod est fait pour {loader}. Installez-le avec les instructions de la description ; RedManager ne l’installe pas.",
+  "mod_unapprove_action": "Retirer l’approbation",
+  "mod_unapprove_title": "Retirer l’approbation de {name} ?",
+  "mod_unapprove_text": "Il repasse en attente d’approbation : il quitte la liste principale et revient dans la file des nouveaux mods.",
+  "mod_unapprove_done": "{name} est de nouveau en attente d’approbation"
 }

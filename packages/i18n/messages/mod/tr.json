@@ -218,5 +218,9 @@
   "mod_meta_game": "Oyun",
   "mod_meta_loader": "Mod yükleyici",
   "mod_loader_other": "Diğer",
-  "mod_install_other_loader": "Bu mod {loader} için yapıldı. Açıklamadaki talimatlarla kur; RedManager bunu kurmaz."
+  "mod_install_other_loader": "Bu mod {loader} için yapıldı. Açıklamadaki talimatlarla kur; RedManager bunu kurmaz.",
+  "mod_unapprove_action": "Onayı kaldır",
+  "mod_unapprove_title": "{name} onayı kaldırılsın mı?",
+  "mod_unapprove_text": "Onay bekliyor durumuna döner: ana listeden çıkar ve yeni modlar kuyruğuna geri girer.",
+  "mod_unapprove_done": "{name} yeniden onay bekliyor"
 }

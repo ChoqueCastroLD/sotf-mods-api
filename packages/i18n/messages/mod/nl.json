@@ -218,5 +218,9 @@
   "mod_meta_game": "Spel",
   "mod_meta_loader": "Modloader",
   "mod_loader_other": "Anders",
-  "mod_install_other_loader": "Deze mod is gemaakt voor {loader}. Installeer hem met de instructies in de beschrijving; RedManager installeert hem niet."
+  "mod_install_other_loader": "Deze mod is gemaakt voor {loader}. Installeer hem met de instructies in de beschrijving; RedManager installeert hem niet.",
+  "mod_unapprove_action": "Goedkeuring intrekken",
+  "mod_unapprove_title": "Goedkeuring van {name} intrekken?",
+  "mod_unapprove_text": "De mod gaat terug naar Wacht op goedkeuring: hij verdwijnt uit de hoofdlijst en keert terug in de wachtrij voor nieuwe mods.",
+  "mod_unapprove_done": "{name} wacht weer op goedkeuring"
 }

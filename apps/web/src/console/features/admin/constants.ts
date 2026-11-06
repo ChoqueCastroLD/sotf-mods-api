@@ -34,7 +34,15 @@ export type SiteSettingKey = (typeof SITE_SETTING_KEYS)[number];
 export const ECOSYSTEM_STATUSES = ['works', 'partial', 'broken', 'unknown'] as const;
 export type EcosystemStatus = (typeof ECOSYSTEM_STATUSES)[number];
 
-export const MODERATION_ACTIONS = ['approve', 'reject', 'request_changes', 'unlist', 'remove', 'restore'] as const;
+export const MODERATION_ACTIONS = [
+  'approve',
+  'unapprove',
+  'reject',
+  'request_changes',
+  'unlist',
+  'remove',
+  'restore',
+] as const;
 export type ModerationAction = (typeof MODERATION_ACTIONS)[number];
 
 export const LOADER_NAMES = ['RedLoader', 'RedManager'] as const;

@@ -218,5 +218,9 @@
   "mod_meta_game": "Spel",
   "mod_meta_loader": "Modladdare",
   "mod_loader_other": "Annan",
-  "mod_install_other_loader": "Modden är gjord för {loader}. Installera den med instruktionerna i beskrivningen; RedManager installerar den inte."
+  "mod_install_other_loader": "Modden är gjord för {loader}. Installera den med instruktionerna i beskrivningen; RedManager installerar den inte.",
+  "mod_unapprove_action": "Dra tillbaka godkännande",
+  "mod_unapprove_title": "Dra tillbaka godkännandet av {name}?",
+  "mod_unapprove_text": "Den går tillbaka till Väntar på godkännande: den försvinner från huvudlistan och hamnar i kön för nya moddar.",
+  "mod_unapprove_done": "{name} väntar på godkännande igen"
 }

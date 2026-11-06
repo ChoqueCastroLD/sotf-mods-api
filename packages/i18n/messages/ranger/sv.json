@@ -457,5 +457,7 @@
   "ranger_users_empty_filtered": "Ingen användare matchar filtren.",
   "ranger_audit_reason_search": "Sök i orsaken",
   "ranger_audit_from": "Från datum",
-  "ranger_audit_to": "Till datum"
+  "ranger_audit_to": "Till datum",
+  "ranger_action_unapprove": "Dra tillbaka godkännande",
+  "ranger_decided_unapprove": "{title} väntar på godkännande igen"
 }

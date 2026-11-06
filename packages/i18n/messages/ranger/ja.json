@@ -457,5 +457,7 @@
   "ranger_users_empty_filtered": "フィルターに合うユーザーはいません。",
   "ranger_audit_reason_search": "理由を検索",
   "ranger_audit_from": "開始日",
-  "ranger_audit_to": "終了日"
+  "ranger_audit_to": "終了日",
+  "ranger_action_unapprove": "承認を取り消す",
+  "ranger_decided_unapprove": "{title} は再び承認待ちになりました"
 }

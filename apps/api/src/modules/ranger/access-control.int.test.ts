@@ -127,6 +127,28 @@ describe('independent review', () => {
     );
   });
 
+  it('whoever can approve can unapprove: the mod is pending again and can be approved again', async () => {
+    const found = await exec(db, `SELECT "id" FROM "Mod" WHERE "status" = 'published' ORDER BY "id" LIMIT 1`);
+    const id = Number(found.rows[0].id);
+    const state = async () =>
+      (await exec(db, `SELECT "status", "isApproved" FROM "Mod" WHERE "id" = $1`, [id])).rows[0];
+    expect(
+      (await call('POST', `/api/v2/ranger/mods/${id}/decision`, asToken(ranger), { action: 'unapprove' })).status,
+    ).toBe(403);
+    expect(
+      (await call('POST', `/api/v2/ranger/mods/${id}/decision`, otherRanger, { action: 'unapprove' })).status,
+    ).toBe(200);
+    expect(await state()).toEqual({ status: 'pending', isApproved: false });
+    // Already pending: nothing to unapprove.
+    expect(
+      (await call('POST', `/api/v2/ranger/mods/${id}/decision`, otherRanger, { action: 'unapprove' })).status,
+    ).toBe(409);
+    expect((await call('POST', `/api/v2/ranger/mods/${id}/decision`, otherRanger, { action: 'approve' })).status).toBe(
+      200,
+    );
+    expect(await state()).toEqual({ status: 'published', isApproved: true });
+  });
+
   it('a moderator cannot approve a mod they co-author', async () => {
     const mod = await ownPendingMod(author);
     await exec(

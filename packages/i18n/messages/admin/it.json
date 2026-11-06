@@ -478,5 +478,6 @@
   "admin_ops_dl_discard_all_title": "Scartare tutti i job falliti?",
   "admin_ops_dl_discard_all_text": "Job tolti da questo elenco: {count}, da tutte le code. Non verranno più eseguiti. L’operazione non si può annullare.",
   "admin_ops_dl_discarded": "Job falliti scartati: {count}.",
-  "admin_ops_dl_discard_failed": "Impossibile scartare i job falliti"
+  "admin_ops_dl_discard_failed": "Impossibile scartare i job falliti",
+  "admin_tpl_action_unapprove": "Revoca approvazione"
 }

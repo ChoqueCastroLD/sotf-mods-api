@@ -92,5 +92,6 @@
   "signals_state_all": "Tümü",
   "signals_state_unread": "Okunmamış",
   "signals_empty_unread_title": "Okunmamış bildirim yok",
-  "signals_empty_unread_text": "Bu filtreye uyan her şeyi okudunuz."
+  "signals_empty_unread_text": "Bu filtreye uyan her şeyi okudunuz.",
+  "signals_status_unapproved": "{mod} modun yeniden onay bekliyor"
 }

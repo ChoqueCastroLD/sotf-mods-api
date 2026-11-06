@@ -21,6 +21,7 @@ import { initSheetSections } from './sheets.ts';
 import { initTabs } from './tabs.ts';
 import { initTranslation } from './translation.ts';
 import type { ModPageData } from './types.ts';
+import { initUnapprove } from './unapprove.ts';
 import { initVersions } from './versions.ts';
 
 let started = false;
@@ -72,6 +73,7 @@ export function initModPage(doc: Document = document): void {
   safely(() => initSheetSections(root, doc));
   safely(() => initSocialIslands(root, session));
   safely(() => initDialogs(root, doc));
+  safely(() => initUnapprove(root, session, doc));
   safely(() => initNsfwGate(root, session));
   safely(() => noticeSuperseded(data, doc));
   safely(() => initDownloads(root, data, doc));

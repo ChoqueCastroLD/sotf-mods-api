@@ -478,5 +478,6 @@
   "admin_ops_dl_discard_all_title": "失敗したジョブをすべて破棄しますか?",
   "admin_ops_dl_discard_all_text": "この一覧から外すジョブ: {count}(すべてのキュー)。再実行されません。元に戻せません。",
   "admin_ops_dl_discarded": "破棄した失敗ジョブ: {count}。",
-  "admin_ops_dl_discard_failed": "失敗したジョブを破棄できませんでした"
+  "admin_ops_dl_discard_failed": "失敗したジョブを破棄できませんでした",
+  "admin_tpl_action_unapprove": "承認を取り消す"
 }

@@ -457,5 +457,7 @@
   "ranger_users_empty_filtered": "Aucun utilisateur ne correspond aux filtres.",
   "ranger_audit_reason_search": "Rechercher dans le motif",
   "ranger_audit_from": "À partir du",
-  "ranger_audit_to": "Jusqu’au"
+  "ranger_audit_to": "Jusqu’au",
+  "ranger_action_unapprove": "Retirer l’approbation",
+  "ranger_decided_unapprove": "{title} est de nouveau en attente d’approbation"
 }

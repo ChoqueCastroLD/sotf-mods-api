@@ -457,5 +457,7 @@
   "ranger_users_empty_filtered": "Kein Benutzer passt zu den Filtern.",
   "ranger_audit_reason_search": "Im Grund suchen",
   "ranger_audit_from": "Ab Datum",
-  "ranger_audit_to": "Bis Datum"
+  "ranger_audit_to": "Bis Datum",
+  "ranger_action_unapprove": "Freigabe zurückziehen",
+  "ranger_decided_unapprove": "{title} wartet wieder auf Freigabe"
 }

@@ -92,5 +92,6 @@
   "signals_state_all": "Все",
   "signals_state_unread": "Непрочитанные",
   "signals_empty_unread_title": "Нет непрочитанных уведомлений",
-  "signals_empty_unread_text": "Всё, что подходит под этот фильтр, прочитано."
+  "signals_empty_unread_text": "Всё, что подходит под этот фильтр, прочитано.",
+  "signals_status_unapproved": "Ваш мод {mod} снова ожидает одобрения"
 }

@@ -1,0 +1,30 @@
+---
+/**
+ * Staff only (revealed by `scripts/mod/unapprove.ts`; the API checks the role): sends a published
+ * mod back to «Pending approval». `POST /api/v2/ranger/mods/:id/decision { action: 'unapprove' }`.
+ */
+import { m } from '@sotf/i18n/messages';
+import type { ModDetailDTO } from './data.ts';
+import ModDialog from './ModDialog.astro';
+
+interface Props {
+  mod: ModDetailDTO;
+}
+
+const { mod } = Astro.props;
+---
+
+<ModDialog id="unapprove-dialog" title={m.mod_unapprove_title({ name: mod.name })} description={m.mod_unapprove_text()}>
+  <div class="flex flex-wrap justify-end gap-2">
+    <button
+      type="button"
+      data-unapprove-confirm
+      data-mod-id={mod.id}
+      data-done={m.mod_unapprove_done({ name: mod.name })}
+      data-failed={m.mod_toast_error()}
+      class="inline-flex h-11 items-center rounded-md bg-primary px-4 font-semibold text-primary-fg hover:bg-primary-hover disabled:cursor-not-allowed disabled:opacity-50"
+    >
+      {m.mod_unapprove_action()}
+    </button>
+  </div>
+</ModDialog>

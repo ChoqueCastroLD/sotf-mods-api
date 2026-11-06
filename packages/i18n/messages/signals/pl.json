@@ -92,5 +92,6 @@
   "signals_state_all": "Wszystkie",
   "signals_state_unread": "Nieprzeczytane",
   "signals_empty_unread_title": "Brak nieprzeczytanych powiadomień",
-  "signals_empty_unread_text": "Przeczytano wszystko, co pasuje do tego filtra."
+  "signals_empty_unread_text": "Przeczytano wszystko, co pasuje do tego filtra.",
+  "signals_status_unapproved": "Twój mod {mod} znów czeka na zatwierdzenie"
 }

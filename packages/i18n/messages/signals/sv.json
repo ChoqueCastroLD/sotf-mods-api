@@ -92,5 +92,6 @@
   "signals_state_all": "Alla",
   "signals_state_unread": "Olästa",
   "signals_empty_unread_title": "Inga olästa aviseringar",
-  "signals_empty_unread_text": "Du har läst allt som matchar det här filtret."
+  "signals_empty_unread_text": "Du har läst allt som matchar det här filtret.",
+  "signals_status_unapproved": "Din modd {mod} väntar på godkännande igen"
 }

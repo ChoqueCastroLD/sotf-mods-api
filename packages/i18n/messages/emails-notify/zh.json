@@ -29,7 +29,7 @@
   "emails_notify_item_review_on_my_mod_many": "{count, plural, other {{mod} 有 # 条新评价}}",
   "emails_notify_item_review_reply": "{mod} 的作者回复了你的评价",
   "emails_notify_item_review_update_prompt": "{mod} 发布了新的主要版本（{version}）：请更新你的评价",
-  "emails_notify_item_status": "{status, select, published {{mod} 已通过审核并上线} rejected {{mod} 未通过审核} pending {{mod} 需要修改后才能通过审核} archived {{mod} 已归档} unlisted {{mod} 已不再显示在列表中} removed {{mod} 已从 SOTF Mods 移除} changes_requested {审核员要求修改 {mod}} version_approved {{mod} 的新版本已通过审核并上线} version_rejected {{mod} 的新版本未通过审核} version_changes_requested {审核员要求修改 {mod} 的新版本} version_held {{mod} 的新版本正在等待审核员审核} other {{mod} 的状态已变更}}",
+  "emails_notify_item_status": "{status, select, published {{mod} 已通过审核并上线} rejected {{mod} 未通过审核} pending {{mod} 已重新变为待批准} archived {{mod} 已归档} unlisted {{mod} 已不再显示在列表中} removed {{mod} 已从 SOTF Mods 移除} changes_requested {审核员要求修改 {mod}} version_approved {{mod} 的新版本已通过审核并上线} version_rejected {{mod} 的新版本未通过审核} version_changes_requested {审核员要求修改 {mod} 的新版本} version_held {{mod} 的新版本正在等待审核员审核} other {{mod} 的状态已变更}}",
   "emails_notify_item_status_reason": "原因：{reason}",
   "emails_notify_item_report_resolved": "{action, select, resolve {你的举报已审核，版主已采取措施} other {你的举报已审核：无需采取措施}}",
   "emails_notify_item_announcement": "SOTF Mods 的新公告",

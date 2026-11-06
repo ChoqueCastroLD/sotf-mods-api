@@ -92,5 +92,6 @@
   "signals_state_all": "すべて",
   "signals_state_unread": "未読",
   "signals_empty_unread_title": "未読の通知はありません",
-  "signals_empty_unread_text": "このフィルターに一致する通知はすべて既読です。"
+  "signals_empty_unread_text": "このフィルターに一致する通知はすべて既読です。",
+  "signals_status_unapproved": "あなたのMOD {mod} は再び承認待ちになりました"
 }

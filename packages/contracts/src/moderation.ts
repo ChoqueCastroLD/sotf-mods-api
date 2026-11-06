@@ -38,6 +38,8 @@ export const MOD_STATUS_TRANSITIONS: ReadonlyArray<{
 }> = [
   { from: 'pending', to: 'published', actors: ['moderator', 'admin'] },
   { from: 'pending', to: 'rejected', actors: ['moderator', 'admin'] },
+  { from: 'published', to: 'pending', actors: ['moderator', 'admin'] },
+  { from: 'unlisted', to: 'pending', actors: ['moderator', 'admin'] },
   { from: 'published', to: 'unlisted', actors: ['author', 'moderator', 'admin'] },
   { from: 'published', to: 'archived', actors: ['author', 'moderator', 'admin'] },
   { from: 'unlisted', to: 'published', actors: ['author', 'moderator', 'admin'] },
@@ -176,7 +178,15 @@ export const QueueQuery = CursorQuery.extend({
   q: z.string().trim().max(100).optional().describe('Text in the title'),
 });
 
-export const MODERATION_ACTIONS = ['approve', 'reject', 'request_changes', 'unlist', 'remove', 'restore'] as const;
+export const MODERATION_ACTIONS = [
+  'approve',
+  'unapprove',
+  'reject',
+  'request_changes',
+  'unlist',
+  'remove',
+  'restore',
+] as const;
 export const ModerationAction = z.enum(MODERATION_ACTIONS);
 
 export const QueueEscalationDTO = dto(

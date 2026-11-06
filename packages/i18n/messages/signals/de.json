@@ -92,5 +92,6 @@
   "signals_state_all": "Alle",
   "signals_state_unread": "Ungelesen",
   "signals_empty_unread_title": "Keine ungelesenen Benachrichtigungen",
-  "signals_empty_unread_text": "Du hast alles gelesen, was zu diesem Filter passt."
+  "signals_empty_unread_text": "Du hast alles gelesen, was zu diesem Filter passt.",
+  "signals_status_unapproved": "Deine Mod {mod} wartet wieder auf Freigabe"
 }

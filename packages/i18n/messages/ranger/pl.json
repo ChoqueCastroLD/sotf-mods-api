@@ -457,5 +457,7 @@
   "ranger_users_empty_filtered": "Żaden użytkownik nie pasuje do filtrów.",
   "ranger_audit_reason_search": "Szukaj w powodzie",
   "ranger_audit_from": "Od daty",
-  "ranger_audit_to": "Do daty"
+  "ranger_audit_to": "Do daty",
+  "ranger_action_unapprove": "Cofnij zatwierdzenie",
+  "ranger_decided_unapprove": "{title} znów czeka na zatwierdzenie"
 }

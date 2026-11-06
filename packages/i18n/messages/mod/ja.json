@@ -218,5 +218,9 @@
   "mod_meta_game": "ゲーム",
   "mod_meta_loader": "MODローダー",
   "mod_loader_other": "その他",
-  "mod_install_other_loader": "このMODは {loader} 用です。説明の手順に従ってインストールしてください。RedManager ではインストールできません。"
+  "mod_install_other_loader": "このMODは {loader} 用です。説明の手順に従ってインストールしてください。RedManager ではインストールできません。",
+  "mod_unapprove_action": "承認を取り消す",
+  "mod_unapprove_title": "{name} の承認を取り消しますか？",
+  "mod_unapprove_text": "承認待ちに戻ります。メインの一覧から外れ、新規MODのキューに戻ります。",
+  "mod_unapprove_done": "{name} は再び承認待ちになりました"
 }

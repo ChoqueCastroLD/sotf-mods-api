@@ -92,5 +92,6 @@
   "signals_state_all": "Toutes",
   "signals_state_unread": "Non lues",
   "signals_empty_unread_title": "Aucune notification non lue",
-  "signals_empty_unread_text": "Vous avez tout lu pour ce filtre."
+  "signals_empty_unread_text": "Vous avez tout lu pour ce filtre.",
+  "signals_status_unapproved": "Votre mod {mod} est de nouveau en attente d’approbation"
 }

@@ -457,5 +457,7 @@
   "ranger_users_empty_filtered": "Nenhum usuário corresponde aos filtros.",
   "ranger_audit_reason_search": "Buscar no motivo",
   "ranger_audit_from": "A partir de",
-  "ranger_audit_to": "Até a data"
+  "ranger_audit_to": "Até a data",
+  "ranger_action_unapprove": "Revogar aprovação",
+  "ranger_decided_unapprove": "{title} voltou a aguardar aprovação"
 }

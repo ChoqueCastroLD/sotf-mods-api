@@ -457,5 +457,7 @@
   "ranger_users_empty_filtered": "没有符合筛选条件的用户。",
   "ranger_audit_reason_search": "搜索原因",
   "ranger_audit_from": "起始日期",
-  "ranger_audit_to": "截止日期"
+  "ranger_audit_to": "截止日期",
+  "ranger_action_unapprove": "取消批准",
+  "ranger_decided_unapprove": "{title} 已重新变为待批准"
 }

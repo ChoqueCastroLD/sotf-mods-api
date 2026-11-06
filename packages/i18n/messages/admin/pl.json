@@ -478,5 +478,6 @@
   "admin_ops_dl_discard_all_title": "Odrzucić wszystkie nieudane zadania?",
   "admin_ops_dl_discard_all_text": "Zadania usunięte z tej listy: {count}, ze wszystkich kolejek. Nie zostaną już uruchomione. Tego nie można cofnąć.",
   "admin_ops_dl_discarded": "Odrzucone nieudane zadania: {count}.",
-  "admin_ops_dl_discard_failed": "Nie udało się odrzucić nieudanych zadań"
+  "admin_ops_dl_discard_failed": "Nie udało się odrzucić nieudanych zadań",
+  "admin_tpl_action_unapprove": "Cofnij zatwierdzenie"
 }

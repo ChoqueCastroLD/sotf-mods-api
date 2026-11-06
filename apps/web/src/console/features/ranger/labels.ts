@@ -66,6 +66,8 @@ export function actionLabel(action: ModerationAction): string {
   switch (action) {
     case 'approve':
       return m.ranger_action_approve();
+    case 'unapprove':
+      return m.ranger_action_unapprove();
     case 'reject':
       return m.ranger_action_reject();
     case 'request_changes':
@@ -89,6 +91,8 @@ export function decidedMessage(action: ModerationAction, title: string): string 
   switch (action) {
     case 'approve':
       return m.ranger_decided_approve({ title });
+    case 'unapprove':
+      return m.ranger_decided_unapprove({ title });
     case 'reject':
       return m.ranger_decided_reject({ title });
     case 'request_changes':

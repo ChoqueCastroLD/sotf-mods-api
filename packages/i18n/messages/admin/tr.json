@@ -478,5 +478,6 @@
   "admin_ops_dl_discard_all_title": "Tüm başarısız işler atılsın mı?",
   "admin_ops_dl_discard_all_text": "Bu listeden çıkarılan işler: {count}, tüm kuyruklardan. Bir daha çalışmazlar. Bu geri alınamaz.",
   "admin_ops_dl_discarded": "Atılan başarısız işler: {count}.",
-  "admin_ops_dl_discard_failed": "Başarısız işler atılamadı"
+  "admin_ops_dl_discard_failed": "Başarısız işler atılamadı",
+  "admin_tpl_action_unapprove": "Onayı kaldır"
 }

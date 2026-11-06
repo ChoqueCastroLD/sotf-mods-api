@@ -81,8 +81,8 @@ describe('file and manifest diffs', () => {
 describe('allowed decisions', () => {
   it('follows the status machine per role', () => {
     expect(modAllowedActions('pending', 'moderator')).toEqual(['approve', 'reject', 'request_changes']);
-    expect(modAllowedActions('published', 'moderator')).toEqual(['unlist', 'remove']);
-    expect(modAllowedActions('unlisted', 'moderator')).toEqual(['approve', 'remove']);
+    expect(modAllowedActions('published', 'moderator')).toEqual(['unapprove', 'unlist', 'remove']);
+    expect(modAllowedActions('unlisted', 'moderator')).toEqual(['approve', 'unapprove', 'remove']);
     expect(modAllowedActions('archived', 'moderator')).toEqual(['remove']);
     // Restoring a removed mod is an admin action.
     expect(modAllowedActions('removed', 'moderator')).toEqual([]);

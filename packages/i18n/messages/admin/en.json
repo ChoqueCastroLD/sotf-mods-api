@@ -478,5 +478,6 @@
   "admin_ops_dl_discard_all_title": "Discard all failed jobs?",
   "admin_ops_dl_discard_all_text": "Jobs removed from this list: {count}, from every queue. They will not run again. This cannot be undone.",
   "admin_ops_dl_discarded": "Failed jobs discarded: {count}.",
-  "admin_ops_dl_discard_failed": "Could not discard the failed jobs"
+  "admin_ops_dl_discard_failed": "Could not discard the failed jobs",
+  "admin_tpl_action_unapprove": "Unapprove"
 }

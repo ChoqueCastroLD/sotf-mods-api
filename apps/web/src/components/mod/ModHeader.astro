@@ -177,5 +177,18 @@ const stat = 'inline-flex items-center gap-1.5 tabular-nums';
     </ul>
 
     <ActionBar mod={mod} versions={versions} loginHref={loginHref} />
+    {
+      (mod.status === 'published' || mod.status === 'unlisted') && (
+        <p hidden data-staff-only class="m-0">
+          <button
+            type="button"
+            data-dialog-open="unapprove-dialog"
+            class="inline-flex min-h-9 items-center gap-2 rounded-md border border-warning/50 px-3 text-sm font-semibold text-warning transition-colors hover:bg-warning-soft focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+          >
+            {m.mod_unapprove_action()}
+          </button>
+        </p>
+      )
+    }
   </div>
 </header>

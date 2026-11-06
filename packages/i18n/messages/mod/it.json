@@ -218,5 +218,9 @@
   "mod_meta_game": "Gioco",
   "mod_meta_loader": "Mod loader",
   "mod_loader_other": "Altro",
-  "mod_install_other_loader": "Questa mod è fatta per {loader}. Installala seguendo le istruzioni nella descrizione; RedManager non la installa."
+  "mod_install_other_loader": "Questa mod è fatta per {loader}. Installala seguendo le istruzioni nella descrizione; RedManager non la installa.",
+  "mod_unapprove_action": "Revoca approvazione",
+  "mod_unapprove_title": "Revocare l’approvazione di {name}?",
+  "mod_unapprove_text": "Torna in attesa di approvazione: esce dalla lista principale e torna nella coda delle nuove mod.",
+  "mod_unapprove_done": "{name} è di nuovo in attesa di approvazione"
 }

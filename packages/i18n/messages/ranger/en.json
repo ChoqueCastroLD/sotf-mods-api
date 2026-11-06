@@ -457,5 +457,7 @@
   "ranger_users_empty_filtered": "No user matches the filters.",
   "ranger_audit_reason_search": "Search the reason",
   "ranger_audit_from": "From date",
-  "ranger_audit_to": "To date"
+  "ranger_audit_to": "To date",
+  "ranger_action_unapprove": "Unapprove",
+  "ranger_decided_unapprove": "{title} is pending approval again"
 }

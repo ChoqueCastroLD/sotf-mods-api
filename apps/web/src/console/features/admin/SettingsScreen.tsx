@@ -493,6 +493,8 @@ export function moderationActionLabel(action: ModerationAction): string {
   switch (action) {
     case 'approve':
       return m.admin_tpl_action_approve();
+    case 'unapprove':
+      return m.admin_tpl_action_unapprove();
     case 'reject':
       return m.admin_tpl_action_reject();
     case 'request_changes':

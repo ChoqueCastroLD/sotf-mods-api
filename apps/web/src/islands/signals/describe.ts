@@ -72,6 +72,10 @@ function statusSentence(signal: NotificationDTO, mod: string): { text: string; t
     case 'rejected':
       return { text: st('signals_status_rejected', { mod }), tone: 'danger', icon: CircleAlert };
     case 'pending':
+      if (from === 'published' || from === 'unlisted') {
+        return { text: st('signals_status_unapproved', { mod }), tone: 'warning', icon: ShieldCheck };
+      }
+      return { text: st('signals_status_changes_requested', { mod }), tone: 'warning', icon: Wrench };
     case 'changes_requested':
       return { text: st('signals_status_changes_requested', { mod }), tone: 'warning', icon: Wrench };
     case 'version_approved':

@@ -35,6 +35,7 @@ import MoreSheet from './MoreSheet.astro';
 import NsfwGate from './NsfwGate.astro';
 import PageData from './PageData.astro';
 import ReportDialog from './ReportDialog.astro';
+import UnapproveDialog from './UnapproveDialog.astro';
 import ShareDialog from './ShareDialog.astro';
 import SocialSheets from './SocialSheets.astro';
 import StatusBanners from './StatusBanners.astro';
@@ -156,6 +157,7 @@ const hasSidebar = Astro.slots.has('sidebar');
     <MoreSheet mod={mod} url={`${env.siteUrl}${overviewHref}`} />
     <ShareDialog mod={mod} url={`${env.siteUrl}${overviewHref}`} />
     <ReportDialog mod={mod} loginHref={loginHref} />
+    {(mod.status === 'published' || mod.status === 'unlisted') && <UnapproveDialog mod={mod} />}
     {tab === 'overview' && <Lightbox mod={mod} />}
     {(tab === 'overview' || tab === 'versions') && <VersionSheet />}
     {tab === 'overview' && <SocialSheets mod={mod} loginHref={loginHref} />}

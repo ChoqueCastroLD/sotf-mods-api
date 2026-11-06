@@ -218,5 +218,9 @@
   "mod_meta_game": "Gra",
   "mod_meta_loader": "Loader modów",
   "mod_loader_other": "Inny",
-  "mod_install_other_loader": "Ten mod jest zrobiony dla {loader}. Zainstaluj go według instrukcji w opisie; RedManager go nie zainstaluje."
+  "mod_install_other_loader": "Ten mod jest zrobiony dla {loader}. Zainstaluj go według instrukcji w opisie; RedManager go nie zainstaluje.",
+  "mod_unapprove_action": "Cofnij zatwierdzenie",
+  "mod_unapprove_title": "Cofnąć zatwierdzenie {name}?",
+  "mod_unapprove_text": "Mod wraca do stanu oczekiwania na zatwierdzenie: znika z głównej listy i wraca do kolejki nowych modów.",
+  "mod_unapprove_done": "{name} znów czeka na zatwierdzenie"
 }
