@@ -13,7 +13,7 @@ SOTF Mods (sotf-mods.com, "we") is a community website operated by the SOTF Mods
 - You can browse and download without an account. We don't need your name.
 - If you create an account, we store your email address, a securely hashed password and what you choose to publish.
 - Our own statistics don't use cookies and never store your IP address in clear text.
-- Ads are shown only to visitors who are not signed in, and only after consent where the law requires it.
+- Pages show ads from third-party ad networks (Adsterra, HilltopAds), which may set their own cookies.
 - You can export or delete your account yourself, from your settings.
 
 # What we collect
@@ -38,7 +38,7 @@ SOTF Mods (sotf-mods.com, "we") is a community website operated by the SOTF Mods
 - To keep the site secure, prevent spam and abuse, and moderate content (legitimate interest).
 - To understand which pages and mods are used, with the privacy-friendly statistics below (legitimate interest).
 - To send the emails you need (verification, password reset) and the notifications you opt into.
-- To show ads to guests, based on consent where required.
+- To show ads, which fund the site.
 - To meet legal obligations, such as answering copyright notices.
 
 We don't sell personal data and we don't build advertising profiles.
@@ -55,7 +55,7 @@ We use a few service providers, each only for its purpose and under a data proce
 |---|---|
 | Cloudflare | Content delivery, security, file storage (R2) and bot protection (Turnstile) |
 | Resend | Sending account and notification emails |
-| Google | Ads and the consent tool, for guests only |
+| Adsterra, HilltopAds | Ads |
 | VirusTotal | Scanning published mod files (files only, no personal data) |
 | Sentry | Error reports, if enabled, with personal data disabled |
 

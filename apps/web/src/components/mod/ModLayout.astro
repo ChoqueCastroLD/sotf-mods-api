@@ -19,7 +19,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { loadEnv } from '../../lib/env.ts';
 import { href } from '../../lib/i18n.ts';
 import { breadcrumbJsonLd, type JsonLd } from '../../lib/seo/jsonld.ts';
-import AdUnit from '../ads/AdUnit.astro';
 import type { SeoProps } from '../layout/SeoHead.astro';
 import DependencySheet from './DependencySheet.astro';
 import type { ModDetailDTO, VersionDTO } from './data.ts';
@@ -35,10 +34,10 @@ import MoreSheet from './MoreSheet.astro';
 import NsfwGate from './NsfwGate.astro';
 import PageData from './PageData.astro';
 import ReportDialog from './ReportDialog.astro';
-import UnapproveDialog from './UnapproveDialog.astro';
 import ShareDialog from './ShareDialog.astro';
 import SocialSheets from './SocialSheets.astro';
 import StatusBanners from './StatusBanners.astro';
+import UnapproveDialog from './UnapproveDialog.astro';
 import VersionSheet from './VersionSheet.astro';
 
 export interface ModCrumb {
@@ -143,7 +142,6 @@ const hasSidebar = Astro.slots.has('sidebar');
             hasSidebar && (
               <aside aria-label={m.mod_sidebar_label()} class="grid min-w-0 content-start gap-6 max-lg:border-t max-lg:border-border max-lg:pt-8">
                 <slot name="sidebar" />
-                {!mod.nsfw && <AdUnit placement="modSidebar" format="sidebar" />}
               </aside>
             )
           }

@@ -8,16 +8,8 @@ import { FOOTER_ACCORDION_SCRIPT } from '../scripts/footer-accordion.ts';
 import { LEGACY_CLEANUP_SCRIPT } from '../scripts/legacy-cleanup.ts';
 import { pictureSources, safeHexColor, thumbhashDataUrl } from './images.ts';
 import { cspConfig, INLINE_SCRIPTS, sha256Source } from './security/csp.ts';
-import { ADS_TXT } from './site.ts';
 import { SPECULATION_RULES, SPECULATION_RULES_JSON } from './speculation.ts';
 import { webManifest } from './tooling/gen.ts';
-
-describe('/ads.txt', () => {
-  it('is byte-for-byte the legacy file (58 bytes, no trailing newline)', () => {
-    expect(ADS_TXT).toBe('google.com, pub-2799839819522052, DIRECT, f08c47fec0942fa0');
-    expect(Buffer.byteLength(ADS_TXT)).toBe(58);
-  });
-});
 
 describe('CSP placeholder', () => {
   it('hashes every inline script the layouts render', () => {

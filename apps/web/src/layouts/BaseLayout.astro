@@ -31,7 +31,6 @@ import MobileTabBar from '../components/layout/MobileTabBar.astro';
 import MoreSheet from '../components/layout/MoreSheet.astro';
 import SeoHead, { type SeoProps } from '../components/layout/SeoHead.astro';
 import SiteBanners from '../components/layout/SiteBanners.astro';
-import { loadEnv } from '../lib/env.ts';
 import { toHtmlLang } from '../lib/i18n.ts';
 import { IOS_SPLASH_SCREENS, PULL_TO_REFRESH_TEMPLATES } from '../lib/pwa.ts';
 import { ensureLocals } from '../lib/request-context.ts';
@@ -60,12 +59,6 @@ interface Props {
 
 const { seo, jsonLd, template, preloadImage, chrome = true, boot = true, pullToRefresh, mainClass, entity } = Astro.props;
 const withRefresh = chrome && (pullToRefresh ?? PULL_TO_REFRESH_TEMPLATES.has(template));
-/** Screens without publisher content get no ads (AdSense policy; `scripts/ads.ts`). */
-const NO_ADS_TEMPLATES: ReadonlySet<string> = new Set([
-  'login', 'register', 'logout', 'forgot-password', 'reset-password', 'verify-email', 'oauth-link',
-  'unsubscribe', 'not-found', 'server-error', 'gone', 'offline',
-]);
-const noAds = NO_ADS_TEMPLATES.has(template);
 /**
  * Pages whose URL carries a secret (token, unguessable log id): no third-party ad code and the
  * strict referrer policy of the response header, so the address never leaves the site.
@@ -74,7 +67,6 @@ const PRIVATE_URL_TEMPLATES: ReadonlySet<string> = new Set([
   'reset-password', 'verify-email', 'unsubscribe', 'oauth-link', 'log-viewer',
 ]);
 const privateUrl = PRIVATE_URL_TEMPLATES.has(template);
-const env = loadEnv();
 const locale = ensureLocals(Astro).locale;
 ---
 
@@ -111,11 +103,10 @@ const locale = ensureLocals(Astro).locale;
       ))
     }
     <link rel="alternate" type="application/rss+xml" title="SOTF Mods" href="/feed.xml" />
-    {env.adsenseClient && <meta name="google-adsense-account" content={env.adsenseClient} />}
     <script is:inline type="speculationrules" set:html={SPECULATION_RULES_JSON} />
     <slot name="head" />
   </head>
-  <body class="bg-bg text-fg" data-no-ads={noAds ? '' : undefined} data-private-url={privateUrl ? '' : undefined}>
+  <body class="bg-bg text-fg" data-private-url={privateUrl ? '' : undefined}>
     <SkipLink />
     {chrome && <Header />}
     {chrome && <SiteBanners />}

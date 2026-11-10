@@ -50,8 +50,8 @@ RUN --mount=type=cache,id=sotf-pnpm-store,target=/pnpm/store \
  && pnpm install --offline --frozen-lockfile
 
 # ── build ─────────────────────────────────────────────────────────────────────────────────────
-# The build is environment independent: the server reads PUBLIC_SITE_URL, SITE_ENV, the AdSense and
-# Turnstile keys… at start-up (src/lib/env.ts), so one image serves staging, preflight and
+# The build is environment independent: the server reads PUBLIC_SITE_URL, SITE_ENV, the
+# Turnstile key… at start-up (src/lib/env.ts), so one image serves staging, preflight and
 # production.
 FROM deps AS build
 COPY --from=prune /prune/web/full/ ./

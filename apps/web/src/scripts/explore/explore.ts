@@ -305,12 +305,6 @@ interface NavigateOptions {
   scrollToResults?: boolean;
 }
 
-/** In-feed units of a swapped-in listing (guests; `scripts/ads.ts` skips members and filled units). */
-function fillAds(root: Element): void {
-  if (!root.querySelector('ins.adsbygoogle[data-ad-slot]')) return;
-  void import('../ads.ts').then(({ initAds }) => initAds(root.ownerDocument)).catch(() => {});
-}
-
 async function navigate(win: Window, target: URL, options: NavigateOptions): Promise<void> {
   const doc = win.document;
   const current = rootOf(doc);
@@ -378,7 +372,6 @@ async function navigate(win: Window, target: URL, options: NavigateOptions): Pro
     current.replaceWith(next);
     if (title) doc.title = title;
     syncHead(doc, fetched.doc);
-    fillAds(next);
   };
   const transition = !reducedMotion(win) && typeof doc.startViewTransition === 'function';
   if (transition) {

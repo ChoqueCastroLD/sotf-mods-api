@@ -1,7 +1,7 @@
 /**
  * `/moderation/admin/settings` (PLAN §7.4 «ajustes: límites, feature flags»): the site settings that
- * are not integrations — feature flags, rate-limit overrides, ads (AdSense client and slots) and
- * the moderation reason templates used by Ranger Station (`SiteSetting.moderationTemplates`,
+ * are not integrations — feature flags, rate-limit overrides and the
+ * moderation reason templates used by Ranger Station (`SiteSetting.moderationTemplates`,
  * i18n). Each panel saves on its own; leaving with unsaved panels asks first.
  */
 
@@ -20,16 +20,7 @@ import { Textarea } from '@sotf/ui/textarea';
 import { Flag, Plus, ScrollText, Trash2 } from 'lucide-react';
 import { type FormEvent, useCallback, useEffect, useId, useState } from 'react';
 import { ADMIN_LIMITS, MODERATION_ACTIONS, type ModerationAction } from './constants.ts';
-import {
-  asArray,
-  asBoolean,
-  asNumber,
-  asRecord,
-  asString,
-  rowId,
-  SettingFooter,
-  useSettingDraft,
-} from './setting-draft.tsx';
+import { asArray, asNumber, asRecord, asString, rowId, SettingFooter, useSettingDraft } from './setting-draft.tsx';
 import { AdminHeader, compactTexts, formatCount, LocalizedFields, type LocalizedTexts, Panel } from './shared.tsx';
 import { UnsavedGuard } from './UnsavedGuard.tsx';
 
@@ -47,7 +38,6 @@ export function SettingsScreen() {
       <AdminHeader title={m.admin_settings_title()} description={m.admin_settings_description()} />
       <FeatureFlagsPanel onDirty={report} />
       <LimitsPanel onDirty={report} />
-      <AdsPanel onDirty={report} />
       <TemplatesPanel onDirty={report} />
     </div>
   );
@@ -298,150 +288,6 @@ function LimitsPanel({ onDirty }: { onDirty: DirtyReporter }) {
             {m.admin_limits_add()}
           </Button>
         </div>
-        <SettingFooter state={state} disabled={invalid} />
-      </form>
-    </Panel>
-  );
-}
-
-// -----------------------------------------------------------------------------------------------
-// Ads
-// -----------------------------------------------------------------------------------------------
-
-interface AdsDraft {
-  enabled: boolean;
-  clientId: string;
-  slots: Array<{ id: string; name: string; slot: string }>;
-}
-
-const normalizeAds = (value: unknown): AdsDraft => {
-  const record = asRecord(value);
-  return {
-    enabled: asBoolean(record.enabled, false),
-    clientId: asString(record.clientId),
-    slots: Object.entries(asRecord(record.slots)).map(([name, slot]) => ({ id: rowId(), name, slot: asString(slot) })),
-  };
-};
-const serializeAds = (draft: AdsDraft) => ({
-  enabled: draft.enabled,
-  clientId: draft.clientId.trim() || null,
-  slots: Object.fromEntries(draft.slots.map((row) => [row.name.trim(), row.slot.trim()])),
-});
-
-function AdsPanel({ onDirty }: { onDirty: DirtyReporter }) {
-  const state = useSettingDraft('ads', normalizeAds, serializeAds, m.admin_ads_saved());
-  useReportDirty('ads', state.dirty, onDirty);
-  const { draft } = state;
-  const clientError =
-    draft.clientId.trim() && !ADMIN_LIMITS.adsClientId.test(draft.clientId.trim())
-      ? m.admin_ads_error_client()
-      : draft.enabled && !draft.clientId.trim()
-        ? m.admin_ads_error_client_required()
-        : undefined;
-  const names = draft.slots.map((row) => row.name.trim());
-  const slotError = (row: AdsDraft['slots'][number]) => {
-    if (!row.name.trim()) return m.admin_error_required();
-    if (names.filter((name) => name === row.name.trim()).length > 1) return m.admin_error_duplicate();
-    if (!ADMIN_LIMITS.adsSlotId.test(row.slot.trim())) return m.admin_ads_error_slot();
-    return undefined;
-  };
-  const invalid = clientError !== undefined || draft.slots.some((row) => slotError(row) !== undefined);
-  const updateSlot = (id: string, patch: Partial<AdsDraft['slots'][number]>) =>
-    state.setDraft((previous) => ({
-      ...previous,
-      slots: previous.slots.map((row) => (row.id === id ? { ...row, ...patch } : row)),
-    }));
-
-  return (
-    <Panel title={m.admin_ads_title()} description={m.admin_ads_description()}>
-      <form
-        noValidate
-        className="grid gap-4"
-        onSubmit={(event: FormEvent) => {
-          event.preventDefault();
-          if (!invalid) void state.save();
-        }}
-      >
-        <Switch
-          label={m.admin_ads_enabled()}
-          description={m.admin_ads_enabled_hint()}
-          checked={draft.enabled}
-          onCheckedChange={(enabled) => state.setDraft((previous) => ({ ...previous, enabled }))}
-        />
-        <Field label={m.admin_ads_client()} description={m.admin_ads_client_hint()} error={clientError} optional>
-          <Input
-            value={draft.clientId}
-            spellCheck={false}
-            autoComplete="off"
-            className="font-mono"
-            placeholder="ca-pub-0000000000000000"
-            onChange={(event) => {
-              const clientId = event.currentTarget.value;
-              state.setDraft((previous) => ({ ...previous, clientId }));
-            }}
-          />
-        </Field>
-        <fieldset className="grid gap-3">
-          <legend className="mb-2 text-sm font-medium text-fg">{m.admin_ads_slots()}</legend>
-          {draft.slots.length === 0 ? <p className="text-sm text-fg-muted">{m.admin_ads_slots_empty()}</p> : null}
-          {draft.slots.map((row) => {
-            const error = slotError(row);
-            return (
-              <div key={row.id} className="grid gap-1">
-                <div className="grid items-end gap-3 sm:grid-cols-[1fr_1fr_auto]">
-                  <Field label={m.admin_ads_slot_name()}>
-                    <Input
-                      value={row.name}
-                      maxLength={60}
-                      spellCheck={false}
-                      placeholder="mod-sidebar"
-                      onChange={(event) => updateSlot(row.id, { name: event.currentTarget.value })}
-                    />
-                  </Field>
-                  <Field label={m.admin_ads_slot_id()}>
-                    <Input
-                      inputMode="numeric"
-                      value={row.slot}
-                      className="font-mono"
-                      onChange={(event) => updateSlot(row.id, { slot: event.currentTarget.value })}
-                    />
-                  </Field>
-                  <Button
-                    variant="icon"
-                    aria-label={m.admin_remove_named({ name: row.name || m.admin_ads_slot_name() })}
-                    onClick={() =>
-                      state.setDraft((previous) => ({
-                        ...previous,
-                        slots: previous.slots.filter((entry) => entry.id !== row.id),
-                      }))
-                    }
-                  >
-                    <Icon icon={Trash2} size={16} />
-                  </Button>
-                </div>
-                {error ? (
-                  <p role="alert" className="text-xs font-medium text-danger">
-                    {error}
-                  </p>
-                ) : null}
-              </div>
-            );
-          })}
-          <div>
-            <Button
-              variant="secondary"
-              icon={<Icon icon={Plus} size={16} />}
-              onClick={() =>
-                state.setDraft((previous) => ({
-                  ...previous,
-                  slots: [...previous.slots, { id: rowId(), name: '', slot: '' }],
-                }))
-              }
-            >
-              {m.admin_ads_add_slot()}
-            </Button>
-          </div>
-        </fieldset>
         <SettingFooter state={state} disabled={invalid} />
       </form>
     </Panel>

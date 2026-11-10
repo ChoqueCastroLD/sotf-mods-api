@@ -1,7 +1,7 @@
 /// <reference types="node" />
 /**
  * The rules the domain components promise (PLAN §3.3, §3.9, research/03 §5): status is icon +
- * text, ad slots reserve their height, the grid ModCard turns compact below 260 px of its own
+ * text, the grid ModCard turns compact below 260 px of its own
  * width (checked in the compiled CSS), constants mirror @sotf/contracts, and the helpers are
  * correct at their edges.
  */
@@ -14,9 +14,6 @@ import { renderToString } from 'react-dom/server';
 import { build, type Rolldown } from 'vite';
 import { describe, expect, it } from 'vitest';
 import {
-  AD_FORMATS,
-  AD_MIN_HEIGHT,
-  AdSlot,
   createDomainTranslate,
   DOMAIN_MESSAGE_KEYS,
   DomainI18nProvider,
@@ -59,21 +56,6 @@ describe('ModCard', () => {
     // The grid and row cards keep «Featured» out of the cover badges.
     expect(textOf(renderToString(<ModCard mod={broken} />))).not.toMatch(/Featured/);
   });
-});
-
-describe('AdSlot reserves its height', () => {
-  for (const format of AD_FORMATS) {
-    it(format, () => {
-      const html = renderToString(<AdSlot format={format} client="ca-pub-0000000000000000" slot="1" />);
-      const [small, large] = AD_MIN_HEIGHT[format];
-      expect(html).toContain(`min-h-[${small}px]`);
-      expect(html).toContain(`md:min-h-[${large}px]`);
-      // The site's units are AdSense in-article (fluid) units.
-      expect(html).toContain('data-ad-format="fluid"');
-      expect(html).toContain('data-ad-layout="in-article"');
-      expect(textOf(html)).toContain('Advertisement');
-    });
-  }
 });
 
 describe('ModCard container query', () => {

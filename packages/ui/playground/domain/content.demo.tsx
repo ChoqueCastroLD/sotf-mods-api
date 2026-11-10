@@ -1,8 +1,6 @@
 import {
-  AdSlot,
   ChartFigure,
   CommentItem,
-  ConsentBar,
   ProseLocator,
   RatingHistogram,
   ReviewCard,
@@ -20,7 +18,7 @@ import {
 import { Button } from '../../src/index.ts';
 import { DemoI18n, DemoRow } from './demo-kit.tsx';
 
-export const title = 'Content · ProseLocator, reviews, comments, charts, AdSlot, ConsentBar';
+export const title = 'Content · ProseLocator, reviews, comments, charts';
 
 const DAYS = Array.from({ length: 14 }, (_, index) => ({
   label: `2026-09-${String(index + 16).padStart(2, '0')}`,
@@ -94,18 +92,6 @@ export default function ContentDemo() {
               />
             </div>
           </ChartFigure>
-        </DemoRow>
-        <DemoRow label="AdSlot (reserved heights)">
-          <div className="grid gap-4 md:grid-cols-3">
-            <AdSlot format="in-feed" client="ca-pub-0000000000000000" slot="0000000000" />
-            <AdSlot format="inline" client="ca-pub-0000000000000000" slot="0000000000" showNotice />
-            <AdSlot format="sidebar" client="ca-pub-0000000000000000" slot="0000000000" />
-          </div>
-        </DemoRow>
-        <DemoRow label="ConsentBar (fixed to the viewport in pages; contained here)">
-          <div className="relative h-40 overflow-hidden rounded-lg border border-border [transform:translateZ(0)]">
-            <ConsentBar policyHref="#cookies" hidden={false} />
-          </div>
         </DemoRow>
       </div>
     </DemoI18n>

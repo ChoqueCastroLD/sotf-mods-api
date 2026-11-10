@@ -8,7 +8,6 @@ import type { ModCardDTO } from '@sotf/contracts/catalog';
 import { type Locale, localizePath } from '@sotf/i18n';
 import { cn } from '@sotf/ui/cn';
 import {
-  AdSlot,
   BuildCard,
   BuildCardSkeleton,
   type DomainI18n,
@@ -18,7 +17,6 @@ import {
   modDownloadHref,
 } from '@sotf/ui/domain';
 import { Fragment } from 'react';
-import { type AdUnit, feedAdAfter } from '../../lib/ads.ts';
 import type { ExploreView } from './state.ts';
 
 /** Mods: 2 columns on phones, 3 on tablets, 4 and 5 on desktops. Builds are image-led: one fewer. */
@@ -44,12 +42,6 @@ export interface ExploreResultsProps {
   priorityFirst?: boolean;
   /** Position offset of the first item (1-based positions for `ItemList`). */
   offset?: number;
-  /**
-   * In-feed ad unit for guests (PLAN §8.5: grid view, first page, after the 6th and 18th card).
-   * Null when ads are off. The `<li>` carries no `data-explore-item`, so «Load more», positions
-   * and JSON-LD ignore it.
-   */
-  ad?: AdUnit | null;
   /** Grid of builds (fewer, larger columns). */
   builds?: boolean;
   className?: string;
@@ -67,15 +59,12 @@ export function ExploreItems({
   headingLevel = 3,
   priorityFirst = false,
   offset = 0,
-  ad = null,
 }: Omit<ExploreResultsProps, 'i18n' | 'className' | 'builds'>) {
-  const withAds = ad !== null && view === 'grid' && offset === 0;
   return (
     <>
       {items.map((mod, index) => {
         const card = localized(mod, locale);
         const priority = priorityFirst && index < 2;
-        const adAfter = withAds && feedAdAfter(index + 1, items.length);
         return (
           <Fragment key={mod.id}>
             <li data-explore-item="" data-position={offset + index + 1} className="min-w-0">
@@ -93,11 +82,6 @@ export function ExploreItems({
                 />
               )}
             </li>
-            {adAfter && ad ? (
-              <li data-explore-ad="" className="min-w-0">
-                <AdSlot format="in-feed" client={ad.client} slot={ad.slot} showNotice className="h-full" />
-              </li>
-            ) : null}
           </Fragment>
         );
       })}

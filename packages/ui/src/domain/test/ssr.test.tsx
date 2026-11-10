@@ -26,12 +26,10 @@ import {
 } from './fixtures.ts';
 
 const {
-  AdSlot,
   BuildCard,
   BuildCardSkeleton,
   ChartFigure,
   CommentItem,
-  ConsentBar,
   DependencyList,
   DisclosureMenu,
   DomainI18nProvider,
@@ -221,15 +219,6 @@ const cases: Record<string, Case[]> = {
     ['callbacks', () => <ViewToggle value="list" onValueChange={() => {}} modes={['grid', 'list']} />],
   ],
   DisclosureMenu: [['default', () => <DisclosureMenu summary="More">Content</DisclosureMenu>]],
-  AdSlot: [
-    ['in-feed', () => <AdSlot format="in-feed" client="ca-pub-0000000000000000" slot="1234567890" />],
-    ['sidebar with notice', () => <AdSlot format="sidebar" client="ca-pub-0000000000000000" slot="1" showNotice />],
-    ['inline', () => <AdSlot format="inline" client="ca-pub-0000000000000000" slot="2" />],
-  ],
-  ConsentBar: [
-    ['hidden until the script reveals it', () => <ConsentBar policyHref="/cookies" />],
-    ['visible', () => <ConsentBar policyHref="/cookies" hidden={false} />],
-  ],
   ProseLocator: [
     ['html', () => <ProseLocator html={proseHtml} lang="en" />],
     [

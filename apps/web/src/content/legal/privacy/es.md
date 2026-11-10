@@ -13,7 +13,7 @@ SOTF Mods (sotf-mods.com, «nosotros») es un sitio web de la comunidad gestiona
 - Puedes navegar y descargar sin cuenta. No necesitamos tu nombre.
 - Si creas una cuenta, guardamos tu email, un hash seguro de tu contraseña y lo que decidas publicar.
 - Nuestras estadísticas propias no usan cookies y nunca guardan tu IP en claro.
-- Los anuncios solo se muestran a visitantes sin sesión iniciada, y solo tras el consentimiento cuando la ley lo exige.
+- Las páginas muestran anuncios de redes publicitarias externas (Adsterra, HilltopAds), que pueden poner sus propias cookies.
 - Puedes exportar o borrar tu cuenta tú mismo, desde los ajustes.
 
 # Qué recogemos
@@ -38,7 +38,7 @@ SOTF Mods (sotf-mods.com, «nosotros») es un sitio web de la comunidad gestiona
 - Para mantener el sitio seguro, evitar spam y abusos y moderar contenido (interés legítimo).
 - Para saber qué páginas y mods se usan, con las estadísticas respetuosas con la privacidad descritas abajo (interés legítimo).
 - Para enviarte los emails necesarios (verificación, restablecer contraseña) y las notificaciones que actives.
-- Para mostrar anuncios a los invitados, con consentimiento cuando se exige.
+- Para mostrar anuncios, que financian el sitio.
 - Para cumplir obligaciones legales, como responder a avisos de derechos de autor.
 
 No vendemos datos personales ni creamos perfiles publicitarios.
@@ -55,7 +55,7 @@ Usamos unos pocos proveedores, cada uno solo para su finalidad y con un acuerdo 
 |---|---|
 | Cloudflare | Distribución de contenido, seguridad, almacenamiento de archivos (R2) y protección contra bots (Turnstile) |
 | Resend | Envío de emails de cuenta y notificaciones |
-| Google | Anuncios y herramienta de consentimiento, solo para invitados |
+| Adsterra, HilltopAds | Anuncios |
 | VirusTotal | Análisis de los archivos de mods publicados (solo archivos, sin datos personales) |
 | Sentry | Informes de errores, si se activa, con los datos personales desactivados |
 

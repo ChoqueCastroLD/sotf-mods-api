@@ -170,7 +170,7 @@
       "include": [
         "apps/web/{astro.config.mjs,package.json,tsconfig.json}",
         "apps/web/src/{layouts,components/layout,lib,middleware}/**",
-        "apps/web/src/pages/{404.astro,500.astro,healthz.ts,ads.txt.ts,_internal/**}",
+        "apps/web/src/pages/{404.astro,500.astro,healthz.ts,_internal/**}",
         "apps/web/src/scripts/{theme,lang-suggest,consent,ads,beacon,account-hint,seasonal,moon,legacy-cleanup,view-transitions}.ts",
         "apps/web/public/**",
         "apps/web/src/components/account/HeaderAccount.astro",

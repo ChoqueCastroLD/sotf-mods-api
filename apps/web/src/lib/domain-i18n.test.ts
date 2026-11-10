@@ -1,5 +1,5 @@
 import { withLocale } from '@sotf/i18n/server';
-import { AdSlot } from '@sotf/ui/domain';
+import { TrustedMark } from '@sotf/ui/domain';
 import { createElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it } from 'vitest';
@@ -7,20 +7,20 @@ import { configureDomainMessages, domainI18nFor, domainTranslate } from './domai
 
 describe('app-wide ui-domain messages (WP-25, WP-62, WP-94)', () => {
   it('translates with the compiled catalogue and an explicit locale', () => {
-    expect(domainTranslate('ui_domain_ad_label', undefined, 'es')).toBe('Publicidad');
-    expect(domainTranslate('ui_domain_ad_label', undefined, 'en')).toBe('Advertisement');
+    expect(domainTranslate('ui_domain_loader_other', undefined, 'es')).toBe('Otro cargador');
+    expect(domainTranslate('ui_domain_loader_other', undefined, 'en')).toBe('Other loader');
   });
 
   it('follows the request locale in server renders', async () => {
     configureDomainMessages();
     const html = await withLocale('es', async () =>
-      renderToStaticMarkup(createElement(AdSlot, { format: 'inline', client: 'ca-pub-1234567890', slot: '123456' })),
+      renderToStaticMarkup(createElement(TrustedMark, { withLabel: true })),
     );
-    expect(html).toContain('aria-label="Publicidad"');
+    expect(html).toContain('De confianza');
     const english = await withLocale('en', async () =>
-      renderToStaticMarkup(createElement(AdSlot, { format: 'inline', client: 'ca-pub-1234567890', slot: '123456' })),
+      renderToStaticMarkup(createElement(TrustedMark, { withLabel: true })),
     );
-    expect(english).toContain('aria-label="Advertisement"');
+    expect(english).toContain('Trusted');
   });
 
   it('builds provider values with UTC dates and overridable taxonomy', () => {

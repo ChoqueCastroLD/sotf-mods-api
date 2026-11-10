@@ -7,7 +7,7 @@
  * the first request.
  *
  * Browser code never imports this module: public values reach the page through the HTML the
- * layout renders (e.g. `<meta name="google-adsense-account">`).
+ * layout renders.
  */
 import { z } from 'zod';
 
@@ -25,14 +25,6 @@ const origin = z
   .transform((value) => value.replace(/\/+$/, ''))
   .refine((value) => new URL(value).pathname === '/' || new URL(value).pathname === '', 'must be an origin (no path)');
 
-/** AdSense ad unit id (`data-ad-slot`, digits). */
-const adUnit = optionalString.pipe(
-  z
-    .string()
-    .regex(/^\d{6,20}$/, 'expected the numeric ad unit id')
-    .optional(),
-);
-
 /** Development defaults (the local stack); never used outside `SITE_ENV=development`. */
 const DEFAULT_SITE_URL = 'http://127.0.0.1:47321';
 const DEFAULT_INTERNAL_API_URL = 'http://127.0.0.1:47301';
@@ -48,13 +40,6 @@ const EnvSchema = z
     INTERNAL_API_URL: origin.optional(),
     /** Shared secret of the `X-Internal-Auth` header (web ↔ api ↔ worker). */
     INTERNAL_SECRET: optionalString.pipe(z.string().min(32, 'use at least 32 characters').optional()),
-    /** AdSense publisher (`ca-pub-…`). Empty keeps ads off (development, staging). */
-    PUBLIC_ADSENSE_CLIENT: optionalString.pipe(
-      z
-        .string()
-        .regex(/^ca-pub-\d{10,20}$/, 'expected ca-pub-<digits>')
-        .optional(),
-    ),
     /** Public base of R2 objects (`https://r2.sotf-mods.com`). */
     R2_PUBLIC_BASE_URL: optionalString.pipe(z.url().optional()),
     PUBLIC_TURNSTILE_SITE_KEY: optionalString,
@@ -78,13 +63,6 @@ const EnvSchema = z
      * `connect-src`. Empty in production (R2's S3 API is already allowed).
      */
     R2_ENDPOINT: optionalString.pipe(z.url({ protocol: /^https?$/ }).optional()),
-    /**
-     * AdSense ad units per placement (PLAN §8.5; research/03 §6.2–6.3). Each slot renders only
-     * with `PUBLIC_ADSENSE_CLIENT` and its unit id; guests only (`scripts/ads.ts`).
-     */
-    PUBLIC_ADSENSE_SLOT_HOME: adUnit,
-    PUBLIC_ADSENSE_SLOT_FEED: adUnit,
-    PUBLIC_ADSENSE_SLOT_MOD_SIDEBAR: adUnit,
   })
   .superRefine((env, ctx) => {
     if (env.SITE_ENV !== 'development' && !env.INTERNAL_SECRET) {
@@ -115,7 +93,6 @@ export interface WebEnv {
   siteUrl: string;
   internalApiUrl: string;
   internalSecret: string | undefined;
-  adsenseClient: string | undefined;
   r2PublicBaseUrl: string | undefined;
   turnstileSiteKey: string | undefined;
   indexNowKey: string | undefined;
@@ -125,19 +102,8 @@ export interface WebEnv {
   cspMode: 'enforce' | 'report-only' | undefined;
   /** Origin of a non-R2 S3 endpoint browsers upload to (`R2_ENDPOINT`). */
   storageUploadOrigin: string | undefined;
-  /** AdSense ad unit ids per placement (undefined: that slot is not rendered). */
-  adSlots: AdSlots;
   /** Whether pages may be indexed (`SITE_ENV=production` only). */
   indexable: boolean;
-}
-
-export interface AdSlots {
-  /** Landing, next to the creator spotlight. */
-  home: string | undefined;
-  /** In-feed card of Explore listings. */
-  feed: string | undefined;
-  /** Sidebar of the mod page. */
-  modSidebar: string | undefined;
 }
 
 export class EnvError extends Error {
@@ -159,7 +125,6 @@ export function parseEnv(source: Readonly<Record<string, string | undefined>>): 
     siteUrl: env.PUBLIC_SITE_URL ?? DEFAULT_SITE_URL,
     internalApiUrl: env.INTERNAL_API_URL ?? DEFAULT_INTERNAL_API_URL,
     internalSecret: env.INTERNAL_SECRET,
-    adsenseClient: env.PUBLIC_ADSENSE_CLIENT,
     r2PublicBaseUrl: env.R2_PUBLIC_BASE_URL,
     turnstileSiteKey: env.PUBLIC_TURNSTILE_SITE_KEY,
     indexNowKey: env.INDEXNOW_KEY,
@@ -167,11 +132,6 @@ export function parseEnv(source: Readonly<Record<string, string | undefined>>): 
     release: env.RELEASE_SHA ?? env.SOURCE_COMMIT,
     cspMode: env.CSP_MODE,
     storageUploadOrigin: env.R2_ENDPOINT ? new URL(env.R2_ENDPOINT).origin : undefined,
-    adSlots: {
-      home: env.PUBLIC_ADSENSE_SLOT_HOME,
-      feed: env.PUBLIC_ADSENSE_SLOT_FEED,
-      modSidebar: env.PUBLIC_ADSENSE_SLOT_MOD_SIDEBAR,
-    },
     indexable: env.SITE_ENV === 'production',
   };
 }

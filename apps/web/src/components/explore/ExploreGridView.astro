@@ -16,9 +16,7 @@ import { m } from '@sotf/i18n/messages';
 import { Icon } from '@sotf/ui/icons';
 import { Pagination } from '@sotf/ui/pagination';
 import { ArrowUpDown, ChevronDown, SlidersHorizontal, X } from 'lucide-react';
-import { adUnitFor } from '../../lib/ads.ts';
 import '../builds/blueprint.css';
-import { loadEnv } from '../../lib/env.ts';
 import { href } from '../../lib/i18n.ts';
 import ExploreFilters, { FORM_ID } from './ExploreFilters.tsx';
 import ExploreResults, { ExploreSkeleton } from './ExploreResults.tsx';
@@ -72,8 +70,6 @@ const rangeText =
     : m.explore_results_range({ from: offset + 1, to: offset + items.length, total });
 const builds = state.type === 'build';
 const filtered = model.activeCount > 0;
-// AdSense policy: no ads next to adult content, so none while the NSFW toggle is on.
-const feedAd = state.nsfw ? null : adUnitFor(loadEnv(), 'feed');
 const sortLabel = model.sortOptions.find((option) => option.value === model.sortValue)?.label ?? '';
 const searchLabel = builds ? m.explore_search_builds_label() : m.explore_catalog_search_label();
 const searchPlaceholder = searchLabel;
@@ -258,7 +254,6 @@ const searchPlaceholder = searchLabel;
               i18n={i18n}
               priorityFirst={state.page === 1}
               offset={offset}
-              ad={feedAd}
             />
           )
         }

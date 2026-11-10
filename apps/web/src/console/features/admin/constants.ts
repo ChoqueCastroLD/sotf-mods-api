@@ -74,8 +74,6 @@ export const ADMIN_LIMITS = {
   templatesMax: 100,
   templateKey: /^[a-z0-9_]{2,60}$/,
   flagKey: /^[a-zA-Z0-9_.-]{1,60}$/,
-  adsClientId: /^ca-pub-\d{10,20}$/,
-  adsSlotId: /^\d{6,20}$/,
 } as const;
 
 type Equal<A, B> = (<T>() => T extends A ? 1 : 2) extends <T>() => T extends B ? 1 : 2 ? true : false;

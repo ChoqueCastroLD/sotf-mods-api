@@ -12,7 +12,6 @@ import { FONT_PRELOADS } from '@sotf/ui/font-preloads';
 import { THEME_INIT_SCRIPT } from '@sotf/ui/theme';
 import { setPageCache } from '../lib/cache/page.ts';
 import { pageCache } from '../lib/cache/policy.ts';
-import { loadEnv } from '../lib/env.ts';
 import { toHtmlLang } from '../lib/i18n.ts';
 import { LEGACY_CLEANUP_SCRIPT } from '../scripts/legacy-cleanup.ts';
 import './global.css';
@@ -23,7 +22,6 @@ interface Props {
 }
 
 const { title = m.meta_site_name() } = Astro.props;
-const env = loadEnv();
 setPageCache(Astro, pageCache.static());
 ---
 
@@ -48,7 +46,6 @@ setPageCache(Astro, pageCache.static());
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="apple-mobile-web-app-title" content="SOTF Mods" />
-    {env.adsenseClient && <meta name="google-adsense-account" content={env.adsenseClient} />}
     <slot name="head" />
   </head>
   <body class="bg-bg text-fg">
@@ -56,8 +53,6 @@ setPageCache(Astro, pageCache.static());
       <slot />
     </div>
     <script>
-      // AdSense on console routes too (owner decision): loader after consent, Auto ads decide placement.
-      void import('../scripts/ads.ts').then(({ initAds }) => initAds()).catch(() => {});
       void import('../scripts/third-party-ads.ts').then(({ initThirdPartyAds }) => initThirdPartyAds()).catch(() => {});
     </script>
   </body>

@@ -92,8 +92,6 @@ se borra en T+7 (`ops/cloudflare/README.md` §1).
 | `R2_PUBLIC_BASE_URL` | O | `https://r2.sotf-mods.com` |
 | `R2_ENDPOINT` | O | solo emuladores; su origen entra en `connect-src` |
 | `PUBLIC_TURNSTILE_SITE_KEY` | R | clave pública del widget |
-| `PUBLIC_ADSENSE_CLIENT` | O | `ca-pub-…`; vacío en staging |
-| `PUBLIC_ADSENSE_SLOT_HOME`, `_FEED`, `_MOD_SIDEBAR` | O | ids numéricos; vacío = el hueco no se pinta |
 | `CSP_MODE` | O | `enforce` \| `report-only`; vacío = por `SITE_ENV` (staging report-only) |
 | `INDEXNOW_KEY` | O | sirve `/<key>.txt` |
 | `SENTRY_DSN`, `PUBLIC_SENTRY_DSN_CONSOLE` | O | |

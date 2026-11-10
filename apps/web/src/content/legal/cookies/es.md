@@ -1,12 +1,12 @@
 ---
 title: Cookies y almacenamiento local
-description: "Las cookies y el almacenamiento del navegador de SOTF Mods: cookies de sesión necesarias, algunas preferencias y, solo para invitados, anuncios tras el consentimiento."
+description: "Las cookies y el almacenamiento del navegador de SOTF Mods: cookies de sesión necesarias, algunas preferencias y publicidad."
 anchors: [summary, necessary, preferences, ads, statistics, control]
 ---
 
 # En resumen
 
-SOTF Mods usa las mínimas cookies posibles. Iniciar sesión necesita una cookie; algunas preferencias se recuerdan en tu navegador; los anuncios para invitados usan las cookies de Google solo después de tu consentimiento cuando la ley lo exige. Nuestras estadísticas propias no usan ninguna cookie.
+SOTF Mods usa las mínimas cookies posibles. Iniciar sesión necesita una cookie; algunas preferencias se recuerdan en tu navegador; las redes que muestran anuncios pueden poner sus propias cookies. Nuestras estadísticas propias no usan ninguna cookie.
 
 # Estrictamente necesarias
 
@@ -27,11 +27,9 @@ Se guardan en tu navegador (almacenamiento local) y nunca se nos envían:
 | `sotf-dismissed` | Avisos que cerraste |
 | `sotf-lang-declined` | Rechazaste la sugerencia de cambiar de idioma |
 
-# Publicidad (solo invitados)
+# Publicidad
 
-Los visitantes sin sesión iniciada pueden ver anuncios de **Google AdSense**. En el Espacio Económico Europeo, Reino Unido y Suiza, la herramienta de consentimiento de Google pregunta primero, y los anuncios y sus cookies solo se cargan según lo que elijas. Google y sus socios pueden usar cookies para mostrar y medir anuncios; consulta [cómo usa Google la información](https://policies.google.com/technologies/partner-sites). Nunca hay anuncios en páginas NSFW y los miembros con sesión iniciada no ven ningún anuncio.
-
-Puedes cambiar tu elección cuando quieras con el enlace de opciones de privacidad que muestra la herramienta de consentimiento al pie de las páginas con anuncios.
+Las páginas pueden mostrar anuncios de **Adsterra** y **HilltopAds** (una barra social y ventanas emergentes por debajo). Estas redes y sus socios pueden poner cookies o usar almacenamiento parecido para mostrar anuncios, limitar cuántas veces los ves y medirlos; consulta la [política de privacidad de Adsterra](https://adsterra.com/privacy-policy/) y la [política de privacidad de HilltopAds](https://hilltopads.com/privacy). Las páginas con enlaces privados (restablecer contraseña, verificar correo, darse de baja) nunca cargan anuncios.
 
 # Estadísticas
 

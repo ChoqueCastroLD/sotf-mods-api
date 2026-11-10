@@ -37,7 +37,7 @@ Astro emits its bundles as external module scripts **without** SRI `integrity`. 
 `'strict-dynamic'` CSP3 browsers ignore `'self'` and host sources, and a listed hash only matches an
 external script that carries `integrity` — so every page script would be blocked (verified with
 Chromium while building WP-93). The policy is therefore an allowlist: `'self'` + inline-script
-hashes + the exact third-party script origins (AdSense/CMP, Turnstile). Revisit when Astro adds
+hashes + the exact third-party script origins (Turnstile, ad networks). Revisit when Astro adds
 `integrity` to its script tags.
 
 ### Adding something to the page

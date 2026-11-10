@@ -94,8 +94,7 @@ significado de cada variable está en [`ENV.md`](ENV.md). Reglas:
 
 ### 3.3 Cada app
 
-- **`sotf-v2-web`**: `SITE_ENV=staging` (beta) / `production`; `PUBLIC_ADSENSE_CLIENT` solo en
-  producción.
+- **`sotf-v2-web`**: `SITE_ENV=staging` (beta) / `production`.
 - **`sotf-v2-api`**: `SOTF_ROLE=api`. Tras el primer despliegue, valida el mismo origen con
   [`../runbooks/deploy/02-same-origin-api.md`](../runbooks/deploy/02-same-origin-api.md).
 - **`sotf-v2-worker`**: `SOTF_ROLE=worker`. Sin dominio.

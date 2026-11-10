@@ -2,9 +2,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import { isPaletteShortcut } from '../../islands/cmdk/Trigger.ts';
 import { hasSignedInHint, initAccountHint, initialsOf } from '../../scripts/account-hint.ts';
-import { adClient, initAds, isNoAdsPage } from '../../scripts/ads.ts';
 import { pageEntity, trackingAllowed } from '../../scripts/beacon.ts';
-import { consentSettled, publisherId } from '../../scripts/consent.ts';
 import { initLangSuggest, suggestedLocale } from '../../scripts/lang-suggest.ts';
 import { initReloginBanner } from '../../scripts/legacy-cleanup.ts';
 
@@ -124,37 +122,6 @@ describe('account hint (PLAN §5.1)', () => {
     expect(await initAccountHint()).toBeNull();
     expect(document.documentElement.hasAttribute('data-guest')).toBe(true);
     expect(document.documentElement.hasAttribute('data-signed-in')).toBe(false);
-  });
-});
-
-describe('ads (PLAN §8.5)', () => {
-  it('reads the publisher only from a well-formed meta', () => {
-    expect(adClient()).toBeNull();
-    document.head.innerHTML = '<meta name="google-adsense-account" content="ca-pub-2799839819522052">';
-    expect(adClient()).toBe('ca-pub-2799839819522052');
-    expect(publisherId('ca-pub-2799839819522052')).toBe('pub-2799839819522052');
-    expect(publisherId('x')).toBeNull();
-  });
-
-  it('does nothing without a publisher, on NSFW content or on screens without publisher content', async () => {
-    document.body.innerHTML = '<ins class="adsbygoogle" data-ad-slot="1"></ins>';
-    expect(await initAds()).toBe(0);
-    document.head.innerHTML = '<meta name="google-adsense-account" content="ca-pub-2799839819522052">';
-    document.body.innerHTML = '<div data-nsfw></div><ins class="adsbygoogle" data-ad-slot="1"></ins>';
-    expect(await initAds()).toBe(0);
-    document.body.innerHTML = '<ins class="adsbygoogle" data-ad-slot="1"></ins>';
-    document.body.setAttribute('data-no-ads', '');
-    expect(await initAds()).toBe(0);
-    document.body.removeAttribute('data-no-ads');
-    expect(isNoAdsPage()).toBe(false);
-    expect(document.querySelector('script')).toBeNull();
-  });
-
-  it('waits for the CMP to settle', () => {
-    expect(consentSettled({ gdprApplies: false })).toBe(true);
-    expect(consentSettled({ gdprApplies: true, eventStatus: 'cmpuishown' })).toBe(false);
-    expect(consentSettled({ gdprApplies: true, eventStatus: 'useractioncomplete' })).toBe(true);
-    expect(consentSettled({ gdprApplies: true, eventStatus: 'tcloaded' })).toBe(true);
   });
 });
 

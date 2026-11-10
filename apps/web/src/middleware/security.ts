@@ -43,7 +43,7 @@ export function isCrossSiteResource(pathname: string): boolean {
   if (pathname === '/oembed' || pathname === '/healthz') return true;
   if (pathname === '/feed.xml' || pathname === '/manifest.webmanifest') return true;
   if (pathname === '/sitemap.xml' || pathname.startsWith('/sitemaps/')) return true;
-  // robots.txt, ads.txt, llms.txt, llms-full.txt, the IndexNow key file.
+  // robots.txt, llms.txt, llms-full.txt, the IndexNow key file.
   return /^\/[\w.-]+\.txt$/.test(pathname);
 }
 

@@ -61,11 +61,8 @@ setPageCache(Astro, pageCache.mod(mod.id, mod.userId));      // E(900) mod:{id} 
   `theme-color`, robots (`noindex` automatically outside `SITE_ENV=production`) and JSON-LD
   (`lib/seo/jsonld.ts`, `schema-dts`, safely serialized).
 - `Picture.astro`: WebP `srcset` from `ImageDTO`, explicit size, `priority` for the LCP.
-- Ads: `components/ads/AdUnit.astro` renders the shared `AdSlot` (reserved height) for a
-  placement whose unit id is configured (`PUBLIC_ADSENSE_SLOT_HOME|FEED|MOD_SIDEBAR`, with
-  `PUBLIC_ADSENSE_CLIENT`); Explore adds in-feed units after cards 6 and 18 (`lib/ads.ts`).
-  `scripts/ads.ts` loads AdSense only for guests, after load + idle + CMP, near the viewport;
-  `global.css` hides the boxes for members. Pages where ads are forbidden simply render no slot.
+- Ads: `scripts/third-party-ads.ts` injects the Adsterra (social bar, popunder) and HilltopAds
+  (popunder) scripts after load + idle, on every page except private URLs (`data-private-url`).
 - Domain components: `lib/domain-i18n.ts` makes every `@sotf/ui/domain` component speak the
   request locale (compiled `ui-domain` namespace), configured once by the middleware.
 - Analytics: `track(kind, { entityType, entityId })` from `scripts/beacon.ts`.
@@ -77,7 +74,7 @@ Immediate: `theme` (enhance ThemeToggle/LanguageSwitcher/banners), the Cmd+K tri
 `islands/cmdk/README.md`), mobile chrome, relogin banner, `view-transitions`,
 `account-hint`, the Signals bell and, for members, the account's display preferences
 (`scripts/account-settings.ts`). Idle/lazy:
-`beacon` + web-vitals, `lang-suggest`, `ads` + `consent`.
+`beacon` + web-vitals, `lang-suggest`, `third-party-ads`.
 Inline head scripts (theme, dismissed banners, legacy-token cleanup, Speculation Rules) are hashed
 in the CSP placeholder (`lib/security/csp.ts`, finalized by WP-93).
 

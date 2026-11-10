@@ -1,7 +1,7 @@
 /**
  * `GET /{INDEXNOW_KEY}.txt` (PLAN §4.4, §8.6): proves ownership of the host to IndexNow. Answers
  * the key as plain text only for the configured key (and only in production, the only environment
- * that submits URLs); any other `*.txt` is a 404. Static routes (`robots.txt`, `ads.txt`,
+ * that submits URLs); any other `*.txt` is a 404. Static routes (`robots.txt`,
  * `llms.txt`…) take precedence over this dynamic one.
  */
 import type { APIRoute } from 'astro';

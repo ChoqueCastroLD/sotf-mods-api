@@ -26,11 +26,5 @@ export const LOGO_PATH = '/brand/logo-mark.png';
 /** Red SOTF-MODS logo used by `Organization.logo` (640 x 360). */
 export const ORG_LOGO_PATH = '/brand/logo.png';
 
-/**
- * `/ads.txt` (PLAN §4.4): byte-for-byte what the legacy site serves (58 bytes, no trailing
- * newline). Changing it breaks the AdSense seller verification.
- */
-export const ADS_TXT = 'google.com, pub-2799839819522052, DIRECT, f08c47fec0942fa0';
-
 /** Guest-hint cookie set by the API at sign-in (PLAN §5.1): readable by JS, not sensitive. */
 export const SIGNED_IN_HINT_COOKIE = 'sotf_li';

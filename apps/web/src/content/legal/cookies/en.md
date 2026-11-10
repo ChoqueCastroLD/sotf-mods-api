@@ -1,12 +1,12 @@
 ---
 title: Cookies and local storage
-description: "The cookies and browser storage SOTF Mods uses: strictly necessary session cookies, a few preferences and, for guests only, advertising after consent."
+description: "The cookies and browser storage SOTF Mods uses: strictly necessary session cookies, a few preferences and advertising."
 anchors: [summary, necessary, preferences, ads, statistics, control]
 ---
 
 # In short
 
-SOTF Mods uses as few cookies as possible. Signing in needs one cookie; a few preferences are remembered in your browser; ads for guests use Google's cookies only after you consent where the law requires it. Our own statistics use no cookies at all.
+SOTF Mods uses as few cookies as possible. Signing in needs one cookie; a few preferences are remembered in your browser; the ad networks that show ads may set their own cookies. Our own statistics use no cookies at all.
 
 # Strictly necessary
 
@@ -27,11 +27,9 @@ Stored in your browser (local storage), never sent to us:
 | `sotf-dismissed` | Banners you closed |
 | `sotf-lang-declined` | You declined the suggestion to switch language |
 
-# Advertising (guests only)
+# Advertising
 
-Visitors who are not signed in may see ads from **Google AdSense**. In the European Economic Area, the United Kingdom and Switzerland, Google's consent tool asks first, and ads and their cookies load only according to your choice. Google and its partners may use cookies to show and measure ads; see [how Google uses information](https://policies.google.com/technologies/partner-sites). There are never ads on NSFW pages, and signed-in members see no ads at all.
-
-You can change your choice at any time with the privacy options link that the consent tool shows at the bottom of pages with ads.
+Pages may show ads from **Adsterra** and **HilltopAds** (a social bar and pop-under windows). These networks and their partners may set cookies or use similar storage to show ads, limit how often you see them and measure them; see the [Adsterra privacy policy](https://adsterra.com/privacy-policy/) and the [HilltopAds privacy policy](https://hilltopads.com/privacy). Pages with private links (password reset, email verification, unsubscribe) never load ads.
 
 # Statistics
 

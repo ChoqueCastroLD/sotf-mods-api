@@ -201,7 +201,6 @@ async function main(): Promise<void> {
         PUBLIC_SITE_URL: 'https://sotf-mods.com',
         INTERNAL_API_URL: 'http://127.0.0.1:9',
         INTERNAL_SECRET: 'lhci-local-only-secret-not-used-anywhere-000',
-        PUBLIC_ADSENSE_CLIENT: '',
       },
     });
     await waitFor(`${EDGE}/healthz`);

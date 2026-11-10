@@ -423,28 +423,6 @@ html:has([data-mobile-download-bar]) {
   }
 }
 
-/* ---- Ad slots: the reserved box is a fixed height (not a minimum), so whatever the ad network
-   draws inside cannot push the page: the unit is clipped, never grown. The numbers mirror
-   `AD_MIN_HEIGHT` in @sotf/ui/domain. ----------------------------------------------------- */
-[data-ad-slot-container="in-feed"] > div:last-of-type {
-  height: 320px;
-}
-[data-ad-slot-container="sidebar"] > div:last-of-type,
-[data-ad-slot-container="inline"] > div:last-of-type {
-  height: 280px;
-}
-@media (min-width: 48rem) {
-  [data-ad-slot-container="in-feed"] > div:last-of-type {
-    height: 360px;
-  }
-  [data-ad-slot-container="sidebar"] > div:last-of-type {
-    height: 600px;
-  }
-  [data-ad-slot-container="inline"] > div:last-of-type {
-    height: 250px;
-  }
-}
-
 /* ---- Header account area: the guest buttons (Log in, Register) and the signed-in ones (Upload,
    avatar) swap once the account hint resolves. The slot keeps the width of the wider of the two,
    so the centred navigation never shifts. ------------------------------------------------------ */

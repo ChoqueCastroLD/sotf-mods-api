@@ -10,17 +10,9 @@
  *   focus, no blur transition under reduced motion). The class hooks are the contract of
  *   `packages/markdown/README.md`; every rule is an arbitrary variant here, so the styles ship
  *   with the component (Tailwind scans this file) and need no extra stylesheet.
- * - `AdSlot`: reserved `min-height` per format (no layout shift when the ad fills or the slot is
- *   removed for signed-in users), «Advertisement» label, decorative border.
- * - `ConsentBar`: bottom bar with «Accept» and «Reject» of equal weight and «Preferences»; the
- *   vanilla consent script (WP-22) reveals it and handles `data-consent` buttons.
  */
-import { Cookie } from 'lucide-react';
 import type { ReactNode } from 'react';
-import { buttonClasses } from '../button.tsx';
 import { cn } from '../cn.ts';
-import { Icon } from '../icons.tsx';
-import { useDomainI18n } from './i18n.ts';
 
 // -------------------------------------------------------------------------------------------
 // ProseLocator
@@ -107,132 +99,5 @@ export function ProseLocator({ html, children, size = 'base', lang, className }:
     <div lang={lang} className={classes}>
       {children}
     </div>
-  );
-}
-
-// -------------------------------------------------------------------------------------------
-// AdSlot
-// -------------------------------------------------------------------------------------------
-
-export const AD_FORMATS = ['in-feed', 'sidebar', 'inline'] as const;
-export type AdFormat = (typeof AD_FORMATS)[number];
-
-/** Reserved heights (px) per format and breakpoint: [below md, md and up]. */
-export const AD_MIN_HEIGHT: Readonly<Record<AdFormat, readonly [number, number]>> = {
-  'in-feed': [320, 360],
-  sidebar: [280, 600],
-  inline: [280, 250],
-};
-
-// Literal classes mirroring AD_MIN_HEIGHT (Tailwind scans source text).
-const AD_HEIGHT_CLASS: Record<AdFormat, string> = {
-  'in-feed': 'min-h-[320px] md:min-h-[360px]',
-  sidebar: 'min-h-[280px] md:min-h-[600px]',
-  inline: 'min-h-[280px] md:min-h-[250px]',
-};
-
-export interface AdSlotProps {
-  format: AdFormat;
-  /** AdSense publisher id (`ca-pub-…`). */
-  client: string;
-  /** AdSense ad unit id. */
-  slot: string;
-  /** Show the «Ads keep downloads free. Sign in to hide them.» note. */
-  showNotice?: boolean;
-  className?: string;
-}
-
-export function AdSlot({ format, client, slot, showNotice = false, className }: AdSlotProps) {
-  const { t } = useDomainI18n();
-  return (
-    <aside
-      aria-label={t('ui_domain_ad_label')}
-      data-ad-slot-container={format}
-      className={cn('flex flex-col gap-1.5', className)}
-    >
-      <p className="text-xs text-fg-subtle">{t('ui_domain_ad_label')}</p>
-      <div
-        className={cn('overflow-hidden rounded-lg border border-border bg-surface', AD_HEIGHT_CLASS[format])}
-        style={{ contain: 'layout paint' }}
-      >
-        {/* The site's units are AdSense «in-article» (fluid) units, the same ones the legacy site used. */}
-        <ins
-          className="adsbygoogle block size-full"
-          style={{ display: 'block', textAlign: 'center' }}
-          data-ad-client={client}
-          data-ad-slot={slot}
-          data-ad-layout="in-article"
-          data-ad-format="fluid"
-        />
-      </div>
-      {showNotice ? <p className="text-xs text-fg-subtle">{t('ui_domain_ad_notice')}</p> : null}
-    </aside>
-  );
-}
-
-// -------------------------------------------------------------------------------------------
-// ConsentBar
-// -------------------------------------------------------------------------------------------
-
-export interface ConsentBarProps {
-  /** Privacy/cookies page. */
-  policyHref: string;
-  onAccept?: () => void;
-  onReject?: () => void;
-  onPreferences?: () => void;
-  /** Start hidden; the consent script reveals it when no choice is stored (default true). */
-  hidden?: boolean;
-  className?: string;
-}
-
-export function ConsentBar({
-  policyHref,
-  onAccept,
-  onReject,
-  onPreferences,
-  hidden = true,
-  className,
-}: ConsentBarProps) {
-  const { t } = useDomainI18n();
-  const choice = buttonClasses({ variant: 'secondary', size: 'md', className: 'flex-1 sm:flex-none' });
-  return (
-    <section
-      data-consent-bar=""
-      hidden={hidden}
-      aria-label={t('ui_domain_consent_label')}
-      className={cn(
-        'fixed inset-x-0 bottom-0 z-(--z-toast) border-t border-border-strong bg-overlay shadow-lg',
-        'pb-[env(safe-area-inset-bottom)]',
-        className,
-      )}
-    >
-      <div className="mx-auto flex max-w-content flex-col gap-3 px-4 py-4 sm:flex-row sm:items-center md:px-8">
-        <p className="flex flex-1 items-start gap-2 text-sm text-fg">
-          <Icon icon={Cookie} size={18} className="mt-0.5 text-fg-subtle" />
-          <span>
-            {t('ui_domain_consent_text')}{' '}
-            <a href={policyHref} className="text-link underline underline-offset-3">
-              {t('ui_domain_consent_policy')}
-            </a>
-          </span>
-        </p>
-        <div className="flex flex-wrap gap-2">
-          <button type="button" data-consent="reject" onClick={onReject} className={choice}>
-            {t('ui_domain_consent_reject')}
-          </button>
-          <button type="button" data-consent="accept" onClick={onAccept} className={choice}>
-            {t('ui_domain_consent_accept')}
-          </button>
-          <button
-            type="button"
-            data-consent="preferences"
-            onClick={onPreferences}
-            className={buttonClasses({ variant: 'ghost', size: 'md' })}
-          >
-            {t('ui_domain_consent_preferences')}
-          </button>
-        </div>
-      </div>
-    </section>
   );
 }

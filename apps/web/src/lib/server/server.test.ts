@@ -27,7 +27,6 @@ describe('environment (PLAN §11.4)', () => {
       siteUrl: 'http://127.0.0.1:47321',
       internalApiUrl: 'http://127.0.0.1:47301',
       indexable: false,
-      adsenseClient: undefined,
     });
   });
 
@@ -55,36 +54,29 @@ describe('environment (PLAN §11.4)', () => {
     expect(() => parseEnv({ INTERNAL_SECRET: 'short' })).toThrow(/at least 32/);
   });
 
-  it('validates origins, AdSense and release', () => {
+  it('validates origins and release', () => {
     const parsed = parseEnv({
       PUBLIC_SITE_URL: 'https://beta.sotf-mods.com/',
-      PUBLIC_ADSENSE_CLIENT: 'ca-pub-2799839819522052',
       SOURCE_COMMIT: 'abc123',
       INTERNAL_SECRET: '',
     });
     expect(parsed.siteUrl).toBe('https://beta.sotf-mods.com');
-    expect(parsed.adsenseClient).toBe('ca-pub-2799839819522052');
     expect(parsed.release).toBe('abc123');
     expect(parsed.internalSecret).toBeUndefined();
     expect(() => parseEnv({ PUBLIC_SITE_URL: 'https://x.com/path' })).toThrow(/origin/);
-    expect(() => parseEnv({ PUBLIC_ADSENSE_CLIENT: 'pub-1' })).toThrow(/ca-pub/);
     expect(env().indexable).toBe(true);
   });
 
-  it('reads CSP_MODE, the upload endpoint and the ad units (WP-93, WP-70, WP-53/54/62)', () => {
+  it('reads CSP_MODE and the upload endpoint (WP-93, WP-70)', () => {
     const parsed = parseEnv({
       CSP_MODE: 'report-only',
       R2_ENDPOINT: 'http://seaweedfs:8333/some/path',
-      PUBLIC_ADSENSE_SLOT_HOME: '1234567890',
-      PUBLIC_ADSENSE_SLOT_FEED: '',
     });
     expect(parsed.cspMode).toBe('report-only');
     expect(parsed.storageUploadOrigin).toBe('http://seaweedfs:8333');
-    expect(parsed.adSlots).toEqual({ home: '1234567890', feed: undefined, modSidebar: undefined });
     expect(parseEnv({}).cspMode).toBeUndefined();
     expect(parseEnv({}).storageUploadOrigin).toBeUndefined();
     expect(() => parseEnv({ CSP_MODE: 'off' })).toThrow(/CSP_MODE/);
-    expect(() => parseEnv({ PUBLIC_ADSENSE_SLOT_FEED: 'slot-a' })).toThrow(/ad unit/);
   });
 });
 

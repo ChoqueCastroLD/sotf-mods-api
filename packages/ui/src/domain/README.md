@@ -19,7 +19,7 @@ import { ModCard, VersionTable } from '@sotf/ui/domain';
 | Identity | `TrustedMark` |
 | Download and gallery | `DownloadSplitButton` (presentational), `GalleryStrip` |
 | Filters | `FilterChips` (include/exclude), `SortMenu`, `ViewToggle`, `DisclosureMenu` |
-| Content | `ProseLocator` (styles of the `@sotf/markdown` hooks), `AdSlot`, `ConsentBar`, `ReviewCard` (+ `StarRating`, `RatingHistogram`), `CommentItem`, `ChartFigure` + `chartTheme` (Recharts props from the tokens) |
+| Content | `ProseLocator` (styles of the `@sotf/markdown` hooks), `ReviewCard` (+ `StarRating`, `RatingHistogram`), `CommentItem`, `ChartFigure` + `chartTheme` (Recharts props from the tokens) |
 
 ## Rules they follow
 
@@ -31,8 +31,8 @@ import { ModCard, VersionTable } from '@sotf/ui/domain';
   when the same mod appears twice on a page).
 - **Status is never colour alone**: deltas, dependency states and filter states
   always pair an icon with text (visible or `sr-only`).
-- **No layout shift**: covers and thumbnails have fixed ratios and dimensions; `AdSlot` reserves
-  its `min-height` per format and breakpoint (`AD_MIN_HEIGHT`); skeletons share the geometry.
+- **No layout shift**: covers and thumbnails have fixed ratios and dimensions; skeletons share the
+  geometry.
 - **Works without JavaScript** on public pages: links for filters, sort, view, gallery and
   downloads; `<details data-disclosure>` menus (enhanced by `enhance()` of `@sotf/ui/enhance`).
   Every interactive component also has a callback mode for the console.

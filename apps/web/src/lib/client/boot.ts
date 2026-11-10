@@ -9,7 +9,7 @@
  * differs).
  * Idle (never competes with the LCP): service worker (offline page, install guide), the sheet
  * module, language suggestion (lazy chunk with its three messages), the
- * analytics beacon and RUM, and ads (lazy chunk, guests with ad slots only).
+ * analytics beacon and RUM, and the third-party ad scripts.
  */
 import './dev-preamble.ts';
 import { bindCmdkTrigger } from '../../islands/cmdk/Trigger.ts';
@@ -95,8 +95,5 @@ export function boot(): void {
       safely(() => import('../../scripts/mod/prose.ts').then(({ initProse }) => initProse(null)));
     }
     safely(() => import('../../scripts/third-party-ads.ts').then(({ initThirdPartyAds }) => initThirdPartyAds()));
-    if (document.querySelector('ins.adsbygoogle[data-ad-slot]')) {
-      safely(() => import('../../scripts/ads.ts').then(({ initAds }) => initAds()));
-    }
   });
 }

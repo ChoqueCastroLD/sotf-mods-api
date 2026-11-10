@@ -20,8 +20,8 @@
  *   `'self'` under `'strict-dynamic'`, so every page script would be blocked (verified with
  *   Chromium: an external script whose hash is listed does not run without `integrity`). The
  *   policy is an allowlist instead: `'self'` + hashes of the inline scripts + the exact third-party
- *   script origins (AdSense/CMP and Turnstile, both injected by our own scripts).
- * - `style-src-attr 'unsafe-inline'`: React/Base UI/floating-ui position popups and ad slots with
+ *   script origins (Turnstile and the ad networks, injected by our own scripts).
+ * - `style-src-attr 'unsafe-inline'`: React/Base UI/floating-ui position popups with
  *   `style` attributes (docs/backlog/WP-12.md). `<style>` elements stay hash-checked: the only
  *   runtime ones (sonner's toast CSS and Base UI's scrollbar rule) are hashed from the installed
  *   packages, so an upgrade that changes them is picked up by the next build.
@@ -29,7 +29,7 @@
  *   descriptions are replicated to R2 (WP-40); the ones that could not be fetched stay blocked.
  * - `frame-ancestors 'none'` everywhere except `/embed/*` (`*`), sent as a header.
  *
- * Third parties (PLAN §8.5, §8.8): AdSense and Google's CMP (guests who consent), Cloudflare
+ * Third parties (PLAN §8.5, §8.8): Adsterra and HilltopAds (see `THIRD_PARTY_AD_SOURCE`), Cloudflare
  * Turnstile (auth forms), YouTube facades (`youtube-nocookie`). Nothing else.
  */
 import { createHash } from 'node:crypto';
@@ -69,25 +69,6 @@ export const R2_PUBLIC_ORIGIN = 'https://r2.sotf-mods.com';
 /** S3 API of R2: presigned uploads are `PUT` straight from the browser (WP-31/WP-74). */
 export const R2_S3_ORIGIN = 'https://*.r2.cloudflarestorage.com';
 
-/** Script origins of AdSense and Google's consent platform (Funding Choices). */
-export const GOOGLE_ADS_SCRIPT_ORIGINS = [
-  'https://pagead2.googlesyndication.com',
-  'https://fundingchoicesmessages.google.com',
-  'https://*.adtrafficquality.google',
-  'https://www.googletagservices.com',
-  'https://partner.googleadservices.com',
-] as const;
-
-/** Hosts AdSense/CMP use for beacons, pixels and creatives outside their iframes. */
-export const GOOGLE_ADS_ORIGINS = [
-  'https://*.googlesyndication.com',
-  'https://*.doubleclick.net',
-  'https://*.google.com',
-  'https://*.gstatic.com',
-  'https://*.adtrafficquality.google',
-  'https://*.googleadservices.com',
-] as const;
-
 export const TURNSTILE_ORIGIN = 'https://challenges.cloudflare.com';
 /** Cloudflare Web Analytics beacon (injected by the edge) and its collector. */
 export const CF_INSIGHTS_SCRIPT_ORIGIN = 'https://static.cloudflareinsights.com';
@@ -96,15 +77,6 @@ export const YOUTUBE_EMBED_ORIGIN = 'https://www.youtube-nocookie.com';
 export const YOUTUBE_THUMBNAIL_ORIGIN = 'https://i.ytimg.com';
 
 const uniq = (values: readonly string[]): string[] => [...new Set(values)];
-
-/**
- * Google's consent dialog (Funding Choices, shown to EEA/UK visitors before ads) injects its own
- * `<style>` elements with per-visitor content and loads Google Fonts: hashes cannot cover them,
- * so `<style>` elements are allowed inline (`'unsafe-inline'`; style injection only, scripts stay
- * hash-checked) and the two font origins are listed.
- */
-export const GOOGLE_FONTS_CSS_ORIGIN = 'https://fonts.googleapis.com';
-export const GOOGLE_FONTS_FILES_ORIGIN = 'https://fonts.gstatic.com';
 
 /**
  * Adsterra (social bar, popunder) and HilltopAds (popunder) load their code, creatives, frames and
@@ -121,12 +93,12 @@ export const CSP_DIRECTIVES = [
   "object-src 'none'",
   "form-action 'self'",
   "manifest-src 'self'",
-  `font-src 'self' ${GOOGLE_FONTS_FILES_ORIGIN}`,
+  "font-src 'self'",
   "worker-src 'self' blob:",
-  `img-src ${uniq(["'self'", 'data:', 'blob:', R2_PUBLIC_ORIGIN, YOUTUBE_THUMBNAIL_ORIGIN, ...GOOGLE_ADS_ORIGINS, THIRD_PARTY_AD_SOURCE]).join(' ')}`,
+  `img-src ${uniq(["'self'", 'data:', 'blob:', R2_PUBLIC_ORIGIN, YOUTUBE_THUMBNAIL_ORIGIN, THIRD_PARTY_AD_SOURCE]).join(' ')}`,
   `media-src 'self' blob: ${R2_PUBLIC_ORIGIN}`,
-  `connect-src ${uniq(["'self'", R2_PUBLIC_ORIGIN, R2_S3_ORIGIN, TURNSTILE_ORIGIN, CF_INSIGHTS_CONNECT_ORIGIN, ...GOOGLE_ADS_SCRIPT_ORIGINS, ...GOOGLE_ADS_ORIGINS, THIRD_PARTY_AD_SOURCE]).join(' ')}`,
-  `frame-src ${uniq(["'self'", YOUTUBE_EMBED_ORIGIN, TURNSTILE_ORIGIN, 'https://*.googlesyndication.com', 'https://*.doubleclick.net', 'https://www.google.com', 'https://fundingchoicesmessages.google.com', THIRD_PARTY_AD_SOURCE]).join(' ')}`,
+  `connect-src ${uniq(["'self'", R2_PUBLIC_ORIGIN, R2_S3_ORIGIN, TURNSTILE_ORIGIN, CF_INSIGHTS_CONNECT_ORIGIN, THIRD_PARTY_AD_SOURCE]).join(' ')}`,
+  `frame-src ${uniq(["'self'", YOUTUBE_EMBED_ORIGIN, TURNSTILE_ORIGIN, THIRD_PARTY_AD_SOURCE]).join(' ')}`,
 ] as const;
 
 // ── Runtime `<style>` elements of dependencies ─────────────────────────────────────────────────
@@ -174,24 +146,16 @@ export function cspConfig() {
     algorithm: 'SHA-256' as const,
     directives: [...CSP_DIRECTIVES],
     scriptDirective: {
-      resources: [
-        "'self'",
-        "'report-sample'",
-        ...GOOGLE_ADS_SCRIPT_ORIGINS,
-        TURNSTILE_ORIGIN,
-        CF_INSIGHTS_SCRIPT_ORIGIN,
-        THIRD_PARTY_AD_SOURCE,
-      ],
+      resources: ["'self'", "'report-sample'", TURNSTILE_ORIGIN, CF_INSIGHTS_SCRIPT_ORIGIN, THIRD_PARTY_AD_SOURCE],
       hashes: INLINE_SCRIPTS.map(sha256Source),
     },
     styleDirective: {
-      // Inline `<style>` elements and attributes are allowed (Google's consent dialog, Base UI,
-      // floating-ui, ad slots). No style hashes: a hash would make browsers ignore 'unsafe-inline'.
+      // Inline `<style>` elements and attributes are allowed (Base UI, floating-ui, ad
+      // networks). No style hashes: a hash would make browsers ignore 'unsafe-inline'.
       resources: [
         "'self'",
         "'report-sample'",
         "'unsafe-inline'",
-        GOOGLE_FONTS_CSS_ORIGIN,
         { resource: "'unsafe-inline'", kind: 'attribute' as const },
       ],
       hashes: [],
@@ -276,7 +240,6 @@ export function fallbackPolicy(): string {
   const script = [
     "'self'",
     "'report-sample'",
-    ...GOOGLE_ADS_SCRIPT_ORIGINS,
     TURNSTILE_ORIGIN,
     CF_INSIGHTS_SCRIPT_ORIGIN,
     THIRD_PARTY_AD_SOURCE,
@@ -285,7 +248,7 @@ export function fallbackPolicy(): string {
   fallback = serializePolicy([
     ...parsePolicy(CSP_DIRECTIVES.join('; ')),
     ['script-src', script],
-    ['style-src', ["'self'", "'report-sample'", "'unsafe-inline'", GOOGLE_FONTS_CSS_ORIGIN]],
+    ['style-src', ["'self'", "'report-sample'", "'unsafe-inline'"]],
     ['style-src-attr', ["'unsafe-inline'"]],
   ]);
   return fallback;

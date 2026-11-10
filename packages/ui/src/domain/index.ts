@@ -23,13 +23,6 @@ export {
 } from './chart-theme.tsx';
 export { CommentItem, type CommentItemData, type CommentItemProps, REACTION_GLYPHS } from './comment-item.tsx';
 export {
-  AD_FORMATS,
-  AD_MIN_HEIGHT,
-  type AdFormat,
-  AdSlot,
-  type AdSlotProps,
-  ConsentBar,
-  type ConsentBarProps,
   PROSE_LOCATOR_CLASSES,
   ProseLocator,
   type ProseLocatorProps,
