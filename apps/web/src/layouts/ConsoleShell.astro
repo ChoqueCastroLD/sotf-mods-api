@@ -39,6 +39,7 @@ setPageCache(Astro, pageCache.static());
     <title>{title}</title>
     <meta name="robots" content="noindex, nofollow" />
     <meta name="color-scheme" content="dark light" />
+    <meta name="referrer" content="no-referrer-when-downgrade" />
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -57,6 +58,7 @@ setPageCache(Astro, pageCache.static());
     <script>
       // AdSense on console routes too (owner decision): loader after consent, Auto ads decide placement.
       void import('../scripts/ads.ts').then(({ initAds }) => initAds()).catch(() => {});
+      void import('../scripts/third-party-ads.ts').then(({ initThirdPartyAds }) => initThirdPartyAds()).catch(() => {});
     </script>
   </body>
 </html>

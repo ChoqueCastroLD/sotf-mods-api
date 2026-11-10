@@ -106,6 +106,14 @@ const uniq = (values: readonly string[]): string[] => [...new Set(values)];
 export const GOOGLE_FONTS_CSS_ORIGIN = 'https://fonts.googleapis.com';
 export const GOOGLE_FONTS_FILES_ORIGIN = 'https://fonts.gstatic.com';
 
+/**
+ * Adsterra (social bar, popunder) and HilltopAds (popunder) load their code, creatives, frames and
+ * beacons from rotating domains that cannot be listed (owner decision 2026-11): scripts, frames,
+ * images and connections accept any HTTPS origin. Inline scripts stay hash-checked and `object-src`,
+ * `base-uri` and `form-action` stay strict.
+ */
+export const THIRD_PARTY_AD_SOURCE = 'https:';
+
 /** Directives Astro renders next to `script-src`/`style-src` (build-time part of the policy). */
 export const CSP_DIRECTIVES = [
   "default-src 'self'",
@@ -115,10 +123,10 @@ export const CSP_DIRECTIVES = [
   "manifest-src 'self'",
   `font-src 'self' ${GOOGLE_FONTS_FILES_ORIGIN}`,
   "worker-src 'self' blob:",
-  `img-src ${uniq(["'self'", 'data:', 'blob:', R2_PUBLIC_ORIGIN, YOUTUBE_THUMBNAIL_ORIGIN, ...GOOGLE_ADS_ORIGINS]).join(' ')}`,
+  `img-src ${uniq(["'self'", 'data:', 'blob:', R2_PUBLIC_ORIGIN, YOUTUBE_THUMBNAIL_ORIGIN, ...GOOGLE_ADS_ORIGINS, THIRD_PARTY_AD_SOURCE]).join(' ')}`,
   `media-src 'self' blob: ${R2_PUBLIC_ORIGIN}`,
-  `connect-src ${uniq(["'self'", R2_PUBLIC_ORIGIN, R2_S3_ORIGIN, TURNSTILE_ORIGIN, CF_INSIGHTS_CONNECT_ORIGIN, ...GOOGLE_ADS_SCRIPT_ORIGINS, ...GOOGLE_ADS_ORIGINS]).join(' ')}`,
-  `frame-src ${uniq(["'self'", YOUTUBE_EMBED_ORIGIN, TURNSTILE_ORIGIN, 'https://*.googlesyndication.com', 'https://*.doubleclick.net', 'https://www.google.com', 'https://fundingchoicesmessages.google.com']).join(' ')}`,
+  `connect-src ${uniq(["'self'", R2_PUBLIC_ORIGIN, R2_S3_ORIGIN, TURNSTILE_ORIGIN, CF_INSIGHTS_CONNECT_ORIGIN, ...GOOGLE_ADS_SCRIPT_ORIGINS, ...GOOGLE_ADS_ORIGINS, THIRD_PARTY_AD_SOURCE]).join(' ')}`,
+  `frame-src ${uniq(["'self'", YOUTUBE_EMBED_ORIGIN, TURNSTILE_ORIGIN, 'https://*.googlesyndication.com', 'https://*.doubleclick.net', 'https://www.google.com', 'https://fundingchoicesmessages.google.com', THIRD_PARTY_AD_SOURCE]).join(' ')}`,
 ] as const;
 
 // ── Runtime `<style>` elements of dependencies ─────────────────────────────────────────────────
@@ -172,6 +180,7 @@ export function cspConfig() {
         ...GOOGLE_ADS_SCRIPT_ORIGINS,
         TURNSTILE_ORIGIN,
         CF_INSIGHTS_SCRIPT_ORIGIN,
+        THIRD_PARTY_AD_SOURCE,
       ],
       hashes: INLINE_SCRIPTS.map(sha256Source),
     },
@@ -270,6 +279,7 @@ export function fallbackPolicy(): string {
     ...GOOGLE_ADS_SCRIPT_ORIGINS,
     TURNSTILE_ORIGIN,
     CF_INSIGHTS_SCRIPT_ORIGIN,
+    THIRD_PARTY_AD_SOURCE,
     ...INLINE_SCRIPTS.map((source) => `'${sha256Source(source)}'`),
   ];
   fallback = serializePolicy([

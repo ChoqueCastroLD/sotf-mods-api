@@ -94,6 +94,7 @@ export function boot(): void {
     if (document.querySelector('.md-spoiler, .md-youtube-link')) {
       safely(() => import('../../scripts/mod/prose.ts').then(({ initProse }) => initProse(null)));
     }
+    safely(() => import('../../scripts/third-party-ads.ts').then(({ initThirdPartyAds }) => initThirdPartyAds()));
     if (document.querySelector('ins.adsbygoogle[data-ad-slot]')) {
       safely(() => import('../../scripts/ads.ts').then(({ initAds }) => initAds()));
     }

@@ -66,6 +66,14 @@ const NO_ADS_TEMPLATES: ReadonlySet<string> = new Set([
   'unsubscribe', 'not-found', 'server-error', 'gone', 'offline',
 ]);
 const noAds = NO_ADS_TEMPLATES.has(template);
+/**
+ * Pages whose URL carries a secret (token, unguessable log id): no third-party ad code and the
+ * strict referrer policy of the response header, so the address never leaves the site.
+ */
+const PRIVATE_URL_TEMPLATES: ReadonlySet<string> = new Set([
+  'reset-password', 'verify-email', 'unsubscribe', 'oauth-link', 'log-viewer',
+]);
+const privateUrl = PRIVATE_URL_TEMPLATES.has(template);
 const env = loadEnv();
 const locale = ensureLocals(Astro).locale;
 ---
@@ -88,6 +96,7 @@ const locale = ensureLocals(Astro).locale;
     {FONT_PRELOADS.map((font) => <link rel="preload" href={font} as="font" type="font/woff2" crossorigin />)}
     <SeoHead seo={seo} jsonLd={jsonLd} preloadImage={preloadImage} />
     <meta name="color-scheme" content="dark light" />
+    {!privateUrl && <meta name="referrer" content="no-referrer-when-downgrade" />}
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -106,7 +115,7 @@ const locale = ensureLocals(Astro).locale;
     <script is:inline type="speculationrules" set:html={SPECULATION_RULES_JSON} />
     <slot name="head" />
   </head>
-  <body class="bg-bg text-fg" data-no-ads={noAds ? '' : undefined}>
+  <body class="bg-bg text-fg" data-no-ads={noAds ? '' : undefined} data-private-url={privateUrl ? '' : undefined}>
     <SkipLink />
     {chrome && <Header />}
     {chrome && <SiteBanners />}
