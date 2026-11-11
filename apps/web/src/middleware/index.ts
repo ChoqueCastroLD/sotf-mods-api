@@ -26,6 +26,26 @@ import { securityMiddleware } from './security.ts';
 configureUiMessages();
 configureDomainMessages();
 
+/** One JSON line per page request (stdout): who renders what, to spot crawlers that bypass the edge. */
+const accessLog = defineMiddleware(async (context, next) => {
+  const started = performance.now();
+  const response = await next();
+  const headers = context.request.headers;
+  process.stdout.write(
+    `${JSON.stringify({
+      msg: 'request',
+      method: context.request.method,
+      path: context.url.pathname + context.url.search,
+      status: response.status,
+      ms: Math.round(performance.now() - started),
+      ip: headers.get('cf-connecting-ip') ?? undefined,
+      country: headers.get('cf-ipcountry') ?? undefined,
+      ua: headers.get('user-agent')?.slice(0, 160),
+    })}\n`,
+  );
+  return response;
+});
+
 const siteMiddleware = defineMiddleware(async (context, next) => {
   const locale = requestLocaleOrDefault(context.request);
   const url = context.url;
@@ -76,4 +96,4 @@ const siteMiddleware = defineMiddleware(async (context, next) => {
   });
 });
 
-export const onRequest = sequence(securityMiddleware, siteMiddleware);
+export const onRequest = sequence(accessLog, securityMiddleware, siteMiddleware);
