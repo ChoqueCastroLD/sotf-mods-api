@@ -18,6 +18,7 @@ import { requestLocaleOrDefault } from '../lib/cache/request-locale.ts';
 import { finalizePublicResponse } from '../lib/cache/response.ts';
 import { configureDomainMessages } from '../lib/domain-i18n.ts';
 import { configureUiMessages } from '../lib/i18n.ts';
+import { eventLoopLag, isBusy, isSheddable, shedResponse } from '../lib/server/load-shed.ts';
 import { requestIdOf } from '../lib/server/request-id.ts';
 import { isTransientUpstreamError, retryAfterSeconds } from '../lib/server/upstream.ts';
 import { legacyRule } from './redirects.ts';
@@ -26,11 +27,26 @@ import { securityMiddleware } from './security.ts';
 configureUiMessages();
 configureDomainMessages();
 
-/** One JSON line per page request (stdout): who renders what, to spot crawlers that bypass the edge. */
+let inFlight = 0;
+
+/**
+ * One JSON line per page request (stdout): who renders what, to spot crawlers that bypass the
+ * edge. Also sheds filtered crawls while the server is busy (`lib/server/load-shed.ts`).
+ */
 const accessLog = defineMiddleware(async (context, next) => {
   const started = performance.now();
-  const response = await next();
   const headers = context.request.headers;
+  let response: Response;
+  if (isSheddable(context.url, headers) && isBusy(inFlight)) {
+    response = shedResponse();
+  } else {
+    inFlight++;
+    try {
+      response = await next();
+    } finally {
+      inFlight--;
+    }
+  }
   process.stdout.write(
     `${JSON.stringify({
       msg: 'request',
@@ -41,6 +57,8 @@ const accessLog = defineMiddleware(async (context, next) => {
       ip: headers.get('cf-connecting-ip') ?? undefined,
       country: headers.get('cf-ipcountry') ?? undefined,
       ua: headers.get('user-agent')?.slice(0, 160),
+      inFlight,
+      lag: eventLoopLag(),
     })}\n`,
   );
   return response;

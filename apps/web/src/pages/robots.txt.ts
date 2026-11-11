@@ -11,7 +11,7 @@ import { PRODUCTION_ORIGIN } from '../lib/site.ts';
 
 export const prerender = false;
 
-/** The production file, byte for byte (PLAN §8.6). */
+/** The production file (PLAN §8.6), plus the listing filters crawlers must not walk (2026-11). */
 export const ROBOTS_TXT = [
   'User-agent: *',
   'Allow: /',
@@ -26,6 +26,16 @@ export const ROBOTS_TXT = [
   'Disallow: /logs/',
   'Disallow: /*/logs/',
   'Disallow: /_internal/',
+  'Disallow: /login',
+  'Disallow: /*?*category=',
+  'Disallow: /*?*tag=',
+  'Disallow: /*?*sort=',
+  'Disallow: /*?*view=',
+  'Disallow: /*?*multiplayer=',
+  'Disallow: /*?*platform=',
+  'Disallow: /*?*updatedWithin=',
+  'Disallow: /*?*minRating=',
+  'Disallow: /*?*minDownloads=',
   `Sitemap: ${PRODUCTION_ORIGIN}/sitemap.xml`,
   'Content-Signal: search=yes, ai-input=yes, ai-train=no',
   '',
