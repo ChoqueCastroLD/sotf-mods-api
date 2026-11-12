@@ -67,6 +67,45 @@ export function eventLoopLag(): number {
 }
 export const SHED_RETRY_AFTER_SECONDS = 120;
 
+/** Category and tag filters, the ones crawlers combine endlessly. */
+const TAXONOMY_KEYS = new Set(['category', 'excludeCategory', 'tag', 'excludeTag']);
+
+/** Number of category and tag values in a query. */
+export function taxonomyFilterCount(url: URL): number {
+  let count = 0;
+  for (const key of url.searchParams.keys()) if (TAXONOMY_KEYS.has(key)) count++;
+  return count;
+}
+
+/**
+ * A client that claims to be a current Chrome or Firefox but sends no `Sec-Fetch-Mode`: every
+ * Chromium since 76 (2019) and Firefox since 90 (2021) sends it on navigations and `fetch()`, so
+ * this is a script wearing a browser's user agent. Self-declared bots (`bot`, `compatible;`)
+ * are honest and judged by the rate limits instead.
+ */
+export function isFakeBrowser(headers: Headers): boolean {
+  if (headers.has('sec-fetch-mode')) return false;
+  const ua = headers.get('user-agent') ?? '';
+  if (/bot|crawl|spider|compatible;/i.test(ua)) return false;
+  const chrome = /\b(?:Chrome|CriOS)\/(\d+)/.exec(ua);
+  if (chrome && Number(chrome[1]) >= 90) return true;
+  const firefox = /\bFirefox\/(\d+)/.exec(ua);
+  return Boolean(firefox && Number(firefox[1]) >= 95);
+}
+
+/** Expensive URL a fake browser is refused: a filtered listing or a search. */
+export function isExpensiveQuery(url: URL): boolean {
+  return taxonomyFilterCount(url) >= 1 || (url.pathname === '/search' && url.searchParams.has('q'));
+}
+
+/** `403` for scripts posing as browsers on expensive URLs (no `Retry-After`: retrying won't help). */
+export function fakeBrowserResponse(): Response {
+  return new Response('Forbidden.\n', {
+    status: 403,
+    headers: { 'content-type': 'text/plain; charset=utf-8', 'cache-control': 'no-store', 'x-robots-tag': 'noindex' },
+  });
+}
+
 /** Anonymous request for a listing narrowed by two or more filters. */
 export function isSheddable(url: URL, headers: Headers): boolean {
   if (/(?:^|;\s*)sotf_li=/.test(headers.get('cookie') ?? '')) return false;

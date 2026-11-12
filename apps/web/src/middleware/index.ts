@@ -14,11 +14,20 @@
 
 import { defineMiddleware, sequence } from 'astro:middleware';
 import { withLocale } from '@sotf/i18n/server';
+import { DETAIL_PAGE, DETAIL_PARAMS } from '../lib/cache/cloudflare-tags.ts';
 import { requestLocaleOrDefault } from '../lib/cache/request-locale.ts';
 import { finalizePublicResponse } from '../lib/cache/response.ts';
 import { configureDomainMessages } from '../lib/domain-i18n.ts';
-import { configureUiMessages } from '../lib/i18n.ts';
-import { eventLoopLag, isBusy, isSheddable, shedResponse } from '../lib/server/load-shed.ts';
+import { configureUiMessages, href } from '../lib/i18n.ts';
+import {
+  eventLoopLag,
+  fakeBrowserResponse,
+  isBusy,
+  isExpensiveQuery,
+  isFakeBrowser,
+  isSheddable,
+  shedResponse,
+} from '../lib/server/load-shed.ts';
 import { listingRateLimit, tooManyRequests } from '../lib/server/rate-limit.ts';
 import { requestIdOf } from '../lib/server/request-id.ts';
 import { isTransientUpstreamError, retryAfterSeconds } from '../lib/server/upstream.ts';
@@ -42,6 +51,8 @@ const accessLog = defineMiddleware(async (context, next) => {
   const retryAfter = context.request.method === 'GET' ? listingRateLimit(context.url.pathname, headers) : null;
   if (retryAfter !== null) {
     response = tooManyRequests(retryAfter);
+  } else if (isExpensiveQuery(context.url) && isFakeBrowser(headers)) {
+    response = fakeBrowserResponse();
   } else if (isSheddable(context.url, headers) && isBusy(inFlight)) {
     response = shedResponse();
   } else {
@@ -88,6 +99,24 @@ const siteMiddleware = defineMiddleware(async (context, next) => {
         'x-sotf-cache-tags': 'html',
       },
     });
+  }
+
+  // Mod and build pages read only `adult`: any other parameter (crawlers append random ones to
+  // dodge caches) is dropped with a 301 before rendering. `utm_*` stay for the analytics.
+  if (DETAIL_PAGE.test(url.pathname) && context.request.method === 'GET') {
+    const kept = [...url.searchParams].filter(([name]) => DETAIL_PARAMS.has(name) || name.startsWith('utm_'));
+    if (kept.length !== [...url.searchParams].length) {
+      const query = new URLSearchParams(kept).toString();
+      return new Response(null, {
+        status: 301,
+        headers: {
+          location: `${href(url.pathname, locale)}${query ? `?${query}` : ''}`,
+          'cache-control': 'public, max-age=3600',
+          'cloudflare-cdn-cache-control': 'public, max-age=86400',
+          'x-sotf-cache-tags': 'html',
+        },
+      });
+    }
   }
 
   return withLocale(locale, async () => {

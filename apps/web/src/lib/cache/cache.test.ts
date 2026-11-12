@@ -111,6 +111,10 @@ describe('cloudflareTags() provider', () => {
     expect((await run(provider, request('/mods?a=1&b=2'), () => page('other'))).calls).toBe(0);
     expect((await run(provider, request('/mods?a=1&b=2', { locale: 'es' }), () => page('es'))).calls).toBe(1);
     expect(cacheKey(new URL('https://h/p?z=1&a=2&fbclid=3'), 'en', new Set(['fbclid']))).toBe('h|en|/p?a=2&z=1');
+    expect(cacheKey(new URL('https://h/mods/u/s?x=9&adult=1'), 'en', new Set())).toBe('h|en|/mods/u/s?adult=1');
+    expect(cacheKey(new URL('https://h/mods/u/s/versions?page=2'), 'en', new Set())).toBe(
+      'h|en|/mods/u/s/versions?page=2',
+    );
   });
 
   it('answers 304 to a matching If-None-Match', async () => {

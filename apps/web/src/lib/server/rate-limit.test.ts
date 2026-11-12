@@ -1,5 +1,12 @@
 import { beforeEach, describe, expect, it } from 'vitest';
-import { isListingPath, LISTING_LIMITS, listingRateLimit, rateKeys, resetRateLimits } from './rate-limit.ts';
+import {
+  isListingPath,
+  LISTING_LIMITS,
+  listingRateLimit,
+  PAGE_LIMIT_PER_IP,
+  rateKeys,
+  resetRateLimits,
+} from './rate-limit.ts';
 
 const from = (ip: string, cookie?: string) => new Headers({ 'cf-connecting-ip': ip, ...(cookie ? { cookie } : {}) });
 const T0 = 1_700_000_000_000 - (1_700_000_000_000 % 60_000);
@@ -17,7 +24,17 @@ describe('listing rate limit', () => {
   it('covers listing pages only', () => {
     for (const path of ['/', '/mods', '/builds', '/categories/qol', '/tags/ui']) expect(isListingPath(path)).toBe(true);
     for (const path of ['/mods/a/b', '/healthz', '/install', '/categories']) expect(isListingPath(path)).toBe(false);
+    expect(isListingPath('/search')).toBe(true);
     expect(listingRateLimit('/mods/a/b', from('1.2.3.4'), T0)).toBeNull();
+  });
+
+  it(`caps every page at ${PAGE_LIMIT_PER_IP} a minute per address and never counts static files`, () => {
+    let refused = 0;
+    for (let i = 0; i < PAGE_LIMIT_PER_IP + 5; i++)
+      if (listingRateLimit('/mods/a/b', from('9.9.9.9'), T0) !== null) refused++;
+    expect(refused).toBe(5);
+    expect(listingRateLimit('/_astro/app.js', from('9.9.9.9'), T0)).toBeNull();
+    expect(listingRateLimit('/healthz', from('9.9.9.9'), T0)).toBeNull();
   });
 
   it(`refuses an address after ${LISTING_LIMITS.ip} requests a minute, until the window ends`, () => {

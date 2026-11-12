@@ -6,8 +6,10 @@
  * most, no timers. Members (session cookie) only count against their own IP.
  */
 
-/** Listing pages: the expensive renders crawlers multiply with query strings. */
-const LISTING_PATH = /^\/(?:mods|builds|categories\/[^/]+|tags\/[^/]+)?\/?$/;
+/** Listing and search pages: the expensive renders crawlers multiply with query strings. */
+const LISTING_PATH = /^\/(?:mods|builds|search|categories\/[^/]+|tags\/[^/]+)?\/?$/;
+/** Static files the server streams without rendering (not counted). */
+const STATIC_PATH = /^\/(?:_astro|static|fonts|favicon|apple-touch-icon|manifest\.webmanifest|sw\.js)/;
 
 export const LISTING_LIMITS = {
   /** One address. */
@@ -17,6 +19,9 @@ export const LISTING_LIMITS = {
   /** IPv4 /16, IPv6 /32. */
   wide: 120,
 } as const;
+
+/** Any server-rendered page or endpoint per address: far above what a person clicks. */
+export const PAGE_LIMIT_PER_IP = 240;
 
 const WINDOW_MS = 60_000;
 /** Safety valve: never hold more keys than this (a flood of spoofed addresses fails open). */
@@ -65,11 +70,12 @@ function hasSession(headers: Headers): boolean {
 }
 
 /**
- * Counts a listing request and returns the seconds to wait when it is over budget, or `null`.
+ * Counts a request (every page against `PAGE_LIMIT_PER_IP`, listings also against
+ * `LISTING_LIMITS`) and returns the seconds to wait when it is over budget, or `null`.
  * `now` is injectable for tests.
  */
 export function listingRateLimit(pathname: string, headers: Headers, now = Date.now()): number | null {
-  if (!isListingPath(pathname)) return null;
+  if (STATIC_PATH.test(pathname) || pathname === '/healthz') return null;
   const ip = clientIp(headers);
   const keys = ip ? rateKeys(ip) : null;
   if (!keys) return null;
@@ -85,8 +91,11 @@ export function listingRateLimit(pathname: string, headers: Headers, now = Date.
     return next;
   };
 
-  let over = bump(`ip|${keys.ip}`) > LISTING_LIMITS.ip;
-  if (!hasSession(headers)) {
+  let over = bump(`page|${keys.ip}`) > PAGE_LIMIT_PER_IP;
+  if (isListingPath(pathname)) {
+    over = bump(`ip|${keys.ip}`) > LISTING_LIMITS.ip || over;
+  }
+  if (isListingPath(pathname) && !hasSession(headers)) {
     over = bump(`net|${keys.network}`) > LISTING_LIMITS.network || over;
     over = bump(`wide|${keys.wide}`) > LISTING_LIMITS.wide || over;
   }

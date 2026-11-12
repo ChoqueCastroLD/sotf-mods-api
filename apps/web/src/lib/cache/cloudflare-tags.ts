@@ -71,13 +71,33 @@ interface Entry {
   path: string;
 }
 
-/** Cache key: host, locale (the server entry rewrites `/es/x` to `/x`), path and sorted query. */
+/** Mod and build pages: the only query parameter they read is `adult` (the NSFW reveal). */
+export const DETAIL_PAGE = /^\/(?:mods|builds)\/[^/]+\/[^/]+\/?$/;
+export const DETAIL_PARAMS: ReadonlySet<string> = new Set(['adult']);
+
+/**
+ * Cache key: host, locale (the server entry rewrites `/es/x` to `/x`), path and sorted query. Mod
+ * and build pages keep only the parameters they read (the middleware already 301s the others
+ * away), so `?anything=random` can never force a render.
+ */
 export function cacheKey(url: URL, locale: string, ignored: ReadonlySet<string>): string {
+  const kept = DETAIL_PAGE.test(url.pathname) ? DETAIL_PARAMS : null;
   const params = [...url.searchParams.entries()]
-    .filter(([name]) => !ignored.has(name.toLowerCase()) && !name.toLowerCase().startsWith('utm_'))
+    .filter(([name]) =>
+      kept ? kept.has(name) : !ignored.has(name.toLowerCase()) && !name.toLowerCase().startsWith('utm_'),
+    )
     .sort(([a, av], [b, bv]) => (a === b ? av.localeCompare(bv) : a.localeCompare(b)));
   const query = new URLSearchParams(params).toString();
   return `${url.host}|${locale}|${url.pathname}${query ? `?${query}` : ''}`;
+}
+
+const TAXONOMY_PARAMS = new Set(['category', 'excludeCategory', 'tag', 'excludeTag']);
+
+/** Two or more category/tag values in the query. */
+function multiTaxonomyQuery(url: URL): boolean {
+  let count = 0;
+  for (const name of url.searchParams.keys()) if (TAXONOMY_PARAMS.has(name) && ++count >= 2) return true;
+  return false;
 }
 
 function varyBlocksCaching(response: Response): boolean {
@@ -169,6 +189,10 @@ export function createCloudflareTagsProvider(options: CloudflareTagsOptions = {}
       ) {
         return response;
       }
+
+      // Combinations of two or more categories/tags are rarely asked twice (crawlers walk them):
+      // keeping them would only evict the pages people read. The edge still caches them.
+      if (multiTaxonomyQuery(url)) return response;
 
       const body = new Uint8Array(await response.arrayBuffer());
       const headers: Array<[string, string]> = [];
