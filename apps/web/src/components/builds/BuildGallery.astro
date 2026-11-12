@@ -24,7 +24,7 @@ const images = [build.thumbnail, ...build.gallery].filter((image): image is NonN
   return true;
 });
 const total = images.length;
-const sizes = '(min-width: 80rem) 700px, (min-width: 48rem) 55vw, 100vw';
+const sizes = '(min-width: 80rem) 700px, (min-width: 64rem) 55vw, 100vw';
 const label = m.builds_gallery_label({ name: build.name });
 ---
 

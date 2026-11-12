@@ -43,13 +43,14 @@ const galleryLabel = m.mod_gallery_label({ name: mod.name });
 const stat = 'inline-flex items-center gap-1.5 tabular-nums';
 ---
 
-<header class:list={['grid grid-cols-1 gap-6', compact ? '' : 'md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] md:items-start md:gap-8']}>
+<!-- Two columns only from lg: on tablets they left a tall empty block under a small gallery. -->
+<header class:list={['grid grid-cols-1 gap-6', compact ? '' : 'lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:items-start lg:gap-8']}>
   {
     !compact && (
       <div class="grid min-w-0 grid-cols-1 gap-3">
         <GalleryCarousel
           mod={mod}
-          sizes="(min-width: 80rem) 700px, (min-width: 48rem) 55vw, 100vw"
+          sizes="(min-width: 80rem) 700px, (min-width: 64rem) 55vw, 100vw"
           label={galleryLabel}
         />
         {(mod.gallery.length > 1 || mod.video) && (
@@ -76,7 +77,9 @@ const stat = 'inline-flex items-center gap-1.5 tabular-nums';
           <span aria-hidden="true" class:list={['size-2 rounded-full', mod.game === 'the-forest' ? 'bg-[#4ade80]' : 'bg-primary']} />
           {gameLabel(mod.game)}
         </a>
-        <span>{m.mod_meta_loader()}: {loaderLabel(mod.modLoader)}</span>
+        <span class="inline-flex items-center rounded-sm border border-border px-2 py-0.5">
+          <span class="max-sm:sr-only">{m.mod_meta_loader()}:&nbsp;</span>{loaderLabel(mod.modLoader)}
+        </span>
         {mod.kind === 'library' && <span>· {m.mod_kind_library()}</span>}
       </p>
       <h1
