@@ -29,7 +29,7 @@ Stored in your browser (local storage), never sent to us:
 
 # Advertising
 
-Pages may show ads from **Adsterra** and **HilltopAds** (a social bar and pop-under windows). These networks and their partners may set cookies or use similar storage to show ads, limit how often you see them and measure them; see the [Adsterra privacy policy](https://adsterra.com/privacy-policy/) and the [HilltopAds privacy policy](https://hilltopads.com/privacy). Pages with private links (password reset, email verification, unsubscribe) never load ads.
+Pages may show ads from **Adsterra** (a social bar and pop-under windows). Adsterra and its partners may set cookies or use similar storage to show ads, limit how often you see them and measure them; see the [Adsterra privacy policy](https://adsterra.com/privacy-policy/). Pages with private links (password reset, email verification, unsubscribe) never load ads.
 
 # Statistics
 

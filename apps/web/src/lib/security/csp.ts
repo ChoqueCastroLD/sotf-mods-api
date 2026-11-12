@@ -29,7 +29,7 @@
  *   descriptions are replicated to R2 (WP-40); the ones that could not be fetched stay blocked.
  * - `frame-ancestors 'none'` everywhere except `/embed/*` (`*`), sent as a header.
  *
- * Third parties (PLAN §8.5, §8.8): Adsterra and HilltopAds (see `THIRD_PARTY_AD_SOURCE`), Cloudflare
+ * Third parties (PLAN §8.5, §8.8): Adsterra (see `THIRD_PARTY_AD_SOURCE`), Cloudflare
  * Turnstile (auth forms), YouTube facades (`youtube-nocookie`). Nothing else.
  */
 import { createHash } from 'node:crypto';
@@ -79,7 +79,7 @@ export const YOUTUBE_THUMBNAIL_ORIGIN = 'https://i.ytimg.com';
 const uniq = (values: readonly string[]): string[] => [...new Set(values)];
 
 /**
- * Adsterra (social bar, popunder) and HilltopAds (popunder) load their code, creatives, frames and
+ * Adsterra (social bar, popunder) loads its code, creatives, frames and
  * beacons from rotating domains that cannot be listed (owner decision 2026-11): scripts, frames,
  * images and connections accept any HTTPS origin. Inline scripts stay hash-checked and `object-src`,
  * `base-uri` and `form-action` stay strict.
