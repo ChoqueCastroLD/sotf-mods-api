@@ -105,6 +105,43 @@ describe('cloudflareTags() provider', () => {
     expect(second.response.headers.get('etag')).toBe(first.response.headers.get('etag'));
   });
 
+  it('coalesces concurrent misses of one page into a single render', async () => {
+    const provider = createCloudflareTagsProvider();
+    const onRequest = provider.onRequest;
+    if (!onRequest) throw new Error('provider without onRequest');
+    let renders = 0;
+    const slow = async () => {
+      renders++;
+      await new Promise((resolve) => setTimeout(resolve, 20));
+      return page('shared');
+    };
+    const responses = await Promise.all(
+      Array.from({ length: 10 }, () =>
+        onRequest({ request: request('/mods'), url: new URL('https://sotf-mods.com/mods'), logger }, slow),
+      ),
+    );
+    expect(renders).toBe(1);
+    expect(await Promise.all(responses.map((response) => response.text()))).toEqual(Array(10).fill('shared'));
+  });
+
+  it('renders each concurrent request when the response is not cacheable', async () => {
+    const provider = createCloudflareTagsProvider();
+    const onRequest = provider.onRequest;
+    if (!onRequest) throw new Error('provider without onRequest');
+    let renders = 0;
+    const personal = async () => {
+      renders++;
+      await new Promise((resolve) => setTimeout(resolve, 20));
+      return page(`me-${renders}`, 300, 'html', { 'set-cookie': 'a=1' });
+    };
+    await Promise.all(
+      Array.from({ length: 5 }, () =>
+        onRequest({ request: request('/me'), url: new URL('https://sotf-mods.com/me'), logger }, personal),
+      ),
+    );
+    expect(renders).toBe(5);
+  });
+
   it('keys by locale, path and normalized query (tracking parameters ignored)', async () => {
     const provider = createCloudflareTagsProvider();
     await run(provider, request('/mods?b=2&a=1&utm_source=x'), () => page('en'));

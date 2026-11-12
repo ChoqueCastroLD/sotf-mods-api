@@ -36,6 +36,7 @@ describe('listing rate limit', () => {
     expect(refused).toBe(5);
     expect(listingRateLimit(new URL('https://x/_astro/app.js'), from('9.9.9.9'), T0)).toBeNull();
     expect(listingRateLimit(new URL('https://x/healthz'), from('9.9.9.9'), T0)).toBeNull();
+    expect(listingRateLimit(new URL('https://x/mods/a/b/download/1.0.0'), from('9.9.9.9'), T0)).toBeNull();
   });
 
   it(`refuses an address after ${LISTING_LIMITS.ip} requests a minute, until the window ends`, () => {

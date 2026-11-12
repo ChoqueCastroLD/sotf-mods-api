@@ -9,6 +9,8 @@
 
 /** Listing, search and sign-in pages: the renders crawlers multiply with query strings. */
 const LISTING_PATH = /^\/(?:mods|builds|search|login|register|categories\/[^/]+|tags\/[^/]+)?\/?$/;
+/** `/mods/:user/:slug/download/:version` (and builds): a redirect to the file. */
+const DOWNLOAD_PATH = /^\/(?:mods|builds)\/[^/]+\/[^/]+\/download\//;
 /** Static files the server streams without rendering (not counted). */
 const STATIC_PATH = /^\/(?:_astro|static|fonts|favicon|apple-touch-icon|manifest\.webmanifest|sw\.js)/;
 
@@ -77,7 +79,8 @@ function hasSession(headers: Headers): boolean {
  */
 export function listingRateLimit(url: URL, headers: Headers, now = Date.now(), trusted = false): number | null {
   const { pathname } = url;
-  if (STATIC_PATH.test(pathname) || pathname === '/healthz') return null;
+  // Downloads are cheap redirects and never refused (the API's `downloads` bucket is soft too).
+  if (STATIC_PATH.test(pathname) || pathname === '/healthz' || DOWNLOAD_PATH.test(pathname)) return null;
   const ip = clientIp(headers);
   const keys = ip ? rateKeys(ip) : null;
   if (!keys) return null;

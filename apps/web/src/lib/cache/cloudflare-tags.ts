@@ -10,7 +10,8 @@
  * - **Origin LRU** (`onRequest`): absorbs edge misses from every PoP and locale. Entries live for
  *   the edge TTL (`maxAge`), are keyed by host + locale + path + normalized query, carry a strong
  *   ETag (conditional requests get `304`) and are never created for responses with `Set-Cookie`
- *   or `Vary: Cookie`.
+ *   or `Vary: Cookie`. Concurrent misses of one key are coalesced: the first request renders,
+ *   the others wait for it and get its entry (no stampede when a popular page is cold or expires).
  * - **Invalidation** (`invalidate`): by tag (`/_internal/cache/invalidate`, called by the
  *   `cdn.purge` job) or by path.
  *
@@ -140,6 +141,8 @@ export function createCloudflareTagsProvider(options: CloudflareTagsOptions = {}
   readonly size: number;
 } {
   const ignored = new Set((options.ignoredQueryParams ?? DEFAULT_IGNORED_QUERY).map((name) => name.toLowerCase()));
+  /** Renders in progress per key, resolved with the stored entry (or null when not cacheable). */
+  const pending = new Map<string, Promise<Entry | null>>();
   const lru = new LRUCache<string, Entry>({
     max: options.max ?? 500,
     maxSize: options.maxBytes ?? 64 * 1024 * 1024,
@@ -178,37 +181,63 @@ export function createCloudflareTagsProvider(options: CloudflareTagsOptions = {}
       const cached = lru.get(key);
       if (cached) return toResponse(cached, request, 'HIT');
 
-      const response = await next();
-      const { maxAge } = parseEdgeCacheControl(response.headers.get(CDN_CACHE_CONTROL_HEADER));
-      if (
-        maxAge <= 0 ||
-        !CACHEABLE_STATUS.has(response.status) ||
-        response.headers.has('set-cookie') ||
-        varyBlocksCaching(response) ||
-        /\bno-store\b|\bprivate\b/i.test(response.headers.get('cache-control') ?? '')
-      ) {
+      const inFlight = pending.get(key);
+      if (inFlight) {
+        const entry = await inFlight;
+        // Not cacheable after all (cookie, error, no TTL): render this one too.
+        if (entry) return toResponse(entry, request, 'HIT');
+        return next();
+      }
+      let settle: (entry: Entry | null) => void = () => {};
+      pending.set(
+        key,
+        new Promise<Entry | null>((resolve) => {
+          settle = resolve;
+        }),
+      );
+      let stored: Entry | null = null;
+      try {
+        const response = await render();
         return response;
+      } finally {
+        pending.delete(key);
+        settle(stored);
       }
 
-      // Combinations of two or more categories/tags are rarely asked twice (crawlers walk them):
-      // keeping them would only evict the pages people read. The edge still caches them.
-      if (multiTaxonomyQuery(url)) return response;
+      async function render(): Promise<Response> {
+        const response = await next();
+        const { maxAge } = parseEdgeCacheControl(response.headers.get(CDN_CACHE_CONTROL_HEADER));
+        if (
+          maxAge <= 0 ||
+          !CACHEABLE_STATUS.has(response.status) ||
+          response.headers.has('set-cookie') ||
+          varyBlocksCaching(response) ||
+          /\bno-store\b|\bprivate\b/i.test(response.headers.get('cache-control') ?? '')
+        ) {
+          return response;
+        }
 
-      const body = new Uint8Array(await response.arrayBuffer());
-      const headers: Array<[string, string]> = [];
-      response.headers.forEach((value, name) => {
-        if (name !== 'set-cookie' && name !== 'etag' && name !== ORIGIN_CACHE_HEADER) headers.push([name, value]);
-      });
-      const entry: Entry = {
-        body,
-        status: response.status,
-        headers,
-        tags: parseTagHeader(response.headers.get(INTERNAL_TAGS_HEADER)),
-        etag: strongEtag(body),
-        path: url.pathname + url.search,
-      };
-      lru.set(key, entry, { ttl: maxAge * 1000 });
-      return toResponse(entry, request, 'MISS');
+        // Combinations of two or more categories/tags are rarely asked twice (crawlers walk them):
+        // keeping them would only evict the pages people read. The edge still caches them.
+        if (multiTaxonomyQuery(url)) return response;
+
+        const body = new Uint8Array(await response.arrayBuffer());
+        const headers: Array<[string, string]> = [];
+        response.headers.forEach((value, name) => {
+          if (name !== 'set-cookie' && name !== 'etag' && name !== ORIGIN_CACHE_HEADER) headers.push([name, value]);
+        });
+        const entry: Entry = {
+          body,
+          status: response.status,
+          headers,
+          tags: parseTagHeader(response.headers.get(INTERNAL_TAGS_HEADER)),
+          etag: strongEtag(body),
+          path: url.pathname + url.search,
+        };
+        lru.set(key, entry, { ttl: maxAge * 1000 });
+        stored = entry;
+        return toResponse(entry, request, 'MISS');
+      }
     },
 
     async invalidate(invalidateOptions: InvalidateOptions): Promise<void> {

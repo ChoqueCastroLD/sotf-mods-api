@@ -49,5 +49,6 @@ export const ROBOTS_TXT_NOINDEX = 'User-agent: *\nDisallow: /\n';
 export const GET: APIRoute = (context) =>
   machineResponse(context, loadEnv().indexable ? ROBOTS_TXT : ROBOTS_TXT_NOINDEX, {
     contentType: CONTENT_TYPES.text,
-    maxAge: 86_400,
+    // One hour: crawler rules must reach the edge quickly when they change (2026-11 incident).
+    maxAge: 3600,
   });
