@@ -28,7 +28,7 @@ const sizes = '(min-width: 80rem) 700px, (min-width: 48rem) 55vw, 100vw';
 const label = m.builds_gallery_label({ name: build.name });
 ---
 
-<figure class="grid min-w-0 gap-3" data-build-gallery>
+<figure class="grid min-w-0 grid-cols-1 gap-3" data-build-gallery>
   {
     total === 0 && !build.video ? (
       <div class="flex aspect-video items-center justify-center rounded-lg border border-border bg-raised p-6 text-center">
@@ -44,7 +44,7 @@ const label = m.builds_gallery_label({ name: build.name });
             {m.builds_nsfw_show()}
           </span>
         </summary>
-        <div class="grid gap-2 p-2">
+        <div class="grid grid-cols-1 gap-2 p-2">
           {images.map((image, index) => (
             <Picture
               image={image}
