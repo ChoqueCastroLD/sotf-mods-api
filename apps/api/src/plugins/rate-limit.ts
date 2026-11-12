@@ -129,6 +129,33 @@ function keyFor(kind: 'ip' | 'user' | 'chat', req: FastifyRequest): string {
   return `ip:${req.clientIp}`;
 }
 
+/**
+ * Anonymous reads per network on top of the per-IP buckets (2026-11: a botnet of ~2,000
+ * addresses in a few /16s stays under any per-IP limit). Generous: a whole /16 of a large ISP
+ * full of players checking updates stays far below.
+ */
+export const NETWORK_READ_LIMITS = {
+  /** IPv4 /24, IPv6 /48. */
+  network: { max: 1200, window: '1 minute' },
+  /** IPv4 /16, IPv6 /32. */
+  wide: { max: 4000, window: '1 minute' },
+} as const satisfies Record<string, BucketLimit>;
+
+/** The /24 (/48) and /16 (/32) an address belongs to, or null when it is not an IP. */
+export function networksOf(ip: string): { network: string; wide: string } | null {
+  const v4 = /^(?:::ffff:)?(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.\d{1,3}$/.exec(ip);
+  if (v4) return { network: `${v4[1]}.${v4[2]}.${v4[3]}.0/24`, wide: `${v4[1]}.${v4[2]}.0.0/16` };
+  if (!ip.includes(':')) return null;
+  const [head = '', tail] = ip.split('::');
+  const left = head ? head.split(':') : [];
+  const right = tail ? tail.split(':') : [];
+  if (tail === undefined && left.length !== 8) return null;
+  const groups = [...left, ...Array(Math.max(0, 8 - left.length - right.length)).fill('0'), ...right].map((group) =>
+    group.toLowerCase().replace(/^0+(?=.)/, ''),
+  );
+  return { network: `${groups.slice(0, 3).join(':')}::/48`, wide: `${groups.slice(0, 2).join(':')}::/32` };
+}
+
 /** The bucket that applies to a request (null = none). */
 export function bucketFor(request: FastifyRequest): RateLimitBucket | null {
   const config = request.routeOptions.config;
@@ -162,7 +189,15 @@ export async function setupRateLimit(
       if (secretsEqual(Array.isArray(given) ? given[0] : given, internalSecret)) return;
     }
     const bucket = bucketFor(request);
-    if (bucket) await limiter.enforce(bucket, request);
+    if (!bucket) return;
+    await limiter.enforce(bucket, request);
+    if ((bucket === 'anonymousRead' || bucket === 'legacyRead') && !request.actor) {
+      const networks = networksOf(request.clientIp);
+      if (networks) {
+        await limiter.consume('read-net', networks.network, NETWORK_READ_LIMITS.network);
+        await limiter.consume('read-wide', networks.wide, NETWORK_READ_LIMITS.wide);
+      }
+    }
   });
   return limiter;
 }
