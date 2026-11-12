@@ -61,7 +61,7 @@ setPageCache(Astro, pageCache.mod(mod.id, mod.userId));      // E(900) mod:{id} 
   `theme-color`, robots (`noindex` automatically outside `SITE_ENV=production`) and JSON-LD
   (`lib/seo/jsonld.ts`, `schema-dts`, safely serialized).
 - `Picture.astro`: WebP `srcset` from `ImageDTO`, explicit size, `priority` for the LCP.
-- Ads: `scripts/third-party-ads.ts` injects the Adsterra (social bar, popunder) scripts after
+- Ads: `scripts/third-party-ads.ts` injects the HilltopAds popunder after
   load + idle, for guests only (`sotf_li` hint cookie absent), except on private URLs
   (`data-private-url`).
 - Domain components: `lib/domain-i18n.ts` makes every `@sotf/ui/domain` component speak the

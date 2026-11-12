@@ -24,10 +24,10 @@ afterEach(() => {
 });
 
 describe('third-party ads', () => {
-  it('load the two Adsterra scripts for guests', async () => {
+  it('load the HilltopAds popunder for guests, and nothing from Adsterra', async () => {
     const sources = await run(() => {});
-    expect(sources).toHaveLength(2);
-    expect(sources.every((src) => /bellnewyork|accountut/.test(src))).toBe(true);
+    expect(sources).toHaveLength(1);
+    expect(sources[0]).toMatch(/^https:\/\/crookedagreement\.com\//);
   });
 
   it('never load for signed-in members', async () => {
