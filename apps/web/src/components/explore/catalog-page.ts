@@ -62,7 +62,8 @@ export async function loadCatalogPage(input: { url: URL; locale: Locale; mode: C
   }
 
   const [loaded, aside] = await Promise.all([
-    loadListing({ url, locale, scope: MODS_SCOPE, skipCanonicalRedirect: homeGameOnly }),
+    // The home page is the canonical of the default listing and redirected anything else above.
+    loadListing({ url, locale, scope: MODS_SCOPE, skipCanonicalRedirect: mode === 'home' || homeGameOnly }),
     loadAside(),
   ]);
   if (loaded.kind === 'redirect') return loaded;
