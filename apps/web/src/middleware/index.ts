@@ -18,7 +18,9 @@ import { DETAIL_PAGE, DETAIL_PARAMS } from '../lib/cache/cloudflare-tags.ts';
 import { requestLocaleOrDefault } from '../lib/cache/request-locale.ts';
 import { finalizePublicResponse } from '../lib/cache/response.ts';
 import { configureDomainMessages } from '../lib/domain-i18n.ts';
+import { loadEnv } from '../lib/env.ts';
 import { configureUiMessages, href } from '../lib/i18n.ts';
+import { passGate } from '../lib/server/js-pass.ts';
 import {
   eventLoopLag,
   fakeBrowserResponse,
@@ -40,29 +42,33 @@ configureDomainMessages();
 let inFlight = 0;
 
 /**
+ * The cheap refusals, in order: rate limits (429), scripts posing as browsers on expensive URLs
+ * (403), the JavaScript pass of multi-filter listings (`lib/server/js-pass.ts`), load shedding
+ * (429); otherwise the page renders.
+ */
+async function guard(url: URL, method: string, headers: Headers, next: () => Promise<Response>): Promise<Response> {
+  const retryAfter = method === 'GET' ? listingRateLimit(url, headers) : null;
+  if (retryAfter !== null) return tooManyRequests(retryAfter, headers.get('accept') ?? '');
+  if (isExpensiveQuery(url) && isFakeBrowser(headers)) return fakeBrowserResponse();
+  const gated = method === 'GET' ? passGate(url, headers, loadEnv().internalSecret) : null;
+  if (gated) return gated;
+  if (isSheddable(url, headers) && isBusy(inFlight)) return shedResponse();
+  inFlight++;
+  try {
+    return await next();
+  } finally {
+    inFlight--;
+  }
+}
+
+/**
  * One JSON line per page request (stdout): who renders what, to spot crawlers that bypass the
- * edge. Rate-limits listing pages per IP and network (`lib/server/rate-limit.ts`) and sheds
- * filtered crawls while the server is busy (`lib/server/load-shed.ts`), both with 429.
+ * edge, after `guard` decided whether to render.
  */
 const accessLog = defineMiddleware(async (context, next) => {
   const started = performance.now();
   const headers = context.request.headers;
-  let response: Response;
-  const retryAfter = context.request.method === 'GET' ? listingRateLimit(context.url, headers) : null;
-  if (retryAfter !== null) {
-    response = tooManyRequests(retryAfter, headers.get('accept') ?? '');
-  } else if (isExpensiveQuery(context.url) && isFakeBrowser(headers)) {
-    response = fakeBrowserResponse();
-  } else if (isSheddable(context.url, headers) && isBusy(inFlight)) {
-    response = shedResponse();
-  } else {
-    inFlight++;
-    try {
-      response = await next();
-    } finally {
-      inFlight--;
-    }
-  }
+  const response = await guard(context.url, context.request.method, headers, next);
   process.stdout.write(
     `${JSON.stringify({
       msg: 'request',
@@ -76,6 +82,7 @@ const accessLog = defineMiddleware(async (context, next) => {
       inFlight,
       lag: eventLoopLag(),
       sf: headers.has('sec-fetch-mode') ? 1 : 0,
+      gate: response.headers.get('x-sotf-gate') ?? undefined,
     })}\n`,
   );
   return response;
