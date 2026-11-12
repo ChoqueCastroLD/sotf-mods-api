@@ -1,6 +1,5 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import {
-  FILTERED_LIMITS,
   isListingPath,
   LISTING_LIMITS,
   listingRateLimit,
@@ -71,14 +70,14 @@ describe('listing rate limit', () => {
     expect(rateKeys('nonsense')).toBeNull();
   });
 
-  it('gives listings with two or more categories/tags a tight budget per network, members aside', () => {
-    const filtered = (ip: string, cookie?: string) =>
-      listingRateLimit(new URL('https://x/builds?category=a&excludeTag=b'), from(ip, cookie), T0);
-    for (let i = 0; i < FILTERED_LIMITS.network; i++) expect(filtered(`20.0.0.${i}`)).toBeNull();
-    expect(filtered('20.0.0.99')).not.toBeNull();
-    expect(listingRateLimit(new URL('https://x/builds?category=a'), from('20.0.0.98'), T0)).toBeNull();
-    expect(filtered('20.0.0.97', 'sotf_li=1')).toBeNull();
-    for (let i = 0; i < FILTERED_LIMITS.wide; i++) filtered(`20.1.${i}.1`);
-    expect(filtered('20.1.200.1')).not.toBeNull();
+  it('lets a trusted browser on a busy network through, within its own budget', () => {
+    for (let i = 0; i < LISTING_LIMITS.network; i++) send(1, `10.0.0.${i}`);
+    expect(listingRateLimit(new URL('https://x/mods'), from('10.0.0.250'), T0, true)).toBeNull();
+    expect(send(1, '10.0.0.251')).toBe(1);
+  });
+
+  it('covers the sign-in pages', () => {
+    expect(isListingPath('/login')).toBe(true);
+    expect(isListingPath('/register')).toBe(true);
   });
 });

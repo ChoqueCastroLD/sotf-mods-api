@@ -3,11 +3,12 @@
  * botnet of ~2,000 addresses, mostly a few Chinese /16s, walked filter combinations of `/mods`,
  * `/builds`, `/categories/*` and `/tags/*`). Over budget: `429` + `Retry-After` until the window
  * ends. Fixed one-minute windows in a `Map` cleared at each new window: a few thousand keys at
- * most, no timers. Members (session cookie) only count against their own IP.
+ * most, no timers. Members (session cookie) and browsers with a trusted pass (`js-pass.ts`) only
+ * count against their own IP.
  */
 
-/** Listing and search pages: the expensive renders crawlers multiply with query strings. */
-const LISTING_PATH = /^\/(?:mods|builds|search|categories\/[^/]+|tags\/[^/]+)?\/?$/;
+/** Listing, search and sign-in pages: the renders crawlers multiply with query strings. */
+const LISTING_PATH = /^\/(?:mods|builds|search|login|register|categories\/[^/]+|tags\/[^/]+)?\/?$/;
 /** Static files the server streams without rendering (not counted). */
 const STATIC_PATH = /^\/(?:_astro|static|fonts|favicon|apple-touch-icon|manifest\.webmanifest|sw\.js)/;
 
@@ -22,26 +23,6 @@ export const LISTING_LIMITS = {
 
 /** Any server-rendered page or endpoint per address: far above what a person clicks. */
 export const PAGE_LIMIT_PER_IP = 240;
-
-/**
- * Listings narrowed by two or more categories/tags, per network and anonymous only: the pattern of
- * the 2026-11 botnet (headless Chrome on hundreds of rotating addresses). People rarely combine
- * filters at this pace from one network; plain listings and single filters are not counted.
- */
-export const FILTERED_LIMITS = {
-  /** IPv4 /24, IPv6 /48. */
-  network: 10,
-  /** IPv4 /16, IPv6 /32. */
-  wide: 20,
-} as const;
-
-const TAXONOMY_PARAMS = new Set(['category', 'excludeCategory', 'tag', 'excludeTag']);
-
-function multiFiltered(search: URLSearchParams): boolean {
-  let count = 0;
-  for (const name of search.keys()) if (TAXONOMY_PARAMS.has(name) && ++count >= 2) return true;
-  return false;
-}
 
 const WINDOW_MS = 60_000;
 /** Safety valve: never hold more keys than this (a flood of spoofed addresses fails open). */
@@ -94,7 +75,7 @@ function hasSession(headers: Headers): boolean {
  * `LISTING_LIMITS`) and returns the seconds to wait when it is over budget, or `null`.
  * `now` is injectable for tests.
  */
-export function listingRateLimit(url: URL, headers: Headers, now = Date.now()): number | null {
+export function listingRateLimit(url: URL, headers: Headers, now = Date.now(), trusted = false): number | null {
   const { pathname } = url;
   if (STATIC_PATH.test(pathname) || pathname === '/healthz') return null;
   const ip = clientIp(headers);
@@ -116,13 +97,9 @@ export function listingRateLimit(url: URL, headers: Headers, now = Date.now()): 
   if (isListingPath(pathname)) {
     over = bump(`ip|${keys.ip}`) > LISTING_LIMITS.ip || over;
   }
-  if (isListingPath(pathname) && !hasSession(headers)) {
+  if (isListingPath(pathname) && !trusted && !hasSession(headers)) {
     over = bump(`net|${keys.network}`) > LISTING_LIMITS.network || over;
     over = bump(`wide|${keys.wide}`) > LISTING_LIMITS.wide || over;
-    if (multiFiltered(url.searchParams)) {
-      over = bump(`fnet|${keys.network}`) > FILTERED_LIMITS.network || over;
-      over = bump(`fwide|${keys.wide}`) > FILTERED_LIMITS.wide || over;
-    }
   }
   if (!over) return null;
   return Math.max(1, Math.ceil(((id + 1) * WINDOW_MS - now) / 1000));

@@ -20,7 +20,7 @@ import { finalizePublicResponse } from '../lib/cache/response.ts';
 import { configureDomainMessages } from '../lib/domain-i18n.ts';
 import { loadEnv } from '../lib/env.ts';
 import { configureUiMessages, href } from '../lib/i18n.ts';
-import { passGate } from '../lib/server/js-pass.ts';
+import { hasTrustedPass, passPage, passState, takeFreshBudget, waitPage } from '../lib/server/js-pass.ts';
 import {
   eventLoopLag,
   fakeBrowserResponse,
@@ -43,15 +43,21 @@ let inFlight = 0;
 
 /**
  * The cheap refusals, in order: rate limits (429), scripts posing as browsers on expensive URLs
- * (403), the JavaScript pass of multi-filter listings (`lib/server/js-pass.ts`), load shedding
- * (429); otherwise the page renders.
+ * (403), the JavaScript pass of multi-filter listings and its site-wide budget for fresh passes
+ * (`lib/server/js-pass.ts`), load shedding (429); otherwise the page renders.
  */
 async function guard(url: URL, method: string, headers: Headers, next: () => Promise<Response>): Promise<Response> {
-  const retryAfter = method === 'GET' ? listingRateLimit(url, headers) : null;
-  if (retryAfter !== null) return tooManyRequests(retryAfter, headers.get('accept') ?? '');
+  const secret = loadEnv().internalSecret;
+  const accept = headers.get('accept') ?? '';
+  const retryAfter =
+    method === 'GET' ? listingRateLimit(url, headers, Date.now(), hasTrustedPass(headers, secret)) : null;
+  if (retryAfter !== null) return tooManyRequests(retryAfter, accept);
   if (isExpensiveQuery(url) && isFakeBrowser(headers)) return fakeBrowserResponse();
-  const gated = method === 'GET' ? passGate(url, headers, loadEnv().internalSecret) : null;
-  if (gated) return gated;
+  if (method === 'GET' && secret) {
+    const pass = passState(url, headers, secret);
+    if (pass === 'missing') return passPage(headers, secret);
+    if (pass === 'fresh' && !takeFreshBudget()) return waitPage(headers, secret);
+  }
   if (isSheddable(url, headers) && isBusy(inFlight)) return shedResponse();
   inFlight++;
   try {
@@ -105,6 +111,17 @@ const siteMiddleware = defineMiddleware(async (context, next) => {
         'cloudflare-cdn-cache-control': 'public, max-age=86400',
         'x-sotf-cache-tags': 'html',
       },
+    });
+  }
+
+  // Crawlers follow sign-in links from sign-in pages: `/login?next=/login?next=…` collapses.
+  if (
+    (url.pathname === '/login' || url.pathname === '/register') &&
+    /^\/(?:[a-z]{2}\/)?(?:login|register)\b/.test(url.searchParams.get('next') ?? '')
+  ) {
+    return new Response(null, {
+      status: 301,
+      headers: { location: href(url.pathname, locale), 'cache-control': 'no-store' },
     });
   }
 
