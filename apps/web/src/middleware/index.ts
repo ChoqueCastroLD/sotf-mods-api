@@ -48,9 +48,9 @@ const accessLog = defineMiddleware(async (context, next) => {
   const started = performance.now();
   const headers = context.request.headers;
   let response: Response;
-  const retryAfter = context.request.method === 'GET' ? listingRateLimit(context.url.pathname, headers) : null;
+  const retryAfter = context.request.method === 'GET' ? listingRateLimit(context.url, headers) : null;
   if (retryAfter !== null) {
-    response = tooManyRequests(retryAfter);
+    response = tooManyRequests(retryAfter, headers.get('accept') ?? '');
   } else if (isExpensiveQuery(context.url) && isFakeBrowser(headers)) {
     response = fakeBrowserResponse();
   } else if (isSheddable(context.url, headers) && isBusy(inFlight)) {

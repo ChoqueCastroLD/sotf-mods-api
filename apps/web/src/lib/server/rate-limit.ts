@@ -23,6 +23,26 @@ export const LISTING_LIMITS = {
 /** Any server-rendered page or endpoint per address: far above what a person clicks. */
 export const PAGE_LIMIT_PER_IP = 240;
 
+/**
+ * Listings narrowed by two or more categories/tags, per network and anonymous only: the pattern of
+ * the 2026-11 botnet (headless Chrome on hundreds of rotating addresses). People rarely combine
+ * filters at this pace from one network; plain listings and single filters are not counted.
+ */
+export const FILTERED_LIMITS = {
+  /** IPv4 /24, IPv6 /48. */
+  network: 10,
+  /** IPv4 /16, IPv6 /32. */
+  wide: 20,
+} as const;
+
+const TAXONOMY_PARAMS = new Set(['category', 'excludeCategory', 'tag', 'excludeTag']);
+
+function multiFiltered(search: URLSearchParams): boolean {
+  let count = 0;
+  for (const name of search.keys()) if (TAXONOMY_PARAMS.has(name) && ++count >= 2) return true;
+  return false;
+}
+
 const WINDOW_MS = 60_000;
 /** Safety valve: never hold more keys than this (a flood of spoofed addresses fails open). */
 const MAX_KEYS = 50_000;
@@ -74,7 +94,8 @@ function hasSession(headers: Headers): boolean {
  * `LISTING_LIMITS`) and returns the seconds to wait when it is over budget, or `null`.
  * `now` is injectable for tests.
  */
-export function listingRateLimit(pathname: string, headers: Headers, now = Date.now()): number | null {
+export function listingRateLimit(url: URL, headers: Headers, now = Date.now()): number | null {
+  const { pathname } = url;
   if (STATIC_PATH.test(pathname) || pathname === '/healthz') return null;
   const ip = clientIp(headers);
   const keys = ip ? rateKeys(ip) : null;
@@ -98,17 +119,31 @@ export function listingRateLimit(pathname: string, headers: Headers, now = Date.
   if (isListingPath(pathname) && !hasSession(headers)) {
     over = bump(`net|${keys.network}`) > LISTING_LIMITS.network || over;
     over = bump(`wide|${keys.wide}`) > LISTING_LIMITS.wide || over;
+    if (multiFiltered(url.searchParams)) {
+      over = bump(`fnet|${keys.network}`) > FILTERED_LIMITS.network || over;
+      over = bump(`fwide|${keys.wide}`) > FILTERED_LIMITS.wide || over;
+    }
   }
   if (!over) return null;
   return Math.max(1, Math.ceil(((id + 1) * WINDOW_MS - now) / 1000));
 }
 
-/** `429 Too Many Requests` with `Retry-After`. */
-export function tooManyRequests(retryAfterSeconds: number): Response {
-  return new Response('Too many requests, try again in a moment.\n', {
+const BUSY_PAGE = (seconds: number) => `<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>Slow down a little · SOTF Mods</title>
+<style>body{font:16px/1.5 system-ui,sans-serif;background:#111;color:#eee;display:grid;place-items:center;min-height:100vh;margin:0}main{max-width:32rem;padding:2rem}a{color:#f87171}</style></head>
+<body><main><h1>Slow down a little</h1>
+<p>Too many requests came from your network in the last minute. Please try again in ${seconds} seconds.</p>
+<p><a href="/mods">Browse all mods</a> · <a href="/builds">Browse builds</a></p></main></body></html>
+`;
+
+/** `429 Too Many Requests` with `Retry-After`: a short page for browsers, plain text otherwise. */
+export function tooManyRequests(retryAfterSeconds: number, accept = ''): Response {
+  const html = accept.includes('text/html');
+  return new Response(html ? BUSY_PAGE(retryAfterSeconds) : 'Too many requests, try again in a moment.\n', {
     status: 429,
     headers: {
-      'content-type': 'text/plain; charset=utf-8',
+      'content-type': html ? 'text/html; charset=utf-8' : 'text/plain; charset=utf-8',
       'cache-control': 'no-store',
       'retry-after': String(retryAfterSeconds),
       'x-robots-tag': 'noindex',

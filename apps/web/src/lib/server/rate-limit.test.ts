@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import {
+  FILTERED_LIMITS,
   isListingPath,
   LISTING_LIMITS,
   listingRateLimit,
@@ -14,7 +15,8 @@ const T0 = 1_700_000_000_000 - (1_700_000_000_000 % 60_000);
 /** Sends `n` listing requests from `ip`; returns how many were refused. */
 function send(n: number, ip: string, cookie?: string, now = T0): number {
   let refused = 0;
-  for (let i = 0; i < n; i++) if (listingRateLimit('/mods', from(ip, cookie), now) !== null) refused++;
+  for (let i = 0; i < n; i++)
+    if (listingRateLimit(new URL('https://x/mods'), from(ip, cookie), now) !== null) refused++;
   return refused;
 }
 
@@ -25,23 +27,23 @@ describe('listing rate limit', () => {
     for (const path of ['/', '/mods', '/builds', '/categories/qol', '/tags/ui']) expect(isListingPath(path)).toBe(true);
     for (const path of ['/mods/a/b', '/healthz', '/install', '/categories']) expect(isListingPath(path)).toBe(false);
     expect(isListingPath('/search')).toBe(true);
-    expect(listingRateLimit('/mods/a/b', from('1.2.3.4'), T0)).toBeNull();
+    expect(listingRateLimit(new URL('https://x/mods/a/b'), from('1.2.3.4'), T0)).toBeNull();
   });
 
   it(`caps every page at ${PAGE_LIMIT_PER_IP} a minute per address and never counts static files`, () => {
     let refused = 0;
     for (let i = 0; i < PAGE_LIMIT_PER_IP + 5; i++)
-      if (listingRateLimit('/mods/a/b', from('9.9.9.9'), T0) !== null) refused++;
+      if (listingRateLimit(new URL('https://x/mods/a/b'), from('9.9.9.9'), T0) !== null) refused++;
     expect(refused).toBe(5);
-    expect(listingRateLimit('/_astro/app.js', from('9.9.9.9'), T0)).toBeNull();
-    expect(listingRateLimit('/healthz', from('9.9.9.9'), T0)).toBeNull();
+    expect(listingRateLimit(new URL('https://x/_astro/app.js'), from('9.9.9.9'), T0)).toBeNull();
+    expect(listingRateLimit(new URL('https://x/healthz'), from('9.9.9.9'), T0)).toBeNull();
   });
 
   it(`refuses an address after ${LISTING_LIMITS.ip} requests a minute, until the window ends`, () => {
     expect(send(LISTING_LIMITS.ip, '1.2.3.4')).toBe(0);
-    expect(listingRateLimit('/mods', from('1.2.3.4'), T0 + 15_000)).toBe(45);
+    expect(listingRateLimit(new URL('https://x/mods'), from('1.2.3.4'), T0 + 15_000)).toBe(45);
     expect(send(1, '1.2.3.5')).toBe(0);
-    expect(listingRateLimit('/mods', from('1.2.3.4'), T0 + 60_000)).toBeNull();
+    expect(listingRateLimit(new URL('https://x/mods'), from('1.2.3.4'), T0 + 60_000)).toBeNull();
   });
 
   it('refuses a /24 and a /16 that spread the requests over many addresses', () => {
@@ -67,5 +69,16 @@ describe('listing rate limit', () => {
     });
     expect(rateKeys('2001:db8::1')?.network).toBe('2001:db8:0::/48');
     expect(rateKeys('nonsense')).toBeNull();
+  });
+
+  it('gives listings with two or more categories/tags a tight budget per network, members aside', () => {
+    const filtered = (ip: string, cookie?: string) =>
+      listingRateLimit(new URL('https://x/builds?category=a&excludeTag=b'), from(ip, cookie), T0);
+    for (let i = 0; i < FILTERED_LIMITS.network; i++) expect(filtered(`20.0.0.${i}`)).toBeNull();
+    expect(filtered('20.0.0.99')).not.toBeNull();
+    expect(listingRateLimit(new URL('https://x/builds?category=a'), from('20.0.0.98'), T0)).toBeNull();
+    expect(filtered('20.0.0.97', 'sotf_li=1')).toBeNull();
+    for (let i = 0; i < FILTERED_LIMITS.wide; i++) filtered(`20.1.${i}.1`);
+    expect(filtered('20.1.200.1')).not.toBeNull();
   });
 });
