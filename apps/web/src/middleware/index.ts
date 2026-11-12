@@ -19,6 +19,7 @@ import { finalizePublicResponse } from '../lib/cache/response.ts';
 import { configureDomainMessages } from '../lib/domain-i18n.ts';
 import { configureUiMessages } from '../lib/i18n.ts';
 import { eventLoopLag, isBusy, isSheddable, shedResponse } from '../lib/server/load-shed.ts';
+import { listingRateLimit, tooManyRequests } from '../lib/server/rate-limit.ts';
 import { requestIdOf } from '../lib/server/request-id.ts';
 import { isTransientUpstreamError, retryAfterSeconds } from '../lib/server/upstream.ts';
 import { legacyRule } from './redirects.ts';
@@ -31,13 +32,17 @@ let inFlight = 0;
 
 /**
  * One JSON line per page request (stdout): who renders what, to spot crawlers that bypass the
- * edge. Also sheds filtered crawls while the server is busy (`lib/server/load-shed.ts`).
+ * edge. Rate-limits listing pages per IP and network (`lib/server/rate-limit.ts`) and sheds
+ * filtered crawls while the server is busy (`lib/server/load-shed.ts`), both with 429.
  */
 const accessLog = defineMiddleware(async (context, next) => {
   const started = performance.now();
   const headers = context.request.headers;
   let response: Response;
-  if (isSheddable(context.url, headers) && isBusy(inFlight)) {
+  const retryAfter = context.request.method === 'GET' ? listingRateLimit(context.url.pathname, headers) : null;
+  if (retryAfter !== null) {
+    response = tooManyRequests(retryAfter);
+  } else if (isSheddable(context.url, headers) && isBusy(inFlight)) {
     response = shedResponse();
   } else {
     inFlight++;
@@ -59,6 +64,7 @@ const accessLog = defineMiddleware(async (context, next) => {
       ua: headers.get('user-agent')?.slice(0, 160),
       inFlight,
       lag: eventLoopLag(),
+      sf: headers.has('sec-fetch-mode') ? 1 : 0,
     })}\n`,
   );
   return response;

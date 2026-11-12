@@ -1,6 +1,6 @@
 /**
  * Server loader shared by the listing pages (`/mods`, `/builds`, `/categories/:slug`,
- * `/tags/:slug`): legacy redirects, URL state, the `GET /mods?facets=1` read, taxonomy and the
+ * `/tags/:slug`): legacy and canonical redirects, URL state, the `GET /mods?facets=1` read, taxonomy and the
  * view model. The page decides SEO, cache and copy.
  */
 import type { ModListDTO } from '@sotf/contracts/catalog';
@@ -11,7 +11,14 @@ import { href } from '../../lib/i18n.ts';
 import { exploreDomainI18n } from './domain-i18n.ts';
 import { legacyListingRedirect } from './legacy.ts';
 import { buildExploreModel, type ExploreModel } from './model.ts';
-import { apiQueryOf, type ExploreScope, type ExploreState, parseExploreState, sanitizeCategories } from './state.ts';
+import {
+  apiQueryOf,
+  type ExploreScope,
+  type ExploreState,
+  exploreHref,
+  parseExploreState,
+  sanitizeCategories,
+} from './state.ts';
 import { loadTaxonomy, type Taxonomy } from './taxonomy.ts';
 
 /** Budget of the main listing read (the page shows the error state after it). */
@@ -54,6 +61,11 @@ export async function loadListing(input: {
     );
   }
 
+  if (!input.skipCanonicalRedirect && taxonomy.available) {
+    const target = canonicalListingRedirect(url, state, scope, taxonomy);
+    if (target !== null) return { kind: 'redirect', location: href(target, locale) };
+  }
+
   let list: ModListDTO | null = null;
   try {
     list = await serverApi().catalog.listMods(
@@ -67,4 +79,25 @@ export async function loadListing(input: {
   const i18n = exploreDomainI18n(locale, (nameKey, fallback) => taxonomy.byNameKey(nameKey, fallback));
   const model = buildExploreModel({ locale, scope, state, taxonomy, facets: list?.facets ?? null });
   return { kind: 'ok', scope, state, taxonomy, list, model, i18n };
+}
+
+/**
+ * Locale-less canonical URL of a listing request when it differs from the request: parameters in
+ * another order, duplicated, invalid, unknown or beyond `MAX_TAXONOMY_FILTERS` collapse into the
+ * one URL the filter links use, so each combination renders and caches once. `utm_*` survive.
+ */
+export function canonicalListingRedirect(
+  url: URL,
+  state: ExploreState,
+  scope: ExploreScope,
+  taxonomy: Pick<Taxonomy, 'resolveCategory'>,
+): string | null {
+  const canonical = exploreHref(state, scope, (slug) => taxonomy.resolveCategory(slug)?.kind ?? null);
+  const tracking: [string, string][] = [];
+  const rest: [string, string][] = [];
+  for (const pair of url.searchParams) (pair[0].toLowerCase().startsWith('utm_') ? tracking : rest).push(pair);
+  const query = new URLSearchParams(rest).toString();
+  if (canonical === `${url.pathname}${query ? `?${query}` : ''}`) return null;
+  if (tracking.length === 0) return canonical;
+  return `${canonical}${canonical.includes('?') ? '&' : '?'}${new URLSearchParams(tracking).toString()}`;
 }

@@ -1,11 +1,14 @@
 import { describe, expect, it } from 'vitest';
 import { sortChoiceValue } from './catalog.ts';
 import { hasListingParams, legacyListingRedirect } from './legacy.ts';
+import { canonicalListingRedirect } from './load.ts';
 import {
   apiQueryOf,
+  categoryScope,
   defaultState,
   exploreHref,
   isFiltered,
+  MAX_TAXONOMY_FILTERS,
   MODS_SCOPE,
   parseExploreState,
   queryPairsOf,
@@ -139,6 +142,50 @@ describe('legacy catalogue URLs', () => {
       'unapproved=1',
     ]) {
       expect(hasListingParams(new URLSearchParams(query))).toBe(true);
+    }
+  });
+});
+
+describe('canonical listing URLs (crawler hardening)', () => {
+  const taxonomy = { resolveCategory };
+  const canonical = (path: string) => {
+    const url = new URL(`https://sotf-mods.com${path}`);
+    return canonicalListingRedirect(url, parseExploreState(url.searchParams, MODS_SCOPE), MODS_SCOPE, taxonomy);
+  };
+
+  it(`keeps at most ${MAX_TAXONOMY_FILTERS} categories and tags combined`, () => {
+    const state = parse('category=misc&excludeCategory=qol&tag=a&excludeTag=b&excludeTag=c');
+    expect([...state.category, ...state.excludeCategory, ...state.tag, ...state.excludeTag]).toEqual([
+      'misc',
+      'qol',
+      'a',
+    ]);
+  });
+
+  it('redirects reordered, duplicated, unknown or excess parameters to the canonical URL', () => {
+    expect(canonical('/mods')).toBeNull();
+    expect(canonical('/mods?tag=a&page=2')).toBeNull();
+    expect(canonical('/mods?page=2&tag=a')).toBe('/mods?tag=a&page=2');
+    expect(canonical('/mods?tag=a&tag=a')).toBe('/mods?tag=a');
+    expect(canonical('/mods?tag=a&junk=1')).toBe('/mods?tag=a');
+    expect(canonical('/mods?tag=a&tag=b&tag=c&tag=d&excludeTag=e')).toBe('/mods?tag=a&tag=b&tag=c');
+    expect(canonical('/mods?tag=a&utm_source=chatgpt.com')).toBeNull();
+    expect(canonical('/mods?junk=1&utm_source=chatgpt.com')).toBe('/mods?utm_source=chatgpt.com');
+  });
+
+  it('is stable: the canonical URL of a canonical URL is itself', () => {
+    for (const path of [
+      '/mods?excludeTag=x&tag=y&category=misc&excludeCategory=qol&sort=downloads&view=list',
+      '/mods?category=misc&page=3',
+      '/mods?q=  big   menu &sort=oldest',
+      '/mods?tag=a&tag=b&tag=c&tag=d',
+    ]) {
+      const first = canonical(path);
+      expect(first).not.toBeNull();
+      const url = new URL(`https://sotf-mods.com${first}`);
+      const hub = /^\/categories\/([^/]+)$/.exec(url.pathname)?.[1];
+      const scope = hub ? categoryScope(hub, 'mod') : MODS_SCOPE;
+      expect(canonicalListingRedirect(url, parseExploreState(url.searchParams, scope), scope, taxonomy)).toBeNull();
     }
   });
 });

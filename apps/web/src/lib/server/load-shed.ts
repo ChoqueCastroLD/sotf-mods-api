@@ -2,9 +2,12 @@
  * Load shedding for crawlers (2026-11 incident): bots walk the endless include/exclude filter
  * combinations of the listings, every one an uncached render on the single Node thread, until
  * the healthcheck times out and the proxy drops the container. When too many renders are in
- * flight, anonymous requests with two or more filters get a fast 503 + `Retry-After` instead, so
- * plain pages, members and `/healthz` keep answering.
+ * flight, anonymous requests with two or more filters get a fast 429 + `Retry-After` instead, so
+ * plain pages, members and `/healthz` keep answering (`429`, not `503`: the client is told to slow
+ * down; a 503 read as the site being down).
  */
+
+import { tooManyRequests } from './rate-limit.ts';
 
 /** Query keys of listing filters and sorting (`components/explore/state.ts`). */
 const FILTER_KEYS = new Set([
@@ -73,13 +76,5 @@ export function isSheddable(url: URL, headers: Headers): boolean {
 }
 
 export function shedResponse(): Response {
-  return new Response('Busy, try again in a moment.\n', {
-    status: 503,
-    headers: {
-      'content-type': 'text/plain; charset=utf-8',
-      'cache-control': 'no-store',
-      'retry-after': String(SHED_RETRY_AFTER_SECONDS),
-      'x-robots-tag': 'noindex',
-    },
-  });
+  return tooManyRequests(SHED_RETRY_AFTER_SECONDS);
 }

@@ -18,9 +18,9 @@ describe('load shedding', () => {
     expect(isBusy(0)).toBe(false);
   });
 
-  it('answers a fast uncached 503 with Retry-After', () => {
+  it('answers a fast uncached 429 with Retry-After', () => {
     const response = shedResponse();
-    expect(response.status).toBe(503);
+    expect(response.status).toBe(429);
     expect(response.headers.get('retry-after')).toBe('120');
     expect(response.headers.get('cache-control')).toBe('no-store');
   });

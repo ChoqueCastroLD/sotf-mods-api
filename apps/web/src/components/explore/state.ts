@@ -58,6 +58,12 @@ export const MAX_PAGE = 10_000;
 /** Limits of the list parameters (contract `ModListQuery`). */
 const MAX_CATEGORIES = 12;
 const MAX_TAGS = 10;
+/**
+ * Included plus excluded categories and tags a listing combines, besides the page's own category or
+ * tag. Crawlers walked endless combinations of them (2026-11); extra ones are dropped and the
+ * loader redirects to the canonical URL.
+ */
+export const MAX_TAXONOMY_FILTERS = 3;
 const MAX_QUERY = 100;
 
 export interface ExploreState {
@@ -207,6 +213,18 @@ export function parseExploreState(params: ParamsLike, scope: ExploreScope): Expl
     ...listOf(params, 'tag', TAG, MAX_TAGS).filter((slug) => slug !== fixedTag),
   ].slice(0, MAX_TAGS);
   state.excludeTag = listOf(params, 'excludeTag', TAG, MAX_TAGS).filter((slug) => !state.tag.includes(slug));
+  let budget = MAX_TAXONOMY_FILTERS;
+  const withinBudget = (slugs: string[], fixed?: string) =>
+    slugs.filter((slug) => {
+      if (slug === fixed) return true;
+      if (budget <= 0) return false;
+      budget--;
+      return true;
+    });
+  state.category = withinBudget(state.category, fixedCategory);
+  state.excludeCategory = withinBudget(state.excludeCategory);
+  state.tag = withinBudget(state.tag, fixedTag);
+  state.excludeTag = withinBudget(state.excludeTag);
   state.multiplayer = oneOf(MULTIPLAYER_VALUES, params.get('multiplayer'));
   state.dedicated = params.get('dedicated') === 'yes' || flag(params.get('dedicated'));
   state.platform = oneOf(PLATFORM_VALUES, params.get('platform'));
