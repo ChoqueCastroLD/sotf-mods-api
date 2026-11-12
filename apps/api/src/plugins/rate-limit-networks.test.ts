@@ -4,7 +4,7 @@ import { networksOf } from './rate-limit.ts';
 describe('networksOf', () => {
   it('groups IPv4 by /24 and /16, including IPv4-mapped IPv6', () => {
     expect(networksOf('120.241.208.111')).toEqual({ network: '120.241.208.0/24', wide: '120.241.0.0/16' });
-    expect(networksOf('::ffff:10.1.2.3')).toEqual({ network: '10.1.2.0/24', wide: '10.1.0.0/16' });
+    expect(networksOf('::ffff:81.1.2.3')).toEqual({ network: '81.1.2.0/24', wide: '81.1.0.0/16' });
   });
 
   it('groups IPv6 by /48 and /32', () => {
@@ -12,7 +12,10 @@ describe('networksOf', () => {
     expect(networksOf('2001:db8::1')).toEqual({ network: '2001:db8:0::/48', wide: '2001:db8::/32' });
   });
 
-  it('ignores anything that is not an address', () => {
+  it('ignores anything that is not a public address', () => {
     expect(networksOf('unknown')).toBeNull();
+    for (const ip of ['127.0.0.1', '10.0.1.18', '192.168.1.2', '172.20.0.3', '::1', 'fd00::1', '::ffff:127.0.0.1']) {
+      expect(networksOf(ip)).toBeNull();
+    }
   });
 });

@@ -60,6 +60,11 @@ export class RateLimiter {
     this.#overrides = overrides;
   }
 
+  /** Whether a bucket's limit was overridden (tests raise them; network caps follow). */
+  isOverridden(bucket: RateLimitBucket): boolean {
+    return this.#overrides[bucket] !== undefined;
+  }
+
   /** Limit of a bucket (after overrides). */
   limitOf(bucket: RateLimitBucket): BucketLimit {
     const override = this.#overrides[bucket];
@@ -141,8 +146,27 @@ export const NETWORK_READ_LIMITS = {
   wide: { max: 4000, window: '1 minute' },
 } as const satisfies Record<string, BucketLimit>;
 
+/**
+ * Sign-in and sign-up per network (2026-11): with Turnstile keys in test mode, only rate limits
+ * stand between a botnet and credential guessing or mass sign-ups spread over thousands of
+ * addresses. Far above what the people of one network do on this site.
+ */
+export const NETWORK_AUTH_LIMITS = {
+  login: {
+    network: { max: 60, window: '1 hour' },
+    wide: { max: 300, window: '1 hour' },
+  },
+  register: {
+    network: { max: 10, window: '1 day' },
+    wide: { max: 40, window: '1 day' },
+  },
+} as const satisfies Record<string, { network: BucketLimit; wide: BucketLimit }>;
+
 /** The /24 (/48) and /16 (/32) an address belongs to, or null when it is not an IP. */
 export function networksOf(ip: string): { network: string; wide: string } | null {
+  // Loopback and private addresses (tests, the internal network) never share a public network.
+  if (/^(?:::ffff:)?(?:127\.|10\.|192\.168\.|172\.(?:1[6-9]|2\d|3[01])\.)|^(?:::1$|f[cd][0-9a-f]{2}:)/i.test(ip))
+    return null;
   const v4 = /^(?:::ffff:)?(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.\d{1,3}$/.exec(ip);
   if (v4) return { network: `${v4[1]}.${v4[2]}.${v4[3]}.0/24`, wide: `${v4[1]}.${v4[2]}.0.0/16` };
   if (!ip.includes(':')) return null;
@@ -191,7 +215,15 @@ export async function setupRateLimit(
     const bucket = bucketFor(request);
     if (!bucket) return;
     await limiter.enforce(bucket, request);
-    if ((bucket === 'anonymousRead' || bucket === 'legacyRead') && !request.actor) {
+    if ((bucket === 'login' || bucket === 'register') && !limiter.isOverridden(bucket)) {
+      const networks = networksOf(request.clientIp);
+      if (networks) {
+        const limits = NETWORK_AUTH_LIMITS[bucket];
+        await limiter.consume(`${bucket}-net`, networks.network, limits.network);
+        await limiter.consume(`${bucket}-wide`, networks.wide, limits.wide);
+      }
+    }
+    if ((bucket === 'anonymousRead' || bucket === 'legacyRead') && !request.actor && !limiter.isOverridden(bucket)) {
       const networks = networksOf(request.clientIp);
       if (networks) {
         await limiter.consume('read-net', networks.network, NETWORK_READ_LIMITS.network);
