@@ -29,7 +29,7 @@ Stored in your browser (local storage), never sent to us:
 
 # Advertising
 
-Pages may show ads from **Adsterra** (a social bar and pop-under windows). Adsterra and its partners may set cookies or use similar storage to show ads, limit how often you see them and measure them; see the [Adsterra privacy policy](https://adsterra.com/privacy-policy/). Pages with private links (password reset, email verification, unsubscribe) never load ads.
+Visitors who are not signed in may see ads from **Adsterra** (a social bar and pop-under windows). Signed-in members see no ads. Adsterra and its partners may set cookies or use similar storage to show ads, limit how often you see them and measure them; see the [Adsterra privacy policy](https://adsterra.com/privacy-policy/). Pages with private links (password reset, email verification, unsubscribe) never load ads.
 
 # Statistics
 

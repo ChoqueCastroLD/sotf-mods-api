@@ -29,7 +29,7 @@ Se guardan en tu navegador (almacenamiento local) y nunca se nos envían:
 
 # Publicidad
 
-Las páginas pueden mostrar anuncios de **Adsterra** (una barra social y ventanas emergentes por debajo). Adsterra y sus socios pueden poner cookies o usar almacenamiento parecido para mostrar anuncios, limitar cuántas veces los ves y medirlos; consulta la [política de privacidad de Adsterra](https://adsterra.com/privacy-policy/). Las páginas con enlaces privados (restablecer contraseña, verificar correo, darse de baja) nunca cargan anuncios.
+Los visitantes sin sesión iniciada pueden ver anuncios de **Adsterra** (una barra social y ventanas emergentes por debajo). Los miembros con sesión iniciada no ven anuncios. Adsterra y sus socios pueden poner cookies o usar almacenamiento parecido para mostrar anuncios, limitar cuántas veces los ves y medirlos; consulta la [política de privacidad de Adsterra](https://adsterra.com/privacy-policy/). Las páginas con enlaces privados (restablecer contraseña, verificar correo, darse de baja) nunca cargan anuncios.
 
 # Estadísticas
 

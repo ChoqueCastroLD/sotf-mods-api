@@ -62,7 +62,8 @@ setPageCache(Astro, pageCache.mod(mod.id, mod.userId));      // E(900) mod:{id} 
   (`lib/seo/jsonld.ts`, `schema-dts`, safely serialized).
 - `Picture.astro`: WebP `srcset` from `ImageDTO`, explicit size, `priority` for the LCP.
 - Ads: `scripts/third-party-ads.ts` injects the Adsterra (social bar, popunder) scripts after
-  load + idle, on every page except private URLs (`data-private-url`).
+  load + idle, for guests only (`sotf_li` hint cookie absent), except on private URLs
+  (`data-private-url`).
 - Domain components: `lib/domain-i18n.ts` makes every `@sotf/ui/domain` component speak the
   request locale (compiled `ui-domain` namespace), configured once by the middleware.
 - Analytics: `track(kind, { entityType, entityId })` from `scripts/beacon.ts`.
