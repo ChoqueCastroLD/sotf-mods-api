@@ -1,18 +1,21 @@
 /**
  * three.js scene of the build viewer (T1-06). Imported dynamically by `build-viewer.ts` on click, so
- * three.js never reaches the initial page weight. One `InstancedMesh` per profile (a handful of draw
- * calls for up to 20 000 pieces); rendering is on demand (no animation loop), so reduced motion and
- * battery are respected. Orbit by mouse/touch (OrbitControls) and by keyboard (arrows, + and -).
+ * three.js never reaches the initial page weight. Pieces are drawn as wooden cylinders (logs, cut
+ * logs, planks, sticks) whose thickness and length per profile are inferred from the geometry
+ * (`build-pieces.ts`). One `InstancedMesh` per profile (a handful of draw calls for up to 50 000
+ * pieces); rendering is on demand (no animation loop), so reduced motion and battery are respected.
+ * Orbit by mouse/touch (OrbitControls) and by keyboard (arrows, + and -).
  */
 
 import type { BuildGeometryDTO } from '@sotf/contracts/build-viewer';
 import { viewer_canvas_label } from '@sotf/i18n/messages';
 import {
   AmbientLight,
-  BoxGeometry,
   Color,
+  CylinderGeometry,
   DirectionalLight,
   GridHelper,
+  HemisphereLight,
   InstancedMesh,
   MeshLambertMaterial,
   Object3D,
@@ -23,8 +26,7 @@ import {
   WebGLRenderer,
 } from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-
-const STRIDE = 9;
+import { frameOf, inferProfileShapes, STRIDE, woodColor } from './build-pieces.ts';
 
 export interface SceneOptions {
   host: HTMLElement;
@@ -77,14 +79,20 @@ export async function mountScene(options: SceneOptions): Promise<SceneResult | n
   host.append(canvas);
 
   const scene = new Scene();
-  scene.add(new AmbientLight(0xffffff, 1.6));
-  const sun = new DirectionalLight(0xffffff, 2.2);
+  // Warm sky over dark ground, plus a low sun: wood reads as wood and the logs keep their relief.
+  scene.add(new HemisphereLight(0xfff1dc, 0x2a2018, 0.9));
+  scene.add(new AmbientLight(0xffffff, 0.2));
+  const sun = new DirectionalLight(0xfff4e6, 1.8);
   sun.position.set(-40, 80, 30);
   scene.add(sun);
 
-  const { width, depth, height } = geometry.size;
-  const radius = Math.max(width, depth, height, 4);
-  const grid = new GridHelper(Math.ceil(radius * 2.4), Math.ceil(radius * 2.4) / 2, 0x4a90b8, 0x2a4a60);
+  // Framed on the bulk of the pieces (stray outliers ignored); the grid is a 2.25 m construction
+  // cell wide and spans a little more than the build.
+  const bulk = frameOf(data, count);
+  const radius = bulk.radius;
+  const gridSize = Math.ceil((radius * 2.6) / 2.25) * 2.25;
+  const grid = new GridHelper(gridSize, Math.round(gridSize / 2.25), 0x3d6a85, 0x223644);
+  grid.position.set(bulk.center[0], 0, bulk.center[2]);
   scene.add(grid);
 
   // Pieces grouped by profile.
@@ -95,21 +103,26 @@ export async function mountScene(options: SceneOptions): Promise<SceneResult | n
     if (list) list.push(i);
     else byProfile.set(profile, [i]);
   }
-  const box = new BoxGeometry(0.8, 0.8, 0.8);
+  // A unit cylinder along Z (the long axis of every piece), scaled per instance.
+  const log = new CylinderGeometry(0.5, 0.5, 1, 8, 1);
+  log.rotateX(Math.PI / 2);
+  const shapes = inferProfileShapes(data, count);
   const dummy = new Object3D();
   const quat = new Quaternion();
   const meshes: InstancedMesh[] = [];
   const materials: MeshLambertMaterial[] = [];
   for (const [profile, indexes] of byProfile) {
-    const material = new MeshLambertMaterial({ color: new Color().setHSL((profile * 0.618) % 1, 0.45, 0.58) });
-    const mesh = new InstancedMesh(box, material, indexes.length);
+    const shape = shapes.get(profile) ?? { diameter: 0.45, length: 2.25 };
+    const { h, s, l } = woodColor(profile, shape);
+    const material = new MeshLambertMaterial({ color: new Color().setHSL(h, s, l) });
+    const mesh = new InstancedMesh(log, material, indexes.length);
     indexes.forEach((index, slot) => {
       const o = index * STRIDE;
       dummy.position.set(data[o + 1] ?? 0, data[o + 2] ?? 0, data[o + 3] ?? 0);
       quat.set(data[o + 4] ?? 0, data[o + 5] ?? 0, data[o + 6] ?? 0, data[o + 7] ?? 1).normalize();
       dummy.quaternion.copy(quat);
-      const scale = data[o + 8] || 1;
-      dummy.scale.setScalar(scale);
+      const lengthScale = data[o + 8] || 1;
+      dummy.scale.set(shape.diameter, shape.diameter, shape.length * lengthScale);
       dummy.updateMatrix();
       mesh.setMatrixAt(slot, dummy.matrix);
     });
@@ -120,13 +133,15 @@ export async function mountScene(options: SceneOptions): Promise<SceneResult | n
   }
 
   const camera = new PerspectiveCamera(45, 1, 0.1, radius * 40);
-  const target = new Vector3(0, height / 2, 0);
-  camera.position.set(radius * 1.3, radius * 1.1 + height / 2, radius * 1.6);
+  const target = new Vector3(bulk.center[0], bulk.center[1], bulk.center[2]);
+  // Far enough to fit the bounding sphere in a 45° view, from a three-quarter angle above.
+  const distance = (radius / Math.sin(Math.PI / 8)) * 0.9;
+  camera.position.copy(target).add(new Vector3(0.62, 0.5, 0.6).normalize().multiplyScalar(distance));
   const controls = new OrbitControls(camera, canvas);
   controls.target.copy(target);
   controls.enableDamping = false;
-  controls.minDistance = radius * 0.25;
-  controls.maxDistance = radius * 6;
+  controls.minDistance = 2;
+  controls.maxDistance = distance * 3;
   controls.maxPolarAngle = Math.PI * 0.495;
   controls.update();
 
@@ -209,7 +224,7 @@ export async function mountScene(options: SceneOptions): Promise<SceneResult | n
         controls.dispose();
         for (const mesh of meshes) mesh.dispose();
         for (const material of materials) material.dispose();
-        box.dispose();
+        log.dispose();
         grid.geometry.dispose();
         renderer.dispose();
         canvas.remove();

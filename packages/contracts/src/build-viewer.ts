@@ -17,8 +17,11 @@ import { dto } from './dto.ts';
 import { API_V2_PREFIX, defineEndpoint } from './endpoint.ts';
 
 export const GEOMETRY_STRIDE = 9;
-/** Pieces kept per build; above this the parser samples evenly. */
-export const GEOMETRY_MAX_PIECES = 20_000;
+/**
+ * Pieces kept per build; above this the parser samples evenly (which leaves holes in walls). 50 000
+ * covers every published build (largest 41 931 in 2026-11) at ~1.8 MB packed, loaded on click.
+ */
+export const GEOMETRY_MAX_PIECES = 50_000;
 /** Distinct profiles kept per build (the rest share the last index). */
 export const GEOMETRY_MAX_PROFILES = 256;
 
