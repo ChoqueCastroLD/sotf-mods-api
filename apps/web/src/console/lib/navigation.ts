@@ -24,6 +24,7 @@ import {
   Inbox,
   KeyRound,
   KeySquare,
+  Layers,
   LayoutDashboard,
   type LucideIcon,
   Megaphone,
@@ -92,6 +93,7 @@ export const CONSOLE_AREAS: readonly ConsoleArea[] = [
         items: [
           { to: '/dashboard', label: () => t('console_nav_overview'), icon: House, exact: true },
           { to: '/dashboard/mods', label: () => t('console_nav_my_mods'), icon: Package },
+          { to: '/dashboard/modpacks', label: () => t('console_nav_modpacks'), icon: Layers },
           // Paraglide (the two labels live in the `basecamp` namespace, not in the shell catalogue).
           { to: '/dashboard/inbox', label: () => t('console_nav_inbox'), icon: Inbox },
           { to: '/dashboard/new/mod', label: () => t('console_nav_new_mod'), icon: Plus, phone: false },
@@ -173,6 +175,7 @@ export const CONSOLE_AREAS: readonly ConsoleArea[] = [
           { to: '/moderation', label: () => t('console_nav_queue'), icon: Inbox, exact: true },
           { to: '/moderation/reports', label: () => t('console_nav_reports'), icon: Flag },
           { to: '/moderation/comments', label: () => t('console_nav_comments'), icon: MessageSquare },
+          { to: '/moderation/modpacks', label: () => t('console_nav_modpacks_review'), icon: Layers },
           { to: '/moderation/users', label: () => t('console_nav_users'), icon: Users },
           { to: '/moderation/jams', label: () => t('console_nav_jams'), icon: Trophy },
           { to: '/moderation/audit', label: () => t('console_nav_audit'), icon: ScrollText },

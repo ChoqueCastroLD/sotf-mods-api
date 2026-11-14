@@ -42,7 +42,7 @@ export function profilePath(handle: string): string {
 }
 
 export function kitPath(ownerHandle: string, slug: string): string {
-  return `/kits/${encodePathSegment(ownerHandle)}/${encodePathSegment(slug)}`;
+  return `/modpacks/${encodePathSegment(ownerHandle)}/${encodePathSegment(slug)}`;
 }
 
 export function categoryPath(slug: string): string {

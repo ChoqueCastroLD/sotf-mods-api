@@ -78,5 +78,7 @@
   "console_nav_group_account": "Hesabınız",
   "console_nav_group_app": "Uygulama",
   "console_nav_group_creator": "Yapımcı ve veriler",
-  "console_area_you": "Sen"
+  "console_area_you": "Sen",
+  "console_nav_modpacks": "Mod paketleri",
+  "console_nav_modpacks_review": "Mod paketleri"
 }

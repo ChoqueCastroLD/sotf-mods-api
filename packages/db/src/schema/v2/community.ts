@@ -43,6 +43,9 @@ export type UserFollow = typeof userFollow.$inferSelect;
 export const KIT_VISIBILITIES = ['public', 'unlisted', 'private'] as const;
 export type KitVisibility = (typeof KIT_VISIBILITIES)[number];
 
+export const KIT_APPROVAL_STATUSES = ['pending', 'published'] as const;
+export type KitApprovalStatus = (typeof KIT_APPROVAL_STATUSES)[number];
+
 export const kit = pgTable('Kit', {
   id: integer('id').primaryKey().generatedAlwaysAsIdentity(),
   ownerId: integer('ownerId')
@@ -65,6 +68,10 @@ export const kit = pgTable('Kit', {
   itemsCount: integer('itemsCount').notNull().default(0),
   followersCount: integer('followersCount').notNull().default(0),
   ogImageKey: text('ogImageKey'),
+  /** Downloads of the modpack's `.sotfprofile` (2280). */
+  downloads: integer('downloads').notNull().default(0),
+  /** `pending` until a moderator approves it (verified creators and staff publish at once). */
+  approvalStatus: text('approvalStatus').$type<KitApprovalStatus>().notNull().default('published'),
   createdAt: tstz('createdAt').notNull().defaultNow(),
   updatedAt: tstz('updatedAt')
     .notNull()

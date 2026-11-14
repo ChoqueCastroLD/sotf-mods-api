@@ -2186,6 +2186,8 @@
   "console_nav_integrations": "Integrationer",
   "console_nav_jams": "Mod Jams",
   "console_nav_label": "Konsol",
+  "console_nav_modpacks": "Modpaket",
+  "console_nav_modpacks_review": "Modpaket",
   "console_nav_my_mods": "Mina moddar",
   "console_nav_new_build": "Nytt bygge",
   "console_nav_new_mod": "Ny modd",
@@ -4881,6 +4883,256 @@
   "mod_video_embed_title": "YouTube-video",
   "mod_video_play": "Spela upp trailern för {name}",
   "mod_video_title": "Trailer för {name}",
+  "modpacks_about_title": "Om",
+  "modpacks_add": "Lägg till",
+  "modpacks_add_mod": "Lägg till {name}",
+  "modpacks_added": "Tillagd",
+  "modpacks_auto_hint": "Andra moddar i modpaketet behöver dem.",
+  "modpacks_auto_title": "Tillagda automatiskt som beroenden",
+  "modpacks_by": "av {author}",
+  "modpacks_by_prefix": "av",
+  "modpacks_cancel": "Avbryt",
+  "modpacks_conflict_pair": "{a} är inte kompatibel med {b}",
+  "modpacks_conflicts_title": "Vissa moddar i det här modpaketet är inte kompatibla med varandra",
+  "modpacks_copy_link": "Kopiera länk",
+  "modpacks_cover_add": "Lägg till omslag",
+  "modpacks_cover_change": "Byt omslag",
+  "modpacks_cover_failed": "Det gick inte att ladda upp omslaget",
+  "modpacks_cover_label": "Omslag",
+  "modpacks_cover_remove": "Ta bort omslag",
+  "modpacks_cover_too_big": "Bilden är för stor.",
+  "modpacks_cover_wrong_type": "Använd en PNG-, JPEG- eller WebP-bild.",
+  "modpacks_create": "Skapa ett modpaket",
+  "modpacks_created": "Skapad {date}",
+  "modpacks_delete": "Radera modpaket",
+  "modpacks_delete_confirm": "Radera modpaketet permanent?",
+  "modpacks_delete_failed": "Det gick inte att radera modpaketet",
+  "modpacks_delete_yes": "Radera",
+  "modpacks_deleted": "Modpaketet raderades",
+  "modpacks_dependency": "Beroende",
+  "modpacks_description": "Modpaket för Sons of the Forest skapade av communityn. Ladda ner ett och SotF Mods Manager installerar alla dess moddar.",
+  "modpacks_description_hint": "Markdown stöds.",
+  "modpacks_description_label": "Beskrivning",
+  "modpacks_detail_description": [
+    {
+      "declarations": [
+        "input name",
+        "input author",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{name} av {author}: {count__number} modd för Sons of the Forest. Ladda ner och installera allt med SotF Mods Manager.",
+        "count__plural=*": "{name} av {author}: {count__number} moddar för Sons of the Forest. Ladda ner och installera allt med SotF Mods Manager."
+      }
+    }
+  ],
+  "modpacks_detail_title": "{name}, ett modpaket för Sons of the Forest",
+  "modpacks_details_title": "Detaljer",
+  "modpacks_download": "Ladda ner modpaket",
+  "modpacks_downloads_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} nedladdning",
+        "count__plural=*": "{count__number} nedladdningar"
+      }
+    }
+  ],
+  "modpacks_edit_title": "Redigera modpaket",
+  "modpacks_empty_query_title": "Inga modpaket matchar ”{query}”",
+  "modpacks_empty_text": "Samla dina favoritmoddar och dela dem som ett modpaket.",
+  "modpacks_empty_title": "Inga modpaket än",
+  "modpacks_error_text": "Försök igen om en stund.",
+  "modpacks_error_title": "Det gick inte att läsa in modpaketen",
+  "modpacks_howto": "Öppna den nedladdade .sotfprofile-filen i SotF Mods Manager (Profiler, Importera profil) för att installera alla moddar.",
+  "modpacks_import_button": "Importera .sotfprofile",
+  "modpacks_import_choose": "Välj fil",
+  "modpacks_import_description": "Välj en .sotfprofile-fil (upp till 256 KB). Dess moddar läggs till i listan nedan.",
+  "modpacks_import_done": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} modd importerad",
+        "count__plural=*": "{count__number} moddar importerade"
+      }
+    }
+  ],
+  "modpacks_import_failed": "Det gick inte att importera profilen",
+  "modpacks_import_skipped": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} modd hoppades över eftersom den inte finns på sidan eller inte är godkänd:",
+        "count__plural=*": "{count__number} moddar hoppades över eftersom de inte finns på sidan eller inte är godkända:"
+      }
+    }
+  ],
+  "modpacks_import_title": "Importera från SotF Mods Manager",
+  "modpacks_import_too_big": "Filen är större än 256 KB.",
+  "modpacks_intro": "Färdiga samlingar av moddar. Ladda ner ett modpaket och SotF Mods Manager installerar alla moddar på en gång.",
+  "modpacks_kicker": "Modpaket",
+  "modpacks_link_copied": "Länken kopierades",
+  "modpacks_link_copy_failed": "Det gick inte att kopiera länken",
+  "modpacks_mine_description": "Samla moddar i ett modpaket som vem som helst kan installera med SotF Mods Manager.",
+  "modpacks_mine_empty_text": "Skapa ett från grunden eller importera en .sotfprofile som exporterats från SotF Mods Manager.",
+  "modpacks_mine_empty_title": "Du har inga modpaket än",
+  "modpacks_mine_list_title": "Dina modpaket",
+  "modpacks_mine_title": "Mina modpaket",
+  "modpacks_mod_search_placeholder": "Sök moddar att lägga till",
+  "modpacks_mods_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} modd",
+        "count__plural=*": "{count__number} moddar"
+      }
+    }
+  ],
+  "modpacks_mods_description": "Endast godkända moddar kan läggas till. Deras beroenden läggs till automatiskt.",
+  "modpacks_mods_empty": "Inga moddar än. Sök nedan för att lägga till några.",
+  "modpacks_mods_title": "Moddar",
+  "modpacks_move_down": "Flytta ner {name}",
+  "modpacks_move_up": "Flytta upp {name}",
+  "modpacks_name_label": "Namn",
+  "modpacks_name_too_short": "Använd minst 2 tecken.",
+  "modpacks_nav": "Modpaket",
+  "modpacks_new_button": "Nytt modpaket",
+  "modpacks_new_description": "Välj moddarna, sätt dem i ordning och beskriv vad modpaketet är till för.",
+  "modpacks_new_title": "Nytt modpaket",
+  "modpacks_no_description": "Ingen beskrivning.",
+  "modpacks_optional": "valfritt",
+  "modpacks_pending_hint": "En moderator granskar modpaketet innan det visas på sidan.",
+  "modpacks_range": [
+    {
+      "declarations": [
+        "input from",
+        "input to",
+        "input total",
+        "local from__number = from: number",
+        "local to__number = to: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{from__number}–{to__number} av {total__number}"
+      }
+    }
+  ],
+  "modpacks_remove_mod": "Ta bort {name}",
+  "modpacks_review_approve": "Godkänn",
+  "modpacks_review_approved": "{name} godkändes",
+  "modpacks_review_description": "Modpaket från medlemmar som inte är verifierade skapare väntar här tills en moderator godkänner dem.",
+  "modpacks_review_empty": "Inga modpaket väntar.",
+  "modpacks_review_failed": "Det gick inte att ändra godkännandet",
+  "modpacks_review_hide": "Dölj moddar",
+  "modpacks_review_load_failed": "Det gick inte att läsa in modpaketen.",
+  "modpacks_review_loading": "Läser in…",
+  "modpacks_review_pending_title": "Väntar på godkännande",
+  "modpacks_review_published_empty": "Inga publicerade modpaket.",
+  "modpacks_review_published_title": "Publicerade modpaket",
+  "modpacks_review_show": "Visa moddar",
+  "modpacks_review_tab_pending": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Väntande ({count__number})"
+      }
+    }
+  ],
+  "modpacks_review_tab_published": "Publicerade",
+  "modpacks_review_title": "Modpaket",
+  "modpacks_review_unapprove": "Dra tillbaka godkännande",
+  "modpacks_review_unapproved": "{name} flyttades tillbaka till väntande",
+  "modpacks_save": "Spara",
+  "modpacks_save_failed": "Det gick inte att spara modpaketet",
+  "modpacks_saved": "Modpaketet sparades",
+  "modpacks_saved_conflicts": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} par moddar är inte kompatibla.",
+        "count__plural=*": "{count__number} par moddar är inte kompatibla."
+      }
+    }
+  ],
+  "modpacks_saved_pending": "Modpaketet sparades. En moderator granskar det innan det publiceras.",
+  "modpacks_search_empty": "Inga godkända moddar matchar.",
+  "modpacks_search_label": "Sök modpaket",
+  "modpacks_search_placeholder": "Sök modpaket",
+  "modpacks_sort_downloads": "Mest nedladdade",
+  "modpacks_sort_new": "Nyaste",
+  "modpacks_sort_updated": "Nyligen uppdaterade",
+  "modpacks_stat_downloads": "Nedladdningar",
+  "modpacks_stat_mods": "Moddar",
+  "modpacks_stat_updated": "Uppdaterad",
+  "modpacks_status_pending": "Väntar på godkännande",
+  "modpacks_status_published": "Publicerad",
+  "modpacks_title": "Modpaket",
+  "modpacks_unavailable": "Ej tillgänglig",
+  "modpacks_unavailable_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} modd är inte längre tillgänglig och hoppas över vid nedladdning.",
+        "count__plural=*": "{count__number} moddar är inte längre tillgängliga och hoppas över vid nedladdning."
+      }
+    }
+  ],
+  "modpacks_unavailable_notice": "Inte längre tillgängliga: {names}. De hoppas över när modpaketet laddas ner.",
+  "modpacks_updated": "Uppdaterad {date}",
+  "modpacks_view_public": "Visa sida",
+  "modpacks_visibility_hidden": "Dold",
   "oauth_connected_as": "Ansluten som {username} sedan {date}",
   "oauth_connections_text": "Koppla Discord för att logga in snabbare.",
   "oauth_connections_title": "Anslutna konton",

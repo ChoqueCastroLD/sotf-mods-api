@@ -63,7 +63,7 @@ export const LEGACY_EXACT: Readonly<Record<string, string>> = {
  * embeds) is not a removed page and keeps working.
  */
 export const REMOVED_FEATURES: Readonly<Record<string, string>> = {
-  kits: '/mods',
+  kits: '/modpacks',
   k: '/mods',
   'patch-radar': '/mods',
   best: '/mods',
@@ -78,6 +78,8 @@ export const REMOVED_FEATURES: Readonly<Record<string, string>> = {
 /** Target of a removed feature path, or `null` when the path is not one (or must keep working). */
 export function removedFeatureTarget(pathname: string): string | null {
   const first = pathname.split('/', 2)[1]?.toLowerCase() ?? '';
+  // Kits came back as modpacks (2026-11): `/kits/:user/:slug` → `/modpacks/:user/:slug`.
+  if (first === 'kits') return `/modpacks${pathname.slice('/kits'.length)}`;
   const target = REMOVED_FEATURES[first];
   if (target === undefined) return null;
   if (first === 'badges' && /^\/badges\/mods\/.+\.svg$/i.test(pathname)) return null;

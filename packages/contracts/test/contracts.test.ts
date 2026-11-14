@@ -350,6 +350,7 @@ describe('endpoint contracts', () => {
         'me',
         'modKnowledge',
         'moderation',
+        'modpacks',
         'notifications',
         'oauth',
         'requests',

@@ -21,6 +21,7 @@ import { jamsEndpoints } from './jams.ts';
 import { kitSocialEndpoints } from './kit-social.ts';
 import { kitsEndpoints } from './kits.ts';
 import { legacyEndpoints } from './legacy.ts';
+import { modpackEndpoints } from './modpacks.ts';
 import { logsEndpoints } from './logs.ts';
 import { meEndpoints } from './me.ts';
 import { modKnowledgeEndpoints } from './mod-knowledge.ts';
@@ -56,6 +57,7 @@ export const apiContracts = {
   kits: kitsEndpoints,
   kitSocial: kitSocialEndpoints,
   legacy: legacyEndpoints,
+  modpacks: modpackEndpoints,
   logs: logsEndpoints,
   me: meEndpoints,
   modKnowledge: modKnowledgeEndpoints,

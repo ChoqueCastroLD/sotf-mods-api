@@ -34,6 +34,7 @@ import { resolveUserId } from '../catalog/users.ts';
 import { at, intArray, query, queryOne, sqlState } from '../follows/sql.ts';
 import type { Actor, Ctx } from '../kernel/context.ts';
 import { DomainError, errors } from '../kernel/errors.ts';
+import { likeContains } from '../legacy/db.ts';
 import { assertCan } from '../permissions/can.ts';
 import {
   buildKitCards,
@@ -176,7 +177,7 @@ export interface KitPage {
 
 /** Condition of the public listing: public, alive, with items, of a visible owner. */
 const LISTED = sql`k."visibility" = 'public' AND k."deletedAt" IS NULL AND k."itemsCount" > 0
-  AND u."deletedAt" IS NULL AND u."bannedAt" IS NULL`;
+  AND k."approvalStatus" = 'published' AND u."deletedAt" IS NULL AND u."bannedAt" IS NULL`;
 
 /**
  * `GET /kits`: public kits. `popular` = followers, then forks, staff picks and freshness; `new` =
@@ -185,10 +186,17 @@ const LISTED = sql`k."visibility" = 'public' AND k."deletedAt" IS NULL AND k."it
  */
 export async function listKits(ctx: Ctx, deps: KitsDeps, input: ListInput): Promise<KitPage> {
   const staffPick = input.staffPick === true ? sql` AND k."isStaffPick"` : sql``;
+  const search = input.q
+    ? sql` AND (k."name" ILIKE ${likeContains(input.q)} OR k."descriptionMd" ILIKE ${likeContains(input.q)})`
+    : sql``;
   const order =
     input.sort === 'new'
       ? sql`k."createdAt" DESC, k."id" DESC`
-      : sql`k."followersCount" DESC, "forks" DESC, k."isStaffPick" DESC, k."updatedAt" DESC, k."id" DESC`;
+      : input.sort === 'downloads'
+        ? sql`k."downloads" DESC, k."createdAt" DESC, k."id" DESC`
+        : input.sort === 'updated'
+          ? sql`k."updatedAt" DESC, k."id" DESC`
+          : sql`k."followersCount" DESC, "forks" DESC, k."isStaffPick" DESC, k."updatedAt" DESC, k."id" DESC`;
   let ids = (
     await query<{ id: number }>(
       ctx.db,
@@ -196,7 +204,7 @@ export async function listKits(ctx: Ctx, deps: KitsDeps, input: ListInput): Prom
                  (SELECT count(*) FROM "Kit" f
                    WHERE f."forkedFromId" = k."id" AND f."deletedAt" IS NULL AND f."visibility" <> 'private') AS "forks"
             FROM "Kit" k JOIN "User" u ON u."id" = k."ownerId"
-           WHERE ${LISTED}${staffPick}
+           WHERE ${LISTED}${staffPick}${search}
            ORDER BY ${order}`,
     )
   ).map((r) => r.id);
@@ -229,6 +237,7 @@ export async function listUserKits(
     await query<{ id: number }>(
       ctx.db,
       sql`SELECT "id" FROM "Kit" WHERE "ownerId" = ${user.id} AND "visibility" = 'public' AND "deletedAt" IS NULL
+             AND "approvalStatus" = 'published'
            ORDER BY "updatedAt" DESC, "id" DESC`,
     )
   ).map((r) => r.id);
@@ -381,6 +390,8 @@ interface NewKit {
   visibility: string;
   coverMediaId: string | null;
   forkedFromId: number | null;
+  /** Default `published` (existing kits); new modpacks follow `initialApproval`. */
+  approvalStatus?: 'published' | 'pending';
 }
 
 /**
@@ -399,9 +410,10 @@ async function insertKit(tx: Transaction, kit: NewKit, now: Date): Promise<{ id:
     const inserted = await queryOne<{ id: number }>(
       tx,
       sql`INSERT INTO "Kit" ("ownerId", "slug", "name", "descriptionMd", "descriptionHtml", "visibility", "code",
-                             "coverMediaId", "forkedFromId", "revision", "itemsCount", "createdAt", "updatedAt")
+                             "coverMediaId", "forkedFromId", "revision", "itemsCount", "approvalStatus", "createdAt", "updatedAt")
           VALUES (${kit.ownerId}, ${slug}, ${kit.name}, ${kit.descriptionMd}, ${kit.descriptionHtml}, ${kit.visibility},
-                  ${code}, ${kit.coverMediaId}::uuid, ${kit.forkedFromId}, 1, 0, ${at(now)}, ${at(now)})
+                  ${code}, ${kit.coverMediaId}::uuid, ${kit.forkedFromId}, 1, 0, ${kit.approvalStatus ?? 'published'},
+                  ${at(now)}, ${at(now)})
           ON CONFLICT DO NOTHING RETURNING "id"`,
     );
     if (inserted) return { id: inserted.id, code };
@@ -538,6 +550,27 @@ async function emitUpdated(
   );
 }
 
+/**
+ * Approval of a new modpack, like mods: verified creators and staff publish at once, everyone
+ * else waits for a moderator.
+ */
+export function initialApproval(actor: Actor): 'published' | 'pending' {
+  return actor.verifiedCreator === true || actor.role === 'moderator' || actor.role === 'admin'
+    ? 'published'
+    : 'pending';
+}
+
+/** A modpack name as stored: no control characters, single spaces, trimmed. */
+export function cleanKitName(name: string): string {
+  return (
+    name
+      // biome-ignore lint/suspicious/noControlCharactersInRegex: stripping them is the point
+      .replace(/[\u0000-\u001f\u007f-\u009f\u200b-\u200f\u202a-\u202e\u2066-\u2069]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim()
+  );
+}
+
 function mapUniqueViolation(error: unknown): never {
   if (sqlState(error) === '23505') throw slugTaken();
   throw error;
@@ -559,13 +592,14 @@ export async function createKit(ctx: Ctx, deps: KitsDeps, input: CreateInput): P
       tx,
       {
         ownerId: actor.userId,
-        name: input.name,
+        name: cleanKitName(input.name),
         slug: input.slug ?? null,
         descriptionMd: description.md,
         descriptionHtml: description.html,
         visibility: input.visibility,
         coverMediaId,
         forkedFromId: null,
+        approvalStatus: initialApproval(actor),
       },
       now,
     );
@@ -604,7 +638,7 @@ export async function updateKit(ctx: Ctx, deps: KitsDeps, kitId: number, input: 
       if (clash) throw slugTaken();
     }
     const sets = [sql`"updatedAt" = ${at(now)}`];
-    if (input.name !== undefined) sets.push(sql`"name" = ${input.name}`);
+    if (input.name !== undefined) sets.push(sql`"name" = ${cleanKitName(input.name)}`);
     if (input.slug !== undefined) sets.push(sql`"slug" = ${input.slug}`);
     if (description !== undefined) {
       sets.push(sql`"descriptionMd" = ${description.md}`, sql`"descriptionHtml" = ${description.html}`);
@@ -702,13 +736,14 @@ export async function forkKit(ctx: Ctx, deps: KitsDeps, kitId: number, input: Fo
       tx,
       {
         ownerId: actor.userId,
-        name: input.name ?? source.name,
+        name: cleanKitName(input.name ?? source.name),
         slug: null,
         descriptionMd: source.descriptionMd,
         descriptionHtml: source.descriptionHtml,
         visibility: input.visibility,
         coverMediaId: source.coverMediaId,
         forkedFromId: source.id,
+        approvalStatus: initialApproval(actor),
       },
       now,
     );
@@ -748,4 +783,164 @@ export async function forkKit(ctx: Ctx, deps: KitsDeps, kitId: number, input: Fo
   const kit = await loadKitRow(ctx.db, created);
   if (!kit) throw errors.notFound('Kit');
   return respond(ctx, deps, ctx.db, kit, 'owner');
+}
+
+// -----------------------------------------------------------------------------------------------
+// Modpacks (2026-11): review, downloads and SotF Mods Manager profiles
+// -----------------------------------------------------------------------------------------------
+
+function assertModerator(ctx: Ctx): Actor {
+  const actor = actorOf(ctx);
+  if (actor.role !== 'moderator' && actor.role !== 'admin') throw errors.forbidden('Moderators only');
+  return actor;
+}
+
+/** `GET /kits/review`: modpacks waiting for approval, oldest first (moderators). */
+export async function listReviewKits(
+  ctx: Ctx,
+  deps: KitsDeps,
+  paging: { page: number; pageSize: number },
+): Promise<KitPage> {
+  assertModerator(ctx);
+  const ids = (
+    await query<{ id: number }>(
+      ctx.db,
+      sql`SELECT k."id" FROM "Kit" k JOIN "User" u ON u."id" = k."ownerId"
+           WHERE k."approvalStatus" = 'pending' AND k."deletedAt" IS NULL AND k."visibility" <> 'private'
+             AND u."deletedAt" IS NULL AND u."bannedAt" IS NULL
+           ORDER BY k."createdAt", k."id"`,
+    )
+  ).map((r) => r.id);
+  const snapshot = await getSnapshot(ctx, deps.config);
+  return pageOfIds(ctx, deps, snapshot, ids, paging.page, paging.pageSize);
+}
+
+/** `GET /kits/review/:id`: any non-deleted, non-private modpack as a moderator reviews it. */
+export async function getKitForReview(ctx: Ctx, deps: KitsDeps, kitId: number): Promise<KitResult> {
+  assertModerator(ctx);
+  const kit = await loadKitRow(ctx.db, kitId);
+  if (!kit || kit.deletedAt || kit.visibility === 'private') throw errors.notFound('Modpack');
+  return respond(ctx, deps, ctx.db, kit, 'public');
+}
+
+/** `POST /kits/:id/approval`: publish a pending modpack or send a published one back (moderators). */
+export async function setKitApproval(ctx: Ctx, deps: KitsDeps, kitId: number, approved: boolean): Promise<KitResult> {
+  const actor = assertModerator(ctx);
+  const status = approved ? 'published' : 'pending';
+  const kit = await withTx(ctx.db, async (tx) => {
+    const row = await loadKitRow(tx, kitId, true);
+    if (!row || row.deletedAt) throw errors.notFound('Modpack');
+    if (row.approvalStatus !== status) {
+      await tx.execute(sql`UPDATE "Kit" SET "approvalStatus" = ${status} WHERE "id" = ${kitId}`);
+      await emitUpdated(ctx, tx, row.id, row.ownerId, row.visibility, row.revision);
+    }
+    return row;
+  });
+  ctx.log.info({ kitId, approved, moderatorId: actor.userId }, 'modpack approval changed');
+  const fresh = await loadKitRow(ctx.db, kit.id);
+  if (!fresh) throw errors.notFound('Modpack');
+  return respond(ctx, deps, ctx.db, fresh, 'public');
+}
+
+/** Counts one download of a modpack's `.sotfprofile`. */
+export async function recordKitDownload(ctx: Ctx, kitId: number): Promise<void> {
+  await ctx.db.execute(sql`UPDATE "Kit" SET "downloads" = "downloads" + 1 WHERE "id" = ${kitId}`);
+}
+
+/** One mod of a `.sotfprofile` (the launcher only needs `id`; the rest is informative). */
+export interface SotfProfileMod {
+  id: string;
+  name: string;
+  user: string;
+  slug: string;
+  version?: string;
+}
+
+export interface SotfProfile {
+  profile: string;
+  game: 'Sons of the Forest';
+  mods: SotfProfileMod[];
+  source?: string;
+}
+
+/**
+ * The `.sotfprofile` of a modpack, in SotF Mods Manager's export format (`profile`, `game`, `mods[]`
+ * with `id`), plus the optional `source` and per-mod `version` the launcher ignores. Only mods that
+ * can still be downloaded are listed, in the modpack's order.
+ */
+export function kitProfile(kit: KitDTO, siteUrl: string): SotfProfile {
+  return {
+    profile: kit.name,
+    game: 'Sons of the Forest',
+    mods: kit.items
+      .filter((item) => item.available && item.mod.kind !== 'build')
+      .map((item) => ({
+        id: item.mod.manifestId,
+        name: item.mod.name,
+        user: item.mod.userHandle,
+        slug: item.mod.slug,
+        ...(item.mod.latestVersion ? { version: item.mod.latestVersion } : {}),
+      })),
+    source: `${siteUrl.replace(/\/+$/, '')}${kit.canonicalPath}`,
+  };
+}
+
+const PROFILE_ID = /^[\w.-]{1,128}$/;
+
+/**
+ * `POST /kits/resolve-profile`: the mods of a `.sotfprofile` that are approved on the site (by
+ * `mod_id`), in file order, and the ids that were skipped (unknown, not approved, builds, or
+ * malformed). The text is parsed as JSON only (never evaluated) and capped by the contract
+ * (`SOTF_PROFILE_MAX_BYTES`).
+ */
+export async function resolveProfile(
+  ctx: Ctx,
+  deps: KitsDeps,
+  text: string,
+): Promise<{ name: string; items: Array<{ modId: number; manifestId: string; name: string }>; skipped: string[] }> {
+  actorOf(ctx);
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(text);
+  } catch {
+    throw errors.validation('Not a valid .sotfprofile file', [
+      { path: 'text', code: 'invalid_json', message: 'The file is not JSON' },
+    ]);
+  }
+  const root =
+    parsed !== null && typeof parsed === 'object' && !Array.isArray(parsed)
+      ? (parsed as Record<string, unknown>)
+      : null;
+  const mods = root && Array.isArray(root.mods) ? root.mods : null;
+  if (!root || !mods) {
+    throw errors.validation('Not a valid .sotfprofile file', [
+      { path: 'text', code: 'invalid_profile', message: 'Expected an object with a "mods" list' },
+    ]);
+  }
+  const ids: string[] = [];
+  const skipped: string[] = [];
+  const seen = new Set<string>();
+  for (const entry of mods) {
+    const id = entry !== null && typeof entry === 'object' ? (entry as Record<string, unknown>).id : undefined;
+    if (typeof id !== 'string' || !PROFILE_ID.test(id.trim())) {
+      if (typeof id === 'string' && id.trim()) skipped.push(id.trim().slice(0, 128));
+      continue;
+    }
+    const clean = id.trim();
+    if (seen.has(clean.toLowerCase())) continue;
+    seen.add(clean.toLowerCase());
+    ids.push(clean);
+  }
+  const snapshot = await getSnapshot(ctx, deps.config);
+  const items: Array<{ modId: number; manifestId: string; name: string }> = [];
+  for (const id of ids) {
+    const entry = snapshot.byManifestId.get(id);
+    if (entry && entry.card.kind !== 'build' && isAddable(snapshot, entry) && items.length < KIT_LIMITS.maxItems) {
+      items.push({ modId: entry.id, manifestId: entry.manifestId, name: entry.card.name });
+    } else {
+      skipped.push(id);
+    }
+  }
+  const rawName = typeof root.profile === 'string' ? root.profile : '';
+  return { name: cleanKitName(rawName).slice(0, KIT_LIMITS.nameMax), items, skipped };
 }

@@ -150,8 +150,8 @@ describe('legacy redirect table (PLAN §4.6)', () => {
 
   describe('removed features (CLASSIC.md)', () => {
     const removed: Array<[string, string]> = [
-      ['/kits', '/mods'],
-      ['/kits/imaxel/starter', '/mods'],
+      ['/kits', '/modpacks'],
+      ['/kits/imaxel/starter', '/modpacks/imaxel/starter'],
       ['/k', '/mods'],
       ['/k/abc123', '/mods'],
       ['/patch-radar', '/mods'],
@@ -177,7 +177,7 @@ describe('legacy redirect table (PLAN §4.6)', () => {
     });
 
     it('keeps the locale prefix of the request and drops the query', () => {
-      expect(legacyRule('/kits', '?sort=popular', 'es')).toMatchObject({ location: '/es/mods' });
+      expect(legacyRule('/kits', '?sort=popular', 'es')).toMatchObject({ location: '/es/modpacks' });
       expect(legacyRule('/news/post', '', 'de')).toMatchObject({ location: '/de' });
       expect(legacyRule('/creators', '?page=2', 'ja')).toMatchObject({ location: '/ja/mods' });
       expect(entryDecision(url('/es/kits')).path).toBe('/kits');

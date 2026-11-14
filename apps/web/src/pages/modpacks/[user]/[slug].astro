@@ -1,0 +1,281 @@
+---
+/**
+ * `/modpacks/:user/:slug`: one approved modpack. The cover (or a collage of its mods), the name,
+ * the author, the counts, «Download modpack» (the `.sotfprofile` for SotF Mods Manager, which
+ * installs every mod in order) and «Copy link», the incompatible pairs, the description and the
+ * ordered mods with their thumbnail and link. Mods that are no longer approved stay in their place,
+ * marked unavailable (the download skips them).
+ *
+ * - Pending, hidden or missing modpacks are 404 (the owner sees theirs in the dashboard).
+ * - Cache: E(detail) tagged with the kit and the owner; the API failing → 503, never cached.
+ */
+import { profilePath } from '@sotf/contracts/seo';
+import { formatCompactNumber, formatDate } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { localizeHtml } from '@sotf/markdown/labels';
+import { PROSE_LOCATOR_CLASSES } from '@sotf/ui/domain';
+import { Icon } from '@sotf/ui/icons';
+import { AlertTriangle, Ban, Download, Info, Layers, Link as LinkIcon, Package } from 'lucide-react';
+import { configureModDomainI18n, markdownLabels } from '../../../components/mod/i18n.ts';
+import { respondNotFound } from '../../../components/mod/responses.ts';
+import { loadModpack } from '../../../components/modpacks/data.ts';
+import PageState from '../../../components/state/PageState.astro';
+import PageLayout from '../../../layouts/PageLayout.astro';
+import { setPageCache } from '../../../lib/cache/page.ts';
+import { pageCache } from '../../../lib/cache/policy.ts';
+import { href } from '../../../lib/i18n.ts';
+
+export const prerender = false;
+
+configureModDomainI18n();
+const locale = Astro.locals.locale;
+const user = Astro.params.user ?? '';
+const slug = Astro.params.slug ?? '';
+const SEGMENT = /^[\w.-]{1,64}$/;
+if (!SEGMENT.test(user) || !SEGMENT.test(slug)) return respondNotFound(Astro);
+
+const data = await loadModpack(user, slug);
+if (data === 'missing') return respondNotFound(Astro);
+if (data === null) {
+  setPageCache(Astro, false);
+  Astro.response.status = 503;
+} else {
+  setPageCache(Astro, pageCache.modpack(data.id, data.owner.id));
+}
+const pack = data === null ? null : data;
+
+type Row =
+  | { kind: 'mod'; position: number; item: NonNullable<typeof pack>['items'][number] }
+  | { kind: 'gone'; position: number; name: string; manifestId: string };
+const rows: Row[] = pack
+  ? [
+      ...pack.items.map((item) => ({ kind: 'mod' as const, position: item.position, item })),
+      ...pack.unavailable.map((gone) => ({ kind: 'gone' as const, position: gone.position, name: gone.name, manifestId: gone.manifestId })),
+    ].sort((a, b) => a.position - b.position)
+  : [];
+const unavailableCount = rows.filter((row) => row.kind === 'gone' || !row.item.available).length;
+const author = pack ? pack.owner.displayName || pack.owner.handle : '';
+const downloadHref = pack
+  ? `/api/modpacks/slug/${encodeURIComponent(pack.owner.handle)}/${encodeURIComponent(pack.slug)}/download`
+  : '#';
+const labels = markdownLabels();
+const thumbs = pack ? pack.previewThumbnails.slice(0, 4) : [];
+const path = pack ? pack.canonicalPath : `/modpacks/${user}/${slug}`;
+const description = pack ? m.modpacks_detail_description({ name: pack.name, author, count: pack.itemsCount }) : m.modpacks_error_text();
+---
+
+<PageLayout
+  template="modpack"
+  width="wide"
+  seo={{
+    title: pack ? m.modpacks_detail_title({ name: pack.name }) : m.modpacks_error_title(),
+    description,
+    path,
+    noindex: pack ? pack.noindex : true,
+    ...(pack?.ogImage
+      ? { og: { image: pack.ogImage.url, imageAlt: pack.name, imageWidth: pack.ogImage.width, imageHeight: pack.ogImage.height } }
+      : pack?.cover
+        ? { og: { image: pack.cover.url, imageAlt: pack.name, ...(pack.cover.width && pack.cover.height ? { imageWidth: pack.cover.width, imageHeight: pack.cover.height } : {}) } }
+        : {}),
+  }}
+  breadcrumbs={[
+    { label: m.common_nav_home(), path: '/' },
+    { label: m.modpacks_nav(), path: '/modpacks' },
+    { label: pack?.name ?? m.modpacks_error_title() },
+  ]}
+>
+  {
+    pack === null ? (
+      <PageState
+        kind="error"
+        title={m.modpacks_error_title()}
+        text={m.modpacks_error_text()}
+        retryHref={href(Astro.url.pathname, locale)}
+        reference={Astro.locals.requestId}
+      />
+    ) : (
+      <div class="flex flex-col gap-8">
+        <section class="grid items-start gap-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:gap-8">
+          <div class="aspect-video overflow-hidden rounded-lg border border-border bg-sunken">
+            {pack.cover ? (
+              <img
+                src={pack.cover.url}
+                srcset={pack.cover.srcset ?? undefined}
+                sizes="(min-width: 1024px) 60vw, (min-width: 768px) 50vw, 100vw"
+                alt=""
+                fetchpriority="high"
+                class="size-full object-cover"
+              />
+            ) : thumbs.length > 0 ? (
+              <div class:list={['grid size-full gap-px', thumbs.length > 1 ? 'grid-cols-2' : 'grid-cols-1', thumbs.length > 2 ? 'grid-rows-2' : '']}>
+                {thumbs.map((url, index) => (
+                  <img src={url} alt="" class:list={['size-full object-cover', thumbs.length === 3 && index === 0 ? 'row-span-2' : '']} />
+                ))}
+              </div>
+            ) : (
+              <div class="flex size-full items-center justify-center text-fg-subtle">
+                <Icon icon={Layers} size={56} />
+              </div>
+            )}
+          </div>
+
+          <div class="flex min-w-0 flex-col gap-4">
+            <div class="flex flex-col gap-1">
+              <p class="text-sm font-semibold tracking-wide text-fg-muted uppercase">{m.modpacks_kicker()}</p>
+              <h1 class="text-3xl font-bold break-words text-fg md:text-4xl">{pack.name}</h1>
+              <p class="text-base text-fg-muted">
+                {m.modpacks_by_prefix()}{' '}
+                <a href={href(profilePath(pack.owner.handle), locale)} class="font-medium text-fg hover:text-link">
+                  {author}
+                </a>
+              </p>
+            </div>
+            <dl class="grid grid-cols-3 gap-2 rounded-lg border border-border bg-surface p-3 text-center">
+              <div>
+                <dt class="text-xs text-fg-muted">{m.modpacks_stat_mods()}</dt>
+                <dd class="text-lg font-semibold text-fg tabular-nums">{pack.itemsCount}</dd>
+              </div>
+              <div>
+                <dt class="text-xs text-fg-muted">{m.modpacks_stat_downloads()}</dt>
+                <dd class="text-lg font-semibold text-fg tabular-nums">{formatCompactNumber(locale, pack.downloads)}</dd>
+              </div>
+              <div>
+                <dt class="text-xs text-fg-muted">{m.modpacks_stat_updated()}</dt>
+                <dd class="text-sm font-semibold text-fg leading-7">
+                  <time datetime={pack.updatedAt}>{formatDate(locale, pack.updatedAt, 'medium')}</time>
+                </dd>
+              </div>
+            </dl>
+            <div class="grid gap-2 sm:grid-cols-2 md:grid-cols-1 xl:grid-cols-2">
+              <a
+                href={downloadHref}
+                download={`${pack.slug}.sotfprofile`}
+                rel="nofollow"
+                class="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-primary px-5 text-base font-semibold text-primary-fg transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+              >
+                <Icon icon={Download} size={18} />
+                {m.modpacks_download()}
+              </a>
+              <button
+                type="button"
+                data-modpack-copy={href(pack.canonicalPath, locale)}
+                data-copied={m.modpacks_link_copied()}
+                data-copy-failed={m.modpacks_link_copy_failed()}
+                class="inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-border-strong bg-surface px-5 text-base font-semibold text-fg transition-colors hover:bg-fg/6 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+              >
+                <Icon icon={LinkIcon} size={18} />
+                {m.modpacks_copy_link()}
+              </button>
+            </div>
+            <p class="flex items-start gap-2 text-sm text-fg-muted">
+              <Icon icon={Info} size={16} className="mt-0.5 shrink-0" />
+              <span>{m.modpacks_howto()}</span>
+            </p>
+          </div>
+        </section>
+
+        {pack.conflictPairs.length > 0 && (
+          <div role="note" class="flex items-start gap-3 rounded-lg border border-danger bg-danger-soft p-4 text-sm text-fg">
+            <Icon icon={AlertTriangle} size={18} className="mt-0.5 shrink-0 text-danger" />
+            <div class="flex flex-col gap-1">
+              <p class="font-semibold">{m.modpacks_conflicts_title()}</p>
+              <ul class="list-disc ps-5">
+                {pack.conflictPairs.map(([a, b]) => <li>{m.modpacks_conflict_pair({ a, b })}</li>)}
+              </ul>
+            </div>
+          </div>
+        )}
+        {unavailableCount > 0 && (
+          <div role="note" class="flex items-start gap-3 rounded-lg border border-warning bg-warning-soft p-4 text-sm text-fg">
+            <Icon icon={Ban} size={18} className="mt-0.5 shrink-0 text-warning" />
+            <p>{m.modpacks_unavailable_count({ count: unavailableCount })}</p>
+          </div>
+        )}
+
+        <div class="grid items-start gap-8 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+          <section aria-labelledby="modpack-mods" class="flex flex-col gap-3">
+            <h2 id="modpack-mods" class="text-xl font-bold text-fg md:text-2xl">
+              {m.modpacks_mods_title()}
+              <span class="ms-2 text-sm font-normal text-fg-muted tabular-nums">{rows.length}</span>
+            </h2>
+            <ol class="flex flex-col divide-y divide-border rounded-lg border border-border bg-surface">
+              {rows.map((row, index) =>
+                row.kind === 'mod' ? (
+                  <li class:list={['flex items-center gap-3 p-3', !row.item.available && 'opacity-60']}>
+                    <span class="w-6 shrink-0 text-end text-sm text-fg-subtle tabular-nums">{index + 1}</span>
+                    <div class="size-14 shrink-0 overflow-hidden rounded-md bg-sunken sm:h-14 sm:w-24">
+                      {row.item.mod.thumbnail ? (
+                        <img src={row.item.mod.thumbnail.url} alt="" loading="lazy" decoding="async" class="size-full object-cover" />
+                      ) : (
+                        <div class="flex size-full items-center justify-center text-fg-subtle">
+                          <Icon icon={Package} size={20} />
+                        </div>
+                      )}
+                    </div>
+                    <div class="flex min-w-0 flex-1 flex-col gap-0.5">
+                      <a href={href(row.item.mod.canonicalPath, locale)} class="truncate font-semibold text-fg hover:text-link">
+                        {row.item.mod.name}
+                      </a>
+                      <span class="truncate text-sm text-fg-muted">
+                        {m.modpacks_by({ author: row.item.mod.userDisplayName || row.item.mod.userHandle })}
+                        {row.item.mod.latestVersion && <span class="tabular-nums"> · v{row.item.mod.latestVersion}</span>}
+                      </span>
+                    </div>
+                    <span class="flex shrink-0 flex-col items-end gap-1 sm:flex-row sm:items-center">
+                      {row.item.isAutoDependency && (
+                        <span class="rounded-full border border-border px-2 py-0.5 text-xs text-fg-muted">{m.modpacks_dependency()}</span>
+                      )}
+                      {!row.item.available && (
+                        <span class="rounded-full border border-warning px-2 py-0.5 text-xs text-fg">{m.modpacks_unavailable()}</span>
+                      )}
+                    </span>
+                  </li>
+                ) : (
+                  <li class="flex items-center gap-3 p-3 opacity-60">
+                    <span class="w-6 shrink-0 text-end text-sm text-fg-subtle tabular-nums">{index + 1}</span>
+                    <div class="flex size-14 shrink-0 items-center justify-center rounded-md bg-sunken text-fg-subtle sm:h-14 sm:w-24">
+                      <Icon icon={Ban} size={20} />
+                    </div>
+                    <div class="flex min-w-0 flex-1 flex-col gap-0.5">
+                      <span class="truncate font-semibold text-fg">{row.name}</span>
+                      <span class="truncate text-sm text-fg-muted">{row.manifestId}</span>
+                    </div>
+                    <span class="shrink-0 rounded-full border border-warning px-2 py-0.5 text-xs text-fg">{m.modpacks_unavailable()}</span>
+                  </li>
+                ),
+              )}
+            </ol>
+          </section>
+
+          <section aria-labelledby="modpack-about" class="flex flex-col gap-3">
+            <h2 id="modpack-about" class="text-xl font-bold text-fg md:text-2xl">{m.modpacks_about_title()}</h2>
+            {pack.descriptionHtml ? (
+              <div class:list={[PROSE_LOCATOR_CLASSES, 'prose-base']} set:html={localizeHtml(pack.descriptionHtml, labels)} />
+            ) : (
+              <p class="text-sm text-fg-muted">{m.modpacks_no_description()}</p>
+            )}
+            <p class="text-sm text-fg-muted">
+              {m.modpacks_created({ date: formatDate(locale, pack.createdAt, 'medium') })}
+            </p>
+          </section>
+        </div>
+      </div>
+    )
+  }
+</PageLayout>
+
+<script>
+  import { toast } from '../../../lib/client/toast.ts';
+
+  for (const button of document.querySelectorAll<HTMLButtonElement>('[data-modpack-copy]')) {
+    button.addEventListener('click', async () => {
+      const url = new URL(button.dataset.modpackCopy ?? '/', window.location.origin).href;
+      try {
+        await navigator.clipboard.writeText(url);
+        toast.success(button.dataset.copied ?? 'Link copied');
+      } catch {
+        toast.error(button.dataset.copyFailed ?? 'Could not copy the link');
+      }
+    });
+  }
+</script>

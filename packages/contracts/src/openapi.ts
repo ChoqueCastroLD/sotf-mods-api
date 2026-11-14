@@ -50,7 +50,8 @@ export const DOMAIN_DESCRIPTIONS: Readonly<Record<ContractDomain, string>> = {
   follows: 'Follow mods (Backpack) and creators.',
   gamification: 'Badges, awards and the Day 1 checklist.',
   internal: 'Health checks and internal operations (Coolify network only).',
-  kits: 'Kits: shareable mod collections.',
+  kits: 'Kits: shareable mod collections (shown on the site as Modpacks).',
+  modpacks: 'Modpacks: public JSON in the shape of `/api/mods`, and the `.sotfprofile` download for SotF Mods Manager.',
   kitSocial: 'Kit follows (signals, live counts) and kit comments.',
   legacy:
     'Legacy v1 API (`/api/*`) kept byte-compatible for RedManager, UpdatesChecker and KelvinSeek. Deprecated routes carry `Deprecation` and `Sunset` headers.',

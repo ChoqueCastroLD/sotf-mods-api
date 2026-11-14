@@ -2186,6 +2186,8 @@
   "console_nav_integrations": "Integrations",
   "console_nav_jams": "Mod Jams",
   "console_nav_label": "Console",
+  "console_nav_modpacks": "Modpacks",
+  "console_nav_modpacks_review": "Modpacks",
   "console_nav_my_mods": "My mods",
   "console_nav_new_build": "New build",
   "console_nav_new_mod": "New mod",
@@ -4881,6 +4883,256 @@
   "mod_video_embed_title": "YouTube video",
   "mod_video_play": "Play the trailer of {name}",
   "mod_video_title": "Trailer of {name}",
+  "modpacks_about_title": "About",
+  "modpacks_add": "Add",
+  "modpacks_add_mod": "Add {name}",
+  "modpacks_added": "Added",
+  "modpacks_auto_hint": "These mods are needed by others in the modpack.",
+  "modpacks_auto_title": "Added automatically as dependencies",
+  "modpacks_by": "by {author}",
+  "modpacks_by_prefix": "by",
+  "modpacks_cancel": "Cancel",
+  "modpacks_conflict_pair": "{a} is not compatible with {b}",
+  "modpacks_conflicts_title": "Some mods in this modpack are not compatible with each other",
+  "modpacks_copy_link": "Copy link",
+  "modpacks_cover_add": "Add cover",
+  "modpacks_cover_change": "Change cover",
+  "modpacks_cover_failed": "Couldn't upload the cover",
+  "modpacks_cover_label": "Cover",
+  "modpacks_cover_remove": "Remove cover",
+  "modpacks_cover_too_big": "The image is too large.",
+  "modpacks_cover_wrong_type": "Use a PNG, JPEG or WebP image.",
+  "modpacks_create": "Create a modpack",
+  "modpacks_created": "Created {date}",
+  "modpacks_delete": "Delete modpack",
+  "modpacks_delete_confirm": "Delete this modpack for good?",
+  "modpacks_delete_failed": "Couldn't delete the modpack",
+  "modpacks_delete_yes": "Delete",
+  "modpacks_deleted": "Modpack deleted",
+  "modpacks_dependency": "Dependency",
+  "modpacks_description": "Sons of the Forest modpacks made by the community. Download one and SotF Mods Manager installs every mod in it.",
+  "modpacks_description_hint": "Markdown is supported.",
+  "modpacks_description_label": "Description",
+  "modpacks_detail_description": [
+    {
+      "declarations": [
+        "input name",
+        "input author",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{name} by {author}: {count__number} mod for Sons of the Forest. Download it and install everything with SotF Mods Manager.",
+        "count__plural=*": "{name} by {author}: {count__number} mods for Sons of the Forest. Download it and install everything with SotF Mods Manager."
+      }
+    }
+  ],
+  "modpacks_detail_title": "{name}, a Sons of the Forest modpack",
+  "modpacks_details_title": "Details",
+  "modpacks_download": "Download modpack",
+  "modpacks_downloads_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} download",
+        "count__plural=*": "{count__number} downloads"
+      }
+    }
+  ],
+  "modpacks_edit_title": "Edit modpack",
+  "modpacks_empty_query_title": "No modpacks match “{query}”",
+  "modpacks_empty_text": "Put your favourite mods together and share them as a modpack.",
+  "modpacks_empty_title": "No modpacks yet",
+  "modpacks_error_text": "Try again in a moment.",
+  "modpacks_error_title": "Couldn't load the modpacks",
+  "modpacks_howto": "Open the downloaded .sotfprofile file in SotF Mods Manager (Profiles, Import profile) to install every mod.",
+  "modpacks_import_button": "Import .sotfprofile",
+  "modpacks_import_choose": "Choose file",
+  "modpacks_import_description": "Choose a .sotfprofile file (up to 256 KB). Its mods are added to the list below.",
+  "modpacks_import_done": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod imported",
+        "count__plural=*": "{count__number} mods imported"
+      }
+    }
+  ],
+  "modpacks_import_failed": "Couldn't import the profile",
+  "modpacks_import_skipped": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod was skipped because it is not on the site or not approved:",
+        "count__plural=*": "{count__number} mods were skipped because they are not on the site or not approved:"
+      }
+    }
+  ],
+  "modpacks_import_title": "Import from SotF Mods Manager",
+  "modpacks_import_too_big": "The file is larger than 256 KB.",
+  "modpacks_intro": "Ready-made sets of mods. Download a modpack and SotF Mods Manager installs all its mods in one go.",
+  "modpacks_kicker": "Modpack",
+  "modpacks_link_copied": "Link copied",
+  "modpacks_link_copy_failed": "Couldn't copy the link",
+  "modpacks_mine_description": "Group mods into a modpack that anyone can install with SotF Mods Manager.",
+  "modpacks_mine_empty_text": "Create one from scratch or import a .sotfprofile exported from SotF Mods Manager.",
+  "modpacks_mine_empty_title": "You have no modpacks yet",
+  "modpacks_mine_list_title": "Your modpacks",
+  "modpacks_mine_title": "My modpacks",
+  "modpacks_mod_search_placeholder": "Search mods to add",
+  "modpacks_mods_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod",
+        "count__plural=*": "{count__number} mods"
+      }
+    }
+  ],
+  "modpacks_mods_description": "Only approved mods can be added. Their dependencies are added automatically.",
+  "modpacks_mods_empty": "No mods yet. Search below to add some.",
+  "modpacks_mods_title": "Mods",
+  "modpacks_move_down": "Move {name} down",
+  "modpacks_move_up": "Move {name} up",
+  "modpacks_name_label": "Name",
+  "modpacks_name_too_short": "Use at least 2 characters.",
+  "modpacks_nav": "Modpacks",
+  "modpacks_new_button": "New modpack",
+  "modpacks_new_description": "Pick the mods, put them in order and describe what the modpack is for.",
+  "modpacks_new_title": "New modpack",
+  "modpacks_no_description": "No description.",
+  "modpacks_optional": "optional",
+  "modpacks_pending_hint": "A moderator will review this modpack before it appears on the site.",
+  "modpacks_range": [
+    {
+      "declarations": [
+        "input from",
+        "input to",
+        "input total",
+        "local from__number = from: number",
+        "local to__number = to: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{from__number}–{to__number} of {total__number}"
+      }
+    }
+  ],
+  "modpacks_remove_mod": "Remove {name}",
+  "modpacks_review_approve": "Approve",
+  "modpacks_review_approved": "{name} approved",
+  "modpacks_review_description": "Modpacks from members who are not verified creators wait here until a moderator approves them.",
+  "modpacks_review_empty": "No modpacks are waiting.",
+  "modpacks_review_failed": "Couldn't change the approval",
+  "modpacks_review_hide": "Hide mods",
+  "modpacks_review_load_failed": "Couldn't load the modpacks.",
+  "modpacks_review_loading": "Loading…",
+  "modpacks_review_pending_title": "Waiting for approval",
+  "modpacks_review_published_empty": "No published modpacks.",
+  "modpacks_review_published_title": "Published modpacks",
+  "modpacks_review_show": "Show mods",
+  "modpacks_review_tab_pending": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Pending ({count__number})"
+      }
+    }
+  ],
+  "modpacks_review_tab_published": "Published",
+  "modpacks_review_title": "Modpacks",
+  "modpacks_review_unapprove": "Unapprove",
+  "modpacks_review_unapproved": "{name} moved back to pending",
+  "modpacks_save": "Save",
+  "modpacks_save_failed": "Couldn't save the modpack",
+  "modpacks_saved": "Modpack saved",
+  "modpacks_saved_conflicts": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} pair of mods is not compatible.",
+        "count__plural=*": "{count__number} pairs of mods are not compatible."
+      }
+    }
+  ],
+  "modpacks_saved_pending": "Modpack saved. A moderator will review it before it is published.",
+  "modpacks_search_empty": "No approved mods match.",
+  "modpacks_search_label": "Search modpacks",
+  "modpacks_search_placeholder": "Search modpacks",
+  "modpacks_sort_downloads": "Most downloaded",
+  "modpacks_sort_new": "Newest",
+  "modpacks_sort_updated": "Recently updated",
+  "modpacks_stat_downloads": "Downloads",
+  "modpacks_stat_mods": "Mods",
+  "modpacks_stat_updated": "Updated",
+  "modpacks_status_pending": "Pending approval",
+  "modpacks_status_published": "Published",
+  "modpacks_title": "Modpacks",
+  "modpacks_unavailable": "Unavailable",
+  "modpacks_unavailable_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod is no longer available and is skipped by the download.",
+        "count__plural=*": "{count__number} mods are no longer available and are skipped by the download."
+      }
+    }
+  ],
+  "modpacks_unavailable_notice": "No longer available: {names}. They are skipped when the modpack is downloaded.",
+  "modpacks_updated": "Updated {date}",
+  "modpacks_view_public": "View page",
+  "modpacks_visibility_hidden": "Hidden",
   "oauth_connected_as": "Connected as {username} since {date}",
   "oauth_connections_text": "Link Discord to log in faster.",
   "oauth_connections_title": "Connected accounts",

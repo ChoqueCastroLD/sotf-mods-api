@@ -16,6 +16,7 @@ import {
   Hammer,
   HandHelping,
   Info,
+  Layers,
   type LucideIcon,
   Package,
   ScrollText,
@@ -28,6 +29,7 @@ export const SITE_PATHS = {
   home: '/',
   mods: '/mods',
   builds: '/builds',
+  modpacks: '/modpacks',
   jams: '/jams',
   requests: '/requests',
   search: '/search',
@@ -79,6 +81,7 @@ export function mainNav(): NavItem[] {
   return [
     { id: 'mods', path: PATHS.mods, label: m.common_term_mods(), icon: Package },
     { id: 'builds', path: PATHS.builds, label: m.common_term_builds(), icon: Hammer },
+    { id: 'modpacks', path: PATHS.modpacks, label: m.modpacks_nav(), icon: Layers },
     { id: 'jams', path: PATHS.jams, label: m.jams_nav(), icon: Trophy },
     { id: 'requests', path: PATHS.requests, label: m.common_term_requests(), icon: HandHelping },
     { id: 'discord', external: DISCORD_URL, label: 'Discord', icon: 'discord' },
@@ -88,6 +91,7 @@ export function mainNav(): NavItem[] {
 /** Rows of the phone menu sheet: what the bottom tab bar does not carry. */
 export function menuNav(): NavItem[] {
   return [
+    { id: 'modpacks', path: PATHS.modpacks, label: m.modpacks_nav(), icon: Layers },
     { id: 'jams', path: PATHS.jams, label: m.jams_nav(), icon: Trophy },
     { id: 'requests', path: PATHS.requests, label: m.common_term_requests(), icon: HandHelping },
     { id: 'discord', external: DISCORD_URL, label: 'Discord', icon: 'discord' },

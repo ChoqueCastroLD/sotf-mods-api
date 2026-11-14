@@ -39,10 +39,15 @@ async function createUser(handle: string, verified = true): Promise<number> {
 
 type Method = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 
+/** Users that are not verified creators (their modpacks wait for approval). */
+const notVerifiedCreators = new Set<number>();
+
 async function call(method: Method, url: string, userId: number | null, body?: unknown, emailVerified = true) {
   const headers = {
     ...t.sameOrigin(),
-    ...(userId === null ? {} : t.as({ userId, emailVerified })),
+    ...(userId === null
+      ? {}
+      : t.as({ userId, emailVerified, verifiedCreator: !notVerifiedCreators.has(userId) })),
   };
   const res = await t.app.inject({
     method,
@@ -134,7 +139,7 @@ describe('create', () => {
     expect(kit).toMatchObject({
       slug: 'dedie-server-pack',
       name: 'Dédié Server Pack!',
-      canonicalPath: '/kits/kit-owner/dedie-server-pack',
+      canonicalPath: '/modpacks/kit-owner/dedie-server-pack',
       visibility: 'public',
       revision: 1,
       itemsCount: 0,
@@ -320,13 +325,14 @@ describe('visibility and caching', () => {
     }
   });
 
-  it('serves public kits to anyone with public cache headers and without descriptionMd', async () => {
+  it('serves public kits to anyone with public cache headers and the Markdown source', async () => {
     const res = await call('GET', `/api/v2/kits/${publicKit.id}`, null);
     expect(res.status).toBe(200);
     expect(res.headers['cache-control']).toBe('public, max-age=0');
     expect(res.headers['cache-tag']).toContain(`kit:${publicKit.id}`);
     expect(res.headers['cache-tag']).toContain(`user:${owner}`);
-    expect(res.body).not.toHaveProperty('descriptionMd');
+    // The Markdown source is public since modpacks (the public API serves it).
+    expect(typeof res.body?.descriptionMd).toBe('string');
     // Descriptions are Markdown lite (the `@sotf/markdown` pipeline, same as comments and reviews).
     expect(res.body?.descriptionHtml?.trim()).toBe('<p>Hello</p>');
     const bySlug = await call('GET', `/api/v2/kits/by-slug/KIT-OWNER/visible-kit`, other);
@@ -338,7 +344,6 @@ describe('visibility and caching', () => {
     const res = await call('GET', `/api/v2/kits/${publicKit.id}`, owner);
     expect(res.status).toBe(200);
     expect(res.headers['cache-control']).toBe('public, max-age=0');
-    expect(res.body).not.toHaveProperty('descriptionMd');
     const edit = await call('PATCH', `/api/v2/kits/${publicKit.id}`, owner, { descriptionMd: 'Hello' });
     expect(edit.status).toBe(200);
     expect(edit.headers['cache-control']).toBe('no-store');
@@ -448,7 +453,7 @@ describe('edit, fork and delete', () => {
       name: 'Renamed',
       slug: 'renamed-kit',
       code: kit.code,
-      canonicalPath: '/kits/kit-owner/renamed-kit',
+      canonicalPath: '/modpacks/kit-owner/renamed-kit',
     });
     expect(await events('kit.updated', kit.id)).toBe(1);
   });
@@ -484,7 +489,7 @@ describe('edit, fork and delete', () => {
     expect(again.body?.forkedFrom).toEqual({
       id: source.id,
       name: 'Forkable',
-      canonicalPath: '/kits/kit-owner/forkable',
+      canonicalPath: '/modpacks/kit-owner/forkable',
       ownerHandle: 'kit-owner',
     });
     const named = await call('POST', `/api/v2/kits/${source.id}/fork`, other, {

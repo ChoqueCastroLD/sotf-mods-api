@@ -25,6 +25,15 @@ import { API_V2_PREFIX, defineEndpoint } from './endpoint.ts';
 import { PageQuery, pageOf } from './pagination.ts';
 
 export const KIT_VISIBILITIES = ['public', 'unlisted', 'private'] as const;
+/**
+ * Modpacks (2026-11) are kits under their public name. Approval like mods: verified creators and
+ * staff publish at once; everyone else's modpack is `pending` until a moderator approves it.
+ */
+export const KIT_APPROVAL_STATUSES = ['pending', 'published'] as const;
+export const KitApprovalStatus = z.enum(KIT_APPROVAL_STATUSES);
+export type KitApprovalStatus = z.infer<typeof KitApprovalStatus>;
+/** Largest `.sotfprofile` accepted by the import (bytes). */
+export const SOTF_PROFILE_MAX_BYTES = 256 * 1024;
 export const KitVisibility = z.enum(KIT_VISIBILITIES);
 export type KitVisibility = z.infer<typeof KitVisibility>;
 
@@ -85,7 +94,10 @@ export const KitCardDTO = dto(
     isStaffPick: z.boolean(),
     itemsCount: Count,
     followersCount: Count,
+    downloads: Count.describe('Downloads of the `.sotfprofile`'),
+    approvalStatus: KitApprovalStatus,
     revision: z.number().int().min(1),
+    createdAt: IsoDateTime,
     updatedAt: IsoDateTime,
   }),
   {
@@ -95,7 +107,7 @@ export const KitCardDTO = dto(
         id: 5,
         slug: 'starter-essentials',
         name: 'Starter essentials',
-        canonicalPath: '/kits/imaxel/starter-essentials',
+        canonicalPath: '/modpacks/imaxel/starter-essentials',
         owner: exampleOf(UserRefDTO),
         visibility: 'public',
         code: 'KIT-7Q2M-4F',
@@ -104,7 +116,10 @@ export const KitCardDTO = dto(
         isStaffPick: true,
         itemsCount: 12,
         followersCount: 31,
+        downloads: 140,
+        approvalStatus: 'published',
         revision: 7,
+        createdAt: '2026-06-01T12:00:00.000Z',
         updatedAt: '2026-09-20T18:00:00.000Z',
       },
     ],
@@ -120,6 +135,7 @@ export const KitItemDTO = dto(
     note: z.string().max(KIT_LIMITS.noteMax).nullable(),
     pinnedVersion: z.object({ id: EntityId, version: VersionString }).nullable().describe('null = always the latest'),
     isAutoDependency: z.boolean(),
+    available: z.boolean().describe('false when the mod is no longer approved (unlisted, archived, removed)'),
     addedAt: IsoDateTime,
   }),
   {
@@ -131,6 +147,7 @@ export const KitItemDTO = dto(
         note: 'Press F1 to open',
         pinnedVersion: null,
         isAutoDependency: false,
+        available: true,
         addedAt: '2026-09-01T12:00:00.000Z',
       },
     ],
@@ -141,8 +158,14 @@ export const KitDTO = dto(
   'KitDTO',
   KitCardDTO.extend({
     descriptionHtml: z.string().nullable(),
-    descriptionMd: z.string().nullable().optional().describe('Only in owner responses'),
+    descriptionMd: z.string().nullable().optional().describe('Markdown source of the description'),
     items: z.array(KitItemDTO),
+    unavailable: z
+      .array(z.object({ modId: EntityId, manifestId: z.string(), name: z.string(), position: z.number().int().nonnegative() }))
+      .describe('Items whose mod can no longer be shown at all (pending, hidden or deleted author)'),
+    conflictPairs: z
+      .array(z.tuple([z.string(), z.string()]))
+      .describe('Pairs of item names that declare each other incompatible'),
     forkedFrom: z.object({ id: EntityId, name: z.string(), canonicalPath: SitePath, ownerHandle: Handle }).nullable(),
     multiplayer: z.object({
       allPlayers: Count,
@@ -167,6 +190,8 @@ export const KitDTO = dto(
         ...exampleOf(KitCardDTO),
         descriptionHtml: '<p>Everything you need for a first co-op run.</p>',
         items: [exampleOf(KitItemDTO)],
+        unavailable: [],
+        conflictPairs: [],
         forkedFrom: null,
         multiplayer: { allPlayers: 4, hostOnly: 2, clientSide: 6, singleplayerOnly: 0, unknown: 0 },
         compat: { works: 11, untested: 1, broken: 0, conflicts: 0 },
@@ -245,8 +270,44 @@ export const ForkKitBody = dto(
   { description: 'Clone a kit with attribution.', examples: [{ name: 'My starter essentials' }] },
 );
 
+export const KitApprovalBody = dto(
+  'KitApprovalBody',
+  z.strictObject({ approved: z.boolean().describe('true publishes the modpack, false sends it back to pending') }),
+  { description: 'Approve or unapprove a modpack (moderators).', examples: [{ approved: true }] },
+);
+
+export const ResolveProfileBody = dto(
+  'ResolveProfileBody',
+  z.strictObject({
+    text: z
+      .string()
+      .max(SOTF_PROFILE_MAX_BYTES)
+      .describe('Contents of a `.sotfprofile` exported by SotF Mods Manager (JSON: profile, game, mods[].id)'),
+  }),
+  {
+    description: 'A launcher profile to turn into a modpack.',
+    examples: [{ text: '{"profile":"Co-op","game":"Sons of the Forest","mods":[{"id":"AmmoUi"}]}' }],
+  },
+);
+
+export const ResolvedProfileDTO = dto(
+  'ResolvedProfileDTO',
+  z.object({
+    name: z.string().describe('The profile name (sanitised); empty when missing'),
+    items: z.array(z.object({ modId: EntityId, manifestId: z.string(), name: z.string() })),
+    skipped: z.array(z.string()).describe('`id`s that are not approved mods on the site, in file order'),
+  }),
+  {
+    description: 'Mods of a launcher profile found on the site, and the ids that were skipped.',
+    examples: [
+      { name: 'Co-op', items: [{ modId: 41, manifestId: 'AmmoUi', name: 'AmmoUi' }], skipped: ['GhostMod'] },
+    ],
+  },
+);
+
 export const KitListQuery = PageQuery.extend({
-  sort: z.enum(['popular', 'new']).default('popular'),
+  sort: z.enum(['popular', 'new', 'downloads', 'updated']).default('popular'),
+  q: z.string().trim().max(100).optional().describe('Search in the name and the description'),
   staffPick: wireFlag('Only staff picks'),
   compat: z.enum(['works', 'any']).default('any'),
 });
@@ -414,6 +475,57 @@ export const kitsEndpoints = {
     response: KitDTO,
     errors: ['UNAUTHENTICATED', 'NOT_FOUND'],
     cache: cache.private,
+  }),
+  review: defineEndpoint({
+    id: 'kits.review',
+    owner: 'WP-42',
+    method: 'GET',
+    path: `${base}/review`,
+    summary: 'Modpacks waiting for approval (moderators)',
+    auth: 'moderator',
+    query: PageQuery,
+    response: KitCardPageDTO,
+    errors: ['UNAUTHENTICATED', 'FORBIDDEN'],
+    cache: cache.private,
+  }),
+  getForReview: defineEndpoint({
+    id: 'kits.getForReview',
+    owner: 'WP-42',
+    method: 'GET',
+    path: `${base}/review/:id`,
+    summary: 'A modpack as a moderator reviews it (pending ones included)',
+    auth: 'moderator',
+    params: z.object({ id: IdParam }),
+    response: KitDTO,
+    errors: ['UNAUTHENTICATED', 'FORBIDDEN', 'NOT_FOUND'],
+    cache: cache.private,
+  }),
+  setApproval: defineEndpoint({
+    id: 'kits.setApproval',
+    owner: 'WP-42',
+    method: 'POST',
+    path: `${base}/:id/approval`,
+    summary: 'Approve or unapprove a modpack (moderators)',
+    auth: 'moderator',
+    params: z.object({ id: IdParam }),
+    body: KitApprovalBody,
+    response: KitDTO,
+    errors: ['UNAUTHENTICATED', 'FORBIDDEN', 'NOT_FOUND'],
+    cache: cache.noStore,
+    rateLimit: 'userWrite',
+  }),
+  resolveProfile: defineEndpoint({
+    id: 'kits.resolveProfile',
+    owner: 'WP-42',
+    method: 'POST',
+    path: `${base}/resolve-profile`,
+    summary: 'Read a `.sotfprofile` (SotF Mods Manager) into modpack items',
+    auth: 'session',
+    body: ResolveProfileBody,
+    response: ResolvedProfileDTO,
+    errors: ['UNAUTHENTICATED', 'VALIDATION_FAILED'],
+    cache: cache.noStore,
+    rateLimit: 'kitsWrite',
   }),
   modKits: defineEndpoint({
     id: 'kits.modKits',

@@ -18,13 +18,17 @@ import {
   getKit,
   getKitByCode,
   getKitBySlug,
+  getKitForReview,
   getOwnKit,
   type KitsDeps,
   kitsWithMod,
   listKits,
   listMyKits,
+  listReviewKits,
   listUserKits,
   putKitItems,
+  resolveProfile,
+  setKitApproval,
   updateKit,
 } from '@sotf/core/kits/index';
 import { defineModule } from '../../lib/define-module.ts';
@@ -86,5 +90,17 @@ export default defineModule({
     );
 
     m.implement(kitsEndpoints.fork, async ({ params, body, ctx }) => (await forkKit(ctx, deps, params.id, body)).kit);
+
+    // Modpacks (2026-11): moderator review and SotF Mods Manager profiles.
+    m.implement(kitsEndpoints.review, async ({ query, ctx }) => listReviewKits(ctx, deps, query));
+    m.implement(
+      kitsEndpoints.getForReview,
+      async ({ params, ctx }) => (await getKitForReview(ctx, deps, params.id)).kit,
+    );
+    m.implement(
+      kitsEndpoints.setApproval,
+      async ({ params, body, ctx }) => (await setKitApproval(ctx, deps, params.id, body.approved)).kit,
+    );
+    m.implement(kitsEndpoints.resolveProfile, async ({ body, ctx }) => resolveProfile(ctx, deps, body.text));
   },
 });

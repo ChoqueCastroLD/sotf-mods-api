@@ -78,5 +78,7 @@
   "console_nav_group_account": "你的账号",
   "console_nav_group_app": "应用",
   "console_nav_group_creator": "创作者与数据",
-  "console_area_you": "我的"
+  "console_area_you": "我的",
+  "console_nav_modpacks": "整合包",
+  "console_nav_modpacks_review": "整合包"
 }

@@ -170,6 +170,10 @@ export const API_ROUTES = {
     userKits: { id: 'kits.userKits', method: 'GET', path: "/api/v2/users/:handle/kits", kind: 'json', bodyKind: null },
     myKits: { id: 'kits.myKits', method: 'GET', path: "/api/v2/me/kits", kind: 'json', bodyKind: null },
     getOwn: { id: 'kits.getOwn', method: 'GET', path: "/api/v2/me/kits/:id", kind: 'json', bodyKind: null },
+    review: { id: 'kits.review', method: 'GET', path: "/api/v2/kits/review", kind: 'json', bodyKind: null },
+    getForReview: { id: 'kits.getForReview', method: 'GET', path: "/api/v2/kits/review/:id", kind: 'json', bodyKind: null },
+    setApproval: { id: 'kits.setApproval', method: 'POST', path: "/api/v2/kits/:id/approval", kind: 'json', bodyKind: 'json' },
+    resolveProfile: { id: 'kits.resolveProfile', method: 'POST', path: "/api/v2/kits/resolve-profile", kind: 'json', bodyKind: 'json' },
     modKits: { id: 'kits.modKits', method: 'GET', path: "/api/v2/mods/:id/kits", kind: 'json', bodyKind: null },
   },
   kitSocial: {
@@ -203,6 +207,11 @@ export const API_ROUTES = {
     downloadStats: { id: 'legacy.downloadStats', method: 'GET', path: "/api/mods/:mod_id/download-stats", kind: 'json', bodyKind: null },
     download: { id: 'legacy.download', method: 'GET', path: "/api/mods/:mod_id/download/:version", kind: 'redirect', bodyKind: null },
     downloadBySlug: { id: 'legacy.downloadBySlug', method: 'GET', path: "/api/mods/slug/:userSlug/:mod_slug/download/:version", kind: 'redirect', bodyKind: null },
+  },
+  modpacks: {
+    list: { id: 'modpacks.list', method: 'GET', path: "/api/modpacks", kind: 'json', bodyKind: null },
+    getBySlug: { id: 'modpacks.getBySlug', method: 'GET', path: "/api/modpacks/slug/:userSlug/:slug", kind: 'json', bodyKind: null },
+    download: { id: 'modpacks.download', method: 'GET', path: "/api/modpacks/slug/:userSlug/:slug/download", kind: 'text', bodyKind: null },
   },
   logs: {
     create: { id: 'logs.create', method: 'POST', path: "/api/v2/logs", kind: 'json', bodyKind: 'json' },

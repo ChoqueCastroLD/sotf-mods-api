@@ -2186,6 +2186,8 @@
   "console_nav_integrations": "Entegrasyonlar",
   "console_nav_jams": "Mod Jam'leri",
   "console_nav_label": "Konsol",
+  "console_nav_modpacks": "Mod paketleri",
+  "console_nav_modpacks_review": "Mod paketleri",
   "console_nav_my_mods": "Modlarım",
   "console_nav_new_build": "Yeni yapı",
   "console_nav_new_mod": "Yeni mod",
@@ -4881,6 +4883,256 @@
   "mod_video_embed_title": "YouTube videosu",
   "mod_video_play": "{name} fragmanını oynat",
   "mod_video_title": "{name} fragmanı",
+  "modpacks_about_title": "Hakkında",
+  "modpacks_add": "Ekle",
+  "modpacks_add_mod": "{name} ekle",
+  "modpacks_added": "Eklendi",
+  "modpacks_auto_hint": "Paketteki diğer modlar bunlara ihtiyaç duyuyor.",
+  "modpacks_auto_title": "Bağımlılık olarak otomatik eklenenler",
+  "modpacks_by": "yapan: {author}",
+  "modpacks_by_prefix": "yapan:",
+  "modpacks_cancel": "İptal",
+  "modpacks_conflict_pair": "{a}, {b} ile uyumlu değil",
+  "modpacks_conflicts_title": "Bu paketteki bazı modlar birbiriyle uyumlu değil",
+  "modpacks_copy_link": "Bağlantıyı kopyala",
+  "modpacks_cover_add": "Kapak ekle",
+  "modpacks_cover_change": "Kapağı değiştir",
+  "modpacks_cover_failed": "Kapak yüklenemedi",
+  "modpacks_cover_label": "Kapak",
+  "modpacks_cover_remove": "Kapağı kaldır",
+  "modpacks_cover_too_big": "Görsel çok büyük.",
+  "modpacks_cover_wrong_type": "PNG, JPEG veya WebP görsel kullan.",
+  "modpacks_create": "Mod paketi oluştur",
+  "modpacks_created": "Oluşturuldu: {date}",
+  "modpacks_delete": "Mod paketini sil",
+  "modpacks_delete_confirm": "Bu mod paketi kalıcı olarak silinsin mi?",
+  "modpacks_delete_failed": "Mod paketi silinemedi",
+  "modpacks_delete_yes": "Sil",
+  "modpacks_deleted": "Mod paketi silindi",
+  "modpacks_dependency": "Bağımlılık",
+  "modpacks_description": "Topluluğun hazırladığı Sons of the Forest mod paketleri. Birini indir, SotF Mods Manager içindeki tüm modları kursun.",
+  "modpacks_description_hint": "Markdown desteklenir.",
+  "modpacks_description_label": "Açıklama",
+  "modpacks_detail_description": [
+    {
+      "declarations": [
+        "input author",
+        "input name",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{author} tarafından {name}: Sons of the Forest için {count__number} mod. İndir ve hepsini SotF Mods Manager ile kur.",
+        "count__plural=*": "{author} tarafından {name}: Sons of the Forest için {count__number} mod. İndir ve hepsini SotF Mods Manager ile kur."
+      }
+    }
+  ],
+  "modpacks_detail_title": "{name}, bir Sons of the Forest mod paketi",
+  "modpacks_details_title": "Ayrıntılar",
+  "modpacks_download": "Mod paketini indir",
+  "modpacks_downloads_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} indirme",
+        "count__plural=*": "{count__number} indirme"
+      }
+    }
+  ],
+  "modpacks_edit_title": "Mod paketini düzenle",
+  "modpacks_empty_query_title": "“{query}” ile eşleşen mod paketi yok",
+  "modpacks_empty_text": "Sevdiğin modları bir araya getir ve mod paketi olarak paylaş.",
+  "modpacks_empty_title": "Henüz mod paketi yok",
+  "modpacks_error_text": "Birazdan tekrar dene.",
+  "modpacks_error_title": "Mod paketleri yüklenemedi",
+  "modpacks_howto": "Tüm modları kurmak için indirilen .sotfprofile dosyasını SotF Mods Manager'da aç (Profiller, Profili içe aktar).",
+  "modpacks_import_button": ".sotfprofile içe aktar",
+  "modpacks_import_choose": "Dosya seç",
+  "modpacks_import_description": "Bir .sotfprofile dosyası seç (en fazla 256 KB). İçindeki modlar aşağıdaki listeye eklenir.",
+  "modpacks_import_done": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod içe aktarıldı",
+        "count__plural=*": "{count__number} mod içe aktarıldı"
+      }
+    }
+  ],
+  "modpacks_import_failed": "Profil içe aktarılamadı",
+  "modpacks_import_skipped": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Sitede olmadığı veya onaylanmadığı için {count__number} mod atlandı:",
+        "count__plural=*": "Sitede olmadıkları veya onaylanmadıkları için {count__number} mod atlandı:"
+      }
+    }
+  ],
+  "modpacks_import_title": "SotF Mods Manager'dan içe aktar",
+  "modpacks_import_too_big": "Dosya 256 KB'tan büyük.",
+  "modpacks_intro": "Hazır mod setleri. Bir mod paketi indir, SotF Mods Manager tüm modları tek seferde kursun.",
+  "modpacks_kicker": "Mod paketi",
+  "modpacks_link_copied": "Bağlantı kopyalandı",
+  "modpacks_link_copy_failed": "Bağlantı kopyalanamadı",
+  "modpacks_mine_description": "Modları herkesin SotF Mods Manager ile kurabileceği bir mod paketinde topla.",
+  "modpacks_mine_empty_text": "Sıfırdan bir tane oluştur ya da SotF Mods Manager'dan dışa aktarılmış bir .sotfprofile içe aktar.",
+  "modpacks_mine_empty_title": "Henüz mod paketin yok",
+  "modpacks_mine_list_title": "Mod paketlerin",
+  "modpacks_mine_title": "Mod paketlerim",
+  "modpacks_mod_search_placeholder": "Eklenecek modları ara",
+  "modpacks_mods_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod",
+        "count__plural=*": "{count__number} mod"
+      }
+    }
+  ],
+  "modpacks_mods_description": "Yalnızca onaylı modlar eklenebilir. Bağımlılıkları otomatik eklenir.",
+  "modpacks_mods_empty": "Henüz mod yok. Eklemek için aşağıda ara.",
+  "modpacks_mods_title": "Modlar",
+  "modpacks_move_down": "{name} aşağı taşı",
+  "modpacks_move_up": "{name} yukarı taşı",
+  "modpacks_name_label": "Ad",
+  "modpacks_name_too_short": "En az 2 karakter kullan.",
+  "modpacks_nav": "Mod paketleri",
+  "modpacks_new_button": "Yeni mod paketi",
+  "modpacks_new_description": "Modları seç, sırala ve mod paketinin ne için olduğunu anlat.",
+  "modpacks_new_title": "Yeni mod paketi",
+  "modpacks_no_description": "Açıklama yok.",
+  "modpacks_optional": "isteğe bağlı",
+  "modpacks_pending_hint": "Bu mod paketi sitede görünmeden önce bir moderatör tarafından incelenecek.",
+  "modpacks_range": [
+    {
+      "declarations": [
+        "input from",
+        "input to",
+        "input total",
+        "local from__number = from: number",
+        "local to__number = to: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{from__number}–{to__number} / {total__number}"
+      }
+    }
+  ],
+  "modpacks_remove_mod": "{name} kaldır",
+  "modpacks_review_approve": "Onayla",
+  "modpacks_review_approved": "{name} onaylandı",
+  "modpacks_review_description": "Doğrulanmış içerik üreticisi olmayan üyelerin mod paketleri, bir moderatör onaylayana kadar burada bekler.",
+  "modpacks_review_empty": "Bekleyen mod paketi yok.",
+  "modpacks_review_failed": "Onay durumu değiştirilemedi",
+  "modpacks_review_hide": "Modları gizle",
+  "modpacks_review_load_failed": "Mod paketleri yüklenemedi.",
+  "modpacks_review_loading": "Yükleniyor…",
+  "modpacks_review_pending_title": "Onay bekleyenler",
+  "modpacks_review_published_empty": "Yayında mod paketi yok.",
+  "modpacks_review_published_title": "Yayındaki mod paketleri",
+  "modpacks_review_show": "Modları göster",
+  "modpacks_review_tab_pending": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Bekleyen ({count__number})"
+      }
+    }
+  ],
+  "modpacks_review_tab_published": "Yayında",
+  "modpacks_review_title": "Mod paketleri",
+  "modpacks_review_unapprove": "Onayı geri al",
+  "modpacks_review_unapproved": "{name} beklemeye geri alındı",
+  "modpacks_save": "Kaydet",
+  "modpacks_save_failed": "Mod paketi kaydedilemedi",
+  "modpacks_saved": "Mod paketi kaydedildi",
+  "modpacks_saved_conflicts": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod çifti uyumlu değil.",
+        "count__plural=*": "{count__number} mod çifti uyumlu değil."
+      }
+    }
+  ],
+  "modpacks_saved_pending": "Mod paketi kaydedildi. Yayınlanmadan önce bir moderatör inceleyecek.",
+  "modpacks_search_empty": "Eşleşen onaylı mod yok.",
+  "modpacks_search_label": "Mod paketlerinde ara",
+  "modpacks_search_placeholder": "Mod paketlerinde ara",
+  "modpacks_sort_downloads": "En çok indirilen",
+  "modpacks_sort_new": "En yeni",
+  "modpacks_sort_updated": "Son güncellenen",
+  "modpacks_stat_downloads": "İndirme",
+  "modpacks_stat_mods": "Modlar",
+  "modpacks_stat_updated": "Güncellendi",
+  "modpacks_status_pending": "Onay bekliyor",
+  "modpacks_status_published": "Yayında",
+  "modpacks_title": "Mod paketleri",
+  "modpacks_unavailable": "Mevcut değil",
+  "modpacks_unavailable_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod artık mevcut değil ve indirmede atlanıyor.",
+        "count__plural=*": "{count__number} mod artık mevcut değil ve indirmede atlanıyor."
+      }
+    }
+  ],
+  "modpacks_unavailable_notice": "Artık mevcut değil: {names}. Mod paketi indirilirken atlanırlar.",
+  "modpacks_updated": "Güncellendi: {date}",
+  "modpacks_view_public": "Sayfayı gör",
+  "modpacks_visibility_hidden": "Gizli",
   "oauth_connected_as": "{username} olarak bağlı, {date} tarihinden beri",
   "oauth_connections_text": "Daha hızlı giriş yapmak için Discord’u bağla.",
   "oauth_connections_title": "Bağlı hesaplar",

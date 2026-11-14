@@ -78,5 +78,7 @@
   "console_nav_group_account": "Ditt konto",
   "console_nav_group_app": "App",
   "console_nav_group_creator": "Skapare och data",
-  "console_area_you": "Du"
+  "console_area_you": "Du",
+  "console_nav_modpacks": "Modpaket",
+  "console_nav_modpacks_review": "Modpaket"
 }

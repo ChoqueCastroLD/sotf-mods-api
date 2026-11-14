@@ -1997,6 +1997,8 @@
   "console_nav_integrations": "集成",
   "console_nav_jams": "模组 Jam",
   "console_nav_label": "控制台",
+  "console_nav_modpacks": "整合包",
+  "console_nav_modpacks_review": "整合包",
   "console_nav_my_mods": "我的模组",
   "console_nav_new_build": "新建建筑",
   "console_nav_new_mod": "新建模组",
@@ -4449,6 +4451,228 @@
   "mod_video_embed_title": "YouTube 视频",
   "mod_video_play": "播放 {name} 预告片",
   "mod_video_title": "{name} 预告片",
+  "modpacks_about_title": "简介",
+  "modpacks_add": "添加",
+  "modpacks_add_mod": "添加 {name}",
+  "modpacks_added": "已添加",
+  "modpacks_auto_hint": "整合包中的其他模组需要它们。",
+  "modpacks_auto_title": "作为依赖自动添加",
+  "modpacks_by": "作者：{author}",
+  "modpacks_by_prefix": "作者：",
+  "modpacks_cancel": "取消",
+  "modpacks_conflict_pair": "{a} 与 {b} 不兼容",
+  "modpacks_conflicts_title": "此整合包中的部分模组互不兼容",
+  "modpacks_copy_link": "复制链接",
+  "modpacks_cover_add": "添加封面",
+  "modpacks_cover_change": "更换封面",
+  "modpacks_cover_failed": "无法上传封面",
+  "modpacks_cover_label": "封面",
+  "modpacks_cover_remove": "移除封面",
+  "modpacks_cover_too_big": "图片太大。",
+  "modpacks_cover_wrong_type": "请使用 PNG、JPEG 或 WebP 图片。",
+  "modpacks_create": "创建整合包",
+  "modpacks_created": "创建于 {date}",
+  "modpacks_delete": "删除整合包",
+  "modpacks_delete_confirm": "确定永久删除此整合包？",
+  "modpacks_delete_failed": "无法删除整合包",
+  "modpacks_delete_yes": "删除",
+  "modpacks_deleted": "整合包已删除",
+  "modpacks_dependency": "依赖",
+  "modpacks_description": "社区制作的《森林之子》整合包。下载一个，SotF Mods Manager 就会安装其中的所有模组。",
+  "modpacks_description_hint": "支持 Markdown。",
+  "modpacks_description_label": "简介",
+  "modpacks_detail_description": [
+    {
+      "declarations": [
+        "input author",
+        "input name",
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{author} 制作的 {name}：包含 {count__number} 个模组，适用于《森林之子》。下载后用 SotF Mods Manager 一键安装。"
+      }
+    }
+  ],
+  "modpacks_detail_title": "{name}，《森林之子》整合包",
+  "modpacks_details_title": "详情",
+  "modpacks_download": "下载整合包",
+  "modpacks_downloads_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 次下载"
+      }
+    }
+  ],
+  "modpacks_edit_title": "编辑整合包",
+  "modpacks_empty_query_title": "没有与“{query}”匹配的整合包",
+  "modpacks_empty_text": "把你喜欢的模组组合起来，作为整合包分享吧。",
+  "modpacks_empty_title": "还没有整合包",
+  "modpacks_error_text": "请稍后再试。",
+  "modpacks_error_title": "无法加载整合包",
+  "modpacks_howto": "在 SotF Mods Manager 中打开下载的 .sotfprofile 文件（配置文件 → 导入配置文件），即可安装所有模组。",
+  "modpacks_import_button": "导入 .sotfprofile",
+  "modpacks_import_choose": "选择文件",
+  "modpacks_import_description": "选择一个 .sotfprofile 文件（最大 256 KB）。其中的模组会添加到下方列表。",
+  "modpacks_import_done": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "已导入 {count__number} 个模组"
+      }
+    }
+  ],
+  "modpacks_import_failed": "无法导入配置文件",
+  "modpacks_import_skipped": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "已跳过 {count__number} 个模组，因为它们不在本站或未获批准："
+      }
+    }
+  ],
+  "modpacks_import_title": "从 SotF Mods Manager 导入",
+  "modpacks_import_too_big": "文件超过 256 KB。",
+  "modpacks_intro": "现成的模组组合。下载整合包后，SotF Mods Manager 会一次性安装其中的所有模组。",
+  "modpacks_kicker": "整合包",
+  "modpacks_link_copied": "链接已复制",
+  "modpacks_link_copy_failed": "无法复制链接",
+  "modpacks_mine_description": "把模组组合成整合包，任何人都可以用 SotF Mods Manager 安装。",
+  "modpacks_mine_empty_text": "从头创建一个，或导入从 SotF Mods Manager 导出的 .sotfprofile 文件。",
+  "modpacks_mine_empty_title": "你还没有整合包",
+  "modpacks_mine_list_title": "你的整合包",
+  "modpacks_mine_title": "我的整合包",
+  "modpacks_mod_search_placeholder": "搜索要添加的模组",
+  "modpacks_mods_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 个模组"
+      }
+    }
+  ],
+  "modpacks_mods_description": "只能添加已获批准的模组。它们的依赖会自动添加。",
+  "modpacks_mods_empty": "还没有模组。在下方搜索并添加。",
+  "modpacks_mods_title": "模组",
+  "modpacks_move_down": "下移 {name}",
+  "modpacks_move_up": "上移 {name}",
+  "modpacks_name_label": "名称",
+  "modpacks_name_too_short": "至少 2 个字符。",
+  "modpacks_nav": "整合包",
+  "modpacks_new_button": "新建整合包",
+  "modpacks_new_description": "选择模组，排好顺序，并说明这个整合包的用途。",
+  "modpacks_new_title": "新建整合包",
+  "modpacks_no_description": "暂无简介。",
+  "modpacks_optional": "可选",
+  "modpacks_pending_hint": "此整合包需经版主审核后才会在网站上显示。",
+  "modpacks_range": [
+    {
+      "declarations": [
+        "input from",
+        "input to",
+        "input total",
+        "local from__number = from: number",
+        "local to__number = to: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "第 {from__number}–{to__number} 个，共 {total__number} 个"
+      }
+    }
+  ],
+  "modpacks_remove_mod": "移除 {name}",
+  "modpacks_review_approve": "批准",
+  "modpacks_review_approved": "已批准 {name}",
+  "modpacks_review_description": "非认证创作者的整合包会在此等待，直到版主批准。",
+  "modpacks_review_empty": "没有等待审核的整合包。",
+  "modpacks_review_failed": "无法更改审核状态",
+  "modpacks_review_hide": "隐藏模组",
+  "modpacks_review_load_failed": "无法加载整合包。",
+  "modpacks_review_loading": "加载中…",
+  "modpacks_review_pending_title": "等待审核",
+  "modpacks_review_published_empty": "没有已发布的整合包。",
+  "modpacks_review_published_title": "已发布的整合包",
+  "modpacks_review_show": "显示模组",
+  "modpacks_review_tab_pending": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "待审核（{count__number}）"
+      }
+    }
+  ],
+  "modpacks_review_tab_published": "已发布",
+  "modpacks_review_title": "整合包",
+  "modpacks_review_unapprove": "撤销批准",
+  "modpacks_review_unapproved": "{name} 已退回待审核",
+  "modpacks_save": "保存",
+  "modpacks_save_failed": "无法保存整合包",
+  "modpacks_saved": "整合包已保存",
+  "modpacks_saved_conflicts": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "有 {count__number} 对模组互不兼容。"
+      }
+    }
+  ],
+  "modpacks_saved_pending": "整合包已保存。版主审核后才会发布。",
+  "modpacks_search_empty": "没有匹配的已批准模组。",
+  "modpacks_search_label": "搜索整合包",
+  "modpacks_search_placeholder": "搜索整合包",
+  "modpacks_sort_downloads": "下载最多",
+  "modpacks_sort_new": "最新",
+  "modpacks_sort_updated": "最近更新",
+  "modpacks_stat_downloads": "下载",
+  "modpacks_stat_mods": "模组",
+  "modpacks_stat_updated": "更新于",
+  "modpacks_status_pending": "等待审核",
+  "modpacks_status_published": "已发布",
+  "modpacks_title": "整合包",
+  "modpacks_unavailable": "不可用",
+  "modpacks_unavailable_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 个模组已不可用，下载时会跳过。"
+      }
+    }
+  ],
+  "modpacks_unavailable_notice": "已不可用：{names}。下载整合包时会跳过它们。",
+  "modpacks_updated": "更新于 {date}",
+  "modpacks_view_public": "查看页面",
+  "modpacks_visibility_hidden": "已隐藏",
   "oauth_connected_as": "已关联为 {username}，自 {date}",
   "oauth_connections_text": "关联 Discord，登录更快捷。",
   "oauth_connections_title": "已关联的账号",

@@ -5,7 +5,13 @@
  * the executor given (so writes can build their response inside their transaction).
  */
 import type { UserRefDTO } from '@sotf/contracts/common';
-import { type KitCardDTO, type KitCode, type KitDTO, KitVisibility } from '@sotf/contracts/kits';
+import {
+  type KitApprovalStatus,
+  type KitCardDTO,
+  type KitCode,
+  type KitDTO,
+  KitVisibility,
+} from '@sotf/contracts/kits';
 import { kitPath } from '@sotf/contracts/seo';
 import type { Executor, MediaVariant, UserPrivacy } from '@sotf/db';
 import { type SQL, sql } from 'drizzle-orm';
@@ -46,6 +52,8 @@ export interface KitRow {
   revision: number;
   itemsCount: number;
   followersCount: number;
+  downloads: number;
+  approvalStatus: KitApprovalStatus;
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date | null;
@@ -80,6 +88,7 @@ export interface KitRow {
 const KIT_SELECT = sql`
 SELECT k."id", k."ownerId", k."slug", k."name", k."descriptionMd", k."descriptionHtml", k."visibility", k."code", k."ogImageKey",
        k."coverMediaId", k."isStaffPick", k."forkedFromId", k."revision", k."itemsCount", k."followersCount",
+       k."downloads", k."approvalStatus",
        k."createdAt", k."updatedAt", k."deletedAt",
        u."slug" AS "ownerSlug", u."name" AS "ownerName", u."displayName" AS "ownerDisplayName",
        u."imageUrl" AS "ownerImageUrl", u."verifiedCreator" AS "ownerVerified", u."role" AS "ownerRole",
@@ -105,6 +114,8 @@ function normalizeKitRow(r: KitRow): KitRow {
     revision: Math.max(1, toInt(r.revision)),
     itemsCount: toInt(r.itemsCount),
     followersCount: toInt(r.followersCount),
+    downloads: toInt(r.downloads),
+    approvalStatus: r.approvalStatus === 'published' ? 'published' : 'pending',
   };
 }
 
@@ -159,13 +170,13 @@ export function ownerRefOf(config: CatalogConfig, r: KitRow): UserRefDTO {
 export type KitView = 'owner' | 'public';
 
 /**
- * Who sees a kit: its owner always (unless deleted); others only public and unlisted kits of
- * visible owners. `null` = 404.
+ * Who sees a kit: its owner always (unless deleted); others only approved public and unlisted kits
+ * of visible owners (moderators read pending ones through the review endpoints). `null` = 404.
  */
 export function viewOf(kit: KitRow, viewerId: number | null): KitView | null {
   if (kit.deletedAt) return null;
   if (viewerId !== null && viewerId === kit.ownerId) return 'owner';
-  if (kit.ownerHidden) return null;
+  if (kit.ownerHidden || kit.approvalStatus !== 'published') return null;
   return kit.visibility === 'private' ? null : 'public';
 }
 
@@ -277,8 +288,8 @@ export async function resolveVersions(
   return out;
 }
 
-/** States of a dependency target that may be added to a kit (never removed or missing mods). */
-const ADDABLE = new Set(['ok', 'unlisted', 'archived']);
+/** States of a mod that may be added to a modpack: only approved, published mods (2026-11). */
+const ADDABLE = new Set(['ok']);
 
 /** True when a catalog entry may be added to a kit. */
 export function isAddable(snapshot: CatalogSnapshot, entry: CatalogEntry | undefined): boolean {
@@ -344,7 +355,10 @@ function cardOf(config: CatalogConfig, snapshot: CatalogSnapshot, kit: KitRow, i
     isStaffPick: kit.isStaffPick,
     itemsCount: kit.itemsCount,
     followersCount: kit.followersCount,
+    downloads: kit.downloads,
+    approvalStatus: kit.approvalStatus,
     revision: kit.revision,
+    createdAt: kit.createdAt.toISOString(),
     updatedAt: kit.updatedAt.toISOString(),
   };
 }
@@ -414,15 +428,42 @@ export async function buildKitDto(
       note: item.note,
       pinnedVersion: pinned ? { id: pinned.id, version: pinned.version.slice(0, 64) } : null,
       isAutoDependency: item.isAutoDependency,
+      available: dependencyState(snapshot, entry).state === 'ok',
       addedAt: item.addedAt.toISOString(),
     };
   });
+  // Items the catalog cannot show at all keep their place as «not available» (name from the row).
+  const shownIds = new Set(shown.map((s) => s.item.modId));
+  const hiddenItems = items.filter((item) => !shownIds.has(item.modId));
+  const hiddenRows =
+    hiddenItems.length === 0
+      ? []
+      : await query<{ id: number; manifestId: string; name: string }>(
+          db,
+          sql`SELECT "id", "mod_id" AS "manifestId", "name" FROM "Mod" WHERE "id" = ANY(${intArray(hiddenItems.map((i) => i.modId))})`,
+        );
+  const hiddenById = new Map(hiddenRows.map((r) => [Number(r.id), r]));
+  const positionOf = new Map(items.map((item, index) => [item.modId, index]));
+  const unavailable = hiddenItems.flatMap((item) => {
+    const row = hiddenById.get(item.modId);
+    return row
+      ? [{ modId: item.modId, manifestId: row.manifestId, name: row.name, position: positionOf.get(item.modId) ?? 0 }]
+      : [];
+  });
+  const shownModIds = shown.map((s) => s.entry.id);
+  const nameById = new Map(shown.map((s) => [s.entry.id, s.entry.card.name]));
+  const pairs = conflictPairs(shownModIds, makeResolver(snapshot, versions, new Set(shownModIds))).map(
+    ([a, b]) => [nameById.get(a) ?? String(a), nameById.get(b) ?? String(b)] as [string, string],
+  );
   const card = cardOf(config, snapshot, kit, items);
   return {
     ...card,
     descriptionHtml: kit.descriptionHtml,
-    ...(view === 'owner' ? { descriptionMd: kit.descriptionMd } : {}),
+    // The Markdown source is public (the modpacks API serves it); owners edit it.
+    descriptionMd: kit.descriptionMd,
     items: itemDtos,
+    unavailable,
+    conflictPairs: pairs,
     forkedFrom:
       source && sourceVisible
         ? {

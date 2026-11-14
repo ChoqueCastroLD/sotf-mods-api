@@ -78,5 +78,7 @@
   "console_nav_group_account": "Your account",
   "console_nav_group_app": "App",
   "console_nav_group_creator": "Creator and data",
-  "console_area_you": "You"
+  "console_area_you": "You",
+  "console_nav_modpacks": "Modpacks",
+  "console_nav_modpacks_review": "Modpacks"
 }

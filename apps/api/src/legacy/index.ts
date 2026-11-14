@@ -18,6 +18,7 @@ import { type Clock, systemClock } from '@sotf/core';
 import { type ApiModule, defineModule } from '../lib/define-module.ts';
 import { createLegacyContext } from './context.ts';
 import { registerKelvinSeekRoutes } from './kelvinseek.ts';
+import { registerModpackRoutes } from './modpacks.ts';
 import { registerModRoutes } from './mods.ts';
 import { registerRetiredRoutes } from './retired.ts';
 import type { LegacyCachedBody } from './route.ts';
@@ -53,6 +54,7 @@ export function createLegacyModule(options: LegacyModuleOptions = {}): ApiModule
       const sunset = options.sunset ?? m.platform.env.LEGACY_SUNSET_AT ?? LEGACY_SUNSET;
       const ctx = createLegacyContext(m.app, m.platform, clock, { sunset, cache });
       registerModRoutes(ctx);
+      registerModpackRoutes(ctx);
       registerSiteRoutes(ctx);
       registerKelvinSeekRoutes(ctx);
       await registerRetiredRoutes(m.app);

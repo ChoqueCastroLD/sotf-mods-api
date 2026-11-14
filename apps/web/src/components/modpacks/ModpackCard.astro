@@ -1,0 +1,73 @@
+---
+/**
+ * A modpack in the `/modpacks` grid: the cover (or a collage of the first mods' thumbnails), the
+ * name, the author and the counts. The whole card is one link.
+ */
+import type { KitCardDTO } from '@sotf/contracts/kits';
+import { formatCompactNumber } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import { Download, Layers } from 'lucide-react';
+import { href } from '../../lib/i18n.ts';
+
+interface Props {
+  pack: KitCardDTO;
+  priority?: boolean;
+}
+
+const { pack, priority = false } = Astro.props;
+const locale = Astro.locals.locale;
+const thumbs = pack.previewThumbnails.slice(0, 4);
+const loading = priority ? 'eager' : 'lazy';
+---
+
+<a
+  href={href(pack.canonicalPath, locale)}
+  class="group flex h-full flex-col overflow-hidden rounded-lg border border-border bg-surface transition-colors hover:border-border-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+>
+  <div class="relative aspect-video overflow-hidden bg-sunken">
+    {
+      pack.cover ? (
+        <img
+          src={pack.cover.url}
+          srcset={pack.cover.srcset ?? undefined}
+          sizes="(min-width: 1280px) 25vw, (min-width: 768px) 33vw, 100vw"
+          alt=""
+          loading={loading}
+          decoding="async"
+          class="size-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+        />
+      ) : thumbs.length > 0 ? (
+        <div class:list={['grid size-full gap-px', thumbs.length > 1 ? 'grid-cols-2' : 'grid-cols-1', thumbs.length > 2 ? 'grid-rows-2' : '']}>
+          {thumbs.map((url, index) => (
+            <img
+              src={url}
+              alt=""
+              loading={loading}
+              decoding="async"
+              class:list={['size-full object-cover', thumbs.length === 3 && index === 0 ? 'row-span-2' : '']}
+            />
+          ))}
+        </div>
+      ) : (
+        <div class="flex size-full items-center justify-center text-fg-subtle">
+          <Icon icon={Layers} size={40} />
+        </div>
+      )
+    }
+  </div>
+  <div class="flex flex-1 flex-col gap-1 p-3">
+    <h3 class="line-clamp-2 text-base font-semibold text-fg group-hover:text-link">{pack.name}</h3>
+    <p class="truncate text-sm text-fg-muted">{m.modpacks_by({ author: pack.owner.displayName || pack.owner.handle })}</p>
+    <p class="mt-auto flex items-center gap-4 pt-2 text-sm text-fg-muted tabular-nums">
+      <span class="inline-flex items-center gap-1.5">
+        <Icon icon={Layers} size={14} />
+        {m.modpacks_mods_count({ count: pack.itemsCount })}
+      </span>
+      <span class="inline-flex items-center gap-1.5" title={m.modpacks_downloads_count({ count: pack.downloads })}>
+        <Icon icon={Download} size={14} />
+        {formatCompactNumber(locale, pack.downloads)}
+      </span>
+    </p>
+  </div>
+</a>

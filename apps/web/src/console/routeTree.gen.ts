@@ -27,6 +27,7 @@ import { Route as ModerationIndexRouteImport } from './routes/moderation/index.t
 import { Route as ModerationAdminRouteRouteImport } from './routes/moderation/admin/route.tsx'
 import { Route as ModerationAuditRouteImport } from './routes/moderation/audit.tsx'
 import { Route as ModerationCommentsRouteImport } from './routes/moderation/comments.tsx'
+import { Route as ModerationModpacksRouteImport } from './routes/moderation/modpacks.tsx'
 import { Route as ModerationReportsRouteImport } from './routes/moderation/reports.tsx'
 import { Route as NotificationsIndexRouteImport } from './routes/notifications/index.tsx'
 import { Route as SettingsIndexRouteImport } from './routes/settings/index.tsx'
@@ -41,6 +42,9 @@ import { Route as SettingsSecurityRouteImport } from './routes/settings/security
 import { Route as SettingsTokensRouteImport } from './routes/settings/tokens.tsx'
 import { Route as DashboardDraftsIndexRouteImport } from './routes/dashboard/drafts/index.tsx'
 import { Route as DashboardDraftsDraftIdRouteImport } from './routes/dashboard/drafts/$draftId.tsx'
+import { Route as DashboardModpacksIndexRouteImport } from './routes/dashboard/modpacks/index.tsx'
+import { Route as DashboardModpacksKitIdRouteImport } from './routes/dashboard/modpacks/$kitId.tsx'
+import { Route as DashboardModpacksNewRouteImport } from './routes/dashboard/modpacks/new.tsx'
 import { Route as DashboardModsIndexRouteImport } from './routes/dashboard/mods/index.tsx'
 import { Route as DashboardNewIndexRouteImport } from './routes/dashboard/new/index.tsx'
 import { Route as DashboardNewBuildRouteImport } from './routes/dashboard/new/build.tsx'
@@ -152,6 +156,11 @@ const ModerationCommentsRoute = ModerationCommentsRouteImport.update({
   path: '/comments',
   getParentRoute: () => ModerationRoute,
 } as any)
+const ModerationModpacksRoute = ModerationModpacksRouteImport.update({
+  id: '/modpacks',
+  path: '/modpacks',
+  getParentRoute: () => ModerationRoute,
+} as any)
 const ModerationReportsRoute = ModerationReportsRouteImport.update({
   id: '/reports',
   path: '/reports',
@@ -220,6 +229,21 @@ const DashboardDraftsIndexRoute = DashboardDraftsIndexRouteImport.update({
 const DashboardDraftsDraftIdRoute = DashboardDraftsDraftIdRouteImport.update({
   id: '/drafts/$draftId',
   path: '/drafts/$draftId',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardModpacksIndexRoute = DashboardModpacksIndexRouteImport.update({
+  id: '/modpacks/',
+  path: '/modpacks/',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardModpacksKitIdRoute = DashboardModpacksKitIdRouteImport.update({
+  id: '/modpacks/$kitId',
+  path: '/modpacks/$kitId',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardModpacksNewRoute = DashboardModpacksNewRouteImport.update({
+  id: '/modpacks/new',
+  path: '/modpacks/new',
   getParentRoute: () => DashboardRoute,
 } as any)
 const DashboardModsIndexRoute = DashboardModsIndexRouteImport.update({
@@ -347,6 +371,7 @@ export interface FileRoutesByFullPath {
   '/me/following': typeof MeFollowingRoute
   '/moderation/audit': typeof ModerationAuditRoute
   '/moderation/comments': typeof ModerationCommentsRoute
+  '/moderation/modpacks': typeof ModerationModpacksRoute
   '/moderation/reports': typeof ModerationReportsRoute
   '/settings/account': typeof SettingsAccountRoute
   '/settings/creator': typeof SettingsCreatorRoute
@@ -363,6 +388,8 @@ export interface FileRoutesByFullPath {
   '/notifications/': typeof NotificationsIndexRoute
   '/settings/': typeof SettingsIndexRoute
   '/dashboard/drafts/$draftId': typeof DashboardDraftsDraftIdRoute
+  '/dashboard/modpacks/$kitId': typeof DashboardModpacksKitIdRoute
+  '/dashboard/modpacks/new': typeof DashboardModpacksNewRoute
   '/dashboard/new/build': typeof DashboardNewBuildRoute
   '/dashboard/new/mod': typeof DashboardNewModRoute
   '/moderation/admin/announcements': typeof ModerationAdminAnnouncementsRoute
@@ -377,6 +404,7 @@ export interface FileRoutesByFullPath {
   '/moderation/jams/$jamId': typeof ModerationJamsJamIdRoute
   '/moderation/users/$userId': typeof ModerationUsersUserIdRoute
   '/dashboard/drafts/': typeof DashboardDraftsIndexRoute
+  '/dashboard/modpacks/': typeof DashboardModpacksIndexRoute
   '/dashboard/mods/': typeof DashboardModsIndexRoute
   '/dashboard/new/': typeof DashboardNewIndexRoute
   '/moderation/admin/': typeof ModerationAdminIndexRoute
@@ -395,6 +423,7 @@ export interface FileRoutesByTo {
   '/me/following': typeof MeFollowingRoute
   '/moderation/audit': typeof ModerationAuditRoute
   '/moderation/comments': typeof ModerationCommentsRoute
+  '/moderation/modpacks': typeof ModerationModpacksRoute
   '/moderation/reports': typeof ModerationReportsRoute
   '/settings/account': typeof SettingsAccountRoute
   '/settings/creator': typeof SettingsCreatorRoute
@@ -411,6 +440,8 @@ export interface FileRoutesByTo {
   '/notifications': typeof NotificationsIndexRoute
   '/settings': typeof SettingsIndexRoute
   '/dashboard/drafts/$draftId': typeof DashboardDraftsDraftIdRoute
+  '/dashboard/modpacks/$kitId': typeof DashboardModpacksKitIdRoute
+  '/dashboard/modpacks/new': typeof DashboardModpacksNewRoute
   '/dashboard/new/build': typeof DashboardNewBuildRoute
   '/dashboard/new/mod': typeof DashboardNewModRoute
   '/moderation/admin/announcements': typeof ModerationAdminAnnouncementsRoute
@@ -425,6 +456,7 @@ export interface FileRoutesByTo {
   '/moderation/jams/$jamId': typeof ModerationJamsJamIdRoute
   '/moderation/users/$userId': typeof ModerationUsersUserIdRoute
   '/dashboard/drafts': typeof DashboardDraftsIndexRoute
+  '/dashboard/modpacks': typeof DashboardModpacksIndexRoute
   '/dashboard/mods': typeof DashboardModsIndexRoute
   '/dashboard/new': typeof DashboardNewIndexRoute
   '/moderation/admin': typeof ModerationAdminIndexRoute
@@ -450,6 +482,7 @@ export interface FileRoutesById {
   '/me/following': typeof MeFollowingRoute
   '/moderation/audit': typeof ModerationAuditRoute
   '/moderation/comments': typeof ModerationCommentsRoute
+  '/moderation/modpacks': typeof ModerationModpacksRoute
   '/moderation/reports': typeof ModerationReportsRoute
   '/settings/account': typeof SettingsAccountRoute
   '/settings/creator': typeof SettingsCreatorRoute
@@ -466,6 +499,8 @@ export interface FileRoutesById {
   '/notifications/': typeof NotificationsIndexRoute
   '/settings/': typeof SettingsIndexRoute
   '/dashboard/drafts/$draftId': typeof DashboardDraftsDraftIdRoute
+  '/dashboard/modpacks/$kitId': typeof DashboardModpacksKitIdRoute
+  '/dashboard/modpacks/new': typeof DashboardModpacksNewRoute
   '/dashboard/new/build': typeof DashboardNewBuildRoute
   '/dashboard/new/mod': typeof DashboardNewModRoute
   '/moderation/admin/announcements': typeof ModerationAdminAnnouncementsRoute
@@ -480,6 +515,7 @@ export interface FileRoutesById {
   '/moderation/jams/$jamId': typeof ModerationJamsJamIdRoute
   '/moderation/users/$userId': typeof ModerationUsersUserIdRoute
   '/dashboard/drafts/': typeof DashboardDraftsIndexRoute
+  '/dashboard/modpacks/': typeof DashboardModpacksIndexRoute
   '/dashboard/mods/': typeof DashboardModsIndexRoute
   '/dashboard/new/': typeof DashboardNewIndexRoute
   '/moderation/admin/': typeof ModerationAdminIndexRoute
@@ -506,6 +542,7 @@ export interface FileRouteTypes {
     | '/me/following'
     | '/moderation/audit'
     | '/moderation/comments'
+    | '/moderation/modpacks'
     | '/moderation/reports'
     | '/settings/account'
     | '/settings/creator'
@@ -522,6 +559,8 @@ export interface FileRouteTypes {
     | '/notifications/'
     | '/settings/'
     | '/dashboard/drafts/$draftId'
+    | '/dashboard/modpacks/$kitId'
+    | '/dashboard/modpacks/new'
     | '/dashboard/new/build'
     | '/dashboard/new/mod'
     | '/moderation/admin/announcements'
@@ -536,6 +575,7 @@ export interface FileRouteTypes {
     | '/moderation/jams/$jamId'
     | '/moderation/users/$userId'
     | '/dashboard/drafts/'
+    | '/dashboard/modpacks/'
     | '/dashboard/mods/'
     | '/dashboard/new/'
     | '/moderation/admin/'
@@ -554,6 +594,7 @@ export interface FileRouteTypes {
     | '/me/following'
     | '/moderation/audit'
     | '/moderation/comments'
+    | '/moderation/modpacks'
     | '/moderation/reports'
     | '/settings/account'
     | '/settings/creator'
@@ -570,6 +611,8 @@ export interface FileRouteTypes {
     | '/notifications'
     | '/settings'
     | '/dashboard/drafts/$draftId'
+    | '/dashboard/modpacks/$kitId'
+    | '/dashboard/modpacks/new'
     | '/dashboard/new/build'
     | '/dashboard/new/mod'
     | '/moderation/admin/announcements'
@@ -584,6 +627,7 @@ export interface FileRouteTypes {
     | '/moderation/jams/$jamId'
     | '/moderation/users/$userId'
     | '/dashboard/drafts'
+    | '/dashboard/modpacks'
     | '/dashboard/mods'
     | '/dashboard/new'
     | '/moderation/admin'
@@ -608,6 +652,7 @@ export interface FileRouteTypes {
     | '/me/following'
     | '/moderation/audit'
     | '/moderation/comments'
+    | '/moderation/modpacks'
     | '/moderation/reports'
     | '/settings/account'
     | '/settings/creator'
@@ -624,6 +669,8 @@ export interface FileRouteTypes {
     | '/notifications/'
     | '/settings/'
     | '/dashboard/drafts/$draftId'
+    | '/dashboard/modpacks/$kitId'
+    | '/dashboard/modpacks/new'
     | '/dashboard/new/build'
     | '/dashboard/new/mod'
     | '/moderation/admin/announcements'
@@ -638,6 +685,7 @@ export interface FileRouteTypes {
     | '/moderation/jams/$jamId'
     | '/moderation/users/$userId'
     | '/dashboard/drafts/'
+    | '/dashboard/modpacks/'
     | '/dashboard/mods/'
     | '/dashboard/new/'
     | '/moderation/admin/'
@@ -784,6 +832,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ModerationCommentsRouteImport
       parentRoute: typeof ModerationRoute
     }
+    '/moderation/modpacks': {
+      id: '/moderation/modpacks'
+      path: '/modpacks'
+      fullPath: '/moderation/modpacks'
+      preLoaderRoute: typeof ModerationModpacksRouteImport
+      parentRoute: typeof ModerationRoute
+    }
     '/moderation/reports': {
       id: '/moderation/reports'
       path: '/reports'
@@ -880,6 +935,27 @@ declare module '@tanstack/react-router' {
       path: '/drafts/$draftId'
       fullPath: '/dashboard/drafts/$draftId'
       preLoaderRoute: typeof DashboardDraftsDraftIdRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/modpacks/': {
+      id: '/dashboard/modpacks/'
+      path: '/modpacks'
+      fullPath: '/dashboard/modpacks/'
+      preLoaderRoute: typeof DashboardModpacksIndexRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/modpacks/$kitId': {
+      id: '/dashboard/modpacks/$kitId'
+      path: '/modpacks/$kitId'
+      fullPath: '/dashboard/modpacks/$kitId'
+      preLoaderRoute: typeof DashboardModpacksKitIdRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/modpacks/new': {
+      id: '/dashboard/modpacks/new'
+      path: '/modpacks/new'
+      fullPath: '/dashboard/modpacks/new'
+      preLoaderRoute: typeof DashboardModpacksNewRouteImport
       parentRoute: typeof DashboardRoute
     }
     '/dashboard/mods/': {
@@ -1032,9 +1108,12 @@ interface DashboardRouteChildren {
   DashboardJamsRoute: typeof DashboardJamsRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
   DashboardDraftsDraftIdRoute: typeof DashboardDraftsDraftIdRoute
+  DashboardModpacksKitIdRoute: typeof DashboardModpacksKitIdRoute
+  DashboardModpacksNewRoute: typeof DashboardModpacksNewRoute
   DashboardNewBuildRoute: typeof DashboardNewBuildRoute
   DashboardNewModRoute: typeof DashboardNewModRoute
   DashboardDraftsIndexRoute: typeof DashboardDraftsIndexRoute
+  DashboardModpacksIndexRoute: typeof DashboardModpacksIndexRoute
   DashboardModsIndexRoute: typeof DashboardModsIndexRoute
   DashboardNewIndexRoute: typeof DashboardNewIndexRoute
   DashboardModsModIdNewVersionRoute: typeof DashboardModsModIdNewVersionRoute
@@ -1048,9 +1127,12 @@ const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardJamsRoute: DashboardJamsRoute,
   DashboardIndexRoute: DashboardIndexRoute,
   DashboardDraftsDraftIdRoute: DashboardDraftsDraftIdRoute,
+  DashboardModpacksKitIdRoute: DashboardModpacksKitIdRoute,
+  DashboardModpacksNewRoute: DashboardModpacksNewRoute,
   DashboardNewBuildRoute: DashboardNewBuildRoute,
   DashboardNewModRoute: DashboardNewModRoute,
   DashboardDraftsIndexRoute: DashboardDraftsIndexRoute,
+  DashboardModpacksIndexRoute: DashboardModpacksIndexRoute,
   DashboardModsIndexRoute: DashboardModsIndexRoute,
   DashboardNewIndexRoute: DashboardNewIndexRoute,
   DashboardModsModIdNewVersionRoute: DashboardModsModIdNewVersionRoute,
@@ -1108,6 +1190,7 @@ interface ModerationRouteChildren {
   ModerationAdminRouteRoute: typeof ModerationAdminRouteRouteWithChildren
   ModerationAuditRoute: typeof ModerationAuditRoute
   ModerationCommentsRoute: typeof ModerationCommentsRoute
+  ModerationModpacksRoute: typeof ModerationModpacksRoute
   ModerationReportsRoute: typeof ModerationReportsRoute
   ModerationIndexRoute: typeof ModerationIndexRoute
   ModerationJamsJamIdRoute: typeof ModerationJamsJamIdRoute
@@ -1120,6 +1203,7 @@ const ModerationRouteChildren: ModerationRouteChildren = {
   ModerationAdminRouteRoute: ModerationAdminRouteRouteWithChildren,
   ModerationAuditRoute: ModerationAuditRoute,
   ModerationCommentsRoute: ModerationCommentsRoute,
+  ModerationModpacksRoute: ModerationModpacksRoute,
   ModerationReportsRoute: ModerationReportsRoute,
   ModerationIndexRoute: ModerationIndexRoute,
   ModerationJamsJamIdRoute: ModerationJamsJamIdRoute,

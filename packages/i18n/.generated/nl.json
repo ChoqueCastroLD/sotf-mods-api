@@ -2186,6 +2186,8 @@
   "console_nav_integrations": "Integraties",
   "console_nav_jams": "Mod Jams",
   "console_nav_label": "Console",
+  "console_nav_modpacks": "Modpacks",
+  "console_nav_modpacks_review": "Modpacks",
   "console_nav_my_mods": "Mijn mods",
   "console_nav_new_build": "Nieuwe build",
   "console_nav_new_mod": "Nieuwe mod",
@@ -4881,6 +4883,256 @@
   "mod_video_embed_title": "YouTube-video",
   "mod_video_play": "Speel de trailer van {name} af",
   "mod_video_title": "Trailer van {name}",
+  "modpacks_about_title": "Over",
+  "modpacks_add": "Toevoegen",
+  "modpacks_add_mod": "{name} toevoegen",
+  "modpacks_added": "Toegevoegd",
+  "modpacks_auto_hint": "Andere mods in de modpack hebben deze nodig.",
+  "modpacks_auto_title": "Automatisch toegevoegd als afhankelijkheden",
+  "modpacks_by": "door {author}",
+  "modpacks_by_prefix": "door",
+  "modpacks_cancel": "Annuleren",
+  "modpacks_conflict_pair": "{a} is niet compatibel met {b}",
+  "modpacks_conflicts_title": "Sommige mods in deze modpack zijn niet compatibel met elkaar",
+  "modpacks_copy_link": "Link kopiëren",
+  "modpacks_cover_add": "Omslag toevoegen",
+  "modpacks_cover_change": "Omslag wijzigen",
+  "modpacks_cover_failed": "Kan de omslag niet uploaden",
+  "modpacks_cover_label": "Omslag",
+  "modpacks_cover_remove": "Omslag verwijderen",
+  "modpacks_cover_too_big": "De afbeelding is te groot.",
+  "modpacks_cover_wrong_type": "Gebruik een PNG-, JPEG- of WebP-afbeelding.",
+  "modpacks_create": "Modpack maken",
+  "modpacks_created": "Gemaakt op {date}",
+  "modpacks_delete": "Modpack verwijderen",
+  "modpacks_delete_confirm": "Deze modpack definitief verwijderen?",
+  "modpacks_delete_failed": "Kan de modpack niet verwijderen",
+  "modpacks_delete_yes": "Verwijderen",
+  "modpacks_deleted": "Modpack verwijderd",
+  "modpacks_dependency": "Afhankelijkheid",
+  "modpacks_description": "Modpacks voor Sons of the Forest, gemaakt door de community. Download er een en SotF Mods Manager installeert alle mods erin.",
+  "modpacks_description_hint": "Markdown wordt ondersteund.",
+  "modpacks_description_label": "Beschrijving",
+  "modpacks_detail_description": [
+    {
+      "declarations": [
+        "input name",
+        "input author",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{name} door {author}: {count__number} mod voor Sons of the Forest. Download het en installeer alles met SotF Mods Manager.",
+        "count__plural=*": "{name} door {author}: {count__number} mods voor Sons of the Forest. Download het en installeer alles met SotF Mods Manager."
+      }
+    }
+  ],
+  "modpacks_detail_title": "{name}, een modpack voor Sons of the Forest",
+  "modpacks_details_title": "Details",
+  "modpacks_download": "Modpack downloaden",
+  "modpacks_downloads_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} download",
+        "count__plural=*": "{count__number} downloads"
+      }
+    }
+  ],
+  "modpacks_edit_title": "Modpack bewerken",
+  "modpacks_empty_query_title": "Geen modpacks gevonden voor ‘{query}’",
+  "modpacks_empty_text": "Verzamel je favoriete mods en deel ze als modpack.",
+  "modpacks_empty_title": "Nog geen modpacks",
+  "modpacks_error_text": "Probeer het zo meteen opnieuw.",
+  "modpacks_error_title": "Kan de modpacks niet laden",
+  "modpacks_howto": "Open het gedownloade .sotfprofile-bestand in SotF Mods Manager (Profielen, Profiel importeren) om alle mods te installeren.",
+  "modpacks_import_button": ".sotfprofile importeren",
+  "modpacks_import_choose": "Bestand kiezen",
+  "modpacks_import_description": "Kies een .sotfprofile-bestand (max. 256 KB). De mods erin worden aan de lijst hieronder toegevoegd.",
+  "modpacks_import_done": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod geïmporteerd",
+        "count__plural=*": "{count__number} mods geïmporteerd"
+      }
+    }
+  ],
+  "modpacks_import_failed": "Kan het profiel niet importeren",
+  "modpacks_import_skipped": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod is overgeslagen omdat hij niet op de site staat of niet is goedgekeurd:",
+        "count__plural=*": "{count__number} mods zijn overgeslagen omdat ze niet op de site staan of niet zijn goedgekeurd:"
+      }
+    }
+  ],
+  "modpacks_import_title": "Importeren uit SotF Mods Manager",
+  "modpacks_import_too_big": "Het bestand is groter dan 256 KB.",
+  "modpacks_intro": "Kant-en-klare sets mods. Download een modpack en SotF Mods Manager installeert alle mods in één keer.",
+  "modpacks_kicker": "Modpack",
+  "modpacks_link_copied": "Link gekopieerd",
+  "modpacks_link_copy_failed": "Kan de link niet kopiëren",
+  "modpacks_mine_description": "Bundel mods in een modpack dat iedereen kan installeren met SotF Mods Manager.",
+  "modpacks_mine_empty_text": "Maak er een vanaf nul of importeer een .sotfprofile die je uit SotF Mods Manager hebt geëxporteerd.",
+  "modpacks_mine_empty_title": "Je hebt nog geen modpacks",
+  "modpacks_mine_list_title": "Jouw modpacks",
+  "modpacks_mine_title": "Mijn modpacks",
+  "modpacks_mod_search_placeholder": "Mods zoeken om toe te voegen",
+  "modpacks_mods_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod",
+        "count__plural=*": "{count__number} mods"
+      }
+    }
+  ],
+  "modpacks_mods_description": "Alleen goedgekeurde mods kunnen worden toegevoegd. Hun afhankelijkheden worden automatisch toegevoegd.",
+  "modpacks_mods_empty": "Nog geen mods. Zoek hieronder om er een paar toe te voegen.",
+  "modpacks_mods_title": "Mods",
+  "modpacks_move_down": "{name} omlaag",
+  "modpacks_move_up": "{name} omhoog",
+  "modpacks_name_label": "Naam",
+  "modpacks_name_too_short": "Gebruik minstens 2 tekens.",
+  "modpacks_nav": "Modpacks",
+  "modpacks_new_button": "Nieuwe modpack",
+  "modpacks_new_description": "Kies de mods, zet ze op volgorde en beschrijf waarvoor de modpack bedoeld is.",
+  "modpacks_new_title": "Nieuwe modpack",
+  "modpacks_no_description": "Geen beschrijving.",
+  "modpacks_optional": "optioneel",
+  "modpacks_pending_hint": "Een moderator bekijkt deze modpack voordat hij op de site verschijnt.",
+  "modpacks_range": [
+    {
+      "declarations": [
+        "input from",
+        "input to",
+        "input total",
+        "local from__number = from: number",
+        "local to__number = to: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{from__number}–{to__number} van {total__number}"
+      }
+    }
+  ],
+  "modpacks_remove_mod": "{name} verwijderen",
+  "modpacks_review_approve": "Goedkeuren",
+  "modpacks_review_approved": "{name} goedgekeurd",
+  "modpacks_review_description": "Modpacks van leden die geen geverifieerde makers zijn, wachten hier tot een moderator ze goedkeurt.",
+  "modpacks_review_empty": "Er wachten geen modpacks.",
+  "modpacks_review_failed": "Kan de goedkeuring niet wijzigen",
+  "modpacks_review_hide": "Mods verbergen",
+  "modpacks_review_load_failed": "Kan de modpacks niet laden.",
+  "modpacks_review_loading": "Laden…",
+  "modpacks_review_pending_title": "Wachten op goedkeuring",
+  "modpacks_review_published_empty": "Geen gepubliceerde modpacks.",
+  "modpacks_review_published_title": "Gepubliceerde modpacks",
+  "modpacks_review_show": "Mods tonen",
+  "modpacks_review_tab_pending": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "In afwachting ({count__number})"
+      }
+    }
+  ],
+  "modpacks_review_tab_published": "Gepubliceerd",
+  "modpacks_review_title": "Modpacks",
+  "modpacks_review_unapprove": "Goedkeuring intrekken",
+  "modpacks_review_unapproved": "{name} terug naar in afwachting",
+  "modpacks_save": "Opslaan",
+  "modpacks_save_failed": "Kan de modpack niet opslaan",
+  "modpacks_saved": "Modpack opgeslagen",
+  "modpacks_saved_conflicts": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} paar mods is niet compatibel.",
+        "count__plural=*": "{count__number} paren mods zijn niet compatibel."
+      }
+    }
+  ],
+  "modpacks_saved_pending": "Modpack opgeslagen. Een moderator bekijkt hem voordat hij wordt gepubliceerd.",
+  "modpacks_search_empty": "Geen goedgekeurde mods gevonden.",
+  "modpacks_search_label": "Modpacks zoeken",
+  "modpacks_search_placeholder": "Modpacks zoeken",
+  "modpacks_sort_downloads": "Meest gedownload",
+  "modpacks_sort_new": "Nieuwste",
+  "modpacks_sort_updated": "Recent bijgewerkt",
+  "modpacks_stat_downloads": "Downloads",
+  "modpacks_stat_mods": "Mods",
+  "modpacks_stat_updated": "Bijgewerkt",
+  "modpacks_status_pending": "Wacht op goedkeuring",
+  "modpacks_status_published": "Gepubliceerd",
+  "modpacks_title": "Modpacks",
+  "modpacks_unavailable": "Niet beschikbaar",
+  "modpacks_unavailable_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} mod is niet meer beschikbaar en wordt overgeslagen bij het downloaden.",
+        "count__plural=*": "{count__number} mods zijn niet meer beschikbaar en worden overgeslagen bij het downloaden."
+      }
+    }
+  ],
+  "modpacks_unavailable_notice": "Niet meer beschikbaar: {names}. Ze worden overgeslagen bij het downloaden van de modpack.",
+  "modpacks_updated": "Bijgewerkt op {date}",
+  "modpacks_view_public": "Pagina bekijken",
+  "modpacks_visibility_hidden": "Verborgen",
   "oauth_connected_as": "Gekoppeld als {username} sinds {date}",
   "oauth_connections_text": "Koppel Discord om sneller in te loggen.",
   "oauth_connections_title": "Gekoppelde accounts",

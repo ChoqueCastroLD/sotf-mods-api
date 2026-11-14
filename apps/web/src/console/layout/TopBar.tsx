@@ -13,7 +13,7 @@ import { BELOW_MD_QUERY, useMediaQuery } from '@sotf/ui';
 import { cn } from '@sotf/ui/cn';
 import { Icon } from '@sotf/ui/icons';
 import { Link, useRouter } from '@tanstack/react-router';
-import { Bell, ChevronLeft, Hammer, HandHelping, type LucideIcon, Package, Trophy } from 'lucide-react';
+import { Bell, ChevronLeft, Hammer, HandHelping, Layers, type LucideIcon, Package, Trophy } from 'lucide-react';
 import { lazy, Suspense } from 'react';
 import type { Me } from '../hooks/use-me.ts';
 import { activeLocale, t } from '../lib/messages.ts';
@@ -29,6 +29,7 @@ const SignalsBell = lazy(() => import('./SignalsBell.tsx'));
 const SITE_LINKS: ReadonlyArray<{ path: string; label: () => string; icon: LucideIcon }> = [
   { path: '/mods', label: () => t('common_term_mods'), icon: Package },
   { path: '/builds', label: () => t('common_term_builds'), icon: Hammer },
+  { path: '/modpacks', label: () => t('console_nav_modpacks'), icon: Layers },
   { path: '/jams', label: () => t('console_nav_jams'), icon: Trophy },
   { path: '/requests', label: () => t('common_term_requests'), icon: HandHelping },
 ];

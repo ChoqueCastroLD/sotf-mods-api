@@ -2308,6 +2308,8 @@
   "console_nav_integrations": "Интеграции",
   "console_nav_jams": "Мод-джемы",
   "console_nav_label": "Консоль",
+  "console_nav_modpacks": "Модпаки",
+  "console_nav_modpacks_review": "Модпаки",
   "console_nav_my_mods": "Мои моды",
   "console_nav_new_build": "Новая постройка",
   "console_nav_new_mod": "Новый мод",
@@ -5159,6 +5161,270 @@
   "mod_video_embed_title": "Видео YouTube",
   "mod_video_play": "Смотреть трейлер {name}",
   "mod_video_title": "Трейлер {name}",
+  "modpacks_about_title": "Описание",
+  "modpacks_add": "Добавить",
+  "modpacks_add_mod": "Добавить {name}",
+  "modpacks_added": "Добавлен",
+  "modpacks_auto_hint": "Они нужны другим модам модпака.",
+  "modpacks_auto_title": "Добавлены автоматически как зависимости",
+  "modpacks_by": "автор: {author}",
+  "modpacks_by_prefix": "автор:",
+  "modpacks_cancel": "Отмена",
+  "modpacks_conflict_pair": "{a} несовместим с {b}",
+  "modpacks_conflicts_title": "Некоторые моды этого модпака несовместимы друг с другом",
+  "modpacks_copy_link": "Копировать ссылку",
+  "modpacks_cover_add": "Добавить обложку",
+  "modpacks_cover_change": "Сменить обложку",
+  "modpacks_cover_failed": "Не удалось загрузить обложку",
+  "modpacks_cover_label": "Обложка",
+  "modpacks_cover_remove": "Убрать обложку",
+  "modpacks_cover_too_big": "Изображение слишком большое.",
+  "modpacks_cover_wrong_type": "Используйте изображение PNG, JPEG или WebP.",
+  "modpacks_create": "Создать модпак",
+  "modpacks_created": "Создан {date}",
+  "modpacks_delete": "Удалить модпак",
+  "modpacks_delete_confirm": "Удалить этот модпак навсегда?",
+  "modpacks_delete_failed": "Не удалось удалить модпак",
+  "modpacks_delete_yes": "Удалить",
+  "modpacks_deleted": "Модпак удалён",
+  "modpacks_dependency": "Зависимость",
+  "modpacks_description": "Модпаки для Sons of the Forest от сообщества. Скачайте модпак, и SotF Mods Manager установит все его моды.",
+  "modpacks_description_hint": "Поддерживается Markdown.",
+  "modpacks_description_label": "Описание",
+  "modpacks_detail_description": [
+    {
+      "declarations": [
+        "input name",
+        "input author",
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{name} (автор: {author}): {count__number} мод для Sons of the Forest. Скачайте и установите всё через SotF Mods Manager.",
+        "count__plural=few": "{name} (автор: {author}): {count__number} мода для Sons of the Forest. Скачайте и установите всё через SotF Mods Manager.",
+        "count__plural=many": "{name} (автор: {author}): {count__number} модов для Sons of the Forest. Скачайте и установите всё через SotF Mods Manager.",
+        "count__plural=*": "{name} (автор: {author}): {count__number} мода для Sons of the Forest. Скачайте и установите всё через SotF Mods Manager."
+      }
+    }
+  ],
+  "modpacks_detail_title": "{name}, модпак для Sons of the Forest",
+  "modpacks_details_title": "Подробности",
+  "modpacks_download": "Скачать модпак",
+  "modpacks_downloads_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} скачивание",
+        "count__plural=few": "{count__number} скачивания",
+        "count__plural=many": "{count__number} скачиваний",
+        "count__plural=*": "{count__number} скачивания"
+      }
+    }
+  ],
+  "modpacks_edit_title": "Редактировать модпак",
+  "modpacks_empty_query_title": "Нет модпаков по запросу «{query}»",
+  "modpacks_empty_text": "Соберите любимые моды и поделитесь ими в виде модпака.",
+  "modpacks_empty_title": "Модпаков пока нет",
+  "modpacks_error_text": "Попробуйте ещё раз через минуту.",
+  "modpacks_error_title": "Не удалось загрузить модпаки",
+  "modpacks_howto": "Откройте скачанный файл .sotfprofile в SotF Mods Manager (Профили, Импорт профиля), чтобы установить все моды.",
+  "modpacks_import_button": "Импорт .sotfprofile",
+  "modpacks_import_choose": "Выбрать файл",
+  "modpacks_import_description": "Выберите файл .sotfprofile (до 256 КБ). Его моды будут добавлены в список ниже.",
+  "modpacks_import_done": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Импортирован {count__number} мод",
+        "count__plural=few": "Импортировано {count__number} мода",
+        "count__plural=many": "Импортировано {count__number} модов",
+        "count__plural=*": "Импортировано {count__number} мода"
+      }
+    }
+  ],
+  "modpacks_import_failed": "Не удалось импортировать профиль",
+  "modpacks_import_skipped": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} мод пропущен: его нет на сайте или он не одобрен:",
+        "count__plural=few": "{count__number} мода пропущено: их нет на сайте или они не одобрены:",
+        "count__plural=many": "{count__number} модов пропущено: их нет на сайте или они не одобрены:",
+        "count__plural=*": "{count__number} мода пропущено: их нет на сайте или они не одобрены:"
+      }
+    }
+  ],
+  "modpacks_import_title": "Импорт из SotF Mods Manager",
+  "modpacks_import_too_big": "Файл больше 256 КБ.",
+  "modpacks_intro": "Готовые наборы модов. Скачайте модпак, и SotF Mods Manager установит все моды за один раз.",
+  "modpacks_kicker": "Модпак",
+  "modpacks_link_copied": "Ссылка скопирована",
+  "modpacks_link_copy_failed": "Не удалось скопировать ссылку",
+  "modpacks_mine_description": "Объединяйте моды в модпак, который любой может установить через SotF Mods Manager.",
+  "modpacks_mine_empty_text": "Создайте модпак с нуля или импортируйте файл .sotfprofile, экспортированный из SotF Mods Manager.",
+  "modpacks_mine_empty_title": "У вас пока нет модпаков",
+  "modpacks_mine_list_title": "Ваши модпаки",
+  "modpacks_mine_title": "Мои модпаки",
+  "modpacks_mod_search_placeholder": "Найти моды для добавления",
+  "modpacks_mods_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} мод",
+        "count__plural=few": "{count__number} мода",
+        "count__plural=many": "{count__number} модов",
+        "count__plural=*": "{count__number} мода"
+      }
+    }
+  ],
+  "modpacks_mods_description": "Добавлять можно только одобренные моды. Их зависимости добавляются автоматически.",
+  "modpacks_mods_empty": "Модов пока нет. Найдите их через поиск ниже.",
+  "modpacks_mods_title": "Моды",
+  "modpacks_move_down": "Переместить {name} ниже",
+  "modpacks_move_up": "Переместить {name} выше",
+  "modpacks_name_label": "Название",
+  "modpacks_name_too_short": "Минимум 2 символа.",
+  "modpacks_nav": "Модпаки",
+  "modpacks_new_button": "Новый модпак",
+  "modpacks_new_description": "Выберите моды, расставьте их по порядку и опишите, для чего этот модпак.",
+  "modpacks_new_title": "Новый модпак",
+  "modpacks_no_description": "Нет описания.",
+  "modpacks_optional": "необязательно",
+  "modpacks_pending_hint": "Модератор проверит этот модпак, прежде чем он появится на сайте.",
+  "modpacks_range": [
+    {
+      "declarations": [
+        "input from",
+        "input to",
+        "input total",
+        "local from__number = from: number",
+        "local to__number = to: number",
+        "local total__number = total: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{from__number}–{to__number} из {total__number}"
+      }
+    }
+  ],
+  "modpacks_remove_mod": "Убрать {name}",
+  "modpacks_review_approve": "Одобрить",
+  "modpacks_review_approved": "{name} одобрен",
+  "modpacks_review_description": "Модпаки участников, которые не являются проверенными авторами, ждут здесь одобрения модератора.",
+  "modpacks_review_empty": "Нет модпаков на проверке.",
+  "modpacks_review_failed": "Не удалось изменить статус одобрения",
+  "modpacks_review_hide": "Скрыть моды",
+  "modpacks_review_load_failed": "Не удалось загрузить модпаки.",
+  "modpacks_review_loading": "Загрузка…",
+  "modpacks_review_pending_title": "Ожидают одобрения",
+  "modpacks_review_published_empty": "Нет опубликованных модпаков.",
+  "modpacks_review_published_title": "Опубликованные модпаки",
+  "modpacks_review_show": "Показать моды",
+  "modpacks_review_tab_pending": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "Ожидают ({count__number})"
+      }
+    }
+  ],
+  "modpacks_review_tab_published": "Опубликованные",
+  "modpacks_review_title": "Модпаки",
+  "modpacks_review_unapprove": "Снять одобрение",
+  "modpacks_review_unapproved": "{name} возвращён на проверку",
+  "modpacks_save": "Сохранить",
+  "modpacks_save_failed": "Не удалось сохранить модпак",
+  "modpacks_saved": "Модпак сохранён",
+  "modpacks_saved_conflicts": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} пара модов несовместима.",
+        "count__plural=few": "{count__number} пары модов несовместимы.",
+        "count__plural=many": "{count__number} пар модов несовместимы.",
+        "count__plural=*": "{count__number} пары модов несовместимы."
+      }
+    }
+  ],
+  "modpacks_saved_pending": "Модпак сохранён. Модератор проверит его перед публикацией.",
+  "modpacks_search_empty": "Подходящих одобренных модов нет.",
+  "modpacks_search_label": "Поиск модпаков",
+  "modpacks_search_placeholder": "Поиск модпаков",
+  "modpacks_sort_downloads": "Популярные",
+  "modpacks_sort_new": "Новые",
+  "modpacks_sort_updated": "Недавно обновлённые",
+  "modpacks_stat_downloads": "Скачивания",
+  "modpacks_stat_mods": "Моды",
+  "modpacks_stat_updated": "Обновлён",
+  "modpacks_status_pending": "Ожидает одобрения",
+  "modpacks_status_published": "Опубликован",
+  "modpacks_title": "Модпаки",
+  "modpacks_unavailable": "Недоступен",
+  "modpacks_unavailable_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} мод больше недоступен и пропускается при скачивании.",
+        "count__plural=few": "{count__number} мода больше недоступны и пропускаются при скачивании.",
+        "count__plural=many": "{count__number} модов больше недоступны и пропускаются при скачивании.",
+        "count__plural=*": "{count__number} мода больше недоступны и пропускаются при скачивании."
+      }
+    }
+  ],
+  "modpacks_unavailable_notice": "Больше недоступны: {names}. Они пропускаются при скачивании модпака.",
+  "modpacks_updated": "Обновлён {date}",
+  "modpacks_view_public": "Открыть страницу",
+  "modpacks_visibility_hidden": "Скрыт",
   "oauth_connected_as": "Подключён как {username} с {date}",
   "oauth_connections_text": "Привяжите Discord, чтобы входить быстрее.",
   "oauth_connections_title": "Подключённые аккаунты",
