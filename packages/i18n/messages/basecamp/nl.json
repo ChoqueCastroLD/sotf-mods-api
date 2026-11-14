@@ -468,5 +468,17 @@
   "basecamp_versions_sort_downloads": "Meest gedownload",
   "basecamp_versions_no_match": "Geen versie past bij dit filter.",
   "basecamp_latest_only_label": "Alleen nieuwste versie",
-  "basecamp_latest_only_hint": "Spelers kunnen alleen de nieuwste versie downloaden. Oudere versies blijven zichtbaar met hun wijzigingslog, maar hun downloadlinks werken niet meer. Gebruik dit als oudere versies bugs hebben waar je niet wilt dat mensen naar teruggaan."
+  "basecamp_latest_only_hint": "Spelers kunnen alleen de nieuwste versie downloaden. Oudere versies blijven zichtbaar met hun wijzigingslog, maar hun downloadlinks werken niet meer. Gebruik dit als oudere versies bugs hebben waar je niet wilt dat mensen naar teruggaan.",
+  "basecamp_compat_incompatible": "Incompatibele mods",
+  "basecamp_compat_incompatible_hint": "Mods die niet samen met deze werken. SotF Mods Manager waarschuwt spelers voor de installatie.",
+  "basecamp_compat_incompatible_none": "Geen incompatibele mods.",
+  "basecamp_compat_incompatible_search": "Zoek mods om als incompatibel te markeren",
+  "basecamp_compat_incompatible_no_results": "Geen mods gevonden.",
+  "basecamp_compat_incompatible_add": "{name} als incompatibel markeren",
+  "basecamp_compat_incompatible_add_short": "Toevoegen",
+  "basecamp_compat_incompatible_remove": "{name} verwijderen",
+  "basecamp_compat_incompatible_blocked": "Deze mod of een van zijn afhankelijkheden",
+  "basecamp_compat_incompatible_save": "Incompatibele mods opslaan",
+  "basecamp_compat_incompatible_saved": "Incompatibele mods opgeslagen.",
+  "basecamp_compat_incompatible_failed": "Kon de incompatibele mods niet opslaan."
 }

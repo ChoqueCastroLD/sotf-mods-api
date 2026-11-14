@@ -5,7 +5,14 @@
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { FIXTURES_DIR, generateLegacyModule, loadFixtures, OUTPUT_FILE, PACKAGE_DIR } from '../scripts/gen-legacy.ts';
+import {
+  FIXTURES_DIR,
+  generateLegacyModule,
+  loadFixtures,
+  OUTPUT_FILE,
+  PACKAGE_DIR,
+  withV2Additions,
+} from '../scripts/gen-legacy.ts';
 import {
   assertKeyOrder,
   KeyOrderError,
@@ -31,10 +38,11 @@ import {
 const fixtures = loadFixtures();
 const byName = new Map(fixtures.map((fixture) => [fixture.name, fixture]));
 
+/** A fixture as v2 answers it: the legacy capture plus the declared v2 additions. */
 function fixtureBody(name: string): unknown {
   const fixture = byName.get(name);
   if (!fixture) throw new Error(`missing fixture ${name}`);
-  return structuredClone(fixture.body);
+  return withV2Additions(fixture);
 }
 
 describe('golden fixtures', () => {

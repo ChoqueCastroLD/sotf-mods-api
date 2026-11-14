@@ -468,5 +468,17 @@
   "basecamp_versions_sort_downloads": "下载最多",
   "basecamp_versions_no_match": "没有符合此筛选条件的版本。",
   "basecamp_latest_only_label": "仅最新版本",
-  "basecamp_latest_only_hint": "玩家只能下载最新版本。旧版本仍会连同更新日志一起显示，但其下载链接将失效。如果旧版本存在你不希望玩家退回的错误，请使用此选项。"
+  "basecamp_latest_only_hint": "玩家只能下载最新版本。旧版本仍会连同更新日志一起显示，但其下载链接将失效。如果旧版本存在你不希望玩家退回的错误，请使用此选项。",
+  "basecamp_compat_incompatible": "不兼容的模组",
+  "basecamp_compat_incompatible_hint": "与此模组一起安装会出问题的模组。SotF Mods Manager 会在安装前提醒玩家。",
+  "basecamp_compat_incompatible_none": "没有不兼容的模组。",
+  "basecamp_compat_incompatible_search": "搜索要标记为不兼容的模组",
+  "basecamp_compat_incompatible_no_results": "未找到模组。",
+  "basecamp_compat_incompatible_add": "将 {name} 标记为不兼容",
+  "basecamp_compat_incompatible_add_short": "添加",
+  "basecamp_compat_incompatible_remove": "移除 {name}",
+  "basecamp_compat_incompatible_blocked": "此模组或其依赖项",
+  "basecamp_compat_incompatible_save": "保存不兼容的模组",
+  "basecamp_compat_incompatible_saved": "已保存不兼容的模组。",
+  "basecamp_compat_incompatible_failed": "无法保存不兼容的模组。"
 }

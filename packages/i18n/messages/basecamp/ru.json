@@ -468,5 +468,17 @@
   "basecamp_versions_sort_downloads": "Больше загрузок",
   "basecamp_versions_no_match": "Нет версий, подходящих под фильтр.",
   "basecamp_latest_only_label": "Только последняя версия",
-  "basecamp_latest_only_hint": "Игроки смогут скачать только самую новую версию. Старые версии останутся в списке со списком изменений, но ссылки на их скачивание перестанут работать. Используйте это, если в старых версиях есть ошибки и вы не хотите, чтобы к ним возвращались."
+  "basecamp_latest_only_hint": "Игроки смогут скачать только самую новую версию. Старые версии останутся в списке со списком изменений, но ссылки на их скачивание перестанут работать. Используйте это, если в старых версиях есть ошибки и вы не хотите, чтобы к ним возвращались.",
+  "basecamp_compat_incompatible": "Несовместимые моды",
+  "basecamp_compat_incompatible_hint": "Моды, которые не работают вместе с этим. SotF Mods Manager предупреждает игроков перед установкой.",
+  "basecamp_compat_incompatible_none": "Несовместимых модов нет.",
+  "basecamp_compat_incompatible_search": "Найдите несовместимые моды",
+  "basecamp_compat_incompatible_no_results": "Моды не найдены.",
+  "basecamp_compat_incompatible_add": "Отметить {name} как несовместимый",
+  "basecamp_compat_incompatible_add_short": "Добавить",
+  "basecamp_compat_incompatible_remove": "Убрать {name}",
+  "basecamp_compat_incompatible_blocked": "Этот мод или его зависимость",
+  "basecamp_compat_incompatible_save": "Сохранить несовместимые моды",
+  "basecamp_compat_incompatible_saved": "Несовместимые моды сохранены.",
+  "basecamp_compat_incompatible_failed": "Не удалось сохранить несовместимые моды."
 }

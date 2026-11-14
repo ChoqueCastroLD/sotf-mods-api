@@ -3,7 +3,7 @@ export type Ui_Domain_Dependency_Kind_ConflictsInputs = {};
 /**
 * | output |
 * | --- |
-* | "Conflicts with" |
+* | "Not compatible with" |
 *
 * @param {Ui_Domain_Dependency_Kind_ConflictsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

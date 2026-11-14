@@ -468,5 +468,17 @@
   "basecamp_versions_sort_downloads": "En çok indirilen",
   "basecamp_versions_no_match": "Bu filtreyle eşleşen sürüm yok.",
   "basecamp_latest_only_label": "Yalnızca en son sürüm",
-  "basecamp_latest_only_hint": "Oyuncular yalnızca en yeni sürümü indirebilir. Eski sürümler değişiklik notlarıyla listede kalır, ancak indirme bağlantıları çalışmaz. Eski sürümlerde insanların geri dönmesini istemediğin hatalar varsa bunu kullan."
+  "basecamp_latest_only_hint": "Oyuncular yalnızca en yeni sürümü indirebilir. Eski sürümler değişiklik notlarıyla listede kalır, ancak indirme bağlantıları çalışmaz. Eski sürümlerde insanların geri dönmesini istemediğin hatalar varsa bunu kullan.",
+  "basecamp_compat_incompatible": "Uyumsuz modlar",
+  "basecamp_compat_incompatible_hint": "Bununla birlikte kurulduğunda bozulan modlar. SotF Mods Manager kurulumdan önce oyuncuları uyarır.",
+  "basecamp_compat_incompatible_none": "Uyumsuz mod yok.",
+  "basecamp_compat_incompatible_search": "Uyumsuz olarak işaretlenecek modları ara",
+  "basecamp_compat_incompatible_no_results": "Mod bulunamadı.",
+  "basecamp_compat_incompatible_add": "{name} modunu uyumsuz olarak işaretle",
+  "basecamp_compat_incompatible_add_short": "Ekle",
+  "basecamp_compat_incompatible_remove": "{name} modunu kaldır",
+  "basecamp_compat_incompatible_blocked": "Bu mod veya bağımlılıklarından biri",
+  "basecamp_compat_incompatible_save": "Uyumsuz modları kaydet",
+  "basecamp_compat_incompatible_saved": "Uyumsuz modlar kaydedildi.",
+  "basecamp_compat_incompatible_failed": "Uyumsuz modlar kaydedilemedi."
 }

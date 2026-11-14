@@ -271,7 +271,7 @@
   "upload_dependencies_none": "Inga beroenden.",
   "upload_dependency_required": "Krävs",
   "upload_dependency_optional": "Valfri",
-  "upload_dependency_conflicts": "Konflikt",
+  "upload_dependency_conflicts": "Inte kompatibel",
   "upload_dependency_from_manifest": "Från manifest.json",
   "upload_dependency_kind": "Relation till {id}",
   "upload_dependency_range": "Versionsintervall för {id}",
@@ -510,5 +510,8 @@
   "upload_hint_not_redloader": "Filen har inget RedLoader-manifest. Är modden för en annan laddare eller för The Forest, välj det ovan så kontrolleras samma fil igen.",
   "upload_hint_redloader_title": "Det här ser ut som en RedLoader-modd",
   "upload_hint_redloader_text": "Zip-filen har en RedLoader-manifest.json. Moddar för Sons of the Forest + RedLoader installeras av RedManager och får namn och version från manifestet.",
-  "upload_switch_to_redloader": "Använd Sons of the Forest + RedLoader"
+  "upload_switch_to_redloader": "Använd Sons of the Forest + RedLoader",
+  "upload_preflight_incompatibility_unknown": "En inkompatibel mod finns inte på SOTF Mods. Välj moddar via sökningen.",
+  "upload_preflight_incompatibility_self": "En mod kan inte vara inkompatibel med sig själv.",
+  "upload_preflight_incompatibility_dependency": "Ett beroende till den här modden kan inte samtidigt vara inkompatibelt."
 }

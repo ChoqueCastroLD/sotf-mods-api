@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Ui_Domain_Dependencies_Conflicts_TitleInputs */
 
 const en_ui_domain_dependencies_conflicts_title = /** @type {(inputs: Ui_Domain_Dependencies_Conflicts_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Conflicts with`)
+	return /** @type {LocalizedString} */ (`Not compatible with`)
 };
 
 const es_ui_domain_dependencies_conflicts_title = /** @type {(inputs: Ui_Domain_Dependencies_Conflicts_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Choca con`)
+	return /** @type {LocalizedString} */ (`No compatible con`)
 };
 
 const de_ui_domain_dependencies_conflicts_title = /** @type {(inputs: Ui_Domain_Dependencies_Conflicts_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Konflikt mit`)
+	return /** @type {LocalizedString} */ (`Nicht kompatibel mit`)
 };
 
 const fr_ui_domain_dependencies_conflicts_title = /** @type {(inputs: Ui_Domain_Dependencies_Conflicts_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`En conflit avec`)
+	return /** @type {LocalizedString} */ (`Incompatible avec`)
 };
 
 const it_ui_domain_dependencies_conflicts_title = /** @type {(inputs: Ui_Domain_Dependencies_Conflicts_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`In conflitto con`)
+	return /** @type {LocalizedString} */ (`Non compatibile con`)
 };
 
 const nl_ui_domain_dependencies_conflicts_title = /** @type {(inputs: Ui_Domain_Dependencies_Conflicts_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Conflicteert met`)
+	return /** @type {LocalizedString} */ (`Niet compatibel met`)
 };
 
 const pl_ui_domain_dependencies_conflicts_title = /** @type {(inputs: Ui_Domain_Dependencies_Conflicts_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Konflikt z`)
+	return /** @type {LocalizedString} */ (`Niezgodny z`)
 };
 
 const pt_ui_domain_dependencies_conflicts_title = /** @type {(inputs: Ui_Domain_Dependencies_Conflicts_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Conflita com`)
+	return /** @type {LocalizedString} */ (`Não compatível com`)
 };
 
 const ru_ui_domain_dependencies_conflicts_title = /** @type {(inputs: Ui_Domain_Dependencies_Conflicts_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Конфликтует с`)
+	return /** @type {LocalizedString} */ (`Несовместим с`)
 };
 
 const sv_ui_domain_dependencies_conflicts_title = /** @type {(inputs: Ui_Domain_Dependencies_Conflicts_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Krockar med`)
+	return /** @type {LocalizedString} */ (`Inte kompatibel med`)
 };
 
 const tr_ui_domain_dependencies_conflicts_title = /** @type {(inputs: Ui_Domain_Dependencies_Conflicts_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Şununla çakışır`)
+	return /** @type {LocalizedString} */ (`Uyumsuz olduğu modlar`)
 };
 
 const zh_ui_domain_dependencies_conflicts_title = /** @type {(inputs: Ui_Domain_Dependencies_Conflicts_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`与之冲突`)
+	return /** @type {LocalizedString} */ (`不兼容`)
 };
 
 const ja_ui_domain_dependencies_conflicts_title = /** @type {(inputs: Ui_Domain_Dependencies_Conflicts_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`競合する MOD`)
+	return /** @type {LocalizedString} */ (`互換性なし`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Conflicts with" |
+* | "Not compatible with" |
 *
 * @param {Ui_Domain_Dependencies_Conflicts_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

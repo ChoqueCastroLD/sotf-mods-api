@@ -35,6 +35,7 @@ import { errors } from '../kernel/errors.ts';
 import { publishCacheInvalidation } from '../kernel/notify.ts';
 import { audit, evictLocal, modRouting, modTags, type PublishingDeps } from './context.ts';
 import { writeMediaSet } from './gallery.ts';
+import { hasIncompatibilityProblems, incompatibilityProblems } from './incompatibilities.ts';
 import { rawHtmlWarning, resolveListing, setModTags, storedListingFacts } from './listing.ts';
 import { type PreflightFacts, preflight, qualityScore } from './preflight.ts';
 import {
@@ -42,6 +43,7 @@ import {
   assertWriter,
   descriptionFormatOf,
   kindOfType,
+  knownManifestIds,
   loadManagedMod,
   loadOwnedMod,
   lockManagedMod,
@@ -386,7 +388,9 @@ export async function updateStudioMod(
   // «Convert to Markdown»: the stored source is re-rendered with the `full` profile (no way back).
   const convert = body.descriptionFormat === 'markdown' && format === 'legacy';
   const legacy = format === 'legacy' && !convert;
-  const { descriptionFormat: _format, ...fields } = body;
+  const { descriptionFormat: _format, incompatibilities, ...fields } = body;
+  const conflicts =
+    incompatibilities === undefined ? null : await checkIncompatibilities(ctx, current, incompatibilities);
   const input =
     convert && fields.descriptionMd === undefined
       ? { ...fields, descriptionMd: current.descriptionMd ?? current.description }
@@ -402,19 +406,98 @@ export async function updateStudioMod(
       dedicatedServer: current.dedicatedServer,
     },
   });
-  if (listing.fields.length > 0) {
+  const changedFields = conflicts ? [...listing.fields, 'incompatibilities'] : listing.fields;
+  if (changedFields.length > 0) {
     await ctx.db.transaction(async (tx) => {
       await lockOwnedMod(ctx, tx, current.id);
-      await persistDescriptionFormat(tx, current.id, format);
-      if (Object.keys(listing.columns).length > 0)
-        await tx.update(mod).set(listing.columns).where(eq(mod.id, current.id));
-      if (listing.tagIds) await setModTags(tx, current.id, listing.tagIds);
-      await afterModWrite(ctx, tx, current, listing.fields);
+      if (listing.fields.length > 0) {
+        await persistDescriptionFormat(tx, current.id, format);
+        if (Object.keys(listing.columns).length > 0)
+          await tx.update(mod).set(listing.columns).where(eq(mod.id, current.id));
+        if (listing.tagIds) await setModTags(tx, current.id, listing.tagIds);
+      }
+      if (conflicts) await replaceIncompatibilities(tx, conflicts.versionId, conflicts.rows);
+      await afterModWrite(ctx, tx, current, changedFields);
     });
     evictLocal(ctx, modTags(current.id, current.userId, kind));
-    ctx.log.info({ modId: current.id, fields: listing.fields }, 'mod listing updated');
+    ctx.log.info({ modId: current.id, fields: changedFields }, 'mod listing updated');
   }
   return getStudioMod(ctx, deps, current.id);
+}
+
+/**
+ * Validates a new incompatibility list against the latest version of `current` (its required and
+ * optional dependencies), resolving each `mod_id` to its mod. Throws `VALIDATION_FAILED` with one
+ * error per problem.
+ */
+async function checkIncompatibilities(
+  ctx: Ctx,
+  current: { id: number; manifestId: string },
+  ids: readonly string[],
+): Promise<{ versionId: number; rows: Array<{ manifestId: string; modId: number }> }> {
+  const latest = await ctx.db.execute<{ id: number }>(
+    sql`SELECT "id" FROM "ModVersion" WHERE "modId" = ${current.id} AND "isLatest" LIMIT 1`,
+  );
+  const versionId = latest.rows[0]?.id;
+  if (versionId === undefined) throw errors.conflict('The mod has no published version to attach incompatibilities to');
+  const existing = await ctx.db.execute<{ manifestId: string; kind: 'required' | 'optional' | 'conflicts' }>(
+    sql`SELECT "depManifestId" AS "manifestId", "kind" FROM "ModDependency" WHERE "modVersionId" = ${versionId} AND "kind" <> 'conflicts'`,
+  );
+  const unique = [...new Map(ids.map((id) => [id.trim().toLowerCase(), id.trim()])).values()].filter(Boolean);
+  const known = await knownManifestIds(ctx.db, unique);
+  const problems = incompatibilityProblems({
+    selfManifestId: current.manifestId,
+    manifestDeps: [],
+    declared: [...existing.rows, ...unique.map((manifestId) => ({ manifestId, kind: 'conflicts' as const }))],
+    known,
+  });
+  if (hasIncompatibilityProblems(problems)) {
+    throw errors.validation('Some incompatibilities are not valid', [
+      ...problems.unknown.map((id) => ({
+        path: 'incompatibilities',
+        code: 'incompatibility_unknown',
+        message: `${id} is not a mod on the site`,
+      })),
+      ...(problems.self
+        ? [
+            {
+              path: 'incompatibilities',
+              code: 'incompatibility_self',
+              message: 'A mod cannot be incompatible with itself',
+            },
+          ]
+        : []),
+      ...problems.dependency.map((id) => ({
+        path: 'incompatibilities',
+        code: 'incompatibility_dependency',
+        message: `${id} is a dependency of this mod`,
+      })),
+    ]);
+  }
+  const resolved = await ctx.db.execute<{ id: number; manifestId: string }>(sql`
+    SELECT "id", "mod_id" AS "manifestId" FROM "Mod"
+     WHERE lower("mod_id") = ANY(${sql.param(unique.map((id) => id.toLowerCase()))}::text[]) AND "status" NOT IN ('rejected', 'removed')`);
+  // The canonical case of each `mod_id` (as the site stores it), one row per mod.
+  const byLower = new Map(resolved.rows.map((r) => [r.manifestId.toLowerCase(), r]));
+  const rows = unique.flatMap((id) => {
+    const found = byLower.get(id.toLowerCase());
+    return found ? [{ manifestId: found.manifestId, modId: found.id }] : [];
+  });
+  return { versionId, rows };
+}
+
+async function replaceIncompatibilities(
+  tx: Executor,
+  versionId: number,
+  rows: ReadonlyArray<{ manifestId: string; modId: number }>,
+): Promise<void> {
+  await tx.execute(sql`DELETE FROM "ModDependency" WHERE "modVersionId" = ${versionId} AND "kind" = 'conflicts'`);
+  for (const row of rows) {
+    await tx.execute(sql`
+      INSERT INTO "ModDependency" ("modVersionId", "depManifestId", "depModId", "kind")
+      VALUES (${versionId}, ${row.manifestId}, ${row.modId}, 'conflicts')
+      ON CONFLICT ("modVersionId", "depManifestId") DO NOTHING`);
+  }
 }
 
 /** `PUT /studio/mods/:id/media`. */

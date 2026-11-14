@@ -271,7 +271,7 @@
   "upload_dependencies_none": "Sem dependências.",
   "upload_dependency_required": "Obrigatória",
   "upload_dependency_optional": "Opcional",
-  "upload_dependency_conflicts": "Conflito",
+  "upload_dependency_conflicts": "Não compatível",
   "upload_dependency_from_manifest": "Do manifest.json",
   "upload_dependency_kind": "Relação com {id}",
   "upload_dependency_range": "Faixa de versões de {id}",
@@ -510,5 +510,8 @@
   "upload_hint_not_redloader": "Este arquivo não tem manifesto do RedLoader. Se o mod for para outro carregador ou para The Forest, escolha acima e o mesmo arquivo será verificado de novo.",
   "upload_hint_redloader_title": "Parece um mod do RedLoader",
   "upload_hint_redloader_text": "O zip tem um manifest.json do RedLoader. Mods de Sons of the Forest + RedLoader são instalados pelo RedManager e pegam nome e versão do manifesto.",
-  "upload_switch_to_redloader": "Usar Sons of the Forest + RedLoader"
+  "upload_switch_to_redloader": "Usar Sons of the Forest + RedLoader",
+  "upload_preflight_incompatibility_unknown": "Um mod incompatível não está no SOTF Mods. Escolha mods pela pesquisa.",
+  "upload_preflight_incompatibility_self": "Um mod não pode ser incompatível consigo mesmo.",
+  "upload_preflight_incompatibility_dependency": "Uma dependência deste mod não pode ser também incompatível com ele."
 }

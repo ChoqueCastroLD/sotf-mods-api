@@ -271,7 +271,7 @@
   "upload_dependencies_none": "Bağımlılık yok.",
   "upload_dependency_required": "Gerekli",
   "upload_dependency_optional": "İsteğe bağlı",
-  "upload_dependency_conflicts": "Çakışma",
+  "upload_dependency_conflicts": "Uyumsuz",
   "upload_dependency_from_manifest": "manifest.json’dan",
   "upload_dependency_kind": "{id} ile ilişki",
   "upload_dependency_range": "{id} sürüm aralığı",
@@ -510,5 +510,8 @@
   "upload_hint_not_redloader": "Bu dosyada RedLoader manifesti yok. Mod başka bir yükleyici ya da The Forest içinse yukarıdan seç; aynı dosya yeniden kontrol edilir.",
   "upload_hint_redloader_title": "Bu bir RedLoader moduna benziyor",
   "upload_hint_redloader_text": "Zip içinde bir RedLoader manifest.json var. Sons of the Forest + RedLoader modlarını RedManager kurar; ad ve sürüm manifestten alınır.",
-  "upload_switch_to_redloader": "Sons of the Forest + RedLoader kullan"
+  "upload_switch_to_redloader": "Sons of the Forest + RedLoader kullan",
+  "upload_preflight_incompatibility_unknown": "Uyumsuz bir mod SOTF Mods’ta yok. Modları aramadan seç.",
+  "upload_preflight_incompatibility_self": "Bir mod kendisiyle uyumsuz olarak işaretlenemez.",
+  "upload_preflight_incompatibility_dependency": "Bu modun bir bağımlılığı aynı zamanda uyumsuz olamaz."
 }

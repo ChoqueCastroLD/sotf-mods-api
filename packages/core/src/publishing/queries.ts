@@ -235,6 +235,16 @@ export async function resolveDependencies(
   return [...merged.values()];
 }
 
+/** `mod_id`s of `ids` that belong to a mod on the site (any case; rejected mods excluded). */
+export async function knownManifestIds(exec: Executor, ids: readonly string[]): Promise<Set<string>> {
+  const wanted = [...new Set(ids.map((id) => id.trim()).filter(Boolean))];
+  if (wanted.length === 0) return new Set();
+  const res = await exec.execute<{ manifestId: string }>(sql`
+    SELECT "mod_id" AS "manifestId" FROM "Mod"
+     WHERE lower("mod_id") = ANY(${sql.param(wanted.map((id) => id.toLowerCase()))}::text[]) AND "status" NOT IN ('rejected', 'removed')`);
+  return new Set(res.rows.map((r) => r.manifestId));
+}
+
 /** Required dependencies that would create a cycle back to `selfManifestId` (via latest versions). */
 export async function dependencyCycles(
   exec: Executor,

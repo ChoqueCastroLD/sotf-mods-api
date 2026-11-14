@@ -48,6 +48,8 @@ function modScalars(mod: LegacyModRow, dependencies: string | string[]) {
     shortDescription: mod.shortDescription,
     description: mod.description,
     dependencies,
+    // Always a list (the launcher ignores strings), in both the list and the detail.
+    incompatibilities: mod.incompatibilities ?? [],
     type: mod.type ?? 'Mod',
     modSide: mod.modSide,
     isNSFW: mod.isNSFW,

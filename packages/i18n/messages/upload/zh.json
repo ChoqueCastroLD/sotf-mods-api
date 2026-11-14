@@ -271,7 +271,7 @@
   "upload_dependencies_none": "没有依赖。",
   "upload_dependency_required": "必需",
   "upload_dependency_optional": "可选",
-  "upload_dependency_conflicts": "冲突",
+  "upload_dependency_conflicts": "不兼容",
   "upload_dependency_from_manifest": "来自 manifest.json",
   "upload_dependency_kind": "与 {id} 的关系",
   "upload_dependency_range": "{id} 的版本范围",
@@ -510,5 +510,8 @@
   "upload_hint_not_redloader": "该文件没有 RedLoader 清单。如果这个模组适用于其他加载器或 The Forest，请在上方选择，同一个文件会重新检查。",
   "upload_hint_redloader_title": "这看起来是 RedLoader 模组",
   "upload_hint_redloader_text": "该 zip 包含 RedLoader 的 manifest.json。Sons of the Forest + RedLoader 模组由 RedManager 安装，名称和版本取自清单。",
-  "upload_switch_to_redloader": "改为 Sons of the Forest + RedLoader"
+  "upload_switch_to_redloader": "改为 Sons of the Forest + RedLoader",
+  "upload_preflight_incompatibility_unknown": "某个不兼容的模组不在 SOTF Mods 上。请通过搜索选择模组。",
+  "upload_preflight_incompatibility_self": "模组不能与自身不兼容。",
+  "upload_preflight_incompatibility_dependency": "此模组的依赖项不能同时标记为不兼容。"
 }

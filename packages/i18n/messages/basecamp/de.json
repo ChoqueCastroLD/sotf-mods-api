@@ -468,5 +468,17 @@
   "basecamp_versions_sort_downloads": "Meiste Downloads",
   "basecamp_versions_no_match": "Keine Version passt zu diesem Filter.",
   "basecamp_latest_only_label": "Nur neueste Version",
-  "basecamp_latest_only_hint": "Spieler können nur die neueste Version herunterladen. Ältere Versionen bleiben mit ihren Änderungsprotokollen sichtbar, ihre Download-Links funktionieren aber nicht mehr. Nutze das, wenn ältere Versionen Fehler haben, zu denen niemand zurückkehren soll."
+  "basecamp_latest_only_hint": "Spieler können nur die neueste Version herunterladen. Ältere Versionen bleiben mit ihren Änderungsprotokollen sichtbar, ihre Download-Links funktionieren aber nicht mehr. Nutze das, wenn ältere Versionen Fehler haben, zu denen niemand zurückkehren soll.",
+  "basecamp_compat_incompatible": "Inkompatible Mods",
+  "basecamp_compat_incompatible_hint": "Mods, die zusammen mit diesem nicht funktionieren. SotF Mods Manager warnt Spieler vor der Installation.",
+  "basecamp_compat_incompatible_none": "Keine inkompatiblen Mods.",
+  "basecamp_compat_incompatible_search": "Mods suchen, die inkompatibel sind",
+  "basecamp_compat_incompatible_no_results": "Keine Mods gefunden.",
+  "basecamp_compat_incompatible_add": "{name} als inkompatibel markieren",
+  "basecamp_compat_incompatible_add_short": "Hinzufügen",
+  "basecamp_compat_incompatible_remove": "{name} entfernen",
+  "basecamp_compat_incompatible_blocked": "Dieser Mod oder eine seiner Abhängigkeiten",
+  "basecamp_compat_incompatible_save": "Inkompatible Mods speichern",
+  "basecamp_compat_incompatible_saved": "Inkompatible Mods gespeichert.",
+  "basecamp_compat_incompatible_failed": "Inkompatible Mods konnten nicht gespeichert werden."
 }

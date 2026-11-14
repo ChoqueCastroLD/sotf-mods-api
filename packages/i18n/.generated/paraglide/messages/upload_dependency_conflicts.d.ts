@@ -3,7 +3,7 @@ export type Upload_Dependency_ConflictsInputs = {};
 /**
 * | output |
 * | --- |
-* | "Conflicts" |
+* | "Not compatible" |
 *
 * @param {Upload_Dependency_ConflictsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

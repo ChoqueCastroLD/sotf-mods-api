@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Upload_Dependency_ConflictsInputs */
 
 const en_upload_dependency_conflicts = /** @type {(inputs: Upload_Dependency_ConflictsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Conflicts`)
+	return /** @type {LocalizedString} */ (`Not compatible`)
 };
 
 const es_upload_dependency_conflicts = /** @type {(inputs: Upload_Dependency_ConflictsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Conflicto`)
+	return /** @type {LocalizedString} */ (`No compatible`)
 };
 
 const de_upload_dependency_conflicts = /** @type {(inputs: Upload_Dependency_ConflictsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Konflikt`)
+	return /** @type {LocalizedString} */ (`Nicht kompatibel`)
 };
 
 const fr_upload_dependency_conflicts = /** @type {(inputs: Upload_Dependency_ConflictsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Conflit`)
+	return /** @type {LocalizedString} */ (`Incompatible`)
 };
 
 const it_upload_dependency_conflicts = /** @type {(inputs: Upload_Dependency_ConflictsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Conflitto`)
+	return /** @type {LocalizedString} */ (`Non compatibile`)
 };
 
 const nl_upload_dependency_conflicts = /** @type {(inputs: Upload_Dependency_ConflictsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Conflict`)
+	return /** @type {LocalizedString} */ (`Niet compatibel`)
 };
 
 const pl_upload_dependency_conflicts = /** @type {(inputs: Upload_Dependency_ConflictsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Konflikt`)
+	return /** @type {LocalizedString} */ (`Niezgodny`)
 };
 
 const pt_upload_dependency_conflicts = /** @type {(inputs: Upload_Dependency_ConflictsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Conflito`)
+	return /** @type {LocalizedString} */ (`Não compatível`)
 };
 
 const ru_upload_dependency_conflicts = /** @type {(inputs: Upload_Dependency_ConflictsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Конфликт`)
+	return /** @type {LocalizedString} */ (`Несовместим`)
 };
 
 const sv_upload_dependency_conflicts = /** @type {(inputs: Upload_Dependency_ConflictsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Konflikt`)
+	return /** @type {LocalizedString} */ (`Inte kompatibel`)
 };
 
 const tr_upload_dependency_conflicts = /** @type {(inputs: Upload_Dependency_ConflictsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Çakışma`)
+	return /** @type {LocalizedString} */ (`Uyumsuz`)
 };
 
 const zh_upload_dependency_conflicts = /** @type {(inputs: Upload_Dependency_ConflictsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`冲突`)
+	return /** @type {LocalizedString} */ (`不兼容`)
 };
 
 const ja_upload_dependency_conflicts = /** @type {(inputs: Upload_Dependency_ConflictsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`競合`)
+	return /** @type {LocalizedString} */ (`互換性なし`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Conflicts" |
+* | "Not compatible" |
 *
 * @param {Upload_Dependency_ConflictsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

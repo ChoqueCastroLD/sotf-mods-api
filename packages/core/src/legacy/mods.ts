@@ -35,6 +35,8 @@ export interface LegacyModRow {
   shortDescription: string;
   description: string;
   dependencies: string;
+  /** `mod_id`s the latest version declares it does not work with (`ModDependency.kind = 'conflicts'`). */
+  incompatibilities: string[];
   type: string | null;
   modSide: string | null;
   isNSFW: boolean;
@@ -113,7 +115,11 @@ export interface LegacyDetailMod {
 }
 
 const MOD_COLUMNS = sql`
-  m."id", m."name", m."slug", m."mod_id", m."shortDescription", m."description", m."dependencies", m."type",
+  m."id", m."name", m."slug", m."mod_id", m."shortDescription", m."description", m."dependencies",
+  coalesce((SELECT array_agg(d."depManifestId" ORDER BY d."depManifestId") FROM "ModVersion" lv
+              JOIN "ModDependency" d ON d."modVersionId" = lv."id" AND d."kind" = 'conflicts'
+             WHERE lv."modId" = m."id" AND lv."isLatest"), '{}'::text[]) AS "incompatibilities",
+  m."type",
   m."modSide", m."isNSFW", m."isApproved", m."isFeatured", m."isMultiplayerCompatible", m."requiresAllPlayers",
   m."lastWeekDownloads", m."downloads", m."latestVersion", m."latestVersionSize", m."averageRating",
   m."reviewsCount", m."favoritesCount", m."commentsCount", m."sourceUrl", m."imageUrl", m."buildGuid",

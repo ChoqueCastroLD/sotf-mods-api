@@ -468,5 +468,17 @@
   "basecamp_versions_sort_downloads": "ダウンロード数順",
   "basecamp_versions_no_match": "このフィルターに一致するバージョンはありません。",
   "basecamp_latest_only_label": "最新バージョンのみ",
-  "basecamp_latest_only_hint": "プレイヤーは最新バージョンのみダウンロードできます。古いバージョンは変更履歴とともに表示されたままですが、ダウンロードリンクは使えなくなります。古いバージョンに戻ってほしくない不具合がある場合に使ってください。"
+  "basecamp_latest_only_hint": "プレイヤーは最新バージョンのみダウンロードできます。古いバージョンは変更履歴とともに表示されたままですが、ダウンロードリンクは使えなくなります。古いバージョンに戻ってほしくない不具合がある場合に使ってください。",
+  "basecamp_compat_incompatible": "互換性のないMod",
+  "basecamp_compat_incompatible_hint": "このModと一緒に入れると動かないMod。SotF Mods Managerがインストール前に警告します。",
+  "basecamp_compat_incompatible_none": "互換性のないModはありません。",
+  "basecamp_compat_incompatible_search": "互換性なしにするModを検索",
+  "basecamp_compat_incompatible_no_results": "Modが見つかりません。",
+  "basecamp_compat_incompatible_add": "{name}を互換性なしにする",
+  "basecamp_compat_incompatible_add_short": "追加",
+  "basecamp_compat_incompatible_remove": "{name}を外す",
+  "basecamp_compat_incompatible_blocked": "このModまたはその依存先",
+  "basecamp_compat_incompatible_save": "互換性のないModを保存",
+  "basecamp_compat_incompatible_saved": "互換性のないModを保存しました。",
+  "basecamp_compat_incompatible_failed": "互換性のないModを保存できませんでした。"
 }

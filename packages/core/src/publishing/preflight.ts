@@ -8,6 +8,7 @@
  */
 import type { InspectionFlagDTO } from '@sotf/contracts/manifest';
 import type { PreflightItemDTO } from '@sotf/contracts/studio';
+import type { IncompatibilityProblems } from './incompatibilities.ts';
 
 export const QUALITY_RULES = { galleryMin: 3, descriptionMin: 300 } as const;
 
@@ -44,6 +45,8 @@ export function qualityScore(facts: ListingFacts): number {
 export type FileState = 'none' | 'missing' | 'pending' | 'passed' | 'flagged' | 'failed' | 'expired';
 
 export interface PreflightFacts {
+  /** Problems of the declared incompatibilities (`incompatibilities.ts`); absent = none. */
+  incompatibilities?: IncompatibilityProblems;
   /** `version`: a new version of an existing mod (only the file, the changelog and dependencies). */
   mode: 'new' | 'version' | 'edit';
   listing: ListingFacts;
@@ -140,6 +143,10 @@ export function preflight(facts: PreflightFacts): PreflightItemDTO[] {
   }
   if (facts.unknownDependencies.length > 0) rows.push(item('dependencies', 'warning', 'dependency_unknown'));
   if (facts.dependencyCycles.length > 0) rows.push(item('dependencies', 'warning', 'dependency_cycle'));
+  const incompatible = facts.incompatibilities;
+  if (incompatible?.unknown.length) rows.push(item('dependencies', 'error', 'incompatibility_unknown'));
+  if (incompatible?.self) rows.push(item('dependencies', 'error', 'incompatibility_self'));
+  if (incompatible?.dependency.length) rows.push(item('dependencies', 'error', 'incompatibility_dependency'));
 
   const order = { error: 0, warning: 1, ok: 2 } as const;
   return rows

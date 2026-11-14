@@ -59,10 +59,14 @@ export function ModChip({ dependency, href, className }: ModChipProps) {
       {dependency.versionRange ? (
         <span className="shrink-0 font-mono text-2xs text-fg-muted">{dependency.versionRange}</span>
       ) : null}
-      <span className="flex shrink-0 items-center gap-1">
-        <Icon icon={state.icon} size={12} className={state.tone} />
-        <span className={cn('text-2xs', dependency.state === 'ok' ? 'sr-only' : 'text-fg-muted')}>{stateText}</span>
-      </span>
+      {/* «Available» (a green check) next to a mod you must not install together reads as approval:
+          an incompatible mod only shows its state when something is wrong with it. */}
+      {dependency.kind === 'conflicts' && dependency.state === 'ok' ? null : (
+        <span className="flex shrink-0 items-center gap-1">
+          <Icon icon={state.icon} size={12} className={state.tone} />
+          <span className={cn('text-2xs', dependency.state === 'ok' ? 'sr-only' : 'text-fg-muted')}>{stateText}</span>
+        </span>
+      )}
     </>
   );
   const classes = cn(

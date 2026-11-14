@@ -218,6 +218,41 @@ function refsOf(type: TypeNode): string[] {
 // Sample selection
 // -----------------------------------------------------------------------------------------------
 
+/**
+ * A fixture body as v2 answers it: the `additions` of the spec (fields the legacy site never had)
+ * inserted in place, with their example values. The golden fixtures stay byte-identical captures.
+ */
+export function withV2Additions(
+  fixture: LegacyFixture,
+  spec: Readonly<Record<string, LegacyDtoSpec>> = LEGACY_SPEC,
+): unknown {
+  const body = structuredClone(fixture.body);
+  for (const dtoSpec of Object.values(spec)) {
+    if (!dtoSpec.additions?.length) continue;
+    for (const [fixtureName, path] of dtoSpec.sources ?? []) {
+      if (fixtureName !== fixture.name) continue;
+      for (const target of selectPath(body, path)) {
+        if (target === null || typeof target !== 'object' || Array.isArray(target)) continue;
+        const object = target as Record<string, unknown>;
+        let entries = Object.entries(object);
+        for (const addition of dtoSpec.additions) {
+          entries = entries.flatMap(([key, value]) =>
+            key === addition.after
+              ? [
+                  [key, value],
+                  [addition.key, structuredClone(addition.example)],
+                ]
+              : [[key, value]],
+          ) as Array<[string, unknown]>;
+        }
+        for (const key of Object.keys(object)) delete object[key];
+        Object.assign(object, Object.fromEntries(entries));
+      }
+    }
+  }
+  return body;
+}
+
 export function selectPath(root: unknown, path: string): unknown[] {
   if (!path.startsWith('$')) throw new Error(`path must start with $: ${path}`);
   const tokens = path.slice(1).match(/\.[^.[\]]+|\[\]/g) ?? [];
@@ -261,7 +296,8 @@ interface DtoModel {
 }
 
 function buildModel(fixtures: LegacyFixture[], spec: Readonly<Record<string, LegacyDtoSpec>>): Map<string, DtoModel> {
-  const byName = new Map(fixtures.map((f) => [f.name, f]));
+  // Samples come from the bodies as v2 answers them (legacy captures + declared additions).
+  const byName = new Map(fixtures.map((f) => [f.name, { ...f, body: withV2Additions(f, spec) }]));
   const models = new Map<string, DtoModel>();
   const pendingDerived: Array<[string, LegacyDtoSpec]> = [];
 
@@ -303,11 +339,15 @@ function buildModel(fixtures: LegacyFixture[], spec: Readonly<Record<string, Leg
         );
       }
     }
-    for (const key of Object.keys(dtoSpec.types ?? {})) {
+    const declaredTypes: Record<string, string> = {
+      ...dtoSpec.types,
+      ...Object.fromEntries((dtoSpec.additions ?? []).map((addition) => [addition.key, addition.type])),
+    };
+    for (const key of Object.keys(declaredTypes)) {
       if (!keys.includes(key)) throw new Error(`${name}: declared type for unknown key "${key}"`);
     }
     const fields: Array<[string, TypeNode]> = keys.map((key) => {
-      const declared = dtoSpec.types?.[key];
+      const declared = declaredTypes[key];
       const values = samples.map((s) => s.value[key]);
       const type = declared ? parseType(declared) : infer(values, `${name}.${key}`);
       samples.forEach((s) => {
@@ -315,11 +355,12 @@ function buildModel(fixtures: LegacyFixture[], spec: Readonly<Record<string, Leg
       });
       return [key, type];
     });
+    const example = truncateExample(first.value) as Record<string, unknown>;
     models.set(name, {
       name,
       description: dtoSpec.description,
       fields,
-      example: truncateExample(first.value) as Record<string, unknown>,
+      example,
       samples: samples.length,
       fixtures: [...new Set(samples.map((s) => s.fixture))],
     });

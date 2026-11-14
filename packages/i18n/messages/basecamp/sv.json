@@ -468,5 +468,17 @@
   "basecamp_versions_sort_downloads": "Mest nedladdade",
   "basecamp_versions_no_match": "Ingen version matchar filtret.",
   "basecamp_latest_only_label": "Endast senaste versionen",
-  "basecamp_latest_only_hint": "Spelare kan bara ladda ner den senaste versionen. Äldre versioner finns kvar i listan med sina ändringsloggar, men deras nedladdningslänkar slutar fungera. Använd det här om äldre versioner har buggar som du inte vill att folk går tillbaka till."
+  "basecamp_latest_only_hint": "Spelare kan bara ladda ner den senaste versionen. Äldre versioner finns kvar i listan med sina ändringsloggar, men deras nedladdningslänkar slutar fungera. Använd det här om äldre versioner har buggar som du inte vill att folk går tillbaka till.",
+  "basecamp_compat_incompatible": "Inkompatibla moddar",
+  "basecamp_compat_incompatible_hint": "Moddar som inte fungerar tillsammans med den här. SotF Mods Manager varnar spelare innan installation.",
+  "basecamp_compat_incompatible_none": "Inga inkompatibla moddar.",
+  "basecamp_compat_incompatible_search": "Sök moddar att markera som inkompatibla",
+  "basecamp_compat_incompatible_no_results": "Inga moddar hittades.",
+  "basecamp_compat_incompatible_add": "Markera {name} som inkompatibel",
+  "basecamp_compat_incompatible_add_short": "Lägg till",
+  "basecamp_compat_incompatible_remove": "Ta bort {name}",
+  "basecamp_compat_incompatible_blocked": "Den här modden eller ett av dess beroenden",
+  "basecamp_compat_incompatible_save": "Spara inkompatibla moddar",
+  "basecamp_compat_incompatible_saved": "Inkompatibla moddar sparade.",
+  "basecamp_compat_incompatible_failed": "Det gick inte att spara de inkompatibla moddarna."
 }

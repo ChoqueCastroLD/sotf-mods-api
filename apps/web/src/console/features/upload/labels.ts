@@ -124,6 +124,9 @@ const PREFLIGHT_LABELS: Readonly<Record<string, Label>> = {
   changelog_missing: () => ut('upload_preflight_changelog_missing'),
   dependency_unknown: () => ut('upload_preflight_dependency_unknown'),
   dependency_cycle: () => ut('upload_preflight_dependency_cycle'),
+  incompatibility_unknown: () => ut('upload_preflight_incompatibility_unknown'),
+  incompatibility_self: () => ut('upload_preflight_incompatibility_self'),
+  incompatibility_dependency: () => ut('upload_preflight_incompatibility_dependency'),
   target_missing: () => ut('upload_preflight_target_missing'),
   target_removed: () => ut('upload_preflight_target_removed'),
 };

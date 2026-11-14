@@ -271,7 +271,7 @@
   "upload_dependencies_none": "依存関係はありません。",
   "upload_dependency_required": "必須",
   "upload_dependency_optional": "任意",
-  "upload_dependency_conflicts": "競合",
+  "upload_dependency_conflicts": "互換性なし",
   "upload_dependency_from_manifest": "manifest.json より",
   "upload_dependency_kind": "{id} との関係",
   "upload_dependency_range": "{id} のバージョン範囲",
@@ -510,5 +510,8 @@
   "upload_hint_not_redloader": "このファイルには RedLoader のマニフェストがありません。別のローダー用や The Forest 用なら上で選び直してください。同じファイルをもう一度チェックします。",
   "upload_hint_redloader_title": "RedLoader 用のMODのようです",
   "upload_hint_redloader_text": "zip に RedLoader の manifest.json があります。Sons of the Forest + RedLoader のMODは RedManager でインストールでき、名前とバージョンはマニフェストから取得されます。",
-  "upload_switch_to_redloader": "Sons of the Forest + RedLoader にする"
+  "upload_switch_to_redloader": "Sons of the Forest + RedLoader にする",
+  "upload_preflight_incompatibility_unknown": "互換性なしに指定したModがSOTF Modsにありません。検索からModを選んでください。",
+  "upload_preflight_incompatibility_self": "Modを自分自身と互換性なしにはできません。",
+  "upload_preflight_incompatibility_dependency": "このModの依存先を互換性なしにはできません。"
 }

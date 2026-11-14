@@ -137,6 +137,7 @@ export const LegacyModListItem = dto(
     shortDescription: z.string(),
     description: z.string(),
     dependencies: z.array(z.string()),
+    incompatibilities: z.array(z.string()),
     type: z.string().nullable(),
     modSide: z.string().nullable(),
     isNSFW: z.boolean(),
@@ -178,6 +179,7 @@ export const LegacyModListItem = dto(
       "shortDescription": "Turns Virginia into a pagan arctic fox lady.",
       "description": "Changes Virginia into an anthropomorphic / furry arctic fox, because\n\n1. Humans are stinky and ugly!\n2. Arctic foxes come from hyperborea and are therefore kino.\n\nWalking animations may look a bit ...",
       "dependencies": [],
+      "incompatibilities": [],
       "type": "Mod",
       "modSide": "client",
       "isNSFW": false,
@@ -255,6 +257,7 @@ export const LegacyModListResponse = dto(
           "shortDescription": "Turns Virginia into a pagan arctic fox lady.",
           "description": "Changes Virginia into an anthropomorphic / furry arctic fox, because\n\n1. Humans are stinky and ugly!\n2. Arctic foxes come from hyperborea and are therefore kino.\n\nWalking animations may look a bit ...",
           "dependencies": [],
+          "incompatibilities": [],
           "type": "Mod",
           "modSide": "client",
           "isNSFW": false,
@@ -386,7 +389,7 @@ export const LegacyModDetailVersion = dto(
 );
 export type LegacyModDetailVersion = z.infer<typeof LegacyModDetailVersion>;
 
-/** `GET /api/mods/:mod_id` and `/api/mods/slug/:u/:s`: same scalars as the list but `dependencies` is the raw string. (3 sample(s) from mod-by-id, mod-by-id-build, mod-by-slug) */
+/** `GET /api/mods/:mod_id` and `/api/mods/slug/:u/:s`: same scalars as the list but `dependencies` is the raw string (`incompatibilities` is a list in both). (3 sample(s) from mod-by-id, mod-by-id-build, mod-by-slug) */
 export const LegacyModDetail = dto(
   "LegacyModDetail",
   z.strictObject({
@@ -397,6 +400,7 @@ export const LegacyModDetail = dto(
     shortDescription: z.string(),
     description: z.string(),
     dependencies: z.string(),
+    incompatibilities: z.array(z.string()),
     type: z.string().nullable(),
     modSide: z.string().nullable(),
     isNSFW: z.boolean(),
@@ -429,7 +433,7 @@ export const LegacyModDetail = dto(
     _count: LegacyFavoritesCount,
   }),
   {
-    description: "`GET /api/mods/:mod_id` and `/api/mods/slug/:u/:s`: same scalars as the list but `dependencies` is the raw string.",
+    description: "`GET /api/mods/:mod_id` and `/api/mods/slug/:u/:s`: same scalars as the list but `dependencies` is the raw string (`incompatibilities` is a list in both).",
     examples: [{
       "id": 20,
       "name": "Axel's Mod Menu",
@@ -438,6 +442,7 @@ export const LegacyModDetail = dto(
       "shortDescription": "Featurefull mod menu for Sons of The Forest",
       "description": "# <FONT COLOR=\"#ffff4d\">Warning</FONT COLOR>\r\nNeeds my `SonsAxLib v1.2.0+` library to work, download it here: https://sotf-mods.com/mods/imaxel/sonsaxlib\r\n\r\n### How to use\r\nDefault opening key is i...",
       "dependencies": "SonsAxLib",
+      "incompatibilities": [],
       "type": "Mod",
       "modSide": null,
       "isNSFW": false,
@@ -517,6 +522,7 @@ export const LegacyModDetailResponse = dto(
         "shortDescription": "Featurefull mod menu for Sons of The Forest",
         "description": "# <FONT COLOR=\"#ffff4d\">Warning</FONT COLOR>\r\nNeeds my `SonsAxLib v1.2.0+` library to work, download it here: https://sotf-mods.com/mods/imaxel/sonsaxlib\r\n\r\n### How to use\r\nDefault opening key is i...",
         "dependencies": "SonsAxLib",
+        "incompatibilities": [],
         "type": "Mod",
         "modSide": null,
         "isNSFW": false,

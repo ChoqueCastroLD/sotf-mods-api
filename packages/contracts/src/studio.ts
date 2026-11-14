@@ -413,6 +413,13 @@ export const UpdateStudioModBody = dto(
       .optional()
       .describe('Only the latest version can be downloaded; older versions stay listed, their downloads answer 410'),
     originalAuthor: ListingFields.originalAuthor.optional(),
+    incompatibilities: z
+      .array(ManifestId)
+      .max(50)
+      .optional()
+      .describe(
+        '`mod_id`s this mod does not work with (replaces the list of the latest version). Each must exist, not be the mod itself nor one of its dependencies',
+      ),
     descriptionFormat: z
       .literal('markdown')
       .optional()

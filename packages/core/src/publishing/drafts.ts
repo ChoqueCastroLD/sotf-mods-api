@@ -18,6 +18,7 @@ import { and, desc, eq, inArray, sql } from 'drizzle-orm';
 import { checkAgainstMod } from '../inspection/checks.ts';
 import type { Ctx } from '../kernel/context.ts';
 import { errors } from '../kernel/errors.ts';
+import { incompatibilityProblems } from './incompatibilities.ts';
 import { rawHtmlWarning, SLUG_PATTERN, slugify } from './listing.ts';
 import { type FileState, type ListingFacts, type PreflightFacts, preflight, qualityScore } from './preflight.ts';
 import {
@@ -29,6 +30,7 @@ import {
   findCategory,
   findTags,
   kindOfType,
+  knownManifestIds,
   loadFileUpload,
   loadManagedMod,
   loadMedia,
@@ -225,6 +227,15 @@ export async function evaluateDraft(ctx: Ctx, row: ModDraft): Promise<DraftEvalu
     ? await resolveDependencies(ctx.db, manifestId, manifestDeps, data.dependencies ?? [])
     : [];
   const cycles = manifestId ? await dependencyCycles(ctx.db, manifestId, dependencies) : [];
+  const declaredConflicts = (data.dependencies ?? [])
+    .filter((d) => d.kind === 'conflicts')
+    .map((d) => d.manifestId.trim());
+  const incompatibilities = incompatibilityProblems({
+    selfManifestId: manifestId ?? null,
+    manifestDeps,
+    declared: data.dependencies ?? [],
+    known: await knownManifestIds(ctx.db, declaredConflicts),
+  });
 
   const uploadMedia = await uploadMediaIds(ctx, referencedUploads(data));
   let thumbnailMediaId = mediaIdOf(data.thumbnail, uploadMedia);
@@ -272,6 +283,7 @@ export async function evaluateDraft(ctx: Ctx, row: ModDraft): Promise<DraftEvalu
       .filter((d) => d.depModId === null && d.kind !== 'conflicts')
       .map((d) => d.manifestId),
     dependencyCycles: cycles,
+    incompatibilities,
     mediaPending,
     mediaInvalid,
     descriptionRawHtml: rawHtmlWarning(data.descriptionMd, false),
@@ -366,7 +378,27 @@ export async function createDraft(
     throw errors.conflict(`You have ${MAX_DRAFTS_PER_USER} drafts; delete one to start another`);
   }
 
-  const data = input.data ?? {};
+  const data = { ...(input.data ?? {}) };
+  // A new version starts with the optional dependencies and incompatibilities of the latest one
+  // (required ones come back from the manifest), so they are not lost on every update.
+  if (input.kind === 'version' && modId !== null && data.dependencies === undefined) {
+    const carried = await ctx.db.execute<{
+      manifestId: string;
+      kind: 'optional' | 'conflicts';
+      versionRange: string | null;
+    }>(sql`
+      SELECT d."depManifestId" AS "manifestId", d."kind", d."versionRange" FROM "ModDependency" d
+        JOIN "ModVersion" v ON v."id" = d."modVersionId"
+       WHERE v."modId" = ${modId} AND v."isLatest" AND d."kind" IN ('optional', 'conflicts')
+       ORDER BY d."id"`);
+    if (carried.rows.length > 0) {
+      data.dependencies = carried.rows.map((r) => ({
+        manifestId: r.manifestId,
+        kind: r.kind,
+        versionRange: r.versionRange,
+      }));
+    }
+  }
   const uploadIds = await ownUploads(ctx, referencedUploads(data));
   const [row] = await ctx.db
     .insert(modDraft)

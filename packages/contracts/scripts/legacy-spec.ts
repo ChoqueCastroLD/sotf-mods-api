@@ -21,7 +21,20 @@ export interface LegacyDtoSpec {
   derive?: { from: string; omit: readonly string[] };
   /** For DTOs without samples: explicit fields in order, with one example. */
   manual?: { fields: ReadonlyArray<readonly [string, string]>; example: Record<string, unknown> };
+  /**
+   * v2 fields absent from the 2026-09 fixtures (new data the legacy site never had), each inserted
+   * right after an existing key, with the value used in the generated example.
+   */
+  additions?: ReadonlyArray<{ after: string; key: string; type: string; example: unknown }>;
 }
+
+/** `incompatibilities` (2026-11): `mod_id`s a mod does not work with, read by SotF Mods Manager. */
+const INCOMPATIBILITIES = {
+  after: 'dependencies',
+  key: 'incompatibilities',
+  type: 'array(string)',
+  example: [],
+} as const;
 
 const MOD_LISTS = [
   'mods-default',
@@ -124,6 +137,7 @@ export const LEGACY_SPEC: Readonly<Record<string, LegacyDtoSpec>> = {
     description:
       'Item of `GET /api/mods` (UpdatesChecker, RedManager): Mod scalars in legacy order + images, user, category, versions (1) and _count. `dependencies` is an array here.',
     sources: at(MOD_LISTS, '$.data[]'),
+    additions: [INCOMPATIBILITIES],
     types: {
       ...MOD_SCALARS,
       dependencies: 'array(string)',
@@ -165,8 +179,9 @@ export const LEGACY_SPEC: Readonly<Record<string, LegacyDtoSpec>> = {
   },
   LegacyModDetail: {
     description:
-      '`GET /api/mods/:mod_id` and `/api/mods/slug/:u/:s`: same scalars as the list but `dependencies` is the raw string.',
+      '`GET /api/mods/:mod_id` and `/api/mods/slug/:u/:s`: same scalars as the list but `dependencies` is the raw string (`incompatibilities` is a list in both).',
     sources: at(MOD_DETAILS, '$.data'),
+    additions: [INCOMPATIBILITIES],
     types: {
       ...MOD_SCALARS,
       dependencies: 'string',
