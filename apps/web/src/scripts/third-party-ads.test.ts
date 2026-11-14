@@ -24,8 +24,13 @@ afterEach(() => {
 });
 
 describe('third-party ads', () => {
-  it('load the HilltopAds popunder for guests, and nothing from Adsterra', async () => {
+  it('load the HilltopAds popunder for guests while ads are on, nothing while they are off', async () => {
+    const { ADS_ENABLED } = await import('./third-party-ads.ts');
     const sources = await run(() => {});
+    if (!ADS_ENABLED) {
+      expect(sources).toEqual([]);
+      return;
+    }
     expect(sources).toHaveLength(1);
     expect(sources[0]).toMatch(/^https:\/\/crookedagreement\.com\//);
   });

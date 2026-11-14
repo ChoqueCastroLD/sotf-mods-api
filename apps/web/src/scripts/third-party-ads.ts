@@ -10,6 +10,9 @@
 const HILLTOP_POPUNDER =
   'https://crookedagreement.com/cND/9Q6.bw2/5llXS-WDQY9/NLzOY-xGNsjRUf4yNKS/0/3dNRjaEQ2VNPTEgW5B';
 
+/** Ads switch: `false` turns every ad off (owner decision 2026-11-14, temporary). */
+export const ADS_ENABLED = false;
+
 /** The non-sensitive hint cookie the API sets at sign-in (`lib/site.ts` SIGNED_IN_HINT_COOKIE). */
 const SIGNED_IN = /(?:^|;\s*)sotf_li=1(?:;|$)/;
 
@@ -32,7 +35,8 @@ function whenIdle(win: Window): Promise<void> {
 
 export async function initThirdPartyAds(doc: Document = document): Promise<void> {
   const win = doc.defaultView;
-  if (started || !win || doc.body.hasAttribute('data-private-url') || SIGNED_IN.test(doc.cookie)) return;
+  if (!ADS_ENABLED || started || !win || doc.body.hasAttribute('data-private-url') || SIGNED_IN.test(doc.cookie))
+    return;
   started = true;
   await whenIdle(win);
   const script = doc.createElement('script') as HTMLScriptElement & { settings?: object };
