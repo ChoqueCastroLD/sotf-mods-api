@@ -158,6 +158,46 @@ export function inferProfileShapes(data: Float32Array, count: number): Map<numbe
   return shapes;
 }
 
+/**
+ * Profiles built from stones, not logs (game `ProfileID`s). Evidence from real blueprints: they make
+ * the walls (`TypeID` 19: 317–321 full, 205/206/218 and 252–256 partial) and floors (`TypeID` 22:
+ * 488–493) of builds whose photos show stone (Toilet Block, Modern Villa) and never appear in log
+ * cabins (Snow Hotel uses 1–9, 23, 33, 40, 41, 312–335). Unknown profiles stay wood.
+ */
+export const STONE_PROFILES: ReadonlySet<string> = new Set([
+  '205',
+  '206',
+  '218',
+  '252',
+  '253',
+  '254',
+  '255',
+  '256',
+  '317',
+  '318',
+  '319',
+  '320',
+  '321',
+  '488',
+  '489',
+  '490',
+  '491',
+  '492',
+  '493',
+]);
+
+export type Material = 'wood' | 'stone';
+
+export function materialOf(profileId: string | undefined): Material {
+  return profileId !== undefined && STONE_PROFILES.has(profileId) ? 'stone' : 'wood';
+}
+
+/** Stone colour: lead greys with a small, stable variation per profile. */
+export function stoneColor(profile: number): { h: number; s: number; l: number } {
+  const jitter = ((profile * 0.618) % 1) - 0.5;
+  return { h: 0.58, s: 0.04, l: 0.4 + jitter * 0.08 };
+}
+
 /** Wood colour of a profile: log browns with a small, stable variation; thin pieces (sticks) paler. */
 export function woodColor(profile: number, shape: ProfileShape): { h: number; s: number; l: number } {
   const jitter = ((profile * 0.618) % 1) - 0.5;

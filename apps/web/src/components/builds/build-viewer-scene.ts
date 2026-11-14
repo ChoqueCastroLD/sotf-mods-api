@@ -11,6 +11,7 @@ import type { BuildGeometryDTO } from '@sotf/contracts/build-viewer';
 import { viewer_canvas_label } from '@sotf/i18n/messages';
 import {
   AmbientLight,
+  BoxGeometry,
   Color,
   CylinderGeometry,
   DirectionalLight,
@@ -26,7 +27,7 @@ import {
   WebGLRenderer,
 } from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-import { frameOf, inferProfileShapes, STRIDE, woodColor } from './build-pieces.ts';
+import { frameOf, inferProfileShapes, materialOf, STRIDE, stoneColor, woodColor } from './build-pieces.ts';
 
 export interface SceneOptions {
   host: HTMLElement;
@@ -103,9 +104,11 @@ export async function mountScene(options: SceneOptions): Promise<SceneResult | n
     if (list) list.push(i);
     else byProfile.set(profile, [i]);
   }
-  // A unit cylinder along Z (the long axis of every piece), scaled per instance.
-  const log = new CylinderGeometry(0.5, 0.5, 1, 8, 1);
+  // Low-poly unit shapes along Z (the long axis of every piece), scaled per instance: a hexagonal
+  // prism for logs and planks, a box for stone rows.
+  const log = new CylinderGeometry(0.5, 0.5, 1, 6, 1);
   log.rotateX(Math.PI / 2);
+  const stone = new BoxGeometry(1, 1, 1);
   const shapes = inferProfileShapes(data, count);
   const dummy = new Object3D();
   const quat = new Quaternion();
@@ -113,9 +116,10 @@ export async function mountScene(options: SceneOptions): Promise<SceneResult | n
   const materials: MeshLambertMaterial[] = [];
   for (const [profile, indexes] of byProfile) {
     const shape = shapes.get(profile) ?? { diameter: 0.45, length: 2.25 };
-    const { h, s, l } = woodColor(profile, shape);
-    const material = new MeshLambertMaterial({ color: new Color().setHSL(h, s, l) });
-    const mesh = new InstancedMesh(log, material, indexes.length);
+    const kind = materialOf(geometry.profiles[profile]);
+    const { h, s, l } = kind === 'stone' ? stoneColor(profile) : woodColor(profile, shape);
+    const material = new MeshLambertMaterial({ color: new Color().setHSL(h, s, l), flatShading: true });
+    const mesh = new InstancedMesh(kind === 'stone' ? stone : log, material, indexes.length);
     indexes.forEach((index, slot) => {
       const o = index * STRIDE;
       dummy.position.set(data[o + 1] ?? 0, data[o + 2] ?? 0, data[o + 3] ?? 0);
@@ -225,6 +229,7 @@ export async function mountScene(options: SceneOptions): Promise<SceneResult | n
         for (const mesh of meshes) mesh.dispose();
         for (const material of materials) material.dispose();
         log.dispose();
+        stone.dispose();
         grid.geometry.dispose();
         renderer.dispose();
         canvas.remove();

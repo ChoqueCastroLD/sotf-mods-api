@@ -1,5 +1,13 @@
 import { describe, expect, it } from 'vitest';
-import { axisOf, DEFAULT_DIAMETER, DEFAULT_LENGTH, inferProfileShapes, STRIDE, woodColor } from './build-pieces.ts';
+import {
+  axisOf,
+  DEFAULT_DIAMETER,
+  DEFAULT_LENGTH,
+  inferProfileShapes,
+  materialOf,
+  STRIDE,
+  woodColor,
+} from './build-pieces.ts';
 
 /** Packs pieces `[profile, x, y, z, qx, qy, qz, qw, scale]`. */
 function pack(pieces: number[][]): Float32Array {
@@ -52,5 +60,11 @@ describe('piece shapes inferred from the geometry', () => {
     const sampled: number[][] = [];
     for (let row = 0; row < 10; row++) sampled.push([2, row * 0.9, 0, 0, ...ALONG_Z, 1]);
     expect(inferProfileShapes(pack(sampled), sampled.length).get(2)?.diameter).toBe(DEFAULT_DIAMETER);
+  });
+
+  it('tells stone profiles (walls and floors of stone builds) from wood', () => {
+    for (const id of ['317', '321', '488', '493', '205', '218', '252']) expect(materialOf(id)).toBe('stone');
+    for (const id of ['1', '2', '212', '226', '315', '33']) expect(materialOf(id)).toBe('wood');
+    expect(materialOf(undefined)).toBe('wood');
   });
 });
