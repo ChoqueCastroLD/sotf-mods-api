@@ -3,7 +3,7 @@ export type Mod_Install_Manager_TipInputs = {};
 /**
 * | output |
 * | --- |
-* | "RedManager installs and updates mods and their dependencies for you." |
+* | "SotF Mods Manager installs and updates mods and their dependencies for you." |
 *
 * @param {Mod_Install_Manager_TipInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

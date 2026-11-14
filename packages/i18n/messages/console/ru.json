@@ -80,5 +80,7 @@
   "console_nav_group_creator": "Автор и данные",
   "console_area_you": "Вы",
   "console_nav_modpacks": "Модпаки",
-  "console_nav_modpacks_review": "Модпаки"
+  "console_nav_modpacks_review": "Модпаки",
+  "console_nav_manager": "ModManager",
+  "console_nav_traffic": "Трафик"
 }

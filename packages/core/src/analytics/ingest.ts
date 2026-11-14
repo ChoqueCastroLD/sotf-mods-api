@@ -91,6 +91,13 @@ function identityOf(ctx: Ctx, now: Date): Identity {
   };
 }
 
+/** Event props; page views also say whether the visitor is signed in (`auth: '1'`). */
+function propsOf(event: Beacon['events'][number], signedIn: boolean): JsonObject | null {
+  const props: JsonObject = { ...(event.props ?? {}) };
+  if (event.kind === 'page_view' && signedIn) props.auth = '1';
+  return Object.keys(props).length > 0 ? props : null;
+}
+
 /** Records a batch of product events. Never throws for policy reasons: returns what happened. */
 export async function recordBeacon(ctx: Ctx, body: Beacon, request: BeaconRequest): Promise<BeaconOutcome> {
   const refused = gate(ctx, request);
@@ -110,7 +117,7 @@ export async function recordBeacon(ctx: Ctx, body: Beacon, request: BeaconReques
       country: who.country,
       device: who.device,
       visitorHash: who.visitor,
-      props: event.props && Object.keys(event.props).length > 0 ? (event.props as JsonObject) : null,
+      props: propsOf(event, ctx.actor !== null),
     };
   });
   await ctx.db.insert(analyticsEvent).values(rows);

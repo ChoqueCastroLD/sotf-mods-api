@@ -157,6 +157,14 @@ export const ANALYTICS_EVENT_KINDS = [
   'cmdk_select',
   /** `window.onerror` / unhandled rejections of public pages (props: `message`, `source`, `line`). */
   'client_error',
+  /** SotF Mods Manager promotion: the download link (props: `placement`). */
+  'manager_download_click',
+  /** «Install with SotF Mods Manager» / «Open in SotF Mods Manager» (`sotfmm://` links). */
+  'manager_open_click',
+  /** Server: first request of a SotF Mods Manager install in the day (props: `version`). */
+  'manager_active',
+  /** Server: a modpack `.sotfprofile` was downloaded. */
+  'modpack_download',
 ] as const;
 export const AnalyticsEventKind = z.enum(ANALYTICS_EVENT_KINDS);
 export type AnalyticsEventKind = z.infer<typeof AnalyticsEventKind>;
@@ -167,6 +175,8 @@ export const SERVER_ONLY_EVENT_KINDS: readonly AnalyticsEventKind[] = [
   'signup',
   'email_verified',
   'version_publish',
+  'manager_active',
+  'modpack_download',
 ];
 
 export const BeaconEvent = z.strictObject({

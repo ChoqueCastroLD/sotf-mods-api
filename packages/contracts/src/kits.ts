@@ -161,7 +161,14 @@ export const KitDTO = dto(
     descriptionMd: z.string().nullable().optional().describe('Markdown source of the description'),
     items: z.array(KitItemDTO),
     unavailable: z
-      .array(z.object({ modId: EntityId, manifestId: z.string(), name: z.string(), position: z.number().int().nonnegative() }))
+      .array(
+        z.object({
+          modId: EntityId,
+          manifestId: z.string(),
+          name: z.string(),
+          position: z.number().int().nonnegative(),
+        }),
+      )
       .describe('Items whose mod can no longer be shown at all (pending, hidden or deleted author)'),
     conflictPairs: z
       .array(z.tuple([z.string(), z.string()]))
@@ -299,9 +306,7 @@ export const ResolvedProfileDTO = dto(
   }),
   {
     description: 'Mods of a launcher profile found on the site, and the ids that were skipped.',
-    examples: [
-      { name: 'Co-op', items: [{ modId: 41, manifestId: 'AmmoUi', name: 'AmmoUi' }], skipped: ['GhostMod'] },
-    ],
+    examples: [{ name: 'Co-op', items: [{ modId: 41, manifestId: 'AmmoUi', name: 'AmmoUi' }], skipped: ['GhostMod'] }],
   },
 );
 

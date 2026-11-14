@@ -321,7 +321,7 @@ export const ModListQuery = PageQuery.extend({
     'List `pending` mods whose automated checks passed (instead of published ones); same rule that makes a pending mod reachable by URL',
   ),
   author: Handle.optional(),
-  nsfw: wireFlag('Include NSFW (ignored without opt-in)'),
+  nsfw: wireFlag('Only NSFW mods'),
   q: z.string().trim().max(100).optional(),
   sort: ModSort.default('trending'),
   order: SortOrder.default('desc'),

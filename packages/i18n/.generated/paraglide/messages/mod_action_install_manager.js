@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Mod_Action_Install_ManagerInputs */
 
 const en_mod_action_install_manager = /** @type {(inputs: Mod_Action_Install_ManagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Install with RedManager`)
+	return /** @type {LocalizedString} */ (`Install with SotF Mods Manager`)
 };
 
 const es_mod_action_install_manager = /** @type {(inputs: Mod_Action_Install_ManagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Instalar con RedManager`)
+	return /** @type {LocalizedString} */ (`Instalar con SotF Mods Manager`)
 };
 
 const de_mod_action_install_manager = /** @type {(inputs: Mod_Action_Install_ManagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mit RedManager installieren`)
+	return /** @type {LocalizedString} */ (`Mit SotF Mods Manager installieren`)
 };
 
 const fr_mod_action_install_manager = /** @type {(inputs: Mod_Action_Install_ManagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Installer avec RedManager`)
+	return /** @type {LocalizedString} */ (`Installer avec SotF Mods Manager`)
 };
 
 const it_mod_action_install_manager = /** @type {(inputs: Mod_Action_Install_ManagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Installa con RedManager`)
+	return /** @type {LocalizedString} */ (`Installa con SotF Mods Manager`)
 };
 
 const nl_mod_action_install_manager = /** @type {(inputs: Mod_Action_Install_ManagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Installeren met RedManager`)
+	return /** @type {LocalizedString} */ (`Installeren met SotF Mods Manager`)
 };
 
 const pl_mod_action_install_manager = /** @type {(inputs: Mod_Action_Install_ManagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zainstaluj przez RedManager`)
+	return /** @type {LocalizedString} */ (`Zainstaluj przez SotF Mods Manager`)
 };
 
 const pt_mod_action_install_manager = /** @type {(inputs: Mod_Action_Install_ManagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Instalar com o RedManager`)
+	return /** @type {LocalizedString} */ (`Instalar com o SotF Mods Manager`)
 };
 
 const ru_mod_action_install_manager = /** @type {(inputs: Mod_Action_Install_ManagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Установить через RedManager`)
+	return /** @type {LocalizedString} */ (`Установить через SotF Mods Manager`)
 };
 
 const sv_mod_action_install_manager = /** @type {(inputs: Mod_Action_Install_ManagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Installera med RedManager`)
+	return /** @type {LocalizedString} */ (`Installera med SotF Mods Manager`)
 };
 
 const tr_mod_action_install_manager = /** @type {(inputs: Mod_Action_Install_ManagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`RedManager ile yükle`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager ile kur`)
 };
 
 const zh_mod_action_install_manager = /** @type {(inputs: Mod_Action_Install_ManagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`使用 RedManager 安装`)
+	return /** @type {LocalizedString} */ (`用 SotF Mods Manager 安装`)
 };
 
 const ja_mod_action_install_manager = /** @type {(inputs: Mod_Action_Install_ManagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`RedManagerでインストール`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager でインストール`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Install with RedManager" |
+* | "Install with SotF Mods Manager" |
 *
 * @param {Mod_Action_Install_ManagerInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

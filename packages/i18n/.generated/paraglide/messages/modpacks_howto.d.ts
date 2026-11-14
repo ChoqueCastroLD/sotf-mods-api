@@ -3,7 +3,7 @@ export type Modpacks_HowtoInputs = {};
 /**
 * | output |
 * | --- |
-* | "Open the downloaded .sotfprofile file in SotF Mods Manager (Profiles, Import profile) to install every mod." |
+* | "SotF Mods Manager installs every mod of the modpack as a new profile. You can also download the .sotfprofile file and import it." |
 *
 * @param {Modpacks_HowtoInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

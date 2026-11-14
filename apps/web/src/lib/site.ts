@@ -28,3 +28,25 @@ export const ORG_LOGO_PATH = '/brand/logo.png';
 
 /** Guest-hint cookie set by the API at sign-in (PLAN §5.1): readable by JS, not sensitive. */
 export const SIGNED_IN_HINT_COOKIE = 'sotf_li';
+
+/**
+ * SotF Mods Manager (2026-11), the site's own mod manager: installs mods and modpacks in one click
+ * through `sotfmm://mod/:user/:slug` and `sotfmm://modpack/:user/:slug` links. Download links carry
+ * `data-manager-cta="<placement>"` and the beacon records clicks (`manager_download_click`,
+ * `manager_open_click`) for the owner dashboard.
+ */
+export const MANAGER = {
+  name: 'SotF Mods Manager',
+  releaseUrl: 'https://github.com/ChoqueCastroLD/sotf-mods-manager/releases/latest',
+  /** The exe of the latest release (GitHub redirects to the file). */
+  downloadUrl: 'https://github.com/ChoqueCastroLD/sotf-mods-manager/releases/latest/download/SotfModsManager.exe',
+  repoUrl: 'https://github.com/ChoqueCastroLD/sotf-mods-manager',
+} as const;
+
+export function managerModLink(userHandle: string, slug: string): string {
+  return `sotfmm://mod/${encodeURIComponent(userHandle)}/${encodeURIComponent(slug)}`;
+}
+
+export function managerModpackLink(userHandle: string, slug: string): string {
+  return `sotfmm://modpack/${encodeURIComponent(userHandle)}/${encodeURIComponent(slug)}`;
+}

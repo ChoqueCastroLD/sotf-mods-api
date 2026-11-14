@@ -29,7 +29,7 @@
   "modpacks_copy_link": "Link kopiëren",
   "modpacks_link_copied": "Link gekopieerd",
   "modpacks_link_copy_failed": "Kan de link niet kopiëren",
-  "modpacks_howto": "Open het gedownloade .sotfprofile-bestand in SotF Mods Manager (Profielen, Profiel importeren) om alle mods te installeren.",
+  "modpacks_howto": "SotF Mods Manager installeert alle mods van de modpack als een nieuw profiel. Je kunt ook het .sotfprofile-bestand downloaden en importeren.",
   "modpacks_conflicts_title": "Sommige mods in deze modpack zijn niet compatibel met elkaar",
   "modpacks_conflict_pair": "{a} is niet compatibel met {b}",
   "modpacks_unavailable_count": "{count, plural, one {# mod is niet meer beschikbaar en wordt overgeslagen bij het downloaden.} other {# mods zijn niet meer beschikbaar en worden overgeslagen bij het downloaden.}}",
@@ -115,5 +115,7 @@
   "modpacks_review_unapprove": "Goedkeuring intrekken",
   "modpacks_review_approved": "{name} goedgekeurd",
   "modpacks_review_unapproved": "{name} terug naar in afwachting",
-  "modpacks_review_failed": "Kan de goedkeuring niet wijzigen"
+  "modpacks_review_failed": "Kan de goedkeuring niet wijzigen",
+  "modpacks_open_in_manager": "Openen in SotF Mods Manager",
+  "modpacks_get_manager": "Download SotF Mods Manager"
 }

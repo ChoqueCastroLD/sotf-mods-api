@@ -7,3 +7,4 @@ export * from './live.ts';
 export * from './referrer.ts';
 export * from './retention.ts';
 export * from './rum.ts';
+export * from './traffic.ts';

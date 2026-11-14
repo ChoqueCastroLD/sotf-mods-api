@@ -579,6 +579,111 @@ export const KelvinUsageDTO = dto(
   },
 );
 
+const TrafficTotalsDTO = z.object({
+  views: Count,
+  visitors: Count,
+  downloads: Count,
+  managerActive: Count,
+  managerDownloads: Count,
+  managerClicks: Count,
+  members: Count,
+  mods: Count,
+});
+
+const TrafficRowDTO = z.object({ key: z.string(), views: Count, visitors: Count });
+
+export const TRAFFIC_RANGES = ['7d', '30d', '90d', '365d'] as const;
+
+export const TrafficDTO = dto(
+  'TrafficDTO',
+  z.object({
+    range: z.enum(TRAFFIC_RANGES),
+    from: z.string(),
+    to: z.string(),
+    days: z.array(
+      z.object({
+        day: z.string(),
+        views: Count,
+        visitors: Count,
+        memberViews: Count,
+        downloads: Count,
+        managerActive: Count,
+        managerDownloads: Count,
+        managerClicks: Count,
+        members: Count,
+        mods: Count,
+        versions: Count,
+      }),
+    ),
+    totals: TrafficTotalsDTO,
+    previous: TrafficTotalsDTO.describe('Same totals for the period just before'),
+    breakdowns: z
+      .record(z.string(), z.array(TrafficRowDTO))
+      .describe('type, country, device, referrer, locale, auth, page, event, downloads, manager_version'),
+    topMods: z.array(
+      z.object({
+        id: Count,
+        name: z.string(),
+        kind: z.enum(['mod', 'build']),
+        path: z.string(),
+        views: Count,
+        downloads: Count,
+      }),
+    ),
+    updatedAt: IsoDateTime,
+  }),
+  {
+    description: 'Site traffic per day with breakdowns (site owner only).',
+    examples: [
+      {
+        range: '7d',
+        from: '2026-11-09',
+        to: '2026-11-15',
+        days: [
+          {
+            day: '2026-11-15',
+            views: 5400,
+            visitors: 2100,
+            memberViews: 900,
+            downloads: 3100,
+            managerActive: 120,
+            managerDownloads: 640,
+            managerClicks: 35,
+            members: 12,
+            mods: 2,
+            versions: 9,
+          },
+        ],
+        totals: {
+          views: 5400,
+          visitors: 2100,
+          downloads: 3100,
+          managerActive: 120,
+          managerDownloads: 640,
+          managerClicks: 35,
+          members: 12,
+          mods: 2,
+        },
+        previous: {
+          views: 5000,
+          visitors: 2000,
+          downloads: 2900,
+          managerActive: 0,
+          managerDownloads: 0,
+          managerClicks: 0,
+          members: 10,
+          mods: 1,
+        },
+        breakdowns: { type: [{ key: 'mod', views: 3000, visitors: 1500 }] },
+        topMods: [
+          { id: 20, name: 'Better Menus', kind: 'mod', path: '/mods/imaxel/better-menus', views: 800, downloads: 410 },
+        ],
+        updatedAt: '2026-11-15T12:00:00.000Z',
+      },
+    ],
+  },
+);
+
 export const RumDTO = dto(
   'RumDTO',
   z.object({
@@ -1174,6 +1279,17 @@ export const adminEndpoints = {
     summary: 'Real-user Core Web Vitals p75',
     query: z.object({ range: z.enum(['7d', '28d']).default('28d') }),
     response: RumDTO,
+    errors: ['FORBIDDEN'],
+  }),
+  traffic: defineEndpoint({
+    ...adminRead,
+    id: 'admin.traffic',
+    owner: 'WP-51',
+    method: 'GET',
+    path: `${admin}/traffic`,
+    summary: 'Site traffic dashboard (site owner only)',
+    query: z.object({ range: z.enum(TRAFFIC_RANGES).default('30d') }),
+    response: TrafficDTO,
     errors: ['FORBIDDEN'],
   }),
 } as const;

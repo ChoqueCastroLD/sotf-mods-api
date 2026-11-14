@@ -57,8 +57,6 @@ export function buildActions(context: ActionContext): ActionItem[] {
   const actions: ActionItem[] = [
     nav('go-explore', t('shell_cmdk_go_mods'), 'mods browse catalog all home explore', 'explore', '/mods'),
     nav('go-builds', t('cmdk_go_builds'), `builds ${t('cmdk_term_builds')}`, 'builds', '/builds'),
-    nav('go-requests', t('cmdk_go_requests'), 'requests wishlist ideas suggest', 'requests', '/requests'),
-    nav('go-jams', t('cmdk_go_jams'), 'jams jam contest competition event challenge', 'jams', '/jams'),
     nav('go-install', t('cmdk_go_install'), 'install guide how to setup tutorial help start', 'install', '/install'),
     nav('go-logs', t('cmdk_go_logs'), 'logs share log crash error bug report help paste upload', 'install', '/logs'),
     nav('go-developers', t('cmdk_go_developers'), 'developers api docs openapi tokens', 'developers', '/developers'),
@@ -126,5 +124,5 @@ export function buildActions(context: ActionContext): ActionItem[] {
 export function quickActionIds(session: Session): readonly string[] {
   return session.signedIn
     ? ['go-explore', 'dashboard', 'upload', 'notifications', 'go-builds']
-    : ['go-explore', 'go-builds', 'go-requests', 'go-jams', 'go-install'];
+    : ['go-explore', 'go-builds', 'go-install'];
 }

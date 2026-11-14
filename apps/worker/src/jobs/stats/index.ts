@@ -8,7 +8,7 @@
  * - `stats.unfollows` (domain event `follow.mod_deleted`): records a `mod_unfollow` analytics event
  *   so the rollup can report unfollows per day (idempotent on the event id).
  */
-import { recordServerEvent, SERVER_EVENT_KINDS } from '@sotf/core/analytics/index';
+import { recordServerEvent, rollupSiteTraffic, SERVER_EVENT_KINDS } from '@sotf/core/analytics/index';
 import { runStatsRollup } from '@sotf/core/stats/index';
 import { runTrending } from '@sotf/core/trending/index';
 import { defineJob, defineJobGroup, onEvent } from '../../define-job.ts';
@@ -21,7 +21,9 @@ export default defineJobGroup({
       handler: async (data, { ctx }) => {
         const result = await runStatsRollup(ctx, data.hour ? new Date(data.hour) : undefined);
         ctx.log.info(result, 'stats rolled up');
-        return result;
+        const traffic = await rollupSiteTraffic(ctx.db, ctx.clock.now());
+        ctx.log.info(traffic, 'site traffic rolled up');
+        return { ...result, trafficDays: traffic.days };
       },
     }),
     defineJob({

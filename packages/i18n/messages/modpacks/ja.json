@@ -29,7 +29,7 @@
   "modpacks_copy_link": "リンクをコピー",
   "modpacks_link_copied": "リンクをコピーしました",
   "modpacks_link_copy_failed": "リンクをコピーできませんでした",
-  "modpacks_howto": "ダウンロードした .sotfprofile ファイルを SotF Mods Manager で開くと（プロファイル → プロファイルをインポート）、すべての Mod がインストールされます。",
+  "modpacks_howto": "SotF Mods Manager は Modパックのすべての Mod を新しいプロファイルとしてインストールします。.sotfprofile ファイルをダウンロードしてインポートすることもできます。",
   "modpacks_conflicts_title": "この Modパックには互いに互換性のない Mod が含まれています",
   "modpacks_conflict_pair": "{a} は {b} と互換性がありません",
   "modpacks_unavailable_count": "{count, plural, other {# 個の Mod は利用できなくなったため、ダウンロード時にスキップされます。}}",
@@ -115,5 +115,7 @@
   "modpacks_review_unapprove": "承認を取り消す",
   "modpacks_review_approved": "{name} を承認しました",
   "modpacks_review_unapproved": "{name} を承認待ちに戻しました",
-  "modpacks_review_failed": "承認状態を変更できませんでした"
+  "modpacks_review_failed": "承認状態を変更できませんでした",
+  "modpacks_open_in_manager": "SotF Mods Manager で開く",
+  "modpacks_get_manager": "SotF Mods Manager を入手"
 }

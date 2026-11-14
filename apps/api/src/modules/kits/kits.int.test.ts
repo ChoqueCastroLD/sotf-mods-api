@@ -45,9 +45,7 @@ const notVerifiedCreators = new Set<number>();
 async function call(method: Method, url: string, userId: number | null, body?: unknown, emailVerified = true) {
   const headers = {
     ...t.sameOrigin(),
-    ...(userId === null
-      ? {}
-      : t.as({ userId, emailVerified, verifiedCreator: !notVerifiedCreators.has(userId) })),
+    ...(userId === null ? {} : t.as({ userId, emailVerified, verifiedCreator: !notVerifiedCreators.has(userId) })),
   };
   const res = await t.app.inject({
     method,

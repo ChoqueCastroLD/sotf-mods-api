@@ -4,7 +4,7 @@
  *
  * Public HTML is identical for everyone, so the server renders the guest state (Log in and
  * Register, the login link remembers the page with `?next=`) plus the hidden signed-in markup:
- * the Upload button, the avatar button and its menu (native `popover`, no framework).
+ * the avatar button and its menu (Upload is its first item) (native `popover`, no framework).
  * `scripts/account-hint.ts` reads the `sotf_li` hint cookie and, only then, calls `/me/summary`,
  * paints the avatar and emits `sotf:account`; `account-menu.ts` fills the menu from that event
  * (profile link, Moderation for moderators and admins, unread notifications, the «verify your
@@ -55,16 +55,6 @@ const itemClass =
     </a>
   </div>
 
-  <a
-    data-signed-in-only
-    href={PATHS.uploadMod}
-    aria-label={m.shell_nav_upload()}
-    class="h-10 items-center gap-2 rounded-full bg-primary px-3 text-sm font-semibold text-primary-fg hover:bg-primary-hover lg:px-4"
-  >
-    <Icon icon={Upload} size={18} />
-    <span class="hidden lg:inline">{m.shell_nav_upload()}</span>
-  </a>
-
   <!-- Room for the notifications bell (mounted here later, `islands/signals/mount.ts`): the header does not shift when it appears. -->
   <span data-signals-bell class="hidden size-10 shrink-0 items-center justify-center [html[data-signed-in]_&]:inline-flex"></span>
 
@@ -111,6 +101,12 @@ const itemClass =
       <span data-menu-resend-status role="status" class="text-xs text-fg-muted"></span>
     </p>
     <ul class="mt-2 grid gap-0.5">
+      <li>
+        <a href={PATHS.uploadMod} class={itemClass}>
+          <Icon icon={Upload} size={18} className="text-fg-muted" />
+          {m.shell_nav_upload()}
+        </a>
+      </li>
       <li>
         <a data-menu-profile href={href(PATHS.profile, locale)} class={itemClass}>
           <Icon icon={UserRound} size={18} className="text-fg-muted" />

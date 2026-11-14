@@ -158,8 +158,9 @@ describe('Explore listing', () => {
     expect(r.totalPages).toBe(1);
   });
 
-  it('includes NSFW only with nsfw=1', () => {
-    expect(ids(runListQuery(snapshot, query({ sort: 'downloads', nsfw: '1' }), NOW).items)).toEqual([2, 6, 1, 4, 3]);
+  it('hides NSFW by default and shows only NSFW with nsfw=1', () => {
+    expect(ids(runListQuery(snapshot, query({ sort: 'downloads' }), NOW).items)).not.toContain(6);
+    expect(ids(runListQuery(snapshot, query({ sort: 'downloads', nsfw: '1' }), NOW).items)).toEqual([6]);
   });
 
   it('filters by type; libraries appear in type=library and all', () => {
@@ -324,8 +325,11 @@ describe('Unapproved listing', () => {
         return false;
       }
     });
-    const listed = runListQuery(pendingSnapshot, query({ type: 'all', unapproved: '1', nsfw: '1' }), NOW).items;
-    // NSFW opt-in adds the NSFW one; hidden authors stay out of both.
+    const listed = [
+      ...runListQuery(pendingSnapshot, query({ type: 'all', unapproved: '1' }), NOW).items,
+      ...runListQuery(pendingSnapshot, query({ type: 'all', unapproved: '1', nsfw: '1' }), NOW).items,
+    ];
+    // The NSFW filter lists the NSFW one; hidden authors stay out of both.
     expect(ids(listed).sort()).toEqual([2, 3, 6]);
     expect(
       ids(reachable)

@@ -30,7 +30,6 @@ import {
   INSTALL_STEPS,
   INSTALL_VERIFIED,
   installGuide,
-  LOADER_LINKS,
 } from '../content/install/index.ts';
 import PageLayout from '../layouts/PageLayout.astro';
 import { setPageCache } from '../lib/cache/page.ts';
@@ -118,7 +117,7 @@ const jsonLd = [
         </p>
       </div>
       <div class="flex shrink-0 flex-col gap-2 sm:flex-row md:flex-col">
-        <a href={LOADER_LINKS.redManager} rel="noopener" class={buttonClasses({ variant: 'primary', size: 'lg' })}>
+        <a href={href('/manager', locale)} class={buttonClasses({ variant: 'primary', size: 'lg' })}>
           <Icon icon={Download} size={18} />
           {m.content_install_get_redmanager()}
         </a>

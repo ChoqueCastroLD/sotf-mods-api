@@ -3,7 +3,7 @@ export type Content_Install_Get_RedmanagerInputs = {};
 /**
 * | output |
 * | --- |
-* | "Get RedManager" |
+* | "Get SotF Mods Manager" |
 *
 * @param {Content_Install_Get_RedmanagerInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

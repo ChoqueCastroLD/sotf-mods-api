@@ -1,7 +1,7 @@
 ---
 /**
  * Site header, modelled on the old navbar: logo on the left, a pill menu in the centre (Mods,
- * Builds, Jams, Requests, Discord), and on the right the search field (opens the Ctrl+K palette),
+ * Builds, ModManager), and on the right the search field (opens the Ctrl+K palette),
  * the language switcher and the account area (`HeaderAccount.astro`).
  *
  * Phones get a compact bar: logo, search and the menu button (the menu sheet is `MoreSheet.astro`);
@@ -82,7 +82,7 @@ const languages = languageLinks(Astro.locals.pagePath);
     </nav>
 
     <div class="ms-auto flex items-center gap-1 md:ms-0 md:gap-2" data-topbar-actions>
-      <search class="hidden w-44 min-w-0 lg:block xl:w-60 2xl:w-72">
+      <search class="hidden w-28 shrink-0 lg:block">
         <form method="get" action={searchHref} class="flex items-center" data-header-search>
           <label for="site-search" class="sr-only">{m.common_search_label()}</label>
           <div class="relative w-full">
@@ -96,9 +96,8 @@ const languages = languageLinks(Astro.locals.pagePath);
               enterkeyhint="search"
               autocomplete="off"
               maxlength="100"
-              placeholder={m.shell_search_placeholder()}
               data-cmdk-input
-              class="h-10 w-full rounded-full border border-border-strong bg-sunken ps-9 pe-16 text-sm text-fg placeholder:text-fg-subtle focus-visible:outline-2 focus-visible:outline-focus"
+              class="h-10 w-full rounded-full border border-border-strong bg-sunken ps-9 pe-14 text-sm text-fg focus-visible:outline-2 focus-visible:outline-focus"
             />
             <span class="pointer-events-none absolute inset-y-0 end-2.5 flex items-center" aria-hidden="true">
               <Kbd><span data-kbd-mod>Ctrl</span>&nbsp;K</Kbd>

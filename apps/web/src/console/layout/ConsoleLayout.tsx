@@ -128,7 +128,7 @@ export function ConsoleLayout() {
   const tabs = !pushed;
   useDuplicateHeading(MAIN_ID, screenTitle?.(), pushed);
 
-  const viewer: Viewer = { role: me.user.role };
+  const viewer: Viewer = { role: me.user.role, handle: me.user.handle };
   const showShortcuts = () => {
     setShortcutsRequested(true);
     setShortcutsOpen(true);

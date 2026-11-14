@@ -13,19 +13,10 @@ import { ABOUT_UPDATED, aboutDoc } from '../../content/about/index.ts';
 import { DEVELOPERS_UPDATED, developersDoc } from '../../content/developers/index.ts';
 import { INSTALL_VERIFIED, installGuide } from '../../content/install/index.ts';
 import { LEGAL_DOCS, LEGAL_META, legalDocs } from '../../content/legal/index.ts';
-import { allCards, allCategories, allCreators, allJams, allRequests, allTags, newestRelease } from './data.ts';
+import { allCards, allCategories, allCreators, allTags, newestRelease } from './data.ts';
 import type { SitemapPage } from './xml.ts';
 
-export const SITEMAP_TYPES = [
-  'static',
-  'mods',
-  'builds',
-  'categories',
-  'tags',
-  'requests',
-  'jams',
-  'creators',
-] as const;
+export const SITEMAP_TYPES = ['static', 'mods', 'builds', 'categories', 'tags', 'creators'] as const;
 export type SitemapType = (typeof SITEMAP_TYPES)[number];
 
 export function isSitemapType(value: string | undefined): value is SitemapType {
@@ -36,16 +27,7 @@ export function isSitemapType(value: string | undefined): value is SitemapType {
 const TAG_INDEX_MIN_ITEMS = 3;
 
 /** Localized public pages without an entity nor a Markdown document (PLAN §4.2), all 13 locales. */
-export const STATIC_PATHS: readonly string[] = [
-  '/',
-  '/mods',
-  '/builds',
-  '/requests',
-  '/jams',
-  '/categories',
-  '/tags',
-  '/logs',
-];
+export const STATIC_PATHS: readonly string[] = ['/', '/mods', '/builds', '/modpacks', '/categories', '/tags', '/logs'];
 
 /**
  * Document pages (`content/{install,about,developers,legal}`): listed only in the locales that have
@@ -108,22 +90,6 @@ async function tagPages(): Promise<SitemapPage[]> {
   return tags.filter((tag) => tag.count >= TAG_INDEX_MIN_ITEMS).map((tag) => ({ path: tagPath(tag.slug) }));
 }
 
-async function requestPages(): Promise<SitemapPage[]> {
-  const requests = await allRequests();
-  return requests.map((request) => ({
-    path: `/requests/${request.id}`,
-    lastmod: request.editedAt ?? request.createdAt,
-  }));
-}
-
-async function jamPages(): Promise<SitemapPage[]> {
-  const jams = await allJams();
-  return jams.map((jam) => ({
-    path: `/jams/${jam.slug}`,
-    lastmod: jam.resultsPublishedAt ?? jam.announceAt ?? undefined,
-  }));
-}
-
 async function creatorPages(): Promise<SitemapPage[]> {
   const creators = await allCreators();
   return creators
@@ -146,10 +112,6 @@ export async function sitemapPages(type: SitemapType): Promise<SitemapPage[]> {
       return categoryPages();
     case 'tags':
       return tagPages();
-    case 'requests':
-      return requestPages();
-    case 'jams':
-      return jamPages();
     case 'creators':
       return creatorPages();
   }

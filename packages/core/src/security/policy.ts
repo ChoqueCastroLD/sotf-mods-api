@@ -327,6 +327,7 @@ export const TABLE_POLICIES = {
   },
   ModVersionDownloadDaily: { exposure: 'owner', writers: ['system'], note: 'Author analytics.' },
   SiteDownloadDaily: { exposure: 'staff', writers: ['system'], note: 'Site analytics.' },
+  SiteTrafficDaily: { exposure: 'staff', writers: ['system'], note: 'Owner traffic dashboard (site owner only).' },
   SiteStat: { exposure: 'public', writers: ['system', 'legacy'], note: 'Public site counters.' },
   UserActivityDaily: {
     exposure: 'public_filtered',

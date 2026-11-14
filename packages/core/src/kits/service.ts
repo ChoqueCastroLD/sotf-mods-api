@@ -13,6 +13,7 @@
  * are appended as `isAutoDependency`. A change of the items bumps `Kit.revision` and records a
  * `KitRevision` (`changes = {summary, added, removed, reordered, edited}`).
  */
+
 import type {
   CreateKitBody,
   ForkKitBody,
@@ -28,10 +29,12 @@ import { type Executor, type JsonObject, type Transaction, withTx } from '@sotf/
 import { renderMarkdown } from '@sotf/markdown';
 import { sql } from 'drizzle-orm';
 import type { z } from 'zod';
+import { visitorHash } from '../analytics/ingest.ts';
 import type { CatalogConfig } from '../catalog/media.ts';
 import { type CatalogSnapshot, getSnapshot } from '../catalog/snapshot.ts';
 import { resolveUserId } from '../catalog/users.ts';
 import { at, intArray, query, queryOne, sqlState } from '../follows/sql.ts';
+import { utcDay } from '../kernel/clock.ts';
 import type { Actor, Ctx } from '../kernel/context.ts';
 import { DomainError, errors } from '../kernel/errors.ts';
 import { likeContains } from '../legacy/db.ts';
@@ -845,6 +848,13 @@ export async function setKitApproval(ctx: Ctx, deps: KitsDeps, kitId: number, ap
 /** Counts one download of a modpack's `.sotfprofile`. */
 export async function recordKitDownload(ctx: Ctx, kitId: number): Promise<void> {
   await ctx.db.execute(sql`UPDATE "Kit" SET "downloads" = "downloads" + 1 WHERE "id" = ${kitId}`);
+  // Per-day count for the owner dashboard (no identifiers beyond the daily visitor hash).
+  const ua = (ctx.userAgent ?? '').trim().slice(0, 512);
+  const hash = ctx.ip ? visitorHash(ctx.appSecret, ctx.ip, ua, utcDay(ctx.clock.now())) : null;
+  await ctx.db.execute(sql`
+    INSERT INTO "AnalyticsEvent" ("ts", "kind", "path", "entityType", "entityId", "country", "visitorHash", "props")
+    VALUES (${ctx.clock.now().toISOString()}::timestamptz, 'modpack_download', '/', 'kit', ${kitId}, ${ctx.country}, ${hash},
+            ${JSON.stringify({ manager: /^SotfModsManager\//i.test(ua) ? '1' : '0' })}::jsonb)`);
 }
 
 /** One mod of a `.sotfprofile` (the launcher only needs `id`; the rest is informative). */

@@ -261,8 +261,11 @@ export function runListQuery(
 ): ListResult {
   const r = resolve(snapshot, query, now);
   const includeNsfw = query.nsfw === true;
-  const pool = snapshot.entries.filter((e) =>
-    query.unapproved ? isUnapprovedListable(snapshot, e, includeNsfw) : isListable(snapshot, e, includeNsfw),
+  // The NSFW filter shows only NSFW mods (owner decision 2026-11); without it they stay hidden.
+  const pool = snapshot.entries.filter(
+    (e) =>
+      (!includeNsfw || e.nsfw) &&
+      (query.unapproved ? isUnapprovedListable(snapshot, e, includeNsfw) : isListable(snapshot, e, includeNsfw)),
   );
   const matched = sortEntries(
     pool.filter((e) => matches(e, query, r, relevance)),

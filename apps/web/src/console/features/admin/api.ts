@@ -167,6 +167,17 @@ export const settingQuery = (key: SiteSettingKey) =>
     queryFn: ({ signal }) => api.admin.getSetting({ params: { key } }, { signal }),
   });
 
+export type TrafficRange = '7d' | '30d' | '90d' | '365d';
+export type Traffic = Awaited<ReturnType<typeof api.admin.traffic>>;
+
+/** Owner dashboard (site traffic); the rollup is hourly, so 5 minutes of staleness is plenty. */
+export const trafficQuery = (range: TrafficRange) =>
+  queryOptions({
+    queryKey: ['admin', 'traffic', range] as const,
+    queryFn: ({ signal }) => api.admin.traffic({ query: { range } }, { signal }),
+    staleTime: 5 * 60_000,
+  });
+
 export const rumQuery = (range: RumRange) =>
   queryOptions({
     queryKey: adminKeys.rum(range),

@@ -14,13 +14,12 @@ import {
   BookOpen,
   CodeXml,
   Hammer,
-  HandHelping,
   Info,
   Layers,
   type LucideIcon,
+  MonitorDown,
   Package,
   ScrollText,
-  Trophy,
 } from 'lucide-react';
 import { SOCIAL_LINKS } from '../../lib/site.ts';
 
@@ -30,8 +29,8 @@ export const SITE_PATHS = {
   mods: '/mods',
   builds: '/builds',
   modpacks: '/modpacks',
+  manager: '/manager',
   jams: '/jams',
-  requests: '/requests',
   search: '/search',
   install: '/install',
   logs: '/logs',
@@ -81,19 +80,15 @@ export function mainNav(): NavItem[] {
   return [
     { id: 'mods', path: PATHS.mods, label: m.common_term_mods(), icon: Package },
     { id: 'builds', path: PATHS.builds, label: m.common_term_builds(), icon: Hammer },
-    { id: 'modpacks', path: PATHS.modpacks, label: m.modpacks_nav(), icon: Layers },
-    { id: 'jams', path: PATHS.jams, label: m.jams_nav(), icon: Trophy },
-    { id: 'requests', path: PATHS.requests, label: m.common_term_requests(), icon: HandHelping },
-    { id: 'discord', external: DISCORD_URL, label: 'Discord', icon: 'discord' },
+    { id: 'manager', path: PATHS.manager, label: m.manager_nav(), icon: MonitorDown },
   ];
 }
 
 /** Rows of the phone menu sheet: what the bottom tab bar does not carry. */
 export function menuNav(): NavItem[] {
   return [
+    { id: 'manager', path: PATHS.manager, label: m.manager_nav(), icon: MonitorDown },
     { id: 'modpacks', path: PATHS.modpacks, label: m.modpacks_nav(), icon: Layers },
-    { id: 'jams', path: PATHS.jams, label: m.jams_nav(), icon: Trophy },
-    { id: 'requests', path: PATHS.requests, label: m.common_term_requests(), icon: HandHelping },
     { id: 'discord', external: DISCORD_URL, label: 'Discord', icon: 'discord' },
     { id: 'install', path: PATHS.install, label: m.shell_more_install_guide(), icon: BookOpen },
     { id: 'logs', path: PATHS.logs, label: m.logs_nav_link(), icon: ScrollText },

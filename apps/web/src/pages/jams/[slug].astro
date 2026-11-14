@@ -20,6 +20,7 @@ import EntryCard from '../../components/jams/EntryCard.astro';
 import JamHero from '../../components/jams/JamHero.astro';
 import { categoryLabel } from '../../components/jams/phase.ts';
 import ResultsBoard from '../../components/jams/ResultsBoard.astro';
+import { JAMS_VISIBLE } from '../../components/jams/visibility.ts';
 import { loginHrefFor } from '../../components/mod/format.ts';
 import { configureModDomainI18n, markdownLabels } from '../../components/mod/i18n.ts';
 import { respondNotFound } from '../../components/mod/responses.ts';
@@ -32,6 +33,8 @@ import { href } from '../../lib/i18n.ts';
 import { jamEventJsonLd } from '../../lib/seo/jsonld.ts';
 
 export const prerender = false;
+
+if (!JAMS_VISIBLE) return Astro.redirect(href('/mods', Astro.locals.locale), 302);
 
 configureModDomainI18n();
 const locale = Astro.locals.locale;

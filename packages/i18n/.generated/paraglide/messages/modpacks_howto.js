@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Modpacks_HowtoInputs */
 
 const en_modpacks_howto = /** @type {(inputs: Modpacks_HowtoInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Open the downloaded .sotfprofile file in SotF Mods Manager (Profiles, Import profile) to install every mod.`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager installs every mod of the modpack as a new profile. You can also download the .sotfprofile file and import it.`)
 };
 
 const es_modpacks_howto = /** @type {(inputs: Modpacks_HowtoInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Abre el archivo .sotfprofile descargado en SotF Mods Manager (Perfiles, Importar perfil) para instalar todos los mods.`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager instala todos los mods del modpack como un perfil nuevo. También puedes descargar el archivo .sotfprofile e importarlo.`)
 };
 
 const de_modpacks_howto = /** @type {(inputs: Modpacks_HowtoInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Öffne die heruntergeladene .sotfprofile-Datei in SotF Mods Manager (Profile, Profil importieren), um alle Mods zu installieren.`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager installiert alle Mods des Modpacks als neues Profil. Du kannst auch die .sotfprofile-Datei herunterladen und importieren.`)
 };
 
 const fr_modpacks_howto = /** @type {(inputs: Modpacks_HowtoInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ouvrez le fichier .sotfprofile téléchargé dans SotF Mods Manager (Profils, Importer un profil) pour installer tous les mods.`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager installe tous les mods du modpack dans un nouveau profil. Vous pouvez aussi télécharger le fichier .sotfprofile et l’importer.`)
 };
 
 const it_modpacks_howto = /** @type {(inputs: Modpacks_HowtoInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Apri il file .sotfprofile scaricato in SotF Mods Manager (Profili, Importa profilo) per installare tutte le mod.`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager installa tutte le mod del modpack come nuovo profilo. Puoi anche scaricare il file .sotfprofile e importarlo.`)
 };
 
 const nl_modpacks_howto = /** @type {(inputs: Modpacks_HowtoInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Open het gedownloade .sotfprofile-bestand in SotF Mods Manager (Profielen, Profiel importeren) om alle mods te installeren.`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager installeert alle mods van de modpack als een nieuw profiel. Je kunt ook het .sotfprofile-bestand downloaden en importeren.`)
 };
 
 const pl_modpacks_howto = /** @type {(inputs: Modpacks_HowtoInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Otwórz pobrany plik .sotfprofile w SotF Mods Manager (Profile, Importuj profil), aby zainstalować wszystkie mody.`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager instaluje wszystkie mody modpacka jako nowy profil. Możesz też pobrać plik .sotfprofile i go zaimportować.`)
 };
 
 const pt_modpacks_howto = /** @type {(inputs: Modpacks_HowtoInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Abra o arquivo .sotfprofile baixado no SotF Mods Manager (Perfis, Importar perfil) para instalar todos os mods.`)
+	return /** @type {LocalizedString} */ (`O SotF Mods Manager instala todos os mods do modpack como um novo perfil. Você também pode baixar o arquivo .sotfprofile e importá-lo.`)
 };
 
 const ru_modpacks_howto = /** @type {(inputs: Modpacks_HowtoInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Откройте скачанный файл .sotfprofile в SotF Mods Manager (Профили, Импорт профиля), чтобы установить все моды.`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager устанавливает все моды модпака как новый профиль. Можно также скачать файл .sotfprofile и импортировать его.`)
 };
 
 const sv_modpacks_howto = /** @type {(inputs: Modpacks_HowtoInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Öppna den nedladdade .sotfprofile-filen i SotF Mods Manager (Profiler, Importera profil) för att installera alla moddar.`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager installerar alla moddar i modpaketet som en ny profil. Du kan också ladda ner .sotfprofile-filen och importera den.`)
 };
 
 const tr_modpacks_howto = /** @type {(inputs: Modpacks_HowtoInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tüm modları kurmak için indirilen .sotfprofile dosyasını SotF Mods Manager'da aç (Profiller, Profili içe aktar).`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager mod paketindeki tüm modları yeni bir profil olarak kurar. .sotfprofile dosyasını indirip içe de aktarabilirsin.`)
 };
 
 const zh_modpacks_howto = /** @type {(inputs: Modpacks_HowtoInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`在 SotF Mods Manager 中打开下载的 .sotfprofile 文件（配置文件 → 导入配置文件），即可安装所有模组。`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager 会把整合包的所有模组安装为一个新配置。你也可以下载 .sotfprofile 文件后导入。`)
 };
 
 const ja_modpacks_howto = /** @type {(inputs: Modpacks_HowtoInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ダウンロードした .sotfprofile ファイルを SotF Mods Manager で開くと（プロファイル → プロファイルをインポート）、すべての Mod がインストールされます。`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager は Modパックのすべての Mod を新しいプロファイルとしてインストールします。.sotfprofile ファイルをダウンロードしてインポートすることもできます。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Open the downloaded .sotfprofile file in SotF Mods Manager (Profiles, Import profile) to install every mod." |
+* | "SotF Mods Manager installs every mod of the modpack as a new profile. You can also download the .sotfprofile file and import it." |
 *
 * @param {Modpacks_HowtoInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

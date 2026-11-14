@@ -1,5 +1,5 @@
 /**
- * `GET /sitemaps/{static,mods,builds,categories,tags,requests,jams,creators}.xml` (PLAN §4.4,
+ * `GET /sitemaps/{static,mods,builds,categories,tags,creators}.xml` (PLAN §4.4,
  * §8.6): every indexable URL of the type in the 13 locales, each with its hreflang cluster, a real
  * `lastmod` and `image:image` for mods and builds. Cached 1 h (tag `sitemap`).
  */

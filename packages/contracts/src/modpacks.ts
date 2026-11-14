@@ -49,7 +49,9 @@ export function parseModpacksQuery(raw: Readonly<Record<string, unknown>>): Modp
   if (!Number.isInteger(page) || page < 1 || page > 10_000 || !Number.isInteger(limit) || limit < 1 || limit > 100) {
     return null;
   }
-  const sort = (MODPACK_SORTS as readonly string[]).includes(get('sort') ?? '') ? (get('sort') as ModpackSort) : 'downloads';
+  const sort = (MODPACK_SORTS as readonly string[]).includes(get('sort') ?? '')
+    ? (get('sort') as ModpackSort)
+    : 'downloads';
   return { page, limit, search: get('search')?.slice(0, 100) ?? null, sort };
 }
 
@@ -126,7 +128,9 @@ export const PublicModpackDetail = dto(
   PublicModpackListItem.extend({
     description: z.string().describe('Markdown'),
     downloadUrl: z.string(),
-    incompatible: z.array(z.tuple([z.string(), z.string()])).describe('Pairs of mods of the pack that do not work together'),
+    incompatible: z
+      .array(z.tuple([z.string(), z.string()]))
+      .describe('Pairs of mods of the pack that do not work together'),
     mods: z.array(PublicModpackMod),
   }),
   {

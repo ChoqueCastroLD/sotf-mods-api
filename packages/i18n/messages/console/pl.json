@@ -80,5 +80,7 @@
   "console_nav_group_creator": "Twórca i dane",
   "console_area_you": "Ty",
   "console_nav_modpacks": "Modpacki",
-  "console_nav_modpacks_review": "Modpacki"
+  "console_nav_modpacks_review": "Modpacki",
+  "console_nav_manager": "ModManager",
+  "console_nav_traffic": "Ruch"
 }

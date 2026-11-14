@@ -16,9 +16,7 @@ import type {
 } from '@sotf/contracts/catalog';
 import type { ApiClient } from '@sotf/contracts/client';
 import { isApiError } from '@sotf/contracts/client';
-import type { JamSummaryDTO } from '@sotf/contracts/jams';
 import { MAX_PAGE_SIZE } from '@sotf/contracts/pagination';
-import type { RequestDTO } from '@sotf/contracts/requests';
 import type { z } from 'zod';
 import { serverApi } from '../api.ts';
 
@@ -112,24 +110,6 @@ export function allCreators(): Promise<Creator[]> {
   return memoized('creators', () =>
     allPages((page) => api().catalog.creators({ query: { sort: 'recent', page, pageSize: MAX_PAGE_SIZE } })),
   );
-}
-
-export function allRequests(): Promise<RequestDTO[]> {
-  return memoized('requests', () =>
-    allPages((page) => api().requests.list({ query: { status: 'all', sort: 'new', page, pageSize: 50 } })),
-  );
-}
-
-export function allJams(): Promise<JamSummaryDTO[]> {
-  return memoized('jams', async () => {
-    try {
-      return (await api().jams.list({})).items;
-    } catch (error) {
-      // An API that does not know Jams yet (web deployed first) must not take the sitemap index down.
-      if (isApiError(error) && error.status === 404) return [];
-      throw error;
-    }
-  });
 }
 
 /** Classifies an API failure: 404/410 of the entity, or anything else (→ 503). */

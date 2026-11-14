@@ -33,6 +33,7 @@ import {
   updateCategory,
   updateTag,
 } from '@sotf/core/admin/index';
+import { getTrafficReport } from '@sotf/core/analytics/index';
 import type { KelvinSeekConfig } from '@sotf/core/kelvinseek/index';
 import { deadLetterTarget, discardDeadLetters, retryDeadLetters } from '@sotf/core/ops/index';
 import { getSiteSetting, putSiteSetting, type SettingDefaults } from '@sotf/core/settings/index';
@@ -113,6 +114,7 @@ export default defineModule({
       getKelvinSeekUsage(ctx, kelvinseek, Number(query.days) as 7 | 30 | 90),
     );
     m.implement(adminEndpoints.rum, async ({ query, ctx }) => getAdminRum(ctx, query.range));
+    m.implement(adminEndpoints.traffic, async ({ query, ctx }) => getTrafficReport(ctx, query.range));
     m.implement(adminEndpoints.operations, async ({ ctx }) =>
       getOperations(ctx, env.PGBOSS_SCHEMA, { kelvinSeek: kelvinseek, siteUrl: env.PUBLIC_SITE_URL }),
     );

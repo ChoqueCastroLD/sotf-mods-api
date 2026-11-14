@@ -14,7 +14,7 @@ import type { DownloadSource } from '@sotf/db';
 import { isbot } from 'isbot';
 
 /** User agents of the modding ecosystem that always count (they are real installs). */
-const KNOWN_CLIENTS = /\b(?:redmanager|updateschecker|redloader)\b/i;
+const KNOWN_CLIENTS = /\b(?:redmanager|updateschecker|redloader|sotfmodsmanager)\b/i;
 
 /** Max stored length of a User-Agent (the legacy column is unbounded text). */
 export const MAX_USER_AGENT_LENGTH = 512;

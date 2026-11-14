@@ -29,7 +29,7 @@
   "modpacks_copy_link": "Kopiera länk",
   "modpacks_link_copied": "Länken kopierades",
   "modpacks_link_copy_failed": "Det gick inte att kopiera länken",
-  "modpacks_howto": "Öppna den nedladdade .sotfprofile-filen i SotF Mods Manager (Profiler, Importera profil) för att installera alla moddar.",
+  "modpacks_howto": "SotF Mods Manager installerar alla moddar i modpaketet som en ny profil. Du kan också ladda ner .sotfprofile-filen och importera den.",
   "modpacks_conflicts_title": "Vissa moddar i det här modpaketet är inte kompatibla med varandra",
   "modpacks_conflict_pair": "{a} är inte kompatibel med {b}",
   "modpacks_unavailable_count": "{count, plural, one {# modd är inte längre tillgänglig och hoppas över vid nedladdning.} other {# moddar är inte längre tillgängliga och hoppas över vid nedladdning.}}",
@@ -115,5 +115,7 @@
   "modpacks_review_unapprove": "Dra tillbaka godkännande",
   "modpacks_review_approved": "{name} godkändes",
   "modpacks_review_unapproved": "{name} flyttades tillbaka till väntande",
-  "modpacks_review_failed": "Det gick inte att ändra godkännandet"
+  "modpacks_review_failed": "Det gick inte att ändra godkännandet",
+  "modpacks_open_in_manager": "Öppna i SotF Mods Manager",
+  "modpacks_get_manager": "Hämta SotF Mods Manager"
 }

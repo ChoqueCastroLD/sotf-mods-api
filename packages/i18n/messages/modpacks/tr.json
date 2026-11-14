@@ -29,7 +29,7 @@
   "modpacks_copy_link": "Bağlantıyı kopyala",
   "modpacks_link_copied": "Bağlantı kopyalandı",
   "modpacks_link_copy_failed": "Bağlantı kopyalanamadı",
-  "modpacks_howto": "Tüm modları kurmak için indirilen .sotfprofile dosyasını SotF Mods Manager'da aç (Profiller, Profili içe aktar).",
+  "modpacks_howto": "SotF Mods Manager mod paketindeki tüm modları yeni bir profil olarak kurar. .sotfprofile dosyasını indirip içe de aktarabilirsin.",
   "modpacks_conflicts_title": "Bu paketteki bazı modlar birbiriyle uyumlu değil",
   "modpacks_conflict_pair": "{a}, {b} ile uyumlu değil",
   "modpacks_unavailable_count": "{count, plural, one {# mod artık mevcut değil ve indirmede atlanıyor.} other {# mod artık mevcut değil ve indirmede atlanıyor.}}",
@@ -115,5 +115,7 @@
   "modpacks_review_unapprove": "Onayı geri al",
   "modpacks_review_approved": "{name} onaylandı",
   "modpacks_review_unapproved": "{name} beklemeye geri alındı",
-  "modpacks_review_failed": "Onay durumu değiştirilemedi"
+  "modpacks_review_failed": "Onay durumu değiştirilemedi",
+  "modpacks_open_in_manager": "SotF Mods Manager'da aç",
+  "modpacks_get_manager": "SotF Mods Manager'ı edin"
 }

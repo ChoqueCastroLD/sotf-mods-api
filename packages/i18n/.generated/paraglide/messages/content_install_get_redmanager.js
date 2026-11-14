@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Content_Install_Get_RedmanagerInputs */
 
 const en_content_install_get_redmanager = /** @type {(inputs: Content_Install_Get_RedmanagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Get RedManager`)
+	return /** @type {LocalizedString} */ (`Get SotF Mods Manager`)
 };
 
 const es_content_install_get_redmanager = /** @type {(inputs: Content_Install_Get_RedmanagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Descargar RedManager`)
+	return /** @type {LocalizedString} */ (`Consigue SotF Mods Manager`)
 };
 
 const de_content_install_get_redmanager = /** @type {(inputs: Content_Install_Get_RedmanagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`RedManager holen`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager holen`)
 };
 
 const fr_content_install_get_redmanager = /** @type {(inputs: Content_Install_Get_RedmanagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Obtenir RedManager`)
+	return /** @type {LocalizedString} */ (`Obtenir SotF Mods Manager`)
 };
 
 const it_content_install_get_redmanager = /** @type {(inputs: Content_Install_Get_RedmanagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Scarica RedManager`)
+	return /** @type {LocalizedString} */ (`Scarica SotF Mods Manager`)
 };
 
 const nl_content_install_get_redmanager = /** @type {(inputs: Content_Install_Get_RedmanagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`RedManager downloaden`)
+	return /** @type {LocalizedString} */ (`Download SotF Mods Manager`)
 };
 
 const pl_content_install_get_redmanager = /** @type {(inputs: Content_Install_Get_RedmanagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pobierz RedManager`)
+	return /** @type {LocalizedString} */ (`Pobierz SotF Mods Manager`)
 };
 
 const pt_content_install_get_redmanager = /** @type {(inputs: Content_Install_Get_RedmanagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Baixar o RedManager`)
+	return /** @type {LocalizedString} */ (`Baixe o SotF Mods Manager`)
 };
 
 const ru_content_install_get_redmanager = /** @type {(inputs: Content_Install_Get_RedmanagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Скачать RedManager`)
+	return /** @type {LocalizedString} */ (`Скачать SotF Mods Manager`)
 };
 
 const sv_content_install_get_redmanager = /** @type {(inputs: Content_Install_Get_RedmanagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Hämta RedManager`)
+	return /** @type {LocalizedString} */ (`Hämta SotF Mods Manager`)
 };
 
 const tr_content_install_get_redmanager = /** @type {(inputs: Content_Install_Get_RedmanagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`RedManager’ı indir`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager'ı edin`)
 };
 
 const zh_content_install_get_redmanager = /** @type {(inputs: Content_Install_Get_RedmanagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`获取 RedManager`)
+	return /** @type {LocalizedString} */ (`获取 SotF Mods Manager`)
 };
 
 const ja_content_install_get_redmanager = /** @type {(inputs: Content_Install_Get_RedmanagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`RedManager を入手`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager を入手`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Get RedManager" |
+* | "Get SotF Mods Manager" |
 *
 * @param {Content_Install_Get_RedmanagerInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

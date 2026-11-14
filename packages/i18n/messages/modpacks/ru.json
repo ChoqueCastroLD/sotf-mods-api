@@ -29,7 +29,7 @@
   "modpacks_copy_link": "Копировать ссылку",
   "modpacks_link_copied": "Ссылка скопирована",
   "modpacks_link_copy_failed": "Не удалось скопировать ссылку",
-  "modpacks_howto": "Откройте скачанный файл .sotfprofile в SotF Mods Manager (Профили, Импорт профиля), чтобы установить все моды.",
+  "modpacks_howto": "SotF Mods Manager устанавливает все моды модпака как новый профиль. Можно также скачать файл .sotfprofile и импортировать его.",
   "modpacks_conflicts_title": "Некоторые моды этого модпака несовместимы друг с другом",
   "modpacks_conflict_pair": "{a} несовместим с {b}",
   "modpacks_unavailable_count": "{count, plural, one {# мод больше недоступен и пропускается при скачивании.} few {# мода больше недоступны и пропускаются при скачивании.} many {# модов больше недоступны и пропускаются при скачивании.} other {# мода больше недоступны и пропускаются при скачивании.}}",
@@ -115,5 +115,7 @@
   "modpacks_review_unapprove": "Снять одобрение",
   "modpacks_review_approved": "{name} одобрен",
   "modpacks_review_unapproved": "{name} возвращён на проверку",
-  "modpacks_review_failed": "Не удалось изменить статус одобрения"
+  "modpacks_review_failed": "Не удалось изменить статус одобрения",
+  "modpacks_open_in_manager": "Открыть в SotF Mods Manager",
+  "modpacks_get_manager": "Скачать SotF Mods Manager"
 }

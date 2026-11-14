@@ -1,0 +1,315 @@
+---
+/**
+ * `/manager`: the landing of SotF Mods Manager, the site's own mod manager for Windows (2026-11),
+ * inside the normal site shell. The new way to install Sons of the Forest mods: a hero with the
+ * real app, live counts (mods ready to install, modpacks), the old way next to the new one, the
+ * main features with their screenshots, three steps to start and a closing call to action.
+ *
+ * - Download links point to the exe of the latest GitHub release and carry `data-manager-cta`
+ *   (the beacon records `manager_download_click` for the owner dashboard).
+ * - Real screenshots of the app only (no generated art).
+ * - Edge-cached like the static pages; the counts fall back to nothing if the API fails.
+ */
+import { formatNumber } from '@sotf/i18n';
+import { m } from '@sotf/i18n/messages';
+import { Icon } from '@sotf/ui/icons';
+import {
+  Bug,
+  Check,
+  Download,
+  FolderSync,
+  Layers,
+  MousePointerClick,
+  RefreshCw,
+  ShieldCheck,
+  Wrench,
+  X,
+} from 'lucide-react';
+import PageLayout from '../layouts/PageLayout.astro';
+import { serverApi } from '../lib/api.ts';
+import { setPageCache } from '../lib/cache/page.ts';
+import { pageCache } from '../lib/cache/policy.ts';
+import { href } from '../lib/i18n.ts';
+import { MANAGER } from '../lib/site.ts';
+
+const locale = Astro.locals.locale;
+setPageCache(Astro, pageCache.static());
+
+async function count(load: (signal: AbortSignal) => Promise<{ total: number }>): Promise<number | null> {
+  try {
+    return (await load(AbortSignal.timeout(2500))).total;
+  } catch {
+    return null;
+  }
+}
+const [modsCount, modpacksCount] = await Promise.all([
+  count((signal) => serverApi().catalog.listMods({ query: { type: 'mod', pageSize: 1, compat: 'any' } }, { signal })),
+  count((signal) => serverApi().kits.list({ query: { pageSize: 1, compat: 'any' } }, { signal })),
+]);
+
+const stats = [
+  modsCount !== null ? { value: formatNumber(locale, modsCount), label: m.manager_stat_mods() } : null,
+  modpacksCount !== null && modpacksCount > 0
+    ? { value: formatNumber(locale, modpacksCount), label: m.manager_stat_modpacks() }
+    : null,
+  { value: '1', label: m.manager_stat_clicks() },
+  { value: '0', label: m.manager_stat_manual() },
+].filter((stat) => stat !== null);
+
+const oldWay = [m.manager_old_1(), m.manager_old_2(), m.manager_old_3(), m.manager_old_4()];
+const newWay = [m.manager_new_1(), m.manager_new_2(), m.manager_new_3(), m.manager_new_4()];
+const showcase = [
+  { icon: MousePointerClick, title: m.manager_feature_oneclick_title(), text: m.manager_feature_oneclick_text(), src: '/manager/gallery.webp', alt: m.manager_shot_gallery() },
+  { icon: RefreshCw, title: m.manager_feature_updates_title(), text: m.manager_feature_updates_text(), src: '/manager/installed.webp', alt: m.manager_shot_installed() },
+  { icon: Wrench, title: m.manager_feature_redloader_title(), text: m.manager_feature_redloader_text(), src: '/manager/settings.webp', alt: m.manager_shot_settings() },
+];
+const more = [
+  { icon: Layers, title: m.manager_feature_modpacks_title(), text: m.manager_feature_modpacks_text() },
+  { icon: FolderSync, title: m.manager_feature_profiles_title(), text: m.manager_feature_profiles_text() },
+  { icon: Bug, title: m.manager_feature_crash_title(), text: m.manager_feature_crash_text() },
+];
+const steps = [m.manager_step_1(), m.manager_step_2(), m.manager_step_3()];
+const CTA =
+  'inline-flex h-14 items-center justify-center gap-2.5 rounded-xl bg-primary px-7 text-lg font-bold text-primary-fg shadow-[0_12px_40px_-8px_color-mix(in_oklab,var(--color-primary)_70%,transparent)] transition hover:-translate-y-0.5 hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus';
+const GHOST =
+  'inline-flex h-14 items-center justify-center gap-2.5 rounded-xl border border-border-strong bg-surface/60 px-6 text-base font-semibold text-fg backdrop-blur transition hover:bg-fg/6 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus';
+---
+
+<PageLayout
+  template="manager"
+  width="wide"
+  seo={{
+    title: m.manager_meta_title(),
+    description: m.manager_meta_description(),
+    path: '/manager',
+    og: { image: '/manager/main.webp', imageAlt: m.manager_shot_main(), imageWidth: 1264, imageHeight: 781 },
+  }}
+  breadcrumbs={[{ label: m.common_nav_home(), path: '/' }, { label: MANAGER.name }]}
+>
+  <div class="flex flex-col gap-20 md:gap-28">
+    <!-- Hero -->
+    <section class="manager-hero relative isolate -mx-4 overflow-hidden px-4 pt-6 pb-10 md:mx-0 md:rounded-3xl md:border md:border-border md:px-10 md:pt-14 md:pb-16 lg:px-14">
+      <div aria-hidden="true" class="manager-glow pointer-events-none absolute inset-0 -z-10"></div>
+      <div aria-hidden="true" class="manager-grid pointer-events-none absolute inset-0 -z-10"></div>
+      <div class="grid items-center gap-10 lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] lg:gap-14">
+        <div class="flex flex-col gap-6">
+          <p class="inline-flex w-fit items-center gap-2 rounded-full border border-primary/40 bg-primary/10 py-1 ps-1 pe-3 text-sm font-semibold text-fg">
+            <img src="/manager/icon.png" alt="" width="24" height="24" class="size-6 rounded-full" />
+            {MANAGER.name}
+            <span class="text-fg-muted">· {m.manager_kicker()}</span>
+          </p>
+          <h1 class="text-4xl leading-[1.05] font-black tracking-tight text-balance text-fg sm:text-5xl xl:text-6xl">
+            {m.manager_hero_title()}
+          </h1>
+          <p class="max-w-xl text-lg text-pretty text-fg-muted md:text-xl">{m.manager_lead()}</p>
+          <div class="flex flex-wrap gap-3">
+            <a href={MANAGER.downloadUrl} data-manager-cta="manager-hero" rel="nofollow" class={CTA}>
+              <Icon icon={Download} size={22} />
+              {m.manager_download()}
+            </a>
+            <a href={href('/modpacks', locale)} class={GHOST}>
+              <Icon icon={Layers} size={20} />
+              {m.manager_browse_modpacks()}
+            </a>
+          </div>
+          <p class="flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-fg-muted">
+            <span class="inline-flex items-center gap-1.5">
+              <Icon icon={ShieldCheck} size={16} className="text-success" />
+              {m.manager_requirements()}
+            </span>
+            <a href={MANAGER.releaseUrl} data-manager-cta="manager-notes" rel="noopener" class="font-medium text-link underline underline-offset-3">
+              {m.manager_release_notes()}
+            </a>
+          </p>
+        </div>
+        <div class="manager-stage relative">
+          <img
+            src="/manager/main.webp"
+            alt={m.manager_shot_main()}
+            width="1264"
+            height="781"
+            fetchpriority="high"
+            class="manager-shot relative w-full rounded-xl border border-white/10"
+          />
+          <span class="manager-badge absolute -bottom-5 start-4 inline-flex items-center gap-2 rounded-full border border-border bg-overlay px-4 py-2 text-sm font-bold text-fg shadow-lg md:start-8">
+            <span class="flex size-6 items-center justify-center rounded-full bg-primary text-primary-fg">
+              <Icon icon={MousePointerClick} size={14} />
+            </span>
+            {m.manager_badge()}
+          </span>
+        </div>
+      </div>
+
+      <dl class="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-4">
+        {
+          stats.map((stat) => (
+            <div class="flex flex-col gap-1 bg-surface/90 px-5 py-5 backdrop-blur">
+              <dt class="order-2 text-sm text-fg-muted">{stat.label}</dt>
+              <dd class="order-1 text-3xl font-black text-fg tabular-nums md:text-4xl">{stat.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    <!-- Old way vs new way -->
+    <section aria-labelledby="manager-compare" class="flex flex-col gap-10">
+      <div class="mx-auto flex max-w-3xl flex-col gap-3 text-center">
+        <h2 id="manager-compare" class="text-3xl font-black tracking-tight text-balance text-fg md:text-5xl">
+          {m.manager_compare_title()}
+        </h2>
+        <p class="text-lg text-fg-muted">{m.manager_compare_text()}</p>
+      </div>
+      <div class="grid gap-5 md:grid-cols-2">
+        <div class="flex flex-col gap-5 rounded-2xl border border-border bg-surface p-6 md:p-8">
+          <h3 class="text-lg font-bold text-fg-muted">{m.manager_old_title()}</h3>
+          <ul class="flex flex-col gap-4">
+            {
+              oldWay.map((step) => (
+                <li class="flex items-start gap-3 text-base text-fg-muted">
+                  <span class="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-fg/8 text-fg-subtle">
+                    <Icon icon={X} size={14} />
+                  </span>
+                  <span class="line-through decoration-fg-subtle/60">{step}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div class="manager-new relative flex flex-col gap-5 overflow-hidden rounded-2xl border border-primary/50 bg-surface p-6 md:p-8">
+          <h3 class="text-lg font-bold text-fg">{m.manager_new_title()}</h3>
+          <ul class="flex flex-col gap-4">
+            {
+              newWay.map((step) => (
+                <li class="flex items-start gap-3 text-base font-medium text-fg">
+                  <span class="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-primary text-primary-fg">
+                    <Icon icon={Check} size={14} />
+                  </span>
+                  <span>{step}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features with screenshots -->
+    <section aria-labelledby="manager-features" class="flex flex-col gap-14 md:gap-20">
+      <h2 id="manager-features" class="mx-auto max-w-3xl text-center text-3xl font-black tracking-tight text-balance text-fg md:text-5xl">
+        {m.manager_features_title()}
+      </h2>
+      {
+        showcase.map((feature, index) => (
+          <div class="grid items-center gap-8 lg:grid-cols-2 lg:gap-14">
+            <div class:list={['flex flex-col gap-4', index % 2 === 1 && 'lg:order-2']}>
+              <span class="flex size-12 items-center justify-center rounded-xl bg-primary/12 text-primary">
+                <Icon icon={feature.icon} size={24} />
+              </span>
+              <h3 class="text-2xl font-bold text-fg md:text-3xl">{feature.title}</h3>
+              <p class="max-w-lg text-lg text-fg-muted">{feature.text}</p>
+            </div>
+            <img
+              src={feature.src}
+              alt={feature.alt}
+              width="1264"
+              height="781"
+              loading="lazy"
+              decoding="async"
+              class="w-full rounded-xl border border-border shadow-[0_30px_80px_-30px_rgb(0_0_0/0.6)]"
+            />
+          </div>
+        ))
+      }
+      <ul class="grid gap-4 md:grid-cols-3">
+        {
+          more.map((feature) => (
+            <li class="flex flex-col gap-3 rounded-2xl border border-border bg-surface p-6">
+              <span class="flex size-11 items-center justify-center rounded-xl bg-primary/12 text-primary">
+                <Icon icon={feature.icon} size={22} />
+              </span>
+              <h3 class="text-lg font-bold text-fg">{feature.title}</h3>
+              <p class="text-fg-muted">{feature.text}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <!-- Start + final call to action -->
+    <section aria-labelledby="manager-start" class="manager-final relative isolate overflow-hidden rounded-3xl border border-border px-6 py-12 md:px-12 md:py-16">
+      <div aria-hidden="true" class="manager-glow pointer-events-none absolute inset-0 -z-10"></div>
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:items-center">
+        <div class="flex flex-col gap-5">
+          <h2 id="manager-start" class="text-3xl font-black tracking-tight text-balance text-fg md:text-5xl">{m.manager_final_title()}</h2>
+          <p class="text-lg text-fg-muted">{m.manager_final_text()}</p>
+          <div class="flex flex-wrap gap-3">
+            <a href={MANAGER.downloadUrl} data-manager-cta="manager-bottom" rel="nofollow" class={CTA}>
+              <Icon icon={Download} size={22} />
+              {m.manager_download()}
+            </a>
+            <a href={MANAGER.repoUrl} rel="noopener" class={GHOST}>{m.manager_source()}</a>
+          </div>
+        </div>
+        <div class="flex flex-col gap-4">
+          <h3 class="text-sm font-bold tracking-wide text-fg-muted uppercase">{m.manager_start_title()}</h3>
+          <ol class="flex flex-col gap-3">
+            {
+              steps.map((step, index) => (
+                <li class="flex items-start gap-4 rounded-xl border border-border bg-surface/80 p-4 backdrop-blur">
+                  <span class="flex size-9 shrink-0 items-center justify-center rounded-full bg-primary text-base font-black text-primary-fg tabular-nums">
+                    {index + 1}
+                  </span>
+                  <span class="pt-1.5 text-base text-fg">{step}</span>
+                </li>
+              ))
+            }
+          </ol>
+          <p class="text-sm text-fg-muted">{m.manager_smartscreen()}</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</PageLayout>
+
+<style>
+  .manager-hero,
+  .manager-final {
+    background: var(--color-bg);
+  }
+  .manager-glow {
+    background:
+      radial-gradient(60% 55% at 80% 20%, color-mix(in oklab, var(--color-primary) 28%, transparent), transparent 70%),
+      radial-gradient(45% 50% at 0% 100%, color-mix(in oklab, var(--color-primary) 14%, transparent), transparent 70%);
+  }
+  .manager-grid {
+    background-image:
+      linear-gradient(to right, color-mix(in oklab, var(--color-fg) 6%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in oklab, var(--color-fg) 6%, transparent) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(70% 70% at 60% 30%, black, transparent);
+  }
+  .manager-stage {
+    perspective: 1600px;
+  }
+  .manager-shot {
+    box-shadow:
+      0 40px 120px -30px color-mix(in oklab, var(--color-primary) 55%, transparent),
+      0 30px 60px -30px rgb(0 0 0 / 0.7);
+    transform: rotateY(-7deg) rotateX(3deg);
+    transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+  .manager-stage:hover .manager-shot {
+    transform: rotateY(0) rotateX(0);
+  }
+  .manager-new {
+    box-shadow: 0 30px 80px -40px color-mix(in oklab, var(--color-primary) 60%, transparent);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .manager-shot,
+    .manager-stage:hover .manager-shot {
+      transform: none;
+      transition: none;
+    }
+  }
+</style>

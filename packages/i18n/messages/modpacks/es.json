@@ -29,7 +29,7 @@
   "modpacks_copy_link": "Copiar enlace",
   "modpacks_link_copied": "Enlace copiado",
   "modpacks_link_copy_failed": "No se pudo copiar el enlace",
-  "modpacks_howto": "Abre el archivo .sotfprofile descargado en SotF Mods Manager (Perfiles, Importar perfil) para instalar todos los mods.",
+  "modpacks_howto": "SotF Mods Manager instala todos los mods del modpack como un perfil nuevo. También puedes descargar el archivo .sotfprofile e importarlo.",
   "modpacks_conflicts_title": "Algunos mods de este modpack no son compatibles entre sí",
   "modpacks_conflict_pair": "{a} no es compatible con {b}",
   "modpacks_unavailable_count": "{count, plural, one {# mod ya no está disponible y la descarga lo omite.} other {# mods ya no están disponibles y la descarga los omite.}}",
@@ -115,5 +115,7 @@
   "modpacks_review_unapprove": "Retirar aprobación",
   "modpacks_review_approved": "{name} aprobado",
   "modpacks_review_unapproved": "{name} volvió a pendiente",
-  "modpacks_review_failed": "No se pudo cambiar la aprobación"
+  "modpacks_review_failed": "No se pudo cambiar la aprobación",
+  "modpacks_open_in_manager": "Abrir en SotF Mods Manager",
+  "modpacks_get_manager": "Consigue SotF Mods Manager"
 }

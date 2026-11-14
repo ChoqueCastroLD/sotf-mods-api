@@ -153,6 +153,8 @@ describe('legacy redirect table (PLAN §4.6)', () => {
       ['/kits', '/modpacks'],
       ['/kits/imaxel/starter', '/modpacks/imaxel/starter'],
       ['/k', '/mods'],
+      ['/requests', '/mods'],
+      ['/requests/12', '/mods'],
       ['/k/abc123', '/mods'],
       ['/patch-radar', '/mods'],
       ['/patch-radar/1.0.4', '/mods'],

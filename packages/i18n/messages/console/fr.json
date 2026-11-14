@@ -80,5 +80,7 @@
   "console_nav_group_creator": "Créateur et données",
   "console_area_you": "Vous",
   "console_nav_modpacks": "Modpacks",
-  "console_nav_modpacks_review": "Modpacks"
+  "console_nav_modpacks_review": "Modpacks",
+  "console_nav_manager": "ModManager",
+  "console_nav_traffic": "Trafic"
 }

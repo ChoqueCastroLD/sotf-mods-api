@@ -16,6 +16,7 @@ import HowItWorks from '../../components/jams/HowItWorks.astro';
 import JamCard from '../../components/jams/JamCard.astro';
 import JamHero from '../../components/jams/JamHero.astro';
 import { pickFeatured } from '../../components/jams/phase.ts';
+import { JAMS_VISIBLE } from '../../components/jams/visibility.ts';
 import { configureModDomainI18n } from '../../components/mod/i18n.ts';
 import PageState from '../../components/state/PageState.astro';
 import PageLayout from '../../layouts/PageLayout.astro';
@@ -26,6 +27,8 @@ import { href } from '../../lib/i18n.ts';
 import { itemListJsonLd } from '../../lib/seo/jsonld.ts';
 
 export const prerender = false;
+
+if (!JAMS_VISIBLE) return Astro.redirect(href('/mods', Astro.locals.locale), 302);
 
 configureModDomainI18n();
 const locale = Astro.locals.locale;

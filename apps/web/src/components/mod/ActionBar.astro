@@ -12,8 +12,9 @@ import { m } from '@sotf/i18n/messages';
 import { buttonClasses } from '@sotf/ui/button';
 import { DownloadSplitButton, downloadOptionOf } from '@sotf/ui/domain';
 import { Icon } from '@sotf/ui/icons';
-import { BookOpen, Flag, Heart, Share2 } from 'lucide-react';
+import { BookOpen, Flag, Heart, MonitorDown, Share2 } from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
+import { managerModLink } from '../../lib/site.ts';
 import type { ModDetailDTO, VersionDTO } from './data.ts';
 import { otherVersions, versionsPagePath } from './format.ts';
 import { FOCUS_RING } from './styles.ts';
@@ -31,6 +32,8 @@ const downloadable = latest !== null && latest.status === 'active';
 // «Latest version only» (creator opt-in): the menu offers no older versions.
 const others = mod.latestVersionOnly ? [] : otherVersions(versions, latest?.id ?? null).map(downloadOptionOf);
 const versionsHref = href(versionsPagePath(mod), locale);
+// SotF Mods Manager installs Sons of the Forest RedLoader mods (not builds) in one click.
+const oneClick = downloadable && mod.kind !== 'build' && mod.modLoader === 'redloader' && mod.game === 'sotf';
 const LINK =
   'inline-flex h-9 items-center gap-1.5 rounded-md px-2.5 text-sm font-medium text-fg-muted ' +
   'hover:bg-fg/6 hover:text-fg aria-pressed:text-primary aria-busy:cursor-progress ' +
@@ -56,14 +59,26 @@ const LINK =
         </p>
       )
     }
+    {
+      oneClick && (
+        <a
+          href={managerModLink(mod.userHandle, mod.slug)}
+          data-manager-placement="mod"
+          class={buttonClasses({ variant: 'secondary', size: 'md' })}
+        >
+          <Icon icon={MonitorDown} size={16} />
+          <span>{m.mod_action_install_manager()}</span>
+        </a>
+      )
+    }
     <a
       href={href('/install', locale)}
       data-dialog-open="install-dialog"
       data-track="install_modal_open"
-      class={buttonClasses({ variant: 'secondary', size: 'md' })}
+      class={buttonClasses({ variant: oneClick ? 'ghost' : 'secondary', size: 'md' })}
     >
       <Icon icon={BookOpen} size={16} />
-      <span>{mod.modLoader === 'redloader' && mod.game === 'sotf' ? m.mod_action_install_manager() : m.mod_install_title()}</span>
+      <span>{m.mod_install_title()}</span>
     </a>
   </div>
 

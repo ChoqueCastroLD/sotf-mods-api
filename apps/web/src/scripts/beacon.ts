@@ -115,7 +115,13 @@ export function pageEntity(root: HTMLElement = document.documentElement): Beacon
 
 function pageView(): void {
   const referrer = document.referrer ? { referrer: clip(document.referrer, 512) } : {};
-  enqueue({ kind: 'page_view', ...pageEntity(), ...referrer });
+  const template = document.documentElement.dataset.template;
+  enqueue({
+    kind: 'page_view',
+    ...pageEntity(),
+    ...referrer,
+    ...(template ? { props: { t: clip(template, 40) } } : {}),
+  });
 }
 
 function compactAttribution(attribution: unknown): Record<string, string | number> | undefined {
@@ -164,8 +170,33 @@ function whenActivated(run: () => void): void {
   else run();
 }
 
+/**
+ * SotF Mods Manager clicks: download links (`data-manager-cta="<placement>"`) and `sotfmm://` links
+ * (one-click install of a mod or a modpack). Delegated, so links rendered later count too.
+ */
+function trackManagerClicks(): void {
+  document.addEventListener(
+    'click',
+    (event) => {
+      const link = (event.target as Element | null)?.closest?.('a[data-manager-cta], a[href^="sotfmm:"]');
+      if (!(link instanceof HTMLAnchorElement)) return;
+      const placement = clip(link.dataset.managerCta ?? link.dataset.managerPlacement ?? 'other', 40);
+      if (link.href.startsWith('sotfmm:')) {
+        const kind = link.href.startsWith('sotfmm://modpack/') ? 'modpack' : 'mod';
+        track('manager_open_click', { ...pageEntity(), props: { placement, kind } });
+      } else {
+        track('manager_download_click', { props: { placement } });
+      }
+      // A `sotfmm:` link never unloads the page and GitHub may open in this tab: send now.
+      flush();
+    },
+    { capture: true },
+  );
+}
+
 export function initBeacon(): void {
   if (!trackingAllowed()) return;
+  trackManagerClicks();
   whenActivated(() => {
     pageView();
     addEventListener('pageshow', (event) => {

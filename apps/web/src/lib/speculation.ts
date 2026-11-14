@@ -8,7 +8,7 @@
  */
 import { PREFIXED_LOCALES } from '@sotf/i18n';
 
-const SECTIONS = ['mods', 'builds', 'profile', 'requests', 'jams', 'categories'] as const;
+const SECTIONS = ['mods', 'builds', 'modpacks', 'profile', 'categories'] as const;
 
 function patterns(): string[] {
   const out: string[] = [];

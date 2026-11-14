@@ -186,3 +186,24 @@ export const searchQueryDaily = pgTable(
 );
 
 export type SearchQueryDaily = typeof searchQueryDaily.$inferSelect;
+
+/**
+ * Site-wide traffic per UTC day (2026-11, owner dashboard): page views, unique visitors and the
+ * other site counters, grouped by one `dimension` at a time (`total`, `type`, `country`, `device`,
+ * `referrer`, `locale`, `auth`, `page`, `event`, `downloads`, `manager`, `manager_version`, …).
+ * Rebuilt hourly by `stats.rollup` from `"AnalyticsEvent"` and the download tables, so it keeps the
+ * history after the 90-day retention of the raw events. `visitors` = distinct daily visitor hashes.
+ */
+export const siteTrafficDaily = pgTable(
+  'SiteTrafficDaily',
+  {
+    day: date('day', { mode: 'string' }).notNull(),
+    dimension: text('dimension').notNull(),
+    key: text('key').notNull(),
+    views: integer('views').notNull().default(0),
+    visitors: integer('visitors').notNull().default(0),
+  },
+  (t) => [primaryKey({ name: 'SiteTrafficDaily_pkey', columns: [t.day, t.dimension, t.key] })],
+);
+
+export type SiteTrafficDaily = typeof siteTrafficDaily.$inferSelect;

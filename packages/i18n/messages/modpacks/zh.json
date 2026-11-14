@@ -29,7 +29,7 @@
   "modpacks_copy_link": "复制链接",
   "modpacks_link_copied": "链接已复制",
   "modpacks_link_copy_failed": "无法复制链接",
-  "modpacks_howto": "在 SotF Mods Manager 中打开下载的 .sotfprofile 文件（配置文件 → 导入配置文件），即可安装所有模组。",
+  "modpacks_howto": "SotF Mods Manager 会把整合包的所有模组安装为一个新配置。你也可以下载 .sotfprofile 文件后导入。",
   "modpacks_conflicts_title": "此整合包中的部分模组互不兼容",
   "modpacks_conflict_pair": "{a} 与 {b} 不兼容",
   "modpacks_unavailable_count": "{count, plural, other {# 个模组已不可用，下载时会跳过。}}",
@@ -115,5 +115,7 @@
   "modpacks_review_unapprove": "撤销批准",
   "modpacks_review_approved": "已批准 {name}",
   "modpacks_review_unapproved": "{name} 已退回待审核",
-  "modpacks_review_failed": "无法更改审核状态"
+  "modpacks_review_failed": "无法更改审核状态",
+  "modpacks_open_in_manager": "在 SotF Mods Manager 中打开",
+  "modpacks_get_manager": "获取 SotF Mods Manager"
 }

@@ -64,6 +64,7 @@ export const LEGACY_EXACT: Readonly<Record<string, string>> = {
  */
 export const REMOVED_FEATURES: Readonly<Record<string, string>> = {
   kits: '/modpacks',
+  requests: '/mods',
   k: '/mods',
   'patch-radar': '/mods',
   best: '/mods',

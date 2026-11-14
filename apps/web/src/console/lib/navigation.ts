@@ -11,6 +11,7 @@ import {
   Activity,
   BellRing,
   ChartLine,
+  ChartNoAxesCombined,
   Database,
   Download,
   DraftingCompass,
@@ -57,6 +58,8 @@ export interface NavItem {
   exact?: boolean;
   /** `false`: a flow rather than a place — left out of the phone's section strip. */
   phone?: boolean;
+  /** Only the site owner sees it (the owner dashboard; the API enforces it too). */
+  ownerOnly?: boolean;
 }
 
 export interface NavSection {
@@ -79,6 +82,15 @@ export interface ConsoleArea {
 
 export interface Viewer {
   role: 'user' | 'moderator' | 'admin';
+  /** Handle of the signed-in user (owner-only items). */
+  handle?: string;
+}
+
+/** Handles of the site owner (same list as `SITE_OWNER_HANDLES` in core). */
+const SITE_OWNERS: readonly string[] = ['shokocc'];
+
+export function isSiteOwner(viewer: Viewer): boolean {
+  return viewer.role === 'admin' && SITE_OWNERS.includes((viewer.handle ?? '').toLowerCase());
 }
 
 export const CONSOLE_AREAS: readonly ConsoleArea[] = [
@@ -100,7 +112,6 @@ export const CONSOLE_AREAS: readonly ConsoleArea[] = [
           { to: '/dashboard/new/build', label: () => t('console_nav_new_build'), icon: DraftingCompass, phone: false },
           { to: '/dashboard/drafts', label: () => t('console_nav_drafts'), icon: NotebookPen },
           { to: '/dashboard/analytics', label: () => t('console_nav_analytics'), icon: ChartLine },
-          { to: '/dashboard/jams', label: () => t('console_nav_jams'), icon: Trophy },
         ],
       },
     ],
@@ -186,6 +197,12 @@ export const CONSOLE_AREAS: readonly ConsoleArea[] = [
         label: () => t('console_area_admin'),
         adminOnly: true,
         items: [
+          {
+            to: '/moderation/admin/traffic',
+            label: () => t('console_nav_traffic'),
+            icon: ChartNoAxesCombined,
+            ownerOnly: true,
+          },
           { to: '/moderation/admin/game-builds', label: () => t('console_nav_game_builds'), icon: Gamepad2 },
           { to: '/moderation/admin/ecosystem', label: () => t('console_nav_ecosystem'), icon: Network },
           { to: '/moderation/admin/taxonomy', label: () => t('console_nav_taxonomy'), icon: Tags },
@@ -212,7 +229,10 @@ export function visibleAreas(viewer: Viewer): ConsoleArea[] {
 
 /** Sections of an area the viewer can open. */
 export function visibleSections(area: ConsoleArea, viewer: Viewer): NavSection[] {
-  return area.sections.filter((section) => !section.adminOnly || viewer.role === 'admin');
+  const owner = isSiteOwner(viewer);
+  return area.sections
+    .filter((section) => !section.adminOnly || viewer.role === 'admin')
+    .map((section) => (owner ? section : { ...section, items: section.items.filter((item) => !item.ownerOnly) }));
 }
 
 /**

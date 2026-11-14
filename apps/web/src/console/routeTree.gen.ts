@@ -59,6 +59,7 @@ import { Route as ModerationAdminPerformanceRouteImport } from './routes/moderat
 import { Route as ModerationAdminRecategorizeRouteImport } from './routes/moderation/admin/recategorize.tsx'
 import { Route as ModerationAdminSettingsRouteImport } from './routes/moderation/admin/settings.tsx'
 import { Route as ModerationAdminTaxonomyRouteImport } from './routes/moderation/admin/taxonomy.tsx'
+import { Route as ModerationAdminTrafficRouteImport } from './routes/moderation/admin/traffic.tsx'
 import { Route as ModerationJamsIndexRouteImport } from './routes/moderation/jams/index.tsx'
 import { Route as ModerationJamsJamIdRouteImport } from './routes/moderation/jams/$jamId.tsx'
 import { Route as ModerationUsersIndexRouteImport } from './routes/moderation/users/index.tsx'
@@ -323,6 +324,11 @@ const ModerationAdminTaxonomyRoute = ModerationAdminTaxonomyRouteImport.update({
   path: '/taxonomy',
   getParentRoute: () => ModerationAdminRouteRoute,
 } as any)
+const ModerationAdminTrafficRoute = ModerationAdminTrafficRouteImport.update({
+  id: '/traffic',
+  path: '/traffic',
+  getParentRoute: () => ModerationAdminRouteRoute,
+} as any)
 const ModerationJamsIndexRoute = ModerationJamsIndexRouteImport.update({
   id: '/jams/',
   path: '/jams/',
@@ -401,6 +407,7 @@ export interface FileRoutesByFullPath {
   '/moderation/admin/recategorize': typeof ModerationAdminRecategorizeRoute
   '/moderation/admin/settings': typeof ModerationAdminSettingsRoute
   '/moderation/admin/taxonomy': typeof ModerationAdminTaxonomyRoute
+  '/moderation/admin/traffic': typeof ModerationAdminTrafficRoute
   '/moderation/jams/$jamId': typeof ModerationJamsJamIdRoute
   '/moderation/users/$userId': typeof ModerationUsersUserIdRoute
   '/dashboard/drafts/': typeof DashboardDraftsIndexRoute
@@ -453,6 +460,7 @@ export interface FileRoutesByTo {
   '/moderation/admin/recategorize': typeof ModerationAdminRecategorizeRoute
   '/moderation/admin/settings': typeof ModerationAdminSettingsRoute
   '/moderation/admin/taxonomy': typeof ModerationAdminTaxonomyRoute
+  '/moderation/admin/traffic': typeof ModerationAdminTrafficRoute
   '/moderation/jams/$jamId': typeof ModerationJamsJamIdRoute
   '/moderation/users/$userId': typeof ModerationUsersUserIdRoute
   '/dashboard/drafts': typeof DashboardDraftsIndexRoute
@@ -512,6 +520,7 @@ export interface FileRoutesById {
   '/moderation/admin/recategorize': typeof ModerationAdminRecategorizeRoute
   '/moderation/admin/settings': typeof ModerationAdminSettingsRoute
   '/moderation/admin/taxonomy': typeof ModerationAdminTaxonomyRoute
+  '/moderation/admin/traffic': typeof ModerationAdminTrafficRoute
   '/moderation/jams/$jamId': typeof ModerationJamsJamIdRoute
   '/moderation/users/$userId': typeof ModerationUsersUserIdRoute
   '/dashboard/drafts/': typeof DashboardDraftsIndexRoute
@@ -572,6 +581,7 @@ export interface FileRouteTypes {
     | '/moderation/admin/recategorize'
     | '/moderation/admin/settings'
     | '/moderation/admin/taxonomy'
+    | '/moderation/admin/traffic'
     | '/moderation/jams/$jamId'
     | '/moderation/users/$userId'
     | '/dashboard/drafts/'
@@ -624,6 +634,7 @@ export interface FileRouteTypes {
     | '/moderation/admin/recategorize'
     | '/moderation/admin/settings'
     | '/moderation/admin/taxonomy'
+    | '/moderation/admin/traffic'
     | '/moderation/jams/$jamId'
     | '/moderation/users/$userId'
     | '/dashboard/drafts'
@@ -682,6 +693,7 @@ export interface FileRouteTypes {
     | '/moderation/admin/recategorize'
     | '/moderation/admin/settings'
     | '/moderation/admin/taxonomy'
+    | '/moderation/admin/traffic'
     | '/moderation/jams/$jamId'
     | '/moderation/users/$userId'
     | '/dashboard/drafts/'
@@ -1056,6 +1068,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ModerationAdminTaxonomyRouteImport
       parentRoute: typeof ModerationAdminRouteRoute
     }
+    '/moderation/admin/traffic': {
+      id: '/moderation/admin/traffic'
+      path: '/traffic'
+      fullPath: '/moderation/admin/traffic'
+      preLoaderRoute: typeof ModerationAdminTrafficRouteImport
+      parentRoute: typeof ModerationAdminRouteRoute
+    }
     '/moderation/jams/': {
       id: '/moderation/jams/'
       path: '/jams'
@@ -1167,6 +1186,7 @@ interface ModerationAdminRouteRouteChildren {
   ModerationAdminRecategorizeRoute: typeof ModerationAdminRecategorizeRoute
   ModerationAdminSettingsRoute: typeof ModerationAdminSettingsRoute
   ModerationAdminTaxonomyRoute: typeof ModerationAdminTaxonomyRoute
+  ModerationAdminTrafficRoute: typeof ModerationAdminTrafficRoute
   ModerationAdminIndexRoute: typeof ModerationAdminIndexRoute
 }
 
@@ -1180,6 +1200,7 @@ const ModerationAdminRouteRouteChildren: ModerationAdminRouteRouteChildren = {
   ModerationAdminRecategorizeRoute: ModerationAdminRecategorizeRoute,
   ModerationAdminSettingsRoute: ModerationAdminSettingsRoute,
   ModerationAdminTaxonomyRoute: ModerationAdminTaxonomyRoute,
+  ModerationAdminTrafficRoute: ModerationAdminTrafficRoute,
   ModerationAdminIndexRoute: ModerationAdminIndexRoute,
 }
 

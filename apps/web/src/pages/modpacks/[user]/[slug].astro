@@ -15,7 +15,7 @@ import { m } from '@sotf/i18n/messages';
 import { localizeHtml } from '@sotf/markdown/labels';
 import { PROSE_LOCATOR_CLASSES } from '@sotf/ui/domain';
 import { Icon } from '@sotf/ui/icons';
-import { AlertTriangle, Ban, Download, Info, Layers, Link as LinkIcon, Package } from 'lucide-react';
+import { AlertTriangle, Ban, Download, Info, Layers, Link as LinkIcon, MonitorDown, Package } from 'lucide-react';
 import { configureModDomainI18n, markdownLabels } from '../../../components/mod/i18n.ts';
 import { respondNotFound } from '../../../components/mod/responses.ts';
 import { loadModpack } from '../../../components/modpacks/data.ts';
@@ -24,6 +24,7 @@ import PageLayout from '../../../layouts/PageLayout.astro';
 import { setPageCache } from '../../../lib/cache/page.ts';
 import { pageCache } from '../../../lib/cache/policy.ts';
 import { href } from '../../../lib/i18n.ts';
+import { MANAGER, managerModpackLink } from '../../../lib/site.ts';
 
 export const prerender = false;
 
@@ -146,30 +147,45 @@ const description = pack ? m.modpacks_detail_description({ name: pack.name, auth
                 </dd>
               </div>
             </dl>
-            <div class="grid gap-2 sm:grid-cols-2 md:grid-cols-1 xl:grid-cols-2">
+            <div class="grid gap-2">
               <a
-                href={downloadHref}
-                download={`${pack.slug}.sotfprofile`}
-                rel="nofollow"
+                href={managerModpackLink(pack.owner.handle, pack.slug)}
+                data-manager-placement="modpack"
                 class="inline-flex h-12 items-center justify-center gap-2 rounded-lg bg-primary px-5 text-base font-semibold text-primary-fg transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
               >
-                <Icon icon={Download} size={18} />
-                {m.modpacks_download()}
+                <Icon icon={MonitorDown} size={18} />
+                {m.modpacks_open_in_manager()}
               </a>
-              <button
-                type="button"
-                data-modpack-copy={href(pack.canonicalPath, locale)}
-                data-copied={m.modpacks_link_copied()}
-                data-copy-failed={m.modpacks_link_copy_failed()}
-                class="inline-flex h-12 items-center justify-center gap-2 rounded-lg border border-border-strong bg-surface px-5 text-base font-semibold text-fg transition-colors hover:bg-fg/6 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
-              >
-                <Icon icon={LinkIcon} size={18} />
-                {m.modpacks_copy_link()}
-              </button>
+              <div class="grid gap-2 sm:grid-cols-2">
+                <a
+                  href={downloadHref}
+                  download={`${pack.slug}.sotfprofile`}
+                  rel="nofollow"
+                  class="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-border-strong bg-surface px-4 text-sm font-semibold text-fg transition-colors hover:bg-fg/6 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+                >
+                  <Icon icon={Download} size={16} />
+                  {m.modpacks_download()}
+                </a>
+                <button
+                  type="button"
+                  data-modpack-copy={href(pack.canonicalPath, locale)}
+                  data-copied={m.modpacks_link_copied()}
+                  data-copy-failed={m.modpacks_link_copy_failed()}
+                  class="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-border-strong bg-surface px-4 text-sm font-semibold text-fg transition-colors hover:bg-fg/6 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus"
+                >
+                  <Icon icon={LinkIcon} size={16} />
+                  {m.modpacks_copy_link()}
+                </button>
+              </div>
             </div>
             <p class="flex items-start gap-2 text-sm text-fg-muted">
               <Icon icon={Info} size={16} className="mt-0.5 shrink-0" />
-              <span>{m.modpacks_howto()}</span>
+              <span>
+                {m.modpacks_howto()}{' '}
+                <a href={MANAGER.downloadUrl} data-manager-cta="modpack" rel="nofollow" class="font-medium text-link underline underline-offset-3">
+                  {m.modpacks_get_manager()}
+                </a>
+              </span>
             </p>
           </div>
         </section>

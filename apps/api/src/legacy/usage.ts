@@ -4,6 +4,7 @@
  * `"AnalyticsEvent"(kind='legacy_call')`, aggregated per UTC day. Nothing identifying is kept.
  */
 import type { Clock } from '@sotf/core';
+import { MANAGER_UA, recordManagerActive } from '@sotf/core/analytics/index';
 import { LegacyUsageRecorder } from '@sotf/core/legacy/index';
 import type { FastifyInstance } from 'fastify';
 import { pathOf } from '../lib/surface.ts';
@@ -19,6 +20,7 @@ export interface LegacyUsageOptions {
 export function setupLegacyUsage(app: FastifyInstance, platform: Platform, options: LegacyUsageOptions = {}) {
   const recorder = new LegacyUsageRecorder(options.clock ? { clock: options.clock } : {});
   const flush = () => recorder.flush(platform.db, platform.log);
+  const managers = { day: '', hashes: new Set<string>() };
 
   app.addHook('onResponse', async (request, reply) => {
     const origin = request.headers.origin;
@@ -30,6 +32,13 @@ export function setupLegacyUsage(app: FastifyInstance, platform: Platform, optio
       userAgent: request.headers['user-agent'],
       origin: Array.isArray(origin) ? origin[0] : origin,
     });
+    // SotF Mods Manager installs seen today (owner dashboard); never blocks the response.
+    const ua = request.headers['user-agent'];
+    if (ua && MANAGER_UA.test(ua) && request.ctx) {
+      void recordManagerActive(request.ctx, ua, managers).catch((error: unknown) =>
+        platform.log.warn({ err: error }, 'manager_active not recorded'),
+      );
+    }
   });
 
   const every = options.flushMs ?? 60_000;

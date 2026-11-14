@@ -51,6 +51,7 @@ export const API_ROUTES = {
     retryDeadLetters: { id: 'admin.retryDeadLetters', method: 'POST', path: "/api/v2/admin/ops/dead-letters/retry", kind: 'json', bodyKind: 'json' },
     discardDeadLetters: { id: 'admin.discardDeadLetters', method: 'POST', path: "/api/v2/admin/ops/dead-letters/discard", kind: 'json', bodyKind: 'json' },
     rum: { id: 'admin.rum', method: 'GET', path: "/api/v2/admin/rum", kind: 'json', bodyKind: null },
+    traffic: { id: 'admin.traffic', method: 'GET', path: "/api/v2/admin/traffic", kind: 'json', bodyKind: null },
   },
   auth: {
     register: { id: 'auth.register', method: 'POST', path: "/api/v2/auth/register", kind: 'json', bodyKind: 'json' },
