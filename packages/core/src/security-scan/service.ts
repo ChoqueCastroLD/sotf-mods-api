@@ -13,6 +13,7 @@
  *    everyone; `suspicious` and `unknown` hold it unless the author is a verified creator (or
  *    staff); `clean` changes nothing. Holding = `active` → `pending` with a scan reason (latest
  *    recomputed, `version.status_changed`, a signal to the author, the `versions` lane updated).
+ *    A later `clean` scan releases a version held only by the scan (`releaseVersion`).
  * 5. `scan.completed` is emitted for every final verdict (the public report on the mod page).
  *
  * Idempotent: a version whose latest scan of that SHA-256 is final (or overridden by a ranger) is
@@ -169,6 +170,42 @@ async function fileLocation(
 }
 
 /** Holds an active version for review after the scan (returns true when it changed). */
+/**
+ * The reverse of `holdVersion`: a version held only because of an earlier scan ("not scanned" while
+ * there was no API key, or a scan that could not finish) goes live again when a later scan is
+ * clean. Versions pending for any other reason (a new mod, a flagged file, a ranger) are untouched.
+ */
+async function releaseVersion(ctx: Ctx, tx: Transaction, version: VersionFacts): Promise<boolean> {
+  const now = ctx.clock.now();
+  const released = await queryOne<{ id: number }>(
+    tx,
+    sql`UPDATE "ModVersion" SET "status" = 'active', "statusReason" = NULL, "updatedAt" = ${utcTimestamp(now)}
+         WHERE "id" = ${version.id} AND "status" = 'pending' AND "statusReason" = ${SCAN_HOLD_REASON}
+     RETURNING "id"`,
+  );
+  if (!released) return false;
+  const kind = kindOfType(version.modType);
+  await recomputeLatest(tx, version.modId, kind);
+  const routing = await modRouting(tx, version.modId);
+  await ctx.jobs.emitNew(
+    tx,
+    'version.status_changed',
+    {
+      modId: version.modId,
+      authorId: routing.authorId,
+      kind: routing.kind,
+      categorySlug: routing.categorySlug,
+      versionId: version.id,
+      from: 'pending',
+      to: 'active',
+      reason: 'Security scan clean',
+    },
+    { actorId: null },
+  );
+  await publishCacheInvalidation(tx, [`mod:${version.modId}`, 'list:mods', 'list:builds']);
+  return true;
+}
+
 async function holdVersion(ctx: Ctx, tx: Transaction, version: VersionFacts, verdict: ScanVerdict): Promise<boolean> {
   const now = ctx.clock.now();
   const held = await queryOne<{ id: number }>(
@@ -256,6 +293,7 @@ async function finish(
     );
     const hold =
       shouldHold(result.verdict, version.trustedAuthor) && (await holdVersion(ctx, tx, version, result.verdict));
+    if (result.verdict === 'clean') await releaseVersion(ctx, tx, version);
     await ctx.jobs.emitNew(
       tx,
       'scan.completed',
@@ -309,7 +347,10 @@ export async function runSecurityScan(
     return { status: 'skipped', reason: 'withdrawn' };
   const sha256 = version.sha256 && /^[0-9a-f]{64}$/.test(version.sha256) ? version.sha256 : data.sha256;
   const existing = await latestScan(ctx, version.id);
-  if (existing && existing.sha256 === sha256 && existing.verdict !== 'pending') {
+  // "Not scanned" because there was no API key is not a verdict: once a key exists, scan for real.
+  const neverScanned =
+    existing?.verdict === 'unknown' && (existing.raw as { reason?: unknown } | null)?.reason === 'no_api_key';
+  if (existing && existing.sha256 === sha256 && existing.verdict !== 'pending' && !(neverScanned && deps.virusTotal)) {
     return { status: 'skipped', reason: `already_${existing.verdict}` };
   }
   const scan = await pendingRow(ctx, version, sha256, existing);
@@ -518,24 +559,62 @@ export async function staleScans(
   );
 }
 
+/** Versions queued per `security.rescan` run from the never-scanned backlog. */
+export const UNSCANNED_BATCH = 200;
+
+/**
+ * Live versions that were never really scanned: no scan at all, or only an "unknown" report
+ * because there was no API key. Newest first; builds, rejected versions and removed mods aside.
+ */
+export async function unscannedVersions(
+  ctx: Ctx,
+  limit: number,
+): Promise<Array<{ modVersionId: number; sha256: string }>> {
+  return query<{ modVersionId: number; sha256: string }>(
+    ctx.db,
+    sql`SELECT v."id" AS "modVersionId", v."sha256"
+          FROM "ModVersion" v
+          JOIN "Mod" m ON m."id" = v."modId"
+          LEFT JOIN LATERAL (
+            SELECT s."verdict", s."raw" FROM "SecurityScan" s
+             WHERE s."modVersionId" = v."id" ORDER BY s."createdAt" DESC, s."id" DESC LIMIT 1
+          ) last ON TRUE
+         WHERE v."status" IN ('active', 'pending') AND m."status" <> 'removed'
+           AND coalesce(m."type", 'Mod') <> 'Build'
+           AND v."sha256" ~ '^[0-9a-f]{64}$'
+           AND (last."verdict" IS NULL OR (last."verdict" = 'unknown' AND last."raw"->>'reason' = 'no_api_key'))
+         ORDER BY v."createdAt" DESC, v."id" DESC
+         LIMIT ${limit}`,
+  );
+}
+
 /** A scan left `pending` this long without a job in flight is re-enqueued by `security.rescan`. */
 export const STALE_SCAN_MS = 6 * 3600 * 1000;
 
 const PGBOSS_SCHEMA = /^[a-z_][a-z0-9_]*$/;
 
 /**
- * `security.rescan` (hourly, backlog WP-51): versions whose scan stayed `pending` for 6 h and have
+ * `security.rescan` (hourly, backlog WP-51): with `includeUnscanned` (an API key is set), also the
+ * never-scanned backlog (`unscannedVersions`). Versions whose scan stayed `pending` for 6 h and have
  * no `security.scan` job waiting, retrying or running (a job lost with a crashed worker, or one
  * dropped by pg-boss) get a new job. Scans rescheduled on purpose (VirusTotal quota) still have
  * their delayed job in the queue and are left alone. `schema` is the pg-boss schema.
  */
 export async function rescanStaleScans(
   ctx: Ctx,
-  options: { schema?: string; olderThanMs?: number } = {},
+  options: { schema?: string; olderThanMs?: number; includeUnscanned?: boolean; unscannedBatch?: number } = {},
 ): Promise<{ enqueued: number[] }> {
   const schema = options.schema ?? 'pgboss';
   if (!PGBOSS_SCHEMA.test(schema)) throw new Error(`invalid pg-boss schema "${schema}"`);
   const stale = await staleScans(ctx, options.olderThanMs ?? STALE_SCAN_MS);
+  // With an API key, the backlog of never-scanned versions joins the queue a batch at a time; the
+  // shared quota (4/min, 500/day) paces the actual VirusTotal calls.
+  if (options.includeUnscanned) {
+    const queued = new Set(stale.map((s) => Number(s.modVersionId)));
+    for (const row of await unscannedVersions(ctx, options.unscannedBatch ?? UNSCANNED_BATCH)) {
+      if (!queued.has(Number(row.modVersionId))) stale.push(row);
+    }
+  }
   if (stale.length === 0) return { enqueued: [] };
   const job = sql.raw(`"${schema}"."job"`);
   const inFlight = await query<{ modVersionId: number }>(

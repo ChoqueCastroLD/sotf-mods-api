@@ -8,7 +8,8 @@
  * - Without `VIRUSTOTAL_API_KEY` versions get an "not scanned" report and those of non-verified
  *   creators go to human review.
  *
- * - `security.rescan` (hourly): scans left `pending` for 6 h whose job is gone are enqueued again.
+ * - `security.rescan` (hourly): scans left `pending` for 6 h whose job is gone are enqueued again;
+ *   with an API key, also the backlog of versions never really scanned (newest first, 200 a run).
  *
  * Idempotent: a version with a final verdict for its SHA-256 is skipped; polls and quota waits
  * re-enqueue the same payload with `startAfter`.
@@ -50,7 +51,11 @@ export function createSecurityScanJobs(options: SecurityScanJobOptions = {}): Jo
       }),
       defineJob({
         queue: 'security.rescan',
-        handler: async (_data, { ctx, services }) => rescanStaleScans(ctx, { schema: services.env.PGBOSS_SCHEMA }),
+        handler: async (_data, { ctx, services }) =>
+          rescanStaleScans(ctx, {
+            schema: services.env.PGBOSS_SCHEMA,
+            includeUnscanned: Boolean(services.env.VIRUSTOTAL_API_KEY?.trim()),
+          }),
       }),
     ],
   });

@@ -11,8 +11,10 @@ import { type Ctx, createCtx, silentLogger } from '@sotf/core';
 import {
   createVirusTotalClient,
   QuotaExhausted,
+  rescanStaleScans,
   runSecurityScan,
   SCAN_HOLD_REASON,
+  unscannedVersions,
 } from '@sotf/core/security-scan/index';
 import type { ObjectStorage } from '@sotf/core/storage/index';
 import type { TestDb } from '@sotf/db/testing';
@@ -312,6 +314,39 @@ describe('security.scan with VirusTotal', () => {
     );
     expect(outcome).toEqual({ status: 'done', verdict: 'unknown', positives: null, held: true });
     expect((await scanRows(v.id))[0].raw.reason).toBe('no_api_key');
+  });
+
+  it('once a key exists, a version that was "not scanned" is scanned for real and released when clean', async () => {
+    const v = versions[6] as (typeof versions)[number];
+    expect((await versionRow(v.id)).status).toBe('pending');
+    const fake: FakeVt = { reports: new Map([[sha(7), analysed(0)]]), uploads: [], status: null };
+    const outcome = await runSecurityScan(
+      ctx,
+      { virusTotal: vtClient(fake), storage },
+      { modVersionId: v.id, sha256: sha(7) },
+    );
+    expect(outcome).toMatchObject({ status: 'done', verdict: 'clean', held: false });
+    expect((await scanRows(v.id)).map((s: any) => s.verdict)).toEqual(['unknown', 'clean']);
+    expect(await versionRow(v.id)).toEqual({ status: 'active', statusReason: null });
+    // Without a key it is not scanned again (no pointless loop).
+    const again = await runSecurityScan(
+      ctx,
+      { virusTotal: null, storage: null },
+      { modVersionId: v.id, sha256: sha(7) },
+    );
+    expect(again).toEqual({ status: 'skipped', reason: 'already_clean' });
+  });
+
+  it('the hourly rescan queues never-scanned versions only when a key is set', async () => {
+    await exec(db, `UPDATE "ModVersion" SET "sha256" = $2 WHERE "id" = $1`, [versions[7]?.id, sha(99)]);
+    await exec(db, `DELETE FROM "SecurityScan" WHERE "modVersionId" = $1`, [versions[7]?.id]);
+    const without = await rescanStaleScans(ctx, { schema: t.env.PGBOSS_SCHEMA });
+    expect(without.enqueued).not.toContain(versions[7]?.id);
+    const withKey = await rescanStaleScans(ctx, { schema: t.env.PGBOSS_SCHEMA, includeUnscanned: true });
+    expect(withKey.enqueued).toContain(versions[7]?.id);
+    expect(await unscannedVersions(ctx, 1000)).toEqual(
+      expect.arrayContaining([{ modVersionId: versions[7]?.id, sha256: sha(99) }]),
+    );
   });
 
   it('a refused API key ends as unknown instead of retrying forever', async () => {
