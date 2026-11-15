@@ -3,7 +3,7 @@ export type Manager_Compare_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Stop moving files around" |
+* | "What the Install button replaces" |
 *
 * @param {Manager_Compare_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

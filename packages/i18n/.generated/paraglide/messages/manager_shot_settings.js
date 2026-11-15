@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Manager_Shot_SettingsInputs */
 
 const en_manager_shot_settings = /** @type {(inputs: Manager_Shot_SettingsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Settings and RedLoader`)
+	return /** @type {LocalizedString} */ (`The settings with the RedLoader options`)
 };
 
 const es_manager_shot_settings = /** @type {(inputs: Manager_Shot_SettingsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ajustes y RedLoader`)
+	return /** @type {LocalizedString} */ (`Los ajustes con las opciones de RedLoader`)
 };
 
 const de_manager_shot_settings = /** @type {(inputs: Manager_Shot_SettingsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Einstellungen und RedLoader`)
+	return /** @type {LocalizedString} */ (`Die Einstellungen mit den RedLoader-Optionen`)
 };
 
 const fr_manager_shot_settings = /** @type {(inputs: Manager_Shot_SettingsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Paramètres et RedLoader`)
+	return /** @type {LocalizedString} */ (`Les paramètres avec les options de RedLoader`)
 };
 
 const it_manager_shot_settings = /** @type {(inputs: Manager_Shot_SettingsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Impostazioni e RedLoader`)
+	return /** @type {LocalizedString} */ (`Le impostazioni con le opzioni di RedLoader`)
 };
 
 const nl_manager_shot_settings = /** @type {(inputs: Manager_Shot_SettingsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Instellingen en RedLoader`)
+	return /** @type {LocalizedString} */ (`De instellingen met de RedLoader-opties`)
 };
 
 const pl_manager_shot_settings = /** @type {(inputs: Manager_Shot_SettingsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ustawienia i RedLoader`)
+	return /** @type {LocalizedString} */ (`Ustawienia z opcjami RedLoadera`)
 };
 
 const pt_manager_shot_settings = /** @type {(inputs: Manager_Shot_SettingsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Configurações e RedLoader`)
+	return /** @type {LocalizedString} */ (`As configurações com as opções do RedLoader`)
 };
 
 const ru_manager_shot_settings = /** @type {(inputs: Manager_Shot_SettingsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Настройки и RedLoader`)
+	return /** @type {LocalizedString} */ (`Настройки с параметрами RedLoader`)
 };
 
 const sv_manager_shot_settings = /** @type {(inputs: Manager_Shot_SettingsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Inställningar och RedLoader`)
+	return /** @type {LocalizedString} */ (`Inställningarna med RedLoader-alternativen`)
 };
 
 const tr_manager_shot_settings = /** @type {(inputs: Manager_Shot_SettingsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ayarlar ve RedLoader`)
+	return /** @type {LocalizedString} */ (`RedLoader seçenekleriyle ayarlar`)
 };
 
 const zh_manager_shot_settings = /** @type {(inputs: Manager_Shot_SettingsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`设置和 RedLoader`)
+	return /** @type {LocalizedString} */ (`设置中的 RedLoader 选项`)
 };
 
 const ja_manager_shot_settings = /** @type {(inputs: Manager_Shot_SettingsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`設定と RedLoader`)
+	return /** @type {LocalizedString} */ (`RedLoader のオプションがある設定画面`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Settings and RedLoader" |
+* | "The settings with the RedLoader options" |
 *
 * @param {Manager_Shot_SettingsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -3,7 +3,7 @@ export type Manager_Final_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Your next run starts here" |
+* | "Get SotF Mods Manager" |
 *
 * @param {Manager_Final_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

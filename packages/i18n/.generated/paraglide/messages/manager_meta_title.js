@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Manager_Meta_TitleInputs */
 
 const en_manager_meta_title = /** @type {(inputs: Manager_Meta_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SotF Mods Manager: one-click mod manager for Sons of the Forest`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager: install Sons of the Forest mods with one click`)
 };
 
 const es_manager_meta_title = /** @type {(inputs: Manager_Meta_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SotF Mods Manager: gestor de mods con un clic para Sons of the Forest`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager: instala mods de Sons of the Forest con un clic`)
 };
 
 const de_manager_meta_title = /** @type {(inputs: Manager_Meta_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SotF Mods Manager: Mod-Manager mit einem Klick für Sons of the Forest`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager: Mods für Sons of the Forest mit einem Klick installieren`)
 };
 
 const fr_manager_meta_title = /** @type {(inputs: Manager_Meta_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SotF Mods Manager : gestionnaire de mods en un clic pour Sons of the Forest`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager : installez des mods Sons of the Forest en un clic`)
 };
 
 const it_manager_meta_title = /** @type {(inputs: Manager_Meta_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SotF Mods Manager: gestore di mod con un clic per Sons of the Forest`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager: installa mod per Sons of the Forest con un clic`)
 };
 
 const nl_manager_meta_title = /** @type {(inputs: Manager_Meta_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SotF Mods Manager: modmanager met één klik voor Sons of the Forest`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager: mods voor Sons of the Forest installeren met één klik`)
 };
 
 const pl_manager_meta_title = /** @type {(inputs: Manager_Meta_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SotF Mods Manager: menedżer modów do Sons of the Forest na jedno kliknięcie`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager: instaluj mody do Sons of the Forest jednym kliknięciem`)
 };
 
 const pt_manager_meta_title = /** @type {(inputs: Manager_Meta_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SotF Mods Manager: gerenciador de mods com um clique para Sons of the Forest`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager: instale mods de Sons of the Forest com um clique`)
 };
 
 const ru_manager_meta_title = /** @type {(inputs: Manager_Meta_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SotF Mods Manager: менеджер модов в один клик для Sons of the Forest`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager: моды для Sons of the Forest в один клик`)
 };
 
 const sv_manager_meta_title = /** @type {(inputs: Manager_Meta_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SotF Mods Manager: moddhanterare med ett klick för Sons of the Forest`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager: installera moddar till Sons of the Forest med ett klick`)
 };
 
 const tr_manager_meta_title = /** @type {(inputs: Manager_Meta_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SotF Mods Manager: Sons of the Forest için tek tıklık mod yöneticisi`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager: Sons of the Forest modlarını tek tıkla kur`)
 };
 
 const zh_manager_meta_title = /** @type {(inputs: Manager_Meta_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SotF Mods Manager：《森林之子》一键模组管理器`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager：一键安装《森林之子》模组`)
 };
 
 const ja_manager_meta_title = /** @type {(inputs: Manager_Meta_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SotF Mods Manager：Sons of the Forest のワンクリック Mod マネージャー`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager：Sons of the Forest の Mod をワンクリックでインストール`)
 };
 
 /**
 * | output |
 * | --- |
-* | "SotF Mods Manager: one-click mod manager for Sons of the Forest" |
+* | "SotF Mods Manager: install Sons of the Forest mods with one click" |
 *
 * @param {Manager_Meta_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

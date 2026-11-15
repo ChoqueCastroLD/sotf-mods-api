@@ -3,7 +3,7 @@ export type Manager_Meta_DescriptionInputs = {};
 /**
 * | output |
 * | --- |
-* | "Free mod manager for Sons of the Forest. Install mods and modpacks from SOTF Mods in one click, keep them updated and switch between profiles." |
+* | "Free Windows app that installs mods from SOTF Mods with their libraries and RedLoader, keeps them updated and switches between mod profiles." |
 *
 * @param {Manager_Meta_DescriptionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

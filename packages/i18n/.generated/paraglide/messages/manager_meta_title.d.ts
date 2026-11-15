@@ -3,7 +3,7 @@ export type Manager_Meta_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "SotF Mods Manager: one-click mod manager for Sons of the Forest" |
+* | "SotF Mods Manager: install Sons of the Forest mods with one click" |
 *
 * @param {Manager_Meta_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

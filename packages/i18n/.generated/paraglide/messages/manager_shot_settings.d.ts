@@ -3,7 +3,7 @@ export type Manager_Shot_SettingsInputs = {};
 /**
 * | output |
 * | --- |
-* | "Settings and RedLoader" |
+* | "The settings with the RedLoader options" |
 *
 * @param {Manager_Shot_SettingsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

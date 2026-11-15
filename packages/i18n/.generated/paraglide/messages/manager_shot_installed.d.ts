@@ -3,7 +3,7 @@ export type Manager_Shot_InstalledInputs = {};
 /**
 * | output |
 * | --- |
-* | "Installed mods and their updates" |
+* | "The Installed tab with the mods that have updates" |
 *
 * @param {Manager_Shot_InstalledInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

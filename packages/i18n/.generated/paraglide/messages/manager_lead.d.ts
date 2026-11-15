@@ -3,7 +3,7 @@ export type Manager_LeadInputs = {};
 /**
 * | output |
 * | --- |
-* | "Install any mod from SOTF Mods in one click, get whole modpacks, keep everything updated and switch between mod profiles. It also installs RedLoader for you." |
+* | "SotF Mods Manager is a free Windows app for the mods on this site. It installs RedLoader, downloads each mod with the libraries it needs and tells you when t..." |
 *
 * @param {Manager_LeadInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

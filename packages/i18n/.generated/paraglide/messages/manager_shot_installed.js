@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Manager_Shot_InstalledInputs */
 
 const en_manager_shot_installed = /** @type {(inputs: Manager_Shot_InstalledInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Installed mods and their updates`)
+	return /** @type {LocalizedString} */ (`The Installed tab with the mods that have updates`)
 };
 
 const es_manager_shot_installed = /** @type {(inputs: Manager_Shot_InstalledInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mods instalados y sus actualizaciones`)
+	return /** @type {LocalizedString} */ (`La pestaña Instalados con los mods que tienen actualizaciones`)
 };
 
 const de_manager_shot_installed = /** @type {(inputs: Manager_Shot_InstalledInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Installierte Mods und ihre Updates`)
+	return /** @type {LocalizedString} */ (`Der Tab Installiert mit den Mods, für die es Updates gibt`)
 };
 
 const fr_manager_shot_installed = /** @type {(inputs: Manager_Shot_InstalledInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mods installés et leurs mises à jour`)
+	return /** @type {LocalizedString} */ (`L’onglet Installés avec les mods qui ont des mises à jour`)
 };
 
 const it_manager_shot_installed = /** @type {(inputs: Manager_Shot_InstalledInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mod installate e i loro aggiornamenti`)
+	return /** @type {LocalizedString} */ (`La scheda Installate con le mod che hanno aggiornamenti`)
 };
 
 const nl_manager_shot_installed = /** @type {(inputs: Manager_Shot_InstalledInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Geïnstalleerde mods en hun updates`)
+	return /** @type {LocalizedString} */ (`Het tabblad Geïnstalleerd met de mods die updates hebben`)
 };
 
 const pl_manager_shot_installed = /** @type {(inputs: Manager_Shot_InstalledInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zainstalowane mody i ich aktualizacje`)
+	return /** @type {LocalizedString} */ (`Karta Zainstalowane z modami, które mają aktualizacje`)
 };
 
 const pt_manager_shot_installed = /** @type {(inputs: Manager_Shot_InstalledInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mods instalados e suas atualizações`)
+	return /** @type {LocalizedString} */ (`A aba Instalados com os mods que têm atualizações`)
 };
 
 const ru_manager_shot_installed = /** @type {(inputs: Manager_Shot_InstalledInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Установленные моды и их обновления`)
+	return /** @type {LocalizedString} */ (`Вкладка «Установленные» с модами, для которых есть обновления`)
 };
 
 const sv_manager_shot_installed = /** @type {(inputs: Manager_Shot_InstalledInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Installerade moddar och deras uppdateringar`)
+	return /** @type {LocalizedString} */ (`Fliken Installerade med moddarna som har uppdateringar`)
 };
 
 const tr_manager_shot_installed = /** @type {(inputs: Manager_Shot_InstalledInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kurulu modlar ve güncellemeleri`)
+	return /** @type {LocalizedString} */ (`Güncellemesi olan modlarla Kurulu sekmesi`)
 };
 
 const zh_manager_shot_installed = /** @type {(inputs: Manager_Shot_InstalledInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`已安装的模组及其更新`)
+	return /** @type {LocalizedString} */ (`“已安装”标签页显示有更新的模组`)
 };
 
 const ja_manager_shot_installed = /** @type {(inputs: Manager_Shot_InstalledInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`インストール済みの Mod と更新`)
+	return /** @type {LocalizedString} */ (`更新がある Mod を表示した「インストール済み」タブ`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Installed mods and their updates" |
+* | "The Installed tab with the mods that have updates" |
 *
 * @param {Manager_Shot_InstalledInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

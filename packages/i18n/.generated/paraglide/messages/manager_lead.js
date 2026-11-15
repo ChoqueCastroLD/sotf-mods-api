@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Manager_LeadInputs */
 
 const en_manager_lead = /** @type {(inputs: Manager_LeadInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Install any mod from SOTF Mods in one click, get whole modpacks, keep everything updated and switch between mod profiles. It also installs RedLoader for you.`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager is a free Windows app for the mods on this site. It installs RedLoader, downloads each mod with the libraries it needs and tells you when there is an update.`)
 };
 
 const es_manager_lead = /** @type {(inputs: Manager_LeadInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Instala cualquier mod de SOTF Mods con un clic, consigue modpacks completos, mantén todo actualizado y cambia entre perfiles de mods. También instala RedLoader por ti.`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager es una app gratuita para Windows hecha para los mods de este sitio. Instala RedLoader, descarga cada mod con las librerías que necesita y te avisa cuando hay una actualización.`)
 };
 
 const de_manager_lead = /** @type {(inputs: Manager_LeadInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Installiere jeden Mod von SOTF Mods mit einem Klick, hol dir ganze Modpacks, halte alles aktuell und wechsle zwischen Mod-Profilen. RedLoader installiert er auch für dich.`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager ist eine kostenlose Windows-App für die Mods auf dieser Seite. Sie installiert RedLoader, lädt jeden Mod mit den benötigten Bibliotheken herunter und sagt dir, wenn es ein Update gibt.`)
 };
 
 const fr_manager_lead = /** @type {(inputs: Manager_LeadInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Installez n’importe quel mod de SOTF Mods en un clic, récupérez des modpacks entiers, gardez tout à jour et passez d’un profil de mods à l’autre. Il installe aussi RedLoader pour vous.`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager est une application Windows gratuite pour les mods de ce site. Elle installe RedLoader, télécharge chaque mod avec les bibliothèques nécessaires et vous prévient quand une mise à jour sort.`)
 };
 
 const it_manager_lead = /** @type {(inputs: Manager_LeadInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Installa qualsiasi mod di SOTF Mods con un clic, scarica modpack interi, tieni tutto aggiornato e passa da un profilo di mod all’altro. Installa anche RedLoader per te.`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager è un’app gratuita per Windows pensata per le mod di questo sito. Installa RedLoader, scarica ogni mod con le librerie che le servono e ti avvisa quando c’è un aggiornamento.`)
 };
 
 const nl_manager_lead = /** @type {(inputs: Manager_LeadInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Installeer elke mod van SOTF Mods met één klik, haal complete modpacks binnen, houd alles up-to-date en wissel tussen modprofielen. Hij installeert ook RedLoader voor je.`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager is een gratis Windows-app voor de mods op deze site. Hij installeert RedLoader, downloadt elke mod met de libraries die hij nodig heeft en laat weten wanneer er een update is.`)
 };
 
 const pl_manager_lead = /** @type {(inputs: Manager_LeadInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Instaluj dowolny mod z SOTF Mods jednym kliknięciem, pobieraj całe modpacki, aktualizuj wszystko i przełączaj się między profilami modów. Zainstaluje też za ciebie RedLoader.`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager to darmowa aplikacja na Windows dla modów z tej strony. Instaluje RedLoader, pobiera każdy mod z potrzebnymi bibliotekami i daje znać, gdy wyjdzie aktualizacja.`)
 };
 
 const pt_manager_lead = /** @type {(inputs: Manager_LeadInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Instale qualquer mod do SOTF Mods com um clique, baixe modpacks inteiros, mantenha tudo atualizado e alterne entre perfis de mods. Ele também instala o RedLoader para você.`)
+	return /** @type {LocalizedString} */ (`O SotF Mods Manager é um app gratuito para Windows feito para os mods deste site. Ele instala o RedLoader, baixa cada mod com as bibliotecas de que precisa e avisa quando sai uma atualização.`)
 };
 
 const ru_manager_lead = /** @type {(inputs: Manager_LeadInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Устанавливайте любой мод с SOTF Mods в один клик, скачивайте целые модпаки, держите всё в актуальном состоянии и переключайтесь между профилями модов. RedLoader он тоже установит за вас.`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager это бесплатное приложение для Windows для модов с этого сайта. Оно устанавливает RedLoader, скачивает каждый мод с нужными библиотеками и сообщает, когда выходит обновление.`)
 };
 
 const sv_manager_lead = /** @type {(inputs: Manager_LeadInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Installera vilken modd som helst från SOTF Mods med ett klick, hämta hela modpaket, håll allt uppdaterat och växla mellan moddprofiler. Den installerar också RedLoader åt dig.`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager är en gratis Windows-app för moddarna på den här sidan. Den installerar RedLoader, laddar ner varje modd med biblioteken den behöver och säger till när det finns en uppdatering.`)
 };
 
 const tr_manager_lead = /** @type {(inputs: Manager_LeadInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SOTF Mods'taki her modu tek tıkla kur, mod paketlerini toplu indir, her şeyi güncel tut ve mod profilleri arasında geçiş yap. RedLoader'ı da senin için kurar.`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager, bu sitedeki modlar için ücretsiz bir Windows uygulamasıdır. RedLoader'ı kurar, her modu ihtiyaç duyduğu kütüphanelerle indirir ve güncelleme çıktığında haber verir.`)
 };
 
 const zh_manager_lead = /** @type {(inputs: Manager_LeadInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`一键安装 SOTF Mods 上的任何模组，获取完整整合包，保持一切最新，并在模组配置之间切换。它还会帮你安装 RedLoader。`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager 是为本站模组打造的免费 Windows 应用。它会安装 RedLoader，下载每个模组及其所需的依赖库，并在有更新时提醒你。`)
 };
 
 const ja_manager_lead = /** @type {(inputs: Manager_LeadInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SOTF Mods の Mod をワンクリックでインストールし、Modパックをまるごと入手し、すべてを最新に保ち、Mod プロファイルを切り替えられます。RedLoader のインストールも任せられます。`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager は、このサイトの Mod のための無料 Windows アプリです。RedLoader をインストールし、各 Mod を必要なライブラリと一緒にダウンロードし、更新があれば知らせます。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Install any mod from SOTF Mods in one click, get whole modpacks, keep everything updated and switch between mod profiles. It also installs RedLoader for you." |
+* | "SotF Mods Manager is a free Windows app for the mods on this site. It installs RedLoader, downloads each mod with the libraries it needs and tells you when t..." |
 *
 * @param {Manager_LeadInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

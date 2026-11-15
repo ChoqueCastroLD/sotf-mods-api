@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Manager_Final_TitleInputs */
 
 const en_manager_final_title = /** @type {(inputs: Manager_Final_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Your next run starts here`)
+	return /** @type {LocalizedString} */ (`Get SotF Mods Manager`)
 };
 
 const es_manager_final_title = /** @type {(inputs: Manager_Final_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tu próxima partida empieza aquí`)
+	return /** @type {LocalizedString} */ (`Descarga SotF Mods Manager`)
 };
 
 const de_manager_final_title = /** @type {(inputs: Manager_Final_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dein nächster Run beginnt hier`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager herunterladen`)
 };
 
 const fr_manager_final_title = /** @type {(inputs: Manager_Final_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Votre prochaine partie commence ici`)
+	return /** @type {LocalizedString} */ (`Télécharger SotF Mods Manager`)
 };
 
 const it_manager_final_title = /** @type {(inputs: Manager_Final_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`La tua prossima partita inizia qui`)
+	return /** @type {LocalizedString} */ (`Scarica SotF Mods Manager`)
 };
 
 const nl_manager_final_title = /** @type {(inputs: Manager_Final_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Je volgende run begint hier`)
+	return /** @type {LocalizedString} */ (`Download SotF Mods Manager`)
 };
 
 const pl_manager_final_title = /** @type {(inputs: Manager_Final_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Twoja następna rozgrywka zaczyna się tutaj`)
+	return /** @type {LocalizedString} */ (`Pobierz SotF Mods Manager`)
 };
 
 const pt_manager_final_title = /** @type {(inputs: Manager_Final_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sua próxima partida começa aqui`)
+	return /** @type {LocalizedString} */ (`Baixe o SotF Mods Manager`)
 };
 
 const ru_manager_final_title = /** @type {(inputs: Manager_Final_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ваша следующая игра начинается здесь`)
+	return /** @type {LocalizedString} */ (`Скачать SotF Mods Manager`)
 };
 
 const sv_manager_final_title = /** @type {(inputs: Manager_Final_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Din nästa omgång börjar här`)
+	return /** @type {LocalizedString} */ (`Ladda ner SotF Mods Manager`)
 };
 
 const tr_manager_final_title = /** @type {(inputs: Manager_Final_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bir sonraki oyunun burada başlıyor`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager'ı edin`)
 };
 
 const zh_manager_final_title = /** @type {(inputs: Manager_Final_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`下一局从这里开始`)
+	return /** @type {LocalizedString} */ (`获取 SotF Mods Manager`)
 };
 
 const ja_manager_final_title = /** @type {(inputs: Manager_Final_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`次のプレイはここから`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager を入手`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Your next run starts here" |
+* | "Get SotF Mods Manager" |
 *
 * @param {Manager_Final_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

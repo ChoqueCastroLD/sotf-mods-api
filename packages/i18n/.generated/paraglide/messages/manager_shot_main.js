@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Manager_Shot_MainInputs */
 
 const en_manager_shot_main = /** @type {(inputs: Manager_Shot_MainInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SotF Mods Manager showing the mods of SOTF Mods`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager listing the mods of SOTF Mods, with Axel's Mod Menu selected`)
 };
 
 const es_manager_shot_main = /** @type {(inputs: Manager_Shot_MainInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SotF Mods Manager mostrando los mods de SOTF Mods`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager con la lista de mods de SOTF Mods y Axel's Mod Menu seleccionado`)
 };
 
 const de_manager_shot_main = /** @type {(inputs: Manager_Shot_MainInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SotF Mods Manager mit den Mods von SOTF Mods`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager mit der Mod-Liste von SOTF Mods, Axel's Mod Menu ausgewählt`)
 };
 
 const fr_manager_shot_main = /** @type {(inputs: Manager_Shot_MainInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SotF Mods Manager affichant les mods de SOTF Mods`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager affichant les mods de SOTF Mods, Axel's Mod Menu sélectionné`)
 };
 
 const it_manager_shot_main = /** @type {(inputs: Manager_Shot_MainInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SotF Mods Manager con le mod di SOTF Mods`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager con l’elenco delle mod di SOTF Mods e Axel's Mod Menu selezionata`)
 };
 
 const nl_manager_shot_main = /** @type {(inputs: Manager_Shot_MainInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SotF Mods Manager met de mods van SOTF Mods`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager met de mods van SOTF Mods, Axel's Mod Menu geselecteerd`)
 };
 
 const pl_manager_shot_main = /** @type {(inputs: Manager_Shot_MainInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SotF Mods Manager z modami z SOTF Mods`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager z listą modów SOTF Mods i zaznaczonym Axel's Mod Menu`)
 };
 
 const pt_manager_shot_main = /** @type {(inputs: Manager_Shot_MainInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SotF Mods Manager mostrando os mods do SOTF Mods`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager com a lista de mods do SOTF Mods e o Axel's Mod Menu selecionado`)
 };
 
 const ru_manager_shot_main = /** @type {(inputs: Manager_Shot_MainInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SotF Mods Manager с модами SOTF Mods`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager со списком модов SOTF Mods, выбран Axel's Mod Menu`)
 };
 
 const sv_manager_shot_main = /** @type {(inputs: Manager_Shot_MainInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SotF Mods Manager med moddarna från SOTF Mods`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager med moddarna från SOTF Mods och Axel's Mod Menu vald`)
 };
 
 const tr_manager_shot_main = /** @type {(inputs: Manager_Shot_MainInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SOTF Mods modlarını gösteren SotF Mods Manager`)
+	return /** @type {LocalizedString} */ (`SOTF Mods modlarını listeleyen ve Axel's Mod Menu seçili SotF Mods Manager`)
 };
 
 const zh_manager_shot_main = /** @type {(inputs: Manager_Shot_MainInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SotF Mods Manager 显示 SOTF Mods 上的模组`)
+	return /** @type {LocalizedString} */ (`SotF Mods Manager 显示 SOTF Mods 的模组列表，选中了 Axel's Mod Menu`)
 };
 
 const ja_manager_shot_main = /** @type {(inputs: Manager_Shot_MainInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`SOTF Mods の Mod を表示した SotF Mods Manager`)
+	return /** @type {LocalizedString} */ (`SOTF Mods の Mod 一覧を表示し、Axel's Mod Menu を選択した SotF Mods Manager`)
 };
 
 /**
 * | output |
 * | --- |
-* | "SotF Mods Manager showing the mods of SOTF Mods" |
+* | "SotF Mods Manager listing the mods of SOTF Mods, with Axel's Mod Menu selected" |
 *
 * @param {Manager_Shot_MainInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

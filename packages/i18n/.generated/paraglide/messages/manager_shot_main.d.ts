@@ -3,7 +3,7 @@ export type Manager_Shot_MainInputs = {};
 /**
 * | output |
 * | --- |
-* | "SotF Mods Manager showing the mods of SOTF Mods" |
+* | "SotF Mods Manager listing the mods of SOTF Mods, with Axel's Mod Menu selected" |
 *
 * @param {Manager_Shot_MainInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options
