@@ -196,16 +196,15 @@ export function compatWorks(summary: CompatSummary): boolean {
   return summary.broken === 0 && summary.conflicts === 0;
 }
 
-/** Sum of the known file sizes (null when none is known). */
+/** Sum of the file sizes, or null when any size is unknown (a partial sum would mislead). */
 export function totalBytes(sizes: ReadonlyArray<number | null>): number | null {
-  let known = false;
+  if (sizes.length === 0) return null;
   let total = 0;
   for (const size of sizes) {
-    if (size === null || !Number.isFinite(size) || size < 0) continue;
-    known = true;
+    if (size === null || !Number.isFinite(size) || size < 0) return null;
     total += size;
   }
-  return known ? total : null;
+  return total;
 }
 
 /** True unless the kit is public with at least `KIT_LIMITS.indexMinItems` items (§7.8 SEO). */

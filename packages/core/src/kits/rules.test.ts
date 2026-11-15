@@ -152,7 +152,8 @@ describe('summaries', () => {
   });
 
   it('adds known sizes and flags indexable kits', () => {
-    expect(totalBytes([10, null, 5])).toBe(15);
+    expect(totalBytes([10, null, 5])).toBeNull();
+    expect(totalBytes([10, 5])).toBe(15);
     expect(totalBytes([null, null])).toBeNull();
     expect(totalBytes([])).toBeNull();
     expect(kitNoindex('public', 3)).toBe(false);
