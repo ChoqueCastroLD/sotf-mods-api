@@ -18,6 +18,8 @@ interface Props {
 const { pack, priority = false } = Astro.props;
 const locale = Astro.locals.locale;
 const thumbs = pack.previewThumbnails.slice(0, 4);
+// Covers smaller than the card look blurry: the collage of its mods is used instead.
+const cover = pack.cover && (pack.cover.width ?? 0) >= 320 ? pack.cover : null;
 const loading = priority ? 'eager' : 'lazy';
 ---
 
@@ -27,10 +29,10 @@ const loading = priority ? 'eager' : 'lazy';
 >
   <div class="relative aspect-video overflow-hidden bg-sunken">
     {
-      pack.cover ? (
+      cover ? (
         <img
-          src={pack.cover.url}
-          srcset={pack.cover.srcset ?? undefined}
+          src={cover.url}
+          srcset={cover.srcset ?? undefined}
           sizes="(min-width: 1280px) 25vw, (min-width: 768px) 33vw, 100vw"
           alt=""
           loading={loading}

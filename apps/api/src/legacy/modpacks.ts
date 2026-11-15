@@ -28,7 +28,12 @@ function listItem(siteUrl: string, card: KitCardDTO) {
     name: card.name,
     slug: card.slug,
     url: absolute(siteUrl, card.canonicalPath),
-    imageUrl: card.cover?.url ?? card.previewThumbnails[0] ?? '',
+    // A cover smaller than 640 px wide is a thumbnail-sized upload: the first mod picture looks better.
+    imageUrl:
+      (card.cover && (card.cover.width ?? 0) >= 640 ? card.cover.url : null) ??
+      card.previewThumbnails[0] ??
+      card.cover?.url ??
+      '',
     modsCount: card.itemsCount,
     downloads: card.downloads,
     isApproved: true as const,

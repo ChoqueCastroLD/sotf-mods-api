@@ -7,15 +7,16 @@
  */
 import { REPORT_REASONS } from '@sotf/contracts/moderation';
 import { m } from '@sotf/i18n/messages';
-import type { ModDetailDTO } from './data.ts';
 import ModDialog from './ModDialog.astro';
 
 interface Props {
-  mod: ModDetailDTO;
+  /** What is reported: a mod or build (default) or a modpack (`kit`). */
+  mod: { id: number; name: string };
   loginHref: string;
+  targetType?: 'mod' | 'kit';
 }
 
-const { mod, loginHref } = Astro.props;
+const { mod, loginHref, targetType = 'mod' } = Astro.props;
 const reasonLabel: Record<(typeof REPORT_REASONS)[number], string> = {
   malware: m.mod_report_reason_malware(),
   broken: m.mod_report_reason_broken(),
@@ -48,7 +49,7 @@ const messages = JSON.stringify({
       {m.common_account_sign_in()}
     </a>
   </div>
-  <form method="dialog" data-report-form data-mod-id={mod.id} data-report-messages={messages} class="grid gap-4" novalidate>
+  <form method="dialog" data-report-form data-mod-id={mod.id} data-target-type={targetType} data-report-messages={messages} class="grid gap-4" novalidate>
     <fieldset class="grid gap-2">
       <legend class="mb-1 text-sm font-semibold">{m.mod_report_reason_label()}</legend>
       {

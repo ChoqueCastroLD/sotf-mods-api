@@ -1,16 +1,16 @@
 export type LocalizedString = import('../runtime.js').LocalizedString;
-export type Modpacks_No_DescriptionInputs = {};
+export type Modpacks_Comment_PlaceholderInputs = {};
 /**
 * | output |
 * | --- |
-* | "No description." |
+* | "Ask about the modpack or share a tip" |
 *
-* @param {Modpacks_No_DescriptionInputs} inputs
+* @param {Modpacks_Comment_PlaceholderInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options
 * @returns {LocalizedString}
 */
-export declare const modpacks_no_description: ((inputs?: Modpacks_No_DescriptionInputs, options?: {
+export declare const modpacks_comment_placeholder: ((inputs?: Modpacks_Comment_PlaceholderInputs, options?: {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
-}) => LocalizedString) & import('../runtime.js').MessageMetadata<Modpacks_No_DescriptionInputs, {
+}) => LocalizedString) & import('../runtime.js').MessageMetadata<Modpacks_Comment_PlaceholderInputs, {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
 }, {}>;

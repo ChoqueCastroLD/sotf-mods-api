@@ -1,16 +1,16 @@
 export type LocalizedString = import('../runtime.js').LocalizedString;
-export type Modpacks_Stat_ModsInputs = {};
+export type Modpacks_Comment_OwnerInputs = {};
 /**
 * | output |
 * | --- |
-* | "Mods" |
+* | "Modpack author" |
 *
-* @param {Modpacks_Stat_ModsInputs} inputs
+* @param {Modpacks_Comment_OwnerInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options
 * @returns {LocalizedString}
 */
-export declare const modpacks_stat_mods: ((inputs?: Modpacks_Stat_ModsInputs, options?: {
+export declare const modpacks_comment_owner: ((inputs?: Modpacks_Comment_OwnerInputs, options?: {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
-}) => LocalizedString) & import('../runtime.js').MessageMetadata<Modpacks_Stat_ModsInputs, {
+}) => LocalizedString) & import('../runtime.js').MessageMetadata<Modpacks_Comment_OwnerInputs, {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
 }, {}>;

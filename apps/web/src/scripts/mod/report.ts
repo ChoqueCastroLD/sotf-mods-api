@@ -92,7 +92,7 @@ export function bindReport(dialog: HTMLDialogElement, session: MeSummary | null)
     submit?.setAttribute('aria-busy', 'true');
     if (submit) submit.disabled = true;
     void apiCall('POST', '/api/v2/reports', {
-      targetType: 'mod',
+      targetType: form.dataset.targetType === 'kit' ? 'kit' : 'mod',
       targetId,
       reason,
       ...(details ? { details: details.slice(0, 2000) } : {}),

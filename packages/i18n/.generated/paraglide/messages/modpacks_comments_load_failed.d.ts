@@ -1,16 +1,16 @@
 export type LocalizedString = import('../runtime.js').LocalizedString;
-export type Modpacks_By_PrefixInputs = {};
+export type Modpacks_Comments_Load_FailedInputs = {};
 /**
 * | output |
 * | --- |
-* | "by" |
+* | "Couldn't load the comments." |
 *
-* @param {Modpacks_By_PrefixInputs} inputs
+* @param {Modpacks_Comments_Load_FailedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options
 * @returns {LocalizedString}
 */
-export declare const modpacks_by_prefix: ((inputs?: Modpacks_By_PrefixInputs, options?: {
+export declare const modpacks_comments_load_failed: ((inputs?: Modpacks_Comments_Load_FailedInputs, options?: {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
-}) => LocalizedString) & import('../runtime.js').MessageMetadata<Modpacks_By_PrefixInputs, {
+}) => LocalizedString) & import('../runtime.js').MessageMetadata<Modpacks_Comments_Load_FailedInputs, {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
 }, {}>;

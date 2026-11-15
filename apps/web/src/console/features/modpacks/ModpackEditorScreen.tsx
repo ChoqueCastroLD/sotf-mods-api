@@ -49,6 +49,21 @@ function pickedOf(modpack: Modpack | null): Picked[] {
     }));
 }
 
+/** Minimum cover width: the modpack page shows the cover at about this size. */
+const COVER_MIN_WIDTH = 640;
+
+/** Natural width of an image file, or null when the browser cannot decode it here. */
+async function imageWidth(file: File): Promise<number | null> {
+  try {
+    const bitmap = await createImageBitmap(file);
+    const width = bitmap.width;
+    bitmap.close();
+    return width;
+  } catch {
+    return null;
+  }
+}
+
 export function ModpackEditorScreen({
   modpack,
   startWithImport = false,
@@ -68,6 +83,7 @@ export function ModpackEditorScreen({
   const [coverUploadId, setCoverUploadId] = useState<string | null | undefined>(undefined);
   const [coverPreview, setCoverPreview] = useState<string | null>(modpack?.cover?.url ?? null);
   const [coverBusy, setCoverBusy] = useState(false);
+  const [coverError, setCoverError] = useState('');
   const importRef = useRef<HTMLInputElement>(null);
   const coverRef = useRef<HTMLInputElement>(null);
   const deferred = useDeferredValue(query.trim());
@@ -151,11 +167,16 @@ export function ModpackEditorScreen({
     if (!file) return;
     const invalid = validateCover(file);
     if (invalid) {
-      notify.error(m.modpacks_cover_failed(), {
-        description: invalid === 'size' ? m.modpacks_cover_too_big() : m.modpacks_cover_wrong_type(),
-      });
+      setCoverError(invalid === 'size' ? m.modpacks_cover_too_big() : m.modpacks_cover_wrong_type());
       return;
     }
+    // A small picture looks blurry as the page header: ask for one at least 640 px wide.
+    const width = await imageWidth(file);
+    if (width !== null && width < COVER_MIN_WIDTH) {
+      setCoverError(m.modpacks_cover_too_small({ min: COVER_MIN_WIDTH, width }));
+      return;
+    }
+    setCoverError('');
     setCoverBusy(true);
     try {
       const id = await uploadCover(file);
@@ -352,6 +373,10 @@ export function ModpackEditorScreen({
                 </Button>
               ) : null}
             </div>
+            {/* Reserved line: the message never pushes the form down. */}
+            <p className="min-h-5 text-sm text-danger" aria-live="polite">
+              {coverError}
+            </p>
           </div>
         </div>
       </Panel>
