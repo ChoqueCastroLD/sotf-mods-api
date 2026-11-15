@@ -206,7 +206,6 @@
   "mod_action_more": "Mais ações",
   "mod_action_report_mod": "Denunciar este mod",
   "mod_tab_description": "Descrição",
-  "mod_action_install_manager": "Instalar com o SotF Mods Manager",
   "mod_versions_section_title": "Versões e registro de alterações",
   "mod_details_title": "Detalhes",
   "mod_detail_game": "Versão do jogo",
@@ -222,5 +221,7 @@
   "mod_unapprove_action": "Revogar aprovação",
   "mod_unapprove_title": "Revogar a aprovação de {name}?",
   "mod_unapprove_text": "Volta para Aguardando aprovação: sai da lista principal e retorna à fila de novos mods.",
-  "mod_unapprove_done": "{name} voltou a aguardar aprovação"
+  "mod_unapprove_done": "{name} voltou a aguardar aprovação",
+  "mod_action_install_launcher": "Instalar com o launcher",
+  "mod_install_launcher_needs": "Requer o SotF Mods Manager"
 }

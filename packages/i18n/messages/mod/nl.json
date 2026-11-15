@@ -206,7 +206,6 @@
   "mod_action_more": "Meer acties",
   "mod_action_report_mod": "Deze mod melden",
   "mod_tab_description": "Beschrijving",
-  "mod_action_install_manager": "Installeren met SotF Mods Manager",
   "mod_versions_section_title": "Versies en wijzigingslog",
   "mod_details_title": "Details",
   "mod_detail_game": "Spelversie",
@@ -222,5 +221,7 @@
   "mod_unapprove_action": "Goedkeuring intrekken",
   "mod_unapprove_title": "Goedkeuring van {name} intrekken?",
   "mod_unapprove_text": "De mod gaat terug naar Wacht op goedkeuring: hij verdwijnt uit de hoofdlijst en keert terug in de wachtrij voor nieuwe mods.",
-  "mod_unapprove_done": "{name} wacht weer op goedkeuring"
+  "mod_unapprove_done": "{name} wacht weer op goedkeuring",
+  "mod_action_install_launcher": "Installeren met launcher",
+  "mod_install_launcher_needs": "Vereist SotF Mods Manager"
 }

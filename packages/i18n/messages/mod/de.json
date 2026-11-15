@@ -206,7 +206,6 @@
   "mod_action_more": "Weitere Aktionen",
   "mod_action_report_mod": "Diesen Mod melden",
   "mod_tab_description": "Beschreibung",
-  "mod_action_install_manager": "Mit SotF Mods Manager installieren",
   "mod_versions_section_title": "Versionen und Änderungsprotokoll",
   "mod_details_title": "Details",
   "mod_detail_game": "Spielversion",
@@ -222,5 +221,7 @@
   "mod_unapprove_action": "Freigabe zurückziehen",
   "mod_unapprove_title": "Freigabe von {name} zurückziehen?",
   "mod_unapprove_text": "Sie geht zurück auf „Wartet auf Freigabe“: Sie verschwindet aus der Hauptliste und kommt zurück in die Warteschlange „Neue Mods“.",
-  "mod_unapprove_done": "{name} wartet wieder auf Freigabe"
+  "mod_unapprove_done": "{name} wartet wieder auf Freigabe",
+  "mod_action_install_launcher": "Mit Launcher installieren",
+  "mod_install_launcher_needs": "Benötigt SotF Mods Manager"
 }

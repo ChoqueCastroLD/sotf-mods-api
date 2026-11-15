@@ -206,7 +206,6 @@
   "mod_action_more": "Другие действия",
   "mod_action_report_mod": "Пожаловаться на мод",
   "mod_tab_description": "Описание",
-  "mod_action_install_manager": "Установить через SotF Mods Manager",
   "mod_versions_section_title": "Версии и список изменений",
   "mod_details_title": "Сведения",
   "mod_detail_game": "Версия игры",
@@ -222,5 +221,7 @@
   "mod_unapprove_action": "Отменить одобрение",
   "mod_unapprove_title": "Отменить одобрение {name}?",
   "mod_unapprove_text": "Мод вернётся в статус ожидания одобрения: он пропадёт из основного списка и вернётся в очередь новых модов.",
-  "mod_unapprove_done": "{name} снова ожидает одобрения"
+  "mod_unapprove_done": "{name} снова ожидает одобрения",
+  "mod_action_install_launcher": "Установить через лаунчер",
+  "mod_install_launcher_needs": "Нужен SotF Mods Manager"
 }

@@ -206,7 +206,6 @@
   "mod_action_more": "その他の操作",
   "mod_action_report_mod": "このMODを報告",
   "mod_tab_description": "説明",
-  "mod_action_install_manager": "SotF Mods Manager でインストール",
   "mod_versions_section_title": "バージョンと更新履歴",
   "mod_details_title": "詳細",
   "mod_detail_game": "ゲームバージョン",
@@ -222,5 +221,7 @@
   "mod_unapprove_action": "承認を取り消す",
   "mod_unapprove_title": "{name} の承認を取り消しますか？",
   "mod_unapprove_text": "承認待ちに戻ります。メインの一覧から外れ、新規MODのキューに戻ります。",
-  "mod_unapprove_done": "{name} は再び承認待ちになりました"
+  "mod_unapprove_done": "{name} は再び承認待ちになりました",
+  "mod_action_install_launcher": "ランチャーでインストール",
+  "mod_install_launcher_needs": "SotF Mods Manager が必要です"
 }

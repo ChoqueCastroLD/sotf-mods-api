@@ -1,16 +1,16 @@
 export type LocalizedString = import('../runtime.js').LocalizedString;
-export type Mod_Action_Install_ManagerInputs = {};
+export type Mod_Install_Launcher_NeedsInputs = {};
 /**
 * | output |
 * | --- |
-* | "Install with SotF Mods Manager" |
+* | "Needs SotF Mods Manager" |
 *
-* @param {Mod_Action_Install_ManagerInputs} inputs
+* @param {Mod_Install_Launcher_NeedsInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options
 * @returns {LocalizedString}
 */
-export declare const mod_action_install_manager: ((inputs?: Mod_Action_Install_ManagerInputs, options?: {
+export declare const mod_install_launcher_needs: ((inputs?: Mod_Install_Launcher_NeedsInputs, options?: {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
-}) => LocalizedString) & import('../runtime.js').MessageMetadata<Mod_Action_Install_ManagerInputs, {
+}) => LocalizedString) & import('../runtime.js').MessageMetadata<Mod_Install_Launcher_NeedsInputs, {
     locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja";
 }, {}>;

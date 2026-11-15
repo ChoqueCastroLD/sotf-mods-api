@@ -3,7 +3,7 @@ export type Console_Nav_ManagerInputs = {};
 /**
 * | output |
 * | --- |
-* | "ModManager" |
+* | "SOTF Mod Manager" |
 *
 * @param {Console_Nav_ManagerInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

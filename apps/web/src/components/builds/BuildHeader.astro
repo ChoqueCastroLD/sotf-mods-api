@@ -18,6 +18,7 @@ import { Flag, Heart, Link2, ListOrdered } from 'lucide-react';
 import { href } from '../../lib/i18n.ts';
 import { loadModTranslation } from '../../lib/mod-translation.ts';
 import { isShortVersion } from '../mod/format.ts';
+import LauncherButton from '../mod/LauncherButton.astro';
 import TranslatedText from '../mod/TranslatedText.astro';
 import type { BuildSpec, ModDetailDTO, VersionDTO } from './data.ts';
 import { blueprintAuthorDiffers } from './data.ts';
@@ -166,13 +167,16 @@ const LINK =
   <div class="grid gap-3" id="download">
     {
       latest && latest.status === 'active' ? (
-        <div class="max-md:hidden" data-download-area>
-          <DownloadSplitButton
-            primary={downloadOptionOf(latest)}
-            others={others.map(downloadOptionOf)}
-            size="md"
-            className="items-start"
-          />
+        <div class="flex flex-wrap items-start gap-3">
+          <div class="max-md:hidden" data-download-area>
+            <DownloadSplitButton
+              primary={downloadOptionOf(latest)}
+              others={others.map(downloadOptionOf)}
+              size="md"
+              className="items-start"
+            />
+          </div>
+          <LauncherButton mod={build} />
         </div>
       ) : (
         <p class="text-sm text-fg-muted max-md:hidden">{m.builds_action_download_unavailable()}</p>

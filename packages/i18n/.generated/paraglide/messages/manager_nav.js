@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Manager_NavInputs */
 
 const en_manager_nav = /** @type {(inputs: Manager_NavInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ModManager`)
+	return /** @type {LocalizedString} */ (`SOTF Mod Manager`)
 };
 
 const es_manager_nav = /** @type {(inputs: Manager_NavInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ModManager`)
+	return /** @type {LocalizedString} */ (`SOTF Mod Manager`)
 };
 
 const de_manager_nav = /** @type {(inputs: Manager_NavInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ModManager`)
+	return /** @type {LocalizedString} */ (`SOTF Mod Manager`)
 };
 
 const fr_manager_nav = /** @type {(inputs: Manager_NavInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ModManager`)
+	return /** @type {LocalizedString} */ (`SOTF Mod Manager`)
 };
 
 const it_manager_nav = /** @type {(inputs: Manager_NavInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ModManager`)
+	return /** @type {LocalizedString} */ (`SOTF Mod Manager`)
 };
 
 const nl_manager_nav = /** @type {(inputs: Manager_NavInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ModManager`)
+	return /** @type {LocalizedString} */ (`SOTF Mod Manager`)
 };
 
 const pl_manager_nav = /** @type {(inputs: Manager_NavInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ModManager`)
+	return /** @type {LocalizedString} */ (`SOTF Mod Manager`)
 };
 
 const pt_manager_nav = /** @type {(inputs: Manager_NavInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ModManager`)
+	return /** @type {LocalizedString} */ (`SOTF Mod Manager`)
 };
 
 const ru_manager_nav = /** @type {(inputs: Manager_NavInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ModManager`)
+	return /** @type {LocalizedString} */ (`SOTF Mod Manager`)
 };
 
 const sv_manager_nav = /** @type {(inputs: Manager_NavInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ModManager`)
+	return /** @type {LocalizedString} */ (`SOTF Mod Manager`)
 };
 
 const tr_manager_nav = /** @type {(inputs: Manager_NavInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ModManager`)
+	return /** @type {LocalizedString} */ (`SOTF Mod Manager`)
 };
 
 const zh_manager_nav = /** @type {(inputs: Manager_NavInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ModManager`)
+	return /** @type {LocalizedString} */ (`SOTF Mod Manager`)
 };
 
 const ja_manager_nav = /** @type {(inputs: Manager_NavInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ModManager`)
+	return /** @type {LocalizedString} */ (`SOTF Mod Manager`)
 };
 
 /**
 * | output |
 * | --- |
-* | "ModManager" |
+* | "SOTF Mod Manager" |
 *
 * @param {Manager_NavInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

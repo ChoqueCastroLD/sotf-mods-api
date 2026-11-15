@@ -31,7 +31,7 @@ export const SIGNED_IN_HINT_COOKIE = 'sotf_li';
 
 /**
  * SotF Mods Manager (2026-11), the site's own mod manager: installs mods and modpacks in one click
- * through `sotfmm://mod/:user/:slug` and `sotfmm://modpack/:user/:slug` links. Download links carry
+ * through `sotfmm://mod|build|modpack/:user/:slug` links. Download links carry
  * `data-manager-cta="<placement>"` and the beacon records clicks (`manager_download_click`,
  * `manager_open_click`) for the owner dashboard.
  */
@@ -43,8 +43,9 @@ export const MANAGER = {
   repoUrl: 'https://github.com/ChoqueCastroLD/sotf-mods-manager',
 } as const;
 
-export function managerModLink(userHandle: string, slug: string): string {
-  return `sotfmm://mod/${encodeURIComponent(userHandle)}/${encodeURIComponent(slug)}`;
+/** One-click install link of a mod or build page (`sotfmm://mod|build/{user}/{slug}`). */
+export function managerLink(kind: 'mod' | 'build', userHandle: string, slug: string): string {
+  return `sotfmm://${kind}/${encodeURIComponent(userHandle)}/${encodeURIComponent(slug)}`;
 }
 
 export function managerModpackLink(userHandle: string, slug: string): string {

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Console_Nav_ManagerInputs */
 
 const en_console_nav_manager = /** @type {(inputs: Console_Nav_ManagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ModManager`)
+	return /** @type {LocalizedString} */ (`SOTF Mod Manager`)
 };
 
 const es_console_nav_manager = /** @type {(inputs: Console_Nav_ManagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ModManager`)
+	return /** @type {LocalizedString} */ (`SOTF Mod Manager`)
 };
 
 const de_console_nav_manager = /** @type {(inputs: Console_Nav_ManagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ModManager`)
+	return /** @type {LocalizedString} */ (`SOTF Mod Manager`)
 };
 
 const fr_console_nav_manager = /** @type {(inputs: Console_Nav_ManagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ModManager`)
+	return /** @type {LocalizedString} */ (`SOTF Mod Manager`)
 };
 
 const it_console_nav_manager = /** @type {(inputs: Console_Nav_ManagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ModManager`)
+	return /** @type {LocalizedString} */ (`SOTF Mod Manager`)
 };
 
 const nl_console_nav_manager = /** @type {(inputs: Console_Nav_ManagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ModManager`)
+	return /** @type {LocalizedString} */ (`SOTF Mod Manager`)
 };
 
 const pl_console_nav_manager = /** @type {(inputs: Console_Nav_ManagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ModManager`)
+	return /** @type {LocalizedString} */ (`SOTF Mod Manager`)
 };
 
 const pt_console_nav_manager = /** @type {(inputs: Console_Nav_ManagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ModManager`)
+	return /** @type {LocalizedString} */ (`SOTF Mod Manager`)
 };
 
 const ru_console_nav_manager = /** @type {(inputs: Console_Nav_ManagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ModManager`)
+	return /** @type {LocalizedString} */ (`SOTF Mod Manager`)
 };
 
 const sv_console_nav_manager = /** @type {(inputs: Console_Nav_ManagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ModManager`)
+	return /** @type {LocalizedString} */ (`SOTF Mod Manager`)
 };
 
 const tr_console_nav_manager = /** @type {(inputs: Console_Nav_ManagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ModManager`)
+	return /** @type {LocalizedString} */ (`SOTF Mod Manager`)
 };
 
 const zh_console_nav_manager = /** @type {(inputs: Console_Nav_ManagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ModManager`)
+	return /** @type {LocalizedString} */ (`SOTF Mod Manager`)
 };
 
 const ja_console_nav_manager = /** @type {(inputs: Console_Nav_ManagerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`ModManager`)
+	return /** @type {LocalizedString} */ (`SOTF Mod Manager`)
 };
 
 /**
 * | output |
 * | --- |
-* | "ModManager" |
+* | "SOTF Mod Manager" |
 *
 * @param {Console_Nav_ManagerInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

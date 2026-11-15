@@ -206,7 +206,6 @@
   "mod_action_more": "Fler åtgärder",
   "mod_action_report_mod": "Anmäl den här modden",
   "mod_tab_description": "Beskrivning",
-  "mod_action_install_manager": "Installera med SotF Mods Manager",
   "mod_versions_section_title": "Versioner och ändringslogg",
   "mod_details_title": "Detaljer",
   "mod_detail_game": "Spelversion",
@@ -222,5 +221,7 @@
   "mod_unapprove_action": "Dra tillbaka godkännande",
   "mod_unapprove_title": "Dra tillbaka godkännandet av {name}?",
   "mod_unapprove_text": "Den går tillbaka till Väntar på godkännande: den försvinner från huvudlistan och hamnar i kön för nya moddar.",
-  "mod_unapprove_done": "{name} väntar på godkännande igen"
+  "mod_unapprove_done": "{name} väntar på godkännande igen",
+  "mod_action_install_launcher": "Installera med launchern",
+  "mod_install_launcher_needs": "Kräver SotF Mods Manager"
 }

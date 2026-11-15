@@ -3,7 +3,7 @@ export type Manager_NavInputs = {};
 /**
 * | output |
 * | --- |
-* | "ModManager" |
+* | "SOTF Mod Manager" |
 *
 * @param {Manager_NavInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

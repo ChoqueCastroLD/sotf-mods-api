@@ -206,7 +206,6 @@
   "mod_action_more": "Plus d’actions",
   "mod_action_report_mod": "Signaler ce mod",
   "mod_tab_description": "Description",
-  "mod_action_install_manager": "Installer avec SotF Mods Manager",
   "mod_versions_section_title": "Versions et journal des modifications",
   "mod_details_title": "Détails",
   "mod_detail_game": "Version du jeu",
@@ -222,5 +221,7 @@
   "mod_unapprove_action": "Retirer l’approbation",
   "mod_unapprove_title": "Retirer l’approbation de {name} ?",
   "mod_unapprove_text": "Il repasse en attente d’approbation : il quitte la liste principale et revient dans la file des nouveaux mods.",
-  "mod_unapprove_done": "{name} est de nouveau en attente d’approbation"
+  "mod_unapprove_done": "{name} est de nouveau en attente d’approbation",
+  "mod_action_install_launcher": "Installer avec le launcher",
+  "mod_install_launcher_needs": "Nécessite SotF Mods Manager"
 }

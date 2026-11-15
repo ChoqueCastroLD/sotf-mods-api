@@ -206,7 +206,6 @@
   "mod_action_more": "更多操作",
   "mod_action_report_mod": "举报此模组",
   "mod_tab_description": "描述",
-  "mod_action_install_manager": "用 SotF Mods Manager 安装",
   "mod_versions_section_title": "版本与更新日志",
   "mod_details_title": "详情",
   "mod_detail_game": "游戏版本",
@@ -222,5 +221,7 @@
   "mod_unapprove_action": "取消批准",
   "mod_unapprove_title": "要取消批准 {name} 吗？",
   "mod_unapprove_text": "它将回到“待批准”状态：从主列表移除，并返回新模组队列。",
-  "mod_unapprove_done": "{name} 已重新变为待批准"
+  "mod_unapprove_done": "{name} 已重新变为待批准",
+  "mod_action_install_launcher": "用启动器安装",
+  "mod_install_launcher_needs": "需要 SotF Mods Manager"
 }

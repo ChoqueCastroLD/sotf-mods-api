@@ -73,6 +73,8 @@ export interface NavItem {
   /** Absolute URL (opens in a new tab). */
   external?: string;
   icon: LucideIcon | 'discord';
+  /** Drawn as the header's accent pill (SOTF Mod Manager). */
+  highlight?: boolean;
 }
 
 /** Centre pill of the header (md and up). */
@@ -80,7 +82,7 @@ export function mainNav(): NavItem[] {
   return [
     { id: 'mods', path: PATHS.mods, label: m.common_term_mods(), icon: Package },
     { id: 'builds', path: PATHS.builds, label: m.common_term_builds(), icon: Hammer },
-    { id: 'manager', path: PATHS.manager, label: m.manager_nav(), icon: MonitorDown },
+    { id: 'manager', path: PATHS.manager, label: m.manager_nav(), icon: MonitorDown, highlight: true },
   ];
 }
 

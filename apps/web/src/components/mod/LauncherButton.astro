@@ -1,0 +1,48 @@
+---
+/**
+ * «Install with launcher» next to Download on mod and build pages: a plain `sotfmm://mod|build/
+ * {user}/{slug}` link that Windows hands to SotF Mods Manager (it confirms the dependencies and
+ * installs; for builds it also installs BuildShare and places the build). «Needs SotF Mods
+ * Manager» under it links to the latest release. Only for approved Sons of the Forest mods and
+ * builds with a downloadable latest version (the launcher only lists approved ones); hidden on
+ * phones (the launcher is Windows only). Clicks are counted by the beacon (`manager_open_click`).
+ */
+import { m } from '@sotf/i18n/messages';
+import { buttonClasses } from '@sotf/ui/button';
+import { Icon } from '@sotf/ui/icons';
+import { MonitorDown } from 'lucide-react';
+import { MANAGER, managerLink } from '../../lib/site.ts';
+import type { ModDetailDTO } from './data.ts';
+
+interface Props {
+  mod: ModDetailDTO;
+}
+
+const { mod } = Astro.props;
+const kind = mod.kind === 'build' ? 'build' : 'mod';
+const approved = !mod.banners.some((banner) => banner === 'pending_review' || banner === 'unlisted' || banner === 'archived');
+const show = approved && mod.game === 'sotf' && mod.latestVersion?.status === 'active';
+---
+
+{
+  show && (
+    <div class="grid justify-items-start gap-1 max-md:hidden">
+      <a
+        href={managerLink(kind, mod.userHandle, mod.slug)}
+        data-manager-placement={kind}
+        class={buttonClasses({ variant: 'secondary', size: 'md' })}
+      >
+        <Icon icon={MonitorDown} size={16} />
+        <span>{m.mod_action_install_launcher()}</span>
+      </a>
+      <a
+        href={MANAGER.releaseUrl}
+        data-manager-cta={`${kind}-needs`}
+        rel="noopener"
+        class="text-xs text-fg-muted underline underline-offset-2 hover:text-fg"
+      >
+        {m.mod_install_launcher_needs()}
+      </a>
+    </div>
+  )
+}
