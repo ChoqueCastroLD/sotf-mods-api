@@ -5274,6 +5274,61 @@
   "modpacks_comment_removed_note": "Этот комментарий удалён.",
   "modpacks_comments_empty": "Комментариев пока нет. Здесь задают вопросы о модпаке и делятся советами.",
   "modpacks_comments_load_failed": "Не удалось загрузить комментарии.",
+  "modpacks_configs_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} файл",
+        "count__plural=few": "{count__number} файла",
+        "count__plural=many": "{count__number} файлов",
+        "count__plural=*": "{count__number} файла"
+      }
+    }
+  ],
+  "modpacks_configs_description": "Добавьте свои настройки модов в модпак. Упакуйте файлы вместе с папками так, как они лежат в папке игры, например UserData/AxelsModMenu.cfg. SotF Mods Manager скопирует их в игру при установке модпака.",
+  "modpacks_configs_download": "Скачать файлы настроек ({size})",
+  "modpacks_configs_err_binary": "Файл не текстовый.",
+  "modpacks_configs_err_duplicate": "Один и тот же файл есть в zip дважды.",
+  "modpacks_configs_err_empty": "В zip нет файлов настроек.",
+  "modpacks_configs_err_extension": "Разрешены только файлы настроек: cfg, toml, json, ini, txt, xml и yml.",
+  "modpacks_configs_err_file_too_big": "Файл больше 256 КБ.",
+  "modpacks_configs_err_generic": "Не удалось сохранить файлы настроек. Попробуйте ещё раз.",
+  "modpacks_configs_err_not_zip": "Это не zip-файл.",
+  "modpacks_configs_err_outside": "Каждый файл должен лежать в папке UserData или Mods.",
+  "modpacks_configs_err_too_big": "Zip больше 1 МБ.",
+  "modpacks_configs_err_too_many": "В zip больше 100 файлов.",
+  "modpacks_configs_page_text": "Настройки, которые автор модпака использует для этих модов. SotF Mods Manager скопирует их в папку игры при установке модпака.",
+  "modpacks_configs_remove": "Убрать",
+  "modpacks_configs_removed": "Файлы настроек убраны",
+  "modpacks_configs_replace": "Заменить zip",
+  "modpacks_configs_save_first": "Сначала сохраните модпак, затем добавьте файлы настроек.",
+  "modpacks_configs_saved": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Файлы настроек сохранены: {count__number} файл",
+        "count__plural=few": "Файлы настроек сохранены: {count__number} файла",
+        "count__plural=many": "Файлы настроек сохранены: {count__number} файлов",
+        "count__plural=*": "Файлы настроек сохранены: {count__number} файла"
+      }
+    }
+  ],
+  "modpacks_configs_title": "Файлы настроек",
+  "modpacks_configs_upload": "Загрузить zip",
   "modpacks_conflict_pair": "{a} несовместим с {b}",
   "modpacks_conflicts_title": "Некоторые моды этого модпака несовместимы друг с другом",
   "modpacks_copy_link": "Копировать ссылку",
@@ -5429,6 +5484,8 @@
   "modpacks_new_button": "Новый модпак",
   "modpacks_new_description": "Выберите моды, расставьте их по порядку и опишите, для чего этот модпак.",
   "modpacks_new_title": "Новый модпак",
+  "modpacks_note_label": "Заметка для игроков о {name}",
+  "modpacks_note_placeholder": "Заметка для игроков (необязательно): как использовать или настроить мод",
   "modpacks_open_in_manager": "Открыть в SotF Mods Manager",
   "modpacks_optional": "необязательно",
   "modpacks_pending_hint": "Модератор проверит этот модпак, прежде чем он появится на сайте.",
@@ -5449,6 +5506,7 @@
     }
   ],
   "modpacks_remove_mod": "Убрать {name}",
+  "modpacks_retry": "Повторить",
   "modpacks_review_approve": "Одобрить",
   "modpacks_review_approved": "{name} одобрен",
   "modpacks_review_description": "Модпаки участников, которые не являются проверенными авторами, ждут здесь одобрения модератора.",
@@ -5530,6 +5588,7 @@
     }
   ],
   "modpacks_unavailable_notice": "Больше недоступны: {names}. Они пропускаются при скачивании модпака.",
+  "modpacks_undo": "Отменить",
   "modpacks_updated": "Обновлён {date}",
   "modpacks_view_public": "Открыть страницу",
   "modpacks_visibility_hidden": "Скрыт",

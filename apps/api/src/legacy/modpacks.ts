@@ -57,6 +57,7 @@ function modsOf(siteUrl: string, kit: KitDTO) {
       url: absolute(siteUrl, item.mod.canonicalPath),
       available: item.available,
       isDependency: item.isAutoDependency,
+      note: item.note,
     },
   }));
   const hidden = kit.unavailable.map((entry) => ({
@@ -71,6 +72,7 @@ function modsOf(siteUrl: string, kit: KitDTO) {
       url: '',
       available: false,
       isDependency: false,
+      note: null,
     },
   }));
   return [...shown, ...hidden].sort((a, b) => a.position - b.position).map((entry) => entry.mod);
@@ -87,6 +89,9 @@ function detail(siteUrl: string, kit: KitDTO, userSlug: string, slug: string) {
     ),
     incompatible: kit.conflictPairs,
     mods: modsOf(siteUrl, kit),
+    configs: kit.configs
+      ? { url: kit.configs.url, sha256: kit.configs.sha256, size: kit.configs.size, files: kit.configs.files }
+      : null,
   };
 }
 

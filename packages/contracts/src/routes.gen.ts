@@ -174,6 +174,8 @@ export const API_ROUTES = {
     review: { id: 'kits.review', method: 'GET', path: "/api/v2/kits/review", kind: 'json', bodyKind: null },
     getForReview: { id: 'kits.getForReview', method: 'GET', path: "/api/v2/kits/review/:id", kind: 'json', bodyKind: null },
     setApproval: { id: 'kits.setApproval', method: 'POST', path: "/api/v2/kits/:id/approval", kind: 'json', bodyKind: 'json' },
+    putConfigs: { id: 'kits.putConfigs', method: 'PUT', path: "/api/v2/kits/:id/configs", kind: 'json', bodyKind: 'json' },
+    deleteConfigs: { id: 'kits.deleteConfigs', method: 'DELETE', path: "/api/v2/kits/:id/configs", kind: 'json', bodyKind: null },
     resolveProfile: { id: 'kits.resolveProfile', method: 'POST', path: "/api/v2/kits/resolve-profile", kind: 'json', bodyKind: 'json' },
     modKits: { id: 'kits.modKits', method: 'GET', path: "/api/v2/mods/:id/kits", kind: 'json', bodyKind: null },
   },

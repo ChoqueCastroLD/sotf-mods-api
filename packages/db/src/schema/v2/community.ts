@@ -72,6 +72,12 @@ export const kit = pgTable('Kit', {
   downloads: integer('downloads').notNull().default(0),
   /** `pending` until a moderator approves it (verified creators and staff publish at once). */
   approvalStatus: text('approvalStatus').$type<KitApprovalStatus>().notNull().default('published'),
+  /** Config files zip (2283): storage key, SHA-256, size and the validated file list; NULL when none. */
+  configKey: text('configKey'),
+  configSha256: text('configSha256'),
+  configBytes: integer('configBytes'),
+  configFiles: jsonb('configFiles').$type<Array<{ path: string; size: number }>>(),
+  configUpdatedAt: tstz('configUpdatedAt'),
   createdAt: tstz('createdAt').notNull().defaultNow(),
   updatedAt: tstz('updatedAt')
     .notNull()

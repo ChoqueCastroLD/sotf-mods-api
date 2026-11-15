@@ -5,6 +5,7 @@
  * the executor given (so writes can build their response inside their transaction).
  */
 import type { UserRefDTO } from '@sotf/contracts/common';
+import { publicObjectUrl } from '@sotf/contracts/downloads';
 import {
   type KitApprovalStatus,
   type KitCardDTO,
@@ -54,6 +55,11 @@ export interface KitRow {
   followersCount: number;
   downloads: number;
   approvalStatus: KitApprovalStatus;
+  configKey: string | null;
+  configSha256: string | null;
+  configBytes: number | null;
+  configFiles: Array<{ path: string; size: number }> | null;
+  configUpdatedAt: Date | null;
   createdAt: Date;
   updatedAt: Date;
   deletedAt: Date | null;
@@ -89,6 +95,7 @@ const KIT_SELECT = sql`
 SELECT k."id", k."ownerId", k."slug", k."name", k."descriptionMd", k."descriptionHtml", k."visibility", k."code", k."ogImageKey",
        k."coverMediaId", k."isStaffPick", k."forkedFromId", k."revision", k."itemsCount", k."followersCount",
        k."downloads", k."approvalStatus",
+       k."configKey", k."configSha256", k."configBytes", k."configFiles", k."configUpdatedAt",
        k."createdAt", k."updatedAt", k."deletedAt",
        u."slug" AS "ownerSlug", u."name" AS "ownerName", u."displayName" AS "ownerDisplayName",
        u."imageUrl" AS "ownerImageUrl", u."verifiedCreator" AS "ownerVerified", u."role" AS "ownerRole",
@@ -116,6 +123,8 @@ function normalizeKitRow(r: KitRow): KitRow {
     followersCount: toInt(r.followersCount),
     downloads: toInt(r.downloads),
     approvalStatus: r.approvalStatus === 'published' ? 'published' : 'pending',
+    configBytes: r.configBytes === null ? null : toInt(r.configBytes),
+    configUpdatedAt: toDate(r.configUpdatedAt),
   };
 }
 
@@ -336,6 +345,18 @@ function visibleEntries(
   return out;
 }
 
+/** The config files of a kit (zip in the public bucket), or null. */
+function configsOf(config: CatalogConfig, kit: KitRow): KitDTO['configs'] {
+  if (!kit.configKey || !kit.configSha256 || kit.configBytes === null || !kit.configUpdatedAt) return null;
+  return {
+    url: publicObjectUrl(config.mediaBaseUrl, kit.configKey),
+    sha256: kit.configSha256,
+    size: kit.configBytes,
+    files: Array.isArray(kit.configFiles) ? kit.configFiles : [],
+    updatedAt: kit.configUpdatedAt.toISOString(),
+  };
+}
+
 function cardOf(config: CatalogConfig, snapshot: CatalogSnapshot, kit: KitRow, items: readonly ItemRow[]): KitCardDTO {
   const thumbs: string[] = [];
   for (const { entry } of visibleEntries(snapshot, items)) {
@@ -481,6 +502,7 @@ export async function buildKitDto(
       summary: (r.summary ?? '').slice(0, 200),
       createdAt: (toDate(r.createdAt) ?? new Date(0)).toISOString(),
     })),
+    configs: configsOf(config, kit),
     noindex: kitNoindex(kit.visibility, kit.itemsCount),
     createdAt: kit.createdAt.toISOString(),
     // Private kits are never rendered (og.render skips them); a stale key must not leak either.

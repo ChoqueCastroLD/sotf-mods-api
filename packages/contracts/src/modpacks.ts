@@ -104,6 +104,7 @@ export const PublicModpackMod = dto(
     url: z.string(),
     available: z.boolean().describe('false when the mod is no longer approved (it is left out of the download)'),
     isDependency: z.boolean().describe('Added automatically as a dependency of another mod of the pack'),
+    note: z.string().nullable().describe("The modpack author's note about this mod (how to use or configure it)"),
   }),
   {
     description: 'A mod of a modpack, in pack order.',
@@ -118,6 +119,7 @@ export const PublicModpackMod = dto(
         url: 'https://sotf-mods.com/mods/imaxel/ammoui',
         available: true,
         isDependency: false,
+        note: 'Press F1 to open the menu',
       },
     ],
   },
@@ -132,6 +134,15 @@ export const PublicModpackDetail = dto(
       .array(z.tuple([z.string(), z.string()]))
       .describe('Pairs of mods of the pack that do not work together'),
     mods: z.array(PublicModpackMod),
+    configs: z
+      .object({
+        url: z.string().describe('Zip of config files, paths relative to the game folder (UserData/, Mods/)'),
+        sha256: z.string(),
+        size: z.number().int().nonnegative(),
+        files: z.array(z.object({ path: z.string(), size: z.number().int().nonnegative() })),
+      })
+      .nullable()
+      .describe('Mod settings shipped with the modpack (null when none)'),
   }),
   {
     description: 'Data of `GET /api/modpacks/slug/:userSlug/:slug`.',
@@ -142,6 +153,7 @@ export const PublicModpackDetail = dto(
         downloadUrl: 'https://sotf-mods.com/api/modpacks/slug/imaxel/co-op-essentials/download',
         incompatible: [],
         mods: [exampleOf(PublicModpackMod)],
+        configs: null,
       },
     ],
   },

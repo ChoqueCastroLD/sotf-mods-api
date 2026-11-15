@@ -39,6 +39,8 @@ import type { Actor, Ctx } from '../kernel/context.ts';
 import { DomainError, errors } from '../kernel/errors.ts';
 import { likeContains } from '../legacy/db.ts';
 import { assertCan } from '../permissions/can.ts';
+import type { ObjectStorage } from '../storage/client.ts';
+import { configKeyOf, validateConfigZip } from './configs.ts';
 import {
   buildKitCards,
   buildKitDto,
@@ -656,6 +658,64 @@ export async function updateKit(ctx: Ctx, deps: KitsDeps, kitId: number, input: 
   return respond(ctx, deps, ctx.db, kit, 'owner');
 }
 
+/**
+ * `PUT /kits/:id/configs`: checks and repacks the uploaded zip (`configs.ts`), stores it in the
+ * public bucket and records it. The owner check runs before anything is stored.
+ */
+export async function putKitConfigs(
+  ctx: Ctx,
+  deps: KitsDeps,
+  storage: ObjectStorage,
+  kitId: number,
+  dataBase64: string,
+): Promise<KitResult> {
+  const actor = actorOf(ctx);
+  const current = await loadKitRow(ctx.db, kitId);
+  if (!current || !viewOf(current, actor.userId)) throw errors.notFound('Kit');
+  assertCan(actor, 'kit.edit', { ownerId: current.ownerId }, ctx.clock.now());
+  const compact = dataBase64.replace(/\s+/g, '');
+  if (!/^[A-Za-z0-9+/]*={0,2}$/.test(compact)) throw errors.validation('The file could not be read.');
+  const configs = await validateConfigZip(Buffer.from(compact, 'base64'));
+  const key = configKeyOf(kitId, configs.sha256);
+  await storage.put({
+    bucket: storage.config.publicBucket,
+    key,
+    body: configs.zip,
+    contentLength: configs.zip.length,
+    contentType: 'application/zip',
+    contentDisposition: 'attachment; filename="configs.zip"',
+    cacheControl: 'public, max-age=31536000, immutable',
+  });
+  const now = ctx.clock.now();
+  await withTx(ctx.db, async (tx) => {
+    const kit = await lockOwnKit(ctx, tx, kitId, 'kit.edit');
+    await tx.execute(sql`
+      UPDATE "Kit" SET "configKey" = ${key}, "configSha256" = ${configs.sha256}, "configBytes" = ${configs.zip.length},
+             "configFiles" = ${JSON.stringify(configs.files)}::jsonb, "configUpdatedAt" = ${at(now)}, "updatedAt" = ${at(now)}
+       WHERE "id" = ${kit.id}`);
+    await emitUpdated(ctx, tx, kit.id, kit.ownerId, kit.visibility, kit.revision);
+  });
+  const kit = await loadKitRow(ctx.db, kitId);
+  if (!kit) throw errors.notFound('Kit');
+  return respond(ctx, deps, ctx.db, kit, 'owner');
+}
+
+/** `DELETE /kits/:id/configs`: the modpack no longer ships config files. */
+export async function deleteKitConfigs(ctx: Ctx, deps: KitsDeps, kitId: number): Promise<KitResult> {
+  const now = ctx.clock.now();
+  await withTx(ctx.db, async (tx) => {
+    const kit = await lockOwnKit(ctx, tx, kitId, 'kit.edit');
+    await tx.execute(sql`
+      UPDATE "Kit" SET "configKey" = NULL, "configSha256" = NULL, "configBytes" = NULL, "configFiles" = NULL,
+             "configUpdatedAt" = NULL, "updatedAt" = ${at(now)}
+       WHERE "id" = ${kit.id}`);
+    await emitUpdated(ctx, tx, kit.id, kit.ownerId, kit.visibility, kit.revision);
+  });
+  const kit = await loadKitRow(ctx.db, kitId);
+  if (!kit) throw errors.notFound('Kit');
+  return respond(ctx, deps, ctx.db, kit, 'owner');
+}
+
 /** `DELETE /kits/:id`: soft delete (the slug is freed, the code stays reserved). */
 export async function deleteKit(ctx: Ctx, kitId: number): Promise<void> {
   const now = ctx.clock.now();
@@ -864,6 +924,8 @@ export interface SotfProfileMod {
   user: string;
   slug: string;
   version?: string;
+  /** The modpack author's note about this mod. */
+  note?: string;
 }
 
 export interface SotfProfile {
@@ -871,6 +933,8 @@ export interface SotfProfile {
   game: 'Sons of the Forest';
   mods: SotfProfileMod[];
   source?: string;
+  /** Config files to unpack into the game folder (paths relative to it). */
+  configs?: { url: string; sha256: string; size: number; files: number };
 }
 
 /**
@@ -890,8 +954,19 @@ export function kitProfile(kit: KitDTO, siteUrl: string): SotfProfile {
         user: item.mod.userHandle,
         slug: item.mod.slug,
         ...(item.mod.latestVersion ? { version: item.mod.latestVersion } : {}),
+        ...(item.note ? { note: item.note } : {}),
       })),
     source: `${siteUrl.replace(/\/+$/, '')}${kit.canonicalPath}`,
+    ...(kit.configs
+      ? {
+          configs: {
+            url: kit.configs.url,
+            sha256: kit.configs.sha256,
+            size: kit.configs.size,
+            files: kit.configs.files.length,
+          },
+        }
+      : {}),
   };
 }
 

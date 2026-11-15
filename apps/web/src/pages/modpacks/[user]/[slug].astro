@@ -20,7 +20,7 @@ import { localizeHtml } from '@sotf/markdown/labels';
 import { Avatar } from '@sotf/ui/avatar';
 import { PROSE_LOCATOR_CLASSES } from '@sotf/ui/domain';
 import { Icon } from '@sotf/ui/icons';
-import { AlertTriangle, Ban, Download, Flag, Heart, Info, Layers, Link as LinkIcon, MonitorDown, Package } from 'lucide-react';
+import { AlertTriangle, Ban, Download, FileArchive, Flag, Heart, Info, Layers, Link as LinkIcon, MonitorDown, Package } from 'lucide-react';
 import { loginHrefFor } from '../../../components/mod/format.ts';
 import { configureModDomainI18n, markdownLabels } from '../../../components/mod/i18n.ts';
 import ReportDialog from '../../../components/mod/ReportDialog.astro';
@@ -348,6 +348,7 @@ const ACTION =
                           <span class="truncate">{m.modpacks_by({ author: row.item.mod.userDisplayName || row.item.mod.userHandle })}</span>
                           {row.item.mod.latestVersion && <span class="font-mono text-xs leading-5 text-fg-subtle">v{row.item.mod.latestVersion}</span>}
                         </span>
+                        {row.item.note && <span class="mt-1 text-sm text-pretty text-fg">{row.item.note}</span>}
                       </span>
                       {(row.item.isAutoDependency || !row.item.available) && (
                         <span class="col-start-3 text-xs font-semibold text-fg-muted sm:col-start-auto sm:text-end">
@@ -371,6 +372,25 @@ const ACTION =
                 )}
               </ol>
             </section>
+
+            {pack.configs && (
+              <section aria-labelledby="modpack-configs">
+                <h2 id="modpack-configs" class="text-xl font-bold text-fg md:text-2xl">{m.modpacks_configs_title()}</h2>
+                <p class="mt-2 max-w-prose text-sm text-pretty text-fg-muted">{m.modpacks_configs_page_text()}</p>
+                <ul class="mt-4 grid gap-1 border-y border-border py-3">
+                  {pack.configs.files.map((file) => (
+                    <li class="flex justify-between gap-4 text-sm">
+                      <span class="min-w-0 truncate font-mono text-xs leading-5 text-fg">{file.path}</span>
+                      <span class="shrink-0 text-xs text-fg-subtle tabular-nums">{formatBytes(locale, file.size)}</span>
+                    </li>
+                  ))}
+                </ul>
+                <a href={pack.configs.url} rel="nofollow" class="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-link underline underline-offset-3">
+                  <Icon icon={FileArchive} size={16} />
+                  {m.modpacks_configs_download({ size: formatBytes(locale, pack.configs.size) })}
+                </a>
+              </section>
+            )}
 
             {pack.descriptionHtml && (
               <section aria-labelledby="modpack-about">

@@ -11,9 +11,11 @@
  */
 import { cacheTag } from '@sotf/contracts';
 import { kitsEndpoints } from '@sotf/contracts/kits';
+import { errors } from '@sotf/core';
 import {
   createKit,
   deleteKit,
+  deleteKitConfigs,
   forkKit,
   getKit,
   getKitByCode,
@@ -26,11 +28,13 @@ import {
   listMyKits,
   listReviewKits,
   listUserKits,
+  putKitConfigs,
   putKitItems,
   resolveProfile,
   setKitApproval,
   updateKit,
 } from '@sotf/core/kits/index';
+import { createStorage, type ObjectStorage, storageConfigFromEnv } from '@sotf/core/storage/index';
 import { defineModule } from '../../lib/define-module.ts';
 import { catalogConfigOf } from '../catalog/index.ts';
 
@@ -102,5 +106,22 @@ export default defineModule({
       async ({ params, body, ctx }) => (await setKitApproval(ctx, deps, params.id, body.approved)).kit,
     );
     m.implement(kitsEndpoints.resolveProfile, async ({ body, ctx }) => resolveProfile(ctx, deps, body.text));
+
+    // Config files: a base64 zip of at most 1 MiB, checked and repacked by core before storage.
+    const storageConfig = storageConfigFromEnv(m.platform.env);
+    const storage: ObjectStorage | null = storageConfig ? createStorage(storageConfig) : null;
+    m.app.addHook('onClose', async () => storage?.destroy());
+    m.implement(
+      kitsEndpoints.putConfigs,
+      async ({ params, body, ctx }) => {
+        if (!storage) throw errors.unavailable('File storage is not configured');
+        return (await putKitConfigs(ctx, deps, storage, params.id, body.dataBase64)).kit;
+      },
+      { bodyLimit: 2 * 1024 * 1024 },
+    );
+    m.implement(
+      kitsEndpoints.deleteConfigs,
+      async ({ params, ctx }) => (await deleteKitConfigs(ctx, deps, params.id)).kit,
+    );
   },
 });

@@ -4996,6 +4996,57 @@
   "modpacks_comment_removed_note": "Den här kommentaren har tagits bort.",
   "modpacks_comments_empty": "Inga kommentarer än. Frågor om modpaketet och tips hamnar här.",
   "modpacks_comments_load_failed": "Det gick inte att läsa in kommentarerna.",
+  "modpacks_configs_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} fil",
+        "count__plural=*": "{count__number} filer"
+      }
+    }
+  ],
+  "modpacks_configs_description": "Skicka med dina moddinställningar i modpaketet. Packa filerna med sina mappar som de ligger i spelmappen, till exempel UserData/AxelsModMenu.cfg. SotF Mods Manager kopierar dem till spelet när någon installerar modpaketet.",
+  "modpacks_configs_download": "Ladda ner konfigurationsfilerna ({size})",
+  "modpacks_configs_err_binary": "En fil är inte en textfil.",
+  "modpacks_configs_err_duplicate": "Samma fil finns två gånger i zip-filen.",
+  "modpacks_configs_err_empty": "Zip-filen har inga konfigurationsfiler.",
+  "modpacks_configs_err_extension": "Bara konfigurationsfiler är tillåtna: cfg, toml, json, ini, txt, xml och yml.",
+  "modpacks_configs_err_file_too_big": "En fil är större än 256 kB.",
+  "modpacks_configs_err_generic": "Det gick inte att spara konfigurationsfilerna. Försök igen.",
+  "modpacks_configs_err_not_zip": "Det här är ingen zip-fil.",
+  "modpacks_configs_err_outside": "Varje fil måste ligga i mappen UserData eller Mods.",
+  "modpacks_configs_err_too_big": "Zip-filen är större än 1 MB.",
+  "modpacks_configs_err_too_many": "Zip-filen har fler än 100 filer.",
+  "modpacks_configs_page_text": "Inställningar som modpaketets skapare använder för de här moddarna. SotF Mods Manager kopierar dem till spelmappen när du installerar modpaketet.",
+  "modpacks_configs_remove": "Ta bort",
+  "modpacks_configs_removed": "Konfigurationsfiler borttagna",
+  "modpacks_configs_replace": "Ersätt zip",
+  "modpacks_configs_save_first": "Spara modpaketet först och lägg sedan till konfigurationsfilerna.",
+  "modpacks_configs_saved": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Konfigurationsfiler sparade: {count__number} fil",
+        "count__plural=*": "Konfigurationsfiler sparade: {count__number} filer"
+      }
+    }
+  ],
+  "modpacks_configs_title": "Konfigurationsfiler",
+  "modpacks_configs_upload": "Ladda upp zip",
   "modpacks_conflict_pair": "{a} är inte kompatibel med {b}",
   "modpacks_conflicts_title": "Vissa moddar i det här modpaketet är inte kompatibla med varandra",
   "modpacks_copy_link": "Kopiera länk",
@@ -5141,6 +5192,8 @@
   "modpacks_new_button": "Nytt modpaket",
   "modpacks_new_description": "Välj moddarna, sätt dem i ordning och beskriv vad modpaketet är till för.",
   "modpacks_new_title": "Nytt modpaket",
+  "modpacks_note_label": "Anteckning till spelarna om {name}",
+  "modpacks_note_placeholder": "Anteckning till spelarna (valfritt): hur modden används eller ställs in",
   "modpacks_open_in_manager": "Öppna i SotF Mods Manager",
   "modpacks_optional": "valfritt",
   "modpacks_pending_hint": "En moderator granskar modpaketet innan det visas på sidan.",
@@ -5161,6 +5214,7 @@
     }
   ],
   "modpacks_remove_mod": "Ta bort {name}",
+  "modpacks_retry": "Försök igen",
   "modpacks_review_approve": "Godkänn",
   "modpacks_review_approved": "{name} godkändes",
   "modpacks_review_description": "Modpaket från medlemmar som inte är verifierade skapare väntar här tills en moderator godkänner dem.",
@@ -5238,6 +5292,7 @@
     }
   ],
   "modpacks_unavailable_notice": "Inte längre tillgängliga: {names}. De hoppas över när modpaketet laddas ner.",
+  "modpacks_undo": "Ångra",
   "modpacks_updated": "Uppdaterad {date}",
   "modpacks_view_public": "Visa sida",
   "modpacks_visibility_hidden": "Dold",

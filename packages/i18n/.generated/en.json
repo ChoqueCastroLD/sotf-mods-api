@@ -4996,6 +4996,57 @@
   "modpacks_comment_removed_note": "This comment was removed.",
   "modpacks_comments_empty": "No comments yet. Questions about the modpack and tips go here.",
   "modpacks_comments_load_failed": "Couldn't load the comments.",
+  "modpacks_configs_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} file",
+        "count__plural=*": "{count__number} files"
+      }
+    }
+  ],
+  "modpacks_configs_description": "Ship your mod settings with the modpack. Zip the files with their folders as they are in the game folder, for example UserData/AxelsModMenu.cfg. SotF Mods Manager copies them into the game when someone installs the modpack.",
+  "modpacks_configs_download": "Download the config files ({size})",
+  "modpacks_configs_err_binary": "A file is not a text file.",
+  "modpacks_configs_err_duplicate": "The same file is in the zip twice.",
+  "modpacks_configs_err_empty": "The zip has no config files.",
+  "modpacks_configs_err_extension": "Only config files are allowed: cfg, toml, json, ini, txt, xml and yml.",
+  "modpacks_configs_err_file_too_big": "A file is larger than 256 KB.",
+  "modpacks_configs_err_generic": "The config files couldn't be saved. Try again.",
+  "modpacks_configs_err_not_zip": "This is not a zip file.",
+  "modpacks_configs_err_outside": "Every file must be inside the UserData or Mods folder.",
+  "modpacks_configs_err_too_big": "The zip is larger than 1 MB.",
+  "modpacks_configs_err_too_many": "The zip has more than 100 files.",
+  "modpacks_configs_page_text": "Settings the modpack author uses for these mods. SotF Mods Manager copies them into your game folder when you install the modpack.",
+  "modpacks_configs_remove": "Remove",
+  "modpacks_configs_removed": "Config files removed",
+  "modpacks_configs_replace": "Replace zip",
+  "modpacks_configs_save_first": "Save the modpack first, then add its config files.",
+  "modpacks_configs_saved": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Config files saved: {count__number} file",
+        "count__plural=*": "Config files saved: {count__number} files"
+      }
+    }
+  ],
+  "modpacks_configs_title": "Config files",
+  "modpacks_configs_upload": "Upload zip",
   "modpacks_conflict_pair": "{a} is not compatible with {b}",
   "modpacks_conflicts_title": "Some mods in this modpack are not compatible with each other",
   "modpacks_copy_link": "Copy link",
@@ -5141,6 +5192,8 @@
   "modpacks_new_button": "New modpack",
   "modpacks_new_description": "Pick the mods, put them in order and describe what the modpack is for.",
   "modpacks_new_title": "New modpack",
+  "modpacks_note_label": "Note for players about {name}",
+  "modpacks_note_placeholder": "Note for players (optional): how to use or set up this mod",
   "modpacks_open_in_manager": "Open in SotF Mods Manager",
   "modpacks_optional": "optional",
   "modpacks_pending_hint": "A moderator will review this modpack before it appears on the site.",
@@ -5161,6 +5214,7 @@
     }
   ],
   "modpacks_remove_mod": "Remove {name}",
+  "modpacks_retry": "Try again",
   "modpacks_review_approve": "Approve",
   "modpacks_review_approved": "{name} approved",
   "modpacks_review_description": "Modpacks from members who are not verified creators wait here until a moderator approves them.",
@@ -5238,6 +5292,7 @@
     }
   ],
   "modpacks_unavailable_notice": "No longer available: {names}. They are skipped when the modpack is downloaded.",
+  "modpacks_undo": "Undo",
   "modpacks_updated": "Updated {date}",
   "modpacks_view_public": "View page",
   "modpacks_visibility_hidden": "Hidden",

@@ -4996,6 +4996,57 @@
   "modpacks_comment_removed_note": "Ce commentaire a été supprimé.",
   "modpacks_comments_empty": "Aucun commentaire pour l’instant. Les questions sur le modpack et les astuces vont ici.",
   "modpacks_comments_load_failed": "Impossible de charger les commentaires.",
+  "modpacks_configs_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} fichier",
+        "count__plural=*": "{count__number} fichiers"
+      }
+    }
+  ],
+  "modpacks_configs_description": "Livrez vos réglages de mods avec le modpack. Compressez les fichiers avec leurs dossiers tels qu’ils sont dans le dossier du jeu, par exemple UserData/AxelsModMenu.cfg. SotF Mods Manager les copie dans le jeu quand quelqu’un installe le modpack.",
+  "modpacks_configs_download": "Télécharger les fichiers de configuration ({size})",
+  "modpacks_configs_err_binary": "Un fichier n’est pas un fichier texte.",
+  "modpacks_configs_err_duplicate": "Le même fichier figure deux fois dans le zip.",
+  "modpacks_configs_err_empty": "Le zip ne contient aucun fichier de configuration.",
+  "modpacks_configs_err_extension": "Seuls les fichiers de configuration sont acceptés : cfg, toml, json, ini, txt, xml et yml.",
+  "modpacks_configs_err_file_too_big": "Un fichier dépasse 256 Ko.",
+  "modpacks_configs_err_generic": "Impossible d’enregistrer les fichiers de configuration. Réessayez.",
+  "modpacks_configs_err_not_zip": "Ce n’est pas un fichier zip.",
+  "modpacks_configs_err_outside": "Chaque fichier doit se trouver dans le dossier UserData ou Mods.",
+  "modpacks_configs_err_too_big": "Le zip dépasse 1 Mo.",
+  "modpacks_configs_err_too_many": "Le zip contient plus de 100 fichiers.",
+  "modpacks_configs_page_text": "Réglages que l’auteur du modpack utilise pour ces mods. SotF Mods Manager les copie dans le dossier du jeu quand vous installez le modpack.",
+  "modpacks_configs_remove": "Retirer",
+  "modpacks_configs_removed": "Fichiers de configuration retirés",
+  "modpacks_configs_replace": "Remplacer le zip",
+  "modpacks_configs_save_first": "Enregistrez d’abord le modpack, puis ajoutez ses fichiers de configuration.",
+  "modpacks_configs_saved": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Fichiers de configuration enregistrés : {count__number} fichier",
+        "count__plural=*": "Fichiers de configuration enregistrés : {count__number} fichiers"
+      }
+    }
+  ],
+  "modpacks_configs_title": "Fichiers de configuration",
+  "modpacks_configs_upload": "Envoyer un zip",
   "modpacks_conflict_pair": "{a} n’est pas compatible avec {b}",
   "modpacks_conflicts_title": "Certains mods de ce modpack ne sont pas compatibles entre eux",
   "modpacks_copy_link": "Copier le lien",
@@ -5141,6 +5192,8 @@
   "modpacks_new_button": "Nouveau modpack",
   "modpacks_new_description": "Choisissez les mods, mettez-les dans l’ordre et décrivez à quoi sert le modpack.",
   "modpacks_new_title": "Nouveau modpack",
+  "modpacks_note_label": "Note aux joueurs sur {name}",
+  "modpacks_note_placeholder": "Note aux joueurs (facultatif) : comment utiliser ou configurer ce mod",
   "modpacks_open_in_manager": "Ouvrir dans SotF Mods Manager",
   "modpacks_optional": "facultatif",
   "modpacks_pending_hint": "Un modérateur examinera ce modpack avant qu’il n’apparaisse sur le site.",
@@ -5161,6 +5214,7 @@
     }
   ],
   "modpacks_remove_mod": "Retirer {name}",
+  "modpacks_retry": "Réessayer",
   "modpacks_review_approve": "Approuver",
   "modpacks_review_approved": "{name} approuvé",
   "modpacks_review_description": "Les modpacks des membres qui ne sont pas créateurs vérifiés attendent ici qu’un modérateur les approuve.",
@@ -5238,6 +5292,7 @@
     }
   ],
   "modpacks_unavailable_notice": "Plus disponibles : {names}. Ils sont ignorés au téléchargement du modpack.",
+  "modpacks_undo": "Annuler",
   "modpacks_updated": "Mis à jour le {date}",
   "modpacks_view_public": "Voir la page",
   "modpacks_visibility_hidden": "Masqué",

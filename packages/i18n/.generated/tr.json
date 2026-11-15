@@ -4996,6 +4996,57 @@
   "modpacks_comment_removed_note": "Bu yorum kaldırıldı.",
   "modpacks_comments_empty": "Henüz yorum yok. Mod paketiyle ilgili sorular ve ipuçları buraya.",
   "modpacks_comments_load_failed": "Yorumlar yüklenemedi.",
+  "modpacks_configs_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} dosya",
+        "count__plural=*": "{count__number} dosya"
+      }
+    }
+  ],
+  "modpacks_configs_description": "Mod ayarlarını mod paketiyle birlikte gönder. Dosyaları oyun klasöründeki klasör yapısıyla zip'le, örneğin UserData/AxelsModMenu.cfg. Biri mod paketini kurduğunda SotF Mods Manager bunları oyuna kopyalar.",
+  "modpacks_configs_download": "Yapılandırma dosyalarını indir ({size})",
+  "modpacks_configs_err_binary": "Bir dosya metin dosyası değil.",
+  "modpacks_configs_err_duplicate": "Aynı dosya zip'te iki kez var.",
+  "modpacks_configs_err_empty": "Zip'te yapılandırma dosyası yok.",
+  "modpacks_configs_err_extension": "Yalnızca yapılandırma dosyalarına izin verilir: cfg, toml, json, ini, txt, xml ve yml.",
+  "modpacks_configs_err_file_too_big": "Bir dosya 256 KB'tan büyük.",
+  "modpacks_configs_err_generic": "Yapılandırma dosyaları kaydedilemedi. Tekrar dene.",
+  "modpacks_configs_err_not_zip": "Bu bir zip dosyası değil.",
+  "modpacks_configs_err_outside": "Her dosya UserData ya da Mods klasöründe olmalı.",
+  "modpacks_configs_err_too_big": "Zip 1 MB'tan büyük.",
+  "modpacks_configs_err_too_many": "Zip'te 100'den fazla dosya var.",
+  "modpacks_configs_page_text": "Mod paketinin yazarının bu modlar için kullandığı ayarlar. Mod paketini kurduğunda SotF Mods Manager bunları oyun klasörüne kopyalar.",
+  "modpacks_configs_remove": "Kaldır",
+  "modpacks_configs_removed": "Yapılandırma dosyaları kaldırıldı",
+  "modpacks_configs_replace": "Zip'i değiştir",
+  "modpacks_configs_save_first": "Önce mod paketini kaydet, sonra yapılandırma dosyalarını ekle.",
+  "modpacks_configs_saved": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Yapılandırma dosyaları kaydedildi: {count__number} dosya",
+        "count__plural=*": "Yapılandırma dosyaları kaydedildi: {count__number} dosya"
+      }
+    }
+  ],
+  "modpacks_configs_title": "Yapılandırma dosyaları",
+  "modpacks_configs_upload": "Zip yükle",
   "modpacks_conflict_pair": "{a}, {b} ile uyumlu değil",
   "modpacks_conflicts_title": "Bu paketteki bazı modlar birbiriyle uyumlu değil",
   "modpacks_copy_link": "Bağlantıyı kopyala",
@@ -5141,6 +5192,8 @@
   "modpacks_new_button": "Yeni mod paketi",
   "modpacks_new_description": "Modları seç, sırala ve mod paketinin ne için olduğunu anlat.",
   "modpacks_new_title": "Yeni mod paketi",
+  "modpacks_note_label": "{name} hakkında oyunculara not",
+  "modpacks_note_placeholder": "Oyunculara not (isteğe bağlı): bu modun nasıl kullanılacağı veya ayarlanacağı",
   "modpacks_open_in_manager": "SotF Mods Manager'da aç",
   "modpacks_optional": "isteğe bağlı",
   "modpacks_pending_hint": "Bu mod paketi sitede görünmeden önce bir moderatör tarafından incelenecek.",
@@ -5161,6 +5214,7 @@
     }
   ],
   "modpacks_remove_mod": "{name} kaldır",
+  "modpacks_retry": "Tekrar dene",
   "modpacks_review_approve": "Onayla",
   "modpacks_review_approved": "{name} onaylandı",
   "modpacks_review_description": "Doğrulanmış içerik üreticisi olmayan üyelerin mod paketleri, bir moderatör onaylayana kadar burada bekler.",
@@ -5238,6 +5292,7 @@
     }
   ],
   "modpacks_unavailable_notice": "Artık mevcut değil: {names}. Mod paketi indirilirken atlanırlar.",
+  "modpacks_undo": "Geri al",
   "modpacks_updated": "Güncellendi: {date}",
   "modpacks_view_public": "Sayfayı gör",
   "modpacks_visibility_hidden": "Gizli",

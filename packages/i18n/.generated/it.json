@@ -4996,6 +4996,57 @@
   "modpacks_comment_removed_note": "Questo commento è stato rimosso.",
   "modpacks_comments_empty": "Ancora nessun commento. Qui vanno domande sul modpack e consigli.",
   "modpacks_comments_load_failed": "Impossibile caricare i commenti.",
+  "modpacks_configs_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} file",
+        "count__plural=*": "{count__number} file"
+      }
+    }
+  ],
+  "modpacks_configs_description": "Includi le tue impostazioni delle mod nel modpack. Comprimi i file con le loro cartelle come sono nella cartella del gioco, per esempio UserData/AxelsModMenu.cfg. SotF Mods Manager li copia nel gioco quando qualcuno installa il modpack.",
+  "modpacks_configs_download": "Scarica i file di configurazione ({size})",
+  "modpacks_configs_err_binary": "Un file non è un file di testo.",
+  "modpacks_configs_err_duplicate": "Lo stesso file è due volte nello zip.",
+  "modpacks_configs_err_empty": "Lo zip non contiene file di configurazione.",
+  "modpacks_configs_err_extension": "Sono ammessi solo file di configurazione: cfg, toml, json, ini, txt, xml e yml.",
+  "modpacks_configs_err_file_too_big": "Un file supera 256 KB.",
+  "modpacks_configs_err_generic": "Impossibile salvare i file di configurazione. Riprova.",
+  "modpacks_configs_err_not_zip": "Non è un file zip.",
+  "modpacks_configs_err_outside": "Ogni file deve stare nella cartella UserData o Mods.",
+  "modpacks_configs_err_too_big": "Lo zip supera 1 MB.",
+  "modpacks_configs_err_too_many": "Lo zip contiene più di 100 file.",
+  "modpacks_configs_page_text": "Impostazioni che l’autore del modpack usa per queste mod. SotF Mods Manager le copia nella cartella del gioco quando installi il modpack.",
+  "modpacks_configs_remove": "Rimuovi",
+  "modpacks_configs_removed": "File di configurazione rimossi",
+  "modpacks_configs_replace": "Sostituisci zip",
+  "modpacks_configs_save_first": "Salva prima il modpack, poi aggiungi i file di configurazione.",
+  "modpacks_configs_saved": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "File di configurazione salvati: {count__number} file",
+        "count__plural=*": "File di configurazione salvati: {count__number} file"
+      }
+    }
+  ],
+  "modpacks_configs_title": "File di configurazione",
+  "modpacks_configs_upload": "Carica zip",
   "modpacks_conflict_pair": "{a} non è compatibile con {b}",
   "modpacks_conflicts_title": "Alcune mod di questo modpack non sono compatibili tra loro",
   "modpacks_copy_link": "Copia link",
@@ -5141,6 +5192,8 @@
   "modpacks_new_button": "Nuovo modpack",
   "modpacks_new_description": "Scegli le mod, mettile in ordine e descrivi a cosa serve il modpack.",
   "modpacks_new_title": "Nuovo modpack",
+  "modpacks_note_label": "Nota per i giocatori su {name}",
+  "modpacks_note_placeholder": "Nota per i giocatori (facoltativa): come usare o configurare questa mod",
   "modpacks_open_in_manager": "Apri in SotF Mods Manager",
   "modpacks_optional": "facoltativo",
   "modpacks_pending_hint": "Un moderatore esaminerà questo modpack prima che appaia sul sito.",
@@ -5161,6 +5214,7 @@
     }
   ],
   "modpacks_remove_mod": "Rimuovi {name}",
+  "modpacks_retry": "Riprova",
   "modpacks_review_approve": "Approva",
   "modpacks_review_approved": "{name} approvato",
   "modpacks_review_description": "I modpack dei membri che non sono creatori verificati restano qui finché un moderatore non li approva.",
@@ -5238,6 +5292,7 @@
     }
   ],
   "modpacks_unavailable_notice": "Non più disponibili: {names}. Vengono saltate quando si scarica il modpack.",
+  "modpacks_undo": "Annulla",
   "modpacks_updated": "Aggiornato il {date}",
   "modpacks_view_public": "Vedi pagina",
   "modpacks_visibility_hidden": "Nascosto",

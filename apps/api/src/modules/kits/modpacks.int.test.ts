@@ -7,13 +7,16 @@
  * import. Runs on the small development seed.
  */
 import { publishCacheInvalidation } from '@sotf/core';
+import { startTestS3, type TestS3 } from '@sotf/core/storage/testing';
 import type { TestDb } from '@sotf/db/testing';
+import { strToU8, unzipSync, zipSync } from 'fflate';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { buildTestApp, type TestApp } from '../../testing.ts';
 import { exec, startSeededDb, waitUntilCalm } from '../catalog/__tests__/seeded.ts';
 
 let db: TestDb;
 let t: TestApp;
+let s3: TestS3;
 
 const SONS_AX_LIB = 19;
 const AXEL_MOD_MENU = 20;
@@ -97,8 +100,10 @@ beforeAll(async () => {
      ON CONFLICT ("modVersionId", "depManifestId") DO NOTHING`,
     [await latestVersionId(AXEL_MOD_MENU), await manifestIdOf(SONS_AX_LIB), SONS_AX_LIB],
   );
+  s3 = await startTestS3();
   t = await buildTestApp({
     db,
+    env: s3.env,
     rateLimits: {
       kitsWrite: { max: 100_000, window: '1 minute' },
       userWrite: { max: 100_000, window: '1 minute' },
@@ -111,6 +116,7 @@ beforeAll(async () => {
 }, 300_000);
 
 afterAll(async () => {
+  await s3?.stop?.();
   await t?.close();
   await db?.stop();
 });
@@ -233,6 +239,7 @@ describe('public API (/api/modpacks)', () => {
       'url',
       'available',
       'isDependency',
+      'note',
     ]);
     expect(data.mods.map((m: any) => m.isDependency)).toEqual([false, false, true]);
     expect((await call('GET', '/api/modpacks/slug/pack-creator/nope', null)).status).toBe(404);
@@ -309,5 +316,60 @@ describe('profile import', () => {
       422,
     );
     expect((await call('POST', '/api/v2/kits/resolve-profile', null, { text: '{"mods":[]}' })).status).toBe(401);
+  });
+});
+
+describe('config files', () => {
+  const b64 = (files: Record<string, string>) =>
+    Buffer.from(zipSync(Object.fromEntries(Object.entries(files).map(([k, v]) => [k, strToU8(v)])))).toString('base64');
+
+  it('stores a checked zip, lists it on the modpack, links it from the .sotfprofile and removes it', async () => {
+    const pack = await makePack(creator, 'Configured pack', [AXEL_MOD_MENU]);
+    const put = await call('PUT', `/api/v2/kits/${pack.id}/configs`, creator, {
+      dataBase64: b64({ 'userdata/AxelsModMenu.cfg': '[General]\nspeed = 2', 'Mods/AxelsModMenu/keys.json': '{}' }),
+    });
+    expect(put.status).toBe(200);
+    expect(put.body.configs.files.map((f: any) => f.path)).toEqual([
+      'Mods/AxelsModMenu/keys.json',
+      'UserData/AxelsModMenu.cfg',
+    ]);
+    const stored = await fetch(put.body.configs.url);
+    expect(stored.status).toBe(200);
+    expect(Object.keys(unzipSync(new Uint8Array(await stored.arrayBuffer()))).sort()).toEqual([
+      'Mods/AxelsModMenu/keys.json',
+      'UserData/AxelsModMenu.cfg',
+    ]);
+
+    await publishCacheInvalidation(t.db.db, [`kit:${pack.id}`]);
+    await waitUntilCalm(t.app);
+    const profile = await call('GET', `/api/modpacks/slug/pack-creator/${pack.slug}/download`, null);
+    expect(JSON.parse(profile.text).configs).toMatchObject({
+      url: put.body.configs.url,
+      files: 2,
+      sha256: put.body.configs.sha256,
+    });
+    const detail = await call('GET', `/api/modpacks/slug/pack-creator/${pack.slug}`, null);
+    expect(detail.body.data.configs.files).toHaveLength(2);
+
+    const removed = await call('DELETE', `/api/v2/kits/${pack.id}/configs`, creator);
+    expect(removed.status).toBe(200);
+    expect(removed.body.configs).toBeNull();
+  });
+
+  it('refuses executables, files outside UserData and Mods, and other users', async () => {
+    const pack = await makePack(creator, 'Guarded pack', [AXEL_MOD_MENU]);
+    const bad = await call('PUT', `/api/v2/kits/${pack.id}/configs`, creator, {
+      dataBase64: b64({ 'Mods/evil.dll': 'MZ' }),
+    });
+    expect(bad.status).toBe(422);
+    expect(bad.body.errors[0].code).toBe('extension');
+    const outside = await call('PUT', `/api/v2/kits/${pack.id}/configs`, creator, {
+      dataBase64: b64({ 'x.cfg': 'a' }),
+    });
+    expect(outside.body.errors[0].code).toBe('outside_roots');
+    const stranger = await call('PUT', `/api/v2/kits/${pack.id}/configs`, newcomer, {
+      dataBase64: b64({ 'UserData/a.cfg': 'a' }),
+    });
+    expect([403, 404]).toContain(stranger.status);
   });
 });

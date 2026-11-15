@@ -4564,6 +4564,49 @@
   "modpacks_comment_removed_note": "このコメントは削除されました。",
   "modpacks_comments_empty": "まだコメントはありません。Modパックについての質問やヒントはここへ。",
   "modpacks_comments_load_failed": "コメントを読み込めませんでした。",
+  "modpacks_configs_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "{count__number} 件のファイル"
+      }
+    }
+  ],
+  "modpacks_configs_description": "Mod の設定を Modパックと一緒に配布できます。ゲームフォルダ内と同じフォルダ構成のまま zip にしてください（例：UserData/AxelsModMenu.cfg）。Modパックをインストールすると、SotF Mods Manager がゲームにコピーします。",
+  "modpacks_configs_download": "設定ファイルをダウンロード（{size}）",
+  "modpacks_configs_err_binary": "テキストではないファイルがあります。",
+  "modpacks_configs_err_duplicate": "同じファイルが zip に 2 回入っています。",
+  "modpacks_configs_err_empty": "zip に設定ファイルがありません。",
+  "modpacks_configs_err_extension": "使えるのは設定ファイル（cfg、toml、json、ini、txt、xml、yml）だけです。",
+  "modpacks_configs_err_file_too_big": "256 KB を超えるファイルがあります。",
+  "modpacks_configs_err_generic": "設定ファイルを保存できませんでした。もう一度お試しください。",
+  "modpacks_configs_err_not_zip": "zip ファイルではありません。",
+  "modpacks_configs_err_outside": "すべてのファイルは UserData か Mods フォルダ内にある必要があります。",
+  "modpacks_configs_err_too_big": "zip が 1 MB を超えています。",
+  "modpacks_configs_err_too_many": "zip のファイルが 100 件を超えています。",
+  "modpacks_configs_page_text": "Modパックの作者がこれらの Mod に使っている設定です。Modパックをインストールすると、SotF Mods Manager がゲームフォルダにコピーします。",
+  "modpacks_configs_remove": "削除",
+  "modpacks_configs_removed": "設定ファイルを削除しました",
+  "modpacks_configs_replace": "zip を置き換える",
+  "modpacks_configs_save_first": "先に Modパックを保存してから、設定ファイルを追加してください。",
+  "modpacks_configs_saved": [
+    {
+      "declarations": [
+        "input count",
+        "local count__number = count: number"
+      ],
+      "selectors": [],
+      "match": {
+        "": "設定ファイルを保存しました：{count__number} 件"
+      }
+    }
+  ],
+  "modpacks_configs_title": "設定ファイル",
+  "modpacks_configs_upload": "zip をアップロード",
   "modpacks_conflict_pair": "{a} は {b} と互換性がありません",
   "modpacks_conflicts_title": "この Modパックには互いに互換性のない Mod が含まれています",
   "modpacks_copy_link": "リンクをコピー",
@@ -4689,6 +4732,8 @@
   "modpacks_new_button": "新しい Modパック",
   "modpacks_new_description": "Mod を選んで並べ、Modパックの用途を説明してください。",
   "modpacks_new_title": "新しい Modパック",
+  "modpacks_note_label": "{name} についてのプレイヤー向けメモ",
+  "modpacks_note_placeholder": "プレイヤー向けメモ（任意）：この Mod の使い方や設定方法",
   "modpacks_open_in_manager": "SotF Mods Manager で開く",
   "modpacks_optional": "任意",
   "modpacks_pending_hint": "この Modパックはモデレーターの確認後にサイトに表示されます。",
@@ -4709,6 +4754,7 @@
     }
   ],
   "modpacks_remove_mod": "{name} を削除",
+  "modpacks_retry": "再試行",
   "modpacks_review_approve": "承認",
   "modpacks_review_approved": "{name} を承認しました",
   "modpacks_review_description": "認証クリエイターではないメンバーの Modパックは、モデレーターが承認するまでここで待機します。",
@@ -4778,6 +4824,7 @@
     }
   ],
   "modpacks_unavailable_notice": "利用できなくなった Mod: {names}。Modパックのダウンロード時にスキップされます。",
+  "modpacks_undo": "元に戻す",
   "modpacks_updated": "更新日: {date}",
   "modpacks_view_public": "ページを見る",
   "modpacks_visibility_hidden": "非表示",

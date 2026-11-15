@@ -5,6 +5,7 @@
  * reports pairs of incompatible mods, shown after the save. A `.sotfprofile` exported by SotF Mods
  * Manager fills the list (unknown or unapproved ids are listed as skipped).
  */
+import { KIT_LIMITS } from '@sotf/contracts/kits';
 import { m } from '@sotf/i18n/messages';
 import { Badge } from '@sotf/ui/badge';
 import { Button } from '@sotf/ui/button';
@@ -22,6 +23,7 @@ import { Panel } from '../admin/shared.tsx';
 import { reportFailure } from '../basecamp/shared.tsx';
 import { modSearchQuery } from '../upload/lib/queries.ts';
 import { MODPACK_MAX_MODS, type Modpack, modpackKeys, PROFILE_MAX_BYTES } from './api.ts';
+import { ConfigFilesPanel } from './ConfigFilesPanel.tsx';
 import { ModpackStatusBadge } from './shared.tsx';
 import { CoverUploadFailure, uploadCover, validateCover } from './upload.ts';
 
@@ -31,6 +33,8 @@ interface Picked {
   name: string;
   handle: string | null;
   thumbnail: string | null;
+  /** Note for players about this mod (how to use or set it up); empty for none. */
+  note: string;
 }
 
 const NAME_MAX = 80;
@@ -46,6 +50,7 @@ function pickedOf(modpack: Modpack | null): Picked[] {
       name: item.mod.name,
       handle: item.mod.userHandle,
       thumbnail: item.mod.thumbnail?.url ?? null,
+      note: item.note ?? '',
     }));
 }
 
@@ -100,7 +105,9 @@ export function ModpackEditorScreen({
     name !== modpack.name ||
     description !== (modpack.descriptionMd ?? '') ||
     coverUploadId !== undefined ||
-    JSON.stringify(items.map((item) => item.modId)) !== JSON.stringify(savedPicked.map((item) => item.modId));
+    // Order and notes both count as changes.
+    JSON.stringify(items.map((item) => [item.modId, item.note.trim()])) !==
+      JSON.stringify(savedPicked.map((item) => [item.modId, item.note.trim()]));
   const canSave = name.trim().length >= 2 && items.length > 0 && !saving && !coverBusy && dirty;
 
   const add = (mod: {
@@ -119,6 +126,7 @@ export function ModpackEditorScreen({
         name: mod.name,
         handle: mod.userHandle,
         thumbnail: mod.thumbnail?.url ?? null,
+        note: '',
       },
     ]);
     setQuery('');
@@ -151,6 +159,7 @@ export function ModpackEditorScreen({
           name: item.name,
           handle: null,
           thumbnail: null,
+          note: '',
         })),
       ]);
       if (!name.trim() && resolved.name) setName(resolved.name.slice(0, NAME_MAX));
@@ -220,7 +229,9 @@ export function ModpackEditorScreen({
       }
       const saved = await api.kits.putItems({
         params: { id },
-        body: { items: items.map((item) => ({ modId: item.modId })) },
+        body: {
+          items: items.map((item) => ({ modId: item.modId, ...(item.note.trim() ? { note: item.note.trim() } : {}) })),
+        },
       });
       queryClient.setQueryData(modpackKeys.own(id), saved);
       void queryClient.invalidateQueries({ queryKey: modpackKeys.mine });
@@ -410,49 +421,59 @@ export function ModpackEditorScreen({
 
         <ol className="grid gap-2" aria-label={m.modpacks_mods_title()}>
           {items.map((item, index) => (
-            <li
-              key={item.modId}
-              className="flex items-center gap-3 rounded-md border border-border bg-raised px-3 py-2"
-            >
-              <span className="w-6 shrink-0 text-end font-mono text-xs text-fg-subtle">{index + 1}</span>
-              <span className="size-10 shrink-0 overflow-hidden rounded-sm bg-sunken">
-                {item.thumbnail ? <img src={item.thumbnail} alt="" className="size-full object-cover" /> : null}
-              </span>
-              <span className="flex min-w-0 flex-1 flex-col">
-                <span className="truncate text-sm font-medium text-fg">{item.name}</span>
-                <span className="readout truncate text-fg-subtle">
-                  {item.manifestId}
-                  {item.handle ? ` · @${item.handle}` : ''}
+            <li key={item.modId} className="grid gap-2 rounded-md border border-border bg-raised px-3 py-2">
+              <div className="flex items-center gap-3">
+                <span className="w-6 shrink-0 text-end font-mono text-xs text-fg-subtle">{index + 1}</span>
+                <span className="size-10 shrink-0 overflow-hidden rounded-sm bg-sunken">
+                  {item.thumbnail ? <img src={item.thumbnail} alt="" className="size-full object-cover" /> : null}
                 </span>
-              </span>
-              <span className="flex shrink-0 gap-1">
-                <Button
-                  variant="icon"
-                  size="sm"
-                  disabled={index === 0}
-                  aria-label={m.modpacks_move_up({ name: item.name })}
-                  onClick={() => move(index, -1)}
-                >
-                  <Icon icon={ArrowUp} size={14} />
-                </Button>
-                <Button
-                  variant="icon"
-                  size="sm"
-                  disabled={index === items.length - 1}
-                  aria-label={m.modpacks_move_down({ name: item.name })}
-                  onClick={() => move(index, 1)}
-                >
-                  <Icon icon={ArrowDown} size={14} />
-                </Button>
-                <Button
-                  variant="icon"
-                  size="sm"
-                  aria-label={m.modpacks_remove_mod({ name: item.name })}
-                  onClick={() => setItems(items.filter((entry) => entry.modId !== item.modId))}
-                >
-                  <Icon icon={Trash2} size={14} />
-                </Button>
-              </span>
+                <span className="flex min-w-0 flex-1 flex-col">
+                  <span className="truncate text-sm font-medium text-fg">{item.name}</span>
+                  <span className="readout flex min-w-0 gap-3 text-fg-subtle">
+                    <span className="truncate">{item.manifestId}</span>
+                    {item.handle ? <span className="truncate">@{item.handle}</span> : null}
+                  </span>
+                </span>
+                <span className="flex shrink-0 gap-1">
+                  <Button
+                    variant="icon"
+                    size="sm"
+                    disabled={index === 0}
+                    aria-label={m.modpacks_move_up({ name: item.name })}
+                    onClick={() => move(index, -1)}
+                  >
+                    <Icon icon={ArrowUp} size={14} />
+                  </Button>
+                  <Button
+                    variant="icon"
+                    size="sm"
+                    disabled={index === items.length - 1}
+                    aria-label={m.modpacks_move_down({ name: item.name })}
+                    onClick={() => move(index, 1)}
+                  >
+                    <Icon icon={ArrowDown} size={14} />
+                  </Button>
+                  <Button
+                    variant="icon"
+                    size="sm"
+                    aria-label={m.modpacks_remove_mod({ name: item.name })}
+                    onClick={() => setItems(items.filter((entry) => entry.modId !== item.modId))}
+                  >
+                    <Icon icon={Trash2} size={14} />
+                  </Button>
+                </span>
+              </div>
+              <Input
+                value={item.note}
+                maxLength={KIT_LIMITS.noteMax}
+                onChange={(event) => {
+                  const note = event.currentTarget.value;
+                  setItems(items.map((entry) => (entry.modId === item.modId ? { ...entry, note } : entry)));
+                }}
+                placeholder={m.modpacks_note_placeholder()}
+                aria-label={m.modpacks_note_label({ name: item.name })}
+                className="sm:ms-9"
+              />
             </li>
           ))}
           {items.length === 0 ? <li className="text-sm text-fg-muted">{m.modpacks_mods_empty()}</li> : null}
@@ -515,6 +536,8 @@ export function ModpackEditorScreen({
           </div>
         ) : null}
       </Panel>
+
+      <ConfigFilesPanel modpack={modpack} />
 
       <div className="sticky bottom-0 z-10 flex flex-wrap items-center justify-between gap-3 border-t border-border bg-bg/95 py-3">
         <div>

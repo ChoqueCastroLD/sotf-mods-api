@@ -11,6 +11,7 @@ import {
   Count,
   EntityId,
   Handle,
+  HttpUrl,
   IdParam,
   ImageDTO,
   IsoDateTime,
@@ -36,6 +37,55 @@ export type KitApprovalStatus = z.infer<typeof KitApprovalStatus>;
 export const SOTF_PROFILE_MAX_BYTES = 256 * 1024;
 export const KitVisibility = z.enum(KIT_VISIBILITIES);
 export type KitVisibility = z.infer<typeof KitVisibility>;
+
+/**
+ * Modpack config files (2026-11): one zip of mod settings, paths relative to the game folder.
+ * Only text config files under `UserData/` or `Mods/`; SotF Mods Manager unpacks it on install.
+ */
+export const MODPACK_CONFIG_RULES = {
+  maxZipBytes: 1024 * 1024,
+  maxFiles: 100,
+  maxFileBytes: 256 * 1024,
+  extensions: ['cfg', 'toml', 'json', 'ini', 'txt', 'xml', 'yml', 'yaml'],
+  roots: ['UserData', 'Mods'],
+} as const;
+
+export const KitConfigsDTO = dto(
+  'KitConfigsDTO',
+  z.object({
+    url: HttpUrl.describe('The zip (content-addressed, immutable)'),
+    sha256: z.string().regex(/^[0-9a-f]{64}$/),
+    size: Count.describe('Bytes of the zip'),
+    files: z
+      .array(z.object({ path: z.string().max(260), size: Count }))
+      .max(MODPACK_CONFIG_RULES.maxFiles)
+      .describe('Paths relative to the game folder, `/` separated'),
+    updatedAt: IsoDateTime,
+  }),
+  {
+    description: 'Config files of a modpack.',
+    examples: [
+      {
+        url: 'https://r2.sotf-mods.com/modpacks/configs/5/3f2a1b.zip',
+        sha256: '3f2a1b0c9d8e7f6a5b4c3d2e1f0a9b8c7d6e5f4a3b2c1d0e9f8a7b6c5d4e3f2a',
+        size: 2048,
+        files: [{ path: 'UserData/AxelsModMenu.cfg', size: 1200 }],
+        updatedAt: '2026-11-15T12:00:00.000Z',
+      },
+    ],
+  },
+);
+
+export const PutKitConfigsBody = dto(
+  'PutKitConfigsBody',
+  z.strictObject({
+    dataBase64: z
+      .string()
+      .max(Math.ceil((MODPACK_CONFIG_RULES.maxZipBytes * 4) / 3) + 4)
+      .describe('The zip, base64'),
+  }),
+  { description: 'Replace the config files of a modpack.', examples: [{ dataBase64: 'UEsFBgAAAAAAAAAAAAAAAAAAAAAAAA==' }] },
+);
 
 export const KIT_LIMITS = { nameMax: 80, descriptionMax: 5000, noteMax: 280, maxItems: 200, indexMinItems: 3 } as const;
 
@@ -186,6 +236,7 @@ export const KitDTO = dto(
     recentRevisions: z.array(
       z.object({ revision: z.number().int().min(1), summary: z.string(), createdAt: IsoDateTime }),
     ),
+    configs: KitConfigsDTO.nullable().describe('Config files (null when the modpack has none)'),
     noindex: z.boolean().describe(`true unless public with ≥ ${KIT_LIMITS.indexMinItems} items`),
     createdAt: IsoDateTime,
     ogImage: OgImageDTO.nullable().describe('Generated knolling collage (null until rendered)'),
@@ -204,6 +255,7 @@ export const KitDTO = dto(
         compat: { works: 11, untested: 1, broken: 0, conflicts: 0 },
         totalBytes: 48_331_220,
         recentRevisions: [{ revision: 7, summary: '+Cook Alert', createdAt: '2026-09-20T18:00:00.000Z' }],
+        configs: null,
         noindex: false,
         createdAt: '2026-06-01T12:00:00.000Z',
         ogImage: { url: 'https://r2.sotf-mods.com/og/kit/5-81c2d0.png', width: 1200, height: 630 },
@@ -518,6 +570,33 @@ export const kitsEndpoints = {
     errors: ['UNAUTHENTICATED', 'FORBIDDEN', 'NOT_FOUND'],
     cache: cache.noStore,
     rateLimit: 'userWrite',
+  }),
+  putConfigs: defineEndpoint({
+    id: 'kits.putConfigs',
+    owner: 'WP-42',
+    method: 'PUT',
+    path: `${base}/:id/configs`,
+    summary: 'Upload the config files of my modpack (a zip, checked and repacked)',
+    auth: 'session',
+    params: z.object({ id: IdParam }),
+    body: PutKitConfigsBody,
+    response: KitDTO,
+    errors: ['UNAUTHENTICATED', 'FORBIDDEN', 'NOT_FOUND', 'VALIDATION_FAILED'],
+    cache: cache.noStore,
+    rateLimit: 'kitsWrite',
+  }),
+  deleteConfigs: defineEndpoint({
+    id: 'kits.deleteConfigs',
+    owner: 'WP-42',
+    method: 'DELETE',
+    path: `${base}/:id/configs`,
+    summary: 'Remove the config files of my modpack',
+    auth: 'session',
+    params: z.object({ id: IdParam }),
+    response: KitDTO,
+    errors: ['UNAUTHENTICATED', 'FORBIDDEN', 'NOT_FOUND'],
+    cache: cache.noStore,
+    rateLimit: 'kitsWrite',
   }),
   resolveProfile: defineEndpoint({
     id: 'kits.resolveProfile',

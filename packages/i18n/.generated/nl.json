@@ -4996,6 +4996,57 @@
   "modpacks_comment_removed_note": "Deze reactie is verwijderd.",
   "modpacks_comments_empty": "Nog geen reacties. Vragen over de modpack en tips horen hier.",
   "modpacks_comments_load_failed": "Kan de reacties niet laden.",
+  "modpacks_configs_count": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "{count__number} bestand",
+        "count__plural=*": "{count__number} bestanden"
+      }
+    }
+  ],
+  "modpacks_configs_description": "Lever je mod-instellingen mee met de modpack. Zip de bestanden met hun mappen zoals ze in de gamemap staan, bijvoorbeeld UserData/AxelsModMenu.cfg. SotF Mods Manager kopieert ze naar de game als iemand de modpack installeert.",
+  "modpacks_configs_download": "Configuratiebestanden downloaden ({size})",
+  "modpacks_configs_err_binary": "Een bestand is geen tekstbestand.",
+  "modpacks_configs_err_duplicate": "Hetzelfde bestand staat twee keer in de zip.",
+  "modpacks_configs_err_empty": "De zip bevat geen configuratiebestanden.",
+  "modpacks_configs_err_extension": "Alleen configuratiebestanden zijn toegestaan: cfg, toml, json, ini, txt, xml en yml.",
+  "modpacks_configs_err_file_too_big": "Een bestand is groter dan 256 KB.",
+  "modpacks_configs_err_generic": "Kan de configuratiebestanden niet opslaan. Probeer het opnieuw.",
+  "modpacks_configs_err_not_zip": "Dit is geen zip-bestand.",
+  "modpacks_configs_err_outside": "Elk bestand moet in de map UserData of Mods staan.",
+  "modpacks_configs_err_too_big": "De zip is groter dan 1 MB.",
+  "modpacks_configs_err_too_many": "De zip heeft meer dan 100 bestanden.",
+  "modpacks_configs_page_text": "Instellingen die de maker van de modpack voor deze mods gebruikt. SotF Mods Manager kopieert ze naar je gamemap als je de modpack installeert.",
+  "modpacks_configs_remove": "Verwijderen",
+  "modpacks_configs_removed": "Configuratiebestanden verwijderd",
+  "modpacks_configs_replace": "Zip vervangen",
+  "modpacks_configs_save_first": "Sla de modpack eerst op en voeg dan de configuratiebestanden toe.",
+  "modpacks_configs_saved": [
+    {
+      "declarations": [
+        "input count",
+        "local count__plural = count: plural",
+        "local count__number = count: number"
+      ],
+      "selectors": [
+        "count__plural"
+      ],
+      "match": {
+        "count__plural=one": "Configuratiebestanden opgeslagen: {count__number} bestand",
+        "count__plural=*": "Configuratiebestanden opgeslagen: {count__number} bestanden"
+      }
+    }
+  ],
+  "modpacks_configs_title": "Configuratiebestanden",
+  "modpacks_configs_upload": "Zip uploaden",
   "modpacks_conflict_pair": "{a} is niet compatibel met {b}",
   "modpacks_conflicts_title": "Sommige mods in deze modpack zijn niet compatibel met elkaar",
   "modpacks_copy_link": "Link kopiëren",
@@ -5141,6 +5192,8 @@
   "modpacks_new_button": "Nieuwe modpack",
   "modpacks_new_description": "Kies de mods, zet ze op volgorde en beschrijf waarvoor de modpack bedoeld is.",
   "modpacks_new_title": "Nieuwe modpack",
+  "modpacks_note_label": "Opmerking voor spelers over {name}",
+  "modpacks_note_placeholder": "Opmerking voor spelers (optioneel): hoe je deze mod gebruikt of instelt",
   "modpacks_open_in_manager": "Openen in SotF Mods Manager",
   "modpacks_optional": "optioneel",
   "modpacks_pending_hint": "Een moderator bekijkt deze modpack voordat hij op de site verschijnt.",
@@ -5161,6 +5214,7 @@
     }
   ],
   "modpacks_remove_mod": "{name} verwijderen",
+  "modpacks_retry": "Opnieuw proberen",
   "modpacks_review_approve": "Goedkeuren",
   "modpacks_review_approved": "{name} goedgekeurd",
   "modpacks_review_description": "Modpacks van leden die geen geverifieerde makers zijn, wachten hier tot een moderator ze goedkeurt.",
@@ -5238,6 +5292,7 @@
     }
   ],
   "modpacks_unavailable_notice": "Niet meer beschikbaar: {names}. Ze worden overgeslagen bij het downloaden van de modpack.",
+  "modpacks_undo": "Ongedaan maken",
   "modpacks_updated": "Bijgewerkt op {date}",
   "modpacks_view_public": "Pagina bekijken",
   "modpacks_visibility_hidden": "Verborgen",

@@ -1,0 +1,6 @@
+ALTER TABLE "Kit"
+  DROP COLUMN IF EXISTS "configUpdatedAt",
+  DROP COLUMN IF EXISTS "configFiles",
+  DROP COLUMN IF EXISTS "configBytes",
+  DROP COLUMN IF EXISTS "configSha256",
+  DROP COLUMN IF EXISTS "configKey";
