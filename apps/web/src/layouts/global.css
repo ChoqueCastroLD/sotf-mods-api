@@ -423,7 +423,7 @@ html:has([data-mobile-download-bar]) {
   }
 }
 
-/* ---- Header account area: the guest buttons (Log in, Register) and the signed-in ones (Upload,
+/* ---- Header account area: the guest buttons (Log in, Register) and the signed-in ones (bell,
    avatar) swap once the account hint resolves. The slot keeps the width of the wider of the two,
    so the centred navigation never shifts. ------------------------------------------------------ */
 [data-account-slot] {
@@ -433,6 +433,10 @@ html:has([data-mobile-download-bar]) {
   [data-account-slot] {
     min-inline-size: 12.25rem;
   }
+}
+/* Signed in: only the bell and the avatar (Upload lives in the avatar menu since 2026-11). */
+html[data-signed-in] [data-account-slot] {
+  min-inline-size: 5.25rem;
 }
 
 /* ---- Busy feedback for the plain (non-React) buttons the page scripts drive: follow, report,
