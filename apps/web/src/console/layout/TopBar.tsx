@@ -13,7 +13,7 @@ import { BELOW_MD_QUERY, useMediaQuery } from '@sotf/ui';
 import { cn } from '@sotf/ui/cn';
 import { Icon } from '@sotf/ui/icons';
 import { Link, useRouter } from '@tanstack/react-router';
-import { Bell, ChevronLeft, Hammer, type LucideIcon, MonitorDown, Package } from 'lucide-react';
+import { Bell, ChevronLeft, Hammer, Layers, type LucideIcon, MonitorDown, Package } from 'lucide-react';
 import { lazy, Suspense } from 'react';
 import type { Me } from '../hooks/use-me.ts';
 import { activeLocale, t } from '../lib/messages.ts';
@@ -28,6 +28,7 @@ const SignalsBell = lazy(() => import('./SignalsBell.tsx'));
 /** The public site's main links, as in its header (they leave the console). */
 const SITE_LINKS: ReadonlyArray<{ path: string; label: () => string; icon: LucideIcon }> = [
   { path: '/mods', label: () => t('common_term_mods'), icon: Package },
+  { path: '/modpacks', label: () => t('console_nav_modpacks'), icon: Layers },
   { path: '/builds', label: () => t('common_term_builds'), icon: Hammer },
   { path: '/manager', label: () => t('console_nav_manager'), icon: MonitorDown },
 ];

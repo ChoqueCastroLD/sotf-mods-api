@@ -81,6 +81,7 @@ export interface NavItem {
 export function mainNav(): NavItem[] {
   return [
     { id: 'mods', path: PATHS.mods, label: m.common_term_mods(), icon: Package },
+    { id: 'modpacks', path: PATHS.modpacks, label: m.modpacks_nav(), icon: Layers },
     { id: 'builds', path: PATHS.builds, label: m.common_term_builds(), icon: Hammer },
     { id: 'manager', path: PATHS.manager, label: m.manager_nav(), icon: MonitorDown, highlight: true },
   ];

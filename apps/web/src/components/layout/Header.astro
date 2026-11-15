@@ -61,11 +61,12 @@ const languages = languageLinks(Astro.locals.pagePath);
                   target={external ? '_blank' : undefined}
                   rel={external ? 'noopener' : undefined}
                   aria-current={isCurrent(item.path) ? 'page' : undefined}
+                  title={item.highlight ? item.label : undefined}
                   class:list={[
                     'group relative flex h-9 items-center gap-2 rounded-full text-sm font-semibold whitespace-nowrap transition-colors duration-(--dur-fast) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-focus',
                     item.highlight
-                      ? 'border border-primary/45 bg-primary/12 px-3 text-fg hover:border-primary hover:bg-primary/20 aria-[current=page]:border-primary aria-[current=page]:bg-primary/25 @min-[30rem]:px-4'
-                      : 'px-3 text-fg-muted hover:bg-fg/8 hover:text-fg aria-[current=page]:text-fg @min-[30rem]:px-3.5',
+                      ? 'border border-primary/45 bg-primary/12 px-2.5 text-fg hover:border-primary hover:bg-primary/20 aria-[current=page]:border-primary aria-[current=page]:bg-primary/25 @min-[27rem]:px-4'
+                      : 'px-2.5 text-fg-muted hover:bg-fg/8 hover:text-fg aria-[current=page]:text-fg @min-[30rem]:px-3.5',
                   ]}
                 >
                   {item.icon === 'discord' ? (
@@ -73,11 +74,11 @@ const languages = languageLinks(Astro.locals.pagePath);
                       <path d={DISCORD_ICON_PATH} />
                     </svg>
                   ) : (
-                    <span class:list={[item.highlight ? 'flex text-primary' : 'hidden @min-[26rem]:flex']}>
+                    <span class:list={[item.highlight ? 'flex text-primary' : 'hidden @min-[42rem]:flex']}>
                       <Icon icon={item.icon} size={item.highlight ? 17 : 18} />
                     </span>
                   )}
-                  {item.label}
+                  <span class:list={[item.highlight && 'sr-only @min-[27rem]:not-sr-only']}>{item.label}</span>
                   {!item.highlight && (
                     <span
                       aria-hidden="true"
@@ -93,7 +94,7 @@ const languages = languageLinks(Astro.locals.pagePath);
     </nav>
 
     <div class="ms-auto flex items-center gap-1 md:ms-0 md:gap-2" data-topbar-actions>
-      <search class="hidden w-28 shrink-0 lg:block">
+      <search class="hidden w-28 shrink-0 xl:block">
         <form method="get" action={searchHref} class="flex items-center" data-header-search>
           <label for="site-search" class="sr-only">{m.common_search_label()}</label>
           <div class="relative w-full">
@@ -119,7 +120,7 @@ const languages = languageLinks(Astro.locals.pagePath);
 
       <a
         href={searchHref}
-        class="press flex size-11 items-center justify-center rounded-full text-fg-muted hover:bg-fg/8 hover:text-fg lg:hidden"
+        class="press flex size-11 items-center justify-center rounded-full text-fg-muted hover:bg-fg/8 hover:text-fg xl:hidden"
         aria-label={m.common_search_label()}
       >
         <Icon icon={Search} size={20} />
