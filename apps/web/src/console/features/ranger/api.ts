@@ -183,6 +183,7 @@ function decisionBody(input: DecisionInput) {
 }
 
 export const rangerApi = {
+  versionFile: (id: number) => api.moderation.versionFile({ params: { id } }),
   decideMod: (id: number, input: DecisionInput) =>
     api.moderation.decideMod({ params: { id }, body: decisionBody(input) }),
   decideVersion: (id: number, input: DecisionInput) =>

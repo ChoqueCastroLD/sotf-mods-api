@@ -26,6 +26,7 @@ import {
   setCommentHidden,
   setCommentsLocked,
   setReviewHidden,
+  versionFileLink,
 } from '@sotf/core/moderation/index';
 import { listReports, resolveReport } from '@sotf/core/reports/index';
 import {
@@ -68,6 +69,7 @@ export default defineModule({
       }),
     );
     m.implement(moderationEndpoints.item, async ({ params, ctx }) => getQueueItem(ctx, deps, params.id));
+    m.implement(moderationEndpoints.versionFile, async ({ params, ctx }) => versionFileLink(ctx, deps, params.id));
     m.implement(moderationEndpoints.assignItem, async ({ params, body, ctx }) =>
       assignQueueItem(ctx, deps, params.id, body),
     );

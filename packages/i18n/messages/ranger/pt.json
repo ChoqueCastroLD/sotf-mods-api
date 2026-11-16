@@ -459,5 +459,8 @@
   "ranger_audit_from": "A partir de",
   "ranger_audit_to": "Até a data",
   "ranger_action_unapprove": "Revogar aprovação",
-  "ranger_decided_unapprove": "{title} voltou a aguardar aprovação"
+  "ranger_decided_unapprove": "{title} voltou a aguardar aprovação",
+  "ranger_download_file": "Baixar arquivo",
+  "ranger_download_failed": "Não foi possível obter o link de download",
+  "ranger_download_flagged_hint": "Arquivo sinalizado: abra só em uma sandbox ou máquina virtual."
 }

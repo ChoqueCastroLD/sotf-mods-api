@@ -459,5 +459,8 @@
   "ranger_audit_from": "Dalla data",
   "ranger_audit_to": "Fino alla data",
   "ranger_action_unapprove": "Revoca approvazione",
-  "ranger_decided_unapprove": "{title} è di nuovo in attesa di approvazione"
+  "ranger_decided_unapprove": "{title} è di nuovo in attesa di approvazione",
+  "ranger_download_file": "Scarica il file",
+  "ranger_download_failed": "Impossibile ottenere il link di download",
+  "ranger_download_flagged_hint": "File segnalato: aprilo solo in una sandbox o in una macchina virtuale."
 }

@@ -29,6 +29,7 @@ import {
   ArrowLeft,
   Check,
   CheckCheck,
+  Download,
   ExternalLink,
   EyeOff,
   Flag,
@@ -187,6 +188,19 @@ function ItemDetail({
   const allowed = new Set(detail.allowedActions);
   const can = (action: ModerationAction) => !isReport && allowed.has(action);
   const scanId = scanIdOf(detail.scan);
+  const [downloading, setDownloading] = useState(false);
+  /** Short-lived signed link from the API; the browser saves the file (no new tab). */
+  const downloadFile = async (versionId: number) => {
+    setDownloading(true);
+    try {
+      const link = await rangerApi.versionFile(versionId);
+      window.location.assign(link.url);
+    } catch (error) {
+      reportFailure(error, m.ranger_download_failed());
+    } finally {
+      setDownloading(false);
+    }
+  };
 
   const finish = (message: string) => {
     notify.success(message);
@@ -483,6 +497,19 @@ function ItemDetail({
           inspection={detail.inspection}
           flags={item.flags}
           scan={detail.scan}
+          download={
+            detail.fileVersionId !== null ? (
+              <Button
+                variant="secondary"
+                size="sm"
+                loading={downloading}
+                icon={<Icon icon={Download} size={16} />}
+                onClick={() => void downloadFile(detail.fileVersionId as number)}
+              >
+                {m.ranger_download_file()}
+              </Button>
+            ) : undefined
+          }
           scanAction={
             scanId !== null ? (
               <Button variant="link" size="sm" onClick={() => setDialog({ kind: 'scan' })}>

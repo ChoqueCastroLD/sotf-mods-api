@@ -482,3 +482,49 @@ describe('builds and images', () => {
     }
   });
 });
+
+describe('moderators download files under review', () => {
+  it('signs a short link for a pending file and for a quarantined one, audits it, and refuses members', async () => {
+    const moderator = await f.user({
+      emailVerifiedAt: new Date('2025-01-01T00:00:00Z'),
+      role: 'moderator',
+      trustLevel: 3,
+    });
+    const asModerator = async (url: string) => {
+      const res = await t.app.inject({
+        method: 'GET',
+        url,
+        headers: { ...t.as({ userId: moderator.id, emailVerified: true, role: 'moderator' }), ...t.sameOrigin() },
+      });
+      return { status: res.statusCode, body: res.json() as any };
+    };
+    const okZip = zip({ 'Lantern/manifest.json': manifest('Lantern', '1.0.0'), 'Lantern/Lantern.dll': enc('MZ') });
+    const ok = await upload(newbie.id, 'mod_file', 'Lantern.zip', okZip, 'application/zip');
+    const okDraft = await draft(newbie.id, 'mod', listing('lantern', ok.id));
+    const okSubmit = await api('POST', `/api/v2/drafts/${okDraft.id}/submit`, newbie.id);
+    expect(okSubmit.body.status).toBe('pending');
+
+    const link = await asModerator(`/api/v2/ranger/versions/${okSubmit.body.versionId}/file`);
+    expect(link.status, JSON.stringify(link.body)).toBe(200);
+    expect(link.body.quarantined).toBe(false);
+    expect(link.body.fileName).toContain('1.0.0');
+    const fetched = Buffer.from(await (await fetch(link.body.url)).arrayBuffer());
+    expect(fetched.equals(okZip)).toBe(true);
+
+    const badZip = zip({ 'Crate/manifest.json': manifest('Crate', '1.0.0'), 'Crate/setup.exe': enc('MZ') });
+    const bad = await upload(verified.id, 'mod_file', 'Crate.zip', badZip, 'application/zip');
+    const badDraft = await draft(verified.id, 'mod', listing('crate', bad.id));
+    const badSubmit = await api('POST', `/api/v2/drafts/${badDraft.id}/submit`, verified.id);
+    const held = await asModerator(`/api/v2/ranger/versions/${badSubmit.body.versionId}/file`);
+    expect(held.status, JSON.stringify(held.body)).toBe(200);
+    expect(held.body.quarantined).toBe(true);
+    expect(Buffer.from(await (await fetch(held.body.url)).arrayBuffer()).equals(badZip)).toBe(true);
+
+    const audit = await t.db.pool.query(
+      `SELECT count(*)::int AS n FROM "AuditLog" WHERE "action" = 'version.file_download' AND "actorId" = $1`,
+      [moderator.id],
+    );
+    expect(audit.rows[0].n).toBe(2);
+    expect((await api('GET', `/api/v2/ranger/versions/${okSubmit.body.versionId}/file`, newbie.id)).status).toBe(403);
+  });
+});

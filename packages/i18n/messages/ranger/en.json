@@ -459,5 +459,8 @@
   "ranger_audit_from": "From date",
   "ranger_audit_to": "To date",
   "ranger_action_unapprove": "Unapprove",
-  "ranger_decided_unapprove": "{title} is pending approval again"
+  "ranger_decided_unapprove": "{title} is pending approval again",
+  "ranger_download_file": "Download file",
+  "ranger_download_failed": "Couldn't get the download link",
+  "ranger_download_flagged_hint": "Flagged file: open it only in a sandbox or a virtual machine."
 }

@@ -11,3 +11,4 @@ export * from './guard.ts';
 export * from './item.ts';
 export * from './lanes.ts';
 export * from './shared.ts';
+export * from './version-file.ts';

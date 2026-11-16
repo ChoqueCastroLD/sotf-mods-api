@@ -459,5 +459,8 @@
   "ranger_audit_from": "Ab Datum",
   "ranger_audit_to": "Bis Datum",
   "ranger_action_unapprove": "Freigabe zurückziehen",
-  "ranger_decided_unapprove": "{title} wartet wieder auf Freigabe"
+  "ranger_decided_unapprove": "{title} wartet wieder auf Freigabe",
+  "ranger_download_file": "Datei herunterladen",
+  "ranger_download_failed": "Download-Link konnte nicht abgerufen werden",
+  "ranger_download_flagged_hint": "Markierte Datei: Öffne sie nur in einer Sandbox oder einer virtuellen Maschine."
 }

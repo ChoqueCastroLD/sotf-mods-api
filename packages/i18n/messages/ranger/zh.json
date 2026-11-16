@@ -459,5 +459,8 @@
   "ranger_audit_from": "起始日期",
   "ranger_audit_to": "截止日期",
   "ranger_action_unapprove": "取消批准",
-  "ranger_decided_unapprove": "{title} 已重新变为待批准"
+  "ranger_decided_unapprove": "{title} 已重新变为待批准",
+  "ranger_download_file": "下载文件",
+  "ranger_download_failed": "无法获取下载链接",
+  "ranger_download_flagged_hint": "已标记的文件：只能在沙盒或虚拟机中打开。"
 }

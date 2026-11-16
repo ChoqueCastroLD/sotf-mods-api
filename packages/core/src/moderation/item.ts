@@ -367,6 +367,7 @@ export async function getQueueItem(ctx: Ctx, deps: ModerationDeps, itemId: strin
     targetType === 'mod' || targetType === 'version' || (targetType === 'report' && contentHtml === null);
   return {
     item,
+    fileVersionId: version && targetType !== 'comment' ? version.id : null,
     inspection: inspection?.dto ?? null,
     fileDiff: inspection && previousInspection ? fileDiff(previousInspection.entries, inspection.entries) : null,
     manifestDiff: version && targetType !== 'comment' ? manifestDiff(previous?.manifest ?? null, version.manifest) : [],

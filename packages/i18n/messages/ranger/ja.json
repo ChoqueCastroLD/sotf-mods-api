@@ -459,5 +459,8 @@
   "ranger_audit_from": "開始日",
   "ranger_audit_to": "終了日",
   "ranger_action_unapprove": "承認を取り消す",
-  "ranger_decided_unapprove": "{title} は再び承認待ちになりました"
+  "ranger_decided_unapprove": "{title} は再び承認待ちになりました",
+  "ranger_download_file": "ファイルをダウンロード",
+  "ranger_download_failed": "ダウンロードリンクを取得できませんでした",
+  "ranger_download_flagged_hint": "フラグ付きのファイル：サンドボックスか仮想マシンでのみ開いてください。"
 }

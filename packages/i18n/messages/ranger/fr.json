@@ -459,5 +459,8 @@
   "ranger_audit_from": "À partir du",
   "ranger_audit_to": "Jusqu’au",
   "ranger_action_unapprove": "Retirer l’approbation",
-  "ranger_decided_unapprove": "{title} est de nouveau en attente d’approbation"
+  "ranger_decided_unapprove": "{title} est de nouveau en attente d’approbation",
+  "ranger_download_file": "Télécharger le fichier",
+  "ranger_download_failed": "Impossible d’obtenir le lien de téléchargement",
+  "ranger_download_flagged_hint": "Fichier signalé : ouvrez-le uniquement dans un bac à sable ou une machine virtuelle."
 }

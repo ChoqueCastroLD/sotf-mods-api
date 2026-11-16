@@ -125,11 +125,14 @@ export function ChecksPanel({
   flags,
   scan,
   scanAction,
+  download,
 }: {
   inspection: Inspection | null;
   flags: readonly InspectionFlag[];
   scan: ScanSummary | null;
   scanAction?: ReactNode;
+  /** «Download file» (the version's zip or build json, quarantined files included). */
+  download?: ReactNode;
 }) {
   const all = inspection ? inspection.flags : flags;
   return (
@@ -192,10 +195,20 @@ export function ChecksPanel({
       <div className="border-t border-border pt-3">
         <ScanLine scan={scan} action={scanAction} />
       </div>
-      {inspection?.sha256 ? (
-        <p className="break-all font-mono text-2xs text-fg-subtle">
-          {m.ranger_checks_sha256({ hash: inspection.sha256 })}
-        </p>
+      {inspection?.sha256 || download ? (
+        <div className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
+          {inspection?.sha256 ? (
+            <p className="min-w-0 break-all font-mono text-2xs text-fg-subtle">
+              {m.ranger_checks_sha256({ hash: inspection.sha256 })}
+            </p>
+          ) : (
+            <span />
+          )}
+          {download}
+        </div>
+      ) : null}
+      {download && inspection?.status === 'flagged' ? (
+        <p className="text-xs text-warning">{m.ranger_download_flagged_hint()}</p>
       ) : null}
     </section>
   );

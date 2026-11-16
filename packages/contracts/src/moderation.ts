@@ -8,6 +8,7 @@ import { LocalizedNames } from './catalog.ts';
 import {
   Count,
   EntityId,
+  HttpUrl,
   IdParam,
   ImageDTO,
   IsoDateTime,
@@ -306,10 +307,32 @@ export const FileDiffDTO = dto(
   },
 );
 
+export const VersionFileLinkDTO = dto(
+  'VersionFileLinkDTO',
+  z.object({
+    url: HttpUrl.describe('Presigned GET, valid 5 minutes'),
+    fileName: z.string(),
+    quarantined: z.boolean().describe('The file was flagged by the checks and is kept out of the public bucket'),
+    expiresAt: IsoDateTime,
+  }),
+  {
+    description: 'Download link of a version file for moderators.',
+    examples: [
+      {
+        url: 'https://r2.sotf-mods.com/mods/20/640/axels-mod-menu-1.3.8.zip?X-Amz-Expires=300',
+        fileName: "Axel's Mod Menu 1.3.8.zip",
+        quarantined: false,
+        expiresAt: '2026-11-16T18:05:00.000Z',
+      },
+    ],
+  },
+);
+
 export const QueueItemDetailDTO = dto(
   'QueueItemDetailDTO',
   z.object({
     item: QueueItemDTO,
+    fileVersionId: EntityId.nullable().describe('Version whose file the item is about (download for moderators)'),
     inspection: UploadInspectionDTO.nullable(),
     fileDiff: FileDiffDTO.nullable(),
     manifestDiff: z.array(z.object({ field: z.string(), before: z.unknown(), after: z.unknown() })),
@@ -332,6 +355,7 @@ export const QueueItemDetailDTO = dto(
     examples: [
       {
         item: exampleOf(QueueItemDTO),
+        fileVersionId: 640,
         inspection: exampleOf(UploadInspectionDTO),
         fileDiff: exampleOf(FileDiffDTO),
         manifestDiff: [{ field: 'version', before: '1.3.8', after: '1.3.9' }],
@@ -800,6 +824,18 @@ export const moderationEndpoints = {
     response: QueueItemDetailDTO,
     errors: ['NOT_FOUND', 'FORBIDDEN'],
     cache: cache.private,
+  }),
+  versionFile: defineEndpoint({
+    id: 'moderation.versionFile',
+    owner: 'WP-51',
+    method: 'GET',
+    path: `${ranger}/versions/:id/file`,
+    summary: 'Short-lived download link of a version file under review (held or quarantined included)',
+    auth: 'moderator',
+    params: z.object({ id: IdParam }),
+    response: VersionFileLinkDTO,
+    errors: ['NOT_FOUND', 'FORBIDDEN', 'UNAVAILABLE'],
+    cache: cache.noStore,
   }),
   assignItem: defineEndpoint({
     id: 'moderation.assignItem',

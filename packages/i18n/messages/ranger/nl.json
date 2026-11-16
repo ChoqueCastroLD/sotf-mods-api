@@ -459,5 +459,8 @@
   "ranger_audit_from": "Vanaf datum",
   "ranger_audit_to": "Tot datum",
   "ranger_action_unapprove": "Goedkeuring intrekken",
-  "ranger_decided_unapprove": "{title} wacht weer op goedkeuring"
+  "ranger_decided_unapprove": "{title} wacht weer op goedkeuring",
+  "ranger_download_file": "Bestand downloaden",
+  "ranger_download_failed": "Kan de downloadlink niet ophalen",
+  "ranger_download_flagged_hint": "Gemarkeerd bestand: open het alleen in een sandbox of virtuele machine."
 }

@@ -459,5 +459,8 @@
   "ranger_audit_from": "С даты",
   "ranger_audit_to": "По дату",
   "ranger_action_unapprove": "Отменить одобрение",
-  "ranger_decided_unapprove": "{title} снова ожидает одобрения"
+  "ranger_decided_unapprove": "{title} снова ожидает одобрения",
+  "ranger_download_file": "Скачать файл",
+  "ranger_download_failed": "Не удалось получить ссылку на скачивание",
+  "ranger_download_flagged_hint": "Помеченный файл: открывайте его только в песочнице или виртуальной машине."
 }

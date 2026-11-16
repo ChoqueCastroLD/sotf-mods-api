@@ -260,6 +260,7 @@ export const API_ROUTES = {
     report: { id: 'moderation.report', method: 'POST', path: "/api/v2/reports", kind: 'json', bodyKind: 'json' },
     queue: { id: 'moderation.queue', method: 'GET', path: "/api/v2/ranger/queue", kind: 'json', bodyKind: null },
     item: { id: 'moderation.item', method: 'GET', path: "/api/v2/ranger/items/:id", kind: 'json', bodyKind: null },
+    versionFile: { id: 'moderation.versionFile', method: 'GET', path: "/api/v2/ranger/versions/:id/file", kind: 'json', bodyKind: null },
     assignItem: { id: 'moderation.assignItem', method: 'POST', path: "/api/v2/ranger/items/:id/assign", kind: 'json', bodyKind: 'json' },
     escalateItem: { id: 'moderation.escalateItem', method: 'POST', path: "/api/v2/ranger/items/:id/escalate", kind: 'json', bodyKind: 'json' },
     templates: { id: 'moderation.templates', method: 'GET', path: "/api/v2/ranger/templates", kind: 'json', bodyKind: null },

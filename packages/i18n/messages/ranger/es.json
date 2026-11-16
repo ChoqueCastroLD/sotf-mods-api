@@ -459,5 +459,8 @@
   "ranger_audit_from": "Desde la fecha",
   "ranger_audit_to": "Hasta la fecha",
   "ranger_action_unapprove": "Desaprobar",
-  "ranger_decided_unapprove": "{title} vuelve a estar pendiente de aprobación"
+  "ranger_decided_unapprove": "{title} vuelve a estar pendiente de aprobación",
+  "ranger_download_file": "Descargar archivo",
+  "ranger_download_failed": "No se pudo obtener el enlace de descarga",
+  "ranger_download_flagged_hint": "Archivo marcado: ábrelo solo en un sandbox o una máquina virtual."
 }

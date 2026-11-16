@@ -459,5 +459,8 @@
   "ranger_audit_from": "Başlangıç tarihi",
   "ranger_audit_to": "Bitiş tarihi",
   "ranger_action_unapprove": "Onayı kaldır",
-  "ranger_decided_unapprove": "{title} yeniden onay bekliyor"
+  "ranger_decided_unapprove": "{title} yeniden onay bekliyor",
+  "ranger_download_file": "Dosyayı indir",
+  "ranger_download_failed": "İndirme bağlantısı alınamadı",
+  "ranger_download_flagged_hint": "İşaretli dosya: yalnızca bir sanal alanda veya sanal makinede aç."
 }

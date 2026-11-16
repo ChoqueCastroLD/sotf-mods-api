@@ -459,5 +459,8 @@
   "ranger_audit_from": "Från datum",
   "ranger_audit_to": "Till datum",
   "ranger_action_unapprove": "Dra tillbaka godkännande",
-  "ranger_decided_unapprove": "{title} väntar på godkännande igen"
+  "ranger_decided_unapprove": "{title} väntar på godkännande igen",
+  "ranger_download_file": "Ladda ner filen",
+  "ranger_download_failed": "Det gick inte att hämta nedladdningslänken",
+  "ranger_download_flagged_hint": "Flaggad fil: öppna den bara i en sandlåda eller virtuell maskin."
 }
