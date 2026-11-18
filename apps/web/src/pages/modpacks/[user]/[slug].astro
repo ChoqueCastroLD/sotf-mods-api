@@ -21,6 +21,7 @@ import { Avatar } from '@sotf/ui/avatar';
 import { PROSE_LOCATOR_CLASSES } from '@sotf/ui/domain';
 import { Icon } from '@sotf/ui/icons';
 import { AlertTriangle, Ban, Download, FileArchive, Flag, Heart, Info, Layers, Link as LinkIcon, MonitorDown, Package } from 'lucide-react';
+import LocalDate from '../../../components/common/LocalDate.astro';
 import { loginHrefFor } from '../../../components/mod/format.ts';
 import { configureModDomainI18n, markdownLabels } from '../../../components/mod/i18n.ts';
 import ReportDialog from '../../../components/mod/ReportDialog.astro';
@@ -241,7 +242,7 @@ const ACTION =
               <li>{m.modpacks_mods_count({ count: pack.itemsCount })}</li>
               <li>{m.modpacks_downloads_count({ count: pack.downloads })}</li>
               <li data-kit-followers={pack.followersCount}>{m.common_followers_count({ count: pack.followersCount })}</li>
-              <li>{m.modpacks_updated({ date: formatDate(locale, pack.updatedAt, 'medium') })}</li>
+              <li><LocalDate iso={pack.updatedAt} message={(date) => m.modpacks_updated({ date })} /></li>
             </ul>
             <div class="grid grid-cols-1 overflow-hidden rounded-lg border border-border-strong sm:grid-cols-[minmax(0,1fr)_auto]">
               <a
@@ -453,11 +454,11 @@ const ACTION =
               </div>
               <div class="flex justify-between gap-4 border-b border-border py-3">
                 <dt class="text-fg-muted">{m.modpacks_detail_created()}</dt>
-                <dd class="font-medium text-fg"><time datetime={pack.createdAt}>{formatDate(locale, pack.createdAt, 'medium')}</time></dd>
+                <dd class="font-medium text-fg"><time datetime={pack.createdAt} data-local="date">{formatDate(locale, pack.createdAt, 'medium')}</time></dd>
               </div>
               <div class="flex justify-between gap-4 border-b border-border py-3">
                 <dt class="text-fg-muted">{m.modpacks_stat_updated()}</dt>
-                <dd class="font-medium text-fg"><time datetime={pack.updatedAt}>{formatDate(locale, pack.updatedAt, 'medium')}</time></dd>
+                <dd class="font-medium text-fg"><time datetime={pack.updatedAt} data-local="date">{formatDate(locale, pack.updatedAt, 'medium')}</time></dd>
               </div>
             </dl>
           </aside>

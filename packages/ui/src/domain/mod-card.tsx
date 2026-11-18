@@ -575,7 +575,7 @@ function ListStat({
   className,
 }: {
   icon: typeof Download;
-  value: string;
+  value: ReactNode;
   label: string;
   className?: string;
 }) {
@@ -700,7 +700,16 @@ function ListCard(props: ModCardProps & { Heading: 'h2' | 'h3' | 'h4' }) {
             />
             <ListStat
               icon={Clock}
-              value={updated}
+              value={
+                reference === null ? (
+                  // Re-formatted in the visitor's time zone by the site (`data-local`).
+                  <time dateTime={mod.lastReleasedAt} data-local="date">
+                    {updated}
+                  </time>
+                ) : (
+                  updated
+                )
+              }
               label={labels.updated(updated)}
               className="@max-[34rem]/list:hidden"
             />

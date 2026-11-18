@@ -49,7 +49,7 @@ const list = versions ?? (build.latestVersion ? [build.latestVersion] : []);
                   <span class="font-mono font-semibold text-fg">v{version.version}</span>
                   {version.isLatest && <Badge variant="neutral" size="sm">{m.builds_versions_latest()}</Badge>}
                   {withdrawn && <Badge variant="warning" size="sm">{m.builds_versions_yanked()}</Badge>}
-                  <time datetime={version.publishedAt} class="text-sm text-fg-muted">
+                  <time datetime={version.publishedAt} data-local="date" class="text-sm text-fg-muted">
                     {formatDate(locale, version.publishedAt, 'medium')}
                   </time>
                   {typeof version.fileSize === 'number' && (

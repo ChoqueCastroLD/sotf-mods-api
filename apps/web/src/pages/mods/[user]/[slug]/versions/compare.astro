@@ -122,13 +122,13 @@ const deltaText = (value: number): string => `${value > 0 ? '+' : value < 0 ? '�
             <li>
               <a href={href(diff.from.path, locale)} class="text-link">v{diff.from.version}</a>
               {' · '}
-              <time datetime={diff.from.publishedAt}>{formatDate(locale, diff.from.publishedAt)}</time>
+              <time datetime={diff.from.publishedAt} data-local="date">{formatDate(locale, diff.from.publishedAt)}</time>
               {typeof diff.from.fileSize === 'number' && ` · ${formatBytes(locale, diff.from.fileSize)}`}
             </li>
             <li>
               <a href={href(diff.to.path, locale)} class="text-link">v{diff.to.version}</a>
               {' · '}
-              <time datetime={diff.to.publishedAt}>{formatDate(locale, diff.to.publishedAt)}</time>
+              <time datetime={diff.to.publishedAt} data-local="date">{formatDate(locale, diff.to.publishedAt)}</time>
               {typeof diff.to.fileSize === 'number' && ` · ${formatBytes(locale, diff.to.fileSize)}`}
             </li>
           </ul>
@@ -218,7 +218,7 @@ const deltaText = (value: number): string => `${value > 0 ? '+' : value < 0 ? '�
               <article class="grid gap-2">
                 <h4 class="flex flex-wrap items-baseline gap-2 font-semibold">
                   v{entry.version}
-                  <time datetime={entry.publishedAt} class="text-sm font-normal text-fg-muted">
+                  <time datetime={entry.publishedAt} data-local="date" class="text-sm font-normal text-fg-muted">
                     {formatDate(locale, entry.publishedAt)}
                   </time>
                 </h4>

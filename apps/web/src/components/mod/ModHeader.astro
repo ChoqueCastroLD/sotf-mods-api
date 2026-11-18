@@ -7,12 +7,13 @@
  * `compact` (sub-pages): no gallery or description, smaller title; the actions stay.
  */
 import { categoryPath, profilePath } from '@sotf/contracts/seo';
-import { formatCompactNumber, formatDate, formatNumber } from '@sotf/i18n';
+import { formatCompactNumber, formatNumber } from '@sotf/i18n';
 import { m } from '@sotf/i18n/messages';
 import { Avatar } from '@sotf/ui/avatar';
 import { displayName, GalleryStrip, StarRating, TrustedMark } from '@sotf/ui/domain';
 import { href } from '../../lib/i18n.ts';
 import { loadModTranslation } from '../../lib/mod-translation.ts';
+import LocalDate from '../common/LocalDate.astro';
 import ActionBar from './ActionBar.astro';
 import type { ModDetailDTO, VersionDTO } from './data.ts';
 import { gameLabel, isShortVersion, loaderLabel, reviewsPagePath } from './format.ts';
@@ -176,7 +177,7 @@ const stat = 'inline-flex items-center gap-1.5 tabular-nums';
         )
       }
       <li class={stat}>
-        <time datetime={mod.lastReleasedAt}>{m.mod_fact_updated({ date: formatDate(locale, mod.lastReleasedAt) })}</time>
+        <span><LocalDate iso={mod.lastReleasedAt} message={(date) => m.mod_fact_updated({ date })} /></span>
       </li>
     </ul>
 

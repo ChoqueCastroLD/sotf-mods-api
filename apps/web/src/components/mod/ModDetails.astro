@@ -112,7 +112,7 @@ const row = 'flex items-baseline justify-between gap-4 border-b border-border py
         <div class={row}>
           <dt class="text-fg-muted">{m.mod_fact_published()}</dt>
           <dd class="text-end">
-            <time datetime={mod.publishedAt}>{formatDate(locale, mod.publishedAt)}</time>
+            <time datetime={mod.publishedAt} data-local="date">{formatDate(locale, mod.publishedAt)}</time>
           </dd>
         </div>
       )

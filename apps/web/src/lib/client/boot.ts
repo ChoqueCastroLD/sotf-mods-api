@@ -18,6 +18,7 @@ import { initAccountHint } from '../../scripts/account-hint.ts';
 import { initDisplayPreferences } from '../../scripts/account-settings.ts';
 import { initBeacon } from '../../scripts/beacon.ts';
 import { initReloginBanner } from '../../scripts/legacy-cleanup.ts';
+import { initLocalTime } from '../../scripts/local-time.ts';
 import { initLocalePreference } from '../../scripts/locale-pref.ts';
 import { initPullToRefresh } from '../../scripts/pull-to-refresh.ts';
 import { initServiceWorker } from '../../scripts/service-worker.ts';
@@ -68,6 +69,8 @@ export function boot(): void {
   if (booted) return;
   booted = true;
   safely(() => initTheme());
+  // Dates in the visitor's time zone (pages are rendered in UTC for everyone).
+  safely(() => initLocalTime());
   safely(() => bindCmdkTrigger());
   safely(() => initChrome());
   safely(() => initSheets());

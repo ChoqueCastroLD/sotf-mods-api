@@ -151,7 +151,11 @@ export function ReviewCard({ review, creatorName, actions, headingLevel = 3, cla
             {author?.verifiedCreator ? <TrustedMark /> : null}
           </p>
           <p className="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-xs text-fg-muted">
-            <time dateTime={review.createdAt} title={formatDateTime(locale, review.createdAt, timeZone)}>
+            <time
+              dateTime={review.createdAt}
+              data-local="date"
+              title={formatDateTime(locale, review.createdAt, timeZone)}
+            >
               {formatDate(locale, review.createdAt, timeZone)}
             </time>
             {review.editedAt ? <span>{t('ui_domain_edited')}</span> : null}
@@ -188,7 +192,7 @@ export function ReviewCard({ review, creatorName, actions, headingLevel = 3, cla
             <span className="font-semibold text-fg">
               {creatorName ? t('ui_domain_review_reply_from', { name: creatorName }) : t('ui_domain_review_reply')}
             </span>
-            <time dateTime={review.authorReply.repliedAt}>
+            <time dateTime={review.authorReply.repliedAt} data-local="date">
               {formatDate(locale, review.authorReply.repliedAt, timeZone)}
             </time>
           </p>

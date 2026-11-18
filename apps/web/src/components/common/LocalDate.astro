@@ -1,0 +1,29 @@
+---
+/**
+ * A date written in UTC by the server and re-formatted in the visitor's time zone by
+ * `scripts/local-time.ts` (pages are shared and cached, so the server cannot know the zone).
+ *
+ * `message` puts the date inside a sentence (`m.mod_fact_updated`): the text around the date is
+ * kept and only the date itself is wrapped in `<time>`.
+ */
+import { formatDate, formatDateTime } from '@sotf/i18n';
+
+interface Props {
+  iso: string;
+  kind?: 'date' | 'date-long' | 'datetime';
+  message?: (date: string) => string;
+  class?: string;
+}
+
+const { iso, kind = 'date', message, class: className } = Astro.props;
+const locale = Astro.locals.locale;
+const text =
+  kind === 'datetime'
+    ? formatDateTime(locale, iso, 'medium', 'short')
+    : formatDate(locale, iso, kind === 'date-long' ? 'long' : 'medium');
+// The sentence is rendered with a marker in place of the date, then split around it.
+const MARK = '\u0000DATE\u0000';
+const [before = '', after = ''] = message ? message(MARK).split(MARK) : ['', ''];
+---
+
+{before}<time datetime={iso} data-local={kind} class={className}>{text}</time>{after}

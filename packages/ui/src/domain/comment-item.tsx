@@ -95,12 +95,17 @@ export function CommentItem({ comment, actions, reactions, children, permalink, 
             ) : null}
             {permalink ? (
               <a href={permalink} className="text-xs text-fg-muted hover:underline">
-                <time dateTime={comment.createdAt} title={formatDateTime(locale, comment.createdAt, timeZone)}>
+                <time
+                  dateTime={comment.createdAt}
+                  data-local="date"
+                  title={formatDateTime(locale, comment.createdAt, timeZone)}
+                >
                   {formatDate(locale, comment.createdAt, timeZone)}
                 </time>
               </a>
             ) : (
               <time
+                data-local="date"
                 dateTime={comment.createdAt}
                 title={formatDateTime(locale, comment.createdAt, timeZone)}
                 className="text-xs text-fg-muted"

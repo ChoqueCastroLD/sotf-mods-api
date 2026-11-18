@@ -51,7 +51,7 @@ const Heading = headingLevel === 3 ? 'h3' : 'h4';
           {version.isLatest && <Badge variant="neutral" size="sm">{m.mod_version_latest()}</Badge>}
           {version.channel === 'beta' && <Badge variant="warning" size="sm">{m.mod_version_beta()}</Badge>}
           {version.status === 'yanked' && <Badge variant="danger" size="sm">{m.mod_version_yanked()}</Badge>}
-          <time datetime={version.publishedAt} class="text-sm text-fg-muted">
+          <time datetime={version.publishedAt} data-local="date" class="text-sm text-fg-muted">
             {formatDate(locale, version.publishedAt)}
           </time>
           {typeof version.fileSize === 'number' && (

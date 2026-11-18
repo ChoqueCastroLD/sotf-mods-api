@@ -124,7 +124,11 @@ export function VersionTable({
                   </span>
                 </th>
                 <td className={cn(td, 'text-fg-muted')}>
-                  <time dateTime={version.publishedAt} title={formatDateTime(locale, version.publishedAt, timeZone)}>
+                  <time
+                    dateTime={version.publishedAt}
+                    data-local="date"
+                    title={formatDateTime(locale, version.publishedAt, timeZone)}
+                  >
                     {formatDate(locale, version.publishedAt, timeZone)}
                   </time>
                 </td>

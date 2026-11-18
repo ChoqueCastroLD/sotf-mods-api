@@ -59,7 +59,7 @@ function excerpt(html: string): string {
               </span>
               <span class="truncate text-sm text-fg-muted">{summary || m.mod_version_no_changelog()}</span>
               <span class="flex flex-wrap items-center gap-x-1.5 text-xs text-fg-subtle tabular-nums" data-version-meta>
-                <time datetime={version.publishedAt}>{formatDate(locale, version.publishedAt)}</time>
+                <time datetime={version.publishedAt} data-local="date">{formatDate(locale, version.publishedAt)}</time>
                 {typeof version.fileSize === 'number' && <span>· {formatBytes(locale, version.fileSize)}</span>}
                 <span>· {m.common_downloads_compact({ count: version.downloadsCount, display: formatCompactNumber(locale, version.downloadsCount) })}</span>
               </span>

@@ -89,7 +89,7 @@ const row = 'grid gap-1 border-b border-border py-2.5 last:border-b-0 sm:grid-co
       {version.isLatest && <Badge variant="neutral">{m.mod_version_latest()}</Badge>}
       {version.channel === 'beta' && <Badge variant="warning">{m.mod_version_beta()}</Badge>}
       {version.status === 'yanked' && <Badge variant="danger">{m.mod_version_yanked()}</Badge>}
-      <time datetime={version.publishedAt} class="text-sm text-fg-muted">{formatDateTime(locale, version.publishedAt)}</time>
+      <time datetime={version.publishedAt} data-local="datetime" class="text-sm text-fg-muted">{formatDateTime(locale, version.publishedAt)}</time>
     </div>
 
     {

@@ -146,12 +146,12 @@ const dd = 'bp-nums min-w-0 text-end tabular-nums [overflow-wrap:anywhere]';
     }
     <div class={row}>
       <dt class={dt}>{m.builds_spec_updated()}</dt>
-      <dd class={dd}><time datetime={build.lastReleasedAt}>{formatDate(locale, build.lastReleasedAt, 'medium')}</time></dd>
+      <dd class={dd}><time datetime={build.lastReleasedAt} data-local="date">{formatDate(locale, build.lastReleasedAt, 'medium')}</time></dd>
     </div>
     <div class={row}>
       <dt class={dt}>{m.builds_spec_published()}</dt>
       <dd class={dd}>
-        <time datetime={build.publishedAt ?? build.createdAt}>
+        <time datetime={build.publishedAt ?? build.createdAt} data-local="date">
           {formatDate(locale, build.publishedAt ?? build.createdAt, 'medium')}
         </time>
       </dd>
