@@ -24,20 +24,23 @@ const redirect = (path: string) =>
   legacyListingRedirect(new URL(`https://sotf-mods.com${path}`), MODS_SCOPE, { resolveCategory });
 
 describe('catalogue state', () => {
-  it('lists the newest mods by default, relevance while searching', () => {
-    expect(defaultState(MODS_SCOPE).sort).toBe('new');
-    expect(parse('').sort).toBe('new');
+  it('lists the most recently updated mods by default, relevance while searching', () => {
+    expect(defaultState(MODS_SCOPE).sort).toBe('updated');
+    expect(parse('').sort).toBe('updated');
     expect(parse('q=menu').sort).toBe('relevance');
-    expect(parse('sort=relevance').sort).toBe('new');
+    expect(parse('sort=relevance').sort).toBe('updated');
   });
 
   it('reads sort=oldest as the newest order reversed', () => {
     const state = parse('sort=oldest');
     expect([state.sort, state.order]).toEqual(['new', 'asc']);
     expect(sortChoiceValue(state)).toBe('oldest');
-    // Newest is the default sort, so «oldest» is just the reversed order.
-    expect(queryPairsOf(state, MODS_SCOPE)).toEqual([['order', 'asc']]);
-    expect(exploreHref(state, MODS_SCOPE)).toBe('/mods?order=asc');
+    // «Oldest» is the newest order reversed (recently updated is the default sort).
+    expect(queryPairsOf(state, MODS_SCOPE)).toEqual([
+      ['sort', 'new'],
+      ['order', 'asc'],
+    ]);
+    expect(exploreHref(state, MODS_SCOPE)).toBe('/mods?sort=new&order=asc');
     expect(sortChoiceValue(parse('sort=downloads'))).toBe('downloads');
   });
 
@@ -54,7 +57,7 @@ describe('catalogue state', () => {
 
   it('never sends the unapproved flag together with page defaults the API would reject', () => {
     const query = apiQueryOf(parse('unapproved=1&nsfw=1&page=2'));
-    expect(query).toMatchObject({ unapproved: true, nsfw: true, page: 2, sort: 'new', type: 'mod' });
+    expect(query).toMatchObject({ unapproved: true, nsfw: true, page: 2, sort: 'updated', type: 'mod' });
   });
 });
 
@@ -106,7 +109,7 @@ describe('legacy catalogue URLs', () => {
   });
 
   it('keeps the old sort names and categories working', () => {
-    expect(redirect('/mods?orderby=oldest')).toBe('/mods?order=asc');
+    expect(redirect('/mods?orderby=oldest')).toBe('/mods?sort=new&order=asc');
     expect(redirect('/mods?order_by=most_downloaded')).toBe('/mods?sort=downloads');
     expect(redirect('/mods?orderby=most_downloaded_week')).toBe('/mods?sort=trending');
     // The hub lists mods and libraries by default; a mods listing keeps its type.
@@ -115,7 +118,7 @@ describe('legacy catalogue URLs', () => {
   });
 
   it('cleans what a plain GET form writes (empty values, explicit defaults)', () => {
-    expect(redirect('/mods?q=&category=&type=mod&sort=new')).toBe('/mods');
+    expect(redirect('/mods?q=&category=&type=mod&sort=updated')).toBe('/mods');
     expect(redirect('/mods?q=menu&sort=relevance')).toBe('/mods?q=menu');
     expect(redirect('/mods?type=mod&sort=downloads&unapproved=1')).toBe('/mods?unapproved=1&sort=downloads');
   });

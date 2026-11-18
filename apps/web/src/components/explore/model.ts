@@ -14,6 +14,7 @@ import {
   activeFilterCount,
   DOWNLOADS_VALUES,
   defaultOrderOf,
+  defaultSortOf,
   type ExploreScope,
   type ExploreState,
   type ExploreView,
@@ -204,7 +205,7 @@ export function buildExploreModel(input: {
   });
 
   // Sort.
-  const sorts: ExploreState['sort'][] = ['new', 'updated', 'downloads', 'trending', 'rating', 'name'];
+  const sorts: ExploreState['sort'][] = ['updated', 'new', 'downloads', 'trending', 'rating', 'name'];
   if (state.q) sorts.unshift('relevance');
   // A shared link may use a sort the menu does not list (followers, comments): keep it visible.
   if (!sorts.includes(state.sort)) sorts.push(state.sort);
@@ -439,7 +440,7 @@ export function buildExploreModel(input: {
   if (forBuilds && state.hasSource) hidden.push(['hasSource', '1']);
   if (state.nsfw && !hasToggle('nsfw')) hidden.push(['nsfw', '1']);
   if (state.unapproved && !hasToggle('unapproved')) hidden.push(['unapproved', '1']);
-  if (state.sort !== 'new' && state.sort !== 'relevance') hidden.push(['sort', state.sort]);
+  if (state.sort !== defaultSortOf(state) && state.sort !== 'relevance') hidden.push(['sort', state.sort]);
   if (state.order !== defaultOrderOf(state.sort)) hidden.push(['order', state.order]);
   if (state.view !== 'grid') hidden.push(['view', state.view]);
 
@@ -587,7 +588,7 @@ export function buildExploreModel(input: {
     nsfw: false,
     unapproved: false,
     q: '',
-    sort: 'new',
+    sort: 'updated',
     order: 'desc',
   });
 

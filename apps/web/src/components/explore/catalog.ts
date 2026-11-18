@@ -9,7 +9,7 @@ import { m } from '@sotf/i18n/messages';
 import type { ModCardListLabels } from '@sotf/ui/domain';
 import { href } from '../../lib/i18n.ts';
 import type { ExploreModel } from './model.ts';
-import type { ExploreState, ListType } from './state.ts';
+import { defaultSortOf, type ExploreState, type ListType } from './state.ts';
 import type { Taxonomy } from './taxonomy.ts';
 
 export interface SelectChoice {
@@ -49,11 +49,11 @@ export function sortChoiceValue(state: Pick<ExploreState, 'sort' | 'order'>): st
 export function sortChoices(state: ExploreState): SelectChoice[] {
   const current = sortChoiceValue(state);
   const entries: [string, string][] = [
+    ['updated', m.explore_sort_updated()],
     ['new', m.explore_sort_new()],
     ['oldest', m.explore_catalog_sort_oldest()],
     ['downloads', m.explore_catalog_sort_downloads()],
     ['trending', m.explore_catalog_sort_trending()],
-    ['updated', m.explore_sort_updated()],
     ['rating', m.explore_sort_rating()],
   ];
   if (state.q) entries.unshift(['relevance', m.explore_sort_relevance()]);
@@ -123,7 +123,7 @@ export function buildToolbarModel(input: {
   const changed =
     (state.type !== model.scope.defaultType ? 1 : 0) +
     (state.category.length > 0 ? 1 : 0) +
-    (sortChoiceValue(state) !== (state.q ? 'relevance' : 'new') ? 1 : 0) +
+    (sortChoiceValue(state) !== defaultSortOf(state) ? 1 : 0) +
     (state.nsfw ? 1 : 0) +
     (state.unapproved ? 1 : 0);
   return {

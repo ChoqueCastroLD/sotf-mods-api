@@ -148,7 +148,7 @@ export function defaultState(scope: ExploreScope): ExploreState {
     nsfw: false,
     unapproved: false,
     q: '',
-    sort: 'new',
+    sort: 'updated',
     order: 'desc',
     page: 1,
     pageSize: EXPLORE_PAGE_SIZE,
@@ -246,7 +246,7 @@ export function parseExploreState(params: ParamsLike, scope: ExploreScope): Expl
   // `sort=oldest` is the sort menu's way to say `sort=new&order=asc` from a plain GET form.
   const oldest = rawSort === 'oldest';
   const sort = oldest ? 'new' : oneOf(ALL_SORTS, rawSort);
-  state.sort = sort === 'relevance' && !state.q ? 'new' : (sort ?? (state.q ? 'relevance' : 'new'));
+  state.sort = sort === 'relevance' && !state.q ? 'updated' : (sort ?? defaultSortOf(state));
   const rawOrder = params.get('order');
   state.order = oldest || rawOrder === 'asc' ? 'asc' : rawOrder === 'desc' ? 'desc' : defaultOrderOf(state.sort);
   state.page = pageOf(params.get('page'));
@@ -256,9 +256,12 @@ export function parseExploreState(params: ParamsLike, scope: ExploreScope): Expl
   return state;
 }
 
-/** Default sort of a state: newest first, like the original catalogue (`relevance` while searching). */
+/**
+ * Default sort of a state: the most recently released first, so a mod that gets an update comes
+ * back to the top (owner decision 2026-11); `relevance` while searching.
+ */
 export function defaultSortOf(state: Pick<ExploreState, 'q'>): ModSort {
-  return state.q ? 'relevance' : 'new';
+  return state.q ? 'relevance' : 'updated';
 }
 
 /** Categories/tags beyond the ones implied by the path. */
