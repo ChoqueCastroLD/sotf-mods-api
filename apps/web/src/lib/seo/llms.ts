@@ -85,6 +85,12 @@ export function llmsTxt(input: {
     '',
     '## API',
     '',
+    link(
+      'Creator API guide for people and AI agents',
+      url('/developers/api.md'),
+      'upload mods, publish versions, edit listings and read stats with an API key (Authorization: Bearer)',
+    ),
+    link('API index', url('/api/v2'), 'every document and how to authenticate, as JSON'),
     link('Developers guide', url('/developers'), 'public API, deprecations, integrating a mod manager'),
     link('OpenAPI document', url('/api/v2/openapi.json')),
     link('API reference', url('/api/docs')),

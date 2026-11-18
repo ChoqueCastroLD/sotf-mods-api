@@ -1,0 +1,18 @@
+{
+  "api_title": "API",
+  "api_description": "Web sitesini açmadan, betiklerden veya yapay zeka asistanlarından mod yükle, sürüm yayınla, sayfaları düzenle ve istatistiklerini gör. Bir anahtar oluştur ve rehberi izle.",
+  "api_start_title": "Hızlı başlangıç",
+  "api_start_description": "Anahtarını SOTF_API_KEY ortam değişkenine kaydet ve çalıştığını görmek için bunu çalıştır.",
+  "api_link_guide": "Rehber",
+  "api_link_guide_hint": "Adım adım: yükleme, yayınlama, istatistikler",
+  "api_link_reference": "Başvuru",
+  "api_link_reference_hint": "Tüm uç noktalar, tarayıcıda dene",
+  "api_link_openapi": "OpenAPI",
+  "api_link_openapi_hint": "Makinelerin okuyabildiği açıklama",
+  "api_ai_title": "Yapay zeka asistanları için prompt",
+  "api_ai_description": "Modun üzerinde çalışmasını istemeden önce bunu Claude, Codex veya başka bir kod asistanına yapıştır. Nereden başlayacağını ve anahtarını nasıl güvenle kullanacağını söyler.",
+  "api_copy_command": "Komutu kopyala",
+  "api_copy_prompt": "Prompt'u kopyala",
+  "api_copied": "Kopyalandı",
+  "api_copy_failed": "Kopyalanamadı. Metni seçip elle kopyala."
+}

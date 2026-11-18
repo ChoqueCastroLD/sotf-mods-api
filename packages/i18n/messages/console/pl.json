@@ -74,7 +74,7 @@
   "console_pager_page_size": "Pozycji na stronę",
   "console_pager_per_page": "{count} na stronę",
   "console_pager_of": "Strona {page} z {pages}",
-  "console_nav_tokens": "Tokeny dostępu",
+  "console_nav_tokens": "Klucze API",
   "console_nav_group_account": "Twoje konto",
   "console_nav_group_app": "Aplikacja",
   "console_nav_group_creator": "Twórca i dane",
@@ -82,5 +82,6 @@
   "console_nav_modpacks": "Modpacki",
   "console_nav_modpacks_review": "Modpacki",
   "console_nav_manager": "SOTF Mod Manager",
-  "console_nav_traffic": "Ruch"
+  "console_nav_traffic": "Ruch",
+  "console_nav_api": "API"
 }

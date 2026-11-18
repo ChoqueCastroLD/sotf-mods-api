@@ -1,0 +1,18 @@
+{
+  "api_title": "API",
+  "api_description": "Carica mod, pubblica versioni, modifica le schede e leggi le tue statistiche da script o assistenti IA, senza aprire il sito. Crea una chiave e segui la guida.",
+  "api_start_title": "Per iniziare",
+  "api_start_description": "Salva la chiave nella variabile d’ambiente SOTF_API_KEY ed esegui questo comando per verificare che funzioni.",
+  "api_link_guide": "Guida",
+  "api_link_guide_hint": "Passo per passo: caricare, pubblicare, statistiche",
+  "api_link_reference": "Riferimento",
+  "api_link_reference_hint": "Tutti gli endpoint, provali nel browser",
+  "api_link_openapi": "OpenAPI",
+  "api_link_openapi_hint": "Descrizione leggibile dalle macchine",
+  "api_ai_title": "Prompt per assistenti IA",
+  "api_ai_description": "Incollalo in Claude, Codex o un altro assistente di programmazione prima di chiedergli di lavorare alla tua mod. Gli dice da dove iniziare e come usare la chiave in sicurezza.",
+  "api_copy_command": "Copia comando",
+  "api_copy_prompt": "Copia prompt",
+  "api_copied": "Copiato",
+  "api_copy_failed": "Impossibile copiare. Seleziona il testo e copialo a mano."
+}

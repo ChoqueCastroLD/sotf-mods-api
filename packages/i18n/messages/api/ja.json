@@ -1,0 +1,18 @@
+{
+  "api_title": "API",
+  "api_description": "サイトを開かずに、スクリプトや AI アシスタントから Mod のアップロード、バージョン公開、ページ編集、統計の確認ができます。キーを作成してガイドに沿って進めてください。",
+  "api_start_title": "クイックスタート",
+  "api_start_description": "キーを環境変数 SOTF_API_KEY に保存し、次のコマンドで動作を確認します。",
+  "api_link_guide": "ガイド",
+  "api_link_guide_hint": "手順：アップロード、公開、統計",
+  "api_link_reference": "リファレンス",
+  "api_link_reference_hint": "全エンドポイント、ブラウザで試せます",
+  "api_link_openapi": "OpenAPI",
+  "api_link_openapi_hint": "機械可読の説明",
+  "api_ai_title": "AI アシスタント用プロンプト",
+  "api_ai_description": "Claude、Codex などのコーディングアシスタントに Mod の作業を頼む前に貼り付けてください。どこから始めるか、キーを安全に使う方法が伝わります。",
+  "api_copy_command": "コマンドをコピー",
+  "api_copy_prompt": "プロンプトをコピー",
+  "api_copied": "コピーしました",
+  "api_copy_failed": "コピーできませんでした。テキストを選択して手動でコピーしてください。"
+}

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Tokens_List_TitleInputs */
 
 const en_tokens_list_title = /** @type {(inputs: Tokens_List_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Your tokens`)
+	return /** @type {LocalizedString} */ (`Your API keys`)
 };
 
 const es_tokens_list_title = /** @type {(inputs: Tokens_List_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tus tokens`)
+	return /** @type {LocalizedString} */ (`Tus claves de API`)
 };
 
 const de_tokens_list_title = /** @type {(inputs: Tokens_List_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Deine Token`)
+	return /** @type {LocalizedString} */ (`Deine API-Schlüssel`)
 };
 
 const fr_tokens_list_title = /** @type {(inputs: Tokens_List_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vos jetons`)
+	return /** @type {LocalizedString} */ (`Vos clés d’API`)
 };
 
 const it_tokens_list_title = /** @type {(inputs: Tokens_List_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`I tuoi token`)
+	return /** @type {LocalizedString} */ (`Le tue chiavi API`)
 };
 
 const nl_tokens_list_title = /** @type {(inputs: Tokens_List_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Je tokens`)
+	return /** @type {LocalizedString} */ (`Je API-sleutels`)
 };
 
 const pl_tokens_list_title = /** @type {(inputs: Tokens_List_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Twoje tokeny`)
+	return /** @type {LocalizedString} */ (`Twoje klucze API`)
 };
 
 const pt_tokens_list_title = /** @type {(inputs: Tokens_List_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Seus tokens`)
+	return /** @type {LocalizedString} */ (`Suas chaves de API`)
 };
 
 const ru_tokens_list_title = /** @type {(inputs: Tokens_List_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ваши токены`)
+	return /** @type {LocalizedString} */ (`Ваши API-ключи`)
 };
 
 const sv_tokens_list_title = /** @type {(inputs: Tokens_List_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dina tokens`)
+	return /** @type {LocalizedString} */ (`Dina API-nycklar`)
 };
 
 const tr_tokens_list_title = /** @type {(inputs: Tokens_List_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Belirteçlerin`)
+	return /** @type {LocalizedString} */ (`API anahtarların`)
 };
 
 const zh_tokens_list_title = /** @type {(inputs: Tokens_List_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`你的令牌`)
+	return /** @type {LocalizedString} */ (`你的 API 密钥`)
 };
 
 const ja_tokens_list_title = /** @type {(inputs: Tokens_List_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`あなたのトークン`)
+	return /** @type {LocalizedString} */ (`あなたの API キー`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Your tokens" |
+* | "Your API keys" |
 *
 * @param {Tokens_List_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

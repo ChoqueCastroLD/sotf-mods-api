@@ -10,6 +10,7 @@
 import {
   Activity,
   BellRing,
+  Braces,
   ChartLine,
   ChartNoAxesCombined,
   Database,
@@ -112,6 +113,7 @@ export const CONSOLE_AREAS: readonly ConsoleArea[] = [
           { to: '/dashboard/new/build', label: () => t('console_nav_new_build'), icon: DraftingCompass, phone: false },
           { to: '/dashboard/drafts', label: () => t('console_nav_drafts'), icon: NotebookPen },
           { to: '/dashboard/analytics', label: () => t('console_nav_analytics'), icon: ChartLine },
+          { to: '/dashboard/api', label: () => t('console_nav_api'), icon: Braces },
         ],
       },
     ],

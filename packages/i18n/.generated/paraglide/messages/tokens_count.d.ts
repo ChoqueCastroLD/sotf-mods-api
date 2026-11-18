@@ -6,7 +6,7 @@ export type Tokens_CountInputs = {
 /**
 * | output |
 * | --- |
-* | "Tokens in use: {count} of {max}" |
+* | "Keys in use: {count} of {max}" |
 *
 * @param {Tokens_CountInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

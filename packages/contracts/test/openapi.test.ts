@@ -115,11 +115,21 @@ describe('OpenAPI content', () => {
     expect(byName.get('sort')?.required).toBe(false);
   });
 
-  it('uses the session cookie security scheme on private routes only', () => {
-    const me = doc.paths['/api/v2/me']?.get as { security: unknown[] };
-    expect(me.security).toEqual([{ sessionCookie: [] }]);
+  it('declares the session cookie and API keys where each applies, with the scope a key needs', () => {
+    const me = doc.paths['/api/v2/me']?.get as { security: unknown[]; 'x-sotf-token-scope'?: string };
+    expect(me.security).toEqual([{ sessionCookie: [] }, { apiKey: [] }]);
+    expect(me['x-sotf-token-scope']).toBe('read');
     const mods = doc.paths['/api/v2/mods']?.get as { security: unknown[] };
-    expect(mods.security).toEqual([]);
+    expect(mods.security).toEqual([{}, { apiKey: [] }]);
+    const upload = doc.paths['/api/v2/uploads']?.post as { 'x-sotf-token-scope'?: string };
+    expect(upload['x-sotf-token-scope']).toBe('mods:write');
+    // Staff areas never accept an API key.
+    const queue = Object.entries(doc.paths).find(([path]) => path.startsWith('/api/v2/ranger/'))?.[1] as
+      | Record<string, { security: unknown[] }>
+      | undefined;
+    const firstOp = queue ? Object.values(queue)[0] : undefined;
+    expect(firstOp?.security).toEqual([{ sessionCookie: [] }]);
+    expect(doc.components.securitySchemes.apiKey).toMatchObject({ type: 'http', scheme: 'bearer' });
   });
 
   it('never forbids extra keys in response objects', () => {

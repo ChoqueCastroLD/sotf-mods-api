@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Tokens_Secret_TitleInputs */
 
 const en_tokens_secret_title = /** @type {(inputs: Tokens_Secret_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Copy your token now`)
+	return /** @type {LocalizedString} */ (`Copy your API key now`)
 };
 
 const es_tokens_secret_title = /** @type {(inputs: Tokens_Secret_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Copia tu token ahora`)
+	return /** @type {LocalizedString} */ (`Copia tu clave de API ahora`)
 };
 
 const de_tokens_secret_title = /** @type {(inputs: Tokens_Secret_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kopiere deinen Token jetzt`)
+	return /** @type {LocalizedString} */ (`Kopiere jetzt deinen API-Schlüssel`)
 };
 
 const fr_tokens_secret_title = /** @type {(inputs: Tokens_Secret_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Copiez votre jeton maintenant`)
+	return /** @type {LocalizedString} */ (`Copiez votre clé d’API maintenant`)
 };
 
 const it_tokens_secret_title = /** @type {(inputs: Tokens_Secret_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Copia ora il tuo token`)
+	return /** @type {LocalizedString} */ (`Copia ora la tua chiave API`)
 };
 
 const nl_tokens_secret_title = /** @type {(inputs: Tokens_Secret_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kopieer je token nu`)
+	return /** @type {LocalizedString} */ (`Kopieer nu je API-sleutel`)
 };
 
 const pl_tokens_secret_title = /** @type {(inputs: Tokens_Secret_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Skopiuj token teraz`)
+	return /** @type {LocalizedString} */ (`Skopiuj teraz swój klucz API`)
 };
 
 const pt_tokens_secret_title = /** @type {(inputs: Tokens_Secret_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Copie seu token agora`)
+	return /** @type {LocalizedString} */ (`Copie sua chave de API agora`)
 };
 
 const ru_tokens_secret_title = /** @type {(inputs: Tokens_Secret_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Скопируйте токен сейчас`)
+	return /** @type {LocalizedString} */ (`Скопируйте API-ключ сейчас`)
 };
 
 const sv_tokens_secret_title = /** @type {(inputs: Tokens_Secret_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Kopiera din token nu`)
+	return /** @type {LocalizedString} */ (`Kopiera din API-nyckel nu`)
 };
 
 const tr_tokens_secret_title = /** @type {(inputs: Tokens_Secret_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Belirtecini şimdi kopyala`)
+	return /** @type {LocalizedString} */ (`API anahtarını şimdi kopyala`)
 };
 
 const zh_tokens_secret_title = /** @type {(inputs: Tokens_Secret_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`请立即复制你的令牌`)
+	return /** @type {LocalizedString} */ (`现在复制你的 API 密钥`)
 };
 
 const ja_tokens_secret_title = /** @type {(inputs: Tokens_Secret_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`今すぐトークンをコピーしてください`)
+	return /** @type {LocalizedString} */ (`今すぐ API キーをコピーしてください`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Copy your token now" |
+* | "Copy your API key now" |
 *
 * @param {Tokens_Secret_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

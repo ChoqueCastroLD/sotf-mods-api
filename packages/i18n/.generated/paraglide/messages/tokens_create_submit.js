@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Tokens_Create_SubmitInputs */
 
 const en_tokens_create_submit = /** @type {(inputs: Tokens_Create_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Create token`)
+	return /** @type {LocalizedString} */ (`Create key`)
 };
 
 const es_tokens_create_submit = /** @type {(inputs: Tokens_Create_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Crear token`)
+	return /** @type {LocalizedString} */ (`Crear clave`)
 };
 
 const de_tokens_create_submit = /** @type {(inputs: Tokens_Create_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Token erstellen`)
+	return /** @type {LocalizedString} */ (`Schlüssel erstellen`)
 };
 
 const fr_tokens_create_submit = /** @type {(inputs: Tokens_Create_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Créer le jeton`)
+	return /** @type {LocalizedString} */ (`Créer la clé`)
 };
 
 const it_tokens_create_submit = /** @type {(inputs: Tokens_Create_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Crea token`)
+	return /** @type {LocalizedString} */ (`Crea chiave`)
 };
 
 const nl_tokens_create_submit = /** @type {(inputs: Tokens_Create_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Token maken`)
+	return /** @type {LocalizedString} */ (`Sleutel maken`)
 };
 
 const pl_tokens_create_submit = /** @type {(inputs: Tokens_Create_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Utwórz token`)
+	return /** @type {LocalizedString} */ (`Utwórz klucz`)
 };
 
 const pt_tokens_create_submit = /** @type {(inputs: Tokens_Create_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Criar token`)
+	return /** @type {LocalizedString} */ (`Criar chave`)
 };
 
 const ru_tokens_create_submit = /** @type {(inputs: Tokens_Create_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Создать токен`)
+	return /** @type {LocalizedString} */ (`Создать ключ`)
 };
 
 const sv_tokens_create_submit = /** @type {(inputs: Tokens_Create_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Skapa token`)
+	return /** @type {LocalizedString} */ (`Skapa nyckel`)
 };
 
 const tr_tokens_create_submit = /** @type {(inputs: Tokens_Create_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Belirteç oluştur`)
+	return /** @type {LocalizedString} */ (`Anahtar oluştur`)
 };
 
 const zh_tokens_create_submit = /** @type {(inputs: Tokens_Create_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`创建令牌`)
+	return /** @type {LocalizedString} */ (`创建密钥`)
 };
 
 const ja_tokens_create_submit = /** @type {(inputs: Tokens_Create_SubmitInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`トークンを作成`)
+	return /** @type {LocalizedString} */ (`キーを作成`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Create token" |
+* | "Create key" |
 *
 * @param {Tokens_Create_SubmitInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

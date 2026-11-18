@@ -74,7 +74,7 @@
   "console_pager_page_size": "Items per pagina",
   "console_pager_per_page": "{count} per pagina",
   "console_pager_of": "Pagina {page} van {pages}",
-  "console_nav_tokens": "Toegangstokens",
+  "console_nav_tokens": "API-sleutels",
   "console_nav_group_account": "Je account",
   "console_nav_group_app": "App",
   "console_nav_group_creator": "Maker en gegevens",
@@ -82,5 +82,6 @@
   "console_nav_modpacks": "Modpacks",
   "console_nav_modpacks_review": "Modpacks",
   "console_nav_manager": "SOTF Mod Manager",
-  "console_nav_traffic": "Verkeer"
+  "console_nav_traffic": "Verkeer",
+  "console_nav_api": "API"
 }

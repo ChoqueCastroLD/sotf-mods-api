@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ max: NonNullable<unknown> }} Tokens_Limit_ReachedInputs */
 
 const en_tokens_limit_reached = /** @type {(inputs: Tokens_Limit_ReachedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`You reached the limit of ${i?.max} active tokens. Revoke one to create another.`)
+	return /** @type {LocalizedString} */ (`You reached the limit of ${i?.max} active keys. Revoke one to create another.`)
 };
 
 const es_tokens_limit_reached = /** @type {(inputs: Tokens_Limit_ReachedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Alcanzaste el límite de ${i?.max} tokens activos. Revoca uno para crear otro.`)
+	return /** @type {LocalizedString} */ (`Llegaste al límite de ${i?.max} claves activas. Revoca una para crear otra.`)
 };
 
 const de_tokens_limit_reached = /** @type {(inputs: Tokens_Limit_ReachedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Du hast das Limit von ${i?.max} aktiven Token erreicht. Widerrufe einen, um einen neuen zu erstellen.`)
+	return /** @type {LocalizedString} */ (`Du hast das Limit von ${i?.max} aktiven Schlüsseln erreicht. Widerrufe einen, um einen neuen zu erstellen.`)
 };
 
 const fr_tokens_limit_reached = /** @type {(inputs: Tokens_Limit_ReachedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Vous avez atteint la limite de ${i?.max} jetons actifs. Révoquez-en un pour en créer un autre.`)
+	return /** @type {LocalizedString} */ (`Vous avez atteint la limite de ${i?.max} clés actives. Révoquez-en une pour en créer une autre.`)
 };
 
 const it_tokens_limit_reached = /** @type {(inputs: Tokens_Limit_ReachedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Hai raggiunto il limite di ${i?.max} token attivi. Revocane uno per crearne un altro.`)
+	return /** @type {LocalizedString} */ (`Hai raggiunto il limite di ${i?.max} chiavi attive. Revocane una per crearne un’altra.`)
 };
 
 const nl_tokens_limit_reached = /** @type {(inputs: Tokens_Limit_ReachedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Je hebt de limiet van ${i?.max} actieve tokens bereikt. Trek er een in om een nieuwe te maken.`)
+	return /** @type {LocalizedString} */ (`Je hebt de limiet van ${i?.max} actieve sleutels bereikt. Trek er een in om een nieuwe te maken.`)
 };
 
 const pl_tokens_limit_reached = /** @type {(inputs: Tokens_Limit_ReachedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Osiągnięto limit ${i?.max} aktywnych tokenów. Unieważnij jeden, aby utworzyć kolejny.`)
+	return /** @type {LocalizedString} */ (`Osiągnięto limit ${i?.max} aktywnych kluczy. Unieważnij jeden, aby utworzyć nowy.`)
 };
 
 const pt_tokens_limit_reached = /** @type {(inputs: Tokens_Limit_ReachedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Você atingiu o limite de ${i?.max} tokens ativos. Revogue um para criar outro.`)
+	return /** @type {LocalizedString} */ (`Você atingiu o limite de ${i?.max} chaves ativas. Revogue uma para criar outra.`)
 };
 
 const ru_tokens_limit_reached = /** @type {(inputs: Tokens_Limit_ReachedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Достигнут лимит в ${i?.max} активных токенов. Отзовите один, чтобы создать новый.`)
+	return /** @type {LocalizedString} */ (`Достигнут лимит в ${i?.max} активных ключей. Отзовите один, чтобы создать новый.`)
 };
 
 const sv_tokens_limit_reached = /** @type {(inputs: Tokens_Limit_ReachedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Du har nått gränsen på ${i?.max} aktiva tokens. Återkalla en för att skapa en ny.`)
+	return /** @type {LocalizedString} */ (`Du har nått gränsen på ${i?.max} aktiva nycklar. Återkalla en för att skapa en ny.`)
 };
 
 const tr_tokens_limit_reached = /** @type {(inputs: Tokens_Limit_ReachedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.max} etkin belirteç sınırına ulaştın. Yenisini oluşturmak için birini iptal et.`)
+	return /** @type {LocalizedString} */ (`${i?.max} etkin anahtar sınırına ulaştın. Yeni bir tane oluşturmak için birini iptal et.`)
 };
 
 const zh_tokens_limit_reached = /** @type {(inputs: Tokens_Limit_ReachedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`已达到 ${i?.max} 个有效令牌的上限。请先撤销一个再创建新的。`)
+	return /** @type {LocalizedString} */ (`已达到 ${i?.max} 个有效密钥的上限。撤销一个后才能创建新的。`)
 };
 
 const ja_tokens_limit_reached = /** @type {(inputs: Tokens_Limit_ReachedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`有効なトークンの上限（${i?.max} 件）に達しました。新しく作るには既存のトークンを失効してください。`)
+	return /** @type {LocalizedString} */ (`有効なキーの上限 ${i?.max} 件に達しました。新しく作るには 1 つ取り消してください。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "You reached the limit of {max} active tokens. Revoke one to create another." |
+* | "You reached the limit of {max} active keys. Revoke one to create another." |
 *
 * @param {Tokens_Limit_ReachedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

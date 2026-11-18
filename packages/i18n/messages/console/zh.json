@@ -74,7 +74,7 @@
   "console_pager_page_size": "每页条数",
   "console_pager_per_page": "每页 {count} 条",
   "console_pager_of": "第 {page} 页，共 {pages} 页",
-  "console_nav_tokens": "访问令牌",
+  "console_nav_tokens": "API 密钥",
   "console_nav_group_account": "你的账号",
   "console_nav_group_app": "应用",
   "console_nav_group_creator": "创作者与数据",
@@ -82,5 +82,6 @@
   "console_nav_modpacks": "整合包",
   "console_nav_modpacks_review": "整合包",
   "console_nav_manager": "SOTF Mod Manager",
-  "console_nav_traffic": "流量"
+  "console_nav_traffic": "流量",
+  "console_nav_api": "API"
 }

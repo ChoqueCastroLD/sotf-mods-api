@@ -14,8 +14,13 @@ function page(html: string): HTMLElement {
 function inZone<T>(zone: string, run: () => T): T {
   const original = Intl.DateTimeFormat;
   // Pin the "browser" zone: every formatter without an explicit zone uses `zone`.
-  globalThis.Intl.DateTimeFormat = ((locales?: string | string[], options?: Intl.DateTimeFormatOptions) =>
-    new original(locales, { timeZone: zone, ...options })) as unknown as typeof Intl.DateTimeFormat;
+  // A real constructor (called with `new`) that pins the zone unless one is given.
+  class Pinned extends original {
+    constructor(locales?: string | string[], options?: Intl.DateTimeFormatOptions) {
+      super(locales, { timeZone: zone, ...options });
+    }
+  }
+  globalThis.Intl.DateTimeFormat = Pinned as unknown as typeof Intl.DateTimeFormat;
   try {
     return run();
   } finally {

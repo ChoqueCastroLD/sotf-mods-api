@@ -1,0 +1,18 @@
+{
+  "api_title": "API",
+  "api_description": "Upload mods, publish versions, edit listings and read your stats from scripts or AI assistants, without opening the website. Create a key, then follow the guide.",
+  "api_start_title": "Quick start",
+  "api_start_description": "Save your key in the SOTF_API_KEY environment variable and run this to check it works.",
+  "api_link_guide": "Guide",
+  "api_link_guide_hint": "Step by step: upload, publish, stats",
+  "api_link_reference": "Reference",
+  "api_link_reference_hint": "Every endpoint, try it in the browser",
+  "api_link_openapi": "OpenAPI",
+  "api_link_openapi_hint": "Machine-readable description",
+  "api_ai_title": "Prompt for AI assistants",
+  "api_ai_description": "Paste this into Claude, Codex or another coding assistant before asking it to work on your mod. It tells the assistant where to start and how to use your key safely.",
+  "api_copy_command": "Copy command",
+  "api_copy_prompt": "Copy prompt",
+  "api_copied": "Copied",
+  "api_copy_failed": "Couldn't copy. Select the text and copy it by hand."
+}

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Tokens_Create_ActionInputs */
 
 const en_tokens_create_action = /** @type {(inputs: Tokens_Create_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`New token`)
+	return /** @type {LocalizedString} */ (`New API key`)
 };
 
 const es_tokens_create_action = /** @type {(inputs: Tokens_Create_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nuevo token`)
+	return /** @type {LocalizedString} */ (`Nueva clave de API`)
 };
 
 const de_tokens_create_action = /** @type {(inputs: Tokens_Create_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Neuer Token`)
+	return /** @type {LocalizedString} */ (`Neuer API-Schlüssel`)
 };
 
 const fr_tokens_create_action = /** @type {(inputs: Tokens_Create_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nouveau jeton`)
+	return /** @type {LocalizedString} */ (`Nouvelle clé d’API`)
 };
 
 const it_tokens_create_action = /** @type {(inputs: Tokens_Create_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nuovo token`)
+	return /** @type {LocalizedString} */ (`Nuova chiave API`)
 };
 
 const nl_tokens_create_action = /** @type {(inputs: Tokens_Create_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nieuw token`)
+	return /** @type {LocalizedString} */ (`Nieuwe API-sleutel`)
 };
 
 const pl_tokens_create_action = /** @type {(inputs: Tokens_Create_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nowy token`)
+	return /** @type {LocalizedString} */ (`Nowy klucz API`)
 };
 
 const pt_tokens_create_action = /** @type {(inputs: Tokens_Create_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Novo token`)
+	return /** @type {LocalizedString} */ (`Nova chave de API`)
 };
 
 const ru_tokens_create_action = /** @type {(inputs: Tokens_Create_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Новый токен`)
+	return /** @type {LocalizedString} */ (`Новый API-ключ`)
 };
 
 const sv_tokens_create_action = /** @type {(inputs: Tokens_Create_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ny token`)
+	return /** @type {LocalizedString} */ (`Ny API-nyckel`)
 };
 
 const tr_tokens_create_action = /** @type {(inputs: Tokens_Create_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Yeni belirteç`)
+	return /** @type {LocalizedString} */ (`Yeni API anahtarı`)
 };
 
 const zh_tokens_create_action = /** @type {(inputs: Tokens_Create_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`新建令牌`)
+	return /** @type {LocalizedString} */ (`新建 API 密钥`)
 };
 
 const ja_tokens_create_action = /** @type {(inputs: Tokens_Create_ActionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`新しいトークン`)
+	return /** @type {LocalizedString} */ (`新しい API キー`)
 };
 
 /**
 * | output |
 * | --- |
-* | "New token" |
+* | "New API key" |
 *
 * @param {Tokens_Create_ActionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

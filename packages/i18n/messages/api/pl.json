@@ -1,0 +1,18 @@
+{
+  "api_title": "API",
+  "api_description": "Wysyłaj mody, publikuj wersje, edytuj opisy i sprawdzaj statystyki ze skryptów lub asystentów AI, bez otwierania strony. Utwórz klucz i postępuj według przewodnika.",
+  "api_start_title": "Szybki start",
+  "api_start_description": "Zapisz klucz w zmiennej środowiskowej SOTF_API_KEY i uruchom to, aby sprawdzić, czy działa.",
+  "api_link_guide": "Przewodnik",
+  "api_link_guide_hint": "Krok po kroku: wysyłanie, publikacja, statystyki",
+  "api_link_reference": "Dokumentacja",
+  "api_link_reference_hint": "Wszystkie endpointy, do wypróbowania w przeglądarce",
+  "api_link_openapi": "OpenAPI",
+  "api_link_openapi_hint": "Opis czytelny dla maszyn",
+  "api_ai_title": "Prompt dla asystentów AI",
+  "api_ai_description": "Wklej to do Claude, Codex lub innego asystenta kodowania, zanim poprosisz go o pracę nad modem. Mówi mu, od czego zacząć i jak bezpiecznie używać klucza.",
+  "api_copy_command": "Kopiuj polecenie",
+  "api_copy_prompt": "Kopiuj prompt",
+  "api_copied": "Skopiowano",
+  "api_copy_failed": "Nie udało się skopiować. Zaznacz tekst i skopiuj go ręcznie."
+}

@@ -3,7 +3,7 @@ export type Tokens_Secret_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Copy your token now" |
+* | "Copy your API key now" |
 *
 * @param {Tokens_Secret_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

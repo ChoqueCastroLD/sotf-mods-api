@@ -74,7 +74,7 @@
   "console_pager_page_size": "Poster per sida",
   "console_pager_per_page": "{count} per sida",
   "console_pager_of": "Sida {page} av {pages}",
-  "console_nav_tokens": "Åtkomsttokens",
+  "console_nav_tokens": "API-nycklar",
   "console_nav_group_account": "Ditt konto",
   "console_nav_group_app": "App",
   "console_nav_group_creator": "Skapare och data",
@@ -82,5 +82,6 @@
   "console_nav_modpacks": "Modpaket",
   "console_nav_modpacks_review": "Modpaket",
   "console_nav_manager": "SOTF Mod Manager",
-  "console_nav_traffic": "Trafik"
+  "console_nav_traffic": "Trafik",
+  "console_nav_api": "API"
 }

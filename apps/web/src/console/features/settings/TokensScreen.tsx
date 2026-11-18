@@ -34,6 +34,15 @@ const NEVER = 'never';
 type Expiry = `${(typeof PAT_EXPIRY_DAYS)[number]}` | typeof NEVER;
 
 export function TokensScreen() {
+  return (
+    <SettingsPage section="tokens">
+      <TokensPanel />
+    </SettingsPage>
+  );
+}
+
+/** The list of keys with create and revoke; also shown on the dashboard's API page. */
+export function TokensPanel() {
   const queryClient = useQueryClient();
   const { data } = useSuspenseQuery(tokensQuery);
   const [creating, setCreating] = useState(false);
@@ -55,7 +64,7 @@ export function TokensScreen() {
   };
 
   return (
-    <SettingsPage section="tokens">
+    <>
       <SettingsCard id="tokens-list" title={m.tokens_list_title()} description={m.tokens_intro()}>
         <code className="block overflow-x-auto rounded-md border border-border bg-sunken px-3 py-2 text-sm text-fg">
           Authorization: Bearer sotfm_pat_…
@@ -137,7 +146,7 @@ export function TokensScreen() {
         tone="danger"
         onConfirm={() => (revoking ? revoke(revoking) : undefined)}
       />
-    </SettingsPage>
+    </>
   );
 }
 

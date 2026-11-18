@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Tokens_Error_NameInputs */
 
 const en_tokens_error_name = /** @type {(inputs: Tokens_Error_NameInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Give the token a name.`)
+	return /** @type {LocalizedString} */ (`Give the key a name.`)
 };
 
 const es_tokens_error_name = /** @type {(inputs: Tokens_Error_NameInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ponle un nombre al token.`)
+	return /** @type {LocalizedString} */ (`Ponle un nombre a la clave.`)
 };
 
 const de_tokens_error_name = /** @type {(inputs: Tokens_Error_NameInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Gib dem Token einen Namen.`)
+	return /** @type {LocalizedString} */ (`Gib dem Schlüssel einen Namen.`)
 };
 
 const fr_tokens_error_name = /** @type {(inputs: Tokens_Error_NameInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Donnez un nom au jeton.`)
+	return /** @type {LocalizedString} */ (`Donnez un nom à la clé.`)
 };
 
 const it_tokens_error_name = /** @type {(inputs: Tokens_Error_NameInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dai un nome al token.`)
+	return /** @type {LocalizedString} */ (`Dai un nome alla chiave.`)
 };
 
 const nl_tokens_error_name = /** @type {(inputs: Tokens_Error_NameInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Geef het token een naam.`)
+	return /** @type {LocalizedString} */ (`Geef de sleutel een naam.`)
 };
 
 const pl_tokens_error_name = /** @type {(inputs: Tokens_Error_NameInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nadaj tokenowi nazwę.`)
+	return /** @type {LocalizedString} */ (`Nadaj kluczowi nazwę.`)
 };
 
 const pt_tokens_error_name = /** @type {(inputs: Tokens_Error_NameInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dê um nome ao token.`)
+	return /** @type {LocalizedString} */ (`Dê um nome à chave.`)
 };
 
 const ru_tokens_error_name = /** @type {(inputs: Tokens_Error_NameInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Укажите название токена.`)
+	return /** @type {LocalizedString} */ (`Дайте ключу название.`)
 };
 
 const sv_tokens_error_name = /** @type {(inputs: Tokens_Error_NameInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ge token ett namn.`)
+	return /** @type {LocalizedString} */ (`Ge nyckeln ett namn.`)
 };
 
 const tr_tokens_error_name = /** @type {(inputs: Tokens_Error_NameInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Belirtece bir ad ver.`)
+	return /** @type {LocalizedString} */ (`Anahtara bir ad ver.`)
 };
 
 const zh_tokens_error_name = /** @type {(inputs: Tokens_Error_NameInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`请为令牌命名。`)
+	return /** @type {LocalizedString} */ (`给密钥起个名字。`)
 };
 
 const ja_tokens_error_name = /** @type {(inputs: Tokens_Error_NameInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`トークンに名前を付けてください。`)
+	return /** @type {LocalizedString} */ (`キーに名前を付けてください。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Give the token a name." |
+* | "Give the key a name." |
 *
 * @param {Tokens_Error_NameInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

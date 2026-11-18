@@ -1,0 +1,18 @@
+{
+  "api_title": "API",
+  "api_description": "Lade Mods hoch, veröffentliche Versionen, bearbeite Einträge und sieh deine Statistiken über Skripte oder KI-Assistenten, ohne die Website zu öffnen. Erstelle einen Schlüssel und folge der Anleitung.",
+  "api_start_title": "Schnellstart",
+  "api_start_description": "Speichere deinen Schlüssel in der Umgebungsvariable SOTF_API_KEY und führe das aus, um ihn zu prüfen.",
+  "api_link_guide": "Anleitung",
+  "api_link_guide_hint": "Schritt für Schritt: hochladen, veröffentlichen, Statistiken",
+  "api_link_reference": "Referenz",
+  "api_link_reference_hint": "Alle Endpunkte, im Browser ausprobieren",
+  "api_link_openapi": "OpenAPI",
+  "api_link_openapi_hint": "Maschinenlesbare Beschreibung",
+  "api_ai_title": "Prompt für KI-Assistenten",
+  "api_ai_description": "Füge das in Claude, Codex oder einen anderen Coding-Assistenten ein, bevor er an deinem Mod arbeitet. Es sagt ihm, wo er anfangen soll und wie er deinen Schlüssel sicher nutzt.",
+  "api_copy_command": "Befehl kopieren",
+  "api_copy_prompt": "Prompt kopieren",
+  "api_copied": "Kopiert",
+  "api_copy_failed": "Kopieren fehlgeschlagen. Markiere den Text und kopiere ihn von Hand."
+}

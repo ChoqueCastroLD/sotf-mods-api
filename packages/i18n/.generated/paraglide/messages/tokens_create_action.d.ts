@@ -3,7 +3,7 @@ export type Tokens_Create_ActionInputs = {};
 /**
 * | output |
 * | --- |
-* | "New token" |
+* | "New API key" |
 *
 * @param {Tokens_Create_ActionInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Tokens_Revoke_TitleInputs */
 
 const en_tokens_revoke_title = /** @type {(inputs: Tokens_Revoke_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Revoke this token?`)
+	return /** @type {LocalizedString} */ (`Revoke this API key?`)
 };
 
 const es_tokens_revoke_title = /** @type {(inputs: Tokens_Revoke_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`¿Revocar este token?`)
+	return /** @type {LocalizedString} */ (`¿Revocar esta clave de API?`)
 };
 
 const de_tokens_revoke_title = /** @type {(inputs: Tokens_Revoke_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Diesen Token widerrufen?`)
+	return /** @type {LocalizedString} */ (`Diesen API-Schlüssel widerrufen?`)
 };
 
 const fr_tokens_revoke_title = /** @type {(inputs: Tokens_Revoke_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Révoquer ce jeton ?`)
+	return /** @type {LocalizedString} */ (`Révoquer cette clé d’API ?`)
 };
 
 const it_tokens_revoke_title = /** @type {(inputs: Tokens_Revoke_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Revocare questo token?`)
+	return /** @type {LocalizedString} */ (`Revocare questa chiave API?`)
 };
 
 const nl_tokens_revoke_title = /** @type {(inputs: Tokens_Revoke_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dit token intrekken?`)
+	return /** @type {LocalizedString} */ (`Deze API-sleutel intrekken?`)
 };
 
 const pl_tokens_revoke_title = /** @type {(inputs: Tokens_Revoke_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Unieważnić ten token?`)
+	return /** @type {LocalizedString} */ (`Unieważnić ten klucz API?`)
 };
 
 const pt_tokens_revoke_title = /** @type {(inputs: Tokens_Revoke_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Revogar este token?`)
+	return /** @type {LocalizedString} */ (`Revogar esta chave de API?`)
 };
 
 const ru_tokens_revoke_title = /** @type {(inputs: Tokens_Revoke_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Отозвать этот токен?`)
+	return /** @type {LocalizedString} */ (`Отозвать этот API-ключ?`)
 };
 
 const sv_tokens_revoke_title = /** @type {(inputs: Tokens_Revoke_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Återkalla den här token?`)
+	return /** @type {LocalizedString} */ (`Återkalla den här API-nyckeln?`)
 };
 
 const tr_tokens_revoke_title = /** @type {(inputs: Tokens_Revoke_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bu belirteç iptal edilsin mi?`)
+	return /** @type {LocalizedString} */ (`Bu API anahtarı iptal edilsin mi?`)
 };
 
 const zh_tokens_revoke_title = /** @type {(inputs: Tokens_Revoke_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`撤销此令牌？`)
+	return /** @type {LocalizedString} */ (`撤销此 API 密钥？`)
 };
 
 const ja_tokens_revoke_title = /** @type {(inputs: Tokens_Revoke_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`このトークンを失効しますか？`)
+	return /** @type {LocalizedString} */ (`この API キーを取り消しますか？`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Revoke this token?" |
+* | "Revoke this API key?" |
 *
 * @param {Tokens_Revoke_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

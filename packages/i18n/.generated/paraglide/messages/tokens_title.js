@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Tokens_TitleInputs */
 
 const en_tokens_title = /** @type {(inputs: Tokens_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Access tokens`)
+	return /** @type {LocalizedString} */ (`API keys`)
 };
 
 const es_tokens_title = /** @type {(inputs: Tokens_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tokens de acceso`)
+	return /** @type {LocalizedString} */ (`Claves de API`)
 };
 
 const de_tokens_title = /** @type {(inputs: Tokens_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zugriffstoken`)
+	return /** @type {LocalizedString} */ (`API-Schlüssel`)
 };
 
 const fr_tokens_title = /** @type {(inputs: Tokens_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Jetons d’accès`)
+	return /** @type {LocalizedString} */ (`Clés d’API`)
 };
 
 const it_tokens_title = /** @type {(inputs: Tokens_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Token di accesso`)
+	return /** @type {LocalizedString} */ (`Chiavi API`)
 };
 
 const nl_tokens_title = /** @type {(inputs: Tokens_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Toegangstokens`)
+	return /** @type {LocalizedString} */ (`API-sleutels`)
 };
 
 const pl_tokens_title = /** @type {(inputs: Tokens_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tokeny dostępu`)
+	return /** @type {LocalizedString} */ (`Klucze API`)
 };
 
 const pt_tokens_title = /** @type {(inputs: Tokens_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tokens de acesso`)
+	return /** @type {LocalizedString} */ (`Chaves de API`)
 };
 
 const ru_tokens_title = /** @type {(inputs: Tokens_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Токены доступа`)
+	return /** @type {LocalizedString} */ (`API-ключи`)
 };
 
 const sv_tokens_title = /** @type {(inputs: Tokens_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Åtkomsttokens`)
+	return /** @type {LocalizedString} */ (`API-nycklar`)
 };
 
 const tr_tokens_title = /** @type {(inputs: Tokens_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Erişim belirteçleri`)
+	return /** @type {LocalizedString} */ (`API anahtarları`)
 };
 
 const zh_tokens_title = /** @type {(inputs: Tokens_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`访问令牌`)
+	return /** @type {LocalizedString} */ (`API 密钥`)
 };
 
 const ja_tokens_title = /** @type {(inputs: Tokens_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`アクセストークン`)
+	return /** @type {LocalizedString} */ (`API キー`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Access tokens" |
+* | "API keys" |
 *
 * @param {Tokens_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

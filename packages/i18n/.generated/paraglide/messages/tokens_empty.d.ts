@@ -3,7 +3,7 @@ export type Tokens_EmptyInputs = {};
 /**
 * | output |
 * | --- |
-* | "You have no active access tokens." |
+* | "You have no active API keys." |
 *
 * @param {Tokens_EmptyInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Tokens_Dialog_TitleInputs */
 
 const en_tokens_dialog_title = /** @type {(inputs: Tokens_Dialog_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Create an access token`)
+	return /** @type {LocalizedString} */ (`Create an API key`)
 };
 
 const es_tokens_dialog_title = /** @type {(inputs: Tokens_Dialog_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Crear un token de acceso`)
+	return /** @type {LocalizedString} */ (`Crear una clave de API`)
 };
 
 const de_tokens_dialog_title = /** @type {(inputs: Tokens_Dialog_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zugriffstoken erstellen`)
+	return /** @type {LocalizedString} */ (`API-Schlüssel erstellen`)
 };
 
 const fr_tokens_dialog_title = /** @type {(inputs: Tokens_Dialog_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Créer un jeton d’accès`)
+	return /** @type {LocalizedString} */ (`Créer une clé d’API`)
 };
 
 const it_tokens_dialog_title = /** @type {(inputs: Tokens_Dialog_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Crea un token di accesso`)
+	return /** @type {LocalizedString} */ (`Crea una chiave API`)
 };
 
 const nl_tokens_dialog_title = /** @type {(inputs: Tokens_Dialog_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Toegangstoken maken`)
+	return /** @type {LocalizedString} */ (`Een API-sleutel maken`)
 };
 
 const pl_tokens_dialog_title = /** @type {(inputs: Tokens_Dialog_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Utwórz token dostępu`)
+	return /** @type {LocalizedString} */ (`Utwórz klucz API`)
 };
 
 const pt_tokens_dialog_title = /** @type {(inputs: Tokens_Dialog_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Criar um token de acesso`)
+	return /** @type {LocalizedString} */ (`Criar uma chave de API`)
 };
 
 const ru_tokens_dialog_title = /** @type {(inputs: Tokens_Dialog_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Создание токена доступа`)
+	return /** @type {LocalizedString} */ (`Создать API-ключ`)
 };
 
 const sv_tokens_dialog_title = /** @type {(inputs: Tokens_Dialog_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Skapa en åtkomsttoken`)
+	return /** @type {LocalizedString} */ (`Skapa en API-nyckel`)
 };
 
 const tr_tokens_dialog_title = /** @type {(inputs: Tokens_Dialog_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Erişim belirteci oluştur`)
+	return /** @type {LocalizedString} */ (`API anahtarı oluştur`)
 };
 
 const zh_tokens_dialog_title = /** @type {(inputs: Tokens_Dialog_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`创建访问令牌`)
+	return /** @type {LocalizedString} */ (`创建 API 密钥`)
 };
 
 const ja_tokens_dialog_title = /** @type {(inputs: Tokens_Dialog_TitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`アクセストークンを作成`)
+	return /** @type {LocalizedString} */ (`API キーを作成`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Create an access token" |
+* | "Create an API key" |
 *
 * @param {Tokens_Dialog_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

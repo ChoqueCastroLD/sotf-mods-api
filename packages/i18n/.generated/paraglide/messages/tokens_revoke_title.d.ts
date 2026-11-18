@@ -3,7 +3,7 @@ export type Tokens_Revoke_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Revoke this token?" |
+* | "Revoke this API key?" |
 *
 * @param {Tokens_Revoke_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

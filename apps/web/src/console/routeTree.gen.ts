@@ -17,6 +17,7 @@ import { Route as NotificationsRouteImport } from './routes/notifications.tsx'
 import { Route as SettingsRouteImport } from './routes/settings.tsx'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard/index.tsx'
 import { Route as DashboardAnalyticsRouteImport } from './routes/dashboard/analytics.tsx'
+import { Route as DashboardApiRouteImport } from './routes/dashboard/api.tsx'
 import { Route as DashboardInboxRouteImport } from './routes/dashboard/inbox.tsx'
 import { Route as DashboardInvitesRouteImport } from './routes/dashboard/invites.tsx'
 import { Route as DashboardJamsRouteImport } from './routes/dashboard/jams.tsx'
@@ -105,6 +106,11 @@ const DashboardIndexRoute = DashboardIndexRouteImport.update({
 const DashboardAnalyticsRoute = DashboardAnalyticsRouteImport.update({
   id: '/analytics',
   path: '/analytics',
+  getParentRoute: () => DashboardRoute,
+} as any)
+const DashboardApiRoute = DashboardApiRouteImport.update({
+  id: '/api',
+  path: '/api',
   getParentRoute: () => DashboardRoute,
 } as any)
 const DashboardInboxRoute = DashboardInboxRouteImport.update({
@@ -370,6 +376,7 @@ export interface FileRoutesByFullPath {
   '/settings': typeof SettingsRouteWithChildren
   '/moderation/admin': typeof ModerationAdminRouteRouteWithChildren
   '/dashboard/analytics': typeof DashboardAnalyticsRoute
+  '/dashboard/api': typeof DashboardApiRoute
   '/dashboard/inbox': typeof DashboardInboxRoute
   '/dashboard/invites': typeof DashboardInvitesRoute
   '/dashboard/jams': typeof DashboardJamsRoute
@@ -423,6 +430,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard/analytics': typeof DashboardAnalyticsRoute
+  '/dashboard/api': typeof DashboardApiRoute
   '/dashboard/inbox': typeof DashboardInboxRoute
   '/dashboard/invites': typeof DashboardInvitesRoute
   '/dashboard/jams': typeof DashboardJamsRoute
@@ -483,6 +491,7 @@ export interface FileRoutesById {
   '/settings': typeof SettingsRouteWithChildren
   '/moderation/admin': typeof ModerationAdminRouteRouteWithChildren
   '/dashboard/analytics': typeof DashboardAnalyticsRoute
+  '/dashboard/api': typeof DashboardApiRoute
   '/dashboard/inbox': typeof DashboardInboxRoute
   '/dashboard/invites': typeof DashboardInvitesRoute
   '/dashboard/jams': typeof DashboardJamsRoute
@@ -544,6 +553,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/moderation/admin'
     | '/dashboard/analytics'
+    | '/dashboard/api'
     | '/dashboard/inbox'
     | '/dashboard/invites'
     | '/dashboard/jams'
@@ -597,6 +607,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/dashboard/analytics'
+    | '/dashboard/api'
     | '/dashboard/inbox'
     | '/dashboard/invites'
     | '/dashboard/jams'
@@ -656,6 +667,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/moderation/admin'
     | '/dashboard/analytics'
+    | '/dashboard/api'
     | '/dashboard/inbox'
     | '/dashboard/invites'
     | '/dashboard/jams'
@@ -772,6 +784,13 @@ declare module '@tanstack/react-router' {
       path: '/analytics'
       fullPath: '/dashboard/analytics'
       preLoaderRoute: typeof DashboardAnalyticsRouteImport
+      parentRoute: typeof DashboardRoute
+    }
+    '/dashboard/api': {
+      id: '/dashboard/api'
+      path: '/api'
+      fullPath: '/dashboard/api'
+      preLoaderRoute: typeof DashboardApiRouteImport
       parentRoute: typeof DashboardRoute
     }
     '/dashboard/inbox': {
@@ -1122,6 +1141,7 @@ declare module '@tanstack/react-router' {
 
 interface DashboardRouteChildren {
   DashboardAnalyticsRoute: typeof DashboardAnalyticsRoute
+  DashboardApiRoute: typeof DashboardApiRoute
   DashboardInboxRoute: typeof DashboardInboxRoute
   DashboardInvitesRoute: typeof DashboardInvitesRoute
   DashboardJamsRoute: typeof DashboardJamsRoute
@@ -1141,6 +1161,7 @@ interface DashboardRouteChildren {
 
 const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardAnalyticsRoute: DashboardAnalyticsRoute,
+  DashboardApiRoute: DashboardApiRoute,
   DashboardInboxRoute: DashboardInboxRoute,
   DashboardInvitesRoute: DashboardInvitesRoute,
   DashboardJamsRoute: DashboardJamsRoute,

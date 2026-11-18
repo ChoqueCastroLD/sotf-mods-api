@@ -74,7 +74,7 @@
   "console_pager_page_size": "Sayfa başına öğe",
   "console_pager_per_page": "Sayfada {count}",
   "console_pager_of": "Sayfa {page} / {pages}",
-  "console_nav_tokens": "Erişim anahtarları",
+  "console_nav_tokens": "API anahtarları",
   "console_nav_group_account": "Hesabınız",
   "console_nav_group_app": "Uygulama",
   "console_nav_group_creator": "Yapımcı ve veriler",
@@ -82,5 +82,6 @@
   "console_nav_modpacks": "Mod paketleri",
   "console_nav_modpacks_review": "Mod paketleri",
   "console_nav_manager": "SOTF Mod Manager",
-  "console_nav_traffic": "Trafik"
+  "console_nav_traffic": "Trafik",
+  "console_nav_api": "API"
 }

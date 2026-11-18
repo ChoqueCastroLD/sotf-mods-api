@@ -3,7 +3,7 @@ export type Tokens_IntroInputs = {};
 /**
 * | output |
 * | --- |
-* | "Send a token in the Authorization header when you call the public API. A token acts as you, never as staff, and only within the permissions you choose. You c..." |
+* | "Send a key in the Authorization header when you call the API. A key acts as you, never as staff, and only within the permissions you choose. You can revoke i..." |
 *
 * @param {Tokens_IntroInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

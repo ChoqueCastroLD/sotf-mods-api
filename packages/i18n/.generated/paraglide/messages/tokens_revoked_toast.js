@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{ name: NonNullable<unknown> }} Tokens_Revoked_ToastInputs */
 
 const en_tokens_revoked_toast = /** @type {(inputs: Tokens_Revoked_ToastInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Token “${i?.name}” revoked`)
+	return /** @type {LocalizedString} */ (`API key “${i?.name}” revoked`)
 };
 
 const es_tokens_revoked_toast = /** @type {(inputs: Tokens_Revoked_ToastInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Token «${i?.name}» revocado`)
+	return /** @type {LocalizedString} */ (`Clave de API «${i?.name}» revocada`)
 };
 
 const de_tokens_revoked_toast = /** @type {(inputs: Tokens_Revoked_ToastInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Token „${i?.name}“ widerrufen`)
+	return /** @type {LocalizedString} */ (`API-Schlüssel „${i?.name}“ widerrufen`)
 };
 
 const fr_tokens_revoked_toast = /** @type {(inputs: Tokens_Revoked_ToastInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Jeton « ${i?.name} » révoqué`)
+	return /** @type {LocalizedString} */ (`Clé d’API « ${i?.name} » révoquée`)
 };
 
 const it_tokens_revoked_toast = /** @type {(inputs: Tokens_Revoked_ToastInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Token «${i?.name}» revocato`)
+	return /** @type {LocalizedString} */ (`Chiave API «${i?.name}» revocata`)
 };
 
 const nl_tokens_revoked_toast = /** @type {(inputs: Tokens_Revoked_ToastInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Token ‘${i?.name}’ ingetrokken`)
+	return /** @type {LocalizedString} */ (`API-sleutel ‘${i?.name}’ ingetrokken`)
 };
 
 const pl_tokens_revoked_toast = /** @type {(inputs: Tokens_Revoked_ToastInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Unieważniono token „${i?.name}”`)
+	return /** @type {LocalizedString} */ (`Unieważniono klucz API „${i?.name}”`)
 };
 
 const pt_tokens_revoked_toast = /** @type {(inputs: Tokens_Revoked_ToastInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Token “${i?.name}” revogado`)
+	return /** @type {LocalizedString} */ (`Chave de API “${i?.name}” revogada`)
 };
 
 const ru_tokens_revoked_toast = /** @type {(inputs: Tokens_Revoked_ToastInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Токен «${i?.name}» отозван`)
+	return /** @type {LocalizedString} */ (`API-ключ «${i?.name}» отозван`)
 };
 
 const sv_tokens_revoked_toast = /** @type {(inputs: Tokens_Revoked_ToastInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Token ”${i?.name}” återkallad`)
+	return /** @type {LocalizedString} */ (`API-nyckeln ”${i?.name}” återkallad`)
 };
 
 const tr_tokens_revoked_toast = /** @type {(inputs: Tokens_Revoked_ToastInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`“${i?.name}” belirteci iptal edildi`)
+	return /** @type {LocalizedString} */ (`“${i?.name}” API anahtarı iptal edildi`)
 };
 
 const zh_tokens_revoked_toast = /** @type {(inputs: Tokens_Revoked_ToastInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`已撤销令牌“${i?.name}”`)
+	return /** @type {LocalizedString} */ (`API 密钥“${i?.name}”已撤销`)
 };
 
 const ja_tokens_revoked_toast = /** @type {(inputs: Tokens_Revoked_ToastInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`トークン「${i?.name}」を失効しました`)
+	return /** @type {LocalizedString} */ (`API キー「${i?.name}」を取り消しました`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Token “{name}” revoked" |
+* | "API key “{name}” revoked" |
 *
 * @param {Tokens_Revoked_ToastInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

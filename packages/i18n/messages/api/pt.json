@@ -1,0 +1,18 @@
+{
+  "api_title": "API",
+  "api_description": "Envie mods, publique versões, edite páginas e veja suas estatísticas por scripts ou assistentes de IA, sem abrir o site. Crie uma chave e siga o guia.",
+  "api_start_title": "Primeiros passos",
+  "api_start_description": "Salve sua chave na variável de ambiente SOTF_API_KEY e rode isto para conferir se funciona.",
+  "api_link_guide": "Guia",
+  "api_link_guide_hint": "Passo a passo: enviar, publicar, estatísticas",
+  "api_link_reference": "Referência",
+  "api_link_reference_hint": "Todos os endpoints, teste no navegador",
+  "api_link_openapi": "OpenAPI",
+  "api_link_openapi_hint": "Descrição legível por máquinas",
+  "api_ai_title": "Prompt para assistentes de IA",
+  "api_ai_description": "Cole isto no Claude, Codex ou outro assistente de código antes de pedir que trabalhe no seu mod. Ele diz por onde começar e como usar sua chave com segurança.",
+  "api_copy_command": "Copiar comando",
+  "api_copy_prompt": "Copiar prompt",
+  "api_copied": "Copiado",
+  "api_copy_failed": "Não foi possível copiar. Selecione o texto e copie manualmente."
+}

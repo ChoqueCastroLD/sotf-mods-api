@@ -3,7 +3,7 @@ export type Tokens_Dialog_TextInputs = {};
 /**
 * | output |
 * | --- |
-* | "Choose what the token can do. You will see the secret only once." |
+* | "Choose what the key can do. You will see it only once." |
 *
 * @param {Tokens_Dialog_TextInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

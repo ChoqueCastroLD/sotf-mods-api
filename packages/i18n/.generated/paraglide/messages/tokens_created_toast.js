@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Tokens_Created_ToastInputs */
 
 const en_tokens_created_toast = /** @type {(inputs: Tokens_Created_ToastInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Token created`)
+	return /** @type {LocalizedString} */ (`API key created`)
 };
 
 const es_tokens_created_toast = /** @type {(inputs: Tokens_Created_ToastInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Token creado`)
+	return /** @type {LocalizedString} */ (`Clave de API creada`)
 };
 
 const de_tokens_created_toast = /** @type {(inputs: Tokens_Created_ToastInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Token erstellt`)
+	return /** @type {LocalizedString} */ (`API-Schlüssel erstellt`)
 };
 
 const fr_tokens_created_toast = /** @type {(inputs: Tokens_Created_ToastInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Jeton créé`)
+	return /** @type {LocalizedString} */ (`Clé d’API créée`)
 };
 
 const it_tokens_created_toast = /** @type {(inputs: Tokens_Created_ToastInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Token creato`)
+	return /** @type {LocalizedString} */ (`Chiave API creata`)
 };
 
 const nl_tokens_created_toast = /** @type {(inputs: Tokens_Created_ToastInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Token gemaakt`)
+	return /** @type {LocalizedString} */ (`API-sleutel gemaakt`)
 };
 
 const pl_tokens_created_toast = /** @type {(inputs: Tokens_Created_ToastInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Utworzono token`)
+	return /** @type {LocalizedString} */ (`Utworzono klucz API`)
 };
 
 const pt_tokens_created_toast = /** @type {(inputs: Tokens_Created_ToastInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Token criado`)
+	return /** @type {LocalizedString} */ (`Chave de API criada`)
 };
 
 const ru_tokens_created_toast = /** @type {(inputs: Tokens_Created_ToastInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Токен создан`)
+	return /** @type {LocalizedString} */ (`API-ключ создан`)
 };
 
 const sv_tokens_created_toast = /** @type {(inputs: Tokens_Created_ToastInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Token skapad`)
+	return /** @type {LocalizedString} */ (`API-nyckel skapad`)
 };
 
 const tr_tokens_created_toast = /** @type {(inputs: Tokens_Created_ToastInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Belirteç oluşturuldu`)
+	return /** @type {LocalizedString} */ (`API anahtarı oluşturuldu`)
 };
 
 const zh_tokens_created_toast = /** @type {(inputs: Tokens_Created_ToastInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`已创建令牌`)
+	return /** @type {LocalizedString} */ (`API 密钥已创建`)
 };
 
 const ja_tokens_created_toast = /** @type {(inputs: Tokens_Created_ToastInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`トークンを作成しました`)
+	return /** @type {LocalizedString} */ (`API キーを作成しました`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Token created" |
+* | "API key created" |
 *
 * @param {Tokens_Created_ToastInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Console_Nav_TokensInputs */
 
 const en_console_nav_tokens = /** @type {(inputs: Console_Nav_TokensInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Access tokens`)
+	return /** @type {LocalizedString} */ (`API keys`)
 };
 
 const es_console_nav_tokens = /** @type {(inputs: Console_Nav_TokensInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tokens de acceso`)
+	return /** @type {LocalizedString} */ (`Claves de API`)
 };
 
 const de_console_nav_tokens = /** @type {(inputs: Console_Nav_TokensInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zugriffstoken`)
+	return /** @type {LocalizedString} */ (`API-Schlüssel`)
 };
 
 const fr_console_nav_tokens = /** @type {(inputs: Console_Nav_TokensInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Jetons d'accès`)
+	return /** @type {LocalizedString} */ (`Clés d’API`)
 };
 
 const it_console_nav_tokens = /** @type {(inputs: Console_Nav_TokensInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Token di accesso`)
+	return /** @type {LocalizedString} */ (`Chiavi API`)
 };
 
 const nl_console_nav_tokens = /** @type {(inputs: Console_Nav_TokensInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Toegangstokens`)
+	return /** @type {LocalizedString} */ (`API-sleutels`)
 };
 
 const pl_console_nav_tokens = /** @type {(inputs: Console_Nav_TokensInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tokeny dostępu`)
+	return /** @type {LocalizedString} */ (`Klucze API`)
 };
 
 const pt_console_nav_tokens = /** @type {(inputs: Console_Nav_TokensInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Tokens de acesso`)
+	return /** @type {LocalizedString} */ (`Chaves de API`)
 };
 
 const ru_console_nav_tokens = /** @type {(inputs: Console_Nav_TokensInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Токены доступа`)
+	return /** @type {LocalizedString} */ (`API-ключи`)
 };
 
 const sv_console_nav_tokens = /** @type {(inputs: Console_Nav_TokensInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Åtkomsttokens`)
+	return /** @type {LocalizedString} */ (`API-nycklar`)
 };
 
 const tr_console_nav_tokens = /** @type {(inputs: Console_Nav_TokensInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Erişim anahtarları`)
+	return /** @type {LocalizedString} */ (`API anahtarları`)
 };
 
 const zh_console_nav_tokens = /** @type {(inputs: Console_Nav_TokensInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`访问令牌`)
+	return /** @type {LocalizedString} */ (`API 密钥`)
 };
 
 const ja_console_nav_tokens = /** @type {(inputs: Console_Nav_TokensInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`アクセストークン`)
+	return /** @type {LocalizedString} */ (`API キー`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Access tokens" |
+* | "API keys" |
 *
 * @param {Console_Nav_TokensInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

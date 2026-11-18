@@ -11,6 +11,7 @@ import {
   PAT_PREFIX,
   type PatScope,
   type PersonalAccessTokenDTO,
+  requiredPatScope,
 } from '@sotf/contracts';
 import type { Endpoint } from '@sotf/contracts/endpoint';
 import { type Executor, personalAccessToken, user } from '@sotf/db';
@@ -200,39 +201,7 @@ export async function resolvePersonalAccessToken(db: Executor, token: string, no
 // Scope policy
 // ------------------------------------------------------------------------------------------------
 
-const READ_DOMAINS = new Set([
-  'me',
-  'studio',
-  'notifications',
-  'follows',
-  'kits',
-  'gamification',
-  'catalog',
-  'versions',
-  'reviews',
-  'comments',
-  'compat',
-  'downloads',
-  'search',
-  'stats',
-  'seo',
-  'uploads',
-]);
-/** Private account reads a token may not make even with `read`. */
-const ACCOUNT_ONLY = new Set(['me.sessions', 'me.getExport']);
-const MODS_WRITE_DOMAINS = new Set(['studio', 'uploads', 'versions', 'kits']);
-const SOCIAL_WRITE_DOMAINS = new Set(['comments', 'reviews', 'follows', 'compat', 'notifications']);
-
-/** The scope an endpoint needs from a token, or null when tokens may never call it. */
-export function requiredPatScope(endpoint: Pick<Endpoint, 'id' | 'method' | 'auth'>): PatScope | null {
-  if (endpoint.auth === 'moderator' || endpoint.auth === 'admin' || endpoint.auth === 'internal') return null;
-  const domain = endpoint.id.split('.', 1)[0] ?? '';
-  if (ACCOUNT_ONLY.has(endpoint.id)) return null;
-  if (endpoint.method === 'GET' || endpoint.method === 'HEAD') return READ_DOMAINS.has(domain) ? 'read' : null;
-  if (MODS_WRITE_DOMAINS.has(domain)) return 'mods:write';
-  if (SOCIAL_WRITE_DOMAINS.has(domain)) return 'social:write';
-  return null;
-}
+export { requiredPatScope };
 
 /** True when a token with `scopes` may call the endpoint. */
 export function patAllows(endpoint: Pick<Endpoint, 'id' | 'method' | 'auth'>, scopes: readonly PatScope[]): boolean {

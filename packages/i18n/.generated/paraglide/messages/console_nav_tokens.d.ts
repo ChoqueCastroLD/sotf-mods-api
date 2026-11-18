@@ -3,7 +3,7 @@ export type Console_Nav_TokensInputs = {};
 /**
 * | output |
 * | --- |
-* | "Access tokens" |
+* | "API keys" |
 *
 * @param {Console_Nav_TokensInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

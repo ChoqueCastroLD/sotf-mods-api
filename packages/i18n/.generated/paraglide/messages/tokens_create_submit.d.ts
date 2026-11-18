@@ -3,7 +3,7 @@ export type Tokens_Create_SubmitInputs = {};
 /**
 * | output |
 * | --- |
-* | "Create token" |
+* | "Create key" |
 *
 * @param {Tokens_Create_SubmitInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

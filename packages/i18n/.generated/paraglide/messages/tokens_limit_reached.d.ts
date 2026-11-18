@@ -5,7 +5,7 @@ export type Tokens_Limit_ReachedInputs = {
 /**
 * | output |
 * | --- |
-* | "You reached the limit of {max} active tokens. Revoke one to create another." |
+* | "You reached the limit of {max} active keys. Revoke one to create another." |
 *
 * @param {Tokens_Limit_ReachedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

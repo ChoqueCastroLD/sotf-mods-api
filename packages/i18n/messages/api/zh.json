@@ -1,0 +1,18 @@
+{
+  "api_title": "API",
+  "api_description": "无需打开网站，即可通过脚本或 AI 助手上传模组、发布版本、编辑页面和查看统计。创建密钥，然后按照指南操作。",
+  "api_start_title": "快速开始",
+  "api_start_description": "将密钥保存在环境变量 SOTF_API_KEY 中，运行以下命令检查是否有效。",
+  "api_link_guide": "指南",
+  "api_link_guide_hint": "分步说明：上传、发布、统计",
+  "api_link_reference": "参考文档",
+  "api_link_reference_hint": "所有接口，可在浏览器中试用",
+  "api_link_openapi": "OpenAPI",
+  "api_link_openapi_hint": "机器可读的描述",
+  "api_ai_title": "AI 助手提示词",
+  "api_ai_description": "在让 Claude、Codex 或其他编程助手处理你的模组之前，先粘贴这段内容。它会告诉助手从哪里开始，以及如何安全使用你的密钥。",
+  "api_copy_command": "复制命令",
+  "api_copy_prompt": "复制提示词",
+  "api_copied": "已复制",
+  "api_copy_failed": "无法复制，请选中文本手动复制。"
+}

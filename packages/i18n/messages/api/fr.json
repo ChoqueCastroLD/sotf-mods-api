@@ -1,0 +1,18 @@
+{
+  "api_title": "API",
+  "api_description": "Publiez des mods et des versions, modifiez vos fiches et consultez vos statistiques depuis des scripts ou des assistants IA, sans ouvrir le site. Créez une clé, puis suivez le guide.",
+  "api_start_title": "Démarrage rapide",
+  "api_start_description": "Enregistrez votre clé dans la variable d’environnement SOTF_API_KEY et lancez ceci pour vérifier qu’elle fonctionne.",
+  "api_link_guide": "Guide",
+  "api_link_guide_hint": "Pas à pas : envoi, publication, statistiques",
+  "api_link_reference": "Référence",
+  "api_link_reference_hint": "Tous les endpoints, à essayer dans le navigateur",
+  "api_link_openapi": "OpenAPI",
+  "api_link_openapi_hint": "Description lisible par les machines",
+  "api_ai_title": "Prompt pour assistants IA",
+  "api_ai_description": "Collez ceci dans Claude, Codex ou un autre assistant de code avant de lui demander de travailler sur votre mod. Il lui indique par où commencer et comment utiliser votre clé en sécurité.",
+  "api_copy_command": "Copier la commande",
+  "api_copy_prompt": "Copier le prompt",
+  "api_copied": "Copié",
+  "api_copy_failed": "Copie impossible. Sélectionnez le texte et copiez-le à la main."
+}

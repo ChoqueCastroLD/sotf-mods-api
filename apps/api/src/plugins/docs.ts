@@ -11,6 +11,53 @@ import type { FastifyInstance } from 'fastify';
 
 export const OPENAPI_PATH = '/api/v2/openapi.json';
 export const DOCS_PATH = '/api/docs';
+export const INDEX_PATH = '/api/v2';
+
+/**
+ * `GET /api/v2`: where everything is, for people and AI agents that start at the API root
+ * (documents, how to authenticate, conventions, first calls). Links use the public site origin.
+ */
+export function apiIndex(siteUrl: string, version: string) {
+  const site = siteUrl.replace(/\/+$/, '');
+  return {
+    name: 'SOTF Mods API',
+    description:
+      'Mods and builds for Sons of the Forest. Creators can upload mods, publish new versions, edit their listings ' +
+      'and read their stats with an API key, without opening the website.',
+    version,
+    documentation: {
+      guide: `${site}/developers/api.md`,
+      reference: `${site}${DOCS_PATH}`,
+      openapi: `${site}${OPENAPI_PATH}`,
+      catalog: `${site}/.well-known/api-catalog`,
+      llms: `${site}/llms.txt`,
+    },
+    authentication: {
+      type: 'bearer',
+      header: 'Authorization: Bearer sotfm_pat_<key>',
+      createKeys: `${site}/dashboard/api`,
+      scopes: {
+        read: 'Your account, your mods and drafts, analytics, notifications, and every public read.',
+        'mods:write': 'Uploads, new mods, new versions, listing and media edits.',
+        'social:write': 'Comments, reviews, follows and compatibility reports.',
+      },
+      note: 'Each OpenAPI operation lists the scope a key needs in `x-sotf-token-scope`. Keys never reach account or staff settings.',
+    },
+    conventions: {
+      format: 'JSON, camelCase. Times are ISO 8601 in UTC.',
+      errors: 'RFC 9457 application/problem+json with a stable `code` (and `errors[]` for field problems).',
+      pagination: '`page` (from 1) and `pageSize` (max 100); answers carry `total` and `totalPages`.',
+      rateLimits: 'RateLimit headers on every answer; 429 with Retry-After when exceeded.',
+    },
+    start: [
+      { step: 'Check your key', request: 'GET /api/v2/me' },
+      { step: 'List your mods', request: 'GET /api/v2/studio/mods' },
+      { step: 'See your stats', request: 'GET /api/v2/studio/analytics?range=30d' },
+      { step: 'Publish a new version', guide: `${site}/developers/api.md#publish-a-new-version` },
+      { step: 'Upload a new mod', guide: `${site}/developers/api.md#upload-a-new-mod` },
+    ],
+  };
+}
 
 /** Relaxed CSP for the documentation page only (Scalar needs inline scripts and styles). */
 const DOCS_CSP = [
@@ -38,6 +85,15 @@ export async function setupDocs(app: FastifyInstance, options: DocsOptions): Pro
     mode: 'static',
     specification: { document: document as never },
   });
+
+  const index = JSON.stringify(apiIndex(options.siteUrl, options.version), null, 2);
+  for (const path of [INDEX_PATH, `${INDEX_PATH}/`]) {
+    app.get(path, { config: { bucket: 'anonymousRead', publicCors: true } }, async (_request, reply) => {
+      reply.header('cache-control', 'public, max-age=300');
+      reply.header('link', `<${OPENAPI_PATH}>; rel="service-desc", </developers/api.md>; rel="service-doc"`);
+      return reply.type('application/json; charset=utf-8').send(index);
+    });
+  }
 
   app.get(OPENAPI_PATH, { config: { bucket: 'anonymousRead', publicCors: true } }, async (_request, reply) => {
     reply.header('cache-control', 'public, max-age=300');

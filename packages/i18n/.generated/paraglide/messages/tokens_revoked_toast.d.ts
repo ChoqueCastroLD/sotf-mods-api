@@ -5,7 +5,7 @@ export type Tokens_Revoked_ToastInputs = {
 /**
 * | output |
 * | --- |
-* | "Token “{name}” revoked" |
+* | "API key “{name}” revoked" |
 *
 * @param {Tokens_Revoked_ToastInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

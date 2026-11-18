@@ -6,61 +6,61 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 /** @typedef {{}} Tokens_EmptyInputs */
 
 const en_tokens_empty = /** @type {(inputs: Tokens_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`You have no active access tokens.`)
+	return /** @type {LocalizedString} */ (`You have no active API keys.`)
 };
 
 const es_tokens_empty = /** @type {(inputs: Tokens_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`No tienes tokens de acceso activos.`)
+	return /** @type {LocalizedString} */ (`No tienes claves de API activas.`)
 };
 
 const de_tokens_empty = /** @type {(inputs: Tokens_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Du hast keine aktiven Zugriffstoken.`)
+	return /** @type {LocalizedString} */ (`Du hast keine aktiven API-Schlüssel.`)
 };
 
 const fr_tokens_empty = /** @type {(inputs: Tokens_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Vous n’avez aucun jeton d’accès actif.`)
+	return /** @type {LocalizedString} */ (`Vous n’avez aucune clé d’API active.`)
 };
 
 const it_tokens_empty = /** @type {(inputs: Tokens_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Non hai token di accesso attivi.`)
+	return /** @type {LocalizedString} */ (`Non hai chiavi API attive.`)
 };
 
 const nl_tokens_empty = /** @type {(inputs: Tokens_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Je hebt geen actieve toegangstokens.`)
+	return /** @type {LocalizedString} */ (`Je hebt geen actieve API-sleutels.`)
 };
 
 const pl_tokens_empty = /** @type {(inputs: Tokens_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Nie masz aktywnych tokenów dostępu.`)
+	return /** @type {LocalizedString} */ (`Nie masz aktywnych kluczy API.`)
 };
 
 const pt_tokens_empty = /** @type {(inputs: Tokens_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Você não tem tokens de acesso ativos.`)
+	return /** @type {LocalizedString} */ (`Você não tem chaves de API ativas.`)
 };
 
 const ru_tokens_empty = /** @type {(inputs: Tokens_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`У вас нет активных токенов доступа.`)
+	return /** @type {LocalizedString} */ (`У вас нет активных API-ключей.`)
 };
 
 const sv_tokens_empty = /** @type {(inputs: Tokens_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Du har inga aktiva åtkomsttokens.`)
+	return /** @type {LocalizedString} */ (`Du har inga aktiva API-nycklar.`)
 };
 
 const tr_tokens_empty = /** @type {(inputs: Tokens_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Etkin erişim belirtecin yok.`)
+	return /** @type {LocalizedString} */ (`Etkin API anahtarın yok.`)
 };
 
 const zh_tokens_empty = /** @type {(inputs: Tokens_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`你没有有效的访问令牌。`)
+	return /** @type {LocalizedString} */ (`你没有有效的 API 密钥。`)
 };
 
 const ja_tokens_empty = /** @type {(inputs: Tokens_EmptyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`有効なアクセストークンはありません。`)
+	return /** @type {LocalizedString} */ (`有効な API キーはありません。`)
 };
 
 /**
 * | output |
 * | --- |
-* | "You have no active access tokens." |
+* | "You have no active API keys." |
 *
 * @param {Tokens_EmptyInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

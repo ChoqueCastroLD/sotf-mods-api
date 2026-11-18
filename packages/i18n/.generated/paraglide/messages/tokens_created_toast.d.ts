@@ -3,7 +3,7 @@ export type Tokens_Created_ToastInputs = {};
 /**
 * | output |
 * | --- |
-* | "Token created" |
+* | "API key created" |
 *
 * @param {Tokens_Created_ToastInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

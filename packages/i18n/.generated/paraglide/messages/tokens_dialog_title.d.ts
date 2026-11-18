@@ -3,7 +3,7 @@ export type Tokens_Dialog_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Create an access token" |
+* | "Create an API key" |
 *
 * @param {Tokens_Dialog_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

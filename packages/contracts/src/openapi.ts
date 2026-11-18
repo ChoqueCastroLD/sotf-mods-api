@@ -7,11 +7,13 @@
  * used both ways and the two JSON Schemas differ, the input variant is named `<id>Input`.
  * Response objects never declare `additionalProperties: false` (v2 only grows additively).
  */
+
 import { z } from 'zod';
 import { allEndpoints, type ContractDomain } from './contracts.ts';
 import { dtoRegistry, registeredDtos, wireSchemaOf } from './dto.ts';
 import { type Endpoint, openApiPath, responseKindOf, successStatus } from './endpoint.ts';
 import { ERROR_DEFINITIONS, type ErrorCode, PROBLEM_CONTENT_TYPE } from './errors.ts';
+import { requiredPatScope } from './tokens.ts';
 
 export type JsonSchema = Record<string, unknown>;
 export type OpenApiDocument = Record<string, unknown> & {
@@ -267,8 +269,15 @@ function operation(
   };
   if (endpoint.description) op.description = endpoint.description;
   if (endpoint.deprecated) op.deprecated = true;
+  // An API key (personal access token) works wherever its scope allows; the browser session too.
+  const tokenScope = requiredPatScope(endpoint);
   op.security =
-    endpoint.auth === 'public' ? [] : endpoint.auth === 'internal' ? [{ internalAuth: [] }] : [{ sessionCookie: [] }];
+    endpoint.auth === 'public'
+      ? [{}, ...(tokenScope ? [{ apiKey: [] }] : [])]
+      : endpoint.auth === 'internal'
+        ? [{ internalAuth: [] }]
+        : [{ sessionCookie: [] }, ...(tokenScope ? [{ apiKey: [] }] : [])];
+  if (tokenScope) op['x-sotf-token-scope'] = tokenScope;
   op['x-sotf-auth'] = endpoint.auth;
   if (endpoint.requires && endpoint.requires.length > 0) op['x-sotf-requires'] = [...endpoint.requires];
   if (endpoint.rateLimit) op['x-sotf-rate-limit'] = endpoint.rateLimit;
@@ -370,6 +379,9 @@ export function buildOpenApiDocument(options: OpenApiOptions = {}): OpenApiDocum
       version: options.version ?? '2.0.0',
       summary: 'The home of Sons of the Forest modding: mods, builds, kits, compatibility and the legacy v1 API.',
       description:
+        'Start here: the step-by-step guide for creators and AI agents is https://sotf-mods.com/developers/api.md ' +
+        '(upload a mod, publish a version, read your stats). Authenticate scripts with an API key: ' +
+        '`Authorization: Bearer sotfm_pat_…` (create one at https://sotf-mods.com/dashboard/api). ' +
         'Public GET endpoints are cacheable and CORS-enabled (`*`, no credentials). Session endpoints use the ' +
         '`__Host-sotf_sid` cookie and are same-origin only. Errors are RFC 9457 `application/problem+json`; the legacy ' +
         '`/api/*` routes keep their `{status:false,error,message}` envelope. Only additive changes happen within v2.',
@@ -383,6 +395,15 @@ export function buildOpenApiDocument(options: OpenApiOptions = {}): OpenApiDocum
     components: {
       schemas,
       securitySchemes: {
+        apiKey: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'sotfm_pat_<43 chars>',
+          description:
+            'API key (personal access token) created at https://sotf-mods.com/dashboard/api. Send `Authorization: Bearer <key>`. ' +
+            'Scopes: `read` (your account, mods, analytics), `mods:write` (uploads, new mods, new versions, listing edits), ' +
+            '`social:write` (comments, reviews, follows). Each operation lists the scope it needs in `x-sotf-token-scope`.',
+        },
         sessionCookie: {
           type: 'apiKey',
           in: 'cookie',

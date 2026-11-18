@@ -84,7 +84,10 @@ export const PutKitConfigsBody = dto(
       .max(Math.ceil((MODPACK_CONFIG_RULES.maxZipBytes * 4) / 3) + 4)
       .describe('The zip, base64'),
   }),
-  { description: 'Replace the config files of a modpack.', examples: [{ dataBase64: 'UEsFBgAAAAAAAAAAAAAAAAAAAAAAAA==' }] },
+  {
+    description: 'Replace the config files of a modpack.',
+    examples: [{ dataBase64: 'UEsFBgAAAAAAAAAAAAAAAAAAAAAAAA==' }],
+  },
 );
 
 export const KIT_LIMITS = { nameMax: 80, descriptionMax: 5000, noteMax: 280, maxItems: 200, indexMinItems: 3 } as const;

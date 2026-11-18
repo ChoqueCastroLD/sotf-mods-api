@@ -3,7 +3,7 @@ export type Tokens_Error_NameInputs = {};
 /**
 * | output |
 * | --- |
-* | "Give the token a name." |
+* | "Give the key a name." |
 *
 * @param {Tokens_Error_NameInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

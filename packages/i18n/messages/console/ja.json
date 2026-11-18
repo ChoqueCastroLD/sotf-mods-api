@@ -74,7 +74,7 @@
   "console_pager_page_size": "1 ページあたりの件数",
   "console_pager_per_page": "{count} 件/ページ",
   "console_pager_of": "{page} / {pages} ページ",
-  "console_nav_tokens": "アクセストークン",
+  "console_nav_tokens": "API キー",
   "console_nav_group_account": "アカウント",
   "console_nav_group_app": "アプリ",
   "console_nav_group_creator": "クリエイターとデータ",
@@ -82,5 +82,6 @@
   "console_nav_modpacks": "Modパック",
   "console_nav_modpacks_review": "Modパック",
   "console_nav_manager": "SOTF Mod Manager",
-  "console_nav_traffic": "トラフィック"
+  "console_nav_traffic": "トラフィック",
+  "console_nav_api": "API"
 }

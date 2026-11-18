@@ -74,7 +74,7 @@
   "console_pager_page_size": "Элементов на странице",
   "console_pager_per_page": "{count} на странице",
   "console_pager_of": "Страница {page} из {pages}",
-  "console_nav_tokens": "Токены доступа",
+  "console_nav_tokens": "API-ключи",
   "console_nav_group_account": "Ваш аккаунт",
   "console_nav_group_app": "Приложение",
   "console_nav_group_creator": "Автор и данные",
@@ -82,5 +82,6 @@
   "console_nav_modpacks": "Модпаки",
   "console_nav_modpacks_review": "Модпаки",
   "console_nav_manager": "SOTF Mod Manager",
-  "console_nav_traffic": "Трафик"
+  "console_nav_traffic": "Трафик",
+  "console_nav_api": "API"
 }

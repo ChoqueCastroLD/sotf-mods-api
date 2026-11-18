@@ -1,0 +1,18 @@
+{
+  "api_title": "API",
+  "api_description": "Ladda upp moddar, publicera versioner, redigera sidor och se din statistik från skript eller AI-assistenter, utan att öppna webbplatsen. Skapa en nyckel och följ guiden.",
+  "api_start_title": "Kom igång",
+  "api_start_description": "Spara nyckeln i miljövariabeln SOTF_API_KEY och kör detta för att kontrollera att den fungerar.",
+  "api_link_guide": "Guide",
+  "api_link_guide_hint": "Steg för steg: ladda upp, publicera, statistik",
+  "api_link_reference": "Referens",
+  "api_link_reference_hint": "Alla endpoints, prova i webbläsaren",
+  "api_link_openapi": "OpenAPI",
+  "api_link_openapi_hint": "Maskinläsbar beskrivning",
+  "api_ai_title": "Prompt för AI-assistenter",
+  "api_ai_description": "Klistra in detta i Claude, Codex eller en annan kodassistent innan du ber den arbeta med din modd. Den får veta var den ska börja och hur din nyckel används säkert.",
+  "api_copy_command": "Kopiera kommando",
+  "api_copy_prompt": "Kopiera prompt",
+  "api_copied": "Kopierat",
+  "api_copy_failed": "Det gick inte att kopiera. Markera texten och kopiera den för hand."
+}

@@ -21,7 +21,9 @@ const OPTIONS: Record<Kind, Intl.DateTimeFormatOptions> = {
 const formatters = new Map<string, Intl.DateTimeFormat>();
 
 function formatter(lang: string, kind: Kind): Intl.DateTimeFormat {
-  const key = `${lang}|${kind}`;
+  // Keyed by zone too: a formatter made in another zone (tests, a changed system setting) is never reused.
+  const zone = new Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const key = `${lang}|${kind}|${zone}`;
   let format = formatters.get(key);
   if (!format) {
     format = new Intl.DateTimeFormat(lang, OPTIONS[kind]);

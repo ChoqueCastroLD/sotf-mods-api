@@ -3,7 +3,7 @@ export type Tokens_List_TitleInputs = {};
 /**
 * | output |
 * | --- |
-* | "Your tokens" |
+* | "Your API keys" |
 *
 * @param {Tokens_List_TitleInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

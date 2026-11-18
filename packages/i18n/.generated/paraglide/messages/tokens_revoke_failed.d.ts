@@ -3,7 +3,7 @@ export type Tokens_Revoke_FailedInputs = {};
 /**
 * | output |
 * | --- |
-* | "Couldn’t revoke the token" |
+* | "Couldn’t revoke the API key" |
 *
 * @param {Tokens_Revoke_FailedInputs} inputs
 * @param {{ locale?: "en" | "es" | "de" | "fr" | "it" | "nl" | "pl" | "pt" | "ru" | "sv" | "tr" | "zh" | "ja" }} options

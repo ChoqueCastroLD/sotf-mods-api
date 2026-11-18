@@ -1,0 +1,18 @@
+{
+  "api_title": "API",
+  "api_description": "Upload mods, publiceer versies, bewerk pagina’s en bekijk je statistieken vanuit scripts of AI-assistenten, zonder de website te openen. Maak een sleutel en volg de gids.",
+  "api_start_title": "Snel starten",
+  "api_start_description": "Bewaar je sleutel in de omgevingsvariabele SOTF_API_KEY en voer dit uit om te controleren of hij werkt.",
+  "api_link_guide": "Gids",
+  "api_link_guide_hint": "Stap voor stap: uploaden, publiceren, statistieken",
+  "api_link_reference": "Referentie",
+  "api_link_reference_hint": "Alle endpoints, probeer ze in de browser",
+  "api_link_openapi": "OpenAPI",
+  "api_link_openapi_hint": "Machineleesbare beschrijving",
+  "api_ai_title": "Prompt voor AI-assistenten",
+  "api_ai_description": "Plak dit in Claude, Codex of een andere code-assistent voordat je hem aan je mod laat werken. Hij weet dan waar hij moet beginnen en hoe hij je sleutel veilig gebruikt.",
+  "api_copy_command": "Opdracht kopiëren",
+  "api_copy_prompt": "Prompt kopiëren",
+  "api_copied": "Gekopieerd",
+  "api_copy_failed": "Kopiëren mislukt. Selecteer de tekst en kopieer hem handmatig."
+}
