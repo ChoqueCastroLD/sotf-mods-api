@@ -173,13 +173,20 @@ ${agentPrompt(site)}
 `;
 }
 
-/** What an AI coding assistant needs to work with a creator's mods on SOTF Mods. */
-export function agentPrompt(siteUrl: string): string {
+/**
+ * What an AI coding assistant needs to work with a creator's mods on SOTF Mods. With `apiKey`
+ * (only right after the key is created, the one time it is visible) the key itself goes in the
+ * prompt; without it, the assistant reads it from the SOTF_API_KEY environment variable.
+ */
+export function agentPrompt(siteUrl: string, apiKey?: string): string {
   const site = siteUrl.replace(/\/+$/, '');
+  const auth = apiKey
+    ? `Auth: my API key is ${apiKey}. Send it as "Authorization: Bearer <key>". Store it in the SOTF_API_KEY environment variable for scripts; never print it, log it or commit it.`
+    : 'Auth: my API key is in the environment variable SOTF_API_KEY. Send "Authorization: Bearer $SOTF_API_KEY". Never print it, log it or commit it.';
   return `You are helping me build and publish a Sons of the Forest mod on SOTF Mods (${site}).
 
 API: ${site}/api/v2 (read it first; it links everything). Step-by-step guide: ${site}/developers/api.md. OpenAPI: ${site}/api/v2/openapi.json.
-Auth: my API key is in the environment variable SOTF_API_KEY. Send "Authorization: Bearer $SOTF_API_KEY". Never print it, log it or commit it.
+${auth}
 
 Rules:
 - Mods are RedLoader mods: a zip with manifest.json (id, version as semver, name, author, description, dependencies).

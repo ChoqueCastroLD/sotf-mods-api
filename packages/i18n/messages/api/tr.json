@@ -14,5 +14,15 @@
   "api_copy_command": "Komutu kopyala",
   "api_copy_prompt": "Prompt'u kopyala",
   "api_copied": "Kopyalandı",
-  "api_copy_failed": "Kopyalanamadı. Metni seçip elle kopyala."
+  "api_copy_failed": "Kopyalanamadı. Metni seçip elle kopyala.",
+  "api_overview_title": "API ile neler yapabilirsin",
+  "api_overview_text": "Buradaki her şey, web sitesini açmadan anahtarlarından biriyle bir betikten veya yapay zeka asistanından yapılabilir.",
+  "api_can_publish": "Modlarının yeni sürümlerini yayınla",
+  "api_can_upload": "Yeni modlar ve yapılar yükle",
+  "api_can_edit": "Mod sayfalarını düzenle: açıklama, etiketler, görseller, bağlantılar",
+  "api_can_stats": "İstatistiklerini oku: zaman içinde indirme, görüntülenme ve takipçiler",
+  "api_can_social": "Yorum yap, değerlendir ve takip et (Etkileşim izinli anahtarlar)",
+  "api_prompt_key_hint": "Bu prompt anahtarı SOTF_API_KEY değişkeninden okur. Anahtarın içinde olduğu bir prompt için bir anahtar oluştur: anahtar gösterildiğinde seçenek çıkar.",
+  "api_copy_prompt_with_key": "Bu anahtarla yapay zeka prompt'unu kopyala",
+  "api_prompt_with_key_hint": "Prompt bu anahtarı içerir: yalnızca güvendiğin bir asistana yapıştır, sızarsa anahtarı iptal et."
 }

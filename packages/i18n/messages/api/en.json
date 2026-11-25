@@ -14,5 +14,15 @@
   "api_copy_command": "Copy command",
   "api_copy_prompt": "Copy prompt",
   "api_copied": "Copied",
-  "api_copy_failed": "Couldn't copy. Select the text and copy it by hand."
+  "api_copy_failed": "Couldn't copy. Select the text and copy it by hand.",
+  "api_overview_title": "What you can do with the API",
+  "api_overview_text": "Everything below works from a script or an AI assistant with one of your keys, without opening the website.",
+  "api_can_publish": "Publish new versions of your mods",
+  "api_can_upload": "Upload new mods and builds",
+  "api_can_edit": "Edit your mod pages: description, tags, images, links",
+  "api_can_stats": "Read your stats: downloads, views and followers over time",
+  "api_can_social": "Comment, review and follow (keys with Interact)",
+  "api_prompt_key_hint": "This prompt reads the key from the SOTF_API_KEY variable. To get a prompt with the key inside, create a key: the option appears when it is shown.",
+  "api_copy_prompt_with_key": "Copy AI prompt with this key",
+  "api_prompt_with_key_hint": "The prompt includes this key: paste it only into an assistant you trust, and revoke the key if it leaks."
 }

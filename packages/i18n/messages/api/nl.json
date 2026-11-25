@@ -14,5 +14,15 @@
   "api_copy_command": "Opdracht kopiëren",
   "api_copy_prompt": "Prompt kopiëren",
   "api_copied": "Gekopieerd",
-  "api_copy_failed": "Kopiëren mislukt. Selecteer de tekst en kopieer hem handmatig."
+  "api_copy_failed": "Kopiëren mislukt. Selecteer de tekst en kopieer hem handmatig.",
+  "api_overview_title": "Wat je met de API kunt doen",
+  "api_overview_text": "Dit werkt allemaal vanuit een script of AI-assistent met een van je sleutels, zonder de website te openen.",
+  "api_can_publish": "Nieuwe versies van je mods publiceren",
+  "api_can_upload": "Nieuwe mods en builds uploaden",
+  "api_can_edit": "Je modpagina’s bewerken: beschrijving, tags, afbeeldingen, links",
+  "api_can_stats": "Je statistieken lezen: downloads, weergaven en volgers door de tijd",
+  "api_can_social": "Reageren, beoordelen en volgen (sleutels met Interactie)",
+  "api_prompt_key_hint": "Deze prompt leest de sleutel uit de variabele SOTF_API_KEY. Voor een prompt met de sleutel erin maak je een sleutel: de optie verschijnt wanneer hij getoond wordt.",
+  "api_copy_prompt_with_key": "AI-prompt met deze sleutel kopiëren",
+  "api_prompt_with_key_hint": "De prompt bevat deze sleutel: plak hem alleen in een assistent die je vertrouwt en trek de sleutel in als hij uitlekt."
 }

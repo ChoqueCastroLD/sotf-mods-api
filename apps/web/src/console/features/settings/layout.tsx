@@ -102,11 +102,20 @@ export const SECTION_META: Readonly<
   },
 };
 
-export function SettingsPage({ section, children }: { section: SettingsSection; children: ReactNode }) {
+export function SettingsPage({
+  section,
+  children,
+  wide = false,
+}: {
+  section: SettingsSection;
+  children: ReactNode;
+  /** Wider page for sections with a side column (API keys). */
+  wide?: boolean;
+}) {
   const meta = SECTION_META[section];
   useDocumentTitle(meta.title());
   return (
-    <div className="grid max-w-3xl gap-6">
+    <div className={wide ? 'grid max-w-6xl gap-6' : 'grid max-w-3xl gap-6'}>
       <header className="grid gap-1">
         <h1 className="font-display-caps text-display-xs text-fg max-md:sr-only">{meta.title()}</h1>
         <p className="max-w-prose text-sm text-fg-muted">{meta.hint()}</p>

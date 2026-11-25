@@ -14,5 +14,15 @@
   "api_copy_command": "Copiar comando",
   "api_copy_prompt": "Copiar prompt",
   "api_copied": "Copiado",
-  "api_copy_failed": "No se pudo copiar. Selecciona el texto y cópialo a mano."
+  "api_copy_failed": "No se pudo copiar. Selecciona el texto y cópialo a mano.",
+  "api_overview_title": "Qué puedes hacer con la API",
+  "api_overview_text": "Todo esto funciona desde un script o un asistente de IA con una de tus claves, sin abrir la web.",
+  "api_can_publish": "Publicar nuevas versiones de tus mods",
+  "api_can_upload": "Subir mods y builds nuevos",
+  "api_can_edit": "Editar las páginas de tus mods: descripción, etiquetas, imágenes, enlaces",
+  "api_can_stats": "Ver tus estadísticas: descargas, visitas y seguidores en el tiempo",
+  "api_can_social": "Comentar, reseñar y seguir (claves con Interactuar)",
+  "api_prompt_key_hint": "Este prompt lee la clave de la variable SOTF_API_KEY. Para un prompt con la clave dentro, crea una clave: la opción aparece cuando se muestra.",
+  "api_copy_prompt_with_key": "Copiar prompt de IA con esta clave",
+  "api_prompt_with_key_hint": "El prompt incluye esta clave: pégalo solo en un asistente de confianza y revoca la clave si se filtra."
 }

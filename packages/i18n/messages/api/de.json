@@ -14,5 +14,15 @@
   "api_copy_command": "Befehl kopieren",
   "api_copy_prompt": "Prompt kopieren",
   "api_copied": "Kopiert",
-  "api_copy_failed": "Kopieren fehlgeschlagen. Markiere den Text und kopiere ihn von Hand."
+  "api_copy_failed": "Kopieren fehlgeschlagen. Markiere den Text und kopiere ihn von Hand.",
+  "api_overview_title": "Was du mit der API machen kannst",
+  "api_overview_text": "Alles hier funktioniert aus einem Skript oder einem KI-Assistenten mit einem deiner Schlüssel, ohne die Website zu öffnen.",
+  "api_can_publish": "Neue Versionen deiner Mods veröffentlichen",
+  "api_can_upload": "Neue Mods und Builds hochladen",
+  "api_can_edit": "Deine Mod-Seiten bearbeiten: Beschreibung, Tags, Bilder, Links",
+  "api_can_stats": "Deine Statistiken lesen: Downloads, Aufrufe und Follower im Zeitverlauf",
+  "api_can_social": "Kommentieren, bewerten und folgen (Schlüssel mit Interagieren)",
+  "api_prompt_key_hint": "Dieser Prompt liest den Schlüssel aus der Variable SOTF_API_KEY. Für einen Prompt mit dem Schlüssel erstelle einen Schlüssel: Die Option erscheint, wenn er angezeigt wird.",
+  "api_copy_prompt_with_key": "KI-Prompt mit diesem Schlüssel kopieren",
+  "api_prompt_with_key_hint": "Der Prompt enthält diesen Schlüssel: Füge ihn nur in einen vertrauenswürdigen Assistenten ein und widerrufe den Schlüssel, falls er bekannt wird."
 }

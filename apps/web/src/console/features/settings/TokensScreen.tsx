@@ -16,8 +16,9 @@ import { Input } from '@sotf/ui/input';
 import { PasswordField } from '@sotf/ui/password-field';
 import { Select } from '@sotf/ui/select';
 import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
-import { Check, Copy, Plus, Trash2 } from 'lucide-react';
+import { Check, Copy, ExternalLink, Plus, Trash2 } from 'lucide-react';
 import { useId, useState } from 'react';
+import { agentPrompt } from '../../../lib/api-guide.ts';
 import { notify } from '../../lib/notify.ts';
 import { type AccessToken, settingsApi, settingsKeys, tokensQuery } from './api.ts';
 import { failureDescription, failureDetail } from './errors.ts';
@@ -35,9 +36,91 @@ type Expiry = `${(typeof PAT_EXPIRY_DAYS)[number]}` | typeof NEVER;
 
 export function TokensScreen() {
   return (
-    <SettingsPage section="tokens">
-      <TokensPanel />
+    <SettingsPage section="tokens" wide>
+      <div className="grid items-start gap-6 xl:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+        <div className="grid gap-6">
+          <TokensPanel />
+        </div>
+        <ApiOverviewCard />
+      </div>
     </SettingsPage>
+  );
+}
+
+/**
+ * What the API is for, in a few lines, with the documents and the AI prompt. The prompt here
+ * reads the key from SOTF_API_KEY; the one with the key itself is offered when a key is created
+ * (the only moment the key is visible).
+ */
+export function ApiOverviewCard() {
+  const site = window.location.origin;
+  const uses = [m.api_can_publish(), m.api_can_upload(), m.api_can_edit(), m.api_can_stats(), m.api_can_social()];
+  const docs = [
+    { href: `${site}/developers/api.md`, label: m.api_link_guide(), hint: m.api_link_guide_hint() },
+    { href: `${site}/api/docs`, label: m.api_link_reference(), hint: m.api_link_reference_hint() },
+  ];
+  return (
+    <SettingsCard id="api-overview" title={m.api_overview_title()} description={m.api_overview_text()}>
+      <ul className="grid divide-y divide-border border-y border-border text-sm text-fg">
+        {uses.map((use) => (
+          <li key={use} className="py-2">
+            {use}
+          </li>
+        ))}
+      </ul>
+      <ul className="grid gap-2">
+        {docs.map((doc) => (
+          <li key={doc.href}>
+            <a
+              href={doc.href}
+              target="_blank"
+              rel="noopener"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-link underline underline-offset-3"
+            >
+              {doc.label}
+              <Icon icon={ExternalLink} size={14} />
+            </a>
+            <p className="text-xs text-fg-muted">{doc.hint}</p>
+          </li>
+        ))}
+      </ul>
+      <div className="grid gap-1.5">
+        <div>
+          <CopyText text={agentPrompt(site)} label={m.api_copy_prompt()} />
+        </div>
+        <p className="text-xs text-fg-muted">{m.api_prompt_key_hint()}</p>
+      </div>
+    </SettingsCard>
+  );
+}
+
+/** A copy button that confirms in place (no toast for something visible on screen). */
+function CopyText({
+  text,
+  label,
+  variant = 'secondary',
+}: {
+  text: string;
+  label: string;
+  variant?: 'secondary' | 'primary';
+}) {
+  const [copied, setCopied] = useState(false);
+  return (
+    <Button
+      variant={variant}
+      icon={<Icon icon={copied ? Check : Copy} size={16} />}
+      onClick={async () => {
+        try {
+          await navigator.clipboard.writeText(text);
+          setCopied(true);
+          window.setTimeout(() => setCopied(false), 2000);
+        } catch {
+          notify.error(m.api_copy_failed());
+        }
+      }}
+    >
+      {copied ? m.api_copied() : label}
+    </Button>
   );
 }
 
@@ -318,6 +401,9 @@ function SecretDialog({ secret, onClose }: { secret: string | null; onClose: () 
           >
             {copied ? m.tokens_secret_copied() : m.tokens_secret_copy()}
           </Button>
+          {secret ? (
+            <CopyText text={agentPrompt(window.location.origin, secret)} label={m.api_copy_prompt_with_key()} />
+          ) : null}
           <Button onClick={close}>{m.tokens_secret_done()}</Button>
         </>
       }
@@ -330,6 +416,7 @@ function SecretDialog({ secret, onClose }: { secret: string | null; onClose: () 
         onFocus={(event) => event.currentTarget.select()}
         className="w-full rounded-md border border-border bg-sunken px-3 py-2 font-mono text-sm text-fg"
       />
+      <p className="text-xs text-fg-muted">{m.api_prompt_with_key_hint()}</p>
     </Dialog>
   );
 }

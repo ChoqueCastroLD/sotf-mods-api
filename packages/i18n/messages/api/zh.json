@@ -14,5 +14,15 @@
   "api_copy_command": "复制命令",
   "api_copy_prompt": "复制提示词",
   "api_copied": "已复制",
-  "api_copy_failed": "无法复制，请选中文本手动复制。"
+  "api_copy_failed": "无法复制，请选中文本手动复制。",
+  "api_overview_title": "API 可以做什么",
+  "api_overview_text": "以下操作都可以通过脚本或 AI 助手使用你的密钥完成，无需打开网站。",
+  "api_can_publish": "发布模组的新版本",
+  "api_can_upload": "上传新模组和建筑",
+  "api_can_edit": "编辑模组页面：简介、标签、图片、链接",
+  "api_can_stats": "查看统计：下载量、浏览量和关注者变化",
+  "api_can_social": "评论、评价和关注（需要“互动”权限的密钥）",
+  "api_prompt_key_hint": "此提示词从 SOTF_API_KEY 变量读取密钥。如需包含密钥的提示词，请创建密钥：密钥显示时会出现该选项。",
+  "api_copy_prompt_with_key": "复制包含此密钥的 AI 提示词",
+  "api_prompt_with_key_hint": "提示词中包含此密钥：只粘贴到你信任的助手中，若泄露请撤销密钥。"
 }
